@@ -1,0 +1,9 @@
+{
+  "name": "synos-landing",
+  "version": "1.0.0",
+  "description": "SynOS - AI Agent Platform for Enterprises — Coming Soon",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site — no build needed'"
+  }
+}
