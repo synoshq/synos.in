@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynOS — AI Agents That Actually Understand Your Business</title>
-    <meta name="description" content="SynOS is the AI agent platform with a self-learning context layer. Give your agents the understanding they need to automate real enterprise workflows — reliably.">
-    <meta property="og:title" content="SynOS — AI Agents That Actually Understand Your Business">
-    <meta property="og:description" content="The AI agent platform with a self-learning context layer. Now accepting early access.">
+    <title>SynOS — Context Infrastructure for the Agent Era</title>
+    <meta name="description" content="SynOS connects your enterprise data into a living knowledge graph. Expose it via MCP. Every AI agent gets shared context that compounds over time.">
+    <meta property="og:title" content="SynOS — Context Infrastructure for the Agent Era">
+    <meta property="og:description" content="MCP gave agents hands. SynOS gives them a brain. Organizational context infrastructure for AI agents.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://synos.in">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SynOS — AI Agents That Actually Understand Your Business">
-    <meta name="twitter:description" content="The AI agent platform with a self-learning context layer. Now accepting early access.">
+    <meta name="twitter:title" content="SynOS — Context Infrastructure for the Agent Era">
+    <meta name="twitter:description" content="MCP gave agents hands. SynOS gives them a brain. Organizational context infrastructure for AI agents.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚡</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MXVRX5VMJR');
+    </script>
+
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -33,8 +43,6 @@
             --gradient-2: #8b5cf6;
             --gradient-3: #06b6d4;
             --success: #4ade80;
-            --warning: #fbbf24;
-            --error: #f87171;
         }
 
         html { scroll-behavior: smooth; }
@@ -47,7 +55,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Background */
+        /* ===== BACKGROUND ===== */
         .bg-mesh {
             position: fixed;
             inset: 0;
@@ -84,7 +92,51 @@
             mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black, transparent);
         }
 
-        /* Nav */
+        /* ===== NODE MESH ANIMATION (Hero background) ===== */
+        .node-mesh {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .node-mesh .node {
+            position: absolute;
+            border-radius: 50%;
+            animation: nodePulse var(--duration, 3s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+        .node-mesh .node::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(6px);
+            opacity: 0.4;
+        }
+        @keyframes nodePulse {
+            0%, 100% { opacity: var(--opacity-low, 0.3); transform: scale(1); }
+            50% { opacity: var(--opacity-high, 0.8); transform: scale(1.2); }
+        }
+        .node-mesh .edge {
+            position: absolute;
+            height: 1px;
+            transform-origin: 0 0;
+            opacity: 0.08;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-3));
+        }
+        .node-mesh .edge.animate-in {
+            animation: edgeDraw 4s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes edgeDraw {
+            0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+            50% { opacity: 0.12; clip-path: inset(0 0 0 0); }
+            100% { opacity: 0.06; clip-path: inset(0 0 0 0); }
+        }
+
+        /* ===== NAV ===== */
         .nav {
             position: fixed;
             top: 0;
@@ -133,7 +185,7 @@
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
         }
 
-        /* Sections */
+        /* ===== SECTIONS ===== */
         .section {
             position: relative;
             z-index: 2;
@@ -142,7 +194,6 @@
             padding: 0 24px;
         }
 
-        /* Scroll animation */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -151,6 +202,22 @@
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 56px;
+            line-height: 1.3;
         }
 
         /* ===== SECTION 1: HERO ===== */
@@ -162,6 +229,7 @@
             align-items: center;
             text-align: center;
             padding-top: 80px;
+            position: relative;
         }
 
         .badge {
@@ -178,22 +246,15 @@
             letter-spacing: 0.02em;
             margin-bottom: 32px;
         }
-        .badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+        .badge-sep {
+            width: 1px;
+            height: 12px;
+            background: rgba(99, 102, 241, 0.3);
         }
 
         .hero h1 {
             font-size: clamp(32px, 6vw, 56px);
-            font-weight: 800;
+            font-weight: 700;
             line-height: 1.15;
             letter-spacing: -0.03em;
             margin-bottom: 24px;
@@ -207,10 +268,10 @@
         }
 
         .hero-sub {
-            font-size: 18px;
+            font-size: 17px;
             line-height: 1.7;
             color: var(--text-muted);
-            max-width: 540px;
+            max-width: 580px;
             margin-bottom: 40px;
         }
 
@@ -263,6 +324,9 @@
             font-size: 13px;
             color: #52525b;
         }
+        .form-note .compat {
+            color: var(--text-dim);
+        }
         .form-success {
             display: none;
             padding: 14px 24px;
@@ -276,43 +340,29 @@
             width: 100%;
         }
 
-        /* ===== SECTION 2: PROBLEM ===== */
-        .problem-section {
+        /* ===== SECTION 2: THE GAP ===== */
+        .gap-section {
             padding: 120px 24px;
         }
-        .section-label {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent-light);
-            margin-bottom: 16px;
-        }
-        .section-title {
-            font-size: clamp(24px, 4vw, 36px);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 56px;
-            line-height: 1.3;
-        }
-
-        .problem-grid {
+        .gap-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
-        .problem-card {
+        .gap-card {
             padding: 32px 28px;
             background: var(--surface);
             border: 1px solid var(--border);
+            border-top: 2px solid;
+            border-image: linear-gradient(135deg, rgba(248,113,113,0.6), rgba(251,191,36,0.4)) 1;
             border-radius: 16px;
-            transition: border-color 0.3s, transform 0.3s;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
-        .problem-card:hover {
-            border-color: var(--border-light);
+        .gap-card:hover {
             transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.06);
         }
-        .problem-icon {
+        .gap-icon {
             width: 44px;
             height: 44px;
             display: flex;
@@ -320,16 +370,22 @@
             justify-content: center;
             background: rgba(248, 113, 113, 0.1);
             border-radius: 12px;
-            font-size: 20px;
             margin-bottom: 20px;
         }
-        .problem-card h3 {
+        .gap-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: #f87171;
+            fill: none;
+            stroke-width: 1.5;
+        }
+        .gap-card h3 {
             font-size: 17px;
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--text);
         }
-        .problem-card p {
+        .gap-card p {
             font-size: 14px;
             line-height: 1.7;
             color: var(--text-muted);
@@ -340,168 +396,405 @@
             padding: 120px 24px;
         }
         .architecture {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 48px;
             position: relative;
-            overflow: hidden;
+            padding: 60px 40px;
         }
-        .arch-layers {
+        .arch-center {
             display: flex;
             flex-direction: column;
-            gap: 24px;
-        }
-        .arch-layer {
-            display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 24px;
-            border-radius: 14px;
-            position: relative;
+            gap: 32px;
         }
-        .arch-layer.sources {
-            background: rgba(113, 113, 122, 0.08);
-            border: 1px solid rgba(113, 113, 122, 0.15);
+        .arch-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: 700px;
         }
-        .arch-layer.context {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(6, 182, 212, 0.08));
-            border: 1px solid rgba(99, 102, 241, 0.25);
-            padding: 32px 24px;
-        }
-        .arch-layer.agents {
-            background: rgba(139, 92, 246, 0.08);
-            border: 1px solid rgba(139, 92, 246, 0.15);
-        }
-        .arch-label {
+        .arch-row-label {
+            width: 100%;
+            text-align: center;
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             color: var(--text-dim);
-            min-width: 100px;
+            margin-bottom: 4px;
         }
-        .arch-layer.context .arch-label {
-            color: var(--accent-light);
-        }
-        .arch-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            flex: 1;
-        }
-        .arch-item {
+        .arch-row.agents .arch-row-label { color: rgba(139, 92, 246, 0.8); }
+        .arch-row.synos-row .arch-row-label { color: var(--accent-light); }
+        .arch-row.sources .arch-row-label { color: var(--text-dim); }
+
+        .arch-chip {
             padding: 8px 16px;
-            background: rgba(255,255,255,0.06);
             border-radius: 8px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--text-muted);
             font-family: 'JetBrains Mono', monospace;
         }
-        .arch-layer.context .arch-item {
-            background: rgba(99, 102, 241, 0.15);
-            color: var(--accent-light);
+        .arch-row.agents .arch-chip {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: rgba(196, 181, 253, 0.9);
         }
+        .arch-row.sources .arch-chip {
+            background: rgba(113, 113, 122, 0.1);
+            border: 1px solid rgba(113, 113, 122, 0.2);
+            color: var(--text-muted);
+        }
+
+        /* SynOS center hub */
+        .synos-hub {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .synos-hub::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(6,182,212,0.08));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+        }
+        .synos-hub::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, var(--gradient-1), var(--gradient-3), var(--gradient-2), var(--gradient-1)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: hubRotate 8s linear infinite;
+            opacity: 0.5;
+        }
+        @keyframes hubRotate {
+            to { transform: rotate(360deg); }
+        }
+        .synos-hub-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            z-index: 1;
+        }
+        .synos-hub-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            max-width: 220px;
+            z-index: 1;
+        }
+        .synos-hub-item {
+            padding: 4px 10px;
+            background: rgba(99, 102, 241, 0.15);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent-light);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Connection lines */
         .arch-connector {
             display: flex;
             justify-content: center;
             padding: 4px 0;
+            position: relative;
         }
-        .arch-connector svg {
-            width: 24px;
-            height: 24px;
-            color: var(--text-dim);
+        .arch-connector .line {
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gradient-2), var(--accent));
+            opacity: 0.3;
+            border-radius: 1px;
+            position: relative;
         }
-        .arch-highlight {
-            font-size: 13px;
+        .arch-connector .line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -2px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: connectorPulse 2s ease-in-out infinite;
+        }
+        @keyframes connectorPulse {
+            0%, 100% { opacity: 0.4; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(34px); }
+        }
+        .arch-tagline {
+            text-align: center;
+            font-size: 14px;
             color: var(--accent-light);
             font-weight: 500;
-            margin-top: 8px;
             font-style: italic;
+            margin-top: 12px;
         }
 
-        /* ===== SECTION 4: PILLARS ===== */
-        .pillars-section {
+        /* ===== SECTION 4: WHAT MAKES IT DIFFERENT ===== */
+        .diff-section {
             padding: 120px 24px;
         }
-        .pillars-grid {
+        .diff-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
-        .pillar-card {
-            padding: 36px 28px;
+        .diff-card {
+            padding: 32px 28px;
             background: var(--surface);
             border: 1px solid var(--border);
+            border-top: 2px solid;
+            border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;
             border-radius: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .diff-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+        }
+        .diff-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .diff-comparison {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .diff-before, .diff-after {
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .diff-before {
+            background: rgba(113, 113, 122, 0.08);
+            border: 1px solid rgba(113, 113, 122, 0.12);
+            color: var(--text-dim);
+        }
+        .diff-before::before {
+            content: 'Before';
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #52525b;
+            margin-bottom: 6px;
+        }
+        .diff-after {
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            color: var(--text-muted);
+        }
+        .diff-after::before {
+            content: 'With SynOS';
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-light);
+            margin-bottom: 6px;
+        }
+
+        /* ===== SECTION 5: MCP INTEGRATION ===== */
+        .mcp-section {
+            padding: 120px 24px;
+        }
+        .mcp-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .mcp-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .mcp-platforms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mcp-platform {
+            padding: 6px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .code-block-wrapper {
+            position: relative;
+            background: #0c0c0e;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .code-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid var(--border);
+        }
+        .code-block-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .copy-btn {
+            padding: 4px 10px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-dim);
+            font-size: 11px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .copy-btn:hover {
+            color: var(--text-muted);
+            border-color: var(--border-light);
+        }
+        .copy-btn.copied {
+            color: var(--success);
+            border-color: rgba(74, 222, 128, 0.3);
+        }
+        .code-block {
+            padding: 20px;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        .code-block .line-num {
+            display: inline-block;
+            width: 24px;
+            color: #3f3f46;
+            user-select: none;
+            text-align: right;
+            margin-right: 16px;
+        }
+        .code-block .key { color: #818cf8; }
+        .code-block .string { color: #6ee7b7; }
+        .code-block .bracket { color: #71717a; }
+        .code-block .comment { color: #52525b; }
+
+        /* ===== SECTION 6: VS ALTERNATIVES ===== */
+        .vs-section {
+            padding: 120px 24px;
+        }
+        .vs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .vs-card {
+            padding: 28px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
             transition: border-color 0.3s, transform 0.3s;
         }
-        .pillar-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateY(-2px);
+        .vs-card:hover {
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-1px);
         }
-        .pillar-icon {
+        .vs-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #52525b;
+            margin-bottom: 10px;
+        }
+        .vs-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        .vs-card strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ===== SECTION 7: WHO IT'S FOR ===== */
+        .audience-section {
+            padding: 120px 24px;
+        }
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .audience-card {
+            padding: 40px 32px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 2px solid;
+            border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)) 1;
+            border-radius: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .audience-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.08);
+        }
+        .audience-icon {
             width: 48px;
             height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--accent-glow);
-            border-radius: 14px;
-            font-size: 22px;
-            margin-bottom: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
-        .pillar-card h3 {
-            font-size: 18px;
+        .audience-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent-light);
+            fill: none;
+            stroke-width: 1.5;
+        }
+        .audience-card h3 {
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--text);
         }
-        .pillar-card p {
+        .audience-card p {
             font-size: 14px;
             line-height: 1.7;
             color: var(--text-muted);
         }
 
-        /* ===== SECTION 5: AUDIENCE ===== */
-        .audience-section {
-            padding: 120px 24px;
-        }
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .audience-card {
-            padding: 32px 28px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            text-align: center;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .audience-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateY(-2px);
-        }
-        .audience-emoji {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .audience-card h3 {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        .audience-card p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-muted);
-        }
-
-        /* ===== SECTION 6: FINAL CTA ===== */
+        /* ===== SECTION 8: BOTTOM CTA ===== */
         .cta-section {
             padding: 120px 24px;
             text-align: center;
@@ -519,8 +812,13 @@
         .cta-section .hero-sub {
             margin-bottom: 40px;
         }
+        .cta-selfhost {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-dim);
+        }
 
-        /* ===== FOOTER ===== */
+        /* ===== SECTION 9: FOOTER ===== */
         .site-footer {
             padding: 40px 24px;
             text-align: center;
@@ -552,18 +850,24 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .problem-grid, .pillars-grid, .audience-grid {
-                grid-template-columns: 1fr;
-            }
-            .architecture { padding: 24px; }
-            .arch-layer { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .arch-label { min-width: auto; }
+            .gap-grid { grid-template-columns: 1fr; }
+            .diff-grid { grid-template-columns: 1fr; }
+            .mcp-content { grid-template-columns: 1fr; }
+            .vs-grid { grid-template-columns: 1fr; }
+            .audience-grid { grid-template-columns: 1fr; }
+            .architecture { padding: 40px 16px; }
+            .synos-hub { width: 220px; height: 220px; }
+            .synos-hub-title { font-size: 18px; }
+            .synos-hub-items { max-width: 180px; }
+            .synos-hub-item { font-size: 10px; padding: 3px 8px; }
+            .node-mesh { display: none; }
         }
         @media (max-width: 540px) {
             .email-form { flex-direction: column; }
             .submit-btn { width: 100%; }
             .hero h1 { font-size: 28px; }
             .nav-cta { padding: 8px 16px; font-size: 13px; }
+            .audience-card { padding: 28px 24px; }
         }
     </style>
 </head>
@@ -574,22 +878,26 @@
     <!-- NAV -->
     <nav class="nav" id="nav">
         <a href="#" class="nav-logo">Syn<span>OS</span></a>
-        <a href="#waitlist" class="nav-cta">Get Early Access</a>
+        <a href="#waitlist" class="nav-cta" data-cta="nav">Get Early Access</a>
     </nav>
 
-    <!-- SECTION 1: HERO -->
+    <!-- ===== SECTION 1: HERO ===== -->
     <section class="section hero" id="waitlist">
-        <div class="badge">Now Accepting Early Access</div>
+        <div class="node-mesh" id="node-mesh" aria-hidden="true"></div>
+
+        <div class="badge">
+            MCP-Native <span class="badge-sep"></span> Self-Learning <span class="badge-sep"></span> Enterprise-Ready
+        </div>
 
         <h1>
-            AI Agents That Actually<br>
-            <span class="gradient-text">Understand Your Business</span>
+            Context Infrastructure<br>
+            <span class="gradient-text">for the Agent Era</span>
         </h1>
 
         <p class="hero-sub">
-            SynOS is the context layer that turns your enterprise data into
-            a living knowledge graph — so AI agents can execute real workflows,
-            learn from every interaction, and get more reliable over time.
+            SynOS connects your enterprise data into a living knowledge graph.
+            Expose it via MCP. Every AI agent — Claude Code, LangChain, or custom — gets
+            shared context that compounds over time.
         </p>
 
         <form class="email-form" id="waitlist-form">
@@ -605,145 +913,237 @@
                 Get Early Access
             </button>
         </form>
-        <p class="form-note" id="form-note">Join teams on the waitlist. No spam, ever.</p>
+        <p class="form-note" id="form-note">
+            <span class="compat">Works with Claude Code, LangChain, LlamaIndex, and any MCP-compatible agent</span>
+        </p>
         <div class="form-success" id="form-success">
             You're on the list. We'll reach out when SynOS is ready for you.
         </div>
     </section>
 
-    <!-- SECTION 2: PROBLEM -->
-    <section class="section problem-section">
+    <!-- ===== SECTION 2: THE GAP ===== -->
+    <section class="section gap-section" data-section="the-gap">
         <div class="reveal">
-            <p class="section-label">The Problem</p>
-            <h2 class="section-title">Why AI Agents Keep Failing</h2>
+            <p class="section-label">The Infrastructure Gap</p>
+            <h2 class="section-title">MCP Gave Agents Hands. Nobody Gave Them a Brain.</h2>
         </div>
-        <div class="problem-grid">
-            <div class="problem-card reveal">
-                <div class="problem-icon">&#x1F6AB;</div>
-                <h3>Your Agents Lack Context</h3>
-                <p>They can't see across your systems. Without shared context, every agent works in isolation — producing generic, unreliable outputs.</p>
+        <div class="gap-grid">
+            <div class="gap-card reveal">
+                <div class="gap-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+                <h3>Agents Start from Zero</h3>
+                <p>Your Salesforce bot doesn't know what your BigQuery pipeline learned yesterday. Every agent independently rediscovers the same facts.</p>
             </div>
-            <div class="problem-card reveal">
-                <div class="problem-icon">&#x1F504;</div>
-                <h3>Every Iteration Is a Rebuild</h3>
-                <p>Change one step and the whole pipeline breaks. Fragile integrations mean weeks of rework for every small business change.</p>
+            <div class="gap-card reveal">
+                <div class="gap-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+                <h3>Context Is Scattered</h3>
+                <p>Business knowledge lives in spreadsheets, Slack threads, tribal memory, and one person who always knows the answer. None of it is machine-readable.</p>
             </div>
-            <div class="problem-card reveal">
-                <div class="problem-icon">&#x1F4C9;</div>
-                <h3>Static AI Can't Learn</h3>
-                <p>Your agents make the same mistakes twice. Without memory or feedback loops, there's no compounding improvement over time.</p>
+            <div class="gap-card reveal">
+                <div class="gap-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <h3>Intelligence Doesn't Compound</h3>
+                <p>Fix one agent's mistake. The rest keep making it. Corrections are local. Learning is lost.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: HOW IT WORKS -->
-    <section class="section how-section">
+    <!-- ===== SECTION 3: HOW IT WORKS ===== -->
+    <section class="section how-section" data-section="how-it-works">
         <div class="reveal">
-            <p class="section-label">How It Works</p>
-            <h2 class="section-title">One Brain. Infinite Agents.</h2>
+            <p class="section-label">How SynOS Works</p>
+            <h2 class="section-title">One Brain. Every Agent.</h2>
         </div>
         <div class="architecture reveal">
-            <div class="arch-layers">
-                <div class="arch-layer agents">
-                    <span class="arch-label">Agents</span>
-                    <div class="arch-items">
-                        <span class="arch-item">Invoice Reconciler</span>
-                        <span class="arch-item">Sales Forecaster</span>
-                        <span class="arch-item">Support Triager</span>
-                        <span class="arch-item">Report Generator</span>
-                    </div>
+            <div class="arch-center">
+                <!-- Agents row -->
+                <div class="arch-row agents">
+                    <span class="arch-row-label">Agents</span>
+                    <span class="arch-chip">Claude Code</span>
+                    <span class="arch-chip">LangChain Agents</span>
+                    <span class="arch-chip">Custom Pipelines</span>
+                    <span class="arch-chip">Any MCP Client</span>
                 </div>
 
+                <!-- Connector -->
                 <div class="arch-connector">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                    <div class="line"></div>
                 </div>
 
-                <div class="arch-layer context">
-                    <span class="arch-label">SynOS</span>
-                    <div class="arch-items">
-                        <span class="arch-item">Knowledge Graph</span>
-                        <span class="arch-item">Ontology Engine</span>
-                        <span class="arch-item">Learning Loop</span>
-                        <span class="arch-item">Context Memory</span>
+                <!-- SynOS Hub -->
+                <div class="synos-hub">
+                    <span class="synos-hub-title">SynOS</span>
+                    <div class="synos-hub-items">
+                        <span class="synos-hub-item">Knowledge Graph</span>
+                        <span class="synos-hub-item">Learning Loop</span>
+                        <span class="synos-hub-item">Human Corrections</span>
+                        <span class="synos-hub-item">Freshness Decay</span>
+                        <span class="synos-hub-item">Conflict Detection</span>
                     </div>
-                    <p class="arch-highlight">Connects, organises, learns, executes</p>
                 </div>
 
+                <!-- Connector -->
                 <div class="arch-connector">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                    <div class="line"></div>
                 </div>
 
-                <div class="arch-layer sources">
-                    <span class="arch-label">Data</span>
-                    <div class="arch-items">
-                        <span class="arch-item">Salesforce</span>
-                        <span class="arch-item">Google Sheets</span>
-                        <span class="arch-item">Postgres</span>
-                        <span class="arch-item">APIs</span>
-                        <span class="arch-item">Docs</span>
-                    </div>
+                <!-- Data Sources row -->
+                <div class="arch-row sources">
+                    <span class="arch-row-label">Data Sources</span>
+                    <span class="arch-chip">Salesforce</span>
+                    <span class="arch-chip">BigQuery</span>
+                    <span class="arch-chip">Google Sheets</span>
+                    <span class="arch-chip">Postgres</span>
+                    <span class="arch-chip">REST APIs</span>
+                    <span class="arch-chip">Documents</span>
+                </div>
+            </div>
+            <p class="arch-tagline">Connects. Learns. Remembers. Gets smarter with every interaction.</p>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 4: WHAT MAKES IT DIFFERENT ===== -->
+    <section class="section diff-section" data-section="what-makes-it-different">
+        <div class="reveal">
+            <p class="section-label">Not Just Search. Not Just Memory.</p>
+            <h2 class="section-title">A Context Layer That Learns</h2>
+        </div>
+        <div class="diff-grid">
+            <div class="diff-card reveal">
+                <h3>Progressive Enrichment</h3>
+                <div class="diff-comparison">
+                    <div class="diff-before">You manually build RAG pipelines per data source. Schema changes break everything.</div>
+                    <div class="diff-after">SynOS auto-extracts relationships, profiles tables, and links knowledge across sources. Adapts as schemas evolve.</div>
+                </div>
+            </div>
+            <div class="diff-card reveal">
+                <h3>Learning from Execution</h3>
+                <div class="diff-comparison">
+                    <div class="diff-before">Workflow fails. You debug. Next agent makes the same mistake.</div>
+                    <div class="diff-after">Every run extracts insights. High-confidence learnings auto-promote to the shared brain.</div>
+                </div>
+            </div>
+            <div class="diff-card reveal">
+                <h3>Human Corrections as Context</h3>
+                <div class="diff-comparison">
+                    <div class="diff-before">You correct the output. The fix dies in a Slack thread.</div>
+                    <div class="diff-after">Corrections become organizational memory. Fix once, all agents learn.</div>
+                </div>
+            </div>
+            <div class="diff-card reveal">
+                <h3>Freshness & Trust</h3>
+                <div class="diff-comparison">
+                    <div class="diff-before">Your RAG serves stale facts from 2023 docs with full confidence.</div>
+                    <div class="diff-after">Every piece of context has freshness decay, confidence scores, and provenance.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: THREE PILLARS -->
-    <section class="section pillars-section">
+    <!-- ===== SECTION 5: MCP INTEGRATION ===== -->
+    <section class="section mcp-section" data-section="mcp-integration">
         <div class="reveal">
-            <p class="section-label">What Makes SynOS Different</p>
-            <h2 class="section-title">Built for Agents That Ship</h2>
+            <p class="section-label">Works With Everything</p>
+            <h2 class="section-title">Connect Your Data. Use From Any Agent.</h2>
         </div>
-        <div class="pillars-grid">
-            <div class="pillar-card reveal">
-                <div class="pillar-icon">&#x1F9E0;</div>
-                <h3>Self-Learning Context Layer</h3>
-                <p>A living ontology that auto-connects your data sources, maps relationships, and grows smarter with every agent interaction.</p>
+        <div class="mcp-content reveal">
+            <div class="mcp-text">
+                <p>
+                    Connect your Salesforce, BigQuery, Google Sheets, and more.
+                    SynOS builds the context graph. Your agents query it via MCP. That's it.
+                </p>
+                <p>Add SynOS as an MCP server to any compatible client. Your agents instantly get access to organizational context — no custom integrations needed.</p>
+                <div class="mcp-platforms">
+                    <span class="mcp-platform">Claude Code</span>
+                    <span class="mcp-platform">LangChain</span>
+                    <span class="mcp-platform">LlamaIndex</span>
+                    <span class="mcp-platform">CrewAI</span>
+                    <span class="mcp-platform">Any MCP Client</span>
+                </div>
             </div>
-            <div class="pillar-card reveal">
-                <div class="pillar-icon">&#x26A1;</div>
-                <h3>Reliable Agent Workflows</h3>
-                <p>Build workflows that are accurate, auditable, and repeatable. Not prompt chains — real executable business logic with guardrails.</p>
-            </div>
-            <div class="pillar-card reveal">
-                <div class="pillar-icon">&#x1F504;</div>
-                <h3>Iterate, Never Rebuild</h3>
-                <p>Change workflows in minutes, not months. The context layer absorbs business changes so your agents don't break.</p>
+            <div class="code-block-wrapper">
+                <div class="code-block-header">
+                    <span class="code-block-title">claude_desktop_config.json</span>
+                    <button class="copy-btn" id="copy-btn" aria-label="Copy code">Copy</button>
+                </div>
+                <div class="code-block">
+<pre id="mcp-code"><span class="line-num"> 1</span><span class="bracket">{</span>
+<span class="line-num"> 2</span>  <span class="key">"mcpServers"</span>: <span class="bracket">{</span>
+<span class="line-num"> 3</span>    <span class="key">"synos"</span>: <span class="bracket">{</span>
+<span class="line-num"> 4</span>      <span class="key">"url"</span>: <span class="string">"http://your-synos:8000/mcp"</span>,
+<span class="line-num"> 5</span>      <span class="key">"tools"</span>: <span class="bracket">[</span>
+<span class="line-num"> 6</span>        <span class="string">"query_context"</span>,
+<span class="line-num"> 7</span>        <span class="string">"search_knowledge"</span>,
+<span class="line-num"> 8</span>        <span class="string">"get_entity"</span>
+<span class="line-num"> 9</span>      <span class="bracket">]</span>
+<span class="line-num">10</span>    <span class="bracket">}</span>
+<span class="line-num">11</span>  <span class="bracket">}</span>
+<span class="line-num">12</span><span class="bracket">}</span></pre>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: WHO THIS IS FOR -->
-    <section class="section audience-section">
+    <!-- ===== SECTION 6: VS ALTERNATIVES ===== -->
+    <section class="section vs-section" data-section="vs-alternatives">
         <div class="reveal">
-            <p class="section-label">Who This Is For</p>
-            <h2 class="section-title">Built for Teams That Build with AI</h2>
+            <p class="section-label">How We're Different</p>
+            <h2 class="section-title">Not a Chatbot. Not a Search Engine. Infrastructure.</h2>
+        </div>
+        <div class="vs-grid">
+            <div class="vs-card reveal">
+                <div class="vs-label">vs Mem0 / Zep</div>
+                <p>They remember chat conversations. <strong>We remember organizational truths across all your systems.</strong></p>
+            </div>
+            <div class="vs-card reveal">
+                <div class="vs-label">vs Glean</div>
+                <p>They index what exists. <strong>We learn from what agents do.</strong></p>
+            </div>
+            <div class="vs-card reveal">
+                <div class="vs-label">vs LangChain</div>
+                <p>They give you the framework. <strong>We give you the organizational knowledge it needs.</strong></p>
+            </div>
+            <div class="vs-card reveal">
+                <div class="vs-label">vs Palantir</div>
+                <p>They need $10M and 6 months. <strong>We need <code style="background:rgba(99,102,241,0.15);padding:2px 6px;border-radius:4px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--accent-light);">docker compose up</code> and 30 minutes.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 7: WHO IT'S FOR ===== -->
+    <section class="section audience-section" data-section="who-its-for">
+        <div class="reveal">
+            <p class="section-label">Built For</p>
+            <h2 class="section-title">Teams Where AI Is Already Shipping</h2>
         </div>
         <div class="audience-grid">
             <div class="audience-card reveal">
-                <div class="audience-emoji">&#x1F468;&#x200D;&#x1F4BB;</div>
+                <div class="audience-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
                 <h3>AI Engineers</h3>
-                <p>Stop rebuilding context pipelines from scratch. SynOS gives your agents a shared brain out of the box.</p>
+                <p>Building agents with Claude, LangChain, or custom pipelines. Need organizational context without building a knowledge graph from scratch. Connect data sources, add SynOS as MCP, get a shared brain.</p>
             </div>
             <div class="audience-card reveal">
-                <div class="audience-emoji">&#x1F4CA;</div>
-                <h3>Domain Experts</h3>
-                <p>Design and modify workflows without engineering bottlenecks. Your business knowledge drives the automation.</p>
-            </div>
-            <div class="audience-card reveal">
-                <div class="audience-emoji">&#x1F680;</div>
+                <div class="audience-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
                 <h3>Engineering Leaders</h3>
-                <p>Ship reliable AI agents to production with confidence. Full auditability, governance, and enterprise controls.</p>
+                <p>Your agents work in demos but fail in production. SynOS is the infrastructure layer: context provenance, freshness tracking, conflict detection, human correction loops, governance.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 6: FINAL CTA -->
-    <section class="section cta-section">
+    <!-- ===== SECTION 8: BOTTOM CTA ===== -->
+    <section class="section cta-section" data-section="bottom-cta">
         <div class="reveal">
-            <h2>Ready to Give Your<br>AI Agents a Brain?</h2>
+            <h2>Your Agents Deserve a Brain.</h2>
             <p class="hero-sub">
-                Join the early access list and be the first to build
-                AI agents that truly understand your business.
+                Start building organizational intelligence. Get early access to SynOS.
             </p>
             <form class="email-form" id="waitlist-form-bottom">
                 <input type="checkbox" name="botcheck" style="display:none">
@@ -762,40 +1162,185 @@
             <div class="form-success" id="form-success-bottom">
                 You're on the list. We'll reach out when SynOS is ready for you.
             </div>
+            <p class="cta-selfhost">Self-hosted. Your data stays yours.</p>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ===== SECTION 9: FOOTER ===== -->
     <footer class="site-footer section">
         <div class="footer-links">
-            <a href="https://github.com/synoshq" target="_blank">GitHub</a>
-            <div class="footer-divider"></div>
             <a href="mailto:hello@synos.in">hello@synos.in</a>
             <div class="footer-divider"></div>
             <a href="https://x.com/synaborative" target="_blank">X / Twitter</a>
         </div>
-        <p class="footer-copy">&copy; 2025 SynOS. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
     </footer>
 
     <script>
-        // Nav scroll effect
+        // ===== NAV SCROLL =====
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Scroll reveal
+        // ===== SCROLL REVEAL + SECTION TRACKING =====
         const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => observer.observe(el));
+        reveals.forEach(el => revealObserver.observe(el));
 
-        // Web3Forms submission handler
+        // GA section tracking
+        const sections = document.querySelectorAll('[data-section]');
+        const sectionTracked = new Set();
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const name = entry.target.getAttribute('data-section');
+                    if (!sectionTracked.has(name)) {
+                        sectionTracked.add(name);
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'section_view', { section_name: name });
+                        }
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+        sections.forEach(el => sectionObserver.observe(el));
+
+        // ===== NODE MESH (CSS-only positioned, JS-generated) =====
+        (function() {
+            const mesh = document.getElementById('node-mesh');
+            if (!mesh || window.innerWidth < 768) return;
+
+            const nodes = [
+                { x: 10, y: 20, size: 6, color: '#6366f1', opLow: 0.2, opHigh: 0.7, dur: 3 },
+                { x: 25, y: 15, size: 4, color: '#8b5cf6', opLow: 0.3, opHigh: 0.8, dur: 4 },
+                { x: 40, y: 30, size: 5, color: '#06b6d4', opLow: 0.2, opHigh: 0.6, dur: 3.5 },
+                { x: 60, y: 10, size: 4, color: '#6366f1', opLow: 0.15, opHigh: 0.5, dur: 5 },
+                { x: 75, y: 25, size: 7, color: '#8b5cf6', opLow: 0.25, opHigh: 0.9, dur: 3 },
+                { x: 85, y: 40, size: 3, color: '#06b6d4', opLow: 0.2, opHigh: 0.55, dur: 4.5 },
+                { x: 15, y: 55, size: 5, color: '#6366f1', opLow: 0.3, opHigh: 0.7, dur: 3.8 },
+                { x: 35, y: 60, size: 4, color: '#06b6d4', opLow: 0.2, opHigh: 0.6, dur: 4.2 },
+                { x: 55, y: 50, size: 6, color: '#8b5cf6', opLow: 0.25, opHigh: 0.8, dur: 3 },
+                { x: 70, y: 55, size: 3, color: '#6366f1', opLow: 0.15, opHigh: 0.5, dur: 5.5 },
+                { x: 90, y: 60, size: 5, color: '#06b6d4', opLow: 0.2, opHigh: 0.65, dur: 3.2 },
+                { x: 20, y: 75, size: 4, color: '#8b5cf6', opLow: 0.2, opHigh: 0.6, dur: 4.8 },
+                { x: 45, y: 80, size: 3, color: '#6366f1', opLow: 0.15, opHigh: 0.45, dur: 5 },
+                { x: 65, y: 75, size: 5, color: '#06b6d4', opLow: 0.25, opHigh: 0.7, dur: 3.5 },
+                { x: 80, y: 80, size: 4, color: '#8b5cf6', opLow: 0.2, opHigh: 0.55, dur: 4 },
+                { x: 50, y: 42, size: 8, color: '#6366f1', opLow: 0.3, opHigh: 1.0, dur: 2.5 },
+                { x: 30, y: 40, size: 3, color: '#06b6d4', opLow: 0.1, opHigh: 0.4, dur: 6 },
+                { x: 95, y: 15, size: 3, color: '#6366f1', opLow: 0.1, opHigh: 0.35, dur: 5.5 },
+            ];
+
+            // Create nodes
+            nodes.forEach((n, i) => {
+                const el = document.createElement('div');
+                el.className = 'node';
+                el.style.cssText = `
+                    left: ${n.x}%;
+                    top: ${n.y}%;
+                    width: ${n.size}px;
+                    height: ${n.size}px;
+                    background: ${n.color};
+                    --opacity-low: ${n.opLow};
+                    --opacity-high: ${n.opHigh};
+                    --duration: ${n.dur}s;
+                    --delay: ${i * 0.3}s;
+                `;
+                mesh.appendChild(el);
+            });
+
+            // Create static edges
+            const edges = [
+                [0,1],[1,2],[2,3],[3,4],[4,5],[6,7],[7,8],[8,9],[9,10],
+                [11,12],[12,13],[13,14],[0,6],[1,7],[2,8],[3,9],[4,10],
+                [6,11],[7,12],[8,13],[9,14],[15,8],[15,2],[15,7],[15,13]
+            ];
+            edges.forEach(([a,b]) => {
+                const na = nodes[a], nb = nodes[b];
+                const el = document.createElement('div');
+                el.className = 'edge';
+                const dx = nb.x - na.x;
+                const dy = nb.y - na.y;
+                const len = Math.sqrt(dx*dx + dy*dy);
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                el.style.cssText = `
+                    left: ${na.x}%;
+                    top: ${na.y}%;
+                    width: ${len}%;
+                    transform: rotate(${angle}deg);
+                `;
+                mesh.appendChild(el);
+            });
+
+            // Animate new edges periodically
+            const extraEdges = [[0,2],[3,8],[5,10],[11,7],[14,10],[1,6],[4,9],[15,0],[15,4],[16,6]];
+            let edgeIdx = 0;
+            setInterval(() => {
+                if (edgeIdx >= extraEdges.length) edgeIdx = 0;
+                const [a,b] = extraEdges[edgeIdx++];
+                const na = nodes[a], nb = nodes[b];
+                const el = document.createElement('div');
+                el.className = 'edge animate-in';
+                const dx = nb.x - na.x;
+                const dy = nb.y - na.y;
+                const len = Math.sqrt(dx*dx + dy*dy);
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                el.style.cssText = `
+                    left: ${na.x}%;
+                    top: ${na.y}%;
+                    width: ${len}%;
+                    transform: rotate(${angle}deg);
+                `;
+                mesh.appendChild(el);
+                setTimeout(() => el.remove(), 5000);
+            }, 3000);
+        })();
+
+        // ===== COPY BUTTON =====
+        const copyBtn = document.getElementById('copy-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                const code = `{
+  "mcpServers": {
+    "synos": {
+      "url": "http://your-synos:8000/mcp",
+      "tools": ["query_context", "search_knowledge", "get_entity"]
+    }
+  }
+}`;
+                navigator.clipboard.writeText(code).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    copyBtn.classList.add('copied');
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'code_copy', { code_block: 'mcp_config' });
+                    }
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        }
+
+        // ===== CTA CLICK TRACKING =====
+        document.querySelectorAll('[data-cta], .submit-btn').forEach(el => {
+            el.addEventListener('click', () => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'cta_click', {
+                        cta_location: el.getAttribute('data-cta') || 'form_submit'
+                    });
+                }
+            });
+        });
+
+        // ===== WEB3FORMS SUBMISSION =====
         const WEB3FORMS_KEY = '6cdc9753-8c20-49de-9334-276e842a5f82';
 
         function setupForm(formId, inputId, btnId, noteId, successId) {
@@ -832,6 +1377,9 @@
                         form.style.display = 'none';
                         formNote.style.display = 'none';
                         formSuccess.style.display = 'block';
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'waitlist_signup', { method: 'web3forms' });
+                        }
                     } else {
                         throw new Error('Submission failed');
                     }
