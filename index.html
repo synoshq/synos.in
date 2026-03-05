@@ -707,45 +707,11 @@
             background-clip: text;
         }
 
-        /* ===== SECTION 6: VOICE BOTS ===== */
-        .voice-section {
-            padding: 120px 24px;
-        }
-        .voice-content {
+        /* ===== SECTION 6: CAPABILITIES ===== */
+        .capabilities-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: start;
-        }
-        .voice-text p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-muted);
-        }
-        .voice-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
-        .voice-feature-card {
-            padding: 20px 18px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-muted);
-            line-height: 1.5;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .voice-feature-card:hover {
-            border-color: rgba(99, 102, 241, 0.2);
-            transform: translateY(-1px);
-        }
-        .voice-feature-icon {
-            font-size: 20px;
-            margin-bottom: 10px;
-            display: block;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
         /* ===== SECTION 7: WHY SYNOS ===== */
@@ -894,8 +860,7 @@
             .gap-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: 1fr; }
             .diff-grid { grid-template-columns: 1fr; }
-            .voice-content { grid-template-columns: 1fr; }
-            .voice-features { grid-template-columns: 1fr; }
+            .capabilities-grid { grid-template-columns: 1fr; }
             .vs-grid { grid-template-columns: 1fr; }
             .audience-grid { grid-template-columns: 1fr; }
             .architecture { padding: 40px 16px; }
@@ -1162,36 +1127,69 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 6: VOICE BOTS ===== -->
-    <section class="section voice-section" data-section="voice-bots">
+    <!-- ===== SECTION 6: WHAT YOU CAN BUILD ===== -->
+    <section class="section" style="padding:120px 24px;" data-section="capabilities">
         <div class="reveal">
-            <p class="section-label">Voice Workflows</p>
-            <h2 class="section-title">AI Workers That Answer the Phone</h2>
-            <p style="font-size:15px;line-height:1.7;color:var(--text-muted);max-width:640px;margin-top:-32px;margin-bottom:48px;">
-                Same shared brain. Same self-learning. Now with voice.
+            <p class="section-label">Capabilities</p>
+            <h2 class="section-title">One Platform. Endless Use Cases.</h2>
+            <p style="font-size:15px;line-height:1.7;color:var(--text-muted);max-width:700px;margin-top:-32px;margin-bottom:48px;">
+                SynOS workers handle any process that requires judgment, context, and learning — across every industry where intelligent work is still done manually.
             </p>
         </div>
-        <div class="voice-content reveal">
-            <div class="voice-text">
-                <p>SynOS workers can be triggered by phone calls. During every call, the worker pulls real-time context from the shared brain — customer history, open tickets, account details. Every conversation makes the knowledge base smarter.</p>
+        <div class="capabilities-grid">
+            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
+                <div class="gap-icon" style="background: var(--accent-glow);">
+                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
+                        <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
+                    </svg>
+                </div>
+                <h3>Automate Internal Ops</h3>
+                <p>Data reconciliation, pipeline monitoring, vendor follow-ups, exception handling. Workers that reason through edge cases instead of breaking on them.</p>
             </div>
-            <div class="voice-features">
-                <div class="voice-feature-card">
-                    <span class="voice-feature-icon">&#127760;</span>
-                    English + 10 Indian Languages
+            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
+                <div class="gap-icon" style="background: var(--accent-glow);">
+                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
                 </div>
-                <div class="voice-feature-card">
-                    <span class="voice-feature-icon">&#9889;</span>
-                    Real-Time Context During Calls
+                <h3>Self-Learning Chatbots</h3>
+                <p>Support bots that learn from every conversation and share knowledge across channels. Every correction makes every bot smarter.</p>
+            </div>
+            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
+                <div class="gap-icon" style="background: var(--accent-glow);">
+                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
                 </div>
-                <div class="voice-feature-card">
-                    <span class="voice-feature-icon">&#129504;</span>
-                    Every Call Improves the Brain
+                <h3>Voice Agents</h3>
+                <p>Workers that answer phone calls with full context — customer history, open tickets, account details. English + 10 Indian languages.</p>
+            </div>
+            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
+                <div class="gap-icon" style="background: var(--accent-glow);">
+                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
+                        <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+                    </svg>
                 </div>
-                <div class="voice-feature-card">
-                    <span class="voice-feature-icon">&#128260;</span>
-                    Same Workers — Voice or Ops
+                <h3>Custom Tool Building</h3>
+                <p>Connect workers to your internal apps via MCP. They read, write, and act across systems — no custom integration code needed.</p>
+            </div>
+            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
+                <div class="gap-icon" style="background: var(--accent-glow);">
+                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
+                        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+                    </svg>
                 </div>
+                <h3>Knowledge Capture</h3>
+                <p>Turn tribal knowledge into organizational memory. SOPs, escalation rules, customer exceptions — captured from corrections, not documentation sprints.</p>
+            </div>
+            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
+                <div class="gap-icon" style="background: var(--accent-glow);">
+                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                    </svg>
+                </div>
+                <h3>Industry Workflows</h3>
+                <p>Healthcare intake, logistics coordination, financial reconciliation, legal review prep — any domain where skilled people do repetitive, judgment-heavy work.</p>
             </div>
         </div>
     </section>
