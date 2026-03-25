@@ -1111,7 +1111,7 @@
         <div class="node-mesh" id="node-mesh" aria-hidden="true"></div>
 
         <div class="badge">
-            Connects <span class="badge-sep"></span> Learns <span class="badge-sep"></span> Remembers <span class="badge-sep"></span> 4 Templates
+            Connects <span class="badge-sep"></span> Learns <span class="badge-sep"></span> Remembers
         </div>
 
         <h1>
@@ -1411,7 +1411,7 @@
                     <span class="worker-chip">Idle Resource Finder</span>
                     <span class="worker-chip">Budget Alert Agent</span>
                 </div>
-                <div class="magic-moment">"You're spending $340/day on Cloud SQL, but usage dropped 60% last week. Potential savings: $200/day."</div>
+                <div class="magic-moment">"Cloud SQL spend spiked 40%. Traced to 12 idle dev instances from last sprint. Shut down 8 idle VMs, created COST-2847 in Jira for team review, alerted #cloud-costs in Slack. Savings: $6,200/month."</div>
                 <div class="template-meta">
                     <span class="template-target">DevOps / FinOps</span>
                     <div class="template-connectors"><span>BigQuery</span> <span>GCP</span> <span>Slack</span></div>
@@ -1431,7 +1431,7 @@
                     <span class="worker-chip">Deal Risk Scorer</span>
                     <span class="worker-chip">Pipeline Intelligence Agent</span>
                 </div>
-                <div class="magic-moment">"Found 23 deals with no activity in 30+ days ($1.2M at risk). 12 contacts are duplicated across your CRM."</div>
+                <div class="magic-moment">"23 deals with no activity in 30+ days ($1.2M at risk). Merged 12 duplicate contacts. Moved 5 stale deals to 'Needs Attention' stage. Sent pipeline risk summary to #sales-ops in Slack."</div>
                 <div class="template-meta">
                     <span class="template-target">Sales Ops / Revenue Ops</span>
                     <div class="template-connectors"><span>Salesforce</span> <span>HubSpot</span> <span>Sheets</span></div>
@@ -1451,7 +1451,7 @@
                     <span class="worker-chip">Weekly Digest Writer</span>
                     <span class="worker-chip">Project Q&A Agent</span>
                 </div>
-                <div class="magic-moment">"This week: 12 tickets completed, 3 blocked. Top risk: PROJ-142 has been In Progress for 14 days with no updates."</div>
+                <div class="magic-moment">"3 tickets blocked — created unblock tasks for each, pinged assignees in Slack with context from linked PRs. Filed weekly digest to Confluence. Flagged PROJ-142 (14 days stuck) to eng-lead."</div>
                 <div class="template-meta">
                     <span class="template-target">Engineering Managers</span>
                     <div class="template-connectors"><span>Jira</span> <span>Slack</span> <span>Docs</span></div>
@@ -1471,7 +1471,7 @@
                     <span class="worker-chip">Churn Risk Detector</span>
                     <span class="worker-chip">Renewal Prep Agent</span>
                 </div>
-                <div class="magic-moment">"Unified 18 of 20 customers across 3 data sources. 4 at churn risk — declining usage + open tickets + stale CRM activity."</div>
+                <div class="magic-moment">"4 customers at churn risk — declining usage + open P1 tickets. Created renewal risk cards in Salesforce. Scheduled check-in tasks for CSMs. Sent executive summary to #cs-alerts with recommended actions."</div>
                 <div class="template-meta">
                     <span class="template-target">Customer Success</span>
                     <div class="template-connectors"><span>Salesforce</span> <span>Jira</span> <span>BigQuery</span></div>
@@ -1504,50 +1504,6 @@
             <div class="integration-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>MCP Servers</span></div>
         </div>
         <p style="text-align:center; font-size:13px; color:var(--text-dim); margin-top:16px;" class="reveal">20+ connectors. Self-hosted. Your data stays yours.</p>
-    </section>
-
-    <!-- ===== SECTION 7C: UNDER THE HOOD ===== -->
-    <section class="section" style="padding:120px 24px;" data-section="tech-architecture">
-        <div class="reveal">
-            <p class="section-label">Under The Hood</p>
-            <h2 class="section-title">Built for Production. Running on Google Cloud.</h2>
-        </div>
-        <div class="tech-grid reveal">
-            <div class="tech-list">
-                <h4>Architecture</h4>
-                <ul>
-                    <li>FastAPI + async Python backend</li>
-                    <li>React + TypeScript frontend</li>
-                    <li>PostgreSQL (source of truth)</li>
-                    <li>Neo4j (knowledge graph)</li>
-                    <li>ChromaDB (vector embeddings)</li>
-                    <li>Redis (job queue + caching)</li>
-                    <li>Docker Compose deployment</li>
-                </ul>
-                <h4>Intelligence Pipeline</h4>
-                <ul>
-                    <li>5-pass enrichment pipeline</li>
-                    <li>Hybrid Graph RAG (graph + semantic + keyword)</li>
-                    <li>Reciprocal Rank Fusion + freshness decay</li>
-                    <li>Cross-agent learning with quality gates</li>
-                    <li>Entity resolution across data sources</li>
-                </ul>
-                <h4>Infrastructure</h4>
-                <ul>
-                    <li>Self-hosted on GCP Compute Engine</li>
-                    <li>Powered by Gemini, Claude, and any LLM via Vertex AI</li>
-                    <li>MCP-native (Model Context Protocol)</li>
-                    <li>Multi-tenant with project isolation</li>
-                    <li>BigQuery integration for analytics</li>
-                </ul>
-            </div>
-            <div class="tech-diagram">
-                <img src="platform_architecture.png" alt="SynOS Platform Architecture" loading="lazy">
-            </div>
-        </div>
-        <div class="tech-callout reveal">
-            <strong>AI-native platform</strong> — AI agents are the core product, not a feature. Designed to scale on Google Cloud infrastructure with Vertex AI and Gemini support.
-        </div>
     </section>
 
     <!-- ===== SECTION 8: WHY SYNOS ===== -->
