@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SynOS — Bring Your Company to Life</title>
-    <meta name="description" content="Connect your systems, teach it what you know, and watch it start running itself. SynOS builds a shared brain for your AI workforce — every correction makes it smarter, every worker shares the same intelligence.">
+    <meta name="description" content="AI workers that analyze your data, learn from your corrections, and get smarter every run. Cloud cost intelligence, pipeline monitoring, reconciliation, and ops automation — results in 48 hours.">
     <meta property="og:title" content="SynOS — Bring Your Company to Life">
-    <meta property="og:description" content="Connect your systems, teach it what you know, and watch it start running itself. SynOS builds a shared brain for your AI workforce — every correction makes it smarter, every worker shares the same intelligence.">
+    <meta property="og:description" content="AI workers that analyze your data, learn from your corrections, and get smarter every run. Cloud cost intelligence, pipeline monitoring, reconciliation, and ops automation — results in 48 hours.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://synos.in">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="SynOS — Bring Your Company to Life">
-    <meta name="twitter:description" content="Connect your systems, teach it what you know, and watch it start running itself. SynOS builds a shared brain for your AI workforce — every correction makes it smarter, every worker shares the same intelligence.">
+    <meta name="twitter:description" content="AI workers that analyze your data, learn from your corrections, and get smarter every run. Cloud cost intelligence, pipeline monitoring, reconciliation, and ops automation — results in 48 hours.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚡</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -878,9 +878,128 @@
             color: #3f3f46;
         }
 
+        /* ===== OUTCOME SCENES ===== */
+        .scene-section {
+            padding: 120px 24px;
+        }
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .scene-card {
+            padding: 32px 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .scene-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.08);
+        }
+        .scene-narrative {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-style: italic;
+            border-left: 2px solid rgba(248, 113, 113, 0.4);
+            padding-left: 16px;
+        }
+        .scene-outcome {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+        .scene-stat {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+        .scene-result {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        /* ===== TEMPLATE CARDS ===== */
+        .template-section {
+            padding: 80px 24px 120px;
+        }
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .template-card {
+            padding: 28px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 2px solid;
+            border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;
+            border-radius: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .template-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+        }
+        .template-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .template-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .template-stat {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-light);
+        }
+
+        /* ===== BRIDGE SECTION ===== */
+        .bridge-section {
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .bridge-text {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .bridge-text strong {
+            color: var(--text);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .gap-grid { grid-template-columns: 1fr; }
+            .scenes-grid { grid-template-columns: 1fr; }
+            .template-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: 1fr; }
             .diff-grid { grid-template-columns: 1fr; }
             .capabilities-grid { grid-template-columns: 1fr; }
@@ -917,7 +1036,7 @@
         <div class="node-mesh" id="node-mesh" aria-hidden="true"></div>
 
         <div class="badge">
-            Connect <span class="badge-sep"></span> Talk <span class="badge-sep"></span> Operate
+            4 templates live <span class="badge-sep"></span> Results in 48 hours
         </div>
 
         <h1>
@@ -926,7 +1045,7 @@
         </h1>
 
         <p class="hero-sub" style="font-size:18px;max-width:620px;">
-            Connect your systems. Talk to your company like a person. Hire AI workers that share its memory. Watch it start operating itself — learning from every interaction, getting smarter every day.
+            Your team spends hours cross-referencing dashboards nobody trusts. SynOS AI workers do the analysis, learn from your corrections, and get smarter every run.
         </p>
 
         <form class="email-form" id="waitlist-form">
@@ -950,33 +1069,87 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 2: THE PROBLEM ===== -->
-    <section class="section gap-section" data-section="the-problem">
+    <!-- ===== SECTION 2: OUTCOME SCENES ===== -->
+    <section class="section scene-section" data-section="outcome-scenes">
         <div class="reveal">
-            <p class="section-label">The Problem</p>
-            <h2 class="section-title">Your Company Can't Think. Yet.</h2>
+            <p class="section-label">Real Results</p>
+            <h2 class="section-title">Problems Your Team Doesn't Have Time to Catch.</h2>
         </div>
-        <div class="gap-grid">
-            <div class="gap-card reveal">
-                <div class="gap-icon">
-                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div class="scenes-grid">
+            <div class="scene-card reveal">
+                <div class="scene-narrative">
+                    Your engineering team traces a cost spike. GPU instances ran all weekend — staging environments nobody turned off. $8,000, gone.
                 </div>
-                <h3>You Can't Talk to It</h3>
-                <p>Your company knows everything — across CRM, data warehouse, docs, Slack. But you can't ask it a question. No single system sees the whole picture.</p>
+                <div class="scene-outcome">
+                    <span class="scene-stat">$8K+</span>
+                    <span class="scene-result">in cloud waste caught in one week</span>
+                </div>
             </div>
-            <div class="gap-card reveal">
-                <div class="gap-icon">
-                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <div class="scene-card reveal">
+                <div class="scene-narrative">
+                    A million-dollar deal sitting untouched for 45 days. Champion changed roles on LinkedIn. Nobody noticed until the quarter ended.
                 </div>
-                <h3>It Doesn't Learn</h3>
-                <p>Your revenue bot doesn't know what your ops agent learned yesterday. Deploy 10 agents, teach 10 times. Intelligence doesn't compound across your company.</p>
+                <div class="scene-outcome">
+                    <span class="scene-stat">$1.2M</span>
+                    <span class="scene-result">in stale pipeline deals found</span>
+                </div>
             </div>
-            <div class="gap-card reveal">
-                <div class="gap-icon">
-                    <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <div class="scene-card reveal">
+                <div class="scene-narrative">
+                    Data drifts between CRM and billing. A customer billed at Silver, contracted at Gold. $2,800 a month, leaking quietly.
                 </div>
-                <h3>It Can't Operate Itself</h3>
-                <p>Routine work — monitoring costs, qualifying leads, flagging anomalies — still needs humans in the loop for every step. Your company should handle this on its own.</p>
+                <div class="scene-outcome">
+                    <span class="scene-stat">$2,800/mo</span>
+                    <span class="scene-result">in revenue leakage stopped</span>
+                </div>
+            </div>
+            <div class="scene-card reveal">
+                <div class="scene-narrative">
+                    Six analysts spend Monday mornings matching designers to projects in Excel. Cross-referencing skills, availability, location. Takes 4.5 hours.
+                </div>
+                <div class="scene-outcome">
+                    <span class="scene-stat">45 sec</span>
+                    <span class="scene-result">replaces 4.5 hours of manual allocation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BRIDGE ===== -->
+    <section class="section bridge-section" data-section="bridge">
+        <div class="reveal">
+            <p class="bridge-text">
+                SynOS deploys <strong>AI workers</strong> that connect to your systems, understand context across silos, and improve from every correction. Not flowcharts. Not prompts. <strong>Workers you hire and train in plain English.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== TEMPLATES ===== -->
+    <section class="section template-section" data-section="templates">
+        <div class="reveal">
+            <p class="section-label">Ready to Deploy</p>
+            <h2 class="section-title">Pick a Template. See Results in 48 Hours.</h2>
+        </div>
+        <div class="template-grid">
+            <div class="template-card reveal">
+                <h3>Cloud Cost Intelligence</h3>
+                <p>Monitors your cloud spend daily, correlates spikes with deployments and incidents, tells you exactly where money is going and why.</p>
+                <span class="template-stat">$8K+ waste caught in 1 week</span>
+            </div>
+            <div class="template-card reveal">
+                <h3>Sales Pipeline Intelligence</h3>
+                <p>Watches every deal across CRM, email, and LinkedIn. Flags stale opportunities, champion changes, and deals going dark.</p>
+                <span class="template-stat">$1.2M stale deals found</span>
+            </div>
+            <div class="template-card reveal">
+                <h3>Finance & RecOps Reconciliation</h3>
+                <p>Reconciles data across billing, CRM, and contracts nightly. Catches tier mismatches, pricing drift, and revenue leakage.</p>
+                <span class="template-stat">$2,800/mo leakage stopped</span>
+            </div>
+            <div class="template-card reveal">
+                <h3>Ops Intelligence</h3>
+                <p>Matches people to tasks by skill, location, and capacity. Updates systems, sends confirmations. End-to-end, not just analysis.</p>
+                <span class="template-stat">4.5 hours → 45 seconds</span>
             </div>
         </div>
     </section>
@@ -985,30 +1158,30 @@
     <section class="section steps-section" data-section="how-it-works">
         <div class="reveal">
             <p class="section-label">How It Works</p>
-            <h2 class="section-title">Connect. Talk. Operate.</h2>
+            <h2 class="section-title">Connect. Describe. Improve.</h2>
         </div>
         <div class="steps-grid">
             <div class="step-card reveal">
                 <span class="step-number">1</span>
                 <h3>Connect</h3>
-                <p>Point SynOS at your systems — Salesforce, BigQuery, Slack, Jira, Postgres, APIs. Your company becomes aware of everything, across every silo.</p>
-                <span class="step-accent">15+ connectors. Your company sees everything.</span>
+                <p>Point SynOS at your systems — Salesforce, BigQuery, Slack, Jira, Postgres, APIs. SynOS profiles your data and builds a shared context layer across every silo.</p>
+                <span class="step-accent">15+ connectors. 30 minutes to set up.</span>
             </div>
             <div class="step-card reveal">
                 <span class="step-number">2</span>
-                <h3>Talk</h3>
-                <p>Ask your company anything in plain English. "Why did cloud costs spike this week?" It reasons across systems, correlates data, and gives you answers no single tool can.</p>
-                <span class="step-accent">Talk to your company like a person.</span>
+                <h3>Describe</h3>
+                <p>Tell workers what to do in plain English. "Monitor cloud costs daily and flag anomalies with root cause." No flowcharts, no DAGs, no node wiring.</p>
+                <span class="step-accent">Describe in English. Workers figure out the rest.</span>
             </div>
             <div class="step-card reveal">
                 <span class="step-number">3</span>
-                <h3>Operate</h3>
-                <p>Hire AI workers to handle recurring work — monitoring, alerting, reporting, acting. They share your company's memory. Correct one, all improve. Watch your company start running itself.</p>
-                <span class="step-accent">Your company operates itself. You steer.</span>
+                <h3>Improve</h3>
+                <p>Workers learn from every correction. "That account always spikes in March — it's seasonal." Fix it once, every worker knows it. Accuracy compounds over time.</p>
+                <span class="step-accent">72% → 94% accuracy with 5 corrections.</span>
             </div>
         </div>
         <div class="contrast-callout reveal">
-            Not workflow automation. Workflows break on edge cases. Your company investigates them.
+            Not workflow automation. Workflows break on edge cases. SynOS workers investigate them — and learn for next time.
         </div>
     </section>
 
@@ -1025,112 +1198,35 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 4: THE SHARED BRAIN ===== -->
+    <!-- ===== THE SHARED BRAIN ===== -->
     <section class="section how-section" data-section="shared-brain">
         <div class="reveal">
-            <p class="section-label">The Living Memory</p>
-            <h2 class="section-title">Your Company Remembers Everything. Gets Smarter Every Day.</h2>
+            <p class="section-label">Why Results Compound</p>
+            <h2 class="section-title">Every Correction Teaches Every Worker. Forever.</h2>
             <p style="font-size:15px;line-height:1.7;color:var(--text-muted);max-width:640px;margin-top:-32px;margin-bottom:48px;">
-                Every agent, every human correction, every execution builds your company's memory. Fix something once — your whole company knows it. Forever.
+                SynOS workers share a brain. When you correct one — "that account always spikes in March, it's seasonal" — every worker learns it instantly. Your team's knowledge stops dying in Slack threads.
             </p>
         </div>
-        <div class="architecture reveal">
-            <div class="arch-center">
-                <!-- Agents row -->
-                <div class="arch-row agents">
-                    <span class="arch-row-label">Agents</span>
-                    <span class="arch-chip">Claude Code</span>
-                    <span class="arch-chip">LangChain Agents</span>
-                    <span class="arch-chip">Custom Pipelines</span>
-                    <span class="arch-chip">Any MCP Client</span>
-                </div>
 
-                <!-- Connector -->
-                <div class="arch-connector">
-                    <div class="line"></div>
+        <!-- Learning timeline -->
+        <div class="gap-grid" style="margin-bottom:40px;">
+            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
+                <div class="gap-icon" style="background: var(--accent-glow);">
+                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
                 </div>
-
-                <!-- SynOS Hub -->
-                <div class="synos-hub">
-                    <span class="synos-hub-title">SynOS</span>
-                    <div class="synos-hub-items">
-                        <span class="synos-hub-item">Cross-System Correlation</span>
-                        <span class="synos-hub-item">Tribal Knowledge</span>
-                        <span class="synos-hub-item">5-Pass Enrichment</span>
-                        <span class="synos-hub-item">Confidence Scoring</span>
-                        <span class="synos-hub-item">Freshness Decay</span>
-                    </div>
-                </div>
-
-                <!-- Connector -->
-                <div class="arch-connector">
-                    <div class="line"></div>
-                </div>
-
-                <!-- Data Sources row -->
-                <div class="arch-row sources">
-                    <span class="arch-row-label">Data Sources</span>
-                    <span class="arch-chip">Salesforce</span>
-                    <span class="arch-chip">BigQuery</span>
-                    <span class="arch-chip">Google Sheets</span>
-                    <span class="arch-chip">Postgres</span>
-                    <span class="arch-chip">REST APIs</span>
-                    <span class="arch-chip">Documents</span>
-                </div>
+                <h3>Day 1: Worker Flags a Spike</h3>
+                <p>Revenue worker sees an anomaly and flags it as INVESTIGATE. It doesn't know the pattern yet.</p>
             </div>
-            <p class="arch-tagline">Your company connects. Learns. Remembers. Operates.</p>
-        </div>
-    </section>
-
-    <!-- Before/After cards (part of Section 4) -->
-    <section class="section diff-section" data-section="shared-brain-details">
-        <div class="diff-grid">
-            <div class="diff-card reveal">
-                <h3>Cross-System Intelligence</h3>
-                <div class="diff-comparison">
-                    <div class="diff-before">Each tool sees its own silo. Salesforce doesn't know BigQuery patterns.</div>
-                    <div class="diff-after">SynOS correlates data across systems to create insights that don't exist in any single app — the kind of context your best analyst carries in their head.</div>
-                </div>
-            </div>
-            <div class="diff-card reveal">
-                <h3>Learning from Execution</h3>
-                <div class="diff-comparison">
-                    <div class="diff-before">Workflow fails. You debug. Next agent makes the same mistake.</div>
-                    <div class="diff-after">Every run extracts insights. High-confidence learnings auto-promote to the shared brain.</div>
-                </div>
-            </div>
-            <div class="diff-card reveal">
-                <h3>Human Corrections as Context</h3>
-                <div class="diff-comparison">
-                    <div class="diff-before">You correct the output. The fix dies in a Slack thread.</div>
-                    <div class="diff-after">Corrections become organizational memory. Fix once, all agents learn.</div>
-                </div>
-            </div>
-            <div class="diff-card reveal">
-                <h3>Freshness & Trust</h3>
-                <div class="diff-comparison">
-                    <div class="diff-before">Your RAG serves stale facts from 2023 docs with full confidence.</div>
-                    <div class="diff-after">Every piece of context has freshness decay, confidence scores, and provenance.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SECTION 5: CONTEXT CAPTURE ===== -->
-    <section class="section learning-section" data-section="context-capture">
-        <div class="reveal">
-            <p class="section-label">Company Memory</p>
-            <h2 class="section-title">Your Company Learns From Every Interaction.</h2>
-        </div>
-        <div class="gap-grid">
             <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
                 <div class="gap-icon" style="background: var(--accent-glow);">
                     <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
                         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
                     </svg>
                 </div>
-                <h3>Corrections Become Memory</h3>
-                <p>When you correct a worker — "that account always spikes in March, it's seasonal" — it's stored permanently. Every worker knows it instantly. Your tribal knowledge stops living in Slack threads and people's heads.</p>
+                <h3>Day 3: Team Corrects</h3>
+                <p>"That account has a seasonal audit — this is normal." One sentence. Stored as organizational memory.</p>
             </div>
             <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
                 <div class="gap-icon" style="background: var(--accent-glow);">
@@ -1138,21 +1234,13 @@
                         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
                     </svg>
                 </div>
-                <h3>Learns from Every Execution</h3>
-                <p>Every time a worker runs, it extracts patterns — data anomalies, business rules, edge cases. High-confidence insights auto-promote to the shared brain through a 3-gate quality pipeline.</p>
-            </div>
-            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
-                <div class="gap-icon" style="background: var(--accent-glow);">
-                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
-                        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
-                    </svg>
-                </div>
-                <h3>Knowledge That Stays</h3>
-                <p>When your best analyst leaves, their knowledge doesn't. SynOS captures institutional context from corrections, executions, and feedback — building organizational memory that compounds over time.</p>
+                <h3>Day 10: Auto-Classified</h3>
+                <p>Same pattern appears. Worker classifies it as LEGITIMATE automatically. No human needed.</p>
             </div>
         </div>
+
         <div class="stat-callout reveal">
-            <span>72% &rarr; 94%</span> accuracy with 5 one-sentence corrections.
+            <span>72% &rarr; 94%</span> accuracy with 5 one-sentence corrections. New workers start with everything the org has learned.
         </div>
     </section>
 
@@ -1196,53 +1284,7 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 7: USE CASES ===== -->
-    <section class="section" style="padding:120px 24px;" data-section="use-cases">
-        <div class="reveal">
-            <p class="section-label">Use Cases</p>
-            <h2 class="section-title">Your Company Already Handles These.</h2>
-        </div>
-        <div class="capabilities-grid">
-            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
-                <div class="gap-icon" style="background: var(--accent-glow);">
-                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
-                        <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
-                    </svg>
-                </div>
-                <h3>Revenue Ops</h3>
-                <p>Flag anomalies across your data warehouse, CRM, and spreadsheets. Classify spikes. Write findings to Slack. Automated, not manual.</p>
-            </div>
-            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
-                <div class="gap-icon" style="background: var(--accent-glow);">
-                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
-                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
-                    </svg>
-                </div>
-                <h3>Resource Allocation</h3>
-                <p>Match people to tasks by skill, location, capacity. Update systems. Make voice calls to confirm. 4.5 hours of manual work &rarr; 45 seconds.</p>
-            </div>
-            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
-                <div class="gap-icon" style="background: var(--accent-glow);">
-                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
-                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-                    </svg>
-                </div>
-                <h3>Lead Qualification</h3>
-                <p>Score inbound leads against your criteria. Create CRM opportunities. Voice callback within 30 minutes. Workers that act, not just analyze.</p>
-            </div>
-            <div class="gap-card reveal" style="border-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-3)) 1;">
-                <div class="gap-icon" style="background: var(--accent-glow);">
-                    <svg viewBox="0 0 24 24" style="stroke: var(--accent-light);">
-                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
-                    </svg>
-                </div>
-                <h3>Cross-System Intelligence</h3>
-                <p>Ask questions across your entire stack. Get answers that don't exist in any single app — the kind of context your best analyst carries in their head.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SECTION 8: WHY SYNOS ===== -->
+    <!-- ===== WHY SYNOS ===== -->
     <section class="section vs-section" data-section="why-synos">
         <div class="reveal">
             <p class="section-label">Why SynOS</p>
@@ -1268,36 +1310,43 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 9: WHO IT'S FOR ===== -->
+    <!-- ===== WHO IT'S FOR ===== -->
     <section class="section audience-section" data-section="who-its-for">
         <div class="reveal">
             <p class="section-label">Built For</p>
             <h2 class="section-title">For Teams Ready to Bring Their Company to Life</h2>
         </div>
-        <div class="audience-grid">
+        <div class="gap-grid">
             <div class="audience-card reveal">
                 <div class="audience-icon">
                     <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 </div>
-                <h3>Operations Teams</h3>
-                <p>Stop spending 15+ hours/week on manual data work. Hire AI workers that share a brain, capture your team's knowledge, and get smarter with every correction. Describe in plain English. No engineering needed after setup.</p>
+                <h3>Ops Leaders</h3>
+                <p>Hire AI workers instead of more analysts. Pick a template, describe what to watch, see ROI in 48 hours. No engineering needed after setup.</p>
             </div>
             <div class="audience-card reveal">
                 <div class="audience-icon">
                     <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                 </div>
                 <h3>AI Engineers</h3>
-                <p>Stop rebuilding the context layer. Connect your data, expose as MCP server, 30 minutes. Self-learning knowledge graph with hybrid retrieval, freshness decay, and cross-agent memory — out of the box.</p>
+                <p>Context infrastructure you don't have to build. MCP-native, self-hosted, 30 minutes to deploy. Knowledge graph with hybrid retrieval and cross-agent memory out of the box.</p>
+            </div>
+            <div class="audience-card reveal">
+                <div class="audience-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>Technical PMs</h3>
+                <p>The middle ground between n8n flowcharts and uncontrolled AI agents. Describe workflows in English, shadow-test safely, then go autonomous when ready.</p>
             </div>
         </div>
     </section>
 
-    <!-- ===== SECTION 10: BOTTOM CTA ===== -->
+    <!-- ===== BOTTOM CTA ===== -->
     <section class="section cta-section" data-section="bottom-cta">
         <div class="reveal">
-            <h2>Your Company Is Smarter Tomorrow Than It Is Today.</h2>
+            <h2>Pick a Template. See Results in 48 Hours.</h2>
             <p class="hero-sub">
-                Connect your systems. Talk to your company. Let it operate. Self-hosted — your data stays yours.
+                Self-hosted on your infrastructure. Your data stays yours. Workers get smarter every day.
             </p>
             <form class="email-form" id="waitlist-form-bottom">
                 <input type="checkbox" name="botcheck" style="display:none">
@@ -1312,10 +1361,13 @@
                     Get Early Access
                 </button>
             </form>
-            <p class="form-note" id="form-note-bottom">No spam. Unsubscribe anytime.</p>
+            <p class="form-note" id="form-note-bottom">
+                Need a custom deployment? <a href="mailto:hello@synos.in" style="color:var(--accent-light);text-decoration:none;">Talk to our team &rarr;</a>
+            </p>
             <div class="form-success" id="form-success-bottom">
                 You're on the list. We'll reach out when SynOS is ready for you.
             </div>
+            <p style="margin-top:40px;font-size:15px;color:var(--text-dim);font-style:italic;">Bring Your Company to Life.</p>
         </div>
     </section>
 
