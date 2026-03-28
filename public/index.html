@@ -1214,7 +1214,7 @@
         </div>
         <div class="video-container reveal">
             <div class="video-wrapper">
-                <iframe src="https://www.youtube-nocookie.com/embed/J7dZrZI00sY?rel=0&modestbranding=1" title="SynOS Demo Preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/ODNtFjRGLBM?rel=0&modestbranding=1" title="SynOS Demo Preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -1761,7 +1761,10 @@
                 try {
                     const response = await fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
                         body: JSON.stringify({
                             access_key: WEB3FORMS_KEY,
                             email: email,

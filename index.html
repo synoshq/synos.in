@@ -467,6 +467,29 @@
             color: var(--text-muted);
         }
 
+        /* ===== DEMO VIDEO ===== */
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.06);
+        }
+        .video-container .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* ===== SECTION 4: SHARED BRAIN ===== */
         .how-section {
             padding: 120px 24px;
@@ -989,6 +1012,19 @@
         </div>
     </section>
 
+    <!-- ===== SECTION 2B: DEMO PREVIEW ===== -->
+    <section class="section" style="padding:80px 24px;" data-section="demo-video">
+        <div class="reveal">
+            <p class="section-label">See a Preview</p>
+            <h2 class="section-title">From Connecting Data to Running Workers</h2>
+        </div>
+        <div class="video-container reveal">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/ODNtFjRGLBM?rel=0&modestbranding=1" title="SynOS Demo Preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== SECTION 4: THE SHARED BRAIN ===== -->
     <section class="section how-section" data-section="shared-brain">
         <div class="reveal">
@@ -1454,7 +1490,10 @@
                 try {
                     const response = await fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
                         body: JSON.stringify({
                             access_key: WEB3FORMS_KEY,
                             email: email,
