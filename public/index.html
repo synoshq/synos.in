@@ -878,59 +878,122 @@
             color: #3f3f46;
         }
 
-        /* ===== OUTCOME SCENES ===== */
+        /* ===== OPS CATEGORIES ===== */
         .scene-section {
             padding: 120px 24px;
         }
         .scenes-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
-        .scene-card {
+        .ops-card {
             padding: 32px 28px;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 16px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 0;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .scene-card:hover {
+        .ops-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 30px rgba(99, 102, 241, 0.08);
         }
-        .scene-narrative {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-muted);
-            font-style: italic;
-            border-left: 2px solid rgba(248, 113, 113, 0.4);
-            padding-left: 16px;
+        .ops-category {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-light);
+            margin-bottom: 20px;
         }
-        .scene-outcome {
+        .ops-workers {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+        .ops-worker {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .ops-worker-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .ops-worker-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .ops-tag {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .ops-tag.cross-context {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+        }
+        .ops-tag.self-learning {
+            background: rgba(52, 211, 153, 0.15);
+            color: #6ee7b7;
+        }
+        .ops-tag.takes-action {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+        }
+        .ops-worker-outcome {
+            font-size: 13px;
+            color: var(--text-muted);
             display: flex;
             align-items: baseline;
-            gap: 12px;
-            padding-top: 8px;
-            border-top: 1px solid var(--border);
+            gap: 6px;
         }
-        .scene-stat {
-            font-size: 28px;
-            font-weight: 700;
+        .ops-worker-stat {
             font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 14px;
             background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            white-space: nowrap;
         }
-        .scene-result {
-            font-size: 14px;
+        .ops-outcome-type {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
             font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ops-summary {
+            margin-top: 32px;
+            padding: 20px 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .ops-summary strong {
             color: var(--text);
-            line-height: 1.4;
         }
 
         /* ===== TEMPLATE CARDS ===== */
@@ -998,7 +1061,7 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .gap-grid { grid-template-columns: 1fr; }
-            .scenes-grid { grid-template-columns: 1fr; }
+            .scenes-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
             .template-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: 1fr; }
             .diff-grid { grid-template-columns: 1fr; }
@@ -1069,49 +1132,121 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 2: OUTCOME SCENES ===== -->
+    <!-- ===== SECTION 2: OPS CATEGORIES ===== -->
     <section class="section scene-section" data-section="outcome-scenes">
         <div class="reveal">
-            <p class="section-label">Real Results</p>
-            <h2 class="section-title">Problems Your Team Doesn't Have Time to Catch.</h2>
+            <p class="section-label">What You Can Automate</p>
+            <h2 class="section-title">AI Workers for Every Part of Your Operations.</h2>
         </div>
         <div class="scenes-grid">
-            <div class="scene-card reveal">
-                <div class="scene-narrative">
-                    Your engineering team traces a cost spike. GPU instances ran all weekend — staging environments nobody turned off. $8,000, gone.
-                </div>
-                <div class="scene-outcome">
-                    <span class="scene-stat">$8K+</span>
-                    <span class="scene-result">in cloud waste caught in one week</span>
-                </div>
+            <!-- IT & Cloud Ops -->
+            <div class="ops-card reveal">
+                <div class="ops-category">IT & Cloud Ops</div>
+                <ul class="ops-workers">
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Cloud Cost Tracker</span>
+                            <span class="ops-tag cross-context">Cross-Context</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">$8K+</span> waste caught/week
+                        </div>
+                    </li>
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Unused VM/Subscription Detector</span>
+                            <span class="ops-tag takes-action">Takes Action</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">30%</span> fewer idle resources
+                        </div>
+                    </li>
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Cross-Context Infra Report</span>
+                            <span class="ops-tag self-learning">Self-Learning</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">2 hrs</span> saved/day
+                        </div>
+                    </li>
+                </ul>
+                <div class="ops-outcome-type">Cost Savings</div>
             </div>
-            <div class="scene-card reveal">
-                <div class="scene-narrative">
-                    A million-dollar deal sitting untouched for 45 days. Champion changed roles on LinkedIn. Nobody noticed until the quarter ended.
-                </div>
-                <div class="scene-outcome">
-                    <span class="scene-stat">$1.2M</span>
-                    <span class="scene-result">in stale pipeline deals found</span>
-                </div>
+
+            <!-- Sales & Revenue Ops -->
+            <div class="ops-card reveal">
+                <div class="ops-category">Sales & Revenue Ops</div>
+                <ul class="ops-workers">
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Stale Pipeline Detector</span>
+                            <span class="ops-tag cross-context">Cross-Context</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">$1.2M</span> at-risk deals found
+                        </div>
+                    </li>
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">CRM-Billing Drift Monitor</span>
+                            <span class="ops-tag self-learning">Self-Learning</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">$2,800/mo</span> leakage stopped
+                        </div>
+                    </li>
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Deal Risk Scorer</span>
+                            <span class="ops-tag takes-action">Takes Action</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">3x</span> faster pipeline reviews
+                        </div>
+                    </li>
+                </ul>
+                <div class="ops-outcome-type">Revenue Recovery</div>
             </div>
-            <div class="scene-card reveal">
-                <div class="scene-narrative">
-                    Data drifts between CRM and billing. A customer billed at Silver, contracted at Gold. $2,800 a month, leaking quietly.
-                </div>
-                <div class="scene-outcome">
-                    <span class="scene-stat">$2,800/mo</span>
-                    <span class="scene-result">in revenue leakage stopped</span>
-                </div>
+
+            <!-- Planning & Capacity Ops -->
+            <div class="ops-card reveal">
+                <div class="ops-category">Planning & Capacity Ops</div>
+                <ul class="ops-workers">
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Resource Allocation Engine</span>
+                            <span class="ops-tag cross-context">Cross-Context</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">45 sec</span> vs 4.5 hrs manual
+                        </div>
+                    </li>
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Skills-Availability Matcher</span>
+                            <span class="ops-tag self-learning">Self-Learning</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">80%</span> fewer mismatches
+                        </div>
+                    </li>
+                    <li class="ops-worker">
+                        <div class="ops-worker-header">
+                            <span class="ops-worker-name">Project Staffing Optimizer</span>
+                            <span class="ops-tag takes-action">Takes Action</span>
+                        </div>
+                        <div class="ops-worker-outcome">
+                            <span class="ops-worker-stat">5 hrs/week</span> back to team leads
+                        </div>
+                    </li>
+                </ul>
+                <div class="ops-outcome-type">Time & Efficiency</div>
             </div>
-            <div class="scene-card reveal">
-                <div class="scene-narrative">
-                    Six analysts spend Monday mornings matching designers to projects in Excel. Cross-referencing skills, availability, location. Takes 4.5 hours.
-                </div>
-                <div class="scene-outcome">
-                    <span class="scene-stat">45 sec</span>
-                    <span class="scene-result">replaces 4.5 hours of manual allocation</span>
-                </div>
-            </div>
+        </div>
+
+        <div class="ops-summary reveal">
+            Not dashboards. SynOS workers <strong>connect context across your systems</strong>, <strong>learn from every correction</strong>, and <strong>take action autonomously</strong> — saving you time, money, and operational overhead.
         </div>
     </section>
 
