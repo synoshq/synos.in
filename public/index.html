@@ -277,12 +277,23 @@
 
         .email-form {
             display: flex;
+            flex-direction: column;
             gap: 10px;
             width: 100%;
             max-width: 460px;
             margin-bottom: 12px;
         }
-        .email-input {
+        .email-form .form-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        .email-form .form-fields {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        .form-input {
             flex: 1;
             padding: 14px 18px;
             background: var(--surface);
@@ -294,11 +305,11 @@
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .email-input:focus {
+        .form-input:focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
-        .email-input::placeholder { color: #52525b; }
+        .form-input::placeholder { color: #52525b; }
 
         .submit-btn {
             padding: 14px 28px;
@@ -1076,7 +1087,8 @@
             .node-mesh { display: none; }
         }
         @media (max-width: 540px) {
-            .email-form { flex-direction: column; }
+            .email-form .form-fields { flex-direction: column; }
+            .email-form .form-row { flex-direction: column; }
             .submit-btn { width: 100%; }
             .hero h1 { font-size: 28px; }
             .nav-cta { padding: 8px 16px; font-size: 13px; }
@@ -1113,16 +1125,14 @@
 
         <form class="email-form" id="waitlist-form">
             <input type="checkbox" name="botcheck" style="display:none">
-            <input
-                type="email"
-                class="email-input"
-                placeholder="you@company.com"
-                required
-                id="email-input"
-            >
-            <button type="submit" class="submit-btn" id="submit-btn">
-                Get Early Access
-            </button>
+            <div class="form-fields">
+                <input type="text" class="form-input" placeholder="Your name" required id="name-input">
+                <input type="text" class="form-input" placeholder="Company" required id="company-input">
+            </div>
+            <div class="form-row">
+                <input type="email" class="form-input" placeholder="you@company.com" required id="email-input">
+                <button type="submit" class="submit-btn" id="submit-btn">Get Early Access</button>
+            </div>
         </form>
         <p class="form-note" id="form-note">
             <span class="compat">Not another tool — SynOS embeds where work already happens: Slack, WhatsApp, your SaaS apps. Self-hosted. Your data stays yours.</span>
@@ -1485,16 +1495,14 @@
             </p>
             <form class="email-form" id="waitlist-form-bottom">
                 <input type="checkbox" name="botcheck" style="display:none">
-                <input
-                    type="email"
-                    class="email-input"
-                    placeholder="you@company.com"
-                    required
-                    id="email-input-bottom"
-                >
-                <button type="submit" class="submit-btn" id="submit-btn-bottom">
-                    Get Early Access
-                </button>
+                <div class="form-fields">
+                    <input type="text" class="form-input" placeholder="Your name" required id="name-input-bottom">
+                    <input type="text" class="form-input" placeholder="Company" required id="company-input-bottom">
+                </div>
+                <div class="form-row">
+                    <input type="email" class="form-input" placeholder="you@company.com" required id="email-input-bottom">
+                    <button type="submit" class="submit-btn" id="submit-btn-bottom">Get Early Access</button>
+                </div>
             </form>
             <p class="form-note" id="form-note-bottom">
                 Need a custom deployment? <a href="mailto:hello@synos.in" style="color:var(--accent-light);text-decoration:none;">Talk to our team &rarr;</a>
@@ -1657,9 +1665,11 @@
         // ===== WEB3FORMS SUBMISSION =====
         const WEB3FORMS_KEY = 'efc148c5-0921-4219-8a6a-a3d4b8ac94f6';
 
-        function setupForm(formId, inputId, btnId, noteId, successId) {
+        function setupForm(formId, emailId, nameId, companyId, btnId, noteId, successId) {
             const form = document.getElementById(formId);
-            const emailInput = document.getElementById(inputId);
+            const emailInput = document.getElementById(emailId);
+            const nameInput = document.getElementById(nameId);
+            const companyInput = document.getElementById(companyId);
             const submitBtn = document.getElementById(btnId);
             const formNote = document.getElementById(noteId);
             const formSuccess = document.getElementById(successId);
@@ -1669,7 +1679,9 @@
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const email = emailInput.value.trim();
-                if (!email) return;
+                const name = nameInput.value.trim();
+                const company = companyInput.value.trim();
+                if (!email || !name || !company) return;
 
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Joining...';
@@ -1683,8 +1695,10 @@
                         },
                         body: JSON.stringify({
                             access_key: WEB3FORMS_KEY,
+                            name: name,
                             email: email,
-                            subject: 'New SynOS Early Access Signup',
+                            company: company,
+                            subject: 'New SynOS Early Access Signup — ' + name + ' (' + company + ')',
                             from_name: 'SynOS Waitlist',
                             botcheck: ''
                         })
@@ -1708,8 +1722,8 @@
             });
         }
 
-        setupForm('waitlist-form', 'email-input', 'submit-btn', 'form-note', 'form-success');
-        setupForm('waitlist-form-bottom', 'email-input-bottom', 'submit-btn-bottom', 'form-note-bottom', 'form-success-bottom');
+        setupForm('waitlist-form', 'email-input', 'name-input', 'company-input', 'submit-btn', 'form-note', 'form-success');
+        setupForm('waitlist-form-bottom', 'email-input-bottom', 'name-input-bottom', 'company-input-bottom', 'submit-btn-bottom', 'form-note-bottom', 'form-success-bottom');
     </script>
 </body>
 </html>
