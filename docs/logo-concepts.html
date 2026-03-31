@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynOS Logo Concepts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FAFAF8;
+            color: #1A1A1A;
+            padding: 60px 40px;
+        }
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #71717A;
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+        .concepts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+        }
+        .concept {
+            background: #FFFFFF;
+            border: 1px solid #E5E5E3;
+            border-radius: 16px;
+            padding: 48px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .concept h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        .concept .desc {
+            font-size: 14px;
+            color: #71717A;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .logo-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            width: 100%;
+        }
+        .size-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            justify-content: center;
+        }
+        .size-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #A1A1AA;
+            width: 60px;
+            text-align: right;
+        }
+        .logo-with-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #E5E5E3;
+            width: 100%;
+            justify-content: center;
+        }
+        .logo-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+            color: #1A1A1A;
+        }
+        .favicon-box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #E5E5E3;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        .dark-preview {
+            background: #1A1A1A;
+            border-radius: 12px;
+            padding: 24px 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .dark-preview .logo-text {
+            color: #FAFAF8;
+        }
+        @media (max-width: 900px) {
+            .concepts { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+    <h1>SynOS Logo Concepts</h1>
+    <p class="subtitle">Three concepts. Each works at favicon size (16x16), in single color, and avoids AI cliches.<br>Pick one, and I'll refine it for the landing page.</p>
+
+    <div class="concepts">
+        <!-- CONCEPT A: The Compound Loop -->
+        <div class="concept">
+            <h2>A. The Compound Loop</h2>
+            <p class="desc">Stylized "S" from two circular arcs with arrows — feedback loops and compounding intelligence. The shared center is the brain.</p>
+
+            <div class="logo-display">
+                <!-- Large (48px) -->
+                <div class="size-row">
+                    <span class="size-label">48px</span>
+                    <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                        <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <!-- Medium (32px) -->
+                <div class="size-row">
+                    <span class="size-label">32px</span>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                        <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <!-- Favicon (16px) -->
+                <div class="size-row">
+                    <span class="size-label">16px</span>
+                    <div class="favicon-box">
+                        <svg width="14" height="14" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- With text -->
+                <div class="logo-with-text">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                        <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">SynOS</span>
+                </div>
+                <div class="dark-preview">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round"/>
+                        <polyline points="14 15.5 16 14 14 12.5" stroke="#818CF8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="18 19.5 16 18 18 16.5" stroke="#818CF8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text" style="color:#FAFAF8">SynOS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCEPT B: Converging Layers -->
+        <div class="concept">
+            <h2>B. Converging Layers</h2>
+            <p class="desc">Three overlapping rounded rectangles — data layers converging into shared intelligence. Middle layer emphasized as the context layer.</p>
+
+            <div class="logo-display">
+                <!-- Large (48px) -->
+                <div class="size-row">
+                    <span class="size-label">48px</span>
+                    <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="6" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="1.6" opacity="0.35" transform="rotate(-6 14 16)"/>
+                        <rect x="8" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="2" fill="#6366F1" fill-opacity="0.08"/>
+                        <rect x="10" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="1.6" opacity="0.35" transform="rotate(6 18 16)"/>
+                    </svg>
+                </div>
+                <!-- Medium (32px) -->
+                <div class="size-row">
+                    <span class="size-label">32px</span>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="6" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="1.6" opacity="0.35" transform="rotate(-6 14 16)"/>
+                        <rect x="8" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="2" fill="#6366F1" fill-opacity="0.08"/>
+                        <rect x="10" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="1.6" opacity="0.35" transform="rotate(6 18 16)"/>
+                    </svg>
+                </div>
+                <!-- Favicon (16px) -->
+                <div class="size-row">
+                    <span class="size-label">16px</span>
+                    <div class="favicon-box">
+                        <svg width="14" height="14" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="2.5" opacity="0.35" transform="rotate(-6 14 16)"/>
+                            <rect x="8" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="2.5" fill="#6366F1" fill-opacity="0.1"/>
+                            <rect x="10" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="2.5" opacity="0.35" transform="rotate(6 18 16)"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- With text -->
+                <div class="logo-with-text">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <rect x="6" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="1.6" opacity="0.35" transform="rotate(-6 14 16)"/>
+                        <rect x="8" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="2" fill="#6366F1" fill-opacity="0.08"/>
+                        <rect x="10" y="11" width="16" height="10" rx="2.5" stroke="#6366F1" stroke-width="1.6" opacity="0.35" transform="rotate(6 18 16)"/>
+                    </svg>
+                    <span class="logo-text">SynOS</span>
+                </div>
+                <div class="dark-preview">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <rect x="6" y="11" width="16" height="10" rx="2.5" stroke="#818CF8" stroke-width="1.6" opacity="0.4" transform="rotate(-6 14 16)"/>
+                        <rect x="8" y="11" width="16" height="10" rx="2.5" stroke="#818CF8" stroke-width="2" fill="#818CF8" fill-opacity="0.1"/>
+                        <rect x="10" y="11" width="16" height="10" rx="2.5" stroke="#818CF8" stroke-width="1.6" opacity="0.4" transform="rotate(6 18 16)"/>
+                    </svg>
+                    <span class="logo-text" style="color:#FAFAF8">SynOS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCEPT C: The Nexus -->
+        <div class="concept">
+            <h2>C. The Nexus</h2>
+            <p class="desc">Two overlapping circles with a diamond at the intersection — agents and humans converging, shared knowledge at the center.</p>
+
+            <div class="logo-display">
+                <!-- Large (48px) -->
+                <div class="size-row">
+                    <span class="size-label">48px</span>
+                    <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12.5" cy="16" r="8" stroke="#6366F1" stroke-width="1.8" opacity="0.5"/>
+                        <circle cx="19.5" cy="16" r="8" stroke="#6366F1" stroke-width="1.8" opacity="0.5"/>
+                        <rect x="14" y="14" width="4" height="4" rx="0.5" transform="rotate(45 16 16)" fill="#6366F1"/>
+                    </svg>
+                </div>
+                <!-- Medium (32px) -->
+                <div class="size-row">
+                    <span class="size-label">32px</span>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12.5" cy="16" r="8" stroke="#6366F1" stroke-width="1.8" opacity="0.5"/>
+                        <circle cx="19.5" cy="16" r="8" stroke="#6366F1" stroke-width="1.8" opacity="0.5"/>
+                        <rect x="14" y="14" width="4" height="4" rx="0.5" transform="rotate(45 16 16)" fill="#6366F1"/>
+                    </svg>
+                </div>
+                <!-- Favicon (16px) -->
+                <div class="size-row">
+                    <span class="size-label">16px</span>
+                    <div class="favicon-box">
+                        <svg width="14" height="14" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12.5" cy="16" r="8" stroke="#6366F1" stroke-width="2.5" opacity="0.5"/>
+                            <circle cx="19.5" cy="16" r="8" stroke="#6366F1" stroke-width="2.5" opacity="0.5"/>
+                            <rect x="14" y="14" width="4" height="4" rx="0.5" transform="rotate(45 16 16)" fill="#6366F1"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- With text -->
+                <div class="logo-with-text">
+                    <svg width="32" height="28" viewBox="0 0 32 32" fill="none">
+                        <circle cx="12.5" cy="16" r="8" stroke="#6366F1" stroke-width="1.8" opacity="0.5"/>
+                        <circle cx="19.5" cy="16" r="8" stroke="#6366F1" stroke-width="1.8" opacity="0.5"/>
+                        <rect x="14" y="14" width="4" height="4" rx="0.5" transform="rotate(45 16 16)" fill="#6366F1"/>
+                    </svg>
+                    <span class="logo-text">SynOS</span>
+                </div>
+                <div class="dark-preview">
+                    <svg width="32" height="28" viewBox="0 0 32 32" fill="none">
+                        <circle cx="12.5" cy="16" r="8" stroke="#818CF8" stroke-width="1.8" opacity="0.5"/>
+                        <circle cx="19.5" cy="16" r="8" stroke="#818CF8" stroke-width="1.8" opacity="0.5"/>
+                        <rect x="14" y="14" width="4" height="4" rx="0.5" transform="rotate(45 16 16)" fill="#818CF8"/>
+                    </svg>
+                    <span class="logo-text" style="color:#FAFAF8">SynOS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:60px;padding:32px;background:#fff;border:1px solid #E5E5E3;border-radius:12px;max-width:800px;">
+        <h2 style="font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;margin-bottom:16px;">Quick Comparison</h2>
+        <table style="width:100%;font-size:14px;border-collapse:collapse;">
+            <thead>
+                <tr style="border-bottom:1px solid #E5E5E3;text-align:left;">
+                    <th style="padding:8px 12px;font-weight:600;">Criteria</th>
+                    <th style="padding:8px 12px;font-weight:600;">A. Compound Loop</th>
+                    <th style="padding:8px 12px;font-weight:600;">B. Converging Layers</th>
+                    <th style="padding:8px 12px;font-weight:600;">C. The Nexus</th>
+                </tr>
+            </thead>
+            <tbody style="color:#4A4A4A;">
+                <tr style="border-bottom:1px solid #F4F4F1;">
+                    <td style="padding:8px 12px;">Encodes "compounding"</td>
+                    <td style="padding:8px 12px;">Strong (loop arrows)</td>
+                    <td style="padding:8px 12px;">Moderate (layers converge)</td>
+                    <td style="padding:8px 12px;">Moderate (shared center)</td>
+                </tr>
+                <tr style="border-bottom:1px solid #F4F4F1;">
+                    <td style="padding:8px 12px;">Favicon clarity (16px)</td>
+                    <td style="padding:8px 12px;">Good (S-shape)</td>
+                    <td style="padding:8px 12px;">Decent (stacked bars)</td>
+                    <td style="padding:8px 12px;">Good (overlapping rings)</td>
+                </tr>
+                <tr style="border-bottom:1px solid #F4F4F1;">
+                    <td style="padding:8px 12px;">Brand recognition</td>
+                    <td style="padding:8px 12px;">High (S = SynOS)</td>
+                    <td style="padding:8px 12px;">Medium (abstract)</td>
+                    <td style="padding:8px 12px;">Medium (Venn is common)</td>
+                </tr>
+                <tr style="border-bottom:1px solid #F4F4F1;">
+                    <td style="padding:8px 12px;">Uniqueness</td>
+                    <td style="padding:8px 12px;">High</td>
+                    <td style="padding:8px 12px;">Medium</td>
+                    <td style="padding:8px 12px;">Low (Venn widely used)</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px 12px;font-weight:600;">Recommendation</td>
+                    <td style="padding:8px 12px;color:#6366F1;font-weight:600;">Best fit</td>
+                    <td style="padding:8px 12px;">Good alternative</td>
+                    <td style="padding:8px 12px;">Simplest option</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
