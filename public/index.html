@@ -638,12 +638,18 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
+            .nav {
+                background: rgba(250, 250, 248, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom-color: var(--border);
+            }
             .nav-links { display: none; }
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
             .grid-3, .grid-2, .trust-grid { grid-template-columns: 1fr; }
             .section { padding: 72px 0; }
-            .hero { min-height: auto; padding-top: 120px; padding-bottom: 60px; }
-.timeline { flex-direction: column; gap: 32px; align-items: center; }
+            .hero { min-height: auto; padding-top: 100px; padding-bottom: 60px; }
+            .timeline { flex-direction: column; gap: 32px; align-items: center; }
             .timeline::before { display: none; }
             .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
             .footer-links { justify-content: center; }
