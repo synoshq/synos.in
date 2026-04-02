@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynOS — Compounding Intelligence for Your Operations</title>
-    <meta name="description" content="Connect 19+ data sources. Describe AI workers in plain English. Every correction compounds across all workers, forever. Self-hosted, MCP-native.">
-    <meta property="og:title" content="SynOS — AI Workers That Get Smarter With Every Correction">
-    <meta property="og:description" content="Connect your data sources, describe workers in English, and watch intelligence compound. Built at South Park Commons.">
+    <title>SynOS — Agent-Native Operational Software</title>
+    <meta name="description" content="Connect your data. AI agents learn how your company actually operates. Every correction compounds across all agents, forever.">
+    <meta property="og:title" content="SynOS — Software That Adapts to the Way Your Team Works">
+    <meta property="og:description" content="Connect your data. AI agents learn how your company actually operates. Every correction compounds across all agents, forever.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://synos.in">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SynOS — AI Workers That Get Smarter With Every Correction">
-    <meta name="twitter:description" content="Connect your data sources, describe workers in English, and watch intelligence compound.">
+    <meta name="twitter:title" content="SynOS — Software That Adapts to the Way Your Team Works">
+    <meta name="twitter:description" content="Connect your data. AI agents learn how your company actually operates. Every correction compounds across all agents, forever.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,6 +119,7 @@
 
         /* ===== GRID ===== */
         .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
@@ -693,11 +694,10 @@
     <section class="container hero" data-section="hero">
         <h1 class="reveal">Bring Your Company<br>to Life.</h1>
         <p class="hero-sub reveal" style="font-size:18px;max-width:660px;">
-            Build a shared brain for your company — connecting context across your apps, people, and agents. Let AI workers automate your business workflows, learn from every correction, and compound intelligence as they scale your operations.
+            Operational software that adapts to the way your team works — not the other way around. Connect your data. Agents learn how your company actually operates. Every correction compounds across all agents, forever.
         </p>
         <div class="hero-cta reveal">
             <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="hero">Talk to Founder</a>
-            <a href="#waitlist-section" class="btn btn--secondary">Get Early Access</a>
         </div>
         <p class="reveal" style="font-size:13px;color:var(--text-dim);margin-bottom:48px;">
             Not another tool — SynOS embeds where work already happens. Self-hosted. Your data stays yours.
@@ -712,15 +712,16 @@
         <div class="container">
             <div class="reveal">
                 <p class="section-label">The Problem</p>
-                <h2>Current tools weren't built for this.</h2>
+                <h2>You didn't buy software. You bought someone else's opinion about how to run your company.</h2>
+                <p class="section-sub">Every operational SaaS product is 5 rigid things bundled together: a system of record, operating procedures, views, collaboration, and integrations. AI makes 4 of these adaptive. Only the system of record stays hard. That's what we're building.</p>
             </div>
             <div class="grid-3">
                 <div class="card reveal">
                     <div class="problem-icon">
                         <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                     </div>
-                    <h3>Workflows break on edge cases</h3>
-                    <p>Deterministic automations can't handle messy data, schema changes, or exceptions. You spend more time maintaining than saving.</p>
+                    <h3>Rigid procedures can't adapt</h3>
+                    <p>Salesforce says 7 deal stages. Jira says story points. The tool decides your workflow — whether it fits your team or not.</p>
                 </div>
                 <div class="card reveal">
                     <div class="problem-icon">
@@ -733,8 +734,8 @@
                     <div class="problem-icon">
                         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                     </div>
-                    <h3>Context is scattered across 20 tools</h3>
-                    <p>CRM says one thing, billing says another, the spreadsheet is out of date. No tool connects the full picture for your agents.</p>
+                    <h3>Your system of record is siloed</h3>
+                    <p>CRM has sales data. Jira has engineering data. HubSpot has marketing data. 250+ tools, none agree on what a "customer" is. No tool has the cross-system graph.</p>
                 </div>
             </div>
         </div>
@@ -745,26 +746,33 @@
         <div class="container">
             <div class="reveal">
                 <p class="section-label">How It Works</p>
-                <h2>Connect. Describe. Improve.</h2>
+                <h2>Connect. Augment. Absorb. Evolve.</h2>
+                <p class="section-sub">SynOS works alongside your existing tools — then gradually becomes the brain.</p>
             </div>
-            <div class="grid-3">
+            <div class="grid-2">
                 <div class="card reveal">
                     <span class="step-number">1</span>
                     <h3>Connect</h3>
-                    <p>Point SynOS at your systems — Salesforce, BigQuery, Slack, Jira, Postgres, APIs. SynOS profiles your data and builds a shared context layer across every silo.</p>
+                    <p>Point SynOS at your systems — Salesforce, BigQuery, Slack, Jira, Postgres, APIs. Agents learn your data and build a knowledge graph across every silo. Everything keeps working as-is.</p>
                     <span class="step-accent">19+ connectors. 30 minutes to set up.</span>
                 </div>
                 <div class="card reveal">
                     <span class="step-number">2</span>
-                    <h3>Describe</h3>
-                    <p>Tell workers what to do in plain English. "Monitor cloud costs daily and flag anomalies with root cause." No flowcharts, no DAGs, no node wiring.</p>
-                    <span class="step-accent">Describe in English. Workers figure out the rest.</span>
+                    <h3>Augment</h3>
+                    <p>Agents add cross-system intelligence on top. Patterns no single tool can see — "this customer complained in support, their renewal is in 60 days, and they haven't had a QBR in 3 months." Your team keeps familiar tools, plus a new intelligence layer.</p>
+                    <span class="step-accent">Cross-system patterns, surfaced automatically.</span>
                 </div>
                 <div class="card reveal">
                     <span class="step-number">3</span>
-                    <h3>Improve</h3>
-                    <p>Workers learn from every correction. "That account always spikes in March — it's seasonal." Fix it once, every worker knows it. Accuracy compounds over time.</p>
-                    <span class="step-accent">72% to 94% accuracy with 5 corrections.</span>
+                    <h3>Absorb</h3>
+                    <p>"What's happening with Acme?" replaces opening Salesforce. The agent layer becomes the primary interface. Existing tools fade to data sources — still connected, but no longer where anyone works.</p>
+                    <span class="step-accent">Ask questions, not dashboards.</span>
+                </div>
+                <div class="card reveal">
+                    <span class="step-number">4</span>
+                    <h3>Evolve</h3>
+                    <p>Your operations continuously adapt as your company changes. New entity types emerge. New agents spin up. The system gets smarter every day — because corrections compound, not because someone reconfigures it.</p>
+                    <span class="step-accent">Intelligence that compounds over time.</span>
                 </div>
             </div>
         </div>
@@ -774,9 +782,9 @@
     <section class="section section--alt" id="templates" data-section="templates">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">Ready to Deploy</p>
-                <h2>Pick a template. Get your first worker in minutes.</h2>
-                <p class="section-sub">A general-purpose platform where you can automate any cross-system workflow. Here are some of the templates we've built.</p>
+                <p class="section-label">What Do You Want to Operate?</p>
+                <h2>Pick a starting point. Your agents take it from there.</h2>
+                <p class="section-sub">Agent-native operational software for the workflows that run your company. Start with a template, or describe what you need.</p>
             </div>
             <div class="grid-4">
                 <div class="card reveal">
@@ -827,9 +835,9 @@
     <section class="section" data-section="learning">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">Why Results Compound</p>
+                <p class="section-label">Why Intelligence Compounds</p>
                 <h2>Every correction teaches every worker. Forever.</h2>
-                <p class="section-sub">SynOS workers share a brain. When you correct one, every worker learns it instantly. Your team's knowledge stops dying in Slack threads.</p>
+                <p class="section-sub">SynOS is a shared brain for agents, humans, and systems. When you correct one agent, every agent learns it. Your team's knowledge stops dying in Slack threads — it compounds into organizational memory.</p>
             </div>
             <div class="timeline reveal">
                 <div class="timeline-step">
@@ -861,40 +869,6 @@
         </div>
     </section>
 
-    <!-- ENTERPRISE CONTROLS -->
-    <section class="section section--alt" data-section="trust">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">Enterprise Controls</p>
-                <h2>You control the trust dial.</h2>
-            </div>
-            <div class="trust-grid">
-                <div class="trust-card card reveal">
-                    <div class="trust-icon">
-                        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </div>
-                    <h3>Supervised</h3>
-                    <p>Plans actions, you approve every step. Training runs are free. Zero risk.</p>
-                </div>
-                <div class="trust-card card reveal">
-                    <div class="trust-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h3>Shadow</h3>
-                    <p>Reads execute live. Writes are logged but don't fire. Prove accuracy before going live.</p>
-                </div>
-                <div class="trust-card card reveal">
-                    <div class="trust-icon">
-                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    </div>
-                    <h3>Autonomous</h3>
-                    <p>Full execution on the tools you choose. Circuit breaker stops after 3 failures. Full audit trail.</p>
-                </div>
-            </div>
-            <p class="trust-note reveal">Full audit trail. Circuit breaker. Tool-level permissions. You control the dial. Always.</p>
-        </div>
-    </section>
-
     <!-- DEMO VIDEO -->
     <section class="section" id="demo" data-section="demo-video">
         <div class="container">
@@ -915,29 +889,29 @@
         <div class="container">
             <div class="reveal">
                 <p class="section-label">Built For</p>
-                <h2>For teams ready to compound their intelligence.</h2>
+                <h2>For teams ready to transform how they operate.</h2>
             </div>
             <div class="grid-3">
                 <div class="card reveal">
                     <div class="audience-icon">
                         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
-                    <h3>Ops Leaders</h3>
-                    <p>Hire AI workers instead of more analysts. Pick a template, describe what to watch, see results in days. No engineering needed after setup.</p>
+                    <h3>Teams drowning in cross-system ops</h3>
+                    <p>You have 10+ tools, analysts building weekly reports manually, and critical workflows held together by Zapier and spreadsheets. SynOS agents handle the cross-system coordination so your team focuses on decisions, not data entry.</p>
                 </div>
                 <div class="card reveal">
                     <div class="audience-icon">
                         <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                     </div>
-                    <h3>AI Engineers</h3>
-                    <p>Context infrastructure you don't have to build. MCP-native, self-hosted, 30 minutes to deploy. Knowledge graph with hybrid retrieval out of the box.</p>
+                    <h3>Companies transforming operations with AI</h3>
+                    <p>You've tried copilots and chatbots. You need agents that actually operate — read, decide, act, learn — across your real business systems. SynOS is the operational layer where agents and humans work together.</p>
                 </div>
                 <div class="card reveal">
                     <div class="audience-icon">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     </div>
-                    <h3>Technical PMs</h3>
-                    <p>The middle ground between n8n flowcharts and uncontrolled AI agents. Describe workflows in English, shadow-test safely, then go autonomous.</p>
+                    <h3>Founders who want ops without the ops team</h3>
+                    <p>You're 5-50 people. You can't hire RevOps, FinOps, and a data engineer. SynOS agents compound into your operations team — starting supervised, earning trust, graduating to autonomous.</p>
                 </div>
             </div>
         </div>
