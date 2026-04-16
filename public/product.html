@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product — SynOS</title>
+    <meta name="description" content="SynOS architecture — context layer, self-learning layer, and human context extraction. Bring your own agent framework.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        :root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--surface:#FFFFFF;--border:#E5E5E3;--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#71717A;--text-dim:#A1A1AA;--accent:#6366F1;--accent-hover:#5558E6;--accent-bg:rgba(99,102,241,0.06);--shadow-accent:0 4px 20px rgba(99,102,241,0.15);}
+        html{scroll-behavior:smooth;}
+        body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+        h1,h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.02em;line-height:1.15;}
+        h1{font-size:clamp(36px,5.5vw,58px);margin-bottom:24px;}
+        .container{max-width:760px;margin:0 auto;padding:0 24px;text-align:center;}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:64px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+        .nav-left{display:flex;align-items:center;gap:10px;text-decoration:none;}
+        .nav-logo-text{font-family:'Instrument Serif',serif;font-size:22px;color:var(--text);letter-spacing:-0.02em;}
+        .nav-links{display:flex;gap:32px;}
+        .nav-links a{font-size:14px;font-weight:500;color:var(--text-muted);text-decoration:none;transition:color 0.15s;}
+        .nav-links a:hover,.nav-links a.active{color:var(--text);}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;border-radius:10px;text-decoration:none;transition:all 0.15s;padding:14px 28px;}
+        .btn--primary{background:var(--accent);color:#FFF;}
+        .btn--primary:hover{background:var(--accent-hover);box-shadow:var(--shadow-accent);}
+        .btn--secondary{background:transparent;color:var(--text);border:1px solid var(--border);padding:13px 27px;}
+        .btn--secondary:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-bg);}
+        .nav .btn--primary{padding:10px 20px;font-size:14px;}
+        .page{padding:160px 0 120px;}
+        .page .eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:16px;}
+        .page p{font-size:17px;line-height:1.75;color:var(--text-secondary);margin-bottom:24px;}
+        .cta-row{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+        .coming-soon-note{margin-top:48px;padding:24px;background:var(--accent-bg);border-radius:12px;font-size:14px;color:var(--text-secondary);text-align:left;}
+        .coming-soon-note strong{color:var(--text);}
+        .site-footer{padding:40px 24px;border-top:1px solid var(--border);}
+        .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+        .footer-left{display:flex;align-items:center;gap:8px;}
+        .footer-logo-text{font-family:'Instrument Serif',serif;font-size:18px;color:var(--text-muted);}
+        .footer-middle,.footer-links{display:flex;align-items:center;gap:20px;}
+        .footer-middle a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;}
+        .footer-links a{color:var(--text-dim);text-decoration:none;font-size:13px;}
+        .footer-sep{width:1px;height:14px;background:var(--border);}
+        .footer-copy{font-size:12px;color:var(--text-dim);margin-top:16px;text-align:center;}
+        @media(max-width:768px){.nav-links{display:none;}.footer-inner{flex-direction:column;text-align:center;}.footer-links,.footer-middle{justify-content:center;flex-wrap:wrap;}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="nav-left">
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="nav-logo-text">SynOS</span>
+        </a>
+        <div class="nav-links">
+            <a href="/product" class="active">Product</a>
+            <a href="/use-cases">Use Cases</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+        </div>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Talk to Founder</a>
+    </nav>
+
+    <section class="container page">
+        <p class="eyebrow">Product</p>
+        <h1>The institutional brain,<br>in detail.</h1>
+        <p>Three layers: Context, Self-Learning, and Human Context Extraction. Plugged under any agent framework — Claude Code, Claude Co-Work, Codex, LangChain, CrewAI, or your own. Self-hosted. Enterprise RBAC. Full audit trail.</p>
+        <div class="coming-soon-note">
+            <strong>Deep-dive page in progress.</strong> A full architecture walkthrough — connectors, data flow, BYOA integration, graduated trust, security model, and all supported systems — is being written. Until then, the <a href="/#how-it-works" style="color:var(--accent);text-decoration:none;font-weight:600;">architecture summary on the homepage</a> covers the essentials, and the <a href="https://anoopjawahar.substack.com" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">thesis on Substack</a> goes deeper on the "why."
+        </div>
+        <div class="cta-row">
+            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">See it with your data — Talk to Founder</a>
+            <a href="/" class="btn btn--secondary">← Back to home</a>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <span class="footer-logo-text">SynOS</span>
+            </div>
+            <div class="footer-middle">
+                <a href="/product">Product</a>
+                <a href="/use-cases">Use Cases</a>
+                <a href="/blog">Blog</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:hello@synos.in">hello@synos.in</a>
+                <span class="footer-sep"></span>
+                <a href="https://x.com/synaborative" target="_blank">X / Twitter</a>
+                <span class="footer-sep"></span>
+                <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank">LinkedIn</a>
+                <span class="footer-sep"></span>
+                <a href="https://anoopjawahar.substack.com" target="_blank">Substack</a>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
+    </footer>
+</body>
+</html>
