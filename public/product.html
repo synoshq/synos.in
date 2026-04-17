@@ -182,7 +182,7 @@
     <section class="container hero-page" data-section="product-hero">
         <p class="eyebrow">Product</p>
         <h1>The institutional brain,<br>in detail.</h1>
-        <p class="hero-sub">Three layers. 35+ tools. 18+ connectors. Graduated trust from day one. Bring your own agent framework — or use the SynOS harness. Self-hosted. Your data never leaves your infrastructure.</p>
+        <p class="hero-sub">Three layers. 35+ tools. 18+ connectors. Graduated trust from day one. Bring your own agent framework — or use the SynOS harness. Self-hosted. Your data never leaves your infrastructure. 30 minutes to first value.</p>
         <div class="arch-img reveal">
             <img src="platform_architecture.png" alt="SynOS Platform Architecture — Context Layer, Self-Learning Layer, Human Context Extraction" loading="eager">
         </div>
@@ -217,13 +217,104 @@
         </div>
     </section>
 
+    <!-- KNOWLEDGE GRAPH & ENTITY RESOLUTION -->
+    <section class="section section--alt" data-section="knowledge-graph">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Under the Hood</p>
+                <h2>A typed knowledge graph. Not a flat vector store.</h2>
+                <p class="section-sub">SynOS builds a living knowledge graph from your connected systems — not just embeddings in a vector database. Every node has confidence scores, freshness decay, and source lineage.</p>
+            </div>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <h3>Cross-System Entity Resolution</h3>
+                    <p>Automatically discovers that "Customer ID" in Salesforce = "Client #" in the spreadsheet = @acmecorp in Slack. Recognizes aliases, maps identities across 50+ tools, and builds a unified entity layer that every agent queries.</p>
+                </div>
+                <div class="card">
+                    <h3>Freshness-Aware Knowledge</h3>
+                    <p>Not all knowledge is equal over time. Schema insights decay over 90 days. Data quality flags decay over 30 days. A fact from last week scores higher than one from 6 months ago. The system naturally forgets stale information — unlike search engines that index everything forever.</p>
+                </div>
+                <div class="card">
+                    <h3>5-Pass Data Profiling</h3>
+                    <p>Every connected source goes through 5 automated passes: schema analysis, statistical profiling, semantic extraction, relationship discovery, and knowledge synthesis. No manual data mapping. The brain understands your data shape before any agent queries it.</p>
+                </div>
+                <div class="card">
+                    <h3>Hybrid Graph RAG Retrieval</h3>
+                    <p>Agents don't get flat document chunks. They get structured context through a 7-stage pipeline: query classification, semantic search, keyword search, seed extraction, graph traversal (up to 3 hops), freshness-weighted RRF fusion, and confidence-based iteration. If the first pass isn't confident enough, the system automatically broadens its search.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING PIPELINE -->
+    <section class="section" data-section="learning-pipeline">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Quality-Gated Learning</p>
+                <h2>Not every observation becomes knowledge.</h2>
+                <p class="section-sub">A 3-gate promotion pipeline ensures only high-quality insights enter your institutional brain. This is what separates compounding knowledge from noisy logs.</p>
+            </div>
+            <div class="grid-3 reveal">
+                <div class="card">
+                    <span class="step-number">G1</span>
+                    <h3>Corroboration</h3>
+                    <p>An insight must be independently observed 2+ times before promotion. A single anomalous observation stays pending — it doesn't contaminate the brain.</p>
+                </div>
+                <div class="card">
+                    <span class="step-number">G2</span>
+                    <h3>Deduplication</h3>
+                    <p>If the insight already exists in the knowledge graph, it's merged — not duplicated. Contradictions are flagged for human review rather than silently overwritten.</p>
+                </div>
+                <div class="card">
+                    <span class="step-number">G3</span>
+                    <h3>Classification</h3>
+                    <p>Is this generalizable organizational knowledge — or agent-specific noise? Only insights that apply broadly get promoted to the institutional brain. The rest stay as agent-local context.</p>
+                </div>
+            </div>
+            <div class="reveal" style="margin-top:32px;padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:12px;">
+                <h3 style="margin-bottom:8px;">Three types of knowledge captured</h3>
+                <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);"><strong style="color:var(--text);">Semantic</strong> — facts about your data ("APAC records have 18% null emails"). <strong style="color:var(--text);">Episodic</strong> — events that matter ("Major spike on March 15 was a compliance audit, not real growth"). <strong style="color:var(--text);">Procedural</strong> — how-to knowledge ("Steps to verify a customer identity across billing and CRM").</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT'S DIFFERENT -->
+    <section class="section section--alt" data-section="whats-different">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">What's Different</p>
+                <h2>Why existing solutions don't solve this.</h2>
+                <p class="section-sub">Every team we talk to has tried some combination of these. Here's what they found missing.</p>
+            </div>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <h3>Claude Code / Claude Co-Work</h3>
+                    <p>Powerful for individuals. But a 1M-token context window still doesn't know which of your 50 data sources to check. No persistent organizational memory. No RBAC. No enterprise controls. SynOS gives Claude your company's institutional brain.</p>
+                </div>
+                <div class="card">
+                    <h3>n8n / Zapier / Make</h3>
+                    <p>Workflow automation that never learns. Every run starts from zero. No context layer. No self-learning. No path from rigid workflows to AI-native operations. SynOS agents understand your business and get smarter with every run.</p>
+                </div>
+                <div class="card">
+                    <h3>Glean / Enterprise Search</h3>
+                    <p>Finds documents but doesn't understand cross-system relationships. Indexes everything forever — no freshness decay. SynOS is a knowledge layer, not a search engine. It learns from outcomes, not just documents.</p>
+                </div>
+                <div class="card">
+                    <h3>LangGraph / CrewAI / OpenAI Assistants</h3>
+                    <p>Agent memory is one feature, not a full knowledge layer. No cross-system entity resolution. No self-learning loop. Framework lock-in — knowledge doesn't transfer. SynOS is the brain under any framework. Switch harnesses and your institutional knowledge carries over.</p>
+                </div>
+            </div>
+            <p class="reveal" style="text-align:center;margin-top:28px;font-size:15px;color:var(--text);font-weight:500;">The question to ask any tool: does your agent get smarter after the 100th task? With SynOS, it does.</p>
+        </div>
+    </section>
+
     <!-- BYOA -->
     <section class="section section--alt" data-section="byoa">
         <div class="container">
             <div class="reveal">
                 <p class="section-label">Bring Your Own Agent</p>
                 <h2>SynOS is the brain, not the body.</h2>
-                <p class="section-sub">The brain layer is designed to be layered under any agent framework or harness. Three ways to use it:</p>
+                <p class="section-sub">Engineering teams spend 40% of their time rebuilding context infrastructure for every new agent — connecting data sources, building RAG, managing embeddings, handling freshness. SynOS is that layer, pre-built. Three ways to use it:</p>
             </div>
             <div class="byoa-options reveal">
                 <div class="byoa-opt">
