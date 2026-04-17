@@ -265,7 +265,9 @@
         .hero-screenshot img { width: 100%; height: auto; display: block; }
 
         /* ===== EXPANDABLE CARDS ===== */
-        .expandable { cursor: pointer; }
+        .expandable { cursor: pointer; border-left: 3px solid rgba(99,102,241,0.20); background: rgba(99,102,241,0.02); }
+        .expandable:hover { border-left-color: var(--accent); background: rgba(99,102,241,0.04); }
+        .expandable.open { border-left-color: var(--accent); background: rgba(99,102,241,0.04); }
         .expandable .expand-header { display: flex; align-items: flex-start; gap: 16px; }
         .expandable .expand-icon {
             width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px;
