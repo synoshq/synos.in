@@ -33,7 +33,7 @@
         .nav .btn--primary{padding:10px 20px;font-size:14px;}
 
         /* Hero */
-        .hero-page{padding:140px 0 48px;}
+        .hero-page{padding:160px 0 64px;}
         .hero-page .eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:16px;}
         .hero-page p{font-size:17px;line-height:1.75;color:var(--text-secondary);margin-bottom:16px;}
 
@@ -41,7 +41,7 @@
         .post-list{margin-top:48px;display:flex;flex-direction:column;gap:0;}
         .post-card{padding:40px 0;border-bottom:1px solid var(--border);display:block;text-decoration:none;color:inherit;transition:background 0.15s;}
         .post-card:first-child{border-top:1px solid var(--border);}
-        .post-card:hover{background:var(--accent-bg);margin:0 -24px;padding-left:24px;padding-right:24px;border-radius:12px;border-color:transparent;}
+        .post-card:hover{background:var(--accent-bg);margin:0 -24px;padding-left:24px;padding-right:24px;border-radius:16px;border-color:transparent;box-shadow:0 4px 16px rgba(0,0,0,0.06);}
         .post-card:hover + .post-card{border-top-color:transparent;}
         .post-date{font-size:13px;font-weight:500;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:10px;}
         .post-title{font-family:var(--font-display);font-size:clamp(24px,3vw,32px);font-weight:400;letter-spacing:-0.02em;color:var(--text);line-height:1.2;margin-bottom:12px;}
@@ -103,23 +103,23 @@
     </nav>
 
     <!-- HERO -->
-    <section class="container hero-page" data-section="blog-hero">
-        <p class="eyebrow">Blog</p>
-        <h1>From the founder.</h1>
-        <p>Thinking on institutional knowledge, the SaaS-to-AI-native transition, context engineering, and what it takes to make AI agents actually understand your business.</p>
+    <section class="container hero-page mesh-bg" data-section="blog-hero">
+        <p class="eyebrow reveal">Blog</p>
+        <h1 class="reveal">From the founder.</h1>
+        <p class="reveal">Thinking on institutional knowledge, the SaaS-to-AI-native transition, context engineering, and what it takes to make AI agents actually understand your business.</p>
     </section>
 
     <!-- POSTS -->
     <section class="container" data-section="blog-posts">
-        <div class="post-list">
-            <a href="https://anoopjawahar.substack.com/p/bringing-your-company-to-life" target="_blank" class="post-card">
+        <div class="post-list reveal-stagger">
+            <a href="https://anoopjawahar.substack.com/p/bringing-your-company-to-life" target="_blank" class="post-card reveal">
                 <p class="post-date">April 2026</p>
                 <h2 class="post-title">Bringing Your Company to Life</h2>
                 <p class="post-excerpt">Connect your company's data. Now watch what happens. It reads your CRM, your Sheets, your Slack, your docs. It doesn't just store the data — it understands it.</p>
                 <span class="post-link">Read on Substack →</span>
             </a>
 
-            <a href="https://anoopjawahar.substack.com/p/what-happens-when-software-stops" target="_blank" class="post-card">
+            <a href="https://anoopjawahar.substack.com/p/what-happens-when-software-stops" target="_blank" class="post-card reveal">
                 <p class="post-date">April 2, 2026</p>
                 <h2 class="post-title">What Happens When Software Stops Imposing Workflows</h2>
                 <p class="post-excerpt">Was it harder than expected to get your best engineers onto AI-native coding workflows? How long did it take before AI became part of their daily flow? Whatever that answer is — that's the leading indicator for how AI will transform the rest of your company.</p>
@@ -128,7 +128,7 @@
         </div>
 
         <!-- SUBSCRIBE -->
-        <div class="subscribe-section">
+        <div class="subscribe-section mesh-bg reveal">
             <h3>Follow the build.</h3>
             <p>Subscribe on Substack for new posts on the institutional brain thesis, what we're learning from design partners, and how the SaaS-to-AI-native transition is playing out.</p>
             <a href="https://anoopjawahar.substack.com" target="_blank" class="btn btn--primary">Subscribe on Substack</a>
