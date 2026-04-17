@@ -8,12 +8,12 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-        :root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--surface:#FFFFFF;--border:#E5E5E3;--border-accent:rgba(99,102,241,0.2);--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#71717A;--text-dim:#A1A1AA;--accent:#6366F1;--accent-hover:#5558E6;--accent-bg:rgba(99,102,241,0.06);--teal:rgba(45,212,191,1);--teal-bg:rgba(45,212,191,0.06);--teal-border:rgba(45,212,191,0.2);--shadow-md:0 4px 12px rgba(0,0,0,0.06);--shadow-lg:0 8px 30px rgba(0,0,0,0.08);--shadow-accent:0 4px 20px rgba(99,102,241,0.15);--font-display:'Instrument Serif',Georgia,serif;--font-body:'Inter',-apple-system,sans-serif;--font-mono:'JetBrains Mono',monospace;}
+        :root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--surface:#FFFFFF;--border:#E5E5E3;--border-accent:rgba(99,102,241,0.2);--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#71717A;--text-dim:#A1A1AA;--accent:#6366F1;--accent-hover:#5558E6;--accent-bg:rgba(99,102,241,0.06);--teal:rgba(45,212,191,1);--teal-bg:rgba(45,212,191,0.06);--teal-border:rgba(45,212,191,0.2);--shadow-md:0 4px 12px rgba(0,0,0,0.06);--shadow-lg:0 8px 30px rgba(0,0,0,0.08);--shadow-accent:0 4px 20px rgba(99,102,241,0.15);--font-display:'Instrument Serif',Georgia,serif;--font-body:'DM Sans',-apple-system,sans-serif;--font-mono:'JetBrains Mono',monospace;}
         html{scroll-behavior:smooth;}
         body{font-family:var(--font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
         h1,h2{font-family:var(--font-display);font-weight:400;letter-spacing:-0.02em;line-height:1.15;}
@@ -188,6 +188,18 @@
             .flow-steps{grid-template-columns:1fr;}
             .arch-bidir{flex-direction:column;gap:4px;align-items:center;}
         }
+    /* Mesh gradient */
+        .mesh-bg{position:relative;overflow:hidden;}
+        .mesh-bg>*{position:relative;z-index:1;}
+        .mesh-bg::before{content:"";position:absolute;inset:-100px;background:radial-gradient(ellipse 700px 500px at 15% 40%,rgba(99,102,241,0.10),transparent 70%),radial-gradient(ellipse 600px 600px at 85% 30%,rgba(13,148,136,0.08),transparent 70%),radial-gradient(ellipse 800px 400px at 50% 90%,rgba(217,119,6,0.05),transparent 70%);animation:meshDrift 25s ease-in-out infinite alternate;pointer-events:none;z-index:0;}
+        @keyframes meshDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-40px,30px) scale(1.06)}}
+        /* Reveal */
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+        .reveal.visible{opacity:1;transform:translateY(0);}
+        .reveal-stagger>*:nth-child(1){transition-delay:0ms;}.reveal-stagger>*:nth-child(2){transition-delay:120ms;}.reveal-stagger>*:nth-child(3){transition-delay:240ms;}.reveal-stagger>*:nth-child(4){transition-delay:360ms;}
+        /* Gradient text */
+        .gradient-text{background:linear-gradient(135deg,#6366F1 0%,#0D9488 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none;}.mesh-bg::before{animation:none;}}
     </style>
 </head>
 <body>
