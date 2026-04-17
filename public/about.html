@@ -30,13 +30,21 @@
         .btn--primary{background:var(--accent);color:#FFF;}
         .btn--primary:hover{background:var(--accent-hover);box-shadow:var(--shadow-accent);}
         .nav .btn--primary{padding:10px 20px;font-size:14px;}
-        .page{padding:160px 0 96px;}
-        .page p{font-size:17px;line-height:1.75;color:var(--text-secondary);margin-bottom:18px;}
+        .page{padding:160px 0 96px;text-align:center;}
         .page .eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:16px;}
-        .contact-line{margin-top:48px;padding-top:32px;border-top:1px solid var(--border);font-size:15px;color:var(--text-muted);}
-        .contact-line a{color:var(--accent);text-decoration:none;font-weight:500;}
-        .contact-line a:hover{text-decoration:underline;}
-        .cta-row{margin-top:40px;display:flex;gap:12px;flex-wrap:wrap;}
+        .page h1{margin-bottom:64px;}
+        .founder-card{display:flex;align-items:center;gap:40px;text-align:left;max-width:600px;margin:0 auto;}
+        .founder-photo{width:160px;height:160px;border-radius:12px;background:var(--bg-alt);border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .founder-photo img{width:100%;height:100%;object-fit:cover;}
+        .founder-photo .placeholder{font-size:13px;color:var(--text-dim);}
+        .founder-info h3{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;letter-spacing:-0.02em;margin-bottom:4px;display:flex;align-items:center;gap:12px;}
+        .founder-info .role{font-size:14px;font-weight:600;color:var(--accent);margin-bottom:16px;}
+        .founder-info .bio{font-size:15px;line-height:1.7;color:var(--text-secondary);margin-bottom:16px;}
+        .founder-info .linkedin-link{font-size:14px;font-weight:600;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+        .founder-info .linkedin-link:hover{text-decoration:underline;}
+        .founder-info .linkedin-icon{width:18px;height:18px;}
+        .cta-row{margin-top:48px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+        @media(max-width:540px){.founder-card{flex-direction:column;text-align:center;align-items:center;}.founder-photo{width:140px;height:140px;}.founder-info h3{justify-content:center;}}
         .site-footer{padding:40px 24px;border-top:1px solid var(--border);}
         .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
         .footer-left{display:flex;align-items:center;gap:8px;}
@@ -71,18 +79,21 @@
 
     <section class="container page">
         <p class="eyebrow">About</p>
-        <h1>Building the institutional brain<br>for AI agents.</h1>
-        <p>SynOS is founded by <strong>Anoop Jawahar</strong>.</p>
-        <p>I've spent my career at the intersection of data infrastructure and enterprise systems. At <strong>Sundial</strong>, I built semantic layers and big-data ETL pipelines — where I learned firsthand that accurate long-horizon agents depend on structured, multi-dimensional context, not bigger models. At <strong>Nutanix</strong>, I was a Director of Engineering leading distributed systems and storage infrastructure at enterprise scale. I published at NSDI and hold multiple patents in distributed key-value stores and adaptive cache management.</p>
-        <p>The institutional brain for AI agents is the same class of problem I've been solving in different forms for a decade: making the right data available to the right system at the right time. SynOS is that layer for the AI-native era.</p>
+        <h1>Team</h1>
 
-        <h2>Why this layer will always exist</h2>
-        <p>Models will keep changing. Agent frameworks will come and go. But every company will always need a structured, living layer of its own institutional knowledge — the rules, exceptions, relationships, and judgment calls that define how it actually operates. That layer is the moat. It compounds over time, survives model churn, and stays yours no matter which harness you use.</p>
-
-        <p>A deeper thesis is on Substack: <a href="https://anoopjawahar.substack.com" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:500;">anoopjawahar.substack.com →</a></p>
-
-        <div class="contact-line">
-            Get in touch: <a href="mailto:hello@synos.in">hello@synos.in</a> · <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank">LinkedIn</a>
+        <div class="founder-card">
+            <div class="founder-photo">
+                <span class="placeholder">Photo</span>
+            </div>
+            <div class="founder-info">
+                <h3>Anoop Jawahar</h3>
+                <p class="role">Founder & CEO</p>
+                <p class="bio">Previously Director of Engineering at Nutanix (distributed storage systems, NSDI published, multiple patents). South Park Commons member.</p>
+                <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" class="linkedin-link">
+                    <svg class="linkedin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    LinkedIn →
+                </a>
+            </div>
         </div>
 
         <div class="cta-row">
@@ -103,8 +114,6 @@
                 <a href="/about">About</a>
             </div>
             <div class="footer-links">
-                <a href="mailto:hello@synos.in">hello@synos.in</a>
-                <span class="footer-sep"></span>
                 <a href="https://x.com/synaborative" target="_blank">X / Twitter</a>
                 <span class="footer-sep"></span>
                 <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank">LinkedIn</a>
