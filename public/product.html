@@ -21,7 +21,7 @@
         h2{font-size:clamp(28px,3.5vw,40px);margin-bottom:16px;}
         h3{font-family:var(--font-body);font-size:17px;font-weight:600;color:var(--text);margin-bottom:8px;}
         .container{max-width:1120px;margin:0 auto;padding:0 24px;}
-        .section{padding:80px 0;}
+        .section{padding:120px 0;}
         .section--alt{background:var(--bg-alt);}
         .section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:12px;}
         .section-sub{font-size:16px;line-height:1.7;color:var(--text-muted);max-width:640px;margin-bottom:40px;}
@@ -83,14 +83,14 @@
         .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
 
         /* Cards */
-        .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px 28px;transition:box-shadow 0.2s,transform 0.2s;}
+        .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px 28px;transition:box-shadow 0.3s ease,transform 0.3s ease;}
         .card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
         .card p{font-size:14px;line-height:1.7;color:var(--text-muted);}
         .step-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:10px;font-size:15px;font-weight:700;color:var(--accent);margin-bottom:20px;font-family:var(--font-mono);}
 
         /* BYOA */
         .byoa-options{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;}
-        .byoa-opt{padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:12px;}
+        .byoa-opt{padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:16px;}
         .byoa-opt h4{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
         .byoa-opt p{font-size:14px;line-height:1.6;color:var(--text-secondary);}
 
@@ -105,7 +105,7 @@
 
         /* Tools grid */
         .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px;}
-        .tool-cat{padding:24px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;}
+        .tool-cat{padding:24px 20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;}
         .tool-cat h4{font-size:14px;font-weight:600;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em;}
         .tool-cat p{font-size:13px;line-height:1.6;color:var(--text-muted);}
 
@@ -133,7 +133,7 @@
         .security-item{font-size:14px;line-height:1.6;color:var(--text-secondary);padding:8px 0 8px 24px;position:relative;}
         .security-item::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;}
         .deploy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
-        .deploy-opt{padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;}
+        .deploy-opt{padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:16px;text-align:center;}
         .deploy-opt h4{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;}
         .deploy-opt p{font-size:13px;line-height:1.6;color:var(--text-muted);}
         .deploy-opt.recommended{border-color:var(--accent);background:var(--accent-bg);}
@@ -160,10 +160,6 @@
         .footer-sep{width:1px;height:14px;background:var(--border);}
         .footer-copy{font-size:12px;color:var(--text-dim);margin-top:16px;text-align:center;}
 
-        /* Reveal */
-        .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
-        .reveal.visible{opacity:1;transform:translateY(0);}
-
         /* Responsive */
         @media(max-width:900px){
             .tools-grid,.trigger-list{grid-template-columns:repeat(2,1fr);}
@@ -172,6 +168,7 @@
             .connectors-grid{grid-template-columns:repeat(2,1fr);}
             .arch-synos{grid-template-columns:1fr;}
             .arch-synos-col:first-child{border-right:none;border-bottom:1px solid var(--border-accent);}
+            .tab-content{grid-template-columns:1fr;}
         }
         @media(max-width:768px){
             .nav-links{display:none;}
@@ -181,6 +178,9 @@
             .security-list{grid-template-columns:1fr;}
             .footer-inner{flex-direction:column;text-align:center;}
             .footer-links,.footer-middle{justify-content:center;flex-wrap:wrap;}
+            .section{padding:80px 0;}
+            .tab-nav{width:100%;}
+            .tab-btn{flex:1;padding:12px 16px;font-size:13px;}
         }
         @media(max-width:540px){
             h1{font-size:30px;}
@@ -191,14 +191,39 @@
     /* Mesh gradient */
         .mesh-bg{position:relative;overflow:hidden;}
         .mesh-bg>*{position:relative;z-index:1;}
-        .mesh-bg::before{content:"";position:absolute;inset:-100px;background:radial-gradient(ellipse 700px 500px at 15% 40%,rgba(99,102,241,0.10),transparent 70%),radial-gradient(ellipse 600px 600px at 85% 30%,rgba(13,148,136,0.08),transparent 70%),radial-gradient(ellipse 800px 400px at 50% 90%,rgba(217,119,6,0.05),transparent 70%);animation:meshDrift 25s ease-in-out infinite alternate;pointer-events:none;z-index:0;}
-        @keyframes meshDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-40px,30px) scale(1.06)}}
+        .mesh-bg::before{content:"";position:absolute;inset:-100px;background:radial-gradient(ellipse 900px 650px at 12% 35%,rgba(99,102,241,0.18),transparent 70%),radial-gradient(ellipse 750px 700px at 88% 25%,rgba(13,148,136,0.14),transparent 70%),radial-gradient(ellipse 950px 500px at 50% 85%,rgba(217,119,6,0.09),transparent 70%);animation:meshDrift 25s ease-in-out infinite alternate;pointer-events:none;z-index:0;}
+        @keyframes meshDrift{0%{transform:translate(0,0) scale(1) rotate(0deg)}100%{transform:translate(-40px,30px) scale(1.06) rotate(1deg)}}
         /* Reveal */
         .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
         .reveal.visible{opacity:1;transform:translateY(0);}
-        .reveal-stagger>*:nth-child(1){transition-delay:0ms;}.reveal-stagger>*:nth-child(2){transition-delay:120ms;}.reveal-stagger>*:nth-child(3){transition-delay:240ms;}.reveal-stagger>*:nth-child(4){transition-delay:360ms;}
+        .reveal-stagger>*:nth-child(1){transition-delay:0ms;}.reveal-stagger>*:nth-child(2){transition-delay:120ms;}.reveal-stagger>*:nth-child(3){transition-delay:240ms;}.reveal-stagger>*:nth-child(4){transition-delay:360ms;}.reveal-stagger>*:nth-child(5){transition-delay:480ms;}.reveal-stagger>*:nth-child(6){transition-delay:600ms;}
         /* Gradient text */
         .gradient-text{background:linear-gradient(135deg,#6366F1 0%,#0D9488 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+        /* Expandable cards */
+        .expandable{cursor:pointer;border-left:3px solid rgba(99,102,241,0.20);background:rgba(99,102,241,0.02);}
+        .expandable:hover{border-left-color:var(--accent);background:rgba(99,102,241,0.04);}
+        .expandable.open{border-left-color:var(--accent);background:rgba(99,102,241,0.04);}
+        .expandable .expand-header{display:flex;align-items:flex-start;gap:16px;}
+        .expandable .expand-icon{width:24px;height:24px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:var(--accent-bg);color:var(--accent);font-size:16px;font-weight:300;transition:transform 0.3s,background 0.3s;}
+        .expandable.open .expand-icon{transform:rotate(45deg);background:var(--accent);color:#fff;}
+        .expandable .expand-body{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease 0.1s,margin 0.3s;margin-top:0;}
+        .expandable.open .expand-body{max-height:300px;opacity:1;margin-top:16px;}
+
+        /* Tabs */
+        .tab-nav{display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);width:fit-content;}
+        .tab-btn{padding:14px 28px;font-weight:600;font-size:14px;color:var(--text-muted);cursor:pointer;transition:all 0.2s;background:transparent;border:none;font-family:var(--font-body);border-right:1px solid var(--border);letter-spacing:-0.01em;}
+        .tab-btn:last-child{border-right:none;}
+        .tab-btn:hover{color:var(--text);background:var(--bg-alt);}
+        .tab-btn.active{color:#fff;background:var(--accent);}
+        .tab-panel{display:none;padding:40px 0;animation:tabFade 0.35s ease;}
+        .tab-panel.active{display:block;}
+        @keyframes tabFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+        .tab-content{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+        .tab-text h3{font-family:var(--font-display);font-size:24px;font-weight:400;letter-spacing:-0.02em;margin-bottom:16px;}
+        .tab-text p{font-size:15px;line-height:1.75;color:var(--text-secondary);}
+        .tab-visual{padding:32px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:16px;font-family:var(--font-mono);font-size:13px;color:var(--accent);line-height:1.8;}
+
         @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none;}.mesh-bg::before{animation:none;}}
     </style>
 </head>
@@ -225,7 +250,7 @@
     </nav>
 
     <!-- HERO -->
-    <section class="container hero-page" data-section="product-hero">
+    <section class="container hero-page mesh-bg" data-section="product-hero">
         <p class="eyebrow">Product</p>
         <h1>The institutional brain,<br>in detail.</h1>
         <p class="hero-sub">Three layers. Automatic connectors with guardrails. Graduated trust from day one. Bring your own agent framework — or use the SynOS harness. Self-hosted. Your data never leaves your infrastructure.</p>
@@ -304,21 +329,58 @@
                 <h2>Three layers. One institutional brain.</h2>
                 <p class="section-sub">SynOS combines live system context, self-learning from agent executions, and human expertise extraction into a single knowledge layer any agent can draw from.</p>
             </div>
-            <div class="grid-3">
-                <div class="card reveal">
-                    <span class="step-number">01</span>
-                    <h3>Context Layer — Discovery Agents</h3>
-                    <p>Profiling agents automatically analyze your connected data sources. They extract schema, statistics, and business semantics — then discover cross-system relationships that no single system can see. Runs continuously as your data evolves.</p>
+
+            <div class="reveal">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="context">Context Layer</button>
+                    <button class="tab-btn" data-tab="learning">Self-Learning Layer</button>
+                    <button class="tab-btn" data-tab="human">Human Context Extraction</button>
                 </div>
-                <div class="card reveal">
-                    <span class="step-number">02</span>
-                    <h3>Self-Learning Layer — Agent Executions</h3>
-                    <p>Every time an agent executes, the system captures patterns, exceptions, and edge cases. Those learnings are written back into the brain layer and become available to every other agent. Your 10th agent inherits everything the first 9 learned.</p>
+            </div>
+
+            <div class="tab-panel active" data-tab="context">
+                <div class="tab-content">
+                    <div class="tab-text">
+                        <h3>Discovery Agents — Connect and resolve.</h3>
+                        <p>Profiling agents automatically analyze your connected data sources. They extract schema, statistics, and business semantics — then discover cross-system relationships that no single system can see. "Customer ID" in Salesforce = "Client #" in the spreadsheet = @acmecorp in Slack. Automatically resolved. Runs continuously as your data evolves.</p>
+                    </div>
+                    <div class="tab-visual">
+                        → Connect SaaS systems of record<br>
+                        → Auto-profile data schemas + statistics<br>
+                        → Discover cross-system relationships<br>
+                        → Resolve entities across tools<br>
+                        → Living knowledge graph, always fresh
+                    </div>
                 </div>
-                <div class="card reveal">
-                    <span class="step-number">03</span>
-                    <h3>Human Context Extraction — Team Review</h3>
-                    <p>Your team corrects mistakes in plain language — one sentence at a time. Corrections pass through a quality gate and become permanent institutional memory. Tribal knowledge that lived in people's heads becomes organizational knowledge.</p>
+            </div>
+            <div class="tab-panel" data-tab="learning">
+                <div class="tab-content">
+                    <div class="tab-text">
+                        <h3>Agent Executions — Every run makes every agent smarter.</h3>
+                        <p>Every time an agent executes, the system captures patterns, exceptions, and edge cases. Those learnings are written back into the brain layer and become available to every other agent. Your 10th agent inherits everything the first 9 learned. Fix a mistake once — every agent inherits it.</p>
+                    </div>
+                    <div class="tab-visual">
+                        → Agent executes a workflow<br>
+                        → System captures patterns + exceptions<br>
+                        → Quality gates filter noise<br>
+                        → Learnings enter the brain layer<br>
+                        → All agents inherit immediately
+                    </div>
+                </div>
+            </div>
+            <div class="tab-panel" data-tab="human">
+                <div class="tab-content">
+                    <div class="tab-text">
+                        <h3>Team Review — Capture what only your team knows.</h3>
+                        <p>Your team corrects mistakes in plain language — one sentence at a time. Corrections pass through a quality gate and become permanent institutional memory. Tribal knowledge that lived in people's heads becomes organizational knowledge. The rules, exceptions, and judgment calls that never get documented.</p>
+                    </div>
+                    <div class="tab-visual">
+                        → Team member spots an error<br>
+                        → Corrects in plain language<br>
+                        → Quality gate validates the insight<br>
+                        → Promoted to institutional memory<br>
+                        → Every agent uses it from now on
+                    </div>
                 </div>
             </div>
         </div>
@@ -343,22 +405,42 @@
                 <h2>Why existing solutions don't solve this.</h2>
                 <p class="section-sub">Every team we talk to has tried some combination of these categories. Here's what they found missing.</p>
             </div>
-            <div class="grid-2 reveal">
-                <div class="card">
-                    <h3>Agent Harnesses</h3>
-                    <p>Powerful for individuals. But a large context window still doesn't know which of your data sources to check. No persistent organizational memory. No RBAC. No enterprise controls. SynOS gives your agent harness your company's institutional brain.</p>
+            <div class="grid-2 reveal-stagger">
+                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
+                    <div class="expand-header">
+                        <div><h3>Agent Harnesses</h3></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="expand-body">
+                        <p>Powerful for individuals. But a large context window still doesn't know which of your data sources to check. No persistent organizational memory. No RBAC. No enterprise controls. SynOS gives your agent harness your company's institutional brain.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Low-Code Automation Builders</h3>
-                    <p>Workflow automation that never learns. Every run starts from zero. No context layer. No self-learning. No path from rigid graph-based workflows to AI-native operations. SynOS agents understand your business and get smarter with every run.</p>
+                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
+                    <div class="expand-header">
+                        <div><h3>Low-Code Automation Builders</h3></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="expand-body">
+                        <p>Workflow automation that never learns. Every run starts from zero. No context layer. No self-learning. No path from rigid graph-based workflows to AI-native operations. SynOS agents understand your business and get smarter with every run.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Enterprise Search</h3>
-                    <p>Finds documents but doesn't understand cross-system relationships. Indexes everything forever — no freshness awareness. SynOS is a knowledge layer, not a search engine. It learns from outcomes, not just documents.</p>
+                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
+                    <div class="expand-header">
+                        <div><h3>Enterprise Search</h3></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="expand-body">
+                        <p>Finds documents but doesn't understand cross-system relationships. Indexes everything forever — no freshness awareness. SynOS is a knowledge layer, not a search engine. It learns from outcomes, not just documents.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Agent Memory Layers</h3>
-                    <p>Memory is one feature, not a full knowledge layer. No cross-system entity resolution. No self-learning loop. Framework lock-in — knowledge doesn't transfer. SynOS is the brain under any framework. Switch harnesses and your institutional knowledge carries over.</p>
+                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
+                    <div class="expand-header">
+                        <div><h3>Agent Memory Layers</h3></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="expand-body">
+                        <p>Memory is one feature, not a full knowledge layer. No cross-system entity resolution. No self-learning loop. Framework lock-in — knowledge doesn't transfer. SynOS is the brain under any framework. Switch harnesses and your institutional knowledge carries over.</p>
+                    </div>
                 </div>
             </div>
             <p class="reveal" style="text-align:center;margin-top:28px;font-size:15px;color:var(--text);font-weight:500;">The question to ask any tool: does your agent get smarter after the 100th task? With SynOS, it does.</p>
@@ -373,16 +455,16 @@
                 <h2>SynOS is the brain, not the body.</h2>
                 <p class="section-sub">Engineering teams spend significant time rebuilding context infrastructure for every new agent — connecting data sources, building retrieval, managing embeddings, handling freshness. SynOS is that layer, pre-built. Three ways to use it:</p>
             </div>
-            <div class="byoa-options reveal">
-                <div class="byoa-opt">
+            <div class="byoa-options reveal-stagger">
+                <div class="byoa-opt reveal">
                     <h4>Already have agents?</h4>
                     <p>Connect them to SynOS's brain layer via API. Your agents get institutional knowledge — context, learnings, and human expertise — without rebuilding their infrastructure.</p>
                 </div>
-                <div class="byoa-opt">
+                <div class="byoa-opt reveal">
                     <h4>Don't have agents yet?</h4>
                     <p>Use SynOS's built-in agent harness with enterprise-grade controls: graduated trust, RBAC, per-tool permissions, and full audit trail. Describe what you need in plain English.</p>
                 </div>
-                <div class="byoa-opt">
+                <div class="byoa-opt reveal">
                     <h4>Hybrid approach?</h4>
                     <p>Use the built-in harness for some workflows and connect external agents for others. All agents share the same institutional brain. One correction teaches every agent.</p>
                 </div>
@@ -417,11 +499,11 @@
                 <h2>Tools with guardrails. Agents that act, not just answer.</h2>
                 <p class="section-sub">Structured, permission-controlled operations that connect agents to your systems. Granular per-tool, per-agent permissions — allow reads on one system while denying writes on another. Every action audited.</p>
             </div>
-            <div class="tools-grid reveal">
-                <div class="tool-cat"><h4>Read</h4><p>Query your CRM, data warehouse, databases, and documents.</p></div>
-                <div class="tool-cat"><h4>Write</h4><p>Update spreadsheets, create CRM records, insert database rows, send messages.</p></div>
-                <div class="tool-cat"><h4>Communicate</h4><p>Send Slack messages, Google Chat, email. Route alerts to the right people.</p></div>
-                <div class="tool-cat"><h4>Research</h4><p>Web search, web scraping, API calls. Bring in external context on demand.</p></div>
+            <div class="tools-grid reveal-stagger">
+                <div class="tool-cat reveal"><h4>Read</h4><p>Query your CRM, data warehouse, databases, and documents.</p></div>
+                <div class="tool-cat reveal"><h4>Write</h4><p>Update spreadsheets, create CRM records, insert database rows, send messages.</p></div>
+                <div class="tool-cat reveal"><h4>Communicate</h4><p>Send Slack messages, Google Chat, email. Route alerts to the right people.</p></div>
+                <div class="tool-cat reveal"><h4>Research</h4><p>Web search, web scraping, API calls. Bring in external context on demand.</p></div>
             </div>
             <div class="reveal" style="margin-top:32px;padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:12px;">
                 <h3 style="margin-bottom:8px;">Custom Tools — Extend With Your Own Logic</h3>
@@ -438,16 +520,16 @@
                 <h2>Automatic connectors to your apps. With guardrails.</h2>
                 <p class="section-sub">Standard integration methods — OAuth, API keys, and connection strings. Internal application data can also be integrated through REST API endpoints.</p>
             </div>
-            <div class="connectors-grid reveal">
-                <div class="conn-cat"><h4>Documents</h4><p>Google Docs, Notion, Confluence</p></div>
-                <div class="conn-cat"><h4>Data Stores</h4><p>BigQuery, Snowflake, Redshift, PostgreSQL, MySQL, MongoDB, Google Sheets</p></div>
-                <div class="conn-cat"><h4>Project Management</h4><p>Linear, Jira, Asana</p></div>
-                <div class="conn-cat"><h4>Communication</h4><p>Slack, Microsoft Teams, Google Chat, Email (Gmail, Outlook)</p></div>
-                <div class="conn-cat"><h4>CRM</h4><p>Salesforce, HubSpot</p></div>
-                <div class="conn-cat"><h4>Cloud Infrastructure</h4><p>AWS (Cost Explorer, CloudWatch), GCP (Billing, Monitoring), Azure</p></div>
-                <div class="conn-cat"><h4>Billing & Finance</h4><p>Stripe, Chargebee, NetSuite</p></div>
-                <div class="conn-cat"><h4>Code & Deploys</h4><p>GitHub, GitLab</p></div>
-                <div class="conn-cat"><h4>APIs & Internal Systems</h4><p>REST API endpoints, webhooks — any system with an API becomes a connector</p></div>
+            <div class="connectors-grid reveal-stagger">
+                <div class="conn-cat reveal"><h4>Documents</h4><p>Google Docs, Notion, Confluence</p></div>
+                <div class="conn-cat reveal"><h4>Data Stores</h4><p>BigQuery, Snowflake, Redshift, PostgreSQL, MySQL, MongoDB, Google Sheets</p></div>
+                <div class="conn-cat reveal"><h4>Project Management</h4><p>Linear, Jira, Asana</p></div>
+                <div class="conn-cat reveal"><h4>Communication</h4><p>Slack, Microsoft Teams, Google Chat, Email (Gmail, Outlook)</p></div>
+                <div class="conn-cat reveal"><h4>CRM</h4><p>Salesforce, HubSpot</p></div>
+                <div class="conn-cat reveal"><h4>Cloud Infrastructure</h4><p>AWS (Cost Explorer, CloudWatch), GCP (Billing, Monitoring), Azure</p></div>
+                <div class="conn-cat reveal"><h4>Billing & Finance</h4><p>Stripe, Chargebee, NetSuite</p></div>
+                <div class="conn-cat reveal"><h4>Code & Deploys</h4><p>GitHub, GitLab</p></div>
+                <div class="conn-cat reveal"><h4>APIs & Internal Systems</h4><p>REST API endpoints, webhooks — any system with an API becomes a connector</p></div>
             </div>
             <p class="reveal" style="text-align:center;margin-top:24px;font-size:14px;color:var(--text-muted);">Need a connector we don't have? New connectors ship fast based on design partner needs.</p>
         </div>
@@ -509,10 +591,10 @@
                 <div class="security-item">Self-hosted option keeps everything inside your network</div>
                 <div class="security-item">Per-tool permissions at individual tool level</div>
             </div>
-            <div class="deploy-grid reveal">
-                <div class="deploy-opt recommended"><h4>Self-Hosted</h4><p>Single VM in your cloud. Your data stays on your infrastructure. Zero egress.</p></div>
-                <div class="deploy-opt"><h4>Managed by SynOS</h4><p>Dedicated instance provisioned and managed by us. Same architecture, zero ops burden.</p></div>
-                <div class="deploy-opt"><h4>SaaS</h4><p>Hosted multi-tenant for teams that prefer fully managed infrastructure.</p></div>
+            <div class="deploy-grid reveal-stagger">
+                <div class="deploy-opt recommended reveal"><h4>Self-Hosted</h4><p>Single VM in your cloud. Your data stays on your infrastructure. Zero egress.</p></div>
+                <div class="deploy-opt reveal"><h4>Managed by SynOS</h4><p>Dedicated instance provisioned and managed by us. Same architecture, zero ops burden.</p></div>
+                <div class="deploy-opt reveal"><h4>SaaS</h4><p>Hosted multi-tenant for teams that prefer fully managed infrastructure.</p></div>
             </div>
             <p class="reveal" style="text-align:center;margin-top:20px;font-size:14px;color:var(--text-muted);">All deployment modes use identical architecture — zero code changes to switch between them.</p>
         </div>
@@ -529,7 +611,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta-section section--alt" data-section="product-cta">
+    <section class="cta-section section--alt mesh-bg" data-section="product-cta">
         <div class="container">
             <h2>See it with your data.</h2>
             <p>Walk through the architecture with your actual stack, your actual connectors, and your actual workflows. No slides.</p>
@@ -565,12 +647,23 @@
     </footer>
 
     <script>
-        // Reveal
+        // Reveal + stagger
         const reveals = document.querySelectorAll('.reveal');
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
         reveals.forEach(el => obs.observe(el));
+
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelector('.tab-panel[data-tab="'+tab+'"]').classList.add('active');
+            });
+        });
 
         // GA tracking
         const sections = document.querySelectorAll('[data-section]');
