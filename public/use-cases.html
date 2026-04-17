@@ -21,7 +21,7 @@
         h2{font-size:clamp(28px,3.5vw,40px);margin-bottom:16px;}
         h3.section-title{font-size:clamp(24px,3vw,32px);margin-bottom:12px;}
         .container{max-width:1120px;margin:0 auto;padding:0 24px;}
-        .section{padding:80px 0;}
+        .section{padding:120px 0;}
         .section--alt{background:var(--bg-alt);}
         .section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:12px;}
         .section-sub{font-size:16px;line-height:1.7;color:var(--text-muted);max-width:640px;margin-bottom:40px;}
@@ -123,6 +123,35 @@
         /* Gradient text */
         .gradient-text{background:linear-gradient(135deg,#6366F1 0%,#0D9488 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
         @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none;}.mesh-bg::before{animation:none;}}
+
+        /* ===== EXPANDABLE ACCORDION ===== */
+        .expandable{cursor:pointer;border-left:3px solid rgba(99,102,241,0.20);background:rgba(99,102,241,0.02);border-radius:0;padding:32px 28px;margin-bottom:0;border-bottom:1px solid var(--border);}
+        .expandable:last-child{border-bottom:none;}
+        .expandable:hover{border-left-color:var(--accent);background:rgba(99,102,241,0.04);}
+        .expandable.open{border-left-color:var(--accent);background:rgba(99,102,241,0.04);}
+        .expandable .expand-header{display:flex;align-items:flex-start;gap:16px;justify-content:space-between;}
+        .expandable .expand-header-text{flex:1;}
+        .expandable .expand-header-text .section-label{margin-bottom:4px;}
+        .expandable .expand-header-text .section-title{margin-bottom:4px;font-size:clamp(22px,2.5vw,30px);}
+        .expandable .expand-header-text .one-liner{margin-bottom:0;font-size:17px;}
+        .expandable .expand-icon{width:32px;height:32px;flex-shrink:0;margin-top:6px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--accent-bg);color:var(--accent);font-size:20px;font-weight:300;transition:transform 0.3s,background 0.3s;}
+        .expandable.open .expand-icon{transform:rotate(45deg);background:var(--accent);color:#fff;}
+        .expandable .expand-body{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.5s ease,opacity 0.35s ease 0.1s,margin 0.3s;margin-top:0;}
+        .expandable.open .expand-body{max-height:2000px;opacity:1;margin-top:24px;}
+
+        /* ===== HOVER-EXPAND MORE CARDS ===== */
+        .more-card{overflow:hidden;position:relative;}
+        .more-card .more-card-preview{font-size:14px;line-height:1.65;color:var(--text-muted);margin-bottom:0;transition:opacity 0.2s;}
+        .more-card .more-card-detail{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease 0.05s;}
+        .more-card:hover .more-card-detail{max-height:200px;opacity:1;}
+        .more-card:hover{border-color:var(--border-accent);}
+
+        /* ===== HERO EXTRA PADDING ===== */
+        .hero-page{padding:160px 0 80px;}
+
+        /* ===== REVEAL STAGGER EXTRA CHILDREN ===== */
+        .reveal-stagger>*:nth-child(5){transition-delay:480ms;}
+        .reveal-stagger>*:nth-child(6){transition-delay:600ms;}
     </style>
 </head>
 <body>
@@ -159,144 +188,162 @@
         <div class="container">
 
             <!-- STARTUP OPERATIONS -->
-            <div class="template-deep" id="startup-ops">
-                <p class="section-label">Template</p>
-                <h3 class="section-title">Startup Operations</h3>
-                <p class="one-liner">One pulse across Slack, Linear, Sheets, and GitHub. Ops without hiring ops.</p>
-
-                <div class="pain">
-                    <h4>The pain</h4>
-                    <p>Your startup is growing — and nobody's managing internal ops. Leadership wants visibility into what's shipping, what's stuck, and what's slipping — but the data is scattered across work-tracking tools, Slack threads, GitHub PRs, docs, and a pile of spreadsheets. Monday mornings are manual stitching.</p>
-                </div>
-
-                <div class="solution">
-                    <h4>What SynOS does</h4>
-                    <p>Connects your collaboration stack into a single institutional brain. Agents read across Linear, Slack, GitHub, and Sheets, and learn which things mean what — your sprint cadence, your release conventions, your OKR scoring rules, your on-call rotation.</p>
-                </div>
-
-                <div class="agents">
-                    <p class="agents-intro">These agents act like your ops team — they don't just report, they draft, update, flag, and follow up:</p>
-                    <ul>
-                        <li><strong>Standup Summarizer</strong> — Drafts daily or weekly status across engineering, product, and ops</li>
-                        <li><strong>Blocker Detector</strong> — Surfaces stuck tickets, stalled PRs, and missed follow-ups before they become fires</li>
-                        <li><strong>OKR Tracker</strong> — Watches key results, flags drift, and drafts quarterly check-ins</li>
-                        <li><strong>Weekly Digest</strong> — A founder-ready snapshot of what moved, what slipped, and what needs attention</li>
-                        <li><strong>Client Requirement Tracker</strong> — Compiles client requirements from docs, Slack, and meetings into structured specs</li>
-                    </ul>
-                </div>
-
-                <div class="connectors-section">
-                    <h4>Connectors</h4>
-                    <div class="connector-categories">
-                        <div class="connector-cat"><strong>Work Tracking:</strong> Linear, Jira, Asana</div>
-                        <div class="connector-cat"><strong>Communication:</strong> Slack, Microsoft Teams</div>
-                        <div class="connector-cat"><strong>Code & Deploys:</strong> GitHub, GitLab</div>
-                        <div class="connector-cat"><strong>Documentation:</strong> Google Docs, Notion, Confluence</div>
-                        <div class="connector-cat"><strong>Data:</strong> Google Sheets</div>
+            <div class="template-deep expandable open" id="startup-ops">
+                <div class="expand-header">
+                    <div class="expand-header-text">
+                        <p class="section-label">Template</p>
+                        <h3 class="section-title">Startup Operations</h3>
+                        <p class="one-liner">One pulse across Slack, Linear, Sheets, and GitHub. Ops without hiring ops.</p>
                     </div>
+                    <span class="expand-icon">+</span>
                 </div>
+                <div class="expand-body">
+                    <div class="pain">
+                        <h4>The pain</h4>
+                        <p>Your startup is growing — and nobody's managing internal ops. Leadership wants visibility into what's shipping, what's stuck, and what's slipping — but the data is scattered across work-tracking tools, Slack threads, GitHub PRs, docs, and a pile of spreadsheets. Monday mornings are manual stitching.</p>
+                    </div>
 
-                <div class="outcome">
-                    <h4>What you get</h4>
-                    <p>Your team operates with a single source of truth without a single new hire. As you correct the agents, the brain learns your company's rhythms — and the Monday-morning grind starts compiling itself.</p>
-                </div>
+                    <div class="solution">
+                        <h4>What SynOS does</h4>
+                        <p>Connects your collaboration stack into a single institutional brain. Agents read across Linear, Slack, GitHub, and Sheets, and learn which things mean what — your sprint cadence, your release conventions, your OKR scoring rules, your on-call rotation.</p>
+                    </div>
 
-                <div class="template-cta">
-                    <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank">Talk about your startup's ops — 15 min →</a>
+                    <div class="agents">
+                        <p class="agents-intro">These agents act like your ops team — they don't just report, they draft, update, flag, and follow up:</p>
+                        <ul>
+                            <li><strong>Standup Summarizer</strong> — Drafts daily or weekly status across engineering, product, and ops</li>
+                            <li><strong>Blocker Detector</strong> — Surfaces stuck tickets, stalled PRs, and missed follow-ups before they become fires</li>
+                            <li><strong>OKR Tracker</strong> — Watches key results, flags drift, and drafts quarterly check-ins</li>
+                            <li><strong>Weekly Digest</strong> — A founder-ready snapshot of what moved, what slipped, and what needs attention</li>
+                            <li><strong>Client Requirement Tracker</strong> — Compiles client requirements from docs, Slack, and meetings into structured specs</li>
+                        </ul>
+                    </div>
+
+                    <div class="connectors-section">
+                        <h4>Connectors</h4>
+                        <div class="connector-categories">
+                            <div class="connector-cat"><strong>Work Tracking:</strong> Linear, Jira, Asana</div>
+                            <div class="connector-cat"><strong>Communication:</strong> Slack, Microsoft Teams</div>
+                            <div class="connector-cat"><strong>Code & Deploys:</strong> GitHub, GitLab</div>
+                            <div class="connector-cat"><strong>Documentation:</strong> Google Docs, Notion, Confluence</div>
+                            <div class="connector-cat"><strong>Data:</strong> Google Sheets</div>
+                        </div>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>What you get</h4>
+                        <p>Your team operates with a single source of truth without a single new hire. As you correct the agents, the brain learns your company's rhythms — and the Monday-morning grind starts compiling itself.</p>
+                    </div>
+
+                    <div class="template-cta">
+                        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank">Talk about your startup's ops — 15 min →</a>
+                    </div>
                 </div>
             </div>
 
             <!-- SALES OPS LITE -->
-            <div class="template-deep" id="sales-ops-lite">
-                <p class="section-label">Template</p>
-                <h3 class="section-title">Sales Ops Lite</h3>
-                <p class="one-liner">Pipeline intelligence from Sheets + Slack + docs. No CRM required.</p>
-
-                <div class="pain">
-                    <h4>The pain</h4>
-                    <p>You have real deals, real revenue, and real urgency — but no Salesforce. Your pipeline lives in Google Sheets, deal context lives in Slack threads, and proposals live in Google Docs. Monday forecasting is a scramble. Deals go stale without anyone noticing.</p>
-                </div>
-
-                <div class="solution">
-                    <h4>What SynOS does</h4>
-                    <p>Builds your pipeline's institutional brain from the tools you already use. Agents learn your deal stages, your naming conventions, how your team talks about deals in Slack, and which data points actually matter for forecasting. Over time, agents learn patterns from your pipeline and customer calls — what messaging works, which deal shapes convert, and where your team consistently loses. You get deep insights out of your own sales data, not generic benchmarks.</p>
-                </div>
-
-                <div class="agents">
-                    <p class="agents-intro">These agents act like your sales ops team — they don't just track, they surface what matters and draft what's needed:</p>
-                    <ul>
-                        <li><strong>Pipeline Health Monitor</strong> — Watches stage transitions, flags deals that have gone quiet, highlights at-risk opportunities</li>
-                        <li><strong>Stale Deal Flagger</strong> — Surfaces opportunities stuck too long in a stage or without recent touch</li>
-                        <li><strong>Forecast Drafter</strong> — Generates weekly pipeline reports with confidence-weighted projections</li>
-                        <li><strong>Deal Context Pull</strong> — Compiles all Slack + doc context on a deal before a call</li>
-                        <li><strong>Win/Loss Pattern Analyzer</strong> — Learns what's working and what isn't from your closed deals — messaging, timing, deal structure</li>
-                    </ul>
-                </div>
-
-                <div class="connectors-section">
-                    <h4>Connectors</h4>
-                    <div class="connector-categories">
-                        <div class="connector-cat"><strong>CRM (optional):</strong> HubSpot, Salesforce — or no CRM at all</div>
-                        <div class="connector-cat"><strong>Communication:</strong> Slack, Microsoft Teams, Email (Gmail, Outlook)</div>
-                        <div class="connector-cat"><strong>Documentation:</strong> Google Docs, Notion</div>
-                        <div class="connector-cat"><strong>Data:</strong> Google Sheets</div>
-                        <div class="connector-cat"><strong>Calls (optional):</strong> Gong, Fireflies — for call pattern learning</div>
+            <div class="template-deep expandable" id="sales-ops-lite">
+                <div class="expand-header">
+                    <div class="expand-header-text">
+                        <p class="section-label">Template</p>
+                        <h3 class="section-title">Sales Ops Lite</h3>
+                        <p class="one-liner">Pipeline intelligence from Sheets + Slack + docs. No CRM required.</p>
                     </div>
+                    <span class="expand-icon">+</span>
                 </div>
+                <div class="expand-body">
+                    <div class="pain">
+                        <h4>The pain</h4>
+                        <p>You have real deals, real revenue, and real urgency — but no Salesforce. Your pipeline lives in Google Sheets, deal context lives in Slack threads, and proposals live in Google Docs. Monday forecasting is a scramble. Deals go stale without anyone noticing.</p>
+                    </div>
 
-                <div class="outcome">
-                    <h4>What you get</h4>
-                    <p>Pipeline intelligence without a CRM migration. As your team corrects and annotates, the institutional brain captures patterns — which deal shapes convert, which stages are traps, where follow-ups matter most. Your forecast sharpens. Your team gets smarter. And every new rep inherits what the whole team has learned.</p>
-                </div>
+                    <div class="solution">
+                        <h4>What SynOS does</h4>
+                        <p>Builds your pipeline's institutional brain from the tools you already use. Agents learn your deal stages, your naming conventions, how your team talks about deals in Slack, and which data points actually matter for forecasting. Over time, agents learn patterns from your pipeline and customer calls — what messaging works, which deal shapes convert, and where your team consistently loses. You get deep insights out of your own sales data, not generic benchmarks.</p>
+                    </div>
 
-                <div class="template-cta">
-                    <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank">Talk about your sales pipeline — 15 min →</a>
+                    <div class="agents">
+                        <p class="agents-intro">These agents act like your sales ops team — they don't just track, they surface what matters and draft what's needed:</p>
+                        <ul>
+                            <li><strong>Pipeline Health Monitor</strong> — Watches stage transitions, flags deals that have gone quiet, highlights at-risk opportunities</li>
+                            <li><strong>Stale Deal Flagger</strong> — Surfaces opportunities stuck too long in a stage or without recent touch</li>
+                            <li><strong>Forecast Drafter</strong> — Generates weekly pipeline reports with confidence-weighted projections</li>
+                            <li><strong>Deal Context Pull</strong> — Compiles all Slack + doc context on a deal before a call</li>
+                            <li><strong>Win/Loss Pattern Analyzer</strong> — Learns what's working and what isn't from your closed deals — messaging, timing, deal structure</li>
+                        </ul>
+                    </div>
+
+                    <div class="connectors-section">
+                        <h4>Connectors</h4>
+                        <div class="connector-categories">
+                            <div class="connector-cat"><strong>CRM (optional):</strong> HubSpot, Salesforce — or no CRM at all</div>
+                            <div class="connector-cat"><strong>Communication:</strong> Slack, Microsoft Teams, Email (Gmail, Outlook)</div>
+                            <div class="connector-cat"><strong>Documentation:</strong> Google Docs, Notion</div>
+                            <div class="connector-cat"><strong>Data:</strong> Google Sheets</div>
+                            <div class="connector-cat"><strong>Calls (optional):</strong> Gong, Fireflies — for call pattern learning</div>
+                        </div>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>What you get</h4>
+                        <p>Pipeline intelligence without a CRM migration. As your team corrects and annotates, the institutional brain captures patterns — which deal shapes convert, which stages are traps, where follow-ups matter most. Your forecast sharpens. Your team gets smarter. And every new rep inherits what the whole team has learned.</p>
+                    </div>
+
+                    <div class="template-cta">
+                        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank">Talk about your sales pipeline — 15 min →</a>
+                    </div>
                 </div>
             </div>
 
             <!-- CLOUD INFRA OPS -->
-            <div class="template-deep" id="cloud-infra-ops">
-                <p class="section-label">Template</p>
-                <h3 class="section-title">Cloud Infra Ops Agents</h3>
-                <p class="one-liner">Monitor, optimize, and act across AWS, GCP, and Azure.</p>
-
-                <div class="pain">
-                    <h4>The pain</h4>
-                    <p>Cloud spend is growing. Idle resources, forgotten test environments, oversized instances, anomalous spikes. Incidents happen across three clouds with different dashboards. Your DevOps lead is stretched. Manual reviews catch maybe half of what matters.</p>
-                </div>
-
-                <div class="solution">
-                    <h4>What SynOS does</h4>
-                    <p>Connects to your billing and monitoring stack. Agents learn your org's cloud baseline — who owns what, which costs are normal for which teams, what an anomaly actually looks like given your deployment patterns — and act on what they find.</p>
-                </div>
-
-                <div class="agents">
-                    <p class="agents-intro">These agents act like your FinOps + DevOps team — they don't just monitor, they investigate, flag, and act:</p>
-                    <ul>
-                        <li><strong>Cost Watchdog</strong> — Continuously monitors spend, flags anomalies, routes them to the right team in Slack</li>
-                        <li><strong>Idle Resource Detector</strong> — Finds stale instances, orphaned volumes, and unused resources. Drafts cleanup PRs.</li>
-                        <li><strong>Budget Guardrail Agent</strong> — Alerts on drift against team/project budgets before the bill closes</li>
-                        <li><strong>Incident Responder</strong> — Correlates billing spikes with recent deploys and surfaces likely root causes</li>
-                    </ul>
-                </div>
-
-                <div class="connectors-section">
-                    <h4>Connectors</h4>
-                    <div class="connector-categories">
-                        <div class="connector-cat"><strong>Cloud Providers:</strong> AWS (Cost Explorer, CloudWatch), GCP (Billing, Monitoring), Azure (Cost Management, Monitor)</div>
-                        <div class="connector-cat"><strong>Tagging & Org:</strong> Cost-allocation tags, org/team structure</div>
-                        <div class="connector-cat"><strong>Communication:</strong> Slack, Microsoft Teams</div>
-                        <div class="connector-cat"><strong>Code & Deploys:</strong> GitHub, GitLab (for deploy correlation)</div>
+            <div class="template-deep expandable" id="cloud-infra-ops">
+                <div class="expand-header">
+                    <div class="expand-header-text">
+                        <p class="section-label">Template</p>
+                        <h3 class="section-title">Cloud Infra Ops Agents</h3>
+                        <p class="one-liner">Monitor, optimize, and act across AWS, GCP, and Azure.</p>
                     </div>
+                    <span class="expand-icon">+</span>
                 </div>
+                <div class="expand-body">
+                    <div class="pain">
+                        <h4>The pain</h4>
+                        <p>Cloud spend is growing. Idle resources, forgotten test environments, oversized instances, anomalous spikes. Incidents happen across three clouds with different dashboards. Your DevOps lead is stretched. Manual reviews catch maybe half of what matters.</p>
+                    </div>
 
-                <div class="outcome">
-                    <h4>What you get</h4>
-                    <p>A FinOps + incident-response team-in-a-box. Agents start in supervised mode (flag only), graduate to shadow (dry-run cleanups), then to autonomous action on scheduled, bounded operations. Your institutional brain learns what "normal" looks like for your company — not for some generic cloud customer.</p>
-                </div>
+                    <div class="solution">
+                        <h4>What SynOS does</h4>
+                        <p>Connects to your billing and monitoring stack. Agents learn your org's cloud baseline — who owns what, which costs are normal for which teams, what an anomaly actually looks like given your deployment patterns — and act on what they find.</p>
+                    </div>
 
-                <div class="template-cta">
-                    <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank">Talk about your cloud ops — 15 min →</a>
+                    <div class="agents">
+                        <p class="agents-intro">These agents act like your FinOps + DevOps team — they don't just monitor, they investigate, flag, and act:</p>
+                        <ul>
+                            <li><strong>Cost Watchdog</strong> — Continuously monitors spend, flags anomalies, routes them to the right team in Slack</li>
+                            <li><strong>Idle Resource Detector</strong> — Finds stale instances, orphaned volumes, and unused resources. Drafts cleanup PRs.</li>
+                            <li><strong>Budget Guardrail Agent</strong> — Alerts on drift against team/project budgets before the bill closes</li>
+                            <li><strong>Incident Responder</strong> — Correlates billing spikes with recent deploys and surfaces likely root causes</li>
+                        </ul>
+                    </div>
+
+                    <div class="connectors-section">
+                        <h4>Connectors</h4>
+                        <div class="connector-categories">
+                            <div class="connector-cat"><strong>Cloud Providers:</strong> AWS (Cost Explorer, CloudWatch), GCP (Billing, Monitoring), Azure (Cost Management, Monitor)</div>
+                            <div class="connector-cat"><strong>Tagging & Org:</strong> Cost-allocation tags, org/team structure</div>
+                            <div class="connector-cat"><strong>Communication:</strong> Slack, Microsoft Teams</div>
+                            <div class="connector-cat"><strong>Code & Deploys:</strong> GitHub, GitLab (for deploy correlation)</div>
+                        </div>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>What you get</h4>
+                        <p>A FinOps + incident-response team-in-a-box. Agents start in supervised mode (flag only), graduate to shadow (dry-run cleanups), then to autonomous action on scheduled, bounded operations. Your institutional brain learns what "normal" looks like for your company — not for some generic cloud customer.</p>
+                    </div>
+
+                    <div class="template-cta">
+                        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank">Talk about your cloud ops — 15 min →</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -309,41 +356,59 @@
             <h2>Additional operational starting points.</h2>
             <p class="section-sub">Each is shaped to your team during onboarding. Same institutional brain underneath.</p>
 
-            <div class="more-grid">
-                <div class="more-card">
+            <div class="more-grid reveal-stagger">
+                <div class="more-card reveal">
                     <h4>Customer 360</h4>
-                    <p>Unify CRM, support tickets, and product-usage signals into a single account view. Agents flag accounts that look healthy by CRM metrics but are actually declining based on support volume and usage drops.</p>
-                    <p class="connector-cats"><strong>CRM:</strong> Salesforce, HubSpot · <strong>Support:</strong> Zendesk, Intercom · <strong>Analytics:</strong> Segment, Amplitude · <strong>Communication:</strong> Slack</p>
+                    <p class="more-card-preview">Unify CRM, support tickets, and product-usage signals into a single account view.</p>
+                    <div class="more-card-detail">
+                        <p>Agents flag accounts that look healthy by CRM metrics but are actually declining based on support volume and usage drops.</p>
+                        <p class="connector-cats"><strong>CRM:</strong> Salesforce, HubSpot · <strong>Support:</strong> Zendesk, Intercom · <strong>Analytics:</strong> Segment, Amplitude · <strong>Communication:</strong> Slack</p>
+                    </div>
                 </div>
-                <div class="more-card">
+                <div class="more-card reveal">
                     <h4>Recruiting Pipeline</h4>
-                    <p>Track candidates across your ATS, recruiter Sheets, and interviewer Slack channels. Catch stale pipelines, missed follow-ups, and interview loops that have gone dark. Drafts nudge messages.</p>
-                    <p class="connector-cats"><strong>ATS:</strong> Greenhouse, Lever, Ashby · <strong>Data:</strong> Google Sheets · <strong>Communication:</strong> Slack, Gmail</p>
+                    <p class="more-card-preview">Track candidates across your ATS, recruiter Sheets, and interviewer Slack channels.</p>
+                    <div class="more-card-detail">
+                        <p>Catch stale pipelines, missed follow-ups, and interview loops that have gone dark. Drafts nudge messages.</p>
+                        <p class="connector-cats"><strong>ATS:</strong> Greenhouse, Lever, Ashby · <strong>Data:</strong> Google Sheets · <strong>Communication:</strong> Slack, Gmail</p>
+                    </div>
                 </div>
-                <div class="more-card">
+                <div class="more-card reveal">
                     <h4>Client Project Manager</h4>
-                    <p>Score project health across your delivery tools. Flag deadline risks early. Draft client status updates. Agents learn your delivery rhythm — what "on track" actually means for your team.</p>
-                    <p class="connector-cats"><strong>Work Tracking:</strong> Linear, Asana, Jira · <strong>Communication:</strong> Slack, Gmail · <strong>Documentation:</strong> Google Docs</p>
+                    <p class="more-card-preview">Score project health across your delivery tools. Flag deadline risks early.</p>
+                    <div class="more-card-detail">
+                        <p>Draft client status updates. Agents learn your delivery rhythm — what "on track" actually means for your team.</p>
+                        <p class="connector-cats"><strong>Work Tracking:</strong> Linear, Asana, Jira · <strong>Communication:</strong> Slack, Gmail · <strong>Documentation:</strong> Google Docs</p>
+                    </div>
                 </div>
-                <div class="more-card">
+                <div class="more-card reveal">
                     <h4>Revenue Ops</h4>
-                    <p>Forecast gaps, stale opportunities, renewal risk, and deal-quality drift across CRM + billing + Slack. Agents learn the difference between a real renewal slip and normal sales-cycle noise.</p>
-                    <p class="connector-cats"><strong>CRM:</strong> Salesforce, HubSpot · <strong>Billing:</strong> Stripe, Chargebee, NetSuite · <strong>Communication:</strong> Slack · <strong>Calls:</strong> Gong</p>
+                    <p class="more-card-preview">Forecast gaps, stale opportunities, renewal risk, and deal-quality drift.</p>
+                    <div class="more-card-detail">
+                        <p>Agents learn the difference between a real renewal slip and normal sales-cycle noise across CRM + billing + Slack.</p>
+                        <p class="connector-cats"><strong>CRM:</strong> Salesforce, HubSpot · <strong>Billing:</strong> Stripe, Chargebee, NetSuite · <strong>Communication:</strong> Slack · <strong>Calls:</strong> Gong</p>
+                    </div>
                 </div>
-                <div class="more-card">
+                <div class="more-card reveal">
                     <h4>Compliance Watch</h4>
-                    <p>Flag sensitive data exposure, permission drift, and audit-trail gaps across your SaaS stack. Agents learn your policies, your exceptions, and your approval patterns — and act only where authorized.</p>
-                    <p class="connector-cats"><strong>Identity:</strong> Google Workspace, Okta · <strong>Code:</strong> GitHub · <strong>Cloud:</strong> AWS IAM · <strong>Communication:</strong> Slack</p>
+                    <p class="more-card-preview">Flag sensitive data exposure, permission drift, and audit-trail gaps across your SaaS stack.</p>
+                    <div class="more-card-detail">
+                        <p>Agents learn your policies, your exceptions, and your approval patterns — and act only where authorized.</p>
+                        <p class="connector-cats"><strong>Identity:</strong> Google Workspace, Okta · <strong>Code:</strong> GitHub · <strong>Cloud:</strong> AWS IAM · <strong>Communication:</strong> Slack</p>
+                    </div>
                 </div>
-                <div class="more-card">
+                <div class="more-card reveal">
                     <h4>Cross-Tool Tracker</h4>
-                    <p>Blocker detection, dependency tracking, and weekly digests across work-tracking tools, Slack, and docs. For larger teams where coordination breaks down between departments.</p>
-                    <p class="connector-cats"><strong>Work Tracking:</strong> Jira, Linear · <strong>Communication:</strong> Slack · <strong>Documentation:</strong> Google Docs, Confluence</p>
+                    <p class="more-card-preview">Blocker detection, dependency tracking, and weekly digests across work-tracking tools.</p>
+                    <div class="more-card-detail">
+                        <p>For larger teams where coordination breaks down between departments. Agents pull from Slack, docs, and issue trackers.</p>
+                        <p class="connector-cats"><strong>Work Tracking:</strong> Jira, Linear · <strong>Communication:</strong> Slack · <strong>Documentation:</strong> Google Docs, Confluence</p>
+                    </div>
                 </div>
             </div>
 
             <!-- CUSTOM -->
-            <div class="custom-section">
+            <div class="custom-section mesh-bg">
                 <h3>Don't see your workflow?</h3>
                 <p>Templates are starting points. Describe the workflow you wish ran itself — we'll shape a template around your stack and your rules during onboarding. The institutional brain is the same underneath.</p>
                 <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Describe your workflow — Talk to Founder →</a>
@@ -352,7 +417,7 @@
     </section>
 
     <!-- BOTTOM CTA -->
-    <section class="cta-section" data-section="use-cases-cta">
+    <section class="cta-section mesh-bg" data-section="use-cases-cta">
         <div class="container">
             <h2>Start where your pain lives.</h2>
             <p>Pick a template. Or describe the workflow you wish ran itself. 15 minutes with the founder — we'll walk through how SynOS would shape a template to your team, your tools, and your way of operating.</p>
@@ -402,6 +467,30 @@
             });
         }, { threshold: 0.3 });
         sections.forEach(el => obs.observe(el));
+
+        // Accordion toggle — close others when one opens
+        document.querySelectorAll('.expandable').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't toggle if clicking a link inside
+                if (e.target.closest('a')) return;
+                const wasOpen = card.classList.contains('open');
+                // Close all siblings
+                card.parentElement.querySelectorAll('.expandable.open').forEach(c => c.classList.remove('open'));
+                // Toggle clicked
+                if (!wasOpen) card.classList.add('open');
+            });
+        });
+
+        // Staggered reveal on scroll
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
     </script>
 </body>
 </html>
