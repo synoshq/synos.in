@@ -67,9 +67,13 @@
         /* Gradient text */
         .gradient-text{background:linear-gradient(135deg,#6366F1 0%,#0D9488 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
         @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none;}.mesh-bg::before{animation:none;}}
+    /* Focus states */
+        a:focus-visible,button:focus-visible,.btn:focus-visible,.tab-btn:focus-visible,.expandable:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+        *:focus{outline:none;}
     </style>
 </head>
 <body>
+<a href="#main-content" style="position:absolute;top:-100px;left:0;background:var(--accent);color:#fff;padding:12px 24px;z-index:1000;font-weight:600;font-size:14px;border-radius:0 0 8px 0;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
     <nav class="nav">
         <a href="/" class="nav-left">
             <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
@@ -88,6 +92,7 @@
         </div>
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Talk to Founder</a>
     </nav>
+    <main id="main-content">
 
     <section class="container page mesh-bg">
         <p class="eyebrow">About</p>
@@ -95,7 +100,7 @@
 
         <div class="founder-card reveal">
 <div class="founder-info">
-                <h3>Anoop Jawahar</h3>
+                <h2 style="font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;letter-spacing:-0.02em;margin-bottom:4px;display:flex;align-items:center;gap:12px;">Anoop Jawahar</h2>
                 <p class="role">Founder & CEO</p>
                 <p class="bio">Previously CTO at Sundial (agentic analytics, semantic layers, big-data ETL). Director of Engineering at Nutanix (distributed storage systems and databases). South Park Commons member.</p>
                 <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" class="linkedin-link">
@@ -110,6 +115,7 @@
         </div>
     </section>
 
+    </main>
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-left">
