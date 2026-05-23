@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent-Native Operating Layer Scorecard — SynOS</title>
+    <meta name="description" content="5 questions. 5 minutes. A diagnostic for CTOs and AI platform leads. Identify where your agent stack is strongest, where the next investment matters most, and which roadblock is the biggest blocker on team-level AI adoption.">
+    <meta property="og:title" content="Agent-Native Operating Layer Scorecard — SynOS">
+    <meta property="og:description" content="5 questions. 5 minutes. Diagnose where your agent stack is strongest, and which roadblock is the biggest blocker on team-level AI adoption.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://synos.in/scorecard">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MXVRX5VMJR');
+    </script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --bg: #FAFAF8; --bg-alt: #F4F3F0; --surface: #FFFFFF;
+            --border: #E8E8E5; --border-accent: rgba(99, 102, 241, 0.15);
+            --text: #1A1A1A; --text-secondary: #3D3D3D; --text-muted: #6B6B73; --text-dim: #A1A1AA;
+            --accent: #6366F1; --accent-hover: #5558E6; --accent-bg: rgba(99, 102, 241, 0.05);
+            --teal: #0D9488; --amber: #D97706; --red: #DC2626;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+            --shadow-glow: 0 8px 40px rgba(99, 102, 241, 0.12);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; font-size: 15px; line-height: 1.6; }
+
+        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+        h1, h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.03em; line-height: 1.12; color: var(--text); }
+        h1 { font-size: clamp(36px, 5vw, 52px); margin-bottom: 16px; }
+        h2 { font-size: clamp(26px, 3.5vw, 36px); margin-bottom: 12px; }
+        p { line-height: 1.7; color: var(--text-secondary); }
+
+        .gradient-text { background: linear-gradient(135deg, #6366F1 0%, #0D9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 24px; height: 64px; display: flex; justify-content: space-between; align-items: center; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+        .nav-left { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo-text { font-family: var(--font-display); font-size: 22px; color: var(--text); letter-spacing: -0.02em; }
+        .nav-links { display: flex; gap: 36px; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; }
+        .nav-links a:hover { color: var(--text); }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 14px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; padding: 12px 22px; border: none; }
+        .btn--primary { background: var(--accent); color: #fff; }
+        .btn--primary:hover { background: var(--accent-hover); box-shadow: var(--shadow-glow); }
+        .btn--primary:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn--secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .btn--secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        .page-hero { padding-top: 140px; padding-bottom: 40px; text-align: center; }
+        .page-hero .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 24px; }
+        .page-hero .lede { font-size: 17px; line-height: 1.7; color: var(--text-secondary); max-width: 600px; margin: 0 auto 28px; }
+        .page-hero .meta { font-size: 14px; color: var(--text-muted); }
+
+        .start-cta { margin-top: 24px; }
+
+        /* Card / question UI */
+        .card-wrap { padding: 40px 0 80px; }
+        .progress-bar { max-width: 600px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .progress-meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; }
+        .progress-track { flex: 1; height: 4px; background: var(--bg-alt); border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--teal)); transition: width 0.3s ease; }
+        .running-score { font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
+
+        .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 48px 40px; box-shadow: var(--shadow-md); max-width: 680px; margin: 0 auto; }
+        .q-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+        .q-title { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); margin-bottom: 28px; }
+        .q-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+        .q-option { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; border: 1.5px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.18s ease; background: var(--bg); }
+        .q-option:hover { border-color: var(--accent); background: var(--accent-bg); }
+        .q-option.selected { border-color: var(--accent); background: var(--accent-bg); box-shadow: 0 0 0 3px rgba(99,102,241,0.10); }
+        .q-option .opt-letter { font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--accent); flex-shrink: 0; width: 24px; }
+        .q-option .opt-text { font-size: 14.5px; line-height: 1.6; color: var(--text-secondary); }
+        .q-option.selected .opt-text { color: var(--text); }
+
+        .q-actions { display: flex; justify-content: space-between; align-items: center; }
+        .q-back { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-family: var(--font-body); font-size: 14px; font-weight: 500; }
+        .q-back:hover { color: var(--text); }
+        .q-back:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* Result */
+        .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 48px 40px; box-shadow: var(--shadow-lg); max-width: 680px; margin: 0 auto; }
+        .result-score { text-align: center; margin-bottom: 24px; }
+        .score-num { font-family: var(--font-display); font-size: 96px; line-height: 1; letter-spacing: -0.04em; }
+        .score-out { font-family: var(--font-display); font-size: 32px; color: var(--text-muted); }
+        .verdict-label { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+        .verdict-headline { font-family: var(--font-display); font-size: 28px; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.02em; }
+        .verdict-text { font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 28px; }
+
+        .roadblock-bd { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+        .rb-row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--bg-alt); border-radius: 8px; border-left: 3px solid var(--border); }
+        .rb-row.solved { border-left-color: var(--teal); }
+        .rb-row.partial { border-left-color: var(--amber); }
+        .rb-row.unsolved { border-left-color: var(--red); }
+        .rb-num { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.08em; }
+        .rb-label { flex: 1; font-size: 14px; color: var(--text); }
+        .rb-state { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+        .rb-row.solved .rb-state { color: var(--teal); }
+        .rb-row.partial .rb-state { color: var(--amber); }
+        .rb-row.unsolved .rb-state { color: var(--red); }
+
+        .gate-form { padding: 24px; background: var(--bg-alt); border-radius: 12px; }
+        .gate-form label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+        .gate-form input, .gate-form select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: var(--font-body); font-size: 14px; background: var(--surface); color: var(--text); margin-bottom: 14px; }
+        .gate-form input:focus, .gate-form select:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+        .gate-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .gate-actions .btn { flex: 1; min-width: 180px; }
+        .gate-note { font-size: 12px; color: var(--text-dim); margin-top: 12px; }
+
+        .success-state { text-align: center; padding: 32px 0; }
+        .success-state h3 { font-family: var(--font-display); font-size: 28px; margin-bottom: 12px; letter-spacing: -0.02em; }
+        .success-state .cta-row { display: flex; gap: 12px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
+
+        .site-footer { padding: 48px 24px; text-align: center; border-top: 1px solid var(--border); }
+        .site-footer p { font-size: 12px; color: var(--text-dim); }
+        .site-footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; font-size: 13px; }
+        .site-footer a:hover { color: var(--text); }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .q-card, .result-card { padding: 32px 24px; }
+            .q-title { font-size: 22px; }
+            .score-num { font-size: 72px; }
+            .verdict-headline { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-left">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+            <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-logo-text">SynOS</span>
+    </a>
+    <div class="nav-links">
+        <a href="/product">Product</a>
+        <a href="/use-cases">Use Cases</a>
+        <a href="/blog">Blog</a>
+        <a href="/scorecard">Scorecard</a>
+        <a href="/about">About</a>
+    </div>
+    <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="nav">Book a demo</a>
+</nav>
+
+<main>
+
+    <!-- INTRO -->
+    <section class="container page-hero" id="intro">
+        <p class="eyebrow">Diagnostic · 5 minutes</p>
+        <h1>Agent-Native Operating Layer<br><span class="gradient-text">Scorecard.</span></h1>
+        <p class="lede">5 questions for CTOs and AI platform leads. Identify where your agent stack is strongest, where the next investment matters most, and which of the five roadblocks is the biggest blocker on team-level AI adoption.</p>
+        <p class="meta">No email needed to take it. Email-gated to see the full per-roadblock breakdown.</p>
+        <div class="start-cta">
+            <button class="btn btn--primary" id="start-btn" data-cta="cta-scorecard-start">Start the scorecard →</button>
+        </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="card-wrap hidden" id="quiz">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress-meta" id="progress-meta">Question 1 of 5</div>
+                <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width: 20%;"></div></div>
+                <div class="running-score" id="running-score">Score: 0</div>
+            </div>
+            <div class="q-card" id="q-card">
+                <!-- Question content injected here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="card-wrap hidden" id="result">
+        <div class="container">
+            <div class="result-card">
+                <div class="result-score">
+                    <span class="score-num gradient-text" id="result-score-num">0</span><span class="score-out"> / 10</span>
+                </div>
+                <p class="verdict-label" id="verdict-label">Verdict</p>
+                <h2 class="verdict-headline" id="verdict-headline"></h2>
+                <p class="verdict-text" id="verdict-text"></p>
+
+                <div class="roadblock-bd" id="roadblock-bd"></div>
+
+                <div id="gate-block">
+                    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:400;letter-spacing:-0.02em;margin-bottom:8px;">Get the full breakdown</h3>
+                    <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">Drop an email — we'll send the detailed per-roadblock playbook excerpt mapped to your score.</p>
+                    <form class="gate-form" id="gate-form">
+                        <label for="gate-email">Work email</label>
+                        <input type="email" id="gate-email" name="email" required placeholder="you@company.com">
+
+                        <label for="gate-size">Company size (optional)</label>
+                        <select id="gate-size" name="company_size">
+                            <option value="">—</option>
+                            <option value="under-50">Under 50</option>
+                            <option value="50-200">50–200</option>
+                            <option value="200-1000">200–1000</option>
+                            <option value="1000-plus">1000+</option>
+                        </select>
+
+                        <div class="gate-actions">
+                            <button type="submit" class="btn btn--primary" data-cta="cta-scorecard-submit">Send my full breakdown</button>
+                            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary" data-cta="scorecard-book-demo">Or book a demo →</a>
+                        </div>
+                        <p class="gate-note">We send the breakdown once. No newsletter unless you subscribe on Substack separately.</p>
+                    </form>
+                </div>
+
+                <div class="success-state hidden" id="success-state">
+                    <h3>Got it. Breakdown is on the way.</h3>
+                    <p style="font-size:14px;color:var(--text-muted);">Check your inbox in the next few minutes. Spam folder if not.</p>
+                    <div class="cta-row">
+                        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Book a 30-min demo</a>
+                        <a href="/use-cases" class="btn btn--secondary">See use-cases</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <p>
+        <a href="/">Home</a> ·
+        <a href="/use-cases">Use Cases</a> ·
+        <a href="/scorecard">Scorecard</a> ·
+        <a href="/blog">Blog</a> ·
+        <a href="https://anoopjawahar.substack.com" target="_blank">Substack</a>
+    </p>
+    <p style="margin-top:12px;">&copy; 2026 SynOS. All rights reserved.</p>
+</footer>
+
+<script>
+    // CTA tracking
+    document.querySelectorAll('[data-cta]').forEach(el => {
+        el.addEventListener('click', () => {
+            if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_location: el.getAttribute('data-cta') || 'unknown' });
+        });
+    });
+
+    // === SCORECARD STATE MACHINE ===
+    const QUESTIONS = [
+        {
+            num: 1,
+            tag: 'Roadblock 01 · Personal-to-team gap',
+            title: 'When someone on your team builds a useful Claude / Codex / Cursor skill or workflow, how long does it take for the rest of the team to be able to use it safely?',
+            options: [
+                { letter: 'A', text: 'Under 24 hours. We have a skill registry with versioning and governance.', score: 2 },
+                { letter: 'B', text: 'Days to weeks. It happens informally — copy-paste, shared docs, the occasional GitHub repo. No real registry.', score: 1 },
+                { letter: 'C', text: "It doesn't. Skills live on individual machines. Every teammate rebuilds from scratch.", score: 0 }
+            ]
+        },
+        {
+            num: 2,
+            tag: 'Roadblock 02 · Safe internal access',
+            title: 'Can a non-engineer on your team get an agent connected to your CRM, data warehouse, or internal docs without engineering provisioning each request manually?',
+            options: [
+                { letter: 'A', text: 'Yes. We have content-level permissioning. An agent gets exactly the scope it needs — revocable, auditable. Engineering provisions templates, not requests.', score: 2 },
+                { letter: 'B', text: 'Partially. We have some self-service for some systems. The rest still requires a ticket.', score: 1 },
+                { letter: 'C', text: 'No. Every agent access is custom. Engineering is the bottleneck. Most requests get blocked or delayed.', score: 0 }
+            ]
+        },
+        {
+            num: 3,
+            tag: 'Roadblock 03 · Compounding context',
+            title: 'Does your company have a single context layer — a graph that understands entities, relationships, lineage, freshness, and data quality across your SaaS tools — that every agent can query?',
+            options: [
+                { letter: 'A', text: 'Yes. Entity resolution runs across our SoRs. Our agents share one context graph. New tools plug in.', score: 2 },
+                { letter: 'B', text: "Partially. We have RAG over docs, or vector search over one system. Agents don't share context across tools.", score: 1 },
+                { letter: 'C', text: 'No. Every agent rediscovers entities. Memory is per-tool. Nothing compounds across systems.', score: 0 }
+            ]
+        },
+        {
+            num: 4,
+            tag: 'Roadblock 04 · Skill analytics',
+            title: 'Can your CFO see what AI skills your teams are running, who\'s using them, how much they cost, and what their success / hallucination rates are?',
+            options: [
+                { letter: 'A', text: 'Yes. We have a tool proxy. Skill-level cost attribution. Drift and hallucination tracking. Surfaced in a dashboard non-engineers can read.', score: 2 },
+                { letter: 'B', text: 'Partially. We have LLM observability for engineers (Langfuse, Helicone, Phoenix, etc.) but no skill-level analytics for ops or finance buyers.', score: 1 },
+                { letter: 'C', text: 'No. Tool calls go direct. We have no visibility into who\'s running what.', score: 0 }
+            ]
+        },
+        {
+            num: 5,
+            tag: 'Roadblock 05 · Team brain',
+            title: 'When one person on your team learns something the company should know — a data quirk, an unwritten rule, a customer pattern — does that knowledge compound into a layer every agent and every teammate can use?',
+            options: [
+                { letter: 'A', text: 'Yes. We have a team-brain layer that ingests team activity (governed, scoped, revocable) and serves every agent and Slack/email surface.', score: 2 },
+                { letter: 'B', text: "Partially. We have an internal wiki or memory file someone updates. It doesn't auto-ingest. Agents don't auto-use it.", score: 1 },
+                { letter: 'C', text: 'No. Knowledge stays in individual chat histories, individual heads, and Slack DMs.', score: 0 }
+            ]
+        }
+    ];
+
+    const ROADBLOCK_LABELS = [
+        'Personal-to-team gap',
+        'Safe internal access',
+        'Compounding context',
+        'Skill analytics',
+        'Team brain'
+    ];
+
+    const VERDICTS = [
+        { range: [9, 10], label: 'You\'re ahead', headline: "You've built (or bought) the operating layer.", text: "Total score 9–10. You're ahead of >90% of companies. Continue compounding. Worth pressure-testing the weakest of the five against the layer's full capability spec — there's usually a long-tail edge case left." },
+        { range: [6, 8], label: 'Partway there', headline: "You're partway. Most teams stall here.", text: "Total score 6–8. You likely have 1–2 roadblocks solved and 2–3 unsolved. Identify which of the five is the biggest blocker on team adoption — that's where the next investment goes." },
+        { range: [3, 5], label: 'Hitting most walls', headline: "You're hitting most of the five.", text: "Total score 3–5. AI productivity is real for individuals on your team and stalled for the org. Highest-leverage move: pick the lowest-scoring question and attack first." },
+        { range: [0, 2], label: 'All five walls', headline: "You're hitting all five.", text: "Total score 0–2. Personal productivity exists; team productivity doesn't. The playbook will save you ~6 months of rediscovery." }
+    ];
+
+    let qIndex = 0;
+    let answers = []; // {qNum, letter, score}
+
+    const introEl = document.getElementById('intro');
+    const quizEl = document.getElementById('quiz');
+    const resultEl = document.getElementById('result');
+    const qCard = document.getElementById('q-card');
+    const progressMeta = document.getElementById('progress-meta');
+    const progressFill = document.getElementById('progress-fill');
+    const runningScore = document.getElementById('running-score');
+
+    document.getElementById('start-btn').addEventListener('click', () => {
+        introEl.classList.add('hidden');
+        quizEl.classList.remove('hidden');
+        if (typeof gtag === 'function') gtag('event', 'scorecard_start');
+        renderQ();
+    });
+
+    function renderQ() {
+        const q = QUESTIONS[qIndex];
+        progressMeta.textContent = `Question ${q.num} of 5`;
+        progressFill.style.width = `${(qIndex + 1) * 20}%`;
+        const cur = answers.reduce((s, a) => s + a.score, 0);
+        runningScore.textContent = `Score: ${cur}`;
+
+        const selected = answers[qIndex];
+        const opts = q.options.map(o => {
+            const sel = selected && selected.letter === o.letter ? 'selected' : '';
+            return `<div class="q-option ${sel}" data-letter="${o.letter}" data-score="${o.score}">
+                        <div class="opt-letter">${o.letter})</div>
+                        <div class="opt-text">${o.text}</div>
+                    </div>`;
+        }).join('');
+
+        qCard.innerHTML = `
+            <div class="q-tag">${q.tag}</div>
+            <div class="q-title">${q.title}</div>
+            <div class="q-options">${opts}</div>
+            <div class="q-actions">
+                <button class="q-back" id="q-back" ${qIndex === 0 ? 'disabled' : ''}>← Back</button>
+                <button class="btn btn--primary" id="q-next" disabled>${qIndex === 4 ? 'See my score →' : 'Next →'}</button>
+            </div>
+        `;
+
+        const nextBtn = document.getElementById('q-next');
+        if (selected) nextBtn.disabled = false;
+
+        qCard.querySelectorAll('.q-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                qCard.querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+                const letter = opt.getAttribute('data-letter');
+                const score = parseInt(opt.getAttribute('data-score'), 10);
+                answers[qIndex] = { qNum: QUESTIONS[qIndex].num, letter, score };
+                nextBtn.disabled = false;
+                runningScore.textContent = `Score: ${answers.reduce((s, a) => s + (a ? a.score : 0), 0)}`;
+                if (typeof gtag === 'function') gtag('event', 'scorecard_question_answered', { question: QUESTIONS[qIndex].num, letter });
+            });
+        });
+
+        document.getElementById('q-back').addEventListener('click', () => {
+            if (qIndex > 0) { qIndex--; renderQ(); }
+        });
+        nextBtn.addEventListener('click', () => {
+            if (qIndex < 4) { qIndex++; renderQ(); }
+            else showResult();
+        });
+    }
+
+    function showResult() {
+        quizEl.classList.add('hidden');
+        resultEl.classList.remove('hidden');
+
+        const total = answers.reduce((s, a) => s + a.score, 0);
+        const verdict = VERDICTS.find(v => total >= v.range[0] && total <= v.range[1]);
+
+        document.getElementById('result-score-num').textContent = total;
+        document.getElementById('verdict-label').textContent = verdict.label;
+        document.getElementById('verdict-headline').textContent = verdict.headline;
+        document.getElementById('verdict-text').textContent = verdict.text;
+
+        const rbHtml = answers.map((a, i) => {
+            const state = a.score === 2 ? 'solved' : a.score === 1 ? 'partial' : 'unsolved';
+            const stateLabel = a.score === 2 ? 'Solved' : a.score === 1 ? 'Partial' : 'Unsolved';
+            return `<div class="rb-row ${state}">
+                        <div class="rb-num">0${i + 1}</div>
+                        <div class="rb-label">${ROADBLOCK_LABELS[i]}</div>
+                        <div class="rb-state">${stateLabel}</div>
+                    </div>`;
+        }).join('');
+        document.getElementById('roadblock-bd').innerHTML = rbHtml;
+
+        if (typeof gtag === 'function') gtag('event', 'scorecard_complete', { score: total });
+
+        document.getElementById('gate-form').addEventListener('submit', handleGateSubmit);
+    }
+
+    function handleGateSubmit(e) {
+        e.preventDefault();
+        const email = document.getElementById('gate-email').value.trim();
+        const companySize = document.getElementById('gate-size').value;
+        const total = answers.reduce((s, a) => s + a.score, 0);
+
+        const payload = new FormData();
+        payload.append('access_key', 'REPLACE_WITH_WEB3FORMS_KEY');
+        payload.append('subject', `SynOS Scorecard — ${total}/10 — ${email}`);
+        payload.append('email', email);
+        payload.append('company_size', companySize);
+        payload.append('total_score', total);
+        answers.forEach(a => payload.append(`q${a.qNum}_${a.letter}`, a.score));
+
+        if (typeof gtag === 'function') gtag('event', 'scorecard_submit', { score: total });
+
+        fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload })
+            .then(r => r.json())
+            .catch(() => null)
+            .finally(() => {
+                document.getElementById('gate-block').classList.add('hidden');
+                document.getElementById('success-state').classList.remove('hidden');
+            });
+    }
+</script>
+</body>
+</html>
