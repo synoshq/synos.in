@@ -43,40 +43,35 @@
         .hero-page .eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:16px;}
         .hero-page p.hero-sub{font-size:17px;line-height:1.7;color:var(--text-secondary);max-width:680px;margin:0 auto 40px;}
 
-        /* ===== ARCHITECTURE DIAGRAM ===== */
-        .arch-diagram{max-width:800px;margin:0 auto;}
-        .arch-layer{padding:20px 24px;border:1px solid;position:relative;}
-        .arch-layer-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;}
-        .arch-items{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
-        .arch-item{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid;}
+        /* ===== ARCHITECTURE STACK (v6.2) ===== */
+        .arch-stack{max-width:880px;margin:32px auto 0;display:flex;flex-direction:column;gap:0;}
+        .arch-band{padding:20px 24px;border:1px solid var(--border);}
+        .arch-band-label{font-family:var(--font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;color:var(--text-muted);}
+        .arch-band-items{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+        .arch-pill{padding:6px 14px;font-family:var(--font-mono);font-size:12px;font-weight:500;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text-secondary);}
+        .arch-band--agents{background:var(--teal-bg);border-color:rgba(13,148,136,0.25);border-radius:14px 14px 0 0;}
+        .arch-band--agents .arch-band-label{color:#0D9488;}
+        .arch-band--agents .arch-pill{background:rgba(13,148,136,0.06);border-color:rgba(13,148,136,0.2);color:#0D9488;}
+        .arch-band--data{background:var(--bg-alt);border-radius:0 0 14px 14px;}
+        .arch-band--data .arch-pill{background:var(--surface);border-color:var(--border);color:var(--text-secondary);}
 
-        /* Agent layer (teal) */
-        .arch-agents{background:var(--teal-bg);border-color:var(--teal-border);border-radius:12px 12px 0 0;}
-        .arch-agents .arch-layer-label{color:rgb(45,212,191);}
-        .arch-agents .arch-item{background:rgba(45,212,191,0.08);border-color:var(--teal-border);color:#0D9488;}
+        .arch-connector{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);letter-spacing:0.06em;text-align:center;padding:10px 0;background:transparent;}
 
-        /* SynOS layer (indigo, two columns) */
-        .arch-synos{background:var(--accent-bg);border:2px solid var(--border-accent);display:grid;grid-template-columns:1fr 1fr;gap:0;}
-        .arch-synos-col{padding:20px 24px;}
-        .arch-synos-col:first-child{border-right:1px solid var(--border-accent);}
-        .arch-synos-col .col-title{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-        .arch-synos-col .col-title .icon{font-size:18px;}
-        .arch-cap-list{display:flex;flex-direction:column;gap:6px;}
-        .arch-cap{font-size:13px;color:var(--text-secondary);padding:6px 12px;background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.12);border-radius:6px;}
-        .arch-badge{margin-top:12px;padding:8px 12px;background:rgba(99,102,241,0.08);border:1px dashed var(--border-accent);border-radius:6px;font-size:12px;color:var(--accent);font-weight:500;text-align:center;}
+        .arch-synos{background:linear-gradient(180deg,var(--accent-bg) 0%,rgba(99,102,241,0.02) 100%);border:2px solid var(--border-accent);padding:24px;display:flex;flex-direction:column;gap:16px;}
+        .arch-synos-label{font-family:var(--font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:4px;text-align:center;}
 
-        /* Data layer (warm) */
-        .arch-data{background:var(--bg-alt);border-color:var(--border);border-radius:0 0 12px 12px;}
-        .arch-data .arch-layer-label{color:var(--text-muted);}
-        .arch-data .arch-item{background:var(--surface);border-color:var(--border);color:var(--text-secondary);}
+        .arch-anchor{background:var(--surface);border:1px solid var(--border-accent);border-radius:12px;padding:24px 22px;position:relative;}
+        .arch-anchor::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--teal));border-radius:12px 12px 0 0;}
+        .arch-anchor-tag{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+        .arch-anchor h3{font-family:var(--font-display);font-weight:400;font-size:24px;letter-spacing:-0.02em;margin-bottom:8px;color:var(--text);}
+        .arch-anchor p{font-size:14px;line-height:1.65;color:var(--text-secondary);margin:0;}
+        .arch-anchor strong{color:var(--text);font-weight:600;}
 
-        /* Connector between layers */
-        .arch-connector{display:flex;align-items:center;justify-content:center;padding:8px 0;gap:32px;}
-        .arch-connector-label{font-size:11px;color:var(--text-muted);font-weight:500;letter-spacing:0.3px;}
-        .arch-connector-arrow{font-size:14px;color:var(--text-dim);}
-        .arch-bidir{display:flex;gap:48px;justify-content:center;padding:10px 0;}
-        .arch-bidir-item{font-size:11px;color:var(--text-muted);font-weight:500;display:flex;align-items:center;gap:6px;}
-        .arch-bidir-item .arrow{color:var(--accent);font-weight:700;font-size:14px;}
+        .arch-pieces{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+        .arch-piece{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+        .arch-piece .piece-tag{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
+        .arch-piece h4{font-family:var(--font-display);font-weight:400;font-size:16px;letter-spacing:-0.01em;color:var(--text);margin-bottom:4px;}
+        .arch-piece p{font-size:12.5px;line-height:1.55;color:var(--text-muted);margin:0;}
 
         /* Grid */
         .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -166,8 +161,7 @@
             .flow-steps{grid-template-columns:repeat(3,1fr);}
             .flow-step::after{display:none;}
             .connectors-grid{grid-template-columns:repeat(2,1fr);}
-            .arch-synos{grid-template-columns:1fr;}
-            .arch-synos-col:first-child{border-right:none;border-bottom:1px solid var(--border-accent);}
+            .arch-pieces{grid-template-columns:1fr;}
             .tab-content{grid-template-columns:1fr;}
         }
         @media(max-width:768px){
@@ -186,7 +180,7 @@
             h1{font-size:30px;}
             .container{padding:0 16px;}
             .flow-steps{grid-template-columns:1fr;}
-            .arch-bidir{flex-direction:column;gap:4px;align-items:center;}
+            .arch-anchor h3{font-size:20px;}
         }
     /* Mesh gradient */
         .mesh-bg{position:relative;overflow:hidden;}
@@ -261,69 +255,72 @@
         <h1>The Agent-Native Operating Layer,<br>in detail.</h1>
         <p class="hero-sub">The Living Context Brain. Automatic connectors with guardrails. Graduated trust from day one. Bring your own agent framework — or use the SynOS harness. Self-hosted. Your data never leaves your infrastructure.</p>
 
-        <!-- INLINE ARCHITECTURE DIAGRAM -->
-        <div class="arch-diagram reveal">
+        <!-- INLINE ARCHITECTURE DIAGRAM (v6.2) -->
+        <div class="arch-stack reveal" role="group" aria-label="Agent-Native Operating Layer architecture">
+
             <!-- Top: Agent Layer -->
-            <div class="arch-layer arch-agents">
-                <div class="arch-layer-label">Your Agent Layer</div>
-                <div class="arch-items">
-                    <div class="arch-item">Agent Harnesses</div>
-                    <div class="arch-item">Custom Agents</div>
-                    <div class="arch-item">Analysts & Teams</div>
-                    <div class="arch-item">Your Framework</div>
+            <div class="arch-band arch-band--agents">
+                <div class="arch-band-label">Your Agent Layer · Bring your own</div>
+                <div class="arch-band-items">
+                    <span class="arch-pill">Agent Harnesses</span>
+                    <span class="arch-pill">Custom Agents</span>
+                    <span class="arch-pill">Internal Copilots</span>
+                    <span class="arch-pill">Non-engineering Operators</span>
                 </div>
             </div>
 
-            <!-- Connector: top -->
-            <div class="arch-connector">
-                <span class="arch-connector-arrow">↕</span>
-                <span class="arch-connector-label">Layered under any agent framework</span>
-                <span class="arch-connector-arrow">↕</span>
-            </div>
+            <div class="arch-connector">↕ &nbsp; Layered under any agent framework &nbsp; ↕</div>
 
-            <!-- Middle: SynOS (two columns) -->
+            <!-- Middle: Synos Operating Layer -->
             <div class="arch-synos">
-                <div class="arch-synos-col">
-                    <div class="col-title"><span class="icon">🧠</span> Brain</div>
-                    <div class="arch-cap-list">
-                        <div class="arch-cap">Connect — ingest from any data source</div>
-                        <div class="arch-cap">Organize — build living knowledge graph</div>
-                        <div class="arch-cap">Query — hybrid retrieval with freshness</div>
-                        <div class="arch-cap">Learn — self-improving with every use</div>
-                    </div>
-                    <div class="arch-badge">♾️ Self-Learning Loop: corrections + executions compound into your context graph</div>
+                <div class="arch-synos-label">Synos · Agent-Native Operating Layer</div>
+
+                <div class="arch-anchor">
+                    <div class="arch-anchor-tag">Anchor</div>
+                    <h3>Living Context Brain</h3>
+                    <p>Streaming ingestion. Smart extraction. Entity resolution. Remembers skills, entities, decisions, traces. <strong>Self-Learning Loop:</strong> every agent trace + every human correction feeds back. The brain compounds.</p>
                 </div>
-                <div class="arch-synos-col">
-                    <div class="col-title"><span class="icon">🔧</span> Tools & Actions</div>
-                    <div class="arch-cap-list">
-                        <div class="arch-cap">Read — query CRM, warehouse, databases, docs</div>
-                        <div class="arch-cap">Write — update records, spreadsheets, send messages</div>
-                        <div class="arch-cap">Communicate — Slack, email, chat, alerts</div>
-                        <div class="arch-cap">Research — web search, APIs, external data</div>
+
+                <div class="arch-pieces">
+                    <div class="arch-piece">
+                        <div class="piece-tag">Storage</div>
+                        <h4>Agent-Native Storage</h4>
+                        <p>An SoR built for how agents write. Different patterns, controls, and checks than typical DBs.</p>
                     </div>
-                    <div class="arch-badge">🔒 Per-tool permissions · Per-agent guardrails · Full audit trail</div>
+                    <div class="arch-piece">
+                        <div class="piece-tag">Sandboxes</div>
+                        <h4>Secure Scanned Sandboxes</h4>
+                        <p>Safe execution surface for agents and apps. Shadow → approved → autonomous, within bounded scopes.</p>
+                    </div>
+                    <div class="arch-piece">
+                        <div class="piece-tag">Permissions</div>
+                        <h4>Tool Access &amp; Permissions</h4>
+                        <p>Per-skill, per-agent, per-team scopes. Revocable, auditable. Templates, not tickets.</p>
+                    </div>
+                    <div class="arch-piece">
+                        <div class="piece-tag">Analytics</div>
+                        <h4>Skill &amp; Tool Traces</h4>
+                        <p>Every skill run, every tool call captured. Cost, latency, success, hallucination signal.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Connector: bottom (bidirectional) -->
-            <div class="arch-bidir">
-                <div class="arch-bidir-item"><span class="arrow">↑</span> context in</div>
-                <div class="arch-bidir-item"><span class="arrow">↓</span> actions out (permissioned)</div>
-            </div>
+            <div class="arch-connector">↑ context in &nbsp; · &nbsp; actions out (permissioned) ↓</div>
 
-            <!-- Bottom: Your Apps & Data -->
-            <div class="arch-layer arch-data">
-                <div class="arch-layer-label">Your Apps & Data</div>
-                <div class="arch-items">
-                    <div class="arch-item">Documents</div>
-                    <div class="arch-item">Data Stores</div>
-                    <div class="arch-item">Project Mgmt</div>
-                    <div class="arch-item">Communication</div>
-                    <div class="arch-item">CRM</div>
-                    <div class="arch-item">Cloud</div>
-                    <div class="arch-item">APIs</div>
+            <!-- Bottom: SoRs + Apps -->
+            <div class="arch-band arch-band--data">
+                <div class="arch-band-label">Your Systems of Record · Apps · Data</div>
+                <div class="arch-band-items">
+                    <span class="arch-pill">CRM</span>
+                    <span class="arch-pill">Data Warehouse</span>
+                    <span class="arch-pill">Project Mgmt</span>
+                    <span class="arch-pill">Slack / Comms</span>
+                    <span class="arch-pill">Docs &amp; Wikis</span>
+                    <span class="arch-pill">Cloud Infra</span>
+                    <span class="arch-pill">Internal APIs</span>
                 </div>
             </div>
+
         </div>
     </section>
 
