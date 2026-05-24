@@ -73,6 +73,34 @@
         .arch-piece h4{font-family:var(--font-display);font-weight:400;font-size:16px;letter-spacing:-0.01em;color:var(--text);margin-bottom:4px;}
         .arch-piece p{font-size:12.5px;line-height:1.55;color:var(--text-muted);margin:0;}
 
+        /* Brain memory taxonomy (v7) */
+        .brain-mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+        .brain-mem-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 18px;transition:box-shadow 0.25s;}
+        .brain-mem-card:hover{box-shadow:var(--shadow-md);}
+        .brain-mem-card--source{border-left:3px solid var(--border-accent);background:var(--bg-alt);}
+        .brain-mem-tag{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+        .brain-mem-tag--source{color:var(--text-muted);}
+        .brain-mem-card h4{font-family:var(--font-display);font-weight:400;font-size:19px;letter-spacing:-0.01em;color:var(--text);margin-bottom:6px;}
+        .brain-mem-card p{font-size:13px;line-height:1.6;color:var(--text-muted);}
+
+        /* Brain Self-Learning Loop block */
+        .brain-loop{margin-top:48px;padding:30px 28px;background:linear-gradient(180deg,var(--accent-bg) 0%,rgba(99,102,241,0.02) 100%);border:1px solid var(--border-accent);border-radius:16px;}
+        .brain-loop h3{font-family:var(--font-display);font-weight:400;font-size:24px;letter-spacing:-0.02em;color:var(--text);margin-bottom:14px;}
+        .brain-loop p{font-size:15px;line-height:1.8;color:var(--text-secondary);}
+        .brain-loop-aside{font-size:13px !important;color:var(--text-muted) !important;margin-top:12px;}
+
+        /* Retrieval (v7) */
+        .retrieval-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+        .retrieval-col{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 24px;}
+        .retrieval-col h3{font-family:var(--font-display);font-weight:400;font-size:22px;letter-spacing:-0.02em;color:var(--text);margin-bottom:8px;}
+        .retrieval-col .r-tag{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:3px 10px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:999px;}
+        .retrieval-col p.r-intro{font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:18px;}
+        .retrieval-flow{display:flex;flex-direction:column;gap:8px;}
+        .retrieval-step{display:flex;gap:12px;align-items:flex-start;}
+        .retrieval-step .r-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+        .retrieval-step .r-text{font-size:13.5px;line-height:1.55;color:var(--text-secondary);padding-top:3px;}
+        .retrieval-shared{margin-top:20px;padding:16px 18px;background:var(--bg-alt);border:1px dashed var(--border);border-radius:10px;font-size:13.5px;line-height:1.6;color:var(--text-muted);text-align:center;}
+
         /* Grid */
         .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
         .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
@@ -90,7 +118,7 @@
         .byoa-opt p{font-size:14px;line-height:1.6;color:var(--text-secondary);}
 
         /* Data flow */
-        .flow-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:32px;}
+        .flow-steps{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:32px;}
         .flow-step{text-align:center;position:relative;}
         .flow-step::after{content:'→';position:absolute;right:-10px;top:20px;color:var(--accent);font-weight:700;font-size:18px;}
         .flow-step:last-child::after{display:none;}
@@ -163,6 +191,8 @@
             .connectors-grid{grid-template-columns:repeat(2,1fr);}
             .arch-pieces{grid-template-columns:1fr;}
             .tab-content{grid-template-columns:1fr;}
+            .brain-mem-grid{grid-template-columns:repeat(2,1fr);}
+            .retrieval-wrap{grid-template-columns:1fr;}
         }
         @media(max-width:768px){
             .nav-links{display:none;}
@@ -175,6 +205,7 @@
             .section{padding:80px 0;}
             .tab-nav{width:100%;}
             .tab-btn{flex:1;padding:12px 16px;font-size:13px;}
+            .brain-mem-grid{grid-template-columns:1fr;}
         }
         @media(max-width:540px){
             h1{font-size:30px;}
@@ -253,7 +284,7 @@
     <section class="container hero-page mesh-bg" data-section="product-hero">
         <p class="eyebrow">Product</p>
         <h1>The Agent-Native Operating Layer,<br>in detail.</h1>
-        <p class="hero-sub">The Living Context Brain. Automatic connectors with guardrails. Graduated trust from day one. Bring your own agent framework — or use the SynOS harness. Self-hosted. Your data never leaves your infrastructure.</p>
+        <p class="hero-sub">An operating layer is the shared substrate every agent in your company uses. SynOS ships five pieces: a Living Context Brain at the centre, with Agent-Native Storage, Secure Scanned Sandboxes, Tool Access &amp; Permissions, and Skill &amp; Tool Traces around it. Bring your own agent framework. Self-hosted.</p>
 
         <!-- INLINE ARCHITECTURE DIAGRAM (v6.2) -->
         <div class="arch-stack reveal" role="group" aria-label="Agent-Native Operating Layer architecture">
@@ -324,79 +355,146 @@
         </div>
     </section>
 
-    <!-- INSIDE THE LAYER -->
-    <section class="section" data-section="three-layers">
+    <!-- ===== 5 PER-PIECE DEEP-DIVES (v7) ===== -->
+
+    <!-- 2. LIVING CONTEXT BRAIN — anchor -->
+    <section class="section" data-section="brain">
         <div class="container">
-            <div class="reveal">
-                <p class="section-label">The Brain Layer</p>
-                <h2>Inside the Living Context Brain.</h2>
-                <p class="section-sub">SynOS combines live system context, Self-Learning Loop from agent executions, and human expertise extraction into a single knowledge layer any agent can draw from.</p>
+            <div class="reveal" style="max-width:740px;">
+                <p class="section-label">The Anchor Piece</p>
+                <h2>The Living Context Brain.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);margin-bottom:0;">A continuously curated knowledge layer every agent in your company can read from. It remembers what your team knows, what your agents have done, and how decisions get made — across every system.</p>
             </div>
 
-            <div class="reveal">
-                <div class="tab-nav">
-                    <button class="tab-btn active" data-tab="context">Context Layer</button>
-                    <button class="tab-btn" data-tab="learning">Self-Learning Loop</button>
-                    <button class="tab-btn" data-tab="human">Human Context Extraction</button>
+            <!-- Memory taxonomy 4-card subgrid -->
+            <div class="reveal" style="margin-top:40px;">
+                <h3 style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:16px;font-family:var(--font-mono);">What the Brain remembers</h3>
+                <div class="brain-mem-grid">
+                    <div class="brain-mem-card">
+                        <p class="brain-mem-tag">Skill</p>
+                        <h4>Learned procedures</h4>
+                        <p>How to do a recurring task. Promoted from runs the team approved.</p>
+                    </div>
+                    <div class="brain-mem-card">
+                        <p class="brain-mem-tag">Knowledge</p>
+                        <h4>Curated facts</h4>
+                        <p>Policies, definitions, business rules. The things your team would put in a wiki — if anyone kept the wiki current.</p>
+                    </div>
+                    <div class="brain-mem-card">
+                        <p class="brain-mem-tag">Entity</p>
+                        <h4>Resolved identities</h4>
+                        <p>"Customer #4892" in Salesforce = @priya in Slack = priya@acme.com in your warehouse. One graph.</p>
+                    </div>
+                    <div class="brain-mem-card brain-mem-card--source">
+                        <p class="brain-mem-tag brain-mem-tag--source">Trace · the source</p>
+                        <h4>Raw run history</h4>
+                        <p>Every agent run + every human correction. The substrate the other three are distilled from.</p>
+                    </div>
                 </div>
+                <p style="font-size:13px;color:var(--text-muted);margin-top:14px;font-style:italic;">Trace is the source. Skill, Knowledge, and Entity are what gets promoted from it.</p>
             </div>
 
-            <div class="tab-panel active" data-tab="context">
-                <div class="tab-content">
-                    <div class="tab-text">
-                        <h3>Discovery Agents — Connect and resolve.</h3>
-                        <p>Profiling agents automatically analyze your connected data sources. They extract schema, statistics, and business semantics — then discover cross-system relationships that no single system can see. "Customer ID" in Salesforce = "Client #" in the spreadsheet = @acmecorp in Slack. Automatically resolved. Runs continuously as your data evolves.</p>
-                    </div>
-                    <div class="tab-visual">
-                        → Connect SaaS systems of record<br>
-                        → Auto-profile data schemas + statistics<br>
-                        → Discover cross-system relationships<br>
-                        → Resolve entities across tools<br>
-                        → Living knowledge graph, always fresh
-                    </div>
-                </div>
-            </div>
-            <div class="tab-panel" data-tab="learning">
-                <div class="tab-content">
-                    <div class="tab-text">
-                        <h3>Agent Executions — Every run makes every agent smarter.</h3>
-                        <p>Every time an agent executes, the system captures patterns, exceptions, and edge cases. Those learnings are written back into the brain layer and become available to every other agent. Your 10th agent inherits everything the first 9 learned. Fix a mistake once — every agent inherits it.</p>
-                    </div>
-                    <div class="tab-visual">
-                        → Agent executes a workflow<br>
-                        → System captures patterns + exceptions<br>
-                        → Quality gates filter noise<br>
-                        → Learnings enter the brain layer<br>
-                        → All agents inherit immediately
-                    </div>
-                </div>
-            </div>
-            <div class="tab-panel" data-tab="human">
-                <div class="tab-content">
-                    <div class="tab-text">
-                        <h3>Team Review — Capture what only your team knows.</h3>
-                        <p>Your team corrects mistakes in plain language — one sentence at a time. Corrections pass through a quality gate and become permanent team memory. Tribal knowledge that lived in people's heads becomes organizational knowledge. The rules, exceptions, and judgment calls that never get documented.</p>
-                    </div>
-                    <div class="tab-visual">
-                        → Team member spots an error<br>
-                        → Corrects in plain language<br>
-                        → Quality gate validates the insight<br>
-                        → Promoted to team memory<br>
-                        → Every agent uses it from now on
-                    </div>
-                </div>
+            <!-- Self-Learning Loop — folded in -->
+            <div class="reveal brain-loop">
+                <h3>How the Brain compounds — the Self-Learning Loop.</h3>
+                <p>Every agent run and every human correction lands in Storage as a trace. Curator agents read both kinds — the agent's work and the agent↔human interaction — and surface your company's tribal knowledge: the rules, exceptions, and judgment calls nobody bothers to write down. That tribal knowledge clears a quality gate and promotes into Brain memory. The next agent run pulls the upgraded Brain. The loop tightens with every interaction.</p>
+                <p class="brain-loop-aside">Continuous curation jobs re-resolve stale entities and prune dead links so the graph stays current.</p>
             </div>
         </div>
     </section>
 
-    <!-- MULTI-AGENT CURATOR (replaces Under the Hood + Quality-Gated Learning) -->
-    <section class="section section--alt" data-section="curator">
+    <!-- 3. AGENT-NATIVE STORAGE -->
+    <section class="section section--alt" data-section="storage">
         <div class="container">
-            <div class="reveal" style="max-width:740px;">
-                <p class="section-label">Under the Hood</p>
-                <h2>A multi-agent curator system maintains your Agent-Native Operating Layer.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);margin-bottom:20px;">A system of specialized agents continuously profiles your data, discovers cross-system relationships, resolves entities across tools, and curates what enters the knowledge graph. Quality gates ensure only verified, corroborated insights become permanent knowledge — corrections compound, noise is filtered. The result: a living knowledge layer that gets sharper with every interaction, not a stale index that accumulates noise.</p>
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Storage</p>
+                <h2>How Agent-Native Storage works.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Today's harnesses need a shared place to track the work they do. Agent writes are multi-version, partial, contended, revisable — the patterns a typical SQL or NoSQL store wasn't built for. SynOS ships a System of Record designed for how agents actually write, revise, and reference each other's outputs.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">It holds decision traces, work product, multi-agent versioning, structured artefacts, and deterministic references the next agent run can pull. Run analytics (Traces, below) sit on top of Storage; the traces here feed the Brain's compounding loop above.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- 4. SANDBOXES -->
+    <section class="section" data-section="sandboxes">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Sandboxes</p>
+                <h2>How Sandboxes gate execution.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Engineering blocks "let an LLM touch prod" — for good reason. SynOS gives every agent and every app its own scanned sandbox. Build-time scanning catches unsafe imports and secrets before anything runs; egress is policy-controlled per sandbox; per-run identity tokens scope what the running code can touch.</p>
+            </div>
+            <div class="reveal" style="overflow-x:auto;margin-top:32px;">
+                <table class="trust-table">
+                    <thead><tr><th>Mode</th><th>What Happens</th><th>When to Use</th></tr></thead>
+                    <tbody>
+                        <tr><td>Supervised</td><td>Plans actions, doesn't execute. See what it would do before anything happens.</td><td>First days — validate accuracy and judgment</td></tr>
+                        <tr><td>Shadow</td><td>Reads execute. Writes are logged but don't fire. Build confidence without risk.</td><td>Building confidence — verify write behavior is correct</td></tr>
+                        <tr><td>Approved</td><td>Writes fire only on explicit human approval. Per-action review queue.</td><td>Production-grade tasks where mistakes are costly</td></tr>
+                        <tr><td>Autonomous</td><td>Full execution with per-tool permissions and audit trail. You review exceptions.</td><td>When accuracy is proven — trust earned, not assumed</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PERMISSIONS -->
+    <section class="section section--alt" data-section="permissions">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Permissions</p>
+                <h2>How Permissions scope skills.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Per-skill, per-agent, per-team scopes. Revocable. Auditable. Templates, not tickets — your AI team defines a scope once and it applies to every agent that installs the skill.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">A skill ships with its tool list, its parameter contract, and its role check declared up front. Install once. Share across the team. Permissions ride with the skill, not the user who happens to run it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TRACES -->
+    <section class="section" data-section="traces">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Traces</p>
+                <h2>What Skill &amp; Tool Traces capture.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Every run, every tool call. Cost, latency, success and failure, hallucination signal, who-ran-what. Cached and budgeted — predictable cost per decision at scale.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Three consumers: your AI team reads them for analytics; the Brain reads them for the Self-Learning Loop; Permissions reads them to adjust scopes as patterns shift.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. RETRIEVAL — fast path + agent path (v7) -->
+    <section class="section section--alt" data-section="retrieval">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Retrieval</p>
+                <h2>Two ways the Brain serves agents.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Some questions have a known shape — pull the right slice and hand it over. Others need a walk through the graph. The Brain ships both.</p>
+            </div>
+            <div class="reveal retrieval-wrap" role="group" aria-label="Retrieval modes">
+                <div class="retrieval-col">
+                    <span class="r-tag">Fast path · deterministic</span>
+                    <h3>Pack assembly.</h3>
+                    <p class="r-intro">Single call. For questions with a known shape — predictable cost, predictable latency.</p>
+                    <div class="retrieval-flow">
+                        <div class="retrieval-step"><span class="r-num">1</span><div class="r-text">Scoped query · agent role + intent + project</div></div>
+                        <div class="retrieval-step"><span class="r-num">2</span><div class="r-text">Hybrid retrieval · vector + graph + keyword, fused</div></div>
+                        <div class="retrieval-step"><span class="r-num">3</span><div class="r-text">Authority &amp; freshness rank · promoted memory beats raw, recent beats stale</div></div>
+                        <div class="retrieval-step"><span class="r-num">4</span><div class="r-text">Policy redact + token budget · RBAC filter, PII redaction, per-agent envelope size</div></div>
+                        <div class="retrieval-step"><span class="r-num">5</span><div class="r-text">Typed pack · handed to the agent with citation IDs</div></div>
+                    </div>
+                </div>
+                <div class="retrieval-col">
+                    <span class="r-tag">Agent path · graph traversal</span>
+                    <h3>Sub-agent walk.</h3>
+                    <p class="r-intro">For open-ended questions where the right slice isn't known up front. A retrieval sub-agent plans, calls, observes, and refines as it traverses the graph.</p>
+                    <div class="retrieval-flow">
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Plan</strong> — break the question into hops the graph can answer</div></div>
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Call</strong> — read entities, follow edges, pull facts at each hop</div></div>
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Observe</strong> — score what came back; gaps drive the next hop</div></div>
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Refine</strong> — typically 3–6 hops, then the same typed pack lands</div></div>
+                    </div>
+                </div>
+            </div>
+            <p class="reveal retrieval-shared">Both paths hand the calling agent the same context envelope — authority-ranked, freshness-aware, policy-redacted.</p>
         </div>
     </section>
 
@@ -415,7 +513,7 @@
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="expand-body">
-                        <p>Powerful for individuals. But a large context window still doesn't know which of your data sources to check. No persistent organizational memory. No RBAC. No enterprise controls. SynOS gives your agent harness your company's Agent-Native Operating Layer.</p>
+                        <p>Powerful for individuals. But a large context window still doesn't know which of your data sources to check. No shared memory. No agent-native storage. No sandboxes. No RBAC. SynOS sits under the harness and gives it the full operating layer — brain, storage, sandboxes, permissions, traces.</p>
                     </div>
                 </div>
                 <div class="card expandable reveal" onclick="this.classList.toggle('open')">
@@ -424,7 +522,7 @@
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="expand-body">
-                        <p>Workflow automation that never learns. Every run starts from zero. No context layer. No Self-Learning Loop. No path from rigid graph-based workflows to AI-native operations. SynOS agents understand your business and get smarter with every run.</p>
+                        <p>Workflow automation that never learns. Every run starts from zero. No company brain. No agent storage. No graduated trust. No path from rigid graph-based workflows to AI-native operations. SynOS agents understand your business and get smarter with every run.</p>
                     </div>
                 </div>
                 <div class="card expandable reveal" onclick="this.classList.toggle('open')">
@@ -433,7 +531,7 @@
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="expand-body">
-                        <p>Finds documents but doesn't understand cross-system relationships. Indexes everything forever — no freshness awareness. SynOS is a knowledge layer, not a search engine. It learns from outcomes, not just documents.</p>
+                        <p>Finds documents but doesn't understand cross-system relationships. Indexes everything forever — no freshness awareness. SynOS is an operating layer with a brain at its centre, not a search engine. It learns from outcomes, not just documents.</p>
                     </div>
                 </div>
                 <div class="card expandable reveal" onclick="this.classList.toggle('open')">
@@ -442,7 +540,7 @@
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="expand-body">
-                        <p>Memory is one feature, not a full knowledge layer. No cross-system entity resolution. No Self-Learning Loop. Framework lock-in — knowledge doesn't transfer. SynOS is the brain under any framework. Switch harnesses and your context graph carries over.</p>
+                        <p>Memory is one feature, not a full operating layer. No cross-system entity resolution. No sandboxes. No skill permissions. Framework lock-in — knowledge doesn't transfer. SynOS is the operating layer under any framework — brain plus storage, sandboxes, permissions, and traces. Switch harnesses and your context carries over.</p>
                     </div>
                 </div>
             </div>
@@ -455,41 +553,42 @@
         <div class="container">
             <div class="reveal">
                 <p class="section-label">Bring Your Own Agent</p>
-                <h2>SynOS is the brain, not the body.</h2>
-                <p class="section-sub">Engineering teams spend significant time rebuilding context infrastructure for every new agent — connecting data sources, building retrieval, managing embeddings, handling freshness. SynOS is that layer, pre-built. Three ways to use it:</p>
+                <h2>SynOS is the operating layer, not the body.</h2>
+                <p class="section-sub">Engineering teams spend significant time rebuilding context, storage, sandboxes, permissions, and trace plumbing for every new agent. SynOS ships all five pieces, pre-built. The brain at the centre comes with the storage, sandboxes, permissions, and traces around it. Three ways to plug in:</p>
             </div>
             <div class="byoa-options reveal-stagger">
                 <div class="byoa-opt reveal">
                     <h4>Already have agents?</h4>
-                    <p>Connect them to SynOS's brain layer via API. Your agents get your context graph — context, learnings, and human expertise — without rebuilding their infrastructure.</p>
+                    <p>Connect them to SynOS via API. Your agents get the brain, write into Storage, run in scanned sandboxes, ride your permissions, and emit traces — without rebuilding the plumbing.</p>
                 </div>
                 <div class="byoa-opt reveal">
                     <h4>Don't have agents yet?</h4>
-                    <p>Use SynOS's built-in agent harness with enterprise-grade controls: graduated trust, RBAC, per-tool permissions, and full audit trail. Describe what you need in plain English.</p>
+                    <p>Use SynOS's built-in agent harness with the full operating layer wired up: brain, storage, sandboxes, graduated trust, per-skill permissions, and audit. Describe what you need in plain English.</p>
                 </div>
                 <div class="byoa-opt reveal">
                     <h4>Hybrid approach?</h4>
-                    <p>Use the built-in harness for some workflows and connect external agents for others. All agents share the same Agent-Native Operating Layer. One correction teaches every agent.</p>
+                    <p>Use the built-in harness for some workflows and connect external agents for others. All agents share the same operating layer. One correction teaches every agent.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DATA FLOW -->
+    <!-- DATA FLOW (v7 — 7 steps, exercises all 5 pieces) -->
     <section class="section" data-section="data-flow">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">How Data Flows</p>
-                <h2>Connect. Profile. Link. Build Context. Execute. Compound.</h2>
-                <p class="section-sub">Only context is extracted — not raw data. Your systems of record remain untouched.</p>
+                <p class="section-label">Lifecycle</p>
+                <h2>Connect. Profile. Link. Permission. Execute. Trace. Compound.</h2>
+                <p class="section-sub">Only context is extracted — not raw data. Your systems of record remain untouched. Each step exercises a piece of the layer.</p>
             </div>
             <div class="flow-steps reveal">
-                <div class="flow-step"><div class="flow-num">1</div><h4>Connect</h4><p>Plug in your data sources. No data migration.</p></div>
-                <div class="flow-step"><div class="flow-num">2</div><h4>Profile</h4><p>Auto-extract schema, stats, and business semantics.</p></div>
-                <div class="flow-step"><div class="flow-num">3</div><h4>Link</h4><p>Discover cross-system relationships automatically.</p></div>
-                <div class="flow-step"><div class="flow-num">4</div><h4>Build Context</h4><p>Assemble knowledge graph + semantic search index.</p></div>
-                <div class="flow-step"><div class="flow-num">5</div><h4>Execute</h4><p>Agents query the brain and take actions across systems.</p></div>
-                <div class="flow-step"><div class="flow-num">6</div><h4>Compound</h4><p>Learnings + corrections feed back. Every run makes it smarter.</p></div>
+                <div class="flow-step"><div class="flow-num">1</div><h4>Connect</h4><p>Plug in your data sources. No migration.</p></div>
+                <div class="flow-step"><div class="flow-num">2</div><h4>Profile</h4><p>Auto-extract schema, stats, business semantics.</p></div>
+                <div class="flow-step"><div class="flow-num">3</div><h4>Link</h4><p>Discover cross-system relationships. Resolve entities.</p></div>
+                <div class="flow-step"><div class="flow-num">4</div><h4>Permission</h4><p>Scope tools per skill, per agent, per team.</p></div>
+                <div class="flow-step"><div class="flow-num">5</div><h4>Execute</h4><p>Agents run in scanned sandboxes. Reads and writes audited.</p></div>
+                <div class="flow-step"><div class="flow-num">6</div><h4>Trace</h4><p>Every run captured — cost, outcome, signal.</p></div>
+                <div class="flow-step"><div class="flow-num">7</div><h4>Compound</h4><p>Traces and corrections promote into the Brain. Next run pulls more.</p></div>
             </div>
         </div>
     </section>
@@ -538,27 +637,6 @@
         </div>
     </section>
 
-    <!-- GRADUATED TRUST -->
-    <section class="section section--alt" data-section="graduated-trust">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">Graduated Trust</p>
-                <h2>Safety and control, from day one to autonomous action.</h2>
-                <p class="section-sub">Every agent starts supervised. You control the dial. Every execution produces human-readable narration — not logs, but a clear explanation of what the agent did and why.</p>
-            </div>
-            <div class="reveal" style="overflow-x:auto;">
-                <table class="trust-table">
-                    <thead><tr><th>Mode</th><th>What Happens</th><th>When to Use</th></tr></thead>
-                    <tbody>
-                        <tr><td>Supervised</td><td>Plans actions, doesn't execute. See what it would do before anything happens.</td><td>First days — validate accuracy and judgment</td></tr>
-                        <tr><td>Shadow</td><td>Reads execute. Writes are logged but don't fire. Build confidence without risk.</td><td>Building confidence — verify write behavior is correct</td></tr>
-                        <tr><td>Autonomous</td><td>Full execution with per-tool permissions and audit trail. You review exceptions.</td><td>When accuracy is proven — trust earned, not assumed</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
     <!-- TRIGGERS -->
     <section class="section" data-section="triggers">
         <div class="container">
@@ -586,13 +664,15 @@
             </div>
             <div class="security-list reveal">
                 <div class="security-item">Only context is extracted — raw data stays in your systems</div>
+                <div class="security-item">Per-tenant isolation — your brain never leaves your boundary</div>
                 <div class="security-item">Credentials encrypted at rest across all storage</div>
                 <div class="security-item">Project-level isolation for every query and operation</div>
                 <div class="security-item">Role-based access — platform admin, project admin, member</div>
                 <div class="security-item">Full audit trail — every execution, correction, promotion logged</div>
+                <div class="security-item">Every correction reversible. Every promotion auditable.</div>
                 <div class="security-item">HTTPS with automatic certificate provisioning</div>
                 <div class="security-item">Self-hosted option keeps everything inside your network</div>
-                <div class="security-item">Per-tool permissions at individual tool level</div>
+                <div class="security-item">Per-skill permissions at individual tool level</div>
             </div>
             <div class="deploy-grid reveal-stagger">
                 <div class="deploy-opt recommended reveal"><h4>Self-Hosted</h4><p>Single VM in your cloud. Your data stays on your infrastructure. Zero egress.</p></div>
