@@ -33,17 +33,40 @@ Display labels (what visible copy says):
 - "Operating Layer for Marketing Ops Agents"
 - "Operating Layer for Custom AI Agents"
 
-Landing-page meta-section (NOT a use-case card): "Living Company Brain" — the cross-cutting brain customers compound across functions.
+Landing-page use-case grid (v6.1): **Company Brain** is the umbrella anchor card (full-width, top). The 4 function-level patterns (Cloud FinOps, Sales Ops, Marketing Ops, Custom AI Agents) sit below as smaller siblings. Company Brain card links to `/use-cases` (top of grid), not a `#company-brain` anchor (that anchor does not exist).
 
 ## Use-Case Framing Convention
 
-Each use-case is framed as **"Operating Layer for [function] Agents"** — show the agents customers would run + why those agents need a layer underneath (context graph, skills, sandboxes, trace loop). The layer is the product; agents are what the customer builds and runs.
+- Visible copy: "**What teams can build**" / "**Patterns**" — never "use-cases" in the consumer sense. URL slug `/use-cases` stays (don't break SEO + outreach links).
+- Each function-level pattern: **"Operating Layer for [function] Agents"** — show the agents customers would run + why those agents need a layer underneath (context graph, skills, sandboxes, trace loop). The layer is the product; agents are what the customer builds and runs.
+- Company Brain: framed as the **umbrella pattern** — "enable non-engineers to build custom workflows and apps that understand how your company operates." Function brains are instances of this pattern.
+- No live customer deployments are named anywhere. Anonymized outcome shapes only (e.g., "indicative ranges from engagements in progress"). No firm savings figures presented as Synos-delivered.
 
-NEVER claim Synos ships the productized agent itself. Use phrasing like:
+NEVER claim Synos ships a productized agent. Use:
 - ✅ "The agents a FinOps team runs — and the operating layer they need."
-- ✅ "Pattern: how a sales-ops team builds their pipeline brain on Synos."
+- ✅ "What teams can build on Synos."
 - ❌ "Our Cloud FinOps Brain product."
 - ❌ "Buy Sales Brain."
+- ❌ "Use cases" as a consumer noun (URL slug only).
+
+## Landing Page Architecture (v6.1)
+
+Section order:
+1. Hero — kicker, H1, single subhead, sub-paragraph, CTAs, trust line
+2. Roadblocks — "Five walls" opener (Agent Harnesses make individuals faster; shared compounding is the wall) + 5 walls + scorecard CTA
+3. **"What's inside the operating layer"** — Living Context Brain as full-width anchor card (first), followed by 4 sibling cards (Agent-Native Storage · Secure Scanned Sandboxes · Tool Access & Permissions · Skill & Tool Traces). Self-Learning Loop is folded into the brain card as a property, not a sibling.
+4. Works with your stack
+5. **"What teams can build"** — Company Brain umbrella card (full-width, first), then 4 function-pattern siblings
+6. Bottom CTA — Book demo · Scorecard · Substack
+
+**No "Living Company Brain" standalone meta-section** (folded into the Company Brain umbrella card).
+**No blog cards section** on landing (Blog page is enough).
+**No memory-type taxonomy** (Skill / Knowledge / Entity / Trace) on landing — defer to product page when revamped.
+
+## Landing Section Anchors
+
+- `#what-teams-build` — used by hero CTA "What teams build →"
+- `#use-cases` — NOT used currently; the section's anchor is `#what-teams-build`. If reintroduced, ensure `id` matches.
 
 ## Vocabulary Guardrails
 
