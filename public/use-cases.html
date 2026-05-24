@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Use Cases — Operating Layer for Your Agents — SynOS</title>
-    <meta name="description" content="Patterns of what teams build on the Synos Agent-Native Operating Layer. Cloud FinOps Agents, Sales Ops Agents, Marketing Ops Agents, Custom AI Agents — and the layer pieces each one needs.">
+    <meta name="description" content="Patterns of what teams build on the Synos Agent-Native Operating Layer. Company Brain as the umbrella. Cloud FinOps Agents, Sales Ops Agents, Marketing Ops Agents, Custom AI Agents inside it.">
     <meta property="og:title" content="Use Cases — SynOS">
     <meta property="og:description" content="Examples of what teams build on the agent-native operating layer.">
     <meta property="og:type" content="website">
@@ -73,13 +73,22 @@
         .page-hero p.lede { font-size: 17px; line-height: 1.7; color: var(--text-secondary); max-width: 700px; margin: 0 auto 16px; }
         .page-hero .pattern-note { font-size: 14px; color: var(--text-muted); font-style: italic; max-width: 640px; margin: 0 auto; }
 
-        .uc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+        .uc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
         .uc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; }
         .uc-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--border-accent); }
         .uc-card .uc-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px; text-transform: uppercase; }
         .uc-card h3 { font-size: 22px; line-height: 1.2; margin-bottom: 12px; }
         .uc-card p { font-size: 14px; line-height: 1.65; color: var(--text-muted); margin-bottom: 12px; }
         .uc-card .uc-link { font-size: 13px; font-weight: 600; color: var(--accent); }
+
+        .uc-umbrella { display: block; margin-top: 48px; padding: 36px 32px; background: linear-gradient(180deg, var(--accent-bg) 0%, rgba(99,102,241,0.02) 100%); border: 1px solid var(--border-accent); border-radius: 18px; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; position: relative; }
+        .uc-umbrella::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--teal)); border-radius: 18px 18px 0 0; }
+        .uc-umbrella:hover { box-shadow: var(--shadow-glow); transform: translateY(-3px); }
+        .uc-umbrella .uc-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px; text-transform: uppercase; }
+        .uc-umbrella h3 { font-size: 30px; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
+        .uc-umbrella p { font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 14px; max-width: 760px; }
+        .uc-umbrella .uc-link { font-size: 14px; font-weight: 600; color: var(--accent); }
+        .uc-grid-divider { margin-top: 36px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
 
         .pattern-section { padding: 80px 0; border-top: 1px solid var(--border); scroll-margin-top: 80px; }
         .pattern-section:nth-of-type(odd) { background: var(--bg-alt); }
@@ -133,11 +142,18 @@
     <section class="container page-hero">
         <p class="eyebrow">What teams can build · Patterns</p>
         <h1>What teams can build on<br><span class="gradient-text">the operating layer.</span></h1>
-        <p class="lede">Four examples of what teams <em>can</em> build on Synos. Each shows the agents a team would run — and the layer pieces those agents need to actually work in production.</p>
+        <p class="lede">A Company Brain on top of Synos — and function-level agents your teams run inside it. Each example shows the agents a team would run, plus the layer pieces those agents need to actually work in production.</p>
         <p class="pattern-note">These are patterns, not productized offerings. No live customer deployments named here yet. Synos ships the infra; your team (or your AI engineers) ships the agents.</p>
     </section>
 
     <section class="container">
+        <a href="#company-brain" class="uc-umbrella" data-cta="see-usecase-company-brain">
+            <div class="uc-tag">Umbrella pattern · Company Brain</div>
+            <h3>The Company Brain</h3>
+            <p>Non-engineers build custom workflows and apps that understand how your company operates. The Brain holds the policies, definitions, entity graph, and tribal knowledge that every agent and every app reads from. The function-level patterns below all live inside it.</p>
+            <span class="uc-link">See the Company Brain pattern ↓</span>
+        </a>
+        <p class="uc-grid-divider">Function-level patterns built inside the Company Brain</p>
         <div class="uc-grid">
             <a href="/use-cases/cloud-finops-agents" class="uc-card" data-cta="see-usecase-cloud-finops-agents">
                 <div class="uc-tag">Cloud FinOps · Deep dive →</div>
@@ -163,6 +179,33 @@
                 <p>Building your own AI product or internal copilot? Use the layer's context graph, skill registry, sandboxes, trace loop.</p>
                 <span class="uc-link">See the pattern below ↓</span>
             </a>
+        </div>
+    </section>
+
+    <section class="pattern-section" id="company-brain">
+        <div class="container">
+            <div class="pattern-header">
+                <div class="pattern-tag">Umbrella pattern</div>
+                <h2>The Company Brain</h2>
+                <p>Most teams don't start with "we need a context graph" — they start with "non-engineers should be able to build the workflows and small apps our business actually needs." The Company Brain is what makes that possible. Every function-level pattern below (Cloud FinOps, Sales Ops, Marketing Ops, Custom Agents) lives inside it.</p>
+            </div>
+            <div class="pattern-grid">
+                <div class="pattern-block">
+                    <div class="block-tag">Who this is for</div>
+                    <h4>The teams that benefit</h4>
+                    <p><strong>Operators</strong> who know the business but can't code. <strong>Function leaders</strong> tired of waiting for a backlog. <strong>AI engineering teams</strong> who want one shared layer instead of rebuilding context infra for every team's request. The Brain serves all three.</p>
+                </div>
+                <div class="pattern-block">
+                    <div class="block-tag">Layer pieces</div>
+                    <h4>What the Brain gives them</h4>
+                    <p><strong>Living Context Brain</strong> — resolved entities, curated knowledge, learned skills, and the trace of every run. <strong>Agent-Native Storage</strong> for the work agents do. <strong>Scanned Sandboxes</strong> for the small apps non-engineers build on top. <strong>Permissions</strong> so the same scope rules govern every agent and every app. <strong>Traces</strong> so the AI team sees what's running.</p>
+                </div>
+                <div class="pattern-block">
+                    <div class="block-tag">Outcome shape</div>
+                    <h4>What teams typically see</h4>
+                    <p>The backlog of "small internal tool" requests stops piling up. Non-engineers ship the 20% custom to your business that no SaaS will ever ship. Tribal knowledge stops dying in chat history — it gets captured and served back. Every new agent built on the Brain inherits everything earlier agents learned.</p>
+                </div>
+            </div>
         </div>
     </section>
 
