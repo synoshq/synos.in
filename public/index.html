@@ -261,6 +261,7 @@
         .teams-anchor-body { font-size: 14px; line-height: 1.7; color: var(--text-muted); margin-bottom: 16px; }
         .teams-anchor-link { font-size: 14px; font-weight: 600; color: var(--accent); }
         .teams-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        @media (min-width: 1024px) { .teams-grid { grid-template-columns: repeat(3, 1fr); } }
         .teams-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; }
         .teams-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--border-accent); }
         .teams-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px; }
@@ -680,48 +681,62 @@
         </div>
     </section>
 
-    <!-- WHAT TEAMS CAN BUILD -->
-    <section class="section section--alt" id="what-teams-build" data-section="what-teams-build">
+    <!-- WHAT TEAMS CAN BUILD — X-BRAIN TEMPLATES -->
+    <section class="section" id="what-teams-build" data-section="what-teams-build">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">What teams can build on Synos</p>
-                <h2>Examples of what teams <em>can</em> build on Synos.</h2>
-                <p class="section-sub">Patterns, not productized offerings. Synos ships the operating layer; your team (or your AI engineers) build the agents on top.</p>
+                <p class="section-label">A starting brain for every operating team</p>
+                <h2>Templated brains. Live in weeks, then tuned to you.</h2>
+                <p class="section-sub">Each is a template your team builds on SynOS and owns — pre-built for the functions your company runs, then compounding on your data and your corrections. Not productized SKUs; starting points you extend.</p>
             </div>
 
             <a href="/use-cases" class="teams-anchor reveal" data-cta="see-pattern-company-brain">
-                <div class="teams-anchor-tag">The umbrella pattern</div>
+                <div class="teams-anchor-tag">The flagship</div>
                 <h3>Company Brain</h3>
-                <p class="teams-anchor-lead">Enable non-engineers to build custom workflows and apps that understand how your company operates.</p>
-                <p class="teams-anchor-body">Cross-function brain compounding across finance, sales, marketing, ops, engineering. The customer Sales just signed is the same customer Finance is invoicing and Marketing is segmenting. Resolved once. Known everywhere. Start with one function — the brain compounds across the rest.</p>
+                <p class="teams-anchor-lead">One living context graph across every team — tribal knowledge captured once and reused everywhere.</p>
+                <p class="teams-anchor-body">The customer Sales just signed is the same one Finance is invoicing and Marketing is segmenting. Resolved once, known everywhere. Every function brain below sits inside it. Start with one function — the brain compounds across the rest.</p>
+                <span class="teams-anchor-link">Explore the brains →</span>
             </a>
 
             <div class="teams-grid reveal-stagger">
-                <a href="/use-cases/cloud-finops-agents" class="teams-card reveal" data-cta="see-pattern-cloud-finops">
-                    <div class="teams-tag">Cloud FinOps · Deep dive</div>
-                    <h3>Cloud FinOps Agents</h3>
-                    <p><strong>Cost Watchdog</strong>, <strong>Orphan Resource Cleaner</strong>, <strong>Provisioning Reviewer</strong>, <strong>Anomaly Investigator</strong> — across AWS, GCP, Azure.</p>
-                    <span class="teams-link">See the pattern →</span>
+                <a href="/use-cases#sales-brain" class="teams-card reveal" data-cta="see-pattern-sales-brain">
+                    <div class="teams-tag">Revenue · Pipeline</div>
+                    <h3>Sales Brain</h3>
+                    <p>Lead triage &amp; instant follow-up · AI battlecards &amp; objection handling · pipeline hygiene &amp; deal nudges · account &amp; competitor context.</p>
+                    <span class="teams-link">See the template →</span>
                 </a>
-                <a href="/use-cases#sales-ops-agents" class="teams-card reveal" data-cta="see-pattern-sales-ops">
-                    <div class="teams-tag">Sales Ops</div>
-                    <h3>Sales Ops Agents</h3>
-                    <p><strong>Pipeline Health Monitor</strong>, <strong>Stale Deal Flagger</strong>, <strong>Forecast Drafter</strong>, <strong>Deal Context Compiler</strong>.</p>
-                    <span class="teams-link">See the pattern →</span>
+                <a href="/use-cases#marketing-brain" class="teams-card reveal" data-cta="see-pattern-marketing-brain">
+                    <div class="teams-tag">Growth · Demand</div>
+                    <h3>Marketing Brain</h3>
+                    <p>Campaign planning &amp; decisioning · content &amp; creative drafting · channel &amp; ROAS digests · audience &amp; cohort context.</p>
+                    <span class="teams-link">See the template →</span>
                 </a>
-                <a href="/use-cases#marketing-ops-agents" class="teams-card reveal" data-cta="see-pattern-marketing-ops">
-                    <div class="teams-tag">Marketing Ops</div>
-                    <h3>Marketing Ops Agents</h3>
-                    <p><strong>Campaign Builder</strong>, <strong>Audience Segmenter</strong>, <strong>Creative Reviewer</strong>, <strong>Spend Optimizer</strong> — across Meta, Google, Shopify.</p>
-                    <span class="teams-link">See the pattern →</span>
+                <a href="/use-cases/cloud-finops-agents" class="teams-card reveal" data-cta="see-pattern-finops-brain">
+                    <div class="teams-tag">Cloud spend · FP&amp;A · Deep dive</div>
+                    <h3>FinOps Brain</h3>
+                    <p>Budget &amp; spend pacing · cost-anomaly investigation · rightsizing &amp; orphan-resource review · margin &amp; unit-economics watch.</p>
+                    <span class="teams-link">See the template →</span>
+                </a>
+                <a href="/use-cases#internal-ops-brain" class="teams-card reveal" data-cta="see-pattern-ops-brain">
+                    <div class="teams-tag">Operations · SOPs</div>
+                    <h3>Internal Ops Brain</h3>
+                    <p>Weekly ops digests &amp; exceptions · SOP capture &amp; playbook lookup · vendor / supply / fleet monitoring · incident handling.</p>
+                    <span class="teams-link">See the template →</span>
+                </a>
+                <a href="/use-cases#support-cx-brain" class="teams-card reveal" data-cta="see-pattern-cx-brain">
+                    <div class="teams-tag">Customer · Retention</div>
+                    <h3>Support / CX Brain</h3>
+                    <p>Ticket triage &amp; drafted replies · voice-of-customer themes · churn &amp; CSAT signal watch.</p>
+                    <span class="teams-link">See the template →</span>
                 </a>
                 <a href="/use-cases#custom-agents" class="teams-card reveal" data-cta="see-pattern-custom-agents">
-                    <div class="teams-tag">Build your own</div>
-                    <h3>Custom AI Agents</h3>
-                    <p>Your AI product, internal copilot, or unusual workflow. Use the context graph, skill registry, sandboxes, trace loop.</p>
-                    <span class="teams-link">See the pattern →</span>
+                    <div class="teams-tag">AI builders &amp; agencies</div>
+                    <h3>Custom AI agents &amp; products</h3>
+                    <p>Build on the same rails for your clients or your product. Own the brain, skills, and deploy — ship the custom 20% without owning the infra.</p>
+                    <span class="teams-link">See the template →</span>
                 </a>
             </div>
+            <p class="reveal" style="text-align:center;margin-top:32px;font-size:14px;color:var(--text-muted);font-style:italic;">Templates are the starting point, not the ceiling. Each ships day-one, then compounds until it operates the way you do.</p>
         </div>
     </section>
 
