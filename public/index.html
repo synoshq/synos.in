@@ -145,14 +145,18 @@
         .hero-clients { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-muted); margin-bottom: 14px; }
 
         /* ROADBLOCKS */
-        .roadblocks { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 32px; }
-        .roadblock { padding: 24px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; border-left: 3px solid var(--accent); }
-        .roadblock-num { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 8px; }
-        .roadblock h3 { font-size: 14px; line-height: 1.4; margin-bottom: 6px; }
-        .roadblock p { font-size: 13px; line-height: 1.55; color: var(--text-muted); margin: 0; }
-        .roadblock-cta { margin-top: 32px; text-align: center; }
-        .roadblock-cta a { color: var(--accent); font-weight: 600; font-size: 15px; text-decoration: none; }
-        .roadblock-cta a:hover { text-decoration: underline; }
+        /* Six-walls D3 diagram (scoped under .d3-six-walls to avoid clashing with .card/.section/.wall) */
+        .d3-six-walls { width: 100%; max-width: 1000px; margin: 32px auto 0; }
+        .d3-six-walls .d3-walls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .d3-six-walls .d3-wall { position: relative; background: var(--surface); border: 1px solid rgba(26,26,26,0.08); border-left: 3px solid var(--amber); border-radius: 14px; padding: 20px 18px 18px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; }
+        .d3-six-walls .d3-num { font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+        .d3-six-walls .d3-name { font-size: 15px; font-weight: 700; letter-spacing: -0.1px; line-height: 1.25; color: var(--text); margin-bottom: 8px; }
+        .d3-six-walls .d3-desc { font-size: 12.5px; line-height: 1.5; color: var(--text-muted); margin-bottom: 14px; }
+        .d3-six-walls .d3-quote { font-family: var(--font-display); font-style: italic; font-size: 18px; line-height: 1.35; color: var(--text); margin-bottom: 16px; }
+        .d3-six-walls .d3-tag { margin-top: auto; align-self: flex-start; font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.22); border-radius: 999px; padding: 5px 12px; }
+        @media (max-width: 900px) { .d3-six-walls .d3-walls { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .d3-six-walls .d3-walls { grid-template-columns: 1fr; } .d3-six-walls .d3-quote { font-size: 17px; } }
+        .walls-bridge { text-align: center; margin-top: 32px; font-family: var(--font-display); font-size: 20px; color: var(--text); }
 
         /* WHAT'S INSIDE THE OPERATING LAYER */
         .inside-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -222,9 +226,6 @@
         .footer-copy { font-size: 12px; color: var(--text-dim); margin-top: 20px; text-align: center; }
 
         /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .roadblocks { grid-template-columns: repeat(2, 1fr); }
-        }
         @media (max-width: 900px) {
             .stack-claims, .grid-3, .grid-2 { grid-template-columns: 1fr; }
             .teams-grid { grid-template-columns: 1fr; }
@@ -233,7 +234,6 @@
         @media (max-width: 768px) {
             .nav { background: rgba(250,250,248,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
             .nav-links { display: none; }
-            .roadblocks { grid-template-columns: 1fr; }
             .inside-anchor { padding: 32px 24px; }
             .inside-anchor h3 { font-size: 26px; }
             .teams-anchor { padding: 32px 24px; }
@@ -301,44 +301,70 @@
         <p class="hero-trust reveal">Self-hosted. Your data stays yours. Model + harness agnostic.</p>
     </section>
 
-    <!-- ROADBLOCKS -->
-    <section class="section section--alt" data-section="roadblocks">
+    <!-- WHY A LAYER — SIX WALLS (problem) -->
+    <section class="section section--alt" data-section="walls">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">Five walls every AI transformation hits</p>
-                <h2>Agent Harnesses make individuals faster.<br>Shared compounding across the team is the wall.</h2>
-                <p class="section-sub">Your AI adopters are improving their efficiency using Agent Harnesses. They aren't able to achieve shared compounding across the team. Five walls keep showing up — and one operating layer answers all of them.</p>
+                <p class="section-label">Why a layer</p>
+                <h2>Six walls between a clever demo and real company value.</h2>
+                <p class="section-sub">It's not the model. It's everything the model needs around it to be safe, shared, and worth trusting.</p>
             </div>
-            <div class="roadblocks reveal-stagger">
-                <div class="roadblock reveal">
-                    <div class="roadblock-num">01</div>
-                    <h3>Sharing across the team is blocked</h3>
-                    <p>Your team is building skills, workflows, apps — but sharing them safely across the team is blocked. The 10th teammate rebuilds from scratch.</p>
-                </div>
-                <div class="roadblock reveal">
-                    <div class="roadblock-num">02</div>
-                    <h3>Data context is too hard to curate</h3>
-                    <p>Spread across SaaS apps, warehouses, docs. No shared graph any agent can query. Every team rebuilds extraction from scratch.</p>
-                </div>
-                <div class="roadblock reveal">
-                    <div class="roadblock-num">03</div>
-                    <h3>Safe internal access</h3>
-                    <p>Agent connections to CRM, warehouse, internal docs need engineering for every request. Non-engineers blocked entirely.</p>
-                </div>
-                <div class="roadblock reveal">
-                    <div class="roadblock-num">04</div>
-                    <h3>Skill &amp; tool analytics</h3>
-                    <p>Your AI team can't see what skills run, who uses them, what they cost, or how often they hallucinate.</p>
-                </div>
-                <div class="roadblock reveal">
-                    <div class="roadblock-num">05</div>
-                    <h3>No secure sandboxes for agents</h3>
-                    <p>No secure, scanned sandboxes for the agents and apps your team is building. Engineering blocks "let an LLM touch prod."</p>
+            <div class="reveal">
+                <div class="d3-six-walls">
+                    <div class="d3-walls">
+
+                        <div class="d3-wall">
+                            <div class="d3-num">01</div>
+                            <div class="d3-name">No shared context</div>
+                            <div class="d3-desc">AI forgets your business every session; corrections die in chat history.</div>
+                            <div class="d3-quote">&ldquo;Why do I re-explain our hubs, SLAs and last week&rsquo;s fix every single time?&rdquo;</div>
+                            <div class="d3-tag">&rarr; Context Brain</div>
+                        </div>
+
+                        <div class="d3-wall">
+                            <div class="d3-num">02</div>
+                            <div class="d3-name">No safe access to systems</div>
+                            <div class="d3-desc">Reaching real data means raw keys on a laptop — no permissions, no audit.</div>
+                            <div class="d3-quote">&ldquo;How do I even get to that warehouse table — safely?&rdquo;</div>
+                            <div class="d3-tag">&rarr; Access Control &amp; Audit</div>
+                        </div>
+
+                        <div class="d3-wall">
+                            <div class="d3-num">03</div>
+                            <div class="d3-name">Nowhere governed to deploy</div>
+                            <div class="d3-desc">Apps and their data ship to personal accounts. No sandbox, no kill-switch.</div>
+                            <div class="d3-quote">&ldquo;Where does this app — and its data — actually live?&rdquo;</div>
+                            <div class="d3-tag">&rarr; Safe Build &amp; Deploy</div>
+                        </div>
+
+                        <div class="d3-wall">
+                            <div class="d3-num">04</div>
+                            <div class="d3-name">Skills don&rsquo;t compound</div>
+                            <div class="d3-desc">No shared library. Everyone rebuilds the same skill; nothing is reused or scheduled.</div>
+                            <div class="d3-quote">&ldquo;Sarah built this skill last month — why am I starting from scratch?&rdquo;</div>
+                            <div class="d3-tag">&rarr; Compounding Skills</div>
+                        </div>
+
+                        <div class="d3-wall">
+                            <div class="d3-num">05</div>
+                            <div class="d3-name">Engineering gets overloaded</div>
+                            <div class="d3-desc">Every access request, guardrail and deploy routes through eng — they become the bottleneck.</div>
+                            <div class="d3-quote">&ldquo;Why is every team&rsquo;s automation now a ticket in my backlog?&rdquo;</div>
+                            <div class="d3-tag">&rarr; Set the rails once</div>
+                        </div>
+
+                        <div class="d3-wall">
+                            <div class="d3-num">06</div>
+                            <div class="d3-name">No learning, no visibility</div>
+                            <div class="d3-desc">Outputs lost in sheets and DMs. Who ran what, what&rsquo;s working — invisible.</div>
+                            <div class="d3-quote">&ldquo;Did that even help? And is anyone else getting value from it?&rdquo;</div>
+                            <div class="d3-tag">&rarr; Self-Learning Loop</div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <div class="roadblock-cta reveal">
-                <a href="/scorecard" data-cta="roadblock-scorecard">Take the 5-question scorecard →</a>
-            </div>
+            <p class="walls-bridge reveal">Six walls. One layer that answers all six. ↓</p>
         </div>
     </section>
 
