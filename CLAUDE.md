@@ -14,59 +14,65 @@
   - `public/blog.html` — links to Substack posts
   - `public/product.html`, `public/about.html`
   - `public/scorecard.html` — interactive 5-question diagnostic
+  - `public/early-access.html` — primary CTA waitlist (Web3Forms email capture)
 - Use-case sub-pages live in `public/use-cases/<slug>.html`
 - Images in `public/img/` and `public/`.
 
 ## Canonical Slugs
 
-Use-case URL slugs (kebab-case, lowercase):
+Home X-Brain cards link to `/use-cases` anchors (kebab-case, lowercase):
 
-- `cloud-finops-agents` — only deep sub-page at launch (`public/use-cases/cloud-finops-agents.html`)
-- `sales-ops-agents` — anchor blurb on `/use-cases`
-- `marketing-ops-agents` — anchor blurb on `/use-cases`
-- `custom-agents` — anchor blurb on `/use-cases`
+- `/use-cases` — Company Brain (flagship) → top of grid, no `#company-brain` anchor
+- `/use-cases#sales-brain` — Sales Brain
+- `/use-cases#marketing-brain` — Marketing Brain
+- `/use-cases#internal-ops-brain` — Internal Ops Brain
+- `/use-cases#support-cx-brain` — Support / CX Brain
+- `/use-cases#custom-agents` — Custom AI agents & products
+- `/use-cases/cloud-finops-agents` — FinOps Brain → only deep sub-page at launch (`public/use-cases/cloud-finops-agents.html`)
 
-Display labels (what visible copy says):
-
-- "Operating Layer for Cloud FinOps Agents"
-- "Operating Layer for Sales Ops Agents"
-- "Operating Layer for Marketing Ops Agents"
-- "Operating Layer for Custom AI Agents"
-
-Landing-page use-case grid (v6.1): **Company Brain** is the umbrella anchor card (full-width, top). The 4 function-level patterns (Cloud FinOps, Sales Ops, Marketing Ops, Custom AI Agents) sit below as smaller siblings. Company Brain card links to `/use-cases` (top of grid), not a `#company-brain` anchor (that anchor does not exist).
+**PENDING:** the `#sales-brain` / `#marketing-brain` / `#internal-ops-brain` / `#support-cx-brain` / `#custom-agents` anchors are built in a FOLLOW-ON use-cases plan — the home cards already point at them, but the targets aren't in `/use-cases` yet. Wire them up there before launch.
 
 ## Use-Case Framing Convention
 
-- Visible copy: "**What teams can build**" / "**Patterns**" — never "use-cases" in the consumer sense. URL slug `/use-cases` stays (don't break SEO + outreach links).
-- Each function-level pattern: **"Operating Layer for [function] Agents"** — show the agents customers would run + why those agents need a layer underneath (context graph, skills, sandboxes, trace loop). The layer is the product; agents are what the customer builds and runs.
-- Company Brain: framed as the **umbrella pattern** — "enable non-engineers to build custom workflows and apps that understand how your company operates." Function brains are instances of this pattern.
-- No live customer deployments are named anywhere. Anonymized outcome shapes only (e.g., "indicative ranges from engagements in progress"). No firm savings figures presented as Synos-delivered.
+`[X] Brain` is the canonical TEMPLATE-pattern naming on the home page:
 
-NEVER claim Synos ships a productized agent. Use:
-- ✅ "The agents a FinOps team runs — and the operating layer they need."
-- ✅ "What teams can build on Synos."
-- ❌ "Our Cloud FinOps Brain product."
+- **Company Brain** (flagship / umbrella — full-width anchor card; every function brain sits inside it)
+- **Sales Brain**, **Marketing Brain**, **FinOps Brain**, **Internal Ops Brain**, **Support / CX Brain**
+- **Custom AI agents & products** (AI builders & agencies — build on the same rails)
+
+Frame each as **"a template your team builds on SynOS and OWNS,"** tuned over time on your data and corrections — a starting point you extend, not a ceiling. NOT a productized SKU.
+
+- Company Brain: the umbrella pattern — one living context graph across every team; function brains are instances inside it. Card links to `/use-cases`.
+- No live customer deployments named anywhere. Anonymized outcome shapes only. No firm savings figures presented as Synos-delivered.
+
+KEEP the ban on productized SKUs. Use:
+- ✅ "Sales Brain — a template your team builds and owns on SynOS."
+- ✅ "Templated brains, tuned to how you operate."
+- ✅ "What teams can build on SynOS."
 - ❌ "Buy Sales Brain."
+- ❌ "Our Sales Brain product."
 - ❌ "Use cases" as a consumer noun (URL slug only).
 
-## Landing Page Architecture (v6.1)
+## Landing Page Architecture (vNext)
 
-Section order:
-1. Hero — kicker, H1, single subhead, sub-paragraph, CTAs, trust line
-2. Roadblocks — "Five walls" opener (Agent Harnesses make individuals faster; shared compounding is the wall) + 5 walls + scorecard CTA
-3. **"What's inside the operating layer"** — Living Context Brain as full-width anchor card (first), followed by 4 sibling cards (Agent-Native Storage · Secure Scanned Sandboxes · Tool Access & Permissions · Skill & Tool Traces). Self-Learning Loop is folded into the brain card as a property, not a sibling.
-4. Works with your stack
-5. **"What teams can build"** — Company Brain umbrella card (full-width, first), then 4 function-pattern siblings
-6. Bottom CTA — Book demo · Scorecard · Substack
+Section order (each `<section>` carries a `data-section` name, shown in parens):
 
-**No "Living Company Brain" standalone meta-section** (folded into the Company Brain umbrella card).
-**No blog cards section** on landing (Blog page is enough).
-**No memory-type taxonomy** (Skill / Knowledge / Entity / Trace) on landing — defer to product page when revamped.
+1. **Hero** (`hero`) — eyebrow "The Agent-Native Operating Layer", H1 "The infrastructure to unblock your agentic transformation.", pillar subhead (Context Brain / skills / agent-native storage / deploy / access control), focus strip, clients line ("For companies, products, and agencies going AI-native."), trust line ("Self-hosted. Your data stays yours. Model + harness agnostic."). PRIMARY CTA = "Request early access" (`/early-access`); secondary = "Book a 30-min demo".
+2. **Six walls — problem** (`walls`) — section-label "Why a layer"; H2 "Six walls between a clever demo and real company value."; inlines the D3 six-walls diagram; bridge line "Six walls. One layer that answers all six. ↓".
+3. **Six pillars — answer** (`pillars`) — section-label "The operating layer"; H2 "Each wall, closed by one piece of the layer."; inlines the D1 architecture diagram; 6 pillar cards, each tagged with the wall it closes (`Closes wall 0N`). **Context Brain is the anchor/centre** (full-width brain card).
+4. **Focus on impact / vs-alternatives** (`focus`) — section-label "Focus on impact, not plumbing"; H2 "Build the 20% that's you. We ship the infra."; folds in "Buy it / Own it" cards + the works-with-your-stack claims (BYOA · Models · Connectors · Deploy) + logos as a sub-row.
+5. **X-Brain templates** (`what-teams-build`) — section `id="what-teams-build"`; Company Brain flagship anchor card + 6 brain cards (Sales / Marketing / FinOps / Internal Ops / Support-CX / Custom AI agents & products).
+6. **Bottom CTA** (`bottom-cta`) — early-access primary + demo secondary; scorecard + Substack as tertiary line below.
+
+Notes:
+- **"Five walls" → "Six walls"** (problem framing is now six walls, six pillars).
+- **Trust-ladder is NOT a home section.**
+- The old **"What's inside the operating layer" / "Works with your stack" / "Roadblocks"** sections are replaced by the structure above (walls → pillars → focus).
 
 ## Landing Section Anchors
 
-- `#what-teams-build` — used by hero CTA "What teams build →"
-- `#use-cases` — NOT used currently; the section's anchor is `#what-teams-build`. If reintroduced, ensure `id` matches.
+- `#what-teams-build` — the X-Brain templates section (`<section id="what-teams-build" data-section="what-teams-build">`).
+- All other sections are addressed via `data-section` only (no `id`), used for GA `section_view` tracking.
 
 ## Vocabulary Guardrails
 
@@ -75,7 +81,7 @@ Block list (verification grep below):
 - `shared brain`, `hive mind`
 - `AI OS`, `agent OS` — allow only inside "Agent-Native Operating Layer" / "Operating Layer"
 - `solo founder`
-- bare `memory` as a noun-phrase for the brain (use "context", "context graph", "knowledge layer" instead)
+- bare `memory` as a noun-phrase for the brain (use "context", "context graph", "knowledge layer" instead). Wall 1 is **"No shared context"** — never "no memory" / "memory loss".
 
 Keep / preferred terms:
 - BYOA / "Bring your own agent"
@@ -101,27 +107,39 @@ grep -rEin --include='*.html' \
 
 ## Forms / Lead Capture
 
-- Primary CTA = Google Calendar booking link: `https://calendar.app.google/5TydwUfWCfrxn5tj7`
-- Secondary CTA = `/scorecard` (5-question diagnostic, captures email via Web3Forms on completion)
-- Tertiary CTA = Substack subscribe: `https://anoopjawahar.substack.com`
-- Web3Forms access key is a public-by-design identifier; it lives inline in `public/scorecard.html`. Abuse is rate-limited server-side by Web3Forms.
+- **PRIMARY CTA = `/early-access`** — Web3Forms email waitlist (`public/early-access.html`). Uses the **SAME public Web3Forms access key as scorecard.html: `6cdc9753-8c20-49de-9334-276e842a5f82`**.
+- Secondary CTA = Google Calendar booking link (demoted): `https://calendar.app.google/5TydwUfWCfrxn5tj7`
+- Tertiary = `/scorecard` (5-question diagnostic, captures email via Web3Forms on completion) + Substack subscribe: `https://anoopjawahar.substack.com`
+- Web3Forms access key is a public-by-design identifier; it lives inline in `public/early-access.html` and `public/scorecard.html`. Abuse is rate-limited server-side by Web3Forms.
 
 ## Analytics
 
 GA4 measurement ID: `G-MXVRX5VMJR`
 
-Event names:
-- `cta-book-demo`
-- `cta-scorecard-start`, `cta-scorecard-submit`
-- `cta-waitlist-substack`
-- `see-usecase-<slug>` (e.g., `see-usecase-cloud-finops-agents`)
+Tracking model: `[data-cta]` clicks fire a `cta_click` event with `cta_location` = the `data-cta` value; `[data-section]` fires `section_view` with `section_name`. The early-access form also fires a bare `early_access_submit` event on submit.
+
+`data-cta` values in use:
+- Early access: `cta-early-access-hero`, `cta-early-access-nav`, `cta-early-access-bottom`, `cta-early-access-submit` (+ bare `early_access_submit` GA event)
+- Book demo: `cta-book-demo-hero`, `cta-book-demo-bottom`
+- X-Brain cards: `see-pattern-company-brain`, `see-pattern-sales-brain`, `see-pattern-marketing-brain`, `see-pattern-finops-brain`, `see-pattern-ops-brain`, `see-pattern-cx-brain`, `see-pattern-custom-agents`
+- Tertiary: `bottom-scorecard`, `bottom-substack`
 
 ## Design Tokens
 
 - Display font: Instrument Serif
 - Body font: DM Sans
 - Mono: JetBrains Mono
+- Palette: indigo (`--accent` #6366F1) → teal (`--teal` #0D9488) gradient
 - Inlined CSS in each page's `<style>` block (no shared stylesheet — keeps deploys simple)
+
+## Home Diagrams (inlined)
+
+Two diagrams are inlined into `public/index.html` (built indigo→teal, Instrument Serif / DM Sans / JetBrains Mono):
+
+- **D1 — home architecture** (in the `pillars` section): harness row → MCP band → brain-centered 6-pillar Operating Layer core → guardrails strip → systems-of-record row. Scoped with `.d1` / `.d1-*` classes to avoid clashing with `.card` / `.section`.
+- **D3 — six-walls grid** (in the `walls` section): 3×2 grid of the six walls, each → the pillar that closes it. Scoped with `.d3-six-walls` / `.d3-*` classes.
+
+Standalone sources kept in `docs/diagrams/` (`d1-home-architecture.html`, `d3-six-walls.html`) and inlined into `index.html` with the scoped class prefixes above. Edit the source + re-inline (or edit in place) — keep the two in sync.
 
 ## Git
 - Repo: github.com/synoshq/synos.in
