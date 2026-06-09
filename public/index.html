@@ -158,6 +158,73 @@
         @media (max-width: 600px) { .d3-six-walls .d3-walls { grid-template-columns: 1fr; } .d3-six-walls .d3-quote { font-size: 17px; } }
         .walls-bridge { text-align: center; margin-top: 32px; font-family: var(--font-display); font-size: 20px; color: var(--text); }
 
+        /* D1 Home Architecture diagram (scoped under .d1 / d1-prefixed classes to avoid clashing with card/section/inside/d3 styles) */
+        .d1 { width: 100%; max-width: 1000px; margin: 0 auto; --d1-grad: linear-gradient(135deg, var(--accent), var(--teal)); --d1-hairline: rgba(26,26,26,0.08); --d1-card-shadow: var(--shadow-md); }
+        .d1 .d1-eyebrow { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.8px; color: var(--text-muted); }
+        /* harness row */
+        .d1 .d1-harness { text-align: center; }
+        .d1 .d1-harness .d1-eyebrow { color: var(--teal); margin-bottom: 12px; display: block; }
+        .d1 .d1-harness-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+        .d1 .d1-chip { background: var(--surface); border: 1px solid var(--d1-hairline); border-radius: 12px; padding: 12px 8px; box-shadow: var(--d1-card-shadow); display: flex; flex-direction: column; align-items: center; gap: 7px; min-height: 74px; justify-content: center; }
+        .d1 .d1-chip svg { color: var(--teal); }
+        .d1 .d1-chip .d1-nm { font-size: 11px; font-weight: 600; line-height: 1.2; color: var(--text); }
+        /* connector band */
+        .d1 .d1-connector { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 14px 0; }
+        .d1 .d1-connector .d1-rail { width: 1.5px; height: 18px; background: var(--d1-grad); opacity: 0.5; }
+        .d1 .d1-connector .d1-mcp { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 1.2px; color: var(--accent); background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.22); border-radius: 999px; padding: 6px 18px; text-transform: uppercase; }
+        /* operating layer core */
+        .d1 .d1-core { position: relative; border-radius: 18px; padding: 2px; background: var(--d1-grad); box-shadow: 0 10px 34px rgba(99,102,241,0.16); }
+        .d1 .d1-core-inner { background: var(--surface); border-radius: 16px; padding: 22px 22px 20px; }
+        .d1 .d1-core-head { text-align: center; margin-bottom: 18px; }
+        .d1 .d1-core-head .d1-title { font-family: var(--font-display); font-size: 27px; line-height: 1.1; color: var(--text); }
+        .d1 .d1-core-head .d1-tag { display: inline-block; margin-top: 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--d1-hairline); border-radius: 999px; padding: 4px 12px; }
+        .d1 .d1-pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-areas: "brain brain skills" "brain brain storage" "deploy access loop"; gap: 12px; }
+        .d1 .d1-pillar { background: var(--surface); border: 1px solid var(--d1-hairline); border-radius: 14px; padding: 14px 14px 13px; box-shadow: var(--d1-card-shadow); display: flex; flex-direction: column; }
+        .d1 .d1-pillar .d1-ico { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; background: rgba(99,102,241,0.08); color: var(--accent); }
+        .d1 .d1-pillar .d1-name { font-size: 13px; font-weight: 700; letter-spacing: -0.1px; color: var(--text); margin-bottom: 4px; }
+        .d1 .d1-pillar .d1-desc { font-size: 11.5px; line-height: 1.45; color: var(--text-muted); }
+        .d1 .d1-pillar.d1-brain { grid-area: brain; background: var(--d1-grad); border: none; color: #fff; justify-content: center; align-items: flex-start; padding: 24px 22px; box-shadow: 0 8px 26px rgba(13,148,136,0.22); }
+        .d1 .d1-pillar.d1-brain .d1-ico { width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,0.18); color: #fff; margin-bottom: 14px; }
+        .d1 .d1-pillar.d1-brain .d1-ico svg { width: 30px; height: 30px; }
+        .d1 .d1-pillar.d1-brain .d1-kicker { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.82); margin-bottom: 6px; }
+        .d1 .d1-pillar.d1-brain .d1-name { font-family: var(--font-display); font-size: 30px; font-weight: 400; line-height: 1.05; color: #fff; margin-bottom: 8px; }
+        .d1 .d1-pillar.d1-brain .d1-desc { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.92); max-width: 34ch; }
+        .d1 .d1-pillar.d1-skills { grid-area: skills; }
+        .d1 .d1-pillar.d1-storage { grid-area: storage; }
+        .d1 .d1-pillar.d1-deploy { grid-area: deploy; }
+        .d1 .d1-pillar.d1-access { grid-area: access; }
+        .d1 .d1-pillar.d1-loop { grid-area: loop; }
+        .d1 .d1-pillar.d1-skills .d1-ico, .d1 .d1-pillar.d1-loop .d1-ico { background: rgba(13,148,136,0.10); color: var(--teal); }
+        /* guardrails strip */
+        .d1 .d1-guardrails { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; background: rgba(99,102,241,0.05); border: 1px dashed rgba(99,102,241,0.30); border-radius: 12px; padding: 10px 14px; }
+        .d1 .d1-guardrails .d1-gh { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
+        .d1 .d1-guardrails .d1-gh svg { color: var(--accent); }
+        .d1 .d1-guardrails .d1-gpill { font-family: var(--font-mono); font-size: 10.5px; color: var(--text); background: var(--surface); border: 1px solid rgba(99,102,241,0.22); border-radius: 999px; padding: 4px 11px; }
+        /* systems of record */
+        .d1 .d1-sor { margin-top: 18px; text-align: center; }
+        .d1 .d1-sor .d1-eyebrow { color: var(--amber); margin-bottom: 12px; display: block; }
+        .d1 .d1-sor-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+        .d1 .d1-sor-chip { background: var(--surface); border: 1px solid rgba(217,119,6,0.28); border-radius: 12px; padding: 12px 8px; box-shadow: var(--d1-card-shadow); display: flex; flex-direction: column; align-items: center; gap: 7px; min-height: 70px; justify-content: center; }
+        .d1 .d1-sor-chip svg { color: var(--amber); }
+        .d1 .d1-sor-chip .d1-nm { font-size: 10.5px; font-weight: 600; line-height: 1.25; color: var(--text); }
+        /* footer line */
+        .d1 .d1-foot { text-align: center; margin-top: 22px; }
+        .d1 .d1-foot p { font-family: var(--font-display); font-style: italic; font-size: 19px; line-height: 1.4; color: var(--text); }
+        .d1 .d1-foot .d1-grad-word { background: var(--d1-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        @media (max-width: 768px) {
+            .d1 .d1-harness-grid { grid-template-columns: repeat(2, 1fr); }
+            .d1 .d1-sor-grid { grid-template-columns: repeat(2, 1fr); }
+            .d1 .d1-pillar-grid { grid-template-columns: 1fr; grid-template-areas: "brain" "skills" "storage" "deploy" "access" "loop"; }
+            .d1 .d1-core-head .d1-title { font-size: 23px; }
+            .d1 .d1-pillar.d1-brain .d1-name { font-size: 26px; }
+            .d1 .d1-pillar.d1-brain { align-items: center; text-align: center; }
+            .d1 .d1-pillar.d1-brain .d1-desc { max-width: none; }
+            .d1 .d1-foot p { font-size: 17px; }
+        }
+        @media (max-width: 420px) {
+            .d1 .d1-harness-grid, .d1 .d1-sor-grid { grid-template-columns: 1fr; }
+        }
+
         /* WHAT'S INSIDE THE OPERATING LAYER */
         .inside-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .inside-anchor { grid-column: 1 / -1; background: linear-gradient(180deg, var(--surface) 0%, var(--accent-bg) 280%); border: 1px solid var(--border-accent); border-radius: 18px; padding: 40px 36px; position: relative; transition: box-shadow 0.3s, transform 0.3s; }
@@ -368,44 +435,194 @@
         </div>
     </section>
 
-    <!-- WHAT'S INSIDE THE OPERATING LAYER -->
-    <section class="section" data-section="inside">
+    <!-- THE SIX PILLARS (answer) -->
+    <section class="section" data-section="pillars">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">What's inside the operating layer</p>
-                <h2>A Living Context Brain. The agent-native pieces around it.</h2>
-                <p class="section-sub">Sits between your systems of record, your agent harness, and your team. The brain is the anchor. The pieces around it are what make agents safe to run in production.</p>
+                <p class="section-label">The operating layer</p>
+                <h2>Each wall, closed by one piece of the layer.</h2>
+                <p class="section-sub">Six pieces. The self-improving Context Brain at the centre; the rest make agents safe, shared, and compounding in production.</p>
             </div>
-            <div class="inside-grid reveal-stagger" role="group" aria-label="Operating layer architecture">
+            <div class="reveal" style="margin-bottom:48px;">
+                <div class="d1">
+                    <!-- 1. HARNESS ROW -->
+                    <div class="d1-harness">
+                        <span class="d1-eyebrow">Bring your own harness — all speak MCP</span>
+                        <div class="d1-harness-grid">
+                            <div class="d1-chip">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
+                                <span class="d1-nm">Claude Code</span>
+                            </div>
+                            <div class="d1-chip">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg>
+                                <span class="d1-nm">Codex</span>
+                            </div>
+                            <div class="d1-chip">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l9 3-3.5 2L7 12.5 4 4z"/><path d="M9.5 9.5l8 8"/></svg>
+                                <span class="d1-nm">Cursor</span>
+                            </div>
+                            <div class="d1-chip">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-12 7.7L3 21l1.8-6A8.5 8.5 0 1121 11.5z"/></svg>
+                                <span class="d1-nm">ChatGPT</span>
+                            </div>
+                            <div class="d1-chip">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/></svg>
+                                <span class="d1-nm">Slack / WhatsApp</span>
+                            </div>
+                            <div class="d1-chip">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M9 8V6a3 3 0 016 0v2M9.5 13.5h.01M14.5 13.5h.01"/></svg>
+                                <span class="d1-nm">In-house agents</span>
+                            </div>
+                            <div class="d1-chip">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M7 14h6"/></svg>
+                                <span class="d1-nm">SynOS Apps &amp; Workers</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. CONNECTOR BAND -->
+                    <div class="d1-connector">
+                        <div class="d1-rail"></div>
+                        <div class="d1-mcp">MCP · one interface · any model</div>
+                        <div class="d1-rail"></div>
+                    </div>
+
+                    <!-- 3. OPERATING LAYER -->
+                    <div class="d1-core">
+                        <div class="d1-core-inner">
+                            <div class="d1-core-head">
+                                <div class="d1-title">The Operating Layer</div>
+                                <span class="d1-tag">Self-hosted · governed · model- &amp; tool-agnostic</span>
+                            </div>
+
+                            <div class="d1-pillar-grid">
+                                <!-- FEATURED BRAIN -->
+                                <div class="d1-pillar d1-brain">
+                                    <div class="d1-ico">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5.2A3 3 0 006 16v.5A2.5 2.5 0 008.5 19 2.5 2.5 0 0011 16.5V5a2 2 0 00-2-2z"/><path d="M15 3a3 3 0 013 3 3 3 0 012 5.2A3 3 0 0118 16v.5a2.5 2.5 0 01-2.5 2.5A2.5 2.5 0 0113 16.5V5a2 2 0 012-2z"/><path d="M11 9h2M9 12.5h2M13 12.5h2"/></svg>
+                                    </div>
+                                    <div class="d1-kicker">Self-improving · at the center</div>
+                                    <div class="d1-name">Context Brain</div>
+                                    <div class="d1-desc">A living knowledge graph across every source — batch + streaming, continuously curated, cited. Every use makes it smarter.</div>
+                                </div>
+
+                                <!-- SKILLS -->
+                                <div class="d1-pillar d1-skills">
+                                    <div class="d1-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 012-2h11l3 3v13a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+                                    <div class="d1-name">Compounding Skills</div>
+                                    <div class="d1-desc">Reusable workflows in plain English. Install once, run anywhere, fork across teams.</div>
+                                </div>
+
+                                <!-- STORAGE -->
+                                <div class="d1-pillar d1-storage">
+                                    <div class="d1-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+                                    <div class="d1-name">Agent-Native Storage</div>
+                                    <div class="d1-desc">A system of record agents write to — schema-enforced, project-scoped, queryable.</div>
+                                </div>
+
+                                <!-- DEPLOY -->
+                                <div class="d1-pillar d1-deploy">
+                                    <div class="d1-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4-8 4 8M7 11h4"/><path d="M14 5l5 5-9 9H5v-5l9-9z"/></svg></div>
+                                    <div class="d1-name">Safe Build &amp; Deploy</div>
+                                    <div class="d1-desc">Sandboxed apps, scanned before deploy. Shipped on team infra, never personal accounts.</div>
+                                </div>
+
+                                <!-- ACCESS -->
+                                <div class="d1-pillar d1-access">
+                                    <div class="d1-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                                    <div class="d1-name">Access Control &amp; Audit</div>
+                                    <div class="d1-desc">One governed door to your systems — gated by role, audited on every call.</div>
+                                </div>
+
+                                <!-- LOOP -->
+                                <div class="d1-pillar d1-loop">
+                                    <div class="d1-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-2.6-6.3"/><path d="M21 4v5h-5"/><path d="M3 21l3-1 1-3"/></svg></div>
+                                    <div class="d1-name">Self-Learning Loop &amp; Traces</div>
+                                    <div class="d1-desc">Every run traced; every correction reviewed and promoted. Brain and workers improve themselves.</div>
+                                </div>
+                            </div>
+
+                            <!-- 4. GUARDRAILS STRIP -->
+                            <div class="d1-guardrails">
+                                <span class="d1-gh"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z"/></svg>Guardrails</span>
+                                <span class="d1-gpill">RBAC</span>
+                                <span class="d1-gpill">audit</span>
+                                <span class="d1-gpill">sandbox scan</span>
+                                <span class="d1-gpill">egress proxy</span>
+                                <span class="d1-gpill">kill-switch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. SYSTEMS OF RECORD -->
+                    <div class="d1-sor">
+                        <span class="d1-eyebrow">Connected to your existing systems — not replaced</span>
+                        <div class="d1-sor-grid">
+                            <div class="d1-sor-chip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+                                <span class="d1-nm">Warehouse / BigQuery</span>
+                            </div>
+                            <div class="d1-sor-chip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 00.9-8.9A6 6 0 006.3 9.5 4 4 0 007 17.9"/></svg>
+                                <span class="d1-nm">CRM &amp; SaaS</span>
+                            </div>
+                            <div class="d1-sor-chip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+                                <span class="d1-nm">Docs / Drive / Notion</span>
+                            </div>
+                            <div class="d1-sor-chip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/><path d="M8 9h8M8 12h5"/></svg>
+                                <span class="d1-nm">Slack / Email / WhatsApp</span>
+                            </div>
+                            <div class="d1-sor-chip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+                                <span class="d1-nm">Ads / GA / Tickets</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. FOOTER -->
+                    <div class="d1-foot">
+                        <p>The Company Brain is one pillar of six — and <span class="d1-grad-word">every use makes it smarter</span>.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="inside-grid reveal-stagger" role="group" aria-label="Operating layer pillars">
                 <article class="inside-anchor reveal">
-                    <div class="inside-tag">Anchor</div>
-                    <h3>Living Context Brain</h3>
-                    <p>Streaming ingestion from your systems of record. Smart extraction. Entity resolution. A context graph that updates itself as your business changes today. Remembers skills, entities, decisions, traces.</p>
-                    <p><strong>Self-Learning Loop:</strong> every agent trace + every human correction feeds back. The brain compounds — model-agnostic, harness-agnostic, yours forever.</p>
+                    <div class="inside-tag">Closes wall 01 · the centre</div>
+                    <h3>Self-improving Context Brain</h3>
+                    <p>A shared, living context graph of how your company operates — streaming ingestion from your systems of record, smart extraction, entity resolution. It updates itself as your business changes, and gets smarter from every run.</p>
+                    <p><strong>Self-Learning Loop:</strong> every agent trace and every human correction feeds back. The brain compounds — model-agnostic, harness-agnostic, yours forever.</p>
                 </article>
                 <article class="inside-piece reveal">
-                    <div class="inside-tag">Storage</div>
+                    <div class="inside-tag">Closes wall 04</div>
+                    <h3>Compounding Skills</h3>
+                    <p class="inside-sub">Built once, shared everywhere</p>
+                    <p>Skills your team builds once, then shares, versions, and forks across the org. The 10th teammate starts from the 9th's best work, not from scratch.</p>
+                </article>
+                <article class="inside-piece reveal">
+                    <div class="inside-tag">Closes "lost outputs"</div>
                     <h3>Agent-Native Storage</h3>
                     <p class="inside-sub">A System of Record built for agents</p>
-                    <p>Today's smart Harnesses need a shared place to track the work they do. The writing patterns, controls, and checks they need aren't what typical SQL or NoSQL stores were built for. Synos ships an SoR designed for how agents actually write, revise, and reference each other.</p>
+                    <p>A store designed for how agents actually write, revise, and reference each other — not what SQL or NoSQL stores were built for. Output accrues into an owned, queryable system of record.</p>
                 </article>
                 <article class="inside-piece reveal">
-                    <div class="inside-tag">Sandboxes</div>
-                    <h3>Secure Scanned Sandboxes</h3>
-                    <p class="inside-sub">Safe execution surface for agent actions</p>
-                    <p>Sandboxed runs for the agents and apps your team builds. Scanned for what they touch. Graduated trust from shadow → approved → autonomous within bounded scopes.</p>
+                    <div class="inside-tag">Closes wall 03</div>
+                    <h3>Safe Build &amp; Deploy</h3>
+                    <p class="inside-sub">Custom apps &amp; autonomous workers</p>
+                    <p>Build custom AI workflows and apps shaped to how you operate — and promote a skill into an autonomous, integrated worker. Sandboxed, scanned, governed.</p>
                 </article>
                 <article class="inside-piece reveal">
-                    <div class="inside-tag">Permissions</div>
-                    <h3>Tool Access &amp; Permissions</h3>
-                    <p class="inside-sub">Agent RBAC</p>
-                    <p>Per-skill, per-agent, per-team scopes. Revocable. Auditable. Engineering provisions templates, not requests. Non-engineers self-serve within scope.</p>
+                    <div class="inside-tag">Closes wall 02</div>
+                    <h3>Access Control &amp; Audit</h3>
+                    <p class="inside-sub">One gated, audited door</p>
+                    <p>Per-skill, per-agent, per-team scopes. Revocable. Auditable. A kill-switch. Engineering provisions templates, not tickets — no raw keys on laptops.</p>
                 </article>
                 <article class="inside-piece reveal">
-                    <div class="inside-tag">Analytics</div>
-                    <h3>Skill &amp; Tool Traces</h3>
-                    <p class="inside-sub">Analytics for your AI team</p>
-                    <p>Every skill run, every tool call — captured. Cost, latency, success rate, hallucination signal. A dashboard your AI team can actually read.</p>
+                    <div class="inside-tag">Closes walls 05 + 06</div>
+                    <h3>Traces &amp; Self-Learning Loop</h3>
+                    <p class="inside-sub">Visibility your AI team can read</p>
+                    <p>Every skill run and tool call captured — cost, latency, success rate, hallucination signal. Set the rails once so eng isn't the bottleneck; the brain learns from every correction.</p>
                 </article>
             </div>
         </div>
