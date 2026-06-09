@@ -37,6 +37,8 @@
         .btn--primary{background:var(--accent);color:#FFF;padding:14px 28px;}
         .btn--primary:hover{background:var(--accent-hover);box-shadow:var(--shadow-accent);transform:translateY(-1px);}
         .nav .btn--primary{padding:10px 20px;font-size:14px;}
+        .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+        .nav-right{display:flex;align-items:center;gap:12px;}
 
         /* Hero */
         .hero-page{padding:140px 0 48px;text-align:center;}
@@ -73,7 +75,7 @@
         .arch-piece h4{font-family:var(--font-display);font-weight:400;font-size:16px;letter-spacing:-0.01em;color:var(--text);margin-bottom:4px;}
         .arch-piece p{font-size:12.5px;line-height:1.55;color:var(--text-muted);margin:0;}
 
-        /* Brain memory taxonomy (v7) */
+        /* Brain context taxonomy (v7) */
         .brain-mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
         .brain-mem-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 18px;transition:box-shadow 0.25s;}
         .brain-mem-card:hover{box-shadow:var(--shadow-md);}
@@ -195,7 +197,10 @@
             .retrieval-wrap{grid-template-columns:1fr;}
         }
         @media(max-width:768px){
-            .nav-links{display:none;}
+            .nav-toggle{display:inline-flex;}
+            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);box-shadow:var(--shadow-md);border-bottom:1px solid var(--border);padding:8px 24px 16px;}
+            .nav-links.open{display:flex;}
+            .nav-links a{padding:12px 0;font-size:15px;border-bottom:1px solid var(--border);}
             .grid-3,.grid-2,.byoa-options,.deploy-grid{grid-template-columns:1fr;}
             .tools-grid,.trigger-list,.connectors-grid{grid-template-columns:1fr;}
             .flow-steps{grid-template-columns:repeat(2,1fr);}
@@ -259,7 +264,7 @@
 <a href="#main-content" style="position:absolute;top:-100px;left:0;background:var(--accent);color:#fff;padding:12px 24px;z-index:1000;font-weight:600;font-size:14px;border-radius:0 0 8px 0;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
 
     <!-- NAV -->
-    <nav class="nav">
+    <nav class="nav" id="nav">
         <a href="/" class="nav-left">
             <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
                 <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
@@ -269,14 +274,19 @@
             </svg>
             <span class="nav-logo-text">SynOS</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="nav-links">
             <a href="/product" class="active">Product</a>
             <a href="/use-cases">Use Cases</a>
             <a href="/blog">Blog</a>
             <a href="/scorecard">Scorecard</a>
             <a href="/about">About</a>
         </div>
-        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Book a demo</a>
+        <div class="nav-right">
+            <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
+            <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+            </button>
+        </div>
     </nav>
     <main id="main-content">
 
@@ -284,7 +294,7 @@
     <section class="container hero-page mesh-bg" data-section="product-hero">
         <p class="eyebrow">Product</p>
         <h1>The Agent-Native Operating Layer,<br>in detail.</h1>
-        <p class="hero-sub">An operating layer is the shared substrate every agent in your company uses. SynOS ships five pieces: a Living Context Brain at the centre, with Agent-Native Storage, Secure Scanned Sandboxes, Tool Access &amp; Permissions, and Skill &amp; Tool Traces around it. Bring your own agent framework. Self-hosted.</p>
+        <p class="hero-sub">SynOS is the substrate your agents run on. Bring your own product, framework, or harness — the layer gives every agent a self-improving Context Brain, compounding skills, agent-native storage, safe build &amp; deploy, access control, and traces, so you ship your product, not the plumbing underneath it. Self-hosted.</p>
 
         <!-- INLINE ARCHITECTURE DIAGRAM (v6.2) -->
         <div class="arch-stack reveal" role="group" aria-label="Agent-Native Operating Layer architecture">
@@ -308,30 +318,35 @@
 
                 <div class="arch-anchor">
                     <div class="arch-anchor-tag">Anchor</div>
-                    <h3>Living Context Brain</h3>
-                    <p>Streaming ingestion. Smart extraction. Entity resolution. Remembers skills, entities, decisions, traces. <strong>Self-Learning Loop:</strong> every agent trace + every human correction feeds back. The brain compounds.</p>
+                    <h3>Self-improving Context Brain</h3>
+                    <p>Streaming ingestion. Smart extraction. Entity resolution. A shared context graph of skills, entities, decisions, and traces. <strong>Self-Learning Loop:</strong> every agent trace + every human correction feeds back. The brain compounds.</p>
                 </div>
 
                 <div class="arch-pieces">
+                    <div class="arch-piece">
+                        <div class="piece-tag">Skills</div>
+                        <h4>Compounding Skills</h4>
+                        <p>Built once, then shared, versioned, and forked across the team. Installable from a skill marketplace.</p>
+                    </div>
                     <div class="arch-piece">
                         <div class="piece-tag">Storage</div>
                         <h4>Agent-Native Storage</h4>
                         <p>An SoR built for how agents write. Different patterns, controls, and checks than typical DBs.</p>
                     </div>
                     <div class="arch-piece">
-                        <div class="piece-tag">Sandboxes</div>
-                        <h4>Secure Scanned Sandboxes</h4>
-                        <p>Safe execution surface for agents and apps. Shadow → approved → autonomous, within bounded scopes.</p>
+                        <div class="piece-tag">Build &amp; Deploy</div>
+                        <h4>Safe Build &amp; Deploy</h4>
+                        <p>Scanned sandboxes for agents and apps. Shadow → approved → autonomous, within bounded scopes.</p>
                     </div>
                     <div class="arch-piece">
-                        <div class="piece-tag">Permissions</div>
-                        <h4>Tool Access &amp; Permissions</h4>
+                        <div class="piece-tag">Access</div>
+                        <h4>Access Control &amp; Audit</h4>
                         <p>Per-skill, per-agent, per-team scopes. Revocable, auditable. Templates, not tickets.</p>
                     </div>
                     <div class="arch-piece">
-                        <div class="piece-tag">Analytics</div>
-                        <h4>Skill &amp; Tool Traces</h4>
-                        <p>Every skill run, every tool call captured. Cost, latency, success, hallucination signal.</p>
+                        <div class="piece-tag">Traces</div>
+                        <h4>Traces &amp; Self-Learning Loop</h4>
+                        <p>Every skill run, every tool call captured. Cost, latency, success, hallucination signal — fed back into the brain.</p>
                     </div>
                 </div>
             </div>
@@ -355,7 +370,7 @@
         </div>
     </section>
 
-    <!-- ===== 5 PER-PIECE DEEP-DIVES (v7) ===== -->
+    <!-- ===== 6 PER-PIECE DEEP-DIVES (v7) ===== -->
 
     <!-- 2. LIVING CONTEXT BRAIN — anchor -->
     <section class="section" data-section="brain">
@@ -366,7 +381,7 @@
                 <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);margin-bottom:0;">A continuously curated knowledge layer every agent in your company can read from. It remembers what your team knows, what your agents have done, and how decisions get made — across every system.</p>
             </div>
 
-            <!-- Memory taxonomy 4-card subgrid -->
+            <!-- Context taxonomy 4-card subgrid -->
             <div class="reveal" style="margin-top:40px;">
                 <h3 style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:16px;font-family:var(--font-mono);">What the Brain remembers</h3>
                 <div class="brain-mem-grid">
@@ -397,14 +412,26 @@
             <!-- Self-Learning Loop — folded in -->
             <div class="reveal brain-loop">
                 <h3>How the Brain compounds — the Self-Learning Loop.</h3>
-                <p>Every agent run and every human correction lands in Storage as a trace. Curator agents read both kinds — the agent's work and the agent↔human interaction — and surface your company's tribal knowledge: the rules, exceptions, and judgment calls nobody bothers to write down. That tribal knowledge clears a quality gate and promotes into Brain memory. The next agent run pulls the upgraded Brain. The loop tightens with every interaction.</p>
+                <p>Every agent run and every human correction lands in Storage as a trace. Curator agents read both kinds — the agent's work and the agent↔human interaction — and surface your company's tribal knowledge: the rules, exceptions, and judgment calls nobody bothers to write down. That tribal knowledge clears a quality gate and promotes into the Context Brain. The next agent run pulls the upgraded Brain. The loop tightens with every interaction.</p>
                 <p class="brain-loop-aside">Continuous curation jobs re-resolve stale entities and prune dead links so the graph stays current.</p>
             </div>
         </div>
     </section>
 
+    <!-- 2b. COMPOUNDING SKILLS -->
+    <section class="section section--alt" data-section="skills">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Skills</p>
+                <h2>How Compounding Skills spread.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">A skill is a learned procedure — built once, then it belongs to the team. Skills are shared, versioned, and forked the way code is, and installable from a skill marketplace so a working agent capability spreads instead of being rebuilt per project.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Each skill carries its tool list, parameter contract, and scope declared up front — so it rides your access control wherever it runs. Promote a strong run into a skill, share it, and every agent that installs it inherits the upgrade. Skills compound the same way the Brain does.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- 3. AGENT-NATIVE STORAGE -->
-    <section class="section section--alt" data-section="storage">
+    <section class="section" data-section="storage">
         <div class="container">
             <div class="reveal" style="max-width:760px;">
                 <p class="section-label">Sibling Piece · Storage</p>
@@ -415,12 +442,12 @@
         </div>
     </section>
 
-    <!-- 4. SANDBOXES -->
-    <section class="section" data-section="sandboxes">
+    <!-- 4. SAFE BUILD & DEPLOY -->
+    <section class="section section--alt" data-section="sandboxes">
         <div class="container">
             <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Sandboxes</p>
-                <h2>How Sandboxes gate execution.</h2>
+                <p class="section-label">Sibling Piece · Build &amp; Deploy</p>
+                <h2>How Safe Build &amp; Deploy gates execution.</h2>
                 <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Engineering blocks "let an LLM touch prod" — for good reason. SynOS gives every agent and every app its own scanned sandbox. Build-time scanning catches unsafe imports and secrets before anything runs; egress is policy-controlled per sandbox; per-run identity tokens scope what the running code can touch.</p>
             </div>
             <div class="reveal" style="overflow-x:auto;margin-top:32px;">
@@ -437,24 +464,24 @@
         </div>
     </section>
 
-    <!-- 5. PERMISSIONS -->
-    <section class="section section--alt" data-section="permissions">
+    <!-- 5. ACCESS CONTROL & AUDIT -->
+    <section class="section" data-section="permissions">
         <div class="container">
             <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Permissions</p>
-                <h2>How Permissions scope skills.</h2>
+                <p class="section-label">Sibling Piece · Access</p>
+                <h2>How Access Control &amp; Audit scope skills.</h2>
                 <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Per-skill, per-agent, per-team scopes. Revocable. Auditable. Templates, not tickets — your AI team defines a scope once and it applies to every agent that installs the skill.</p>
                 <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">A skill ships with its tool list, its parameter contract, and its role check declared up front. Install once. Share across the team. Permissions ride with the skill, not the user who happens to run it.</p>
             </div>
         </div>
     </section>
 
-    <!-- 6. TRACES -->
-    <section class="section" data-section="traces">
+    <!-- 6. Traces & Self-Learning Loop -->
+    <section class="section section--alt" data-section="traces">
         <div class="container">
             <div class="reveal" style="max-width:760px;">
                 <p class="section-label">Sibling Piece · Traces</p>
-                <h2>What Skill &amp; Tool Traces capture.</h2>
+                <h2>What Traces &amp; the Self-Learning Loop capture.</h2>
                 <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Every run, every tool call. Cost, latency, success and failure, hallucination signal, who-ran-what. Cached and budgeted — predictable cost per decision at scale.</p>
                 <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Three consumers: your AI team reads them for analytics; the Brain reads them for the Self-Learning Loop; Permissions reads them to adjust scopes as patterns shift.</p>
             </div>
@@ -462,7 +489,7 @@
     </section>
 
     <!-- 7. RETRIEVAL — fast path + agent path (v7) -->
-    <section class="section section--alt" data-section="retrieval">
+    <section class="section" data-section="retrieval">
         <div class="container">
             <div class="reveal" style="max-width:760px;">
                 <p class="section-label">Retrieval</p>
@@ -477,7 +504,7 @@
                     <div class="retrieval-flow">
                         <div class="retrieval-step"><span class="r-num">1</span><div class="r-text">Scoped query · agent role + intent + project</div></div>
                         <div class="retrieval-step"><span class="r-num">2</span><div class="r-text">Hybrid retrieval · vector + graph + keyword, fused</div></div>
-                        <div class="retrieval-step"><span class="r-num">3</span><div class="r-text">Authority &amp; freshness rank · promoted memory beats raw, recent beats stale</div></div>
+                        <div class="retrieval-step"><span class="r-num">3</span><div class="r-text">Authority &amp; freshness rank · promoted context beats raw, recent beats stale</div></div>
                         <div class="retrieval-step"><span class="r-num">4</span><div class="r-text">Policy redact + token budget · RBAC filter, PII redaction, per-agent envelope size</div></div>
                         <div class="retrieval-step"><span class="r-num">5</span><div class="r-text">Typed pack · handed to the agent with citation IDs</div></div>
                     </div>
@@ -499,7 +526,7 @@
     </section>
 
     <!-- WHAT'S DIFFERENT (categories, no product names) -->
-    <section class="section" data-section="whats-different">
+    <section class="section section--alt" data-section="whats-different">
         <div class="container">
             <div class="reveal">
                 <p class="section-label">What's Different</p>
@@ -513,7 +540,7 @@
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="expand-body">
-                        <p>Powerful for individuals. But a large context window still doesn't know which of your data sources to check. No shared memory. No agent-native storage. No sandboxes. No RBAC. SynOS sits under the harness and gives it the full operating layer — brain, storage, sandboxes, permissions, traces.</p>
+                        <p>Powerful for individuals. But a large context window still doesn't know which of your data sources to check. No shared Context Brain. No agent-native storage. No sandboxes. No RBAC. SynOS sits under the harness and gives it the full operating layer — brain, storage, sandboxes, permissions, traces.</p>
                     </div>
                 </div>
                 <div class="card expandable reveal" onclick="this.classList.toggle('open')">
@@ -536,11 +563,11 @@
                 </div>
                 <div class="card expandable reveal" onclick="this.classList.toggle('open')">
                     <div class="expand-header">
-                        <div><h3>Agent Memory Layers</h3></div>
+                        <div><h3>Agent Context Layers</h3></div>
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="expand-body">
-                        <p>Memory is one feature, not a full operating layer. No cross-system entity resolution. No sandboxes. No skill permissions. Framework lock-in — knowledge doesn't transfer. SynOS is the operating layer under any framework — brain plus storage, sandboxes, permissions, and traces. Switch harnesses and your context carries over.</p>
+                        <p>A context store is one feature, not a full operating layer. No cross-system entity resolution. No sandboxes. No skill permissions. Framework lock-in — knowledge doesn't transfer. SynOS is the operating layer under any framework — brain plus storage, sandboxes, permissions, and traces. Switch harnesses and your context carries over.</p>
                     </div>
                 </div>
             </div>
@@ -549,12 +576,12 @@
     </section>
 
     <!-- BYOA -->
-    <section class="section section--alt" data-section="byoa">
+    <section class="section" data-section="byoa">
         <div class="container">
             <div class="reveal">
                 <p class="section-label">Bring Your Own Agent</p>
                 <h2>SynOS is the operating layer, not the body.</h2>
-                <p class="section-sub">Engineering teams spend significant time rebuilding context, storage, sandboxes, permissions, and trace plumbing for every new agent. SynOS ships all five pieces, pre-built. The brain at the centre comes with the storage, sandboxes, permissions, and traces around it. Three ways to plug in:</p>
+                <p class="section-sub">Engineering teams spend significant time rebuilding context, skills, storage, sandboxes, access control, and trace plumbing for every new agent. SynOS ships all six pieces, pre-built. The brain at the centre comes with compounding skills, storage, safe build &amp; deploy, access control, and traces around it. Three ways to plug in:</p>
             </div>
             <div class="byoa-options reveal-stagger">
                 <div class="byoa-opt reveal">
@@ -573,7 +600,32 @@
         </div>
     </section>
 
-    <!-- DATA FLOW (v7 — 7 steps, exercises all 5 pieces) -->
+    <!-- BUILD ON SYNOS (AI product builders / agencies) -->
+    <section class="section section--alt" data-section="build-on-synos">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Build on SynOS</p>
+                <h2>Building an AI product, platform, or agency offering?</h2>
+                <p class="section-sub">Build it on SynOS. Your agents get a self-improving Context Brain, agent-native storage, sandboxes, access control, and traces out of the box — so you ship the product, not the infrastructure under every agent. Own the brain, skills, and deploy. Bring your own harness and models. Self-hosted in your cloud, or your client's.</p>
+            </div>
+            <div class="byoa-options reveal-stagger">
+                <div class="byoa-opt reveal">
+                    <h4>Own it</h4>
+                    <p>The brain, skills, and deploy are yours. Self-hosted in your cloud or your client's. No lock-in.</p>
+                </div>
+                <div class="byoa-opt reveal">
+                    <h4>Ship faster</h4>
+                    <p>Skip rebuilding context, retrieval, governance, and traces for every agent. Your second agent ships in days.</p>
+                </div>
+                <div class="byoa-opt reveal">
+                    <h4>Compounds</h4>
+                    <p>Every run sharpens the Context Brain your product runs on. The layer gets better as your customers use it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DATA FLOW (v7 — 7 steps, exercises all six pieces) -->
     <section class="section" data-section="data-flow">
         <div class="container">
             <div class="reveal">
@@ -698,7 +750,10 @@
         <div class="container">
             <h2>See it with your data.</h2>
             <p>Walk through the architecture with your actual stack, your actual connectors, and your actual workflows. No slides.</p>
-            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Book a 30-min demo</a>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-product">Request early access</a>
+                <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="cta-book-demo-product" style="background:var(--surface);color:var(--accent);border:1px solid var(--border-accent);">Book a 30-min demo</a>
+            </div>
             <p class="cta-secondary">Or <a href="https://anoopjawahar.substack.com" target="_blank">read the thesis →</a> on Substack.</p>
         </div>
     </section>
@@ -712,8 +767,10 @@
                 <span class="footer-logo-text">SynOS</span>
             </div>
             <div class="footer-middle">
+                <a href="/early-access">Early Access</a>
                 <a href="/product">Product</a>
                 <a href="/use-cases">Use Cases</a>
+                <a href="/scorecard">Scorecard</a>
                 <a href="/blog">Blog</a>
                 <a href="/about">About</a>
             </div>
@@ -757,6 +814,21 @@
             });
         }, { threshold: 0.3 });
         sections.forEach(el => sObs.observe(el));
+
+        // CTA click tracking
+        document.querySelectorAll('[data-cta]').forEach(el => {
+            el.addEventListener('click', () => {
+                if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_location: el.getAttribute('data-cta') || 'unknown' });
+            });
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+        if (navToggle) navToggle.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
     </script>
 </body>
 </html>
