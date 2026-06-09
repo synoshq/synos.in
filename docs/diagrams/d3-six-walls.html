@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D3 — Six Walls</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --ink: #1A1A1A;
+    --indigo: #6366F1;
+    --amber: #D97706;
+    --muted: #6B7280;
+    --hairline: rgba(26,26,26,0.08);
+    --card-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+  .d3 {
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .head {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .head .eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .head .title {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.12;
+    color: var(--ink);
+  }
+
+  .walls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .wall {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--amber);
+    border-radius: 14px;
+    padding: 20px 18px 18px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+  }
+  .wall .num {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--indigo);
+    margin-bottom: 10px;
+  }
+  .wall .name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.1px;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .wall .desc {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .wall .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .wall .tag {
+    margin-top: auto;
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--indigo);
+    background: rgba(99,102,241,0.07);
+    border: 1px solid rgba(99,102,241,0.22);
+    border-radius: 999px;
+    padding: 5px 12px;
+  }
+
+  @media (max-width: 900px) {
+    .walls { grid-template-columns: repeat(2, 1fr); }
+    .head .title { font-size: 26px; }
+  }
+  @media (max-width: 600px) {
+    body { padding: 28px 16px; }
+    .walls { grid-template-columns: 1fr; }
+    .head .title { font-size: 23px; }
+    .wall .quote { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="d3">
+
+  <div class="head">
+    <span class="eyebrow">Why teams hit a wall</span>
+    <div class="title">Six walls between your team and real agents</div>
+  </div>
+
+  <div class="walls">
+
+    <div class="wall">
+      <div class="num">01</div>
+      <div class="name">No shared context</div>
+      <div class="desc">AI forgets your business every session; corrections die in chat history.</div>
+      <div class="quote">&ldquo;Why do I re-explain our hubs, SLAs and last week&rsquo;s fix every single time?&rdquo;</div>
+      <div class="tag">&rarr; Context Brain</div>
+    </div>
+
+    <div class="wall">
+      <div class="num">02</div>
+      <div class="name">No safe access to systems</div>
+      <div class="desc">Reaching real data means raw keys on a laptop — no permissions, no audit.</div>
+      <div class="quote">&ldquo;How do I even get to that warehouse table — safely?&rdquo;</div>
+      <div class="tag">&rarr; Access Control &amp; Audit</div>
+    </div>
+
+    <div class="wall">
+      <div class="num">03</div>
+      <div class="name">Nowhere governed to deploy</div>
+      <div class="desc">Apps and their data ship to personal accounts. No sandbox, no kill-switch.</div>
+      <div class="quote">&ldquo;Where does this app — and its data — actually live?&rdquo;</div>
+      <div class="tag">&rarr; Safe Build &amp; Deploy</div>
+    </div>
+
+    <div class="wall">
+      <div class="num">04</div>
+      <div class="name">Skills don&rsquo;t compound</div>
+      <div class="desc">No shared library. Everyone rebuilds the same skill; nothing is reused or scheduled.</div>
+      <div class="quote">&ldquo;Sarah built this skill last month — why am I starting from scratch?&rdquo;</div>
+      <div class="tag">&rarr; Compounding Skills</div>
+    </div>
+
+    <div class="wall">
+      <div class="num">05</div>
+      <div class="name">Engineering gets overloaded</div>
+      <div class="desc">Every access request, guardrail and deploy routes through eng — they become the bottleneck.</div>
+      <div class="quote">&ldquo;Why is every team&rsquo;s automation now a ticket in my backlog?&rdquo;</div>
+      <div class="tag">&rarr; Set the rails once</div>
+    </div>
+
+    <div class="wall">
+      <div class="num">06</div>
+      <div class="name">No learning, no visibility</div>
+      <div class="desc">Outputs lost in sheets and DMs. Who ran what, what&rsquo;s working — invisible.</div>
+      <div class="quote">&ldquo;Did that even help? And is anyone else getting value from it?&rdquo;</div>
+      <div class="tag">&rarr; Self-Learning Loop</div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
