@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D1 — Home Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --ink: #1A1A1A;
+    --indigo: #6366F1;
+    --teal: #0D9488;
+    --amber: #D97706;
+    --grad: linear-gradient(135deg, #6366F1, #0D9488);
+    --muted: #6B7280;
+    --hairline: rgba(26,26,26,0.08);
+    --card-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+  .d1 {
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  /* shared label */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: var(--muted);
+  }
+
+  /* ---- 1. HARNESS ROW ---- */
+  .harness {
+    text-align: center;
+  }
+  .harness .eyebrow { color: var(--teal); margin-bottom: 12px; display: block; }
+  .harness-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  .chip {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 12px 8px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    min-height: 74px;
+    justify-content: center;
+  }
+  .chip svg { color: var(--teal); }
+  .chip .nm {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  /* ---- 2. CONNECTOR BAND ---- */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 14px 0;
+  }
+  .connector .rail {
+    width: 1.5px;
+    height: 18px;
+    background: var(--grad);
+    opacity: 0.5;
+  }
+  .connector .mcp {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    color: var(--indigo);
+    background: rgba(99,102,241,0.07);
+    border: 1px solid rgba(99,102,241,0.22);
+    border-radius: 999px;
+    padding: 6px 18px;
+    text-transform: uppercase;
+  }
+
+  /* ---- 3. OPERATING LAYER (CORE) ---- */
+  .core {
+    position: relative;
+    border-radius: 18px;
+    padding: 2px;
+    background: var(--grad);
+    box-shadow: 0 10px 34px rgba(99,102,241,0.16);
+  }
+  .core-inner {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 22px 20px;
+  }
+  .core-head {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .core-head .title {
+    font-family: var(--serif);
+    font-size: 27px;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .core-head .tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 4px 12px;
+  }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "brain brain skills"
+      "brain brain storage"
+      "deploy access loop";
+    gap: 12px;
+  }
+  .pillar {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 14px 14px 13px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+  }
+  .pillar .ico {
+    width: 38px; height: 38px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+    background: rgba(99,102,241,0.08);
+    color: var(--indigo);
+  }
+  .pillar .name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.1px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .pillar .desc {
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  /* featured brain — central + larger */
+  .pillar.brain {
+    grid-area: brain;
+    background: var(--grad);
+    border: none;
+    color: #fff;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px 22px;
+    box-shadow: 0 8px 26px rgba(13,148,136,0.22);
+  }
+  .pillar.brain .ico {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  .pillar.brain .ico svg { width: 30px; height: 30px; }
+  .pillar.brain .kicker {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 6px;
+  }
+  .pillar.brain .name {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .pillar.brain .desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    max-width: 34ch;
+  }
+  .pillar.skills  { grid-area: skills; }
+  .pillar.storage { grid-area: storage; }
+  .pillar.deploy  { grid-area: deploy; }
+  .pillar.access  { grid-area: access; }
+  .pillar.loop    { grid-area: loop; }
+
+  /* teal accent on non-brain icons varied subtly */
+  .pillar.skills .ico, .pillar.loop .ico { background: rgba(13,148,136,0.10); color: var(--teal); }
+
+  /* ---- 4. GUARDRAILS STRIP ---- */
+  .guardrails {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.05);
+    border: 1px dashed rgba(99,102,241,0.30);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+  .guardrails .gh {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--indigo);
+  }
+  .guardrails .gh svg { color: var(--indigo); }
+  .guardrails .gpill {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid rgba(99,102,241,0.22);
+    border-radius: 999px;
+    padding: 4px 11px;
+  }
+
+  /* ---- 5. SYSTEMS OF RECORD ---- */
+  .sor {
+    margin-top: 18px;
+    text-align: center;
+  }
+  .sor .eyebrow { color: var(--amber); margin-bottom: 12px; display: block; }
+  .sor-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .sor-chip {
+    background: #fff;
+    border: 1px solid rgba(217,119,6,0.28);
+    border-radius: 12px;
+    padding: 12px 8px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    min-height: 70px;
+    justify-content: center;
+  }
+  .sor-chip svg { color: var(--amber); }
+  .sor-chip .nm {
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+
+  /* ---- 6. FOOTER ---- */
+  .foot {
+    text-align: center;
+    margin-top: 22px;
+  }
+  .foot p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .foot .grad-word {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    body { padding: 28px 16px; }
+    .harness-grid { grid-template-columns: repeat(2, 1fr); }
+    .sor-grid { grid-template-columns: repeat(2, 1fr); }
+    .pillar-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "brain"
+        "skills"
+        "storage"
+        "deploy"
+        "access"
+        "loop";
+    }
+    .core-head .title { font-size: 23px; }
+    .pillar.brain .name { font-size: 26px; }
+    .pillar.brain { align-items: center; text-align: center; }
+    .pillar.brain .desc { max-width: none; }
+    .foot p { font-size: 17px; }
+  }
+  @media (max-width: 420px) {
+    .harness-grid, .sor-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="d1">
+
+  <!-- 1. HARNESS ROW -->
+  <div class="harness">
+    <span class="eyebrow">Bring your own harness — all speak MCP</span>
+    <div class="harness-grid">
+      <div class="chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
+        <span class="nm">Claude Code</span>
+      </div>
+      <div class="chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg>
+        <span class="nm">Codex</span>
+      </div>
+      <div class="chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l9 3-3.5 2L7 12.5 4 4z"/><path d="M9.5 9.5l8 8"/></svg>
+        <span class="nm">Cursor</span>
+      </div>
+      <div class="chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-12 7.7L3 21l1.8-6A8.5 8.5 0 1121 11.5z"/></svg>
+        <span class="nm">ChatGPT</span>
+      </div>
+      <div class="chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/></svg>
+        <span class="nm">Slack / WhatsApp</span>
+      </div>
+      <div class="chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M9 8V6a3 3 0 016 0v2M9.5 13.5h.01M14.5 13.5h.01"/></svg>
+        <span class="nm">In-house agents</span>
+      </div>
+      <div class="chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M7 14h6"/></svg>
+        <span class="nm">SynOS Apps &amp; Workers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CONNECTOR BAND -->
+  <div class="connector">
+    <div class="rail"></div>
+    <div class="mcp">MCP · one interface · any model</div>
+    <div class="rail"></div>
+  </div>
+
+  <!-- 3. OPERATING LAYER -->
+  <div class="core">
+    <div class="core-inner">
+      <div class="core-head">
+        <div class="title">The Operating Layer</div>
+        <span class="tag">Self-hosted · governed · model- &amp; tool-agnostic</span>
+      </div>
+
+      <div class="pillar-grid">
+        <!-- FEATURED BRAIN -->
+        <div class="pillar brain">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5.2A3 3 0 006 16v.5A2.5 2.5 0 008.5 19 2.5 2.5 0 0011 16.5V5a2 2 0 00-2-2z"/><path d="M15 3a3 3 0 013 3 3 3 0 012 5.2A3 3 0 0118 16v.5a2.5 2.5 0 01-2.5 2.5A2.5 2.5 0 0113 16.5V5a2 2 0 012-2z"/><path d="M11 9h2M9 12.5h2M13 12.5h2"/></svg>
+          </div>
+          <div class="kicker">Self-improving · at the center</div>
+          <div class="name">Context Brain</div>
+          <div class="desc">A living knowledge graph across every source — batch + streaming, continuously curated, cited. Every use makes it smarter.</div>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="pillar skills">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 012-2h11l3 3v13a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+          <div class="name">Compounding Skills</div>
+          <div class="desc">Reusable workflows in plain English. Install once, run anywhere, fork across teams.</div>
+        </div>
+
+        <!-- STORAGE -->
+        <div class="pillar storage">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+          <div class="name">Agent-Native Storage</div>
+          <div class="desc">A system of record agents write to — schema-enforced, project-scoped, queryable.</div>
+        </div>
+
+        <!-- DEPLOY -->
+        <div class="pillar deploy">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4-8 4 8M7 11h4"/><path d="M14 5l5 5-9 9H5v-5l9-9z"/></svg></div>
+          <div class="name">Safe Build &amp; Deploy</div>
+          <div class="desc">Sandboxed apps, scanned before deploy. Shipped on team infra, never personal accounts.</div>
+        </div>
+
+        <!-- ACCESS -->
+        <div class="pillar access">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="name">Access Control &amp; Audit</div>
+          <div class="desc">One governed door to your systems — gated by role, audited on every call.</div>
+        </div>
+
+        <!-- LOOP -->
+        <div class="pillar loop">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-2.6-6.3"/><path d="M21 4v5h-5"/><path d="M3 21l3-1 1-3"/></svg></div>
+          <div class="name">Self-Learning Loop &amp; Traces</div>
+          <div class="desc">Every run traced; every correction reviewed and promoted. Brain and workers improve themselves.</div>
+        </div>
+      </div>
+
+      <!-- 4. GUARDRAILS STRIP -->
+      <div class="guardrails">
+        <span class="gh"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z"/></svg>Guardrails</span>
+        <span class="gpill">RBAC</span>
+        <span class="gpill">audit</span>
+        <span class="gpill">sandbox scan</span>
+        <span class="gpill">egress proxy</span>
+        <span class="gpill">kill-switch</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SYSTEMS OF RECORD -->
+  <div class="sor">
+    <span class="eyebrow">Connected to your existing systems — not replaced</span>
+    <div class="sor-grid">
+      <div class="sor-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+        <span class="nm">Warehouse / BigQuery</span>
+      </div>
+      <div class="sor-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 00.9-8.9A6 6 0 006.3 9.5 4 4 0 007 17.9"/></svg>
+        <span class="nm">CRM &amp; SaaS</span>
+      </div>
+      <div class="sor-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+        <span class="nm">Docs / Drive / Notion</span>
+      </div>
+      <div class="sor-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5z"/><path d="M8 9h8M8 12h5"/></svg>
+        <span class="nm">Slack / Email / WhatsApp</span>
+      </div>
+      <div class="sor-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+        <span class="nm">Ads / GA / Tickets</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. FOOTER -->
+  <div class="foot">
+    <p>The Company Brain is one pillar of six — and <span class="grad-word">every use makes it smarter</span>.</p>
+  </div>
+
+</div>
+</body>
+</html>
