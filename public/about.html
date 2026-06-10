@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — SynOS</title>
     <meta name="description" content="SynOS is building the Agent-Native Operating Layer — infrastructure for the agents that run your company. Founded by Anoop Jawahar.">
+    <meta property="og:title" content="About — SynOS">
+    <meta property="og:description" content="The team building SynOS, the Agent-Native Operating Layer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://synos.in/about">
+    <meta property="og:image" content="https://synos.in/img/operating-layer-architecture.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About — SynOS">
+    <meta name="twitter:description" content="The team building SynOS, the Agent-Native Operating Layer.">
+    <link rel="canonical" href="https://synos.in/about">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +22,7 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-        :root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--surface:#FFFFFF;--border:#E5E5E3;--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#71717A;--text-dim:#A1A1AA;--accent:#6366F1;--accent-hover:#5558E6;--accent-bg:rgba(99,102,241,0.06);--shadow-accent:0 4px 20px rgba(99,102,241,0.15);}
+        :root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--surface:#FFFFFF;--border:#E5E5E3;--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#71717A;--text-dim:#A1A1AA;--accent:#6366F1;--accent-hover:#5558E6;--accent-bg:rgba(99,102,241,0.06);--shadow-accent:0 4px 20px rgba(99,102,241,0.15);--border-light:#EBEBEA;--shadow-md:0 4px 16px rgba(0,0,0,0.06);}
         html{scroll-behavior:smooth;}
         body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
         h1,h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.02em;line-height:1.15;}
@@ -29,7 +38,10 @@
         .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;border-radius:10px;text-decoration:none;transition:all 0.15s;padding:14px 28px;}
         .btn--primary{background:var(--accent);color:#FFF;}
         .btn--primary:hover{background:var(--accent-hover);box-shadow:var(--shadow-accent);}
-        .nav .btn--primary{padding:10px 20px;font-size:14px;}
+        .nav .btn--primary{padding:10px 22px;font-size:14px;border-radius:10px;}
+        .btn--secondary{background:transparent;color:var(--text);border:1px solid var(--border);}
+        .btn--secondary:hover{border-color:var(--accent);color:var(--accent);}
+        .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
         .page{padding:160px 0 96px;text-align:center;}
         .page .eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:16px;}
         .page h1{margin-bottom:64px;}
@@ -54,7 +66,7 @@
         .footer-links a{color:var(--text-dim);text-decoration:none;font-size:13px;}
         .footer-sep{width:1px;height:14px;background:var(--border);}
         .footer-copy{font-size:12px;color:var(--text-dim);margin-top:16px;text-align:center;}
-        @media(max-width:768px){.nav-links{display:none;}.footer-inner{flex-direction:column;text-align:center;}.footer-links,.footer-middle{justify-content:center;flex-wrap:wrap;}}
+        @media(max-width:768px){.nav-toggle{display:inline-flex;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);box-shadow:var(--shadow-md);border-bottom:1px solid var(--border);padding:8px 24px 16px;}.nav-links.open{display:flex;}.nav-links a{padding:12px 0;font-size:15px;border-bottom:1px solid var(--border-light);}.footer-inner{flex-direction:column;text-align:center;}.footer-links,.footer-middle{justify-content:center;flex-wrap:wrap;}}
     /* Mesh gradient */
         .mesh-bg{position:relative;overflow:hidden;}
         .mesh-bg>*{position:relative;z-index:1;}
@@ -74,7 +86,7 @@
 </head>
 <body>
 <a href="#main-content" style="position:absolute;top:-100px;left:0;background:var(--accent);color:#fff;padding:12px 24px;z-index:1000;font-weight:600;font-size:14px;border-radius:0 0 8px 0;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
-    <nav class="nav">
+    <nav class="nav" id="nav">
         <a href="/" class="nav-left">
             <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
                 <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
@@ -84,14 +96,19 @@
             </svg>
             <span class="nav-logo-text">SynOS</span>
         </a>
-        <div class="nav-links">
+        <div class="nav-links" id="nav-links">
             <a href="/product">Product</a>
             <a href="/use-cases">Use Cases</a>
             <a href="/blog">Blog</a>
             <a href="/scorecard">Scorecard</a>
-            <a href="/about" class="active">About</a>
+            <a href="/about">About</a>
         </div>
-        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Book a demo</a>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
+            <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+            </button>
+        </div>
     </nav>
     <main id="main-content">
 
@@ -112,7 +129,8 @@
         </div>
 
         <div class="cta-row">
-            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary">Book a 30-min demo</a>
+            <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-about">Request early access</a>
+            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary">Book a 30-min demo</a>
         </div>
     </section>
 
@@ -124,8 +142,10 @@
                 <span class="footer-logo-text">SynOS</span>
             </div>
             <div class="footer-middle">
+                <a href="/early-access">Early Access</a>
                 <a href="/product">Product</a>
                 <a href="/use-cases">Use Cases</a>
+                <a href="/scorecard">Scorecard</a>
                 <a href="/blog">Blog</a>
                 <a href="/about">About</a>
             </div>
@@ -141,6 +161,10 @@
     const reveals=document.querySelectorAll(".reveal");
     const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});},{threshold:0.12,rootMargin:"0px 0px -40px 0px"});
     reveals.forEach(el=>obs.observe(el));
+    const navToggle=document.getElementById('nav-toggle');
+    const navLinks=document.getElementById('nav-links');
+    if(navToggle)navToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');navToggle.setAttribute('aria-expanded',open?'true':'false');});
+    document.querySelectorAll('[data-cta]').forEach(el=>el.addEventListener('click',()=>{if(window.gtag)gtag('event','cta_click',{cta_id:el.getAttribute('data-cta')});}));
     </script>
 </body>
 </html>
