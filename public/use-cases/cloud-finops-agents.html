@@ -10,6 +10,10 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://synos.in/use-cases/cloud-finops-agents">
     <meta property="og:image" content="https://synos.in/img/operating-layer-architecture.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Operating Layer for Cloud FinOps Agents — SynOS">
+    <meta name="twitter:description" content="The agents a FinOps team runs — and the operating layer they need to act safely across AWS, GCP, Azure.">
+    <link rel="canonical" href="https://synos.in/use-cases/cloud-finops-agents">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +35,7 @@
             --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             --bg: #FAFAF8; --bg-alt: #F4F3F0; --surface: #FFFFFF;
-            --border: #E8E8E5; --border-accent: rgba(99, 102, 241, 0.15);
+            --border: #E8E8E5; --border-light: #EBEBEA; --border-accent: rgba(99, 102, 241, 0.15);
             --text: #1A1A1A; --text-secondary: #3D3D3D; --text-muted: #6B6B73; --text-dim: #A1A1AA;
             --accent: #6366F1; --accent-hover: #5558E6; --accent-bg: rgba(99, 102, 241, 0.05);
             --teal: #0D9488;
@@ -63,6 +67,8 @@
         .nav-links { display: flex; gap: 36px; }
         .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; }
         .nav-links a:hover { color: var(--text); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+        .nav .btn--primary { padding: 10px 22px; font-size: 14px; border-radius: 10px; }
 
         .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 14px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; padding: 12px 22px; }
         .btn--primary { background: var(--accent); color: #fff; }
@@ -100,35 +106,55 @@
 
         .cta-row { display: flex; gap: 16px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
 
-        .site-footer { padding: 48px 24px; text-align: center; }
-        .site-footer p { font-size: 12px; color: var(--text-dim); }
-        .site-footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; font-size: 13px; }
-        .site-footer a:hover { color: var(--text); }
+        .site-footer { padding: 48px 24px; }
+        .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+        .footer-left { display: flex; align-items: center; gap: 8px; }
+        .footer-logo-text { font-family: var(--font-display); font-size: 18px; color: var(--text-muted); }
+        .footer-middle { display: flex; align-items: center; gap: 24px; }
+        .footer-middle a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.15s; }
+        .footer-middle a:hover { color: var(--text); }
+        .footer-links { display: flex; align-items: center; gap: 20px; }
+        .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 13px; transition: color 0.15s; }
+        .footer-links a:hover { color: var(--text-muted); }
+        .footer-sep { width: 1px; height: 14px; background: var(--border); }
+        .footer-copy { font-size: 12px; color: var(--text-dim); margin-top: 20px; text-align: center; }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-toggle { display: inline-flex; }
+            .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); box-shadow: var(--shadow-md); border-bottom: 1px solid var(--border); padding: 8px 24px 16px; }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 12px 0; font-size: 15px; border-bottom: 1px solid var(--border-light); }
             .agents-grid, .layer-pieces, .outcomes { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+            .footer-links, .footer-middle { justify-content: center; flex-wrap: wrap; }
         }
     </style>
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="nav">
     <a href="/" class="nav-left">
         <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
             <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
             <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+            <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span class="nav-logo-text">SynOS</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
         <a href="/product">Product</a>
         <a href="/use-cases">Use Cases</a>
         <a href="/blog">Blog</a>
         <a href="/scorecard">Scorecard</a>
         <a href="/about">About</a>
     </div>
-    <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="nav">Book a demo</a>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
+        <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+        </button>
+    </div>
 </nav>
 
 <main>
@@ -146,7 +172,7 @@
     <section class="container section">
         <p class="section-label">The agents</p>
         <h2>Four agents a FinOps team would run.</h2>
-        <p>None of these are productized Synos offerings. They're patterns — the kind of agents a competent FinOps team would build on top of the layer.</p>
+        <p>None of these are productized SynOS offerings. They're patterns — the kind of agents a competent FinOps team would build on top of the layer.</p>
         <div class="agents-grid">
             <div class="agent-card">
                 <h4>Cost Watchdog</h4>
@@ -216,15 +242,15 @@
         <div class="container">
             <p class="section-label">Architecture</p>
             <h2>What it looks like end-to-end.</h2>
-            <img src="/img/operating-layer-architecture.png" alt="Cloud FinOps agents architecture on the Synos operating layer" class="arch-img">
-            <p>Your cloud SoRs feed the context graph. Your FinOps team builds skills on top. Sandboxes govern action. The trace loop closes back into the context graph. Bring your own agent harness — Claude Code, Cursor, in-house — Synos sits underneath.</p>
+            <img src="/img/operating-layer-architecture.png" alt="Cloud FinOps agents architecture on the SynOS operating layer" class="arch-img">
+            <p>Your cloud SoRs feed the context graph. Your FinOps team builds skills on top. Sandboxes govern action. The trace loop closes back into the context graph. Bring your own agent harness — Claude Code, Cursor, in-house — SynOS sits underneath.</p>
         </div>
     </section>
 
     <section class="container section">
         <p class="section-label">Outcome shape</p>
         <h2>What teams who build this typically see.</h2>
-        <p>Indicative ranges from engagements in progress. No firm savings figures presented as Synos-delivered — these are outcome shapes for a competent FinOps team using the layer.</p>
+        <p>Indicative ranges from engagements in progress. No firm savings figures presented as SynOS-delivered — these are outcome shapes for a competent FinOps team using the layer.</p>
         <div class="outcomes">
             <div class="outcome">
                 <div class="outcome-num">15–25%</div>
@@ -246,8 +272,8 @@
             <h2>Building Cloud FinOps agents?</h2>
             <p style="max-width:560px;margin:0 auto 24px;">30 minutes with the founder. Talk through your agent stack, your SoRs, your governance constraints. See if the layer fits.</p>
             <div class="cta-row">
-                <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="finops-bottom-demo">Book a 30-min demo</a>
-                <a href="/scorecard" class="btn btn--secondary">Take the scorecard</a>
+                <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-finops">Request early access</a>
+                <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary" data-cta="finops-bottom-demo">Book a 30-min demo</a>
             </div>
         </div>
     </section>
@@ -255,14 +281,29 @@
 </main>
 
 <footer class="site-footer">
-    <p>
-        <a href="/">Home</a> ·
-        <a href="/use-cases">Use Cases</a> ·
-        <a href="/scorecard">Scorecard</a> ·
-        <a href="/blog">Blog</a> ·
-        <a href="https://anoopjawahar.substack.com" target="_blank">Substack</a>
-    </p>
-    <p style="margin-top:12px;">&copy; 2026 SynOS. All rights reserved.</p>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+                <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+            <span class="footer-logo-text">SynOS</span>
+        </div>
+        <div class="footer-middle">
+            <a href="/early-access">Early Access</a>
+            <a href="/product">Product</a>
+            <a href="/use-cases">Use Cases</a>
+            <a href="/scorecard">Scorecard</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+        </div>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank">LinkedIn</a>
+            <span class="footer-sep"></span>
+            <a href="https://anoopjawahar.substack.com" target="_blank">Substack</a>
+        </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
 </footer>
 
 <script>
@@ -270,6 +311,12 @@
         el.addEventListener('click', () => {
             if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_location: el.getAttribute('data-cta') || 'unknown' });
         });
+    });
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (navToggle) navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 </script>
 </body>
