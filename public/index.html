@@ -123,6 +123,7 @@
         @media (prefers-reduced-motion: reduce) {
             .reveal { transition: none; opacity: 1; transform: none; }
             .mesh-bg::before { animation: none; }
+            .u-flow { animation: none; }
         }
 
         /* NAV */
@@ -147,6 +148,24 @@
         .hero-focus { font-size: 14px; line-height: 1.7; color: var(--text-muted); max-width: 600px; margin-bottom: 36px; padding-top: 18px; border-top: 1px solid var(--border); }
         .hero-clients { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-muted); margin-bottom: 14px; }
         .hero-clients a { display: inline-block; padding: 12px 10px; }
+
+        /* UNBLOCK CIRCLE (D5) */
+        .unblock { padding: 96px 0 100px; }
+        .unblock .container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .unblock .section-label { text-align: center; }
+        .unblock-figure { width: 100%; max-width: 660px; margin: 20px auto 0; }
+        .unblock-figure svg { width: 100%; height: auto; display: block; overflow: visible; }
+        .unblock-cap { margin-top: 28px; font-size: 16px; line-height: 1.75; color: var(--text-muted); max-width: 600px; }
+        .unblock-cap strong { color: var(--text); font-weight: 600; }
+        .u-flow { stroke-dasharray: 5 9; animation: uFlow 1.7s linear infinite; }
+        @keyframes uFlow { to { stroke-dashoffset: -14; } }
+        .u-blocked { stroke: var(--amber); stroke-opacity: 0.30; stroke-dasharray: 2 8; stroke-width: 1.6; stroke-linecap: round; }
+        .u-ring { fill: var(--surface); stroke: var(--border); stroke-width: 1.5; }
+        .u-nlabel { font-family: var(--font-body); font-weight: 600; font-size: 16px; fill: var(--text); }
+        .u-nsub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; fill: var(--text-muted); }
+        .u-ctitle { font-family: var(--font-display); font-size: 32px; fill: #fff; }
+        .u-csub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; fill: rgba(255,255,255,0.9); }
+        @media (max-width: 540px) { .u-nlabel { font-size: 14px; } .u-nsub { font-size: 10px; } .unblock { padding: 64px 0 72px; } }
 
         /* ROADBLOCKS */
         /* Six-walls D3 diagram (scoped under .d3-six-walls to avoid clashing with .card/.section/.wall) */
@@ -380,6 +399,99 @@
         </div>
         <p class="hero-clients reveal"><a href="/product">See how it works &rarr;</a></p>
         <p class="hero-trust reveal">Enterprise-first. Runs in your own VPC or air-gapped — your data never leaves. Model + harness agnostic.</p>
+    </section>
+
+    <!-- UNBLOCK CIRCLE (D5) -->
+    <section class="section unblock" data-section="unblock">
+        <div class="container">
+            <p class="section-label reveal">The layer in the middle</p>
+            <h2 class="reveal">One layer between your humans, your agents, and your systems.</h2>
+            <div class="unblock-figure reveal">
+                <svg viewBox="0 0 760 620" role="img" aria-label="SynOS sits at the center, connecting humans, agents, and systems that are otherwise blocked from each other.">
+                    <defs>
+                        <linearGradient id="uGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#6366F1"/>
+                            <stop offset="1" stop-color="#0D9488"/>
+                        </linearGradient>
+                        <radialGradient id="uCore" cx="50%" cy="36%" r="72%">
+                            <stop offset="0" stop-color="#7C7FF5"/>
+                            <stop offset="0.55" stop-color="#6366F1"/>
+                            <stop offset="1" stop-color="#0D9488"/>
+                        </radialGradient>
+                        <filter id="uGlow" x="-60%" y="-60%" width="220%" height="220%">
+                            <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#6366F1" flood-opacity="0.28"/>
+                        </filter>
+                        <filter id="uShadow" x="-40%" y="-40%" width="180%" height="180%">
+                            <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#1A1A1A" flood-opacity="0.08"/>
+                        </filter>
+                        <marker id="uArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M1 1 L9 5 L1 9 Z" fill="#6366F1"/>
+                        </marker>
+                    </defs>
+
+                    <!-- blocked from each other (dashed, faint) -->
+                    <g class="u-blocked">
+                        <line x1="380" y1="110" x2="155" y2="470"/>
+                        <line x1="155" y1="470" x2="605" y2="470"/>
+                        <line x1="605" y1="470" x2="380" y2="110"/>
+                    </g>
+
+                    <!-- connected through the layer (solid, flowing, bidirectional) -->
+                    <g fill="none" stroke="url(#uGrad)" stroke-width="2.5" stroke-linecap="round" marker-start="url(#uArrow)" marker-end="url(#uArrow)">
+                        <line class="u-flow" x1="380" y1="236" x2="380" y2="164"/>
+                        <line class="u-flow" x1="319.7" y1="352.9" x2="199" y2="438.7"/>
+                        <line class="u-flow" x1="440.3" y1="352.9" x2="561" y2="438.7"/>
+                    </g>
+
+                    <!-- nodes -->
+                    <g>
+                        <g filter="url(#uShadow)"><circle class="u-ring" cx="380" cy="110" r="54"/></g>
+                        <g transform="translate(380,110)" stroke="#6366F1" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-16,-16) scale(1.33)">
+                                <circle cx="9" cy="8.5" r="2.8"/>
+                                <path d="M3.8 19c0-3 2.4-5 5.2-5s5.2 2 5.2 5"/>
+                                <circle cx="16.8" cy="9.5" r="2.2"/>
+                                <path d="M15 15c2.2.2 4.2 1.9 4.2 4.4"/>
+                            </g>
+                        </g>
+                        <text class="u-nlabel" x="380" y="40" text-anchor="middle">Humans</text>
+                        <text class="u-nsub" x="380" y="58" text-anchor="middle">your people &amp; SMEs</text>
+
+                        <g filter="url(#uShadow)"><circle class="u-ring" cx="155" cy="470" r="54"/></g>
+                        <g transform="translate(155,470)" stroke="#6366F1" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-16,-16) scale(1.33)">
+                                <rect x="5.5" y="7" width="13" height="11" rx="2.2"/>
+                                <path d="M9.5 12h.01M14.5 12h.01"/>
+                                <path d="M10 15.2h4"/>
+                                <path d="M12 3.5v3.5M8.5 7V5.5M15.5 7V5.5"/>
+                            </g>
+                        </g>
+                        <text class="u-nlabel" x="155" y="552" text-anchor="middle">Agents</text>
+                        <text class="u-nsub" x="155" y="570" text-anchor="middle">Claude Code · Codex · any harness</text>
+
+                        <g filter="url(#uShadow)"><circle class="u-ring" cx="605" cy="470" r="54"/></g>
+                        <g transform="translate(605,470)" stroke="#6366F1" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(-16,-16) scale(1.33)">
+                                <ellipse cx="12" cy="6.5" rx="6.8" ry="2.8"/>
+                                <path d="M5.2 6.5v11c0 1.5 3 2.8 6.8 2.8s6.8-1.3 6.8-2.8v-11"/>
+                                <path d="M5.2 12c0 1.5 3 2.8 6.8 2.8s6.8-1.3 6.8-2.8"/>
+                            </g>
+                        </g>
+                        <text class="u-nlabel" x="605" y="552" text-anchor="middle">Systems</text>
+                        <text class="u-nsub" x="605" y="570" text-anchor="middle">warehouse · CRM · docs</text>
+                    </g>
+
+                    <!-- core -->
+                    <g filter="url(#uGlow)">
+                        <circle cx="380" cy="310" r="74" fill="url(#uCore)"/>
+                        <circle cx="380" cy="310" r="74" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="1.5"/>
+                    </g>
+                    <text class="u-ctitle" x="380" y="308" text-anchor="middle">SynOS</text>
+                    <text class="u-csub" x="380" y="332" text-anchor="middle">THE OPERATING LAYER</text>
+                </svg>
+            </div>
+            <p class="unblock-cap reveal"><strong>The three things that make AI-native work are blocked from each other today.</strong> SynOS sits in the middle — one governed layer your humans, your agents, and your systems all meet through.</p>
+        </div>
     </section>
 
     <!-- WHY A LAYER — SIX WALLS (problem) -->
