@@ -300,8 +300,12 @@
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .stack-claims, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
             .teams-grid { grid-template-columns: 1fr; }
             .inside-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 540px) {
+            .grid-4 { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
             .nav { background: rgba(250,250,248,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
@@ -447,11 +451,33 @@
     </section>
 
     <!-- THE SIX PILLARS (answer) -->
-    <section class="section" data-section="pillars">
+    <!-- DESCRIBE IT — NL BUILD (wow) -->
+    <section class="section" data-section="nl-build">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Six walls. One layer.</p>
+                <h2>Describe it in plain English. It ships in minutes.</h2>
+                <p class="section-sub">Your non-coding teams describe what they need. SynOS assembles it on your live company brain — governed, sandboxed, and shared with the team. Not a chat window: real apps and agents that take action across your systems.</p>
+            </div>
+            <div class="grid-2 reveal-stagger">
+                <div class="card reveal">
+                    <h3>Describe an app &rarr; it ships in minutes</h3>
+                    <p>One plain-English brief becomes screens, logic, charts, and rules, wired to your live data. No engineers, no six-month roadmap. Shipped on team infra, sandboxed and scanned.</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Describe an agent &rarr; it acts for you</h3>
+                    <p>One sentence becomes a multi-step worker that acts across your systems and stops for a human before anything leaves the building. Run it yourself, schedule it, or make it autonomous — with a kill-switch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE OPERATING LAYER (architecture + pillars) -->
+    <section class="section section--alt" data-section="pillars">
         <div class="container">
             <div class="reveal">
                 <p class="section-label">The operating layer</p>
-                <h2>Each wall, closed by one piece of the layer.</h2>
+                <h2>The layer underneath that makes it safe, shared, and compounding.</h2>
                 <p class="section-sub">Six pieces. The self-improving Context Brain at the centre; the rest make agents safe, shared, and compounding in production.</p>
             </div>
             <div class="reveal" style="margin-bottom:48px;">
@@ -640,10 +666,10 @@
     </section>
 
     <!-- BUILD THE 20% / FOCUS ON IMPACT -->
-    <section class="section section--alt" data-section="focus">
+    <section class="section" data-section="focus">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">Focus on impact, not plumbing</p>
+                <p class="section-label">Engineers set the rails once</p>
                 <h2>Build the 20% that's you. We ship the infra.</h2>
                 <p class="section-sub">Build custom AI workflows and apps shaped to how you actually operate — owned by your team, not rented from a vendor. SynOS owns the brain, storage, governance, and deploy plumbing underneath.</p>
             </div>
@@ -691,8 +717,41 @@
         </div>
     </section>
 
+    <!-- ENTERPRISE-FIRST DEPLOYMENT -->
+    <section class="section section--alt" data-section="enterprise">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Enterprise-first</p>
+                <h2>Runs where your data lives.</h2>
+                <p class="section-sub">Built to pass risk review, not just demo well. SynOS deploys inside your own boundary — only context is extracted; raw data never leaves your systems.</p>
+            </div>
+            <div class="grid-4 reveal-stagger">
+                <div class="card reveal"><h3>Your VPC or cloud account</h3><p>Self-hosted inside your own environment, with your own model keys.</p></div>
+                <div class="card reveal"><h3>Air-gapped on-prem</h3><p>Fully isolated deployments for regulated and sensitive workloads.</p></div>
+                <div class="card reveal"><h3>Never trained on</h3><p>Your data and traces are never used to train any model.</p></div>
+                <div class="card reveal"><h3>Governed &amp; audited</h3><p>RBAC on every operation, a per-tool-call audit trail, and a kill-switch.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COST / DETERMINISTIC AGENTS -->
+    <section class="section" data-section="cost">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Costs stay sane</p>
+                <h2>Stop paying harness prices for work a small model can do.</h2>
+                <p class="section-sub">Prototype in the harness. Productionize the proven path as a deterministic agent — code plus a small, local model — that runs for cents, not dollars.</p>
+            </div>
+            <div class="grid-3 reveal-stagger">
+                <div class="card reveal"><h3>~70&ndash;80% fewer tokens</h3><p>Agents retrieve the relevant slice of the brain instead of re-reading whole docs and schemas every call.</p></div>
+                <div class="card reveal"><h3>Model-agnostic routing</h3><p>Each step goes to the cheapest capable model — local for routine, frontier only where it matters.</p></div>
+                <div class="card reveal"><h3>Your data compounds</h3><p>Every run is captured as a trace — the dataset to fine-tune or distil your own model over time.</p></div>
+            </div>
+        </div>
+    </section>
+
     <!-- WHAT TEAMS CAN BUILD — X-BRAIN TEMPLATES -->
-    <section class="section" id="what-teams-build" data-section="what-teams-build">
+    <section class="section section--alt" id="what-teams-build" data-section="what-teams-build">
         <div class="container">
             <div class="reveal">
                 <p class="section-label">A starting brain for every operating team</p>
