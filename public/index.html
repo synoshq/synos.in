@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynOS — The infrastructure to unblock your agentic transformation</title>
-    <meta name="description" content="SynOS is the Agent-Native Operating Layer: a self-improving Context Brain, compounding skills, agent-native storage, safe deploy, and access control — operated with Claude Code, Codex, or your own. Self-hosted. For companies, products, and agencies going AI-native.">
-    <meta property="og:title" content="SynOS — The infrastructure to unblock your agentic transformation">
-    <meta property="og:description" content="A self-improving Context Brain, compounding skills, agent-native storage, safe deploy, and access control — under any agent harness. Self-hosted.">
+    <title>SynOS — The Agent-Native Operating Layer</title>
+    <meta name="description" content="AI tools make individuals fast — not your company AI-native. SynOS is the operating layer under your agents: a live company brain, governed access to your systems, and safe build & deploy for non-coders. Enterprise-first, self-hosted, model- and harness-agnostic.">
+    <meta property="og:title" content="SynOS — The Agent-Native Operating Layer">
+    <meta property="og:description" content="The operating layer that unblocks your company's — or product's — agent-native transformation. Live company brain, governed access, safe build & deploy. Enterprise-first, self-hosted.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://synos.in">
     <meta property="og:image" content="https://synos.in/img/operating-layer-architecture.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SynOS — The infrastructure to unblock your agentic transformation">
-    <meta name="twitter:description" content="The Agent-Native Operating Layer. Self-hosted. Model + harness agnostic.">
+    <meta name="twitter:title" content="SynOS — The Agent-Native Operating Layer">
+    <meta name="twitter:description" content="The Agent-Native Operating Layer. Enterprise-first, self-hosted. Model + harness agnostic.">
     <link rel="canonical" href="https://synos.in/">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
@@ -48,8 +48,8 @@
 
             --text: #1A1A1A;
             --text-secondary: #3D3D3D;
-            --text-muted: #6B6B73;
-            --text-dim: #A1A1AA;
+            --text-muted: #52525B;
+            --text-dim: #62626A;
 
             --accent: #6366F1;
             --accent-hover: #5558E6;
@@ -67,7 +67,8 @@
         }
 
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 15px; line-height: 1.6; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 16px; line-height: 1.6; }
+        a:not([class]) { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 
         .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
         .section { padding: 120px 0; position: relative; }
@@ -127,12 +128,12 @@
         /* NAV */
         .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 24px; height: 64px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s, backdrop-filter 0.3s; }
         .nav.scrolled { background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-        .nav-left { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-left { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); min-height: 44px; }
         .nav-logo-text { font-family: var(--font-display); font-size: 22px; color: var(--text); letter-spacing: -0.02em; }
-        .nav-links { display: flex; gap: 36px; }
-        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+        .nav-links { display: flex; gap: 36px; align-items: center; }
+        .nav-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
         .nav-links a:hover { color: var(--text); }
-        .nav .btn--primary { padding: 10px 22px; font-size: 14px; border-radius: 10px; }
+        .nav .btn--primary { min-height: 44px; padding: 10px 22px; font-size: 14px; border-radius: 10px; }
         .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
 
         /* HERO */
@@ -145,6 +146,7 @@
         .hero-trust { font-size: 13px; color: var(--text-dim); }
         .hero-focus { font-size: 14px; line-height: 1.7; color: var(--text-muted); max-width: 600px; margin-bottom: 36px; padding-top: 18px; border-top: 1px solid var(--border); }
         .hero-clients { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-muted); margin-bottom: 14px; }
+        .hero-clients a { display: inline-block; padding: 12px 10px; }
 
         /* ROADBLOCKS */
         /* Six-walls D3 diagram (scoped under .d3-six-walls to avoid clashing with .card/.section/.wall) */
@@ -319,7 +321,7 @@
         @media (max-width: 540px) {
             h1 { font-size: 38px; }
             .hero-subhead { font-size: 18px; }
-            .hero-sub { font-size: 15px; }
+            .hero-sub { font-size: 16px; }
             .hero-cta, .cta-section .cta-row { flex-direction: column; width: 100%; max-width: 320px; }
             .hero-cta .btn, .cta-section .cta-row .btn { width: 100%; }
             .nav .btn--primary { padding: 8px 16px; font-size: 13px; }
@@ -363,20 +365,18 @@
 
     <!-- HERO -->
     <section class="container hero mesh-bg" data-section="hero">
-        <p class="hero-eyebrow reveal">The Agent-Native Operating Layer</p>
-        <h1 class="reveal">The infrastructure to unblock your <span class="gradient-text">agentic transformation.</span></h1>
+        <p class="hero-eyebrow reveal">The Agent-Native Operating Layer &nbsp;·&nbsp; Enterprise-first, self-hosted</p>
+        <h1 class="reveal">AI tools make individuals fast. They don't make your company <span class="gradient-text">AI-native.</span></h1>
+        <p class="hero-subhead reveal">SynOS is the operating layer that unblocks the transformation of your company — or your product — into something agent-native.</p>
         <p class="hero-sub reveal">
-            SynOS gives your team a self-improving <strong>Context Brain</strong>, compounding <strong>skills</strong>, <strong>agent-native storage</strong>, a safe place to <strong>deploy agents &amp; apps</strong>, and built-in <strong>access control</strong> — operated with Claude Code, Codex, or your own.
-        </p>
-        <p class="hero-focus reveal">
-            Spend your time on the AI impact your business needs — not on rebuilding the brain, storage, governance, and deploy plumbing under every agent.
+            Handing your teams Claude Code, Codex, or ChatGPT unblocks one person at a time. Compounding that into a company that runs on agents takes a layer underneath — a live company brain, governed access to your systems, and a safe place for non-coders to build apps and agents that do real work. Engineers set the rails once; the business builds freely and safely.
         </p>
         <div class="hero-cta reveal">
-            <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-hero">Request early access</a>
-            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary" data-cta="cta-book-demo-hero">Book a 30-min demo</a>
+            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="cta-book-demo-hero">Book a live walkthrough</a>
+            <a href="/early-access" class="btn btn--secondary" data-cta="cta-early-access-hero">Request early access</a>
         </div>
-        <p class="hero-clients reveal">For companies, products, and agencies going AI-native.</p>
-        <p class="hero-trust reveal">Self-hosted. Your data stays yours. Model + harness agnostic.</p>
+        <p class="hero-clients reveal"><a href="/product">See how it works &rarr;</a></p>
+        <p class="hero-trust reveal">Enterprise-first. Runs in your own VPC or air-gapped — your data never leaves. Model + harness agnostic.</p>
     </section>
 
     <!-- WHY A LAYER — SIX WALLS (problem) -->
@@ -384,8 +384,8 @@
         <div class="container">
             <div class="reveal">
                 <p class="section-label">Why a layer</p>
-                <h2>Local AI workflows and apps are easy. Turning them into compounding company value hits six walls.</h2>
-                <p class="section-sub">It's not the model. It's everything the model needs around it to be safe, shared, and worth trusting.</p>
+                <h2>Why tools alone don't compound: six walls between a clever demo and real company value.</h2>
+                <p class="section-sub">A harness is a power tool for one person, one session. Claude Code, Codex, ChatGPT, MCP make one smart person fast — they don't give your <em>company</em> shared memory, safe access to your systems, a governed place to deploy, reusable skills, or a learning loop. Hand them out and you get brilliant one-off demos on personal laptops, not compounding company value. That gap is six concrete walls:</p>
             </div>
             <div class="reveal">
                 <div class="d3-six-walls">
