@@ -414,11 +414,10 @@
         <p class="hero-clients reveal"><a href="/product">See how it works &rarr;</a></p>
         <p class="hero-trust reveal">Enterprise-first. Runs in your own VPC or air-gapped — your data never leaves. Model + harness agnostic.</p>
         <div class="hero-vframe reveal">
-            <video controls preload="none" poster="/media/hero.webp" width="1920" height="1080" aria-label="SynOS product walkthrough on the Meridian demo tenant">
-                <source src="/media/hero.webm" type="video/webm">
-                <source src="/media/hero.mp4" type="video/mp4">
+            <video class="hero-reel" autoplay loop muted playsinline preload="auto" poster="/media/hero-reel.webp" width="1920" height="1080" aria-label="SynOS product reel on the Meridian demo tenant">
+                <source src="/media/hero-reel.mp4" type="video/mp4">
             </video>
-            <p class="hero-vcap">▶ 75-second walkthrough — real product, on a synthetic company (Meridian)</p>
+            <p class="hero-vcap">Real product, on a synthetic company (Meridian)</p>
         </div>
     </section>
 
@@ -1084,6 +1083,9 @@
         }, { threshold: 0.25 });
         loopVids.forEach(v => vObs.observe(v));
     }
+    // Hero reel: respect reduced-motion (show poster instead of autoplay)
+    const heroReel = document.querySelector('.hero-reel');
+    if (heroReel && reduceMotion) { heroReel.removeAttribute('autoplay'); heroReel.pause(); }
 
     // GA section tracking
     const sections = document.querySelectorAll('[data-section]');
