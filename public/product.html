@@ -374,6 +374,82 @@
         </div>
     </section>
 
+    <!-- ===== SEE IT ON REAL DATA — proof gallery (moved from home) ===== -->
+    <style>
+        .pgal-wrap { margin-top: 40px; }
+        .pgal-full { margin: 0 0 22px; }
+        .pgal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .pgal-fig { margin: 0; }
+        .pgal-frame { border-radius: 14px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 18px 50px rgba(0,0,0,0.10); background: #0B0E16; aspect-ratio: 16 / 9; }
+        .pgal-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .pgal-fig h4 { margin: 16px 0 6px; font-size: 18px; }
+        .pgal-fig p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+        @media (max-width: 720px) { .pgal-grid { grid-template-columns: 1fr; } }
+    </style>
+    <section class="section section--alt" data-section="see-it-working">
+        <div class="container">
+            <div class="reveal" style="max-width:740px;">
+                <p class="section-label">See it working</p>
+                <h2>Every surface, on a real company's data.</h2>
+                <p class="section-sub">Each frame is the real product on a synthetic company (Meridian) — nothing staged but the data. The 70-second tour of all of this lives on the <a href="/">home page</a>.</p>
+            </div>
+            <div class="pgal-wrap reveal">
+                <figure class="pgal-fig pgal-full">
+                    <div class="pgal-frame"><img src="/media/shot-brain.webp" alt="The living Context Brain — Meridian's entity-resolved knowledge graph across accounts, people, services, docs and SOPs" width="1920" height="1080" loading="lazy"></div>
+                    <h4>A live company brain — not static RAG</h4>
+                    <p>Meridian's entity-resolved graph across accounts, people, services, docs and SOPs — categorized, cross-linked, and continuously curated from every connected source.</p>
+                </figure>
+                <div class="pgal-grid">
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-connectors.webp" alt="Connectors grid with per-source read-only / read-and-write permission controls" width="1920" height="1080" loading="lazy"></div>
+                        <h4>Connect every system — with permission controls</h4>
+                        <p>Warehouses, SaaS and internal APIs, each with read-only / read-and-write scopes before anything is added as a tool.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-documents.webp" alt="Documents and unstructured data added as context" width="1920" height="1080" loading="lazy"></div>
+                        <h4>Documents &amp; unstructured data become context</h4>
+                        <p>SOPs, notes and files are ingested, summarized and linked into the same brain — not left in a separate silo.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/loop-chat.webp" alt="Grounded, cited answer about an at-risk account" width="1920" height="1080" loading="lazy"></div>
+                        <h4>Grounded answers, cited to your systems</h4>
+                        <p>"Why is Voltaic Systems at risk, and who owns the renewal?" — answered from the brain with the owner, the champion loss, the −41% usage. Not a guess.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-skills.webp" alt="Versioned skills registry with publish and deploy-as-worker" width="1920" height="1080" loading="lazy"></div>
+                        <h4>Skills compound across the team</h4>
+                        <p>A versioned registry — publish, fork, deploy-as-worker. The 10th teammate starts from the 9th's best work, not from scratch.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-storage.webp" alt="Agent-Native Storage — system-of-record collections with typed rows" width="1920" height="1080" loading="lazy"></div>
+                        <h4>Agent-Native Storage</h4>
+                        <p>A system of record built for agents — typed collections your workers and apps read and write, with owners and publish state.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-workers.webp" alt="Worker settings with the trigger grid: schedule, Slack, webhook, chat, voice" width="1920" height="1080" loading="lazy"></div>
+                        <h4>AI workers — scheduled, supervised, triggered</h4>
+                        <p>Skill-based workers doing critical knowledge work. Run manually, on a schedule, or from Slack / webhook / chat — supervised, with a kill-switch.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-learning.webp" alt="Self-learning review queue gating agent-proposed learnings" width="1920" height="1080" loading="lazy"></div>
+                        <h4>It learns from every correction</h4>
+                        <p>Agents propose learnings from real runs; a human approves or rejects before anything enters the shared brain. Governed compounding, not silent drift.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-apps.webp" alt="A natural-language app: the rendered At-Risk Deals view with deal cards and approve-to-send nudges" width="1920" height="1080" loading="lazy"></div>
+                        <h4>Describe an app → it ships and acts</h4>
+                        <p>A plain-English brief becomes a real app on your live data — here the At-Risk Deals view with drafted nudges and human approve-to-send.</p>
+                    </figure>
+                    <figure class="pgal-fig">
+                        <div class="pgal-frame"><img src="/media/shot-observability.webp" alt="Run observability — trace detail with phases, cost and tool calls" width="1920" height="1080" loading="lazy"></div>
+                        <h4>Full observability — every run traced &amp; costed</h4>
+                        <p>Runs across every harness, drilled into phases, cost and tool calls — attributable and auditable.</p>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== 6 PER-PIECE DEEP-DIVES (v7) ===== -->
 
     <!-- 2. LIVING CONTEXT BRAIN — anchor -->
