@@ -171,8 +171,12 @@
         .vframe { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-md); background: #0B0E16; }
         .vframe.loop { aspect-ratio: 16 / 9; }
         .vframe.loop > .vposter, .vframe.loop > .demo-loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-        .hero-vframe { max-width: 940px; margin: 46px auto 0; }
-        .hero-vframe video { display: block; width: 100%; height: auto; background: #0B0E16; }
+        .hero-vframe { max-width: 1180px; margin: 46px auto 0; }
+        .hero-vframe video, .hero-vframe img { display: block; width: 100%; height: auto; background: #0B0E16; border-radius: 14px; }
+        .hero-vstage { position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.28); }
+        .hero-vplay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(6,8,14,0.28); color: #fff; font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.04em; cursor: pointer; border: 0; transition: background .2s; }
+        .hero-vplay:hover { background: rgba(6,8,14,0.4); }
+        .hero-vplay span.dot { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 999px; background: rgba(255,255,255,0.14); backdrop-filter: blur(6px); border: 1.5px solid rgba(255,255,255,0.5); }
         .hero-vcap { margin-top: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); text-align: center; }
         .demo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 40px; }
         .demo-item h3 { font-family: var(--font-body); font-size: 16px; font-weight: 600; margin: 16px 0 4px; }
@@ -414,9 +418,34 @@
         <p class="hero-clients reveal"><a href="/product">See how it works &rarr;</a></p>
         <p class="hero-trust reveal">Enterprise-first. Runs in your own VPC or air-gapped — your data never leaves. Model + harness agnostic.</p>
         <div class="hero-vframe reveal">
-            <img src="/media/still-brain-graph.webp" width="1920" height="1080" alt="SynOS Context Brain — Meridian's live entity-resolved knowledge graph" style="display:block;width:100%;height:auto;border-radius:14px" loading="eager" fetchpriority="high">
-            <p class="hero-vcap">The Context Brain — real product, on a synthetic company (Meridian)</p>
+            <div class="hero-vstage" id="heroStage">
+                <video id="heroLoop" width="1920" height="1080" muted loop playsinline autoplay preload="metadata" poster="/media/hero-loop.webp">
+                    <source src="/media/hero-loop.mp4" type="video/mp4">
+                </video>
+                <button class="hero-vplay" id="heroPlay" aria-label="Watch the full 70-second product tour">
+                    <span class="dot">&#9658;</span> Watch the 70-second product tour
+                </button>
+            </div>
+            <p class="hero-vcap">The real product on a synthetic company (Meridian) — connectors, context brain, workers & natural-language apps.</p>
         </div>
+        <script>
+        (function () {
+            var stage = document.getElementById('heroStage');
+            var loop = document.getElementById('heroLoop');
+            var btn = document.getElementById('heroPlay');
+            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduce && loop) { loop.removeAttribute('autoplay'); loop.pause(); }
+            if (btn) btn.addEventListener('click', function () {
+                var tour = document.createElement('video');
+                tour.width = 1920; tour.height = 1080; tour.controls = true; tour.autoplay = true; tour.playsInline = true;
+                tour.setAttribute('style', 'display:block;width:100%;height:auto;background:#0B0E16;border-radius:14px');
+                tour.poster = '/media/hero-tour.webp';
+                var s = document.createElement('source'); s.src = '/media/hero-tour.mp4'; s.type = 'video/mp4';
+                tour.appendChild(s);
+                stage.innerHTML = ''; stage.appendChild(tour); tour.play();
+            });
+        })();
+        </script>
     </section>
 
     <!-- UNBLOCK CIRCLE (D5) -->
