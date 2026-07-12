@@ -170,7 +170,10 @@
         /* DEMO VIDEO FRAMES */
         .vframe { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-md); background: #0B0E16; }
         .vframe.loop { aspect-ratio: 16 / 9; }
-        .vframe.loop > .vposter, .vframe.loop > .demo-loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .vframe.loop > .vposter, .vframe.loop > .demo-loop, .vframe.loop > .vloop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .vframe.hoverplay { position: relative; cursor: pointer; }
+        .vframe.hoverplay .vhint { position: absolute; left: 12px; bottom: 12px; z-index: 2; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.03em; color: #fff; background: rgba(6,8,14,0.6); border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 5px 11px; backdrop-filter: blur(6px); transition: opacity .2s; }
+        .vframe.hoverplay.playing .vhint { opacity: 0; }
         .hero-vframe { max-width: 1180px; margin: 46px auto 0; }
         .hero-vframe video, .hero-vframe img { display: block; width: 100%; height: auto; background: #0B0E16; border-radius: 14px; }
         .hero-vstage { position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.28); }
@@ -812,18 +815,24 @@
             </div>
             <div class="grid-2 reveal-stagger">
                 <div class="card reveal">
-                    <div class="vframe loop">
-                        <img class="vposter" src="/media/shot-apps.webp" alt="Plain-English brief becomes a deployed app on the Meridian brain" width="1920" height="1080" loading="lazy">
+                    <div class="vframe loop hoverplay">
+                        <video class="vloop" muted loop playsinline preload="none" poster="/media/shot-apps.webp" width="1920" height="1080">
+                            <source src="/media/card-app.mp4" type="video/mp4">
+                        </video>
+                        <span class="vhint">Hover to watch it build</span>
                     </div>
                     <h3 style="margin-top:20px">Describe an app &rarr; it ships in minutes</h3>
-                    <p>One plain-English brief becomes screens, logic, charts, and rules, wired to your live data. No engineers, no six-month roadmap. Shipped on team infra, sandboxed and scanned.</p>
+                    <p>Type a plain-English brief on the left; the live app updates on the right — screens, logic, charts, and rules wired to your data. No engineers, no six-month roadmap. Sandboxed and scanned.</p>
                 </div>
                 <div class="card reveal">
-                    <div class="vframe loop">
-                        <img class="vposter" src="/media/shot-workers.webp" alt="Plain-English sentence becomes a governed, human-approved worker" width="1920" height="1080" loading="lazy">
+                    <div class="vframe loop hoverplay">
+                        <video class="vloop" muted loop playsinline preload="none" poster="/media/shot-workers.webp" width="1920" height="1080">
+                            <source src="/media/card-worker.mp4" type="video/mp4">
+                        </video>
+                        <span class="vhint">Hover to see the Playbook &amp; triggers</span>
                     </div>
                     <h3 style="margin-top:20px">Describe an agent &rarr; it acts for you</h3>
-                    <p>One sentence becomes a multi-step worker that acts across your systems and stops for a human before anything leaves the building. Run it yourself, schedule it, or make it autonomous — with a kill-switch.</p>
+                    <p>A skill-based worker with its own Playbook — run it yourself, schedule it, or trigger it from Slack, webhook or chat. Supervised, stops for a human, with a kill-switch.</p>
                 </div>
             </div>
 
@@ -1034,6 +1043,17 @@
         });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => revealObserver.observe(el));
+
+    // Hover-to-play cards (tap toggles on touch)
+    document.querySelectorAll('.vframe.hoverplay').forEach(function (frame) {
+        const v = frame.querySelector('.vloop');
+        if (!v) return;
+        const start = function () { if (v.preload === 'none') { v.preload = 'auto'; v.load(); } v.play().catch(function () {}); frame.classList.add('playing'); };
+        const stop = function () { v.pause(); frame.classList.remove('playing'); };
+        frame.addEventListener('mouseenter', start);
+        frame.addEventListener('mouseleave', stop);
+        frame.addEventListener('click', function () { if (v.paused) start(); else stop(); });
+    });
 
     // Lazy-load + play demo loops only when in view (perf)
     const loopVids = document.querySelectorAll('.demo-loop');
