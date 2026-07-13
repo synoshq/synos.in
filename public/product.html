@@ -614,22 +614,16 @@
         </div>
     </section>
 
-    <!-- ===== DEEP LAYER — under the hood ===== -->
-    <section class="section" data-section="under-the-hood">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Under the hood</p>
-                <h2>How each piece works.</h2>
-                <p class="section-sub">The six pieces of the layer, in detail — for when you want the internals, not the overview.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- ===== 6 PER-PIECE DEEP-DIVES (v7) ===== -->
 
     <!-- 2. LIVING CONTEXT BRAIN — anchor -->
     <section class="section" id="brain" data-section="brain">
         <div class="container">
+            <div class="reveal" style="max-width:760px;margin-bottom:48px;">
+                <p class="section-label">Under the hood</p>
+                <h2 style="margin-bottom:8px;">How each piece works.</h2>
+                <p class="section-sub">The six pieces in detail — the internals, for when you want them, not the overview.</p>
+            </div>
             <div class="reveal" style="max-width:740px;">
                 <p class="section-label">The Anchor Piece</p>
                 <h2>The Living Context Brain.</h2>
@@ -781,7 +775,7 @@
     </section>
 
     <!-- DATA FLOW (v7 — 7 steps, exercises all six pieces) -->
-    <section class="section" data-section="data-flow">
+    <section class="section section--alt" data-section="data-flow">
         <div class="container">
             <div class="reveal">
                 <p class="section-label">Lifecycle</p>
@@ -800,35 +794,16 @@
         </div>
     </section>
 
-    <!-- TOOLS -->
-    <section class="section section--alt" data-section="tools">
+    <!-- CAPABILITIES — connect, act, trigger (merged) -->
+    <section class="section" data-section="capabilities">
         <div class="container">
-            <div class="reveal">
-                <p class="section-label">Tools & Actions</p>
-                <h2>Tools with guardrails. Agents that act, not just answer.</h2>
-                <p class="section-sub">Structured, permission-controlled operations that connect agents to your systems. Granular per-tool, per-agent permissions — allow reads on one system while denying writes on another. Every action audited.</p>
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Tools, connectors &amp; triggers</p>
+                <h2>Connect your systems, act on them, trigger however you need.</h2>
+                <p class="section-sub">One capability surface. Every action is permission-scoped per tool and per agent, and every action is audited.</p>
             </div>
-            <div class="tools-grid reveal-stagger">
-                <div class="tool-cat reveal"><h4>Read</h4><p>Query your CRM, data warehouse, databases, and documents.</p></div>
-                <div class="tool-cat reveal"><h4>Write</h4><p>Update spreadsheets, create CRM records, insert database rows, send messages.</p></div>
-                <div class="tool-cat reveal"><h4>Communicate</h4><p>Send Slack messages, Google Chat, email. Route alerts to the right people.</p></div>
-                <div class="tool-cat reveal"><h4>Research</h4><p>Web search, web scraping, API calls. Bring in external context on demand.</p></div>
-            </div>
-            <div class="reveal" style="margin-top:32px;padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:12px;">
-                <h3 style="margin-bottom:8px;">Custom Tools — Extend With Your Own Logic</h3>
-                <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);">Save tested queries as reusable tools with template variables. No code deployment — define once, assign to any agent. Your saved, validated query runs deterministically. Scoped write tools restrict which objects a tool can modify.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- CONNECTORS -->
-    <section class="section" data-section="connectors">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">Connectors</p>
-                <h2>Automatic connectors to your apps. With guardrails.</h2>
-                <p class="section-sub">Standard integration methods — OAuth, API keys, and connection strings. Internal application data can also be integrated through REST API endpoints.</p>
-            </div>
+            <div class="reveal" style="margin-top:40px;"><h3 style="margin-bottom:4px;">Connect</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">Standard methods — OAuth, API keys, connection strings. Any system with an API becomes a connector.</p></div>
             <div class="connectors-grid reveal-stagger">
                 <div class="conn-cat reveal"><h4>Documents</h4><p>Google Docs, Notion, Confluence</p></div>
                 <div class="conn-cat reveal"><h4>Data Stores</h4><p>BigQuery, Snowflake, Redshift, PostgreSQL, MySQL, MongoDB, Google Sheets</p></div>
@@ -836,22 +811,25 @@
                 <div class="conn-cat reveal"><h4>Communication</h4><p>Slack, Microsoft Teams, Google Chat, Email (Gmail, Outlook)</p></div>
                 <div class="conn-cat reveal"><h4>CRM</h4><p>Salesforce, HubSpot</p></div>
                 <div class="conn-cat reveal"><h4>Cloud Infrastructure</h4><p>AWS (Cost Explorer, CloudWatch), GCP (Billing, Monitoring), Azure</p></div>
-                <div class="conn-cat reveal"><h4>Billing & Finance</h4><p>Stripe, Chargebee, NetSuite</p></div>
-                <div class="conn-cat reveal"><h4>Code & Deploys</h4><p>GitHub, GitLab</p></div>
-                <div class="conn-cat reveal"><h4>APIs & Internal Systems</h4><p>REST API endpoints, webhooks — any system with an API becomes a connector</p></div>
+                <div class="conn-cat reveal"><h4>Billing &amp; Finance</h4><p>Stripe, Chargebee, NetSuite</p></div>
+                <div class="conn-cat reveal"><h4>Code &amp; Deploys</h4><p>GitHub, GitLab</p></div>
+                <div class="conn-cat reveal"><h4>APIs &amp; Internal Systems</h4><p>REST API endpoints, webhooks — any system with an API becomes a connector</p></div>
             </div>
-            <p class="reveal" style="text-align:center;margin-top:24px;font-size:14px;color:var(--text-muted);">Need a connector we don't have? New connectors ship fast based on design partner needs.</p>
-        </div>
-    </section>
+            <p class="reveal" style="text-align:center;margin-top:16px;font-size:14px;color:var(--text-muted);">Need a connector we don't have? New connectors ship fast based on design partner needs.</p>
 
-    <!-- TRIGGERS -->
-    <section class="section" data-section="triggers">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">Triggers</p>
-                <h2>Multiple ways to start an agent.</h2>
-                <p class="section-sub">All triggers feed into the same execution engine with the same graduated trust controls.</p>
+            <div class="reveal" style="margin-top:48px;"><h3 style="margin-bottom:4px;">Act</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">Structured, permission-controlled operations — allow reads on one system while denying writes on another.</p></div>
+            <div class="tools-grid reveal-stagger">
+                <div class="tool-cat reveal"><h4>Read</h4><p>Query your CRM, data warehouse, databases, and documents.</p></div>
+                <div class="tool-cat reveal"><h4>Write</h4><p>Update spreadsheets, create CRM records, insert database rows, send messages.</p></div>
+                <div class="tool-cat reveal"><h4>Communicate</h4><p>Send Slack messages, Google Chat, email. Route alerts to the right people.</p></div>
+                <div class="tool-cat reveal"><h4>Research</h4><p>Web search, web scraping, API calls. Bring in external context on demand.</p></div>
             </div>
+            <div class="reveal" style="margin-top:24px;padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:12px;">
+                <h3 style="margin-bottom:8px;">Custom Tools — extend with your own logic</h3>
+                <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);">Save tested queries as reusable tools with template variables. No code deployment — define once, assign to any agent. Your saved, validated query runs deterministically. Scoped write tools restrict which objects a tool can modify.</p>
+            </div>
+
+            <div class="reveal" style="margin-top:48px;"><h3 style="margin-bottom:4px;">Trigger</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">All triggers feed the same execution engine with the same graduated-trust controls.</p></div>
             <div class="trigger-list reveal">
                 <div class="trigger-item"><h4>Manual</h4><p>One-click from the UI</p></div>
                 <div class="trigger-item"><h4>Scheduled</h4><p>Cron-based with timezone</p></div>
@@ -862,11 +840,11 @@
         </div>
     </section>
 
-    <!-- SECURITY & DEPLOYMENT -->
-    <section class="section section--alt" data-section="security">
+    <!-- ENTERPRISE (security + framing merged) -->
+    <section class="section section--alt" data-section="enterprise">
         <div class="container">
             <div class="reveal">
-                <p class="section-label">Security & Deployment</p>
+                <p class="section-label">Enterprise &amp; self-hosted</p>
                 <h2>Enterprise-grade. Self-hosted by default.</h2>
             </div>
             <div class="security-list reveal">
@@ -887,13 +865,7 @@
                 <div class="deploy-opt reveal"><h4>SaaS</h4><p>Hosted multi-tenant for teams that prefer fully managed infrastructure.</p></div>
             </div>
             <p class="reveal" style="text-align:center;margin-top:20px;font-size:14px;color:var(--text-muted);">All deployment modes use identical architecture — zero code changes to switch between them.</p>
-        </div>
-    </section>
-
-    <!-- FINAL FRAMING -->
-    <section class="section" data-section="framing">
-        <div class="container">
-            <div class="final-framing reveal">
+            <div class="final-framing reveal" style="margin-top:44px;">
                 Models give agents a general-purpose brain.<br>
                 <strong>SynOS gives them your company's Agent-Native Operating Layer.</strong>
             </div>
