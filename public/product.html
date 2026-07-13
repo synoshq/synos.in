@@ -453,158 +453,31 @@
         </div>
     </section>
 
-    <!-- ===== 6 PER-PIECE DEEP-DIVES (v7) ===== -->
-
-    <!-- 2. LIVING CONTEXT BRAIN — anchor -->
-    <section class="section" data-section="brain">
-        <div class="container">
-            <div class="reveal" style="max-width:740px;">
-                <p class="section-label">The Anchor Piece</p>
-                <h2>The Living Context Brain.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);margin-bottom:0;">A continuously curated knowledge layer every agent in your company can read from. It remembers what your team knows, what your agents have done, and how decisions get made — across every system.</p>
-            </div>
-
-            <!-- Context taxonomy 4-card subgrid -->
-            <div class="reveal" style="margin-top:40px;">
-                <h3 style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:16px;font-family:var(--font-mono);">What the Brain remembers</h3>
-                <div class="brain-mem-grid">
-                    <div class="brain-mem-card">
-                        <p class="brain-mem-tag">Skill</p>
-                        <h4>Learned procedures</h4>
-                        <p>How to do a recurring task. Promoted from runs the team approved.</p>
-                    </div>
-                    <div class="brain-mem-card">
-                        <p class="brain-mem-tag">Knowledge</p>
-                        <h4>Curated facts</h4>
-                        <p>Policies, definitions, business rules. The things your team would put in a wiki — if anyone kept the wiki current.</p>
-                    </div>
-                    <div class="brain-mem-card">
-                        <p class="brain-mem-tag">Entity</p>
-                        <h4>Resolved identities</h4>
-                        <p>"Customer #4892" in Salesforce = @priya in Slack = priya@acme.com in your warehouse. One graph.</p>
-                    </div>
-                    <div class="brain-mem-card brain-mem-card--source">
-                        <p class="brain-mem-tag brain-mem-tag--source">Trace · the source</p>
-                        <h4>Raw run history</h4>
-                        <p>Every agent run + every human correction. The substrate the other three are distilled from.</p>
-                    </div>
-                </div>
-                <p style="font-size:13px;color:var(--text-muted);margin-top:14px;font-style:italic;">Trace is the source. Skill, Knowledge, and Entity are what gets promoted from it.</p>
-            </div>
-
-            <!-- Self-Learning Loop — folded in -->
-            <div class="reveal brain-loop">
-                <h3>How the Brain compounds — the Self-Learning Loop.</h3>
-                <p>Every agent run and every human correction lands in Storage as a trace. Curator agents read both kinds — the agent's work and the agent↔human interaction — and surface your company's tribal knowledge: the rules, exceptions, and judgment calls nobody bothers to write down. That tribal knowledge clears a quality gate and promotes into the Context Brain. The next agent run pulls the upgraded Brain. The loop tightens with every interaction.</p>
-                <p class="brain-loop-aside">Continuous curation jobs re-resolve stale entities and prune dead links so the graph stays current.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2b. COMPOUNDING SKILLS -->
-    <section class="section section--alt" data-section="skills">
+    <!-- SIX PIECES AT A GLANCE (spine) -->
+    <style>
+        .glance-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:32px; }
+        .glance-card { display:block; border:1px solid rgba(0,0,0,0.08); border-radius:14px; padding:20px; text-decoration:none; color:inherit; transition:border-color .2s, transform .2s; }
+        .glance-card:hover { border-color:var(--indigo,#6366F1); transform:translateY(-2px); }
+        .glance-card h4 { margin:0 0 6px; font-size:17px; }
+        .glance-card p { margin:0; font-size:13.5px; color:var(--text-muted); line-height:1.5; }
+        .glance-card .glance-more { display:inline-block; margin-top:10px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; color:var(--indigo,#6366F1); }
+        @media (max-width:820px){ .glance-grid { grid-template-columns:1fr; } }
+    </style>
+    <section class="section" data-section="pieces-glance">
         <div class="container">
             <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Skills</p>
-                <h2>How Compounding Skills spread.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">A skill is a learned procedure — built once, then it belongs to the team. Skills are shared, versioned, and forked the way code is, and installable from a skill marketplace so a working agent capability spreads instead of being rebuilt per project.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Each skill carries its tool list, parameter contract, and scope declared up front — so it rides your access control wherever it runs. Promote a strong run into a skill, share it, and every agent that installs it inherits the upgrade. Skills compound the same way the Brain does.</p>
+                <p class="section-label">The layer, in six pieces</p>
+                <h2>One brain, wrapped in five pieces that make agents safe and useful.</h2>
+                <p class="section-sub">Each is pre-built, so you don't rebuild it per agent. Skim here; dive into any one below.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- 3. AGENT-NATIVE STORAGE -->
-    <section class="section" data-section="storage">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Storage</p>
-                <h2>How Agent-Native Storage works.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Today's harnesses need a shared place to track the work they do. Agent writes are multi-version, partial, contended, revisable — the patterns a typical SQL or NoSQL store wasn't built for. SynOS ships a System of Record designed for how agents actually write, revise, and reference each other's outputs.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">It holds decision traces, work product, multi-agent versioning, structured artefacts, and deterministic references the next agent run can pull. Run analytics (Traces, below) sit on top of Storage; the traces here feed the Brain's compounding loop above.</p>
+            <div class="glance-grid reveal-stagger">
+                <a class="glance-card reveal" href="#brain"><h4>Living Context Brain</h4><p>A self-improving, entity-resolved graph over your systems — the anchor everything else hangs off.</p><span class="glance-more">Deep dive &darr;</span></a>
+                <a class="glance-card reveal" href="#skills"><h4>Compounding Skills</h4><p>Versioned, shareable skills — the 10th teammate starts from the 9th's best work.</p><span class="glance-more">Deep dive &darr;</span></a>
+                <a class="glance-card reveal" href="#storage"><h4>Agent-Native Storage</h4><p>Typed system-of-record collections built for agents to read and write.</p><span class="glance-more">Deep dive &darr;</span></a>
+                <a class="glance-card reveal" href="#sandboxes"><h4>Safe Build &amp; Deploy</h4><p>Plain-English builds, security-scanned and gated before anything ships.</p><span class="glance-more">Deep dive &darr;</span></a>
+                <a class="glance-card reveal" href="#permissions"><h4>Access Control &amp; Audit</h4><p>Per-skill, per-agent tool scopes and a full audit trail on every action.</p><span class="glance-more">Deep dive &darr;</span></a>
+                <a class="glance-card reveal" href="#traces"><h4>Traces &amp; Self-Learning</h4><p>Every run captured; corrections promote back into the brain, human-approved.</p><span class="glance-more">Deep dive &darr;</span></a>
             </div>
-        </div>
-    </section>
-
-    <!-- 4. SAFE BUILD & DEPLOY -->
-    <section class="section section--alt" data-section="sandboxes">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Build &amp; Deploy</p>
-                <h2>How Safe Build &amp; Deploy gates execution.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Engineering blocks "let an LLM touch prod" — for good reason. SynOS gives every agent and every app its own scanned sandbox. Build-time scanning catches unsafe imports and secrets before anything runs; egress is policy-controlled per sandbox; per-run identity tokens scope what the running code can touch.</p>
-            </div>
-            <div class="reveal" style="overflow-x:auto;margin-top:32px;">
-                <table class="trust-table">
-                    <thead><tr><th>Mode</th><th>What Happens</th><th>When to Use</th></tr></thead>
-                    <tbody>
-                        <tr><td>Supervised</td><td>Plans actions, doesn't execute. See what it would do before anything happens.</td><td>First days — validate accuracy and judgment</td></tr>
-                        <tr><td>Shadow</td><td>Reads execute. Writes are logged but don't fire. Build confidence without risk.</td><td>Building confidence — verify write behavior is correct</td></tr>
-                        <tr><td>Approved</td><td>Writes fire only on explicit human approval. Per-action review queue.</td><td>Production-grade tasks where mistakes are costly</td></tr>
-                        <tr><td>Autonomous</td><td>Full execution with per-tool permissions and audit trail. You review exceptions.</td><td>When accuracy is proven — trust earned, not assumed</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. ACCESS CONTROL & AUDIT -->
-    <section class="section" data-section="permissions">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Access</p>
-                <h2>How Access Control &amp; Audit scope skills.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Per-skill, per-agent, per-team scopes. Revocable. Auditable. Templates, not tickets — your AI team defines a scope once and it applies to every agent that installs the skill.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">A skill ships with its tool list, its parameter contract, and its role check declared up front. Install once. Share across the team. Permissions ride with the skill, not the user who happens to run it.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Traces & Self-Learning Loop -->
-    <section class="section section--alt" data-section="traces">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Traces</p>
-                <h2>What Traces &amp; the Self-Learning Loop capture.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Every run, every tool call. Cost, latency, success and failure, hallucination signal, who-ran-what. Cached and budgeted — predictable cost per decision at scale.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Three consumers: your AI team reads them for analytics; the Brain reads them for the Self-Learning Loop; Permissions reads them to adjust scopes as patterns shift.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. RETRIEVAL — fast path + agent path (v7) -->
-    <section class="section" data-section="retrieval">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Retrieval</p>
-                <h2>Two ways the Brain serves agents.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Some questions have a known shape — pull the right slice and hand it over. Others need a walk through the graph. The Brain ships both.</p>
-            </div>
-            <div class="reveal retrieval-wrap" role="group" aria-label="Retrieval modes">
-                <div class="retrieval-col">
-                    <span class="r-tag">Fast path · deterministic</span>
-                    <h3>Pack assembly.</h3>
-                    <p class="r-intro">Single call. For questions with a known shape — predictable cost, predictable latency.</p>
-                    <div class="retrieval-flow">
-                        <div class="retrieval-step"><span class="r-num">1</span><div class="r-text">Scoped query · agent role + intent + project</div></div>
-                        <div class="retrieval-step"><span class="r-num">2</span><div class="r-text">Hybrid retrieval · vector + graph + keyword, fused</div></div>
-                        <div class="retrieval-step"><span class="r-num">3</span><div class="r-text">Authority &amp; freshness rank · promoted context beats raw, recent beats stale</div></div>
-                        <div class="retrieval-step"><span class="r-num">4</span><div class="r-text">Policy redact + token budget · RBAC filter, PII redaction, per-agent envelope size</div></div>
-                        <div class="retrieval-step"><span class="r-num">5</span><div class="r-text">Typed pack · handed to the agent with citation IDs</div></div>
-                    </div>
-                </div>
-                <div class="retrieval-col">
-                    <span class="r-tag">Agent path · graph traversal</span>
-                    <h3>Sub-agent walk.</h3>
-                    <p class="r-intro">For open-ended questions where the right slice isn't known up front. A retrieval sub-agent plans, calls, observes, and refines as it traverses the graph.</p>
-                    <div class="retrieval-flow">
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Plan</strong> — break the question into hops the graph can answer</div></div>
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Call</strong> — read entities, follow edges, pull facts at each hop</div></div>
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Observe</strong> — score what came back; gaps drive the next hop</div></div>
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Refine</strong> — typically 3–6 hops, then the same typed pack lands</div></div>
-                    </div>
-                </div>
-            </div>
-            <p class="reveal retrieval-shared">Both paths hand the calling agent the same context envelope — authority-ranked, freshness-aware, policy-redacted.</p>
         </div>
     </section>
 
@@ -738,6 +611,172 @@
                 <h4 style="margin-top:6px;">A vertical SaaS embeds an in-product agent</h4>
                 <p>Picture a clinic-management SaaS: each clinic it serves gets an isolated SynOS brain over that clinic's own records. An in-product agent drafts follow-ups and flags at-risk cases — acting only on that tenant's data, under the vendor's guardrails. The SaaS ships the AI feature; SynOS is the per-tenant brain underneath.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- ===== DEEP LAYER — under the hood ===== -->
+    <section class="section" data-section="under-the-hood">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Under the hood</p>
+                <h2>How each piece works.</h2>
+                <p class="section-sub">The six pieces of the layer, in detail — for when you want the internals, not the overview.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6 PER-PIECE DEEP-DIVES (v7) ===== -->
+
+    <!-- 2. LIVING CONTEXT BRAIN — anchor -->
+    <section class="section" id="brain" data-section="brain">
+        <div class="container">
+            <div class="reveal" style="max-width:740px;">
+                <p class="section-label">The Anchor Piece</p>
+                <h2>The Living Context Brain.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);margin-bottom:0;">A continuously curated knowledge layer every agent in your company can read from. It remembers what your team knows, what your agents have done, and how decisions get made — across every system.</p>
+            </div>
+
+            <!-- Context taxonomy 4-card subgrid -->
+            <div class="reveal" style="margin-top:40px;">
+                <h3 style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:16px;font-family:var(--font-mono);">What the Brain remembers</h3>
+                <div class="brain-mem-grid">
+                    <div class="brain-mem-card">
+                        <p class="brain-mem-tag">Skill</p>
+                        <h4>Learned procedures</h4>
+                        <p>How to do a recurring task. Promoted from runs the team approved.</p>
+                    </div>
+                    <div class="brain-mem-card">
+                        <p class="brain-mem-tag">Knowledge</p>
+                        <h4>Curated facts</h4>
+                        <p>Policies, definitions, business rules. The things your team would put in a wiki — if anyone kept the wiki current.</p>
+                    </div>
+                    <div class="brain-mem-card">
+                        <p class="brain-mem-tag">Entity</p>
+                        <h4>Resolved identities</h4>
+                        <p>"Customer #4892" in Salesforce = @priya in Slack = priya@acme.com in your warehouse. One graph.</p>
+                    </div>
+                    <div class="brain-mem-card brain-mem-card--source">
+                        <p class="brain-mem-tag brain-mem-tag--source">Trace · the source</p>
+                        <h4>Raw run history</h4>
+                        <p>Every agent run + every human correction. The substrate the other three are distilled from.</p>
+                    </div>
+                </div>
+                <p style="font-size:13px;color:var(--text-muted);margin-top:14px;font-style:italic;">Trace is the source. Skill, Knowledge, and Entity are what gets promoted from it.</p>
+            </div>
+
+            <!-- Self-Learning Loop — folded in -->
+            <div class="reveal brain-loop">
+                <h3>How the Brain compounds — the Self-Learning Loop.</h3>
+                <p>Every agent run and every human correction lands in Storage as a trace. Curator agents read both kinds — the agent's work and the agent↔human interaction — and surface your company's tribal knowledge: the rules, exceptions, and judgment calls nobody bothers to write down. That tribal knowledge clears a quality gate and promotes into the Context Brain. The next agent run pulls the upgraded Brain. The loop tightens with every interaction.</p>
+                <p class="brain-loop-aside">Continuous curation jobs re-resolve stale entities and prune dead links so the graph stays current.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2b. COMPOUNDING SKILLS -->
+    <section class="section section--alt" id="skills" data-section="skills">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Skills</p>
+                <h2>How Compounding Skills spread.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">A skill is a learned procedure — built once, then it belongs to the team. Skills are shared, versioned, and forked the way code is, and installable from a skill marketplace so a working agent capability spreads instead of being rebuilt per project.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Each skill carries its tool list, parameter contract, and scope declared up front — so it rides your access control wherever it runs. Promote a strong run into a skill, share it, and every agent that installs it inherits the upgrade. Skills compound the same way the Brain does.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. AGENT-NATIVE STORAGE -->
+    <section class="section" id="storage" data-section="storage">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Storage</p>
+                <h2>How Agent-Native Storage works.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Today's harnesses need a shared place to track the work they do. Agent writes are multi-version, partial, contended, revisable — the patterns a typical SQL or NoSQL store wasn't built for. SynOS ships a System of Record designed for how agents actually write, revise, and reference each other's outputs.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">It holds decision traces, work product, multi-agent versioning, structured artefacts, and deterministic references the next agent run can pull. Run analytics (Traces, below) sit on top of Storage; the traces here feed the Brain's compounding loop above.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SAFE BUILD & DEPLOY -->
+    <section class="section section--alt" id="sandboxes" data-section="sandboxes">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Build &amp; Deploy</p>
+                <h2>How Safe Build &amp; Deploy gates execution.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Engineering blocks "let an LLM touch prod" — for good reason. SynOS gives every agent and every app its own scanned sandbox. Build-time scanning catches unsafe imports and secrets before anything runs; egress is policy-controlled per sandbox; per-run identity tokens scope what the running code can touch.</p>
+            </div>
+            <div class="reveal" style="overflow-x:auto;margin-top:32px;">
+                <table class="trust-table">
+                    <thead><tr><th>Mode</th><th>What Happens</th><th>When to Use</th></tr></thead>
+                    <tbody>
+                        <tr><td>Supervised</td><td>Plans actions, doesn't execute. See what it would do before anything happens.</td><td>First days — validate accuracy and judgment</td></tr>
+                        <tr><td>Shadow</td><td>Reads execute. Writes are logged but don't fire. Build confidence without risk.</td><td>Building confidence — verify write behavior is correct</td></tr>
+                        <tr><td>Approved</td><td>Writes fire only on explicit human approval. Per-action review queue.</td><td>Production-grade tasks where mistakes are costly</td></tr>
+                        <tr><td>Autonomous</td><td>Full execution with per-tool permissions and audit trail. You review exceptions.</td><td>When accuracy is proven — trust earned, not assumed</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ACCESS CONTROL & AUDIT -->
+    <section class="section" id="permissions" data-section="permissions">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Access</p>
+                <h2>How Access Control &amp; Audit scope skills.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Per-skill, per-agent, per-team scopes. Revocable. Auditable. Templates, not tickets — your AI team defines a scope once and it applies to every agent that installs the skill.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">A skill ships with its tool list, its parameter contract, and its role check declared up front. Install once. Share across the team. Permissions ride with the skill, not the user who happens to run it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Traces & Self-Learning Loop -->
+    <section class="section section--alt" id="traces" data-section="traces">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Sibling Piece · Traces</p>
+                <h2>What Traces &amp; the Self-Learning Loop capture.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Every run, every tool call. Cost, latency, success and failure, hallucination signal, who-ran-what. Cached and budgeted — predictable cost per decision at scale.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Three consumers: your AI team reads them for analytics; the Brain reads them for the Self-Learning Loop; Permissions reads them to adjust scopes as patterns shift.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. RETRIEVAL — fast path + agent path (v7) -->
+    <section class="section" id="retrieval" data-section="retrieval">
+        <div class="container">
+            <div class="reveal" style="max-width:760px;">
+                <p class="section-label">Retrieval</p>
+                <h2>Two ways the Brain serves agents.</h2>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Some questions have a known shape — pull the right slice and hand it over. Others need a walk through the graph. The Brain ships both.</p>
+            </div>
+            <div class="reveal retrieval-wrap" role="group" aria-label="Retrieval modes">
+                <div class="retrieval-col">
+                    <span class="r-tag">Fast path · deterministic</span>
+                    <h3>Pack assembly.</h3>
+                    <p class="r-intro">Single call. For questions with a known shape — predictable cost, predictable latency.</p>
+                    <div class="retrieval-flow">
+                        <div class="retrieval-step"><span class="r-num">1</span><div class="r-text">Scoped query · agent role + intent + project</div></div>
+                        <div class="retrieval-step"><span class="r-num">2</span><div class="r-text">Hybrid retrieval · vector + graph + keyword, fused</div></div>
+                        <div class="retrieval-step"><span class="r-num">3</span><div class="r-text">Authority &amp; freshness rank · promoted context beats raw, recent beats stale</div></div>
+                        <div class="retrieval-step"><span class="r-num">4</span><div class="r-text">Policy redact + token budget · RBAC filter, PII redaction, per-agent envelope size</div></div>
+                        <div class="retrieval-step"><span class="r-num">5</span><div class="r-text">Typed pack · handed to the agent with citation IDs</div></div>
+                    </div>
+                </div>
+                <div class="retrieval-col">
+                    <span class="r-tag">Agent path · graph traversal</span>
+                    <h3>Sub-agent walk.</h3>
+                    <p class="r-intro">For open-ended questions where the right slice isn't known up front. A retrieval sub-agent plans, calls, observes, and refines as it traverses the graph.</p>
+                    <div class="retrieval-flow">
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Plan</strong> — break the question into hops the graph can answer</div></div>
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Call</strong> — read entities, follow edges, pull facts at each hop</div></div>
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Observe</strong> — score what came back; gaps drive the next hop</div></div>
+                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Refine</strong> — typically 3–6 hops, then the same typed pack lands</div></div>
+                    </div>
+                </div>
+            </div>
+            <p class="reveal retrieval-shared">Both paths hand the calling agent the same context envelope — authority-ranked, freshness-aware, policy-redacted.</p>
         </div>
     </section>
 
