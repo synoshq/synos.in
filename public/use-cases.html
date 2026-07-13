@@ -183,7 +183,7 @@
     <section class="container page-hero">
         <p class="eyebrow">What teams build · Templated Brains</p>
         <h1>A starting brain for <span class="gradient-text">every operating team.</span></h1>
-        <p class="lede">Each is a template your team builds on SynOS and owns — pre-built for the functions your company runs, then compounding on your data and your corrections until it operates the way you do.</p>
+        <p class="lede">Two ways to build on SynOS: <strong>run your company on agents</strong> with a Company Brain and function brains, or <strong>make your product agent-native</strong> — embed agents in the SaaS you ship. Each is a template your team owns, compounding on your data until it operates the way you do.</p>
         <p class="pattern-note">SynOS ships the operating layer; your team operates the brains on top — with Claude Code, Codex, or your own harness.</p>
     </section>
 
@@ -193,6 +193,12 @@
             <h3>The Company Brain</h3>
             <p>One living context graph across every team — the policies, definitions, resolved entities, and tribal knowledge every agent and app reads from. Each function brain below sits inside it. Start with one function; the brain compounds across the rest.</p>
             <span class="uc-link">See the Company Brain ↓</span>
+        </a>
+        <a href="#agent-native-product" class="uc-umbrella" data-cta="see-usecase-agent-native-product" style="margin-top:16px;">
+            <div class="uc-tag">The other wedge · Your product</div>
+            <h3>Agent-Native Product</h3>
+            <p>Make the SaaS you already ship agent-native — embed in-product agents that act on each customer's data, with a separate, isolated brain per customer. Or build a new AI product on the same rails. Own the brain, skills, and deploy; bring your own harness and models.</p>
+            <span class="uc-link">See the template ↓</span>
         </a>
         <p class="uc-grid-divider">Function brains built inside the Company Brain</p>
         <div class="uc-grid">
@@ -226,12 +232,6 @@
                 <p>Ticket triage &amp; drafted replies, voice-of-customer themes, churn &amp; CSAT signal watch.</p>
                 <span class="uc-link">See the template ↓</span>
             </a>
-            <a href="#custom-agents" class="uc-card" data-cta="see-usecase-custom-agents">
-                <div class="uc-tag">AI builders &amp; agencies</div>
-                <h3>Custom AI agents &amp; products</h3>
-                <p>Build on the same rails for your clients or your product — own the brain, skills, and deploy.</p>
-                <span class="uc-link">See the template ↓</span>
-            </a>
         </div>
     </section>
 
@@ -257,6 +257,33 @@
                     <div class="block-tag">Outcome shape</div>
                     <h4>What teams typically see</h4>
                     <p>The backlog of small-tool requests stops piling up. Non-engineers ship the custom 20% no SaaS will ever cover. Tribal knowledge stops dying in chat history — it gets captured and served back. Every new agent inherits what earlier ones learned.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pattern-section" id="agent-native-product">
+        <div class="container">
+            <div class="pattern-header">
+                <div class="pattern-tag">The other wedge · Your product</div>
+                <h2>Agent-Native Product</h2>
+                <p>The same operating layer runs under a <strong>product</strong>, not just a company. Make the SaaS you already ship agent-native — embed in-product agents and copilots that act on each customer's own data — or build a new AI product on the same rails. Each of your customers gets a separate, isolated brain. Own the brain, skills, and deploy; bring your own harness and models.</p>
+            </div>
+            <div class="pattern-grid">
+                <div class="pattern-block">
+                    <div class="block-tag">Who benefits</div>
+                    <h4>The team</h4>
+                    <p>Product &amp; platform teams adding AI to an existing SaaS, and AI-product builders or agencies shipping something new. The people who own the roadmap ship the AI feature; SynOS is the per-tenant brain underneath — no rebuilding context, governance, and traces per agent.</p>
+                </div>
+                <div class="pattern-block">
+                    <div class="block-tag">Layer pieces</div>
+                    <h4>What the layer gives you</h4>
+                    <p><strong>Multi-tenant Context Brain</strong> — a separate, isolated brain, storage, and permissions for every customer; no data crosses tenants. <strong>Skill registry</strong> your team owns. <strong>Scanned sandboxes</strong> for safe execution. <strong>Self-Learning Loop</strong> — production runs sharpen each customer's brain. Self-hosted in your cloud, or your customer's. Model- and harness-agnostic.</p>
+                </div>
+                <div class="pattern-block">
+                    <div class="block-tag">Outcome shape</div>
+                    <h4>What teams typically see</h4>
+                    <p>Ship the AI story your customers are asking for without rebuilding infrastructure per agent — the second agent ships in days. Every run sharpens the brain your product runs on, per customer. You own the layer; no lock-in to a single model or agent stack.</p>
                 </div>
             </div>
         </div>
@@ -365,33 +392,6 @@
                     <div class="block-tag">Outcome shape</div>
                     <h4>What teams typically see</h4>
                     <p>Faster first-response with on-brand drafts. Recurring pain themes surface to product. Churn signals get caught earlier. Resolution knowledge compounds instead of resetting each ticket.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pattern-section" id="custom-agents">
-        <div class="container">
-            <div class="pattern-header">
-                <div class="pattern-tag">AI builders &amp; agencies</div>
-                <h2>Custom AI agents &amp; products</h2>
-                <p>Building an AI product, an internal copilot, or an agent for an unusual workflow your business runs on? Build on the same rails the function brains use, and own the brain, skills, and deploy. Operate it with Claude Code (or any harness) on the shared Context Brain.</p>
-            </div>
-            <div class="pattern-grid">
-                <div class="pattern-block">
-                    <div class="block-tag">Who benefits</div>
-                    <h4>The team</h4>
-                    <p>AI engineering teams and agencies shipping custom agents — for an internal use-case your business depends on, or for an AI product your customers use. Bring your own harness (Claude Code, Codex, in-house). SynOS is the layer underneath.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Layer pieces</div>
-                    <h4>What the layer gives you</h4>
-                    <p><strong>Streaming context graph</strong> — your SoRs, resolved and live. <strong>Skill registry + marketplace</strong> — every skill your team writes, governed and shareable. <strong>Sandboxes</strong> — safe execution surface. <strong>Self-Learning Loop</strong> — production runs feed back into your context. Self-hosted, model-agnostic, bring-your-own-harness.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Outcome shape</div>
-                    <h4>What teams typically see</h4>
-                    <p>Skip rebuilding context, retrieval, governance, and trace per agent. Ship the second agent in days, not weeks. The brain compounds across every agent — your AI products get sharper each run.</p>
                 </div>
             </div>
         </div>
