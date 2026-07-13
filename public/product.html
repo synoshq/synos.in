@@ -298,7 +298,7 @@
     <section class="container hero-page mesh-bg" data-section="product-hero">
         <p class="eyebrow">Product</p>
         <h1>The Agent-Native Operating Layer,<br>in detail.</h1>
-        <p class="hero-sub">SynOS is the substrate your agents run on. Bring your own product, framework, or harness — the layer gives every agent a self-improving Context Brain, compounding skills, agent-native storage, safe build &amp; deploy, access control, and traces, so you ship your product, not the plumbing underneath it. Self-hosted.</p>
+        <p class="hero-sub">SynOS is the substrate your agents run on — for two transformations: <strong>run your company on agents</strong>, or <strong>make your product agent-native</strong>. Bring your own framework, harness, and models; the layer gives every agent a self-improving Context Brain, compounding skills, agent-native storage, safe build &amp; deploy, access control, and traces — so you ship the outcome, not the plumbing underneath it. Self-hosted, multi-tenant.</p>
 
         <!-- INLINE ARCHITECTURE DIAGRAM (v6.2) -->
         <div class="arch-stack reveal" role="group" aria-label="Agent-Native Operating Layer architecture">
@@ -389,7 +389,7 @@
         .pgal-fig p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5; }
         @media (max-width: 720px) { .pgal-grid { grid-template-columns: 1fr; } }
     </style>
-    <section class="section section--alt" data-section="see-it-working">
+    <section class="section section--alt" id="see-it-working" data-section="see-it-working">
         <div class="container">
             <div class="reveal" style="max-width:740px;">
                 <p class="section-label">See it working</p>
@@ -683,27 +683,60 @@
         </div>
     </section>
 
-    <!-- BUILD ON SYNOS (AI product builders / agencies) -->
-    <section class="section section--alt" data-section="build-on-synos">
+    <!-- TWO WEDGES — company OR product (co-equal) -->
+    <style>
+        .wedge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 32px; }
+        .wedge { border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 28px; background: var(--surface, #fff); }
+        .wedge .wedge-tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--indigo, #6366F1); }
+        .wedge h3 { margin: 8px 0 10px; font-size: 22px; }
+        .wedge ul { margin: 14px 0 0; padding-left: 18px; }
+        .wedge li { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 7px; }
+        .wedge .wedge-link { display: inline-block; margin-top: 14px; font-size: 14px; }
+        .wedge-note { margin-top: 22px; padding: 22px 24px; background: var(--accent-bg); border: 1px solid var(--border-accent); border-radius: 12px; }
+        .wedge-note h4 { margin: 0 0 6px; font-size: 16px; }
+        .wedge-note p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .wedge-note .synthetic { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-dim); text-transform: uppercase; }
+        @media (max-width: 780px) { .wedge-grid { grid-template-columns: 1fr; } }
+    </style>
+    <section class="section section--alt" data-section="two-wedges">
         <div class="container">
             <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Build on SynOS</p>
-                <h2>Building an AI product, platform, or agency offering?</h2>
-                <p class="section-sub">Build it on SynOS. Your agents get a self-improving Context Brain, agent-native storage, sandboxes, access control, and traces out of the box — so you ship the product, not the infrastructure under every agent. Own the brain, skills, and deploy. Bring your own harness and models. Self-hosted in your cloud, or your client's.</p>
+                <p class="section-label">Two transformations, one layer</p>
+                <h2>Bring your company — or your product — to life.</h2>
+                <p class="section-sub">The same operating layer powers two moves. Both get the self-improving Context Brain, compounding skills, agent-native storage, safe build &amp; deploy, access control, and traces — so you ship the outcome, not the plumbing.</p>
             </div>
-            <div class="byoa-options reveal-stagger">
-                <div class="byoa-opt reveal">
-                    <h4>Own it</h4>
-                    <p>The brain, skills, and deploy are yours. Self-hosted in your cloud or your client's. No lock-in.</p>
+            <div class="wedge-grid reveal-stagger">
+                <div class="wedge reveal">
+                    <span class="wedge-tag">Wedge 1 · Your company</span>
+                    <h3>Run your company on agents</h3>
+                    <p style="font-size:15px;color:var(--text-muted);line-height:1.6;">Point the layer at your own systems of record. Non-coding teams describe apps and workers in plain English; engineers set the rails once. The brain compounds on your data and your corrections.</p>
+                    <ul>
+                        <li>Internal apps &amp; workers on your live company brain</li>
+                        <li>Ops, RevOps, FinOps, support — one brain, every function</li>
+                        <li>Self-hosted in your VPC; raw data never leaves</li>
+                    </ul>
+                    <a class="wedge-link" href="#see-it-working">See it on real company data &rarr;</a>
                 </div>
-                <div class="byoa-opt reveal">
-                    <h4>Ship faster</h4>
-                    <p>Skip rebuilding context, retrieval, governance, and traces for every agent. Your second agent ships in days.</p>
+                <div class="wedge reveal">
+                    <span class="wedge-tag">Wedge 2 · Your product</span>
+                    <h3>Make your product agent-native</h3>
+                    <p style="font-size:15px;color:var(--text-muted);line-height:1.6;">Embed agents inside the SaaS you already ship — acting on each customer's connected data. Transform an existing product, or build a new AI product on top. Own the brain, skills, and deploy; bring your own harness and models.</p>
+                    <ul>
+                        <li>In-product copilots &amp; agents that take real actions</li>
+                        <li><strong>A separate, isolated Context Brain per customer</strong> — multi-tenant by design</li>
+                        <li>Self-hosted in your cloud, or your customer's. No lock-in</li>
+                    </ul>
+                    <a class="wedge-link" href="#product-cta">Talk through a product embed &rarr;</a>
                 </div>
-                <div class="byoa-opt reveal">
-                    <h4>Compounds</h4>
-                    <p>Every run sharpens the Context Brain your product runs on. The layer gets better as your customers use it.</p>
-                </div>
+            </div>
+            <div class="wedge-note reveal">
+                <h4>Multi-tenant by design</h4>
+                <p>Each of your customers gets their own isolated brain, storage, and permissions — no data crosses tenants. Skip rebuilding context, retrieval, governance, and traces for every agent; your second agent ships in days, and every run sharpens the brain your product runs on.</p>
+            </div>
+            <div class="wedge-note reveal">
+                <p class="synthetic">Illustrative example · synthetic, not a customer</p>
+                <h4 style="margin-top:6px;">A vertical SaaS embeds an in-product agent</h4>
+                <p>Picture a clinic-management SaaS: each clinic it serves gets an isolated SynOS brain over that clinic's own records. An in-product agent drafts follow-ups and flags at-risk cases — acting only on that tenant's data, under the vendor's guardrails. The SaaS ships the AI feature; SynOS is the per-tenant brain underneath.</p>
             </div>
         </div>
     </section>
@@ -829,7 +862,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta-section section--alt mesh-bg" data-section="product-cta">
+    <section class="cta-section section--alt mesh-bg" id="product-cta" data-section="product-cta">
         <div class="container">
             <h2>See it with your data.</h2>
             <p>Walk through the architecture with your actual stack, your actual connectors, and your actual workflows. No slides.</p>
