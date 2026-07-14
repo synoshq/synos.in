@@ -57,9 +57,9 @@ KEEP the ban on productized SKUs. Use:
 
 Section order (each `<section>` carries a `data-section` name, shown in parens):
 
-1. **Hero** (`hero`) — eyebrow "The Agent-Native Operating Layer", H1 "The infrastructure to unblock your agentic transformation.", pillar subhead (Context Brain / skills / agent-native storage / deploy / access control), focus strip, clients line ("For companies, products, and agencies going AI-native."), trust line ("Self-hosted. Your data stays yours. Model + harness agnostic."). PRIMARY CTA = "Request early access" (`/early-access`); secondary = "Book a 30-min demo".
+1. **Hero** (`hero`) — eyebrow "The Human-Agent Operating Layer", H1 "The infrastructure to unblock your agentic transformation.", pillar subhead (Company Brain / skills / agent-native storage / deploy / access control), focus strip, clients line ("For companies, products, and agencies going AI-native."), trust line ("Self-hosted. Your data stays yours. Model + harness agnostic."). PRIMARY CTA = "Request early access" (`/early-access`); secondary = "Book a 30-min demo".
 2. **Six walls — problem** (`walls`) — section-label "Why a layer"; H2 "Six walls between a clever demo and real company value."; inlines the D3 six-walls diagram; bridge line "Six walls. One layer that answers all six. ↓".
-3. **Six pillars — answer** (`pillars`) — section-label "The operating layer"; H2 "Each wall, closed by one piece of the layer."; inlines the D1 architecture diagram; 6 pillar cards, each tagged with the wall it closes (`Closes wall 0N`). **Context Brain is the anchor/centre** (full-width brain card).
+3. **Six pillars — answer** (`pillars`) — section-label "The operating layer"; H2 "Each wall, closed by one piece of the layer."; inlines the D1 architecture diagram; 6 pillar cards, each tagged with the wall it closes (`Closes wall 0N`). **Company Brain is the anchor/centre** (full-width brain card).
 4. **Focus on impact / vs-alternatives** (`focus`) — section-label "Focus on impact, not plumbing"; H2 "Build the 20% that's you. We ship the infra."; folds in "Buy it / Own it" cards + the works-with-your-stack claims (BYOA · Models · Connectors · Deploy) + logos as a sub-row.
 5. **X-Brain templates** (`what-teams-build`) — section `id="what-teams-build"`; Company Brain flagship anchor card + 6 brain cards (Sales / Marketing / FinOps / Internal Ops / Support-CX / Custom AI agents & products).
 6. **Bottom CTA** (`bottom-cta`) — early-access primary + demo secondary; scorecard + Substack as tertiary line below.
@@ -79,15 +79,14 @@ Notes:
 Block list (verification grep below):
 - `self-learning` — allow only as part of the proper noun "Self-Learning Loop"
 - `shared brain`, `hive mind`
-- `AI OS`, `agent OS` — allow only inside "Agent-Native Operating Layer" / "Operating Layer"
+- `AI OS`, `agent OS`, `Operating System` — allow only inside "The Human-Agent Operating Layer" / "Operating Layer"
 - `solo founder`
 - bare `memory` as a noun-phrase for the brain (use "context", "context graph", "knowledge layer" instead). Wall 1 is **"No shared context"** — never "no memory" / "memory loss".
 
 Keep / preferred terms:
-- BYOA / "Bring your own agent"
-- Agent-Native Operating Layer
-- Living Context Brain
-- Living Company Brain
+- "works with any agent stack" (BYOA acronym retired Jul 14)
+- The Human-Agent Operating Layer (category — migrated Jul 14 from "Agent-Native Operating Layer"; keep "agent-native" only as an adjective: agent-native storage, agent-native enterprise)
+- Living Company Brain (formerly "Context Brain" — migrated Jul 14)
 - Context Graph
 - Skill Analytics, Skill Marketplace
 - Self-Learning Loop
@@ -101,7 +100,7 @@ grep -rEin --include='*.html' \
   -e '\bagent OS\b' -e 'solo founder' \
   public/ \
   | grep -v 'Self-Learning Loop' \
-  | grep -v 'Agent-Native Operating Layer' \
+  | grep -v 'Human-Agent Operating Layer' \
   | grep -vi 'operating layer'
 ```
 
