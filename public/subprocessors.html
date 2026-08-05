@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subprocessors &mdash; SynOS</title>
+    <meta name="description" content="Every third party that processes data on behalf of Synos Labs LLP, and which deployment modes they apply to. Self-hosted deployments have none.">
+    <meta property="og:title" content="Subprocessors — SynOS">
+    <meta property="og:description" content="Every third party that processes data on behalf of Synos Labs LLP, and which deployment modes they apply to. Self-hosted deployments have none.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://synos.in/subprocessors">
+    <meta property="og:image" content="https://synos.in/img/synos-og-unblock.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Subprocessors — SynOS">
+    <meta name="twitter:description" content="Every third party that processes data on behalf of Synos Labs LLP, and which deployment modes they apply to. Self-hosted deployments have none.">
+    <link rel="canonical" href="https://synos.in/subprocessors">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        :root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--surface:#FFFFFF;--border:#E5E5E3;--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#71717A;--text-dim:#A1A1AA;--accent:#6366F1;--accent-hover:#5558E6;--accent-bg:rgba(99,102,241,0.06);--teal:#0D9488;--shadow-accent:0 4px 20px rgba(99,102,241,0.15);--border-light:#EBEBEA;--shadow-md:0 4px 16px rgba(0,0,0,0.06);}
+        html{scroll-behavior:smooth;}
+        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+        h1,h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.02em;line-height:1.15;}
+        h1{font-size:clamp(34px,5vw,52px);margin-bottom:12px;}
+        h2{font-size:clamp(22px,2.6vw,29px);margin:56px 0 16px;scroll-margin-top:90px;}
+        h3{font-family:'DM Sans',sans-serif;font-size:17px;font-weight:600;margin:28px 0 10px;letter-spacing:-0.01em;}
+        .container{max-width:780px;margin:0 auto;padding:0 24px;}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:64px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+        .nav-left{display:flex;align-items:center;gap:10px;text-decoration:none;}
+        .nav-logo-text{font-family:'Instrument Serif',serif;font-size:22px;color:var(--text);letter-spacing:-0.02em;}
+        .nav-links{display:flex;gap:32px;}
+        .nav-links a{font-size:14px;font-weight:500;color:var(--text-muted);text-decoration:none;transition:color 0.15s;}
+        .nav-links a:hover,.nav-links a.active{color:var(--text);}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;border-radius:10px;text-decoration:none;transition:all 0.15s;padding:14px 28px;}
+        .btn--primary{background:var(--accent);color:#FFF;}
+        .btn--primary:hover{background:var(--accent-hover);box-shadow:var(--shadow-accent);}
+        .nav .btn--primary{padding:10px 22px;font-size:14px;border-radius:10px;}
+        .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+        /* legal prose */
+        .legal{padding:132px 0 88px;}
+        .legal .eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:14px;}
+        .legal .meta{font-size:13px;color:var(--text-dim);margin-bottom:8px;}
+        .legal .lede{font-size:17px;line-height:1.75;color:var(--text-secondary);margin:22px 0 8px;}
+        .legal p{font-size:15.5px;line-height:1.8;color:var(--text-secondary);margin:12px 0;}
+        .legal ul,.legal ol{margin:12px 0 12px 22px;}
+        .legal li{font-size:15.5px;line-height:1.8;color:var(--text-secondary);margin:7px 0;}
+        .legal strong{color:var(--text);font-weight:600;}
+        .legal a{color:var(--accent);text-decoration:none;font-weight:500;}
+        .legal a:hover{text-decoration:underline;}
+        .legal hr{border:none;border-top:1px solid var(--border);margin:56px 0 0;}
+        .callout{background:var(--accent-bg);border:1px solid rgba(99,102,241,0.22);border-left:3px solid var(--accent);border-radius:10px;padding:18px 20px;margin:24px 0;}
+        .callout p{margin:8px 0;font-size:15px;}
+        .callout p:first-child{margin-top:0;}
+        .callout p:last-child{margin-bottom:0;}
+        .callout .callout-title{font-weight:600;color:var(--text);font-size:14px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;}
+        .note{background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:22px 0;}
+        .note p{margin:6px 0;font-size:14.5px;}
+        .tbl-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--border);border-radius:10px;background:var(--surface);}
+        table{border-collapse:collapse;width:100%;min-width:520px;}
+        th,td{text-align:left;padding:12px 14px;font-size:14px;line-height:1.6;border-bottom:1px solid var(--border-light);vertical-align:top;}
+        th{font-weight:600;color:var(--text);background:var(--bg-alt);font-size:13px;text-transform:uppercase;letter-spacing:0.04em;}
+        td{color:var(--text-secondary);}
+        tr:last-child td{border-bottom:none;}
+        code{font-family:'JetBrains Mono',monospace;font-size:13.5px;background:var(--bg-alt);padding:2px 6px;border-radius:4px;color:var(--text);}
+        .toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:32px 0 8px;}
+        .toc-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:12px;}
+        .toc ol{margin:0 0 0 18px;}
+        .toc li{margin:5px 0;font-size:14.5px;}
+        .trust-nav{display:flex;gap:10px;flex-wrap:wrap;margin:36px 0 0;}
+        .trust-nav a{font-size:13px;font-weight:600;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:7px 15px;background:var(--surface);transition:all 0.15s;}
+        .trust-nav a:hover{border-color:var(--accent);color:var(--accent);}
+        .trust-nav a.current{background:var(--accent);border-color:var(--accent);color:#FFF;}
+        .site-footer{padding:40px 24px;border-top:1px solid var(--border);}
+        .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+        .footer-left{display:flex;align-items:center;gap:8px;}
+        .footer-logo-text{font-family:'Instrument Serif',serif;font-size:18px;color:var(--text-muted);}
+        .footer-middle,.footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+        .footer-middle a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;}
+        .footer-links a{color:var(--text-dim);text-decoration:none;font-size:13px;}
+        .footer-sep{width:1px;height:14px;background:var(--border);}
+        .footer-copy{font-size:12px;color:var(--text-dim);margin-top:16px;text-align:center;}
+        @media(max-width:768px){.nav-toggle{display:inline-flex;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);box-shadow:var(--shadow-md);border-bottom:1px solid var(--border);padding:8px 24px 16px;}.nav-links.open{display:flex;}.nav-links a{padding:12px 0;font-size:15px;border-bottom:1px solid var(--border-light);}.footer-inner{flex-direction:column;text-align:center;}.footer-links,.footer-middle{justify-content:center;}}
+        a:focus-visible,button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+        *:focus{outline:none;}
+    </style>
+</head>
+<body>
+<a href="#main-content" style="position:absolute;top:-100px;left:0;background:var(--accent);color:#fff;padding:12px 24px;z-index:1000;font-weight:600;font-size:14px;border-radius:0 0 8px 0;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
+    <nav class="nav" id="nav">
+        <a href="/" class="nav-left">
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
+                <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="nav-logo-text">SynOS</span>
+        </a>
+        <div class="nav-links" id="nav-links">
+            <a href="/product">Product</a>
+            <a href="/use-cases">Use Cases</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
+            <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+            </button>
+        </div>
+    </nav>
+    <main id="main-content">
+    <section class="container legal">
+        <p class="eyebrow">Trust</p>
+        <h1>Subprocessors</h1>
+        <p class="meta">Last updated: 5 August 2026</p>
+        <p class="lede">A subprocessor is a third party that processes personal data on our behalf. This page lists every one we use, what it is used for, and &mdash; importantly &mdash; which deployments it applies to.</p>
+
+        <div class="callout">
+            <p class="callout-title">Self-hosted deployments: no subprocessors</p>
+            <p>In a self-hosted deployment &mdash; our default, and the mode used for our current enterprise engagements &mdash; SynOS runs inside the customer's own infrastructure. Customer data does not reach Synos Labs LLP, and <strong>no subprocessor of ours touches it</strong>.</p>
+            <p>Any model provider, cloud or storage used by such a deployment is selected and contracted by the customer, and is the customer's subprocessor, not ours.</p>
+        </div>
+
+        <h2 id="hosted">1. Environments operated by Synos Labs LLP</h2>
+        <p>These apply only where a customer uses the hosted multi-tenant environment at <code>app.synos.in</code>, or a dedicated instance we manage on their behalf.</p>
+        <div class="tbl-wrap">
+        <table>
+            <thead><tr><th>Subprocessor</th><th>Purpose</th><th>Data</th><th>Location</th></tr></thead>
+            <tbody>
+                <tr><td>Google Cloud Platform<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Compute, storage and networking for the hosted platform</td><td>All workspace data and telemetry held in the hosted environment</td><td>Disclosed on request; fixable by contract</td></tr>
+                <tr><td>Model providers<br><span style="color:var(--text-dim);font-size:13px;">customer-selected</span></td><td>Inference for agent runs</td><td>Prompt and context content sent at run time. Content is not used for training under these providers' business API terms.</td><td>Per provider</td></tr>
+            </tbody>
+        </table>
+        </div>
+        <p>Customers on these modes can request the specific hosting region, the exact model providers enabled on their tenant, and written confirmation of both, at any time.</p>
+
+        <h2 id="corporate">2. Business operations and website</h2>
+        <p>These apply to everyone who contacts us or visits synos.in, regardless of deployment mode. They process business contact data and website usage data &mdash; not customer workspace content.</p>
+        <div class="tbl-wrap">
+        <table>
+            <thead><tr><th>Subprocessor</th><th>Purpose</th><th>Data</th><th>Location</th></tr></thead>
+            <tbody>
+                <tr><td>Google Workspace<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Company email, documents, calendar</td><td>Business correspondence and contact details</td><td>United States / global</td></tr>
+                <tr><td>Vercel<br><span style="color:var(--text-dim);font-size:13px;">Vercel Inc.</span></td><td>Hosting and delivery of synos.in</td><td>Server logs, IP addresses</td><td>United States / global edge</td></tr>
+                <tr><td>Google Analytics 4<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Website usage measurement</td><td>Anonymised IP, page and event data</td><td>United States / global</td></tr>
+                <tr><td>Web3Forms<br><span style="color:var(--text-dim);font-size:13px;">Web3Forms</span></td><td>Delivering early-access and scorecard form submissions to us by email. Submissions are held briefly by the provider (30 days on its free tier) before deletion.</td><td>Name, work email, company, form answers</td><td>Amazon Web Services infrastructure</td></tr>
+                <tr><td>Google Calendar<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Demo booking</td><td>Name, email, meeting details</td><td>United States / global</td></tr>
+                <tr><td>Substack<br><span style="color:var(--text-dim);font-size:13px;">Substack Inc.</span></td><td>Newsletter, for subscribers only</td><td>Email address</td><td>United States</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h2 id="changes">3. Changes to this list</h2>
+        <p>We update this page when the list changes. Unless the signed agreement provides otherwise, customers under contract are notified of any new subprocessor that would process their data at least 30 days before it is engaged, through the contact channel in the agreement, and may object on reasonable data-protection grounds.</p>
+        <p>To be notified of changes, or to request a signed data-processing agreement, email <a href="mailto:privacy@synos.in">privacy@synos.in</a>.</p>
+
+        <hr>
+        <h2 id="contact" style="margin-top:40px;">Contact</h2>
+        <p>Synos Labs LLP<br>Varthur, Gunjur, Bengaluru, Karnataka 560087, India<br><a href="mailto:privacy@synos.in">privacy@synos.in</a></p>
+
+        <div class="trust-nav">
+            <a href="/security">Security</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/subprocessors" class="current">Subprocessors</a>
+        </div>
+    </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/></svg>
+                <span class="footer-logo-text">SynOS</span>
+            </div>
+            <div class="footer-middle">
+                <a href="/early-access">Early Access</a>
+                <a href="/product">Product</a>
+                <a href="/use-cases">Use Cases</a>
+                <a href="/blog">Blog</a>
+                <a href="/about">About</a>
+            </div>
+            <div class="footer-links">
+                <a href="/security">Security</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+                <a href="/subprocessors">Subprocessors</a>
+                <span class="footer-sep"></span>
+                <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 Synos Labs LLP. All rights reserved.</p>
+    </footer>
+<script>
+    const navToggle=document.getElementById('nav-toggle');
+    const navLinks=document.getElementById('nav-links');
+    if(navToggle)navToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');navToggle.setAttribute('aria-expanded',open?'true':'false');});
+    document.querySelectorAll('[data-cta]').forEach(el=>el.addEventListener('click',()=>{if(window.gtag)gtag('event','cta_click',{cta_id:el.getAttribute('data-cta')});}));
+</script>
+</body>
+</html>
