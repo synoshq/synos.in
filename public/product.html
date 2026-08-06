@@ -542,7 +542,7 @@
             <div class="byoa-options reveal-stagger">
                 <div class="byoa-opt reveal">
                     <h4>Already have agents?</h4>
-                    <p>Connect them to SynOS via API. Your agents get the brain, write into Storage, run in scanned sandboxes, ride your permissions, and emit traces — without rebuilding the plumbing.</p>
+                    <p>Connect them to SynOS via API. Your agents get the brain, write into Storage, execute code in scanned sandboxes, ride your permissions, and emit traces — without rebuilding the plumbing.</p>
                 </div>
                 <div class="byoa-opt reveal">
                     <h4>Don't have agents yet?</h4>
@@ -674,7 +674,7 @@
                 <p class="section-label">Sibling Piece · Skills</p>
                 <h2>How Compounding Skills spread.</h2>
                 <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">A skill is a learned procedure — built once, then it belongs to the team. Skills are shared, versioned, and forked the way code is, and installable from a skill marketplace so a working agent capability spreads instead of being rebuilt per project.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Each skill carries its tool list, parameter contract, and scope declared up front — so it rides your access control wherever it runs. Promote a strong run into a skill, share it, and every agent that installs it inherits the upgrade. Skills compound the same way the Brain does.</p>
+                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Each skill carries its tool list, parameter contract, and scope declared up front — so it rides your access control wherever it runs. Where a skill declares the external hosts it needs, that declaration travels with it; enforcement of it is not yet in the runtime path. Promote a strong run into a skill, share it, and every agent that installs it inherits the upgrade. Skills compound the same way the Brain does.</p>
             </div>
         </div>
     </section>
@@ -697,7 +697,7 @@
             <div class="reveal" style="max-width:760px;">
                 <p class="section-label">Sibling Piece · Build &amp; Deploy</p>
                 <h2>How Safe Build &amp; Deploy gates execution.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Engineering blocks "let an LLM touch prod" — for good reason. SynOS gives every agent and every app its own scanned sandbox. Build-time scanning catches unsafe imports and secrets before anything runs; egress is policy-controlled per sandbox; per-run identity tokens scope what the running code can touch.</p>
+                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Engineering blocks "let an LLM touch prod" — for good reason. SynOS runs generated apps and any code an agent executes in their own scanned sandbox. Code generated in the product is scanned before it is built — unsafe imports, escape hatches, raw network calls and embedded secret literals block the build. Sandboxes have no egress path in production. Sandboxed app code carries a short-lived scoped token, checked against that app's own tool catalogue on every call.</p>
             </div>
             <div class="reveal" style="overflow-x:auto;margin-top:32px;">
                 <table class="trust-table">
@@ -787,7 +787,7 @@
                 <div class="flow-step"><div class="flow-num">2</div><h4>Profile</h4><p>Auto-extract schema, stats, business semantics.</p></div>
                 <div class="flow-step"><div class="flow-num">3</div><h4>Link</h4><p>Discover cross-system relationships. Resolve entities.</p></div>
                 <div class="flow-step"><div class="flow-num">4</div><h4>Permission</h4><p>Scope tools per skill, per agent, per team.</p></div>
-                <div class="flow-step"><div class="flow-num">5</div><h4>Execute</h4><p>Agents run in scanned sandboxes. Reads and writes audited.</p></div>
+                <div class="flow-step"><div class="flow-num">5</div><h4>Execute</h4><p>Agent-executed code runs in scanned sandboxes. Reads and writes audited.</p></div>
                 <div class="flow-step"><div class="flow-num">6</div><h4>Trace</h4><p>Every run captured — cost, outcome, signal.</p></div>
                 <div class="flow-step"><div class="flow-num">7</div><h4>Compound</h4><p>Traces and corrections promote into the Brain. Next run pulls more.</p></div>
             </div>
@@ -850,9 +850,9 @@
             <div class="security-list reveal">
                 <div class="security-item">Only context is extracted — raw data stays in your systems</div>
                 <div class="security-item">Per-tenant isolation — your brain never leaves your boundary</div>
-                <div class="security-item">Credentials encrypted at rest across all storage</div>
+                <div class="security-item">All credential material the platform writes is encrypted at rest</div>
                 <div class="security-item">Project-level isolation for every query and operation</div>
-                <div class="security-item">Role-based access — platform admin, project admin, member</div>
+                <div class="security-item">Role-based access — instance roles (platform operator, instance admin, member) and per-project roles (viewer, editor, project admin), narrowable per tool</div>
                 <div class="security-item">Full audit trail — every execution, correction, promotion logged</div>
                 <div class="security-item">Every correction reversible. Every promotion auditable.</div>
                 <div class="security-item">HTTPS with automatic certificate provisioning</div>

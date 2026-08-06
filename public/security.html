@@ -166,7 +166,7 @@
             <li><strong>Context, not copies.</strong> SynOS connects to your systems of record and extracts the context needed to answer and act. The source records stay in the source systems.</li>
             <li><strong>Project-level isolation.</strong> Every query and operation is scoped to a project. A project's context graph does not cross into another project.</li>
             <li><strong>Per-tenant isolation.</strong> In managed and multi-tenant modes, each tenant's context graph is isolated from every other tenant's.</li>
-            <li><strong>Execution records.</strong> Agent runs, tool calls, corrections and skill promotions are logged so that behaviour is attributable and reversible.</li>
+            <li><strong>Execution records.</strong> Agent runs, tool calls, corrections and skill promotions are logged so that behaviour is attributable, and corrections can be superseded by later corrections.</li>
             <li><strong>Deletion.</strong> In self-hosted deployments, deletion is entirely under customer control. In managed and hosted modes, we delete customer data on written request and on termination, subject to the retention terms in the signed agreement.</li>
         </ul>
 
@@ -180,17 +180,17 @@
 
         <h2 id="access">4. Access control and audit</h2>
         <ul>
-            <li>Role-based access: platform admin, project admin, member.</li>
+            <li>Role-based access on two axes. Instance role &mdash; platform operator, instance admin, member &mdash; determines who administers the deployment. Project role &mdash; viewer, editor, project admin &mdash; determines what a user may do inside a given project, and can be narrowed or widened per user and per tool. An instance role does not by itself grant access to a project's data.</li>
             <li>Per-skill and per-agent permissions declared at the individual tool level, and revocable.</li>
-            <li>A skill carries its tool list, parameter contract and scope, so the same permissions apply wherever it runs.</li>
-            <li>Graduated autonomy: agents move from suggest-only to review-required to autonomous per capability, rather than being trusted wholesale.</li>
+            <li>A skill carries its tool list, parameter contract and scope, so the same permissions apply wherever it runs. Where a skill declares the external hosts it needs, that declaration is recorded with the skill; enforcement of it is not yet in the runtime path.</li>
+            <li>Graduated autonomy: agents move from suggest-only to review-required to autonomous per worker, rather than being trusted wholesale.</li>
             <li>Full audit trail &mdash; every execution, correction and promotion is logged, with cost and tool calls attributable per run.</li>
         </ul>
 
         <h2 id="encryption">5. Encryption and credentials</h2>
         <ul>
             <li>All traffic to and between SynOS services runs over HTTPS/TLS, with automatic certificate provisioning.</li>
-            <li>Connector and provider credentials are encrypted at rest across all storage.</li>
+            <li>All credential material the platform writes is encrypted at rest.</li>
             <li>In environments Synos Labs LLP operates, data at rest is additionally encrypted by the underlying cloud platform by default. In self-hosted deployments, storage-level encryption is configured by the customer as part of their own infrastructure.</li>
             <li>Credentials are referenced by agents, not exposed to them: an agent invokes a tool, and the tool layer holds the credential.</li>
         </ul>
@@ -198,10 +198,10 @@
         <h2 id="execution">6. Code execution and sandboxing</h2>
         <p>SynOS lets agents and internally built apps run code. That is handled explicitly rather than implicitly:</p>
         <ul>
-            <li>Every agent and app runs in its own sandbox.</li>
-            <li>Build-time scanning flags unsafe imports and embedded secrets before anything executes.</li>
-            <li>Network egress is policy-controlled per sandbox.</li>
-            <li>Per-run identity tokens scope what running code can reach; a run cannot exceed the permissions of the skill that started it.</li>
+            <li>Generated apps and any code an agent executes run in their own sandbox.</li>
+            <li>Code generated in the product is scanned before it is built: unsafe imports, escape hatches, raw network calls and embedded secret literals block the build.</li>
+            <li>Sandboxes have no egress path in production. Per-sandbox egress policy is a development-mode capability, pending kernel-level sandbox hardening.</li>
+            <li>Sandboxed app code carries a short-lived scoped token, checked against that app's own tool catalogue on every call. A run cannot exceed the permissions of the skill that started it, which is enforced by the skill's declared tool list and by role-based access control.</li>
         </ul>
 
         <h2 id="infra">7. Infrastructure and tenancy</h2>
