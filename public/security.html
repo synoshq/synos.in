@@ -180,6 +180,7 @@
 
         <h2 id="access">4. Access control and audit</h2>
         <ul>
+            <li><strong>Enterprise single sign-on.</strong> SynOS authenticates against your identity provider over SAML 2.0 or OIDC, with SCIM user provisioning and de-provisioning. Multi-factor authentication, conditional access and device policy are enforced by your IdP under your own policy &mdash; we do not ask you to adopt ours.</li>
             <li>Role-based access on two axes. Instance role &mdash; platform operator, instance admin, member &mdash; determines who administers the deployment. Project role &mdash; viewer, editor, project admin &mdash; determines what a user may do inside a given project, and can be narrowed or widened per user and per tool. An instance role does not by itself grant access to a project's data.</li>
             <li>Per-skill and per-agent permissions declared at the individual tool level, and revocable.</li>
             <li>A skill carries its tool list, parameter contract and scope, so the same permissions apply wherever it runs. Where a skill declares the external hosts it needs, that declaration is recorded with the skill; enforcement of it is not yet in the runtime path.</li>

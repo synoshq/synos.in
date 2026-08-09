@@ -1,0 +1,17 @@
+# Synos Labs LLP — security contact (RFC 9116)
+# https://www.synos.in/security
+
+Contact: mailto:security@synos.in
+Expires: 2027-08-06T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.synos.in/.well-known/security.txt
+Policy: https://www.synos.in/security
+Hiring: https://www.synos.in/about
+
+# We acknowledge reports within 3 business days and keep you updated until the
+# issue is resolved. Remediation targets: critical 7 days, high 30, medium 90,
+# low next scheduled release.
+#
+# We will not pursue legal action against researchers who report in good faith,
+# act only against their own or authorised environments, and avoid privacy
+# violations, data destruction and service degradation.
