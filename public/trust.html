@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subprocessors &mdash; SynOS</title>
-    <meta name="description" content="Every third party that processes data on behalf of Synos Labs LLP, and which deployment modes they apply to. Self-hosted deployments have none.">
-    <meta property="og:title" content="Subprocessors — SynOS">
-    <meta property="og:description" content="Every third party that processes data on behalf of Synos Labs LLP, and which deployment modes they apply to. Self-hosted deployments have none.">
+    <title>Trust Centre &mdash; SynOS</title>
+    <meta name="description" content="Security, privacy and legal documentation for SynOS in one place — including what we do not have.">
+    <meta property="og:title" content="Trust Centre — SynOS">
+    <meta property="og:description" content="Security, privacy and legal documentation for SynOS in one place — including what we do not have.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://synos.in/subprocessors">
+    <meta property="og:url" content="https://synos.in/trust">
     <meta property="og:image" content="https://synos.in/img/synos-og-unblock.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Subprocessors — SynOS">
-    <meta name="twitter:description" content="Every third party that processes data on behalf of Synos Labs LLP, and which deployment modes they apply to. Self-hosted deployments have none.">
-    <link rel="canonical" href="https://synos.in/subprocessors">
+    <meta name="twitter:title" content="Trust Centre — SynOS">
+    <meta name="twitter:description" content="Security, privacy and legal documentation for SynOS in one place — including what we do not have.">
+    <link rel="canonical" href="https://synos.in/trust">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,6 +87,15 @@
         @media(max-width:768px){.nav-toggle{display:inline-flex;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);box-shadow:var(--shadow-md);border-bottom:1px solid var(--border);padding:8px 24px 16px;}.nav-links.open{display:flex;}.nav-links a{padding:12px 0;font-size:15px;border-bottom:1px solid var(--border-light);}.footer-inner{flex-direction:column;text-align:center;}.footer-links,.footer-middle{justify-content:center;}}
         a:focus-visible,button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
         *:focus{outline:none;}
+
+        .lede{font-size:19px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px;}
+        main .container p{color:var(--text-secondary);line-height:1.7;margin-bottom:14px;}
+        .doc-list{list-style:none;margin:8px 0 0;}
+        .doc-list li{padding:16px 0;border-bottom:1px solid var(--border-light);color:var(--text-secondary);line-height:1.6;}
+        .doc-list li:last-child{border-bottom:none;}
+        .doc-list a{color:var(--accent);text-decoration:none;}
+        .doc-list a:hover{text-decoration:underline;}
+        main{padding:120px 0 80px;}
     </style>
 </head>
 <body>
@@ -114,64 +123,34 @@
             </button>
         </div>
     </nav>
-    <main id="main-content">
-    <section class="container legal">
-        <p class="eyebrow">Trust</p>
-        <h1>Subprocessors</h1>
-        <p class="meta">Last updated: 5 August 2026</p>
-        <p class="lede">A subprocessor is a third party that processes personal data on our behalf. This page lists every one we use, what it is used for, and &mdash; importantly &mdash; which deployments it applies to.</p>
+    
+    <main>
+    <div class="container">
+        <h1>Trust Centre</h1>
+        <p class="lede">Everything a security or procurement reviewer needs, in one place. Each page states its limits as plainly as its controls &mdash; a caveat you find yourself is worth less to us than one we gave you.</p>
 
-        <div class="callout">
-            <p class="callout-title">Self-hosted deployments: no subprocessors</p>
-            <p>In a self-hosted deployment &mdash; our default, and the mode used for our current enterprise engagements &mdash; SynOS runs inside the customer's own infrastructure. Customer data does not reach Synos Labs LLP, and <strong>no subprocessor of ours touches it</strong>.</p>
-            <p>Any model provider, cloud or storage used by such a deployment is selected and contracted by the customer, and is the customer's subprocessor, not ours.</p>
-        </div>
+        <h2>Documents</h2>
+        <ul class="doc-list">
+            <li><a href="/security"><strong>Security</strong></a> &mdash; deployment modes, air-gap evidence, access control, encryption, sandboxing, code scanning, audit. Includes the controls we do <em>not</em> have.</li>
+            <li><a href="/privacy"><strong>Privacy</strong></a> &mdash; what we collect, lawful basis, retention, data-subject requests, and our grievance officer.</li>
+            <li><a href="/subprocessors"><strong>Subprocessors</strong></a> &mdash; every third party that processes data on our behalf, by deployment mode. A self-hosted deployment has none.</li>
+            <li><a href="/terms"><strong>Terms</strong></a> &mdash; terms of use for this site and our services.</li>
+            <li><a href="/.well-known/security.txt"><strong>security.txt</strong></a> &mdash; machine-readable security contact, per RFC&nbsp;9116.</li>
+        </ul>
 
-        <h2 id="hosted">1. Environments operated by Synos Labs LLP</h2>
-        <p>These apply only where a customer uses the hosted multi-tenant environment at <code>app.synos.in</code>, or a dedicated instance we manage on their behalf.</p>
-        <div class="tbl-wrap">
-        <table>
-            <thead><tr><th>Subprocessor</th><th>Purpose</th><th>Data</th><th>Location</th></tr></thead>
-            <tbody>
-                <tr><td>Google Cloud Platform<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Compute, storage and networking for the hosted platform</td><td>All workspace data and telemetry held in the hosted environment</td><td>Disclosed on request; fixable by contract</td></tr>
-                <tr><td>Model providers<br><span style="color:var(--text-dim);font-size:13px;">customer-selected</span></td><td>Inference for agent runs</td><td>Prompt and context content sent at run time. Content is not used for training under these providers' business API terms.</td><td>Per provider</td></tr>
-            </tbody>
-        </table>
-        </div>
-        <p>Customers on these modes can request the specific hosting region, the exact model providers enabled on their tenant, and written confirmation of both, at any time.</p>
+        <h2>Reporting a vulnerability</h2>
+        <p>Email <a href="mailto:security@synos.in">security@synos.in</a>. We acknowledge within three business days and keep you updated until the issue is resolved. Remediation targets are critical seven days, high thirty, medium ninety, low next scheduled release.</p>
+        <p>We will not pursue legal action against researchers who report in good faith, act only against their own or authorised environments, and avoid privacy violations, data destruction and service degradation.</p>
 
-        <h2 id="corporate">2. Business operations and website</h2>
-        <p>These apply to everyone who contacts us or visits synos.in, regardless of deployment mode. They process business contact data and website usage data &mdash; not customer workspace content.</p>
-        <div class="tbl-wrap">
-        <table>
-            <thead><tr><th>Subprocessor</th><th>Purpose</th><th>Data</th><th>Location</th></tr></thead>
-            <tbody>
-                <tr><td>Google Workspace<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Company email, documents, calendar</td><td>Business correspondence and contact details</td><td>United States / global</td></tr>
-                <tr><td>Vercel<br><span style="color:var(--text-dim);font-size:13px;">Vercel Inc.</span></td><td>Hosting and delivery of synos.in</td><td>Server logs, IP addresses</td><td>United States / global edge</td></tr>
-                <tr><td>Google Analytics 4<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Website usage measurement</td><td>Anonymised IP, page and event data</td><td>United States / global</td></tr>
-                <tr><td>Web3Forms<br><span style="color:var(--text-dim);font-size:13px;">Web3Forms</span></td><td>Delivering early-access and scorecard form submissions to us by email. Submissions are held briefly by the provider (30 days on its free tier) before deletion.</td><td>Name, work email, company, form answers</td><td>Amazon Web Services infrastructure</td></tr>
-                <tr><td>Google Calendar<br><span style="color:var(--text-dim);font-size:13px;">Google LLC</span></td><td>Demo booking</td><td>Name, email, meeting details</td><td>United States / global</td></tr>
-                <tr><td>Substack<br><span style="color:var(--text-dim);font-size:13px;">Substack Inc.</span></td><td>Newsletter, for subscribers only</td><td>Email address</td><td>United States</td></tr>
-            </tbody>
-        </table>
-        </div>
+        <h2>The short version</h2>
+        <p><strong>Our default deployment runs inside your perimeter.</strong> In an air-gapped or self-hosted install there is no telemetry, no phone-home, and no path for your data to reach us &mdash; which also means you can security-test the deployment directly, under your own rules of engagement. That is an option a hosted vendor cannot offer you.</p>
+        <p><strong>What we do not have</strong>, stated here rather than left to be discovered: no SOC&nbsp;2, no ISO&nbsp;27001, and no third-party penetration test to date. No MDM or commercial endpoint-detection suite. No 24/7 security operations centre. We are a small firm and these are normal absences at our size; naming them costs us nothing, and being caught inflating one would cost a great deal.</p>
 
-        <h2 id="changes">3. Changes to this list</h2>
-        <p>We update this page when the list changes. Unless the signed agreement provides otherwise, customers under contract are notified of any new subprocessor that would process their data at least 30 days before it is engaged, through the contact channel in the agreement, and may object on reasonable data-protection grounds.</p>
-        <p>To be notified of changes, or to request a signed data-processing agreement, email <a href="mailto:privacy@synos.in">privacy@synos.in</a>.</p>
-
-        <hr>
-        <h2 id="contact" style="margin-top:40px;">Contact</h2>
-        <p>Synos Labs LLP<br>Varthur, Gunjur, Bengaluru, Karnataka 560087, India<br><a href="mailto:privacy@synos.in">privacy@synos.in</a></p>
-
-        <div class="trust-nav">
-            <a href="/security">Security</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/subprocessors" class="current">Subprocessors</a>
-        </div>
-    </section>
+        <h2>Questionnaires and agreements</h2>
+        <p>We complete security questionnaires and will execute a data processing agreement with standard contractual clauses where one applies. Ask at <a href="mailto:security@synos.in">security@synos.in</a> and we will send the current documentation rather than ask you to wait for a review cycle.</p>
+    </div>
     </main>
+
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-left">
