@@ -119,10 +119,21 @@
   --sk-shadow-brand: 0 6px 18px rgba(99, 102, 241, 0.3);
 
   /* ── Type ─────────────────────────────────────────────────────────────────
-   * Loaded from Google Fonts. Weight coverage is the union across the corpus (conflict C15, C16):
-   * Plus Jakarta Sans 500;600;700;800 · Inter 400;500;600;700 · JetBrains Mono 500;600.
+   * Loaded from Google Fonts. Inter 400;500;600;700 · JetBrains Mono 500;600 ·
+   * Instrument Serif regular + italic.
+   *
+   * DECISION A (2026-08-13 improvement pass). The display face is Instrument Serif — the same face
+   * synos.in already uses — and Plus Jakarta Sans is retired outright rather than demoted, because
+   * a display face used for nothing is drift (deck-research §C.3).
+   *
+   * Instrument Serif has ONE weight and no bold, so every 700/800 display weight it replaces is
+   * re-solved with size and colour, never with weight. It loses its thin strokes first under
+   * projector gamma (deck-research §B.3), so it MUST NOT render below 24px. That restricts it to
+   * exactly three roles — `h1`, `.sk-cover-title`, `.sk-stat-value` — and nothing else may take it.
+   * Every other element that used to read `--sk-font-display`, including `h2`, `h3`, every card
+   * title and every print heading, now reads `--sk-font-body`.
    */
-  --sk-font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --sk-font-display: 'Instrument Serif', Georgia, serif;
   --sk-font-body: 'Inter', -apple-system, 'Segoe UI', sans-serif;
   --sk-font-mono: 'JetBrains Mono', monospace;
   /* SYNOS_FOUNDER_MEMO_SHORT.html only. Not used by any component; recorded for completeness. */

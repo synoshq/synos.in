@@ -17,11 +17,28 @@ export interface CoverSlideProps {
    * @default true
    */
   spacedEyebrow?: boolean
-  /** The 47px display headline. */
+  /** The 56px Instrument Serif headline. */
   title: ReactNode
-  /** The 16.5px bold line under the headline — the positioning sentence. */
+  /** The 20px semibold line under the headline — the positioning sentence. */
   lead?: ReactNode
-  /** The 12.3px paragraph under that — the argument, in one breath. */
+  /**
+   * The long paragraph under that — the argument, in one breath, at body size.
+   *
+   * **Optional by design, and which register you are building decides it.** SynOS ships two decks
+   * from one narrative and they are two artifacts with two jobs:
+   *
+   * - **Reading deck** (`synos-vc-deck-v6.html`, 35 slides, zero speaker-note blocks) — this is
+   *   the artifact that is *sent*. It is read on a laptop with no presenter in the room, so the
+   *   cover paragraph is doing real work: it is the only thing standing between the headline and
+   *   a reader who has no one to explain it. **Set `lede`.**
+   * - **Presenting deck** (`synos-vc-deck-presenting.html`, same 35 slides, 22 speaker-note
+   *   blocks) — shown on a screen with a presenter, who says this paragraph out loud. On a cover
+   *   the room reads in the first ten seconds, it is a wall of type nobody will read.
+   *   **Omit `lede`** and put the text in that slide's `<aside class="notes">`.
+   *
+   * Do not apply the live-presentation convention to the PDF-first artifact. The slot is optional,
+   * not removed — deleting it would have made the reading deck worse to fix the presenting deck.
+   */
   lede?: ReactNode
   /** Rendered between the lede and the footer. The source puts a seam diagram or a chip row here. */
   children?: ReactNode
@@ -40,10 +57,14 @@ export interface CoverSlideProps {
  * The deck's first slide.
  *
  * Two covers exist in the corpus and they disagree substantially; this builds the newest (VC)
- * one. See inventory conflicts C7 and C8 — in particular, the headline is **47px**, not the 58px
- * the stylesheet first declares and then overrides.
+ * one. See inventory conflicts C7 and C8. The headline was extracted at **47px**, not the 58px the
+ * stylesheet first declares and then overrides; the 2026-08-13 improvement pass then moved it to
+ * 56px Instrument Serif at weight 400, because the face has no bold and the 800 had to be bought
+ * back with size (decision A).
  *
- * @example
+ * `lede` is the register switch — read its doc before building a cover.
+ *
+ * @example Reading deck — sent without a presenter, so the paragraph stays.
  * <CoverSlide
  *   eyebrow="SynOS"
  *   title="The Human-Agent Operating Layer"
@@ -53,6 +74,14 @@ export interface CoverSlideProps {
  * >
  *   <ChipRow center><Chip size="pill">Company Brain</Chip></ChipRow>
  * </CoverSlide>
+ *
+ * @example Presenting deck — same cover, paragraph spoken instead of set.
+ * <CoverSlide
+ *   eyebrow="SynOS"
+ *   title="The Human-Agent Operating Layer"
+ *   lead="The infrastructure to unblock your agentic transformation."
+ *   foot="Confidential · August 2026"
+ * />
  */
 export function CoverSlide({
   eyebrow,

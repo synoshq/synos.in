@@ -2,11 +2,21 @@
  * Base type scale. Scoped to .sk-deck / .sk-print so importing this stylesheet never restyles a
  * host page's own headings.
  *
- * Deck values from synos-vc-deck-presenting.html lines 40-47 (conflict C5: the buyer decks run a
- * smaller scale — 30/16/15/14 at line-height 1.25 — and lose).
+ * Deck values were extracted from synos-vc-deck-presenting.html lines 40-47 (conflict C5: the
+ * buyer decks run a smaller scale — 30/16/15/14 at line-height 1.25 — and lose).
+ *
+ * DECISION C (2026-08-13 improvement pass) then replaced that scale outright. The extracted scale
+ * ran 34 / 18 / 17 / 16 / 11.5, which put h2, h3 and p inside a 12.5% range covering three
+ * semantic levels — indistinguishable at Hale's 25%-zoom test, so hierarchy was being carried by
+ * weight and colour instead of size (deck-research §D.2). The scale is now 40 / 26 / 20 / 16 / 13,
+ * with every adjacent ratio at or above 1.25 and the eyebrow lifted off the ambient-light floor
+ * (13px = 1.81%EH against 11.5px = 1.60%EH, deck-research §B.3).
+ *
+ * Plus Jakarta Sans is gone from the load (decision A). Instrument Serif is loaded regular and
+ * italic — it has no other weight.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
 
 .sk-deck,
 .sk-print {
@@ -44,25 +54,35 @@
   text-transform: none;
   letter-spacing: -0.01em;
   color: var(--sk-ink);
-  font-family: var(--sk-font-display);
+  /* Decision A: h2 and h3 land at 26px and 20px, both under the 24px floor Instrument Serif needs
+     under projector gamma, so the sans is the default and h1 opts into the serif below. */
+  font-family: var(--sk-font-body);
   line-height: 1.2;
 }
+/*
+ * h1 is one of exactly three Instrument Serif roles. The face has no bold, so the 700 it replaces
+ * is re-solved by size: 34px/700 sans becomes 40px/400 serif. 40px = 5.56%EH, readable to 7.6 m on
+ * a 55" screen, so the one element that already cleared AVIXA's lecture preset clears it wider.
+ */
 .sk-deck :where(h1) {
-  font-size: 34px;
-  font-weight: 700;
-  margin: 0 0 10px;
+  font-family: var(--sk-font-display);
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  margin: 0 0 12px;
 }
 .sk-deck :where(h2) {
-  font-size: 18px;
+  font-size: 26px;
   font-weight: 500;
   color: var(--sk-ink-3);
   margin: 0 0 22px;
-  letter-spacing: 0;
-  line-height: 1.5;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
 }
 .sk-deck :where(h3) {
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   color: var(--sk-ink);
   margin: 0 0 6px;
 }
@@ -107,8 +127,9 @@
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
+/* Decision A: every print heading is 22px or smaller, so none may take the serif. */
 .sk-print :where(h1, h2, h3, h4) {
-  font-family: var(--sk-font-display);
+  font-family: var(--sk-font-body);
   margin: 0;
   letter-spacing: -0.01em;
 }

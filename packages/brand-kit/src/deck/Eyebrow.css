@@ -12,8 +12,16 @@
  * badge slot).
  */
 
+/*
+ * Decision C: 11.5px -> 13px, the bottom step of the 40/26/20/16/13 scale.
+ *
+ * This is the label on 144 of the 148 slides in the corpus and it was the smallest thing on most
+ * of them. At 11.5px it was 1.60%EH, and it is set in --sk-muted, which drops to 4.01:1 under a 5%
+ * ambient black-lift — small and the first colour to wash out in a lit room (deck-research §B.3).
+ * 13px is 1.81%EH and lifts it off that floor.
+ */
 .sk-eyebrow {
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;

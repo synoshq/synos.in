@@ -7,18 +7,24 @@
  * · .w-t 13px --muted. The buyer decks' numbered shape (conflict C9) is gone — see report §8.2.
  * ═════════════════════════════════════════════════════════════════════════ */
 
+/*
+ * Decision C — de-box. The wall was a filled, rounded, 1px-hairlined box with a 3px red rule on
+ * its left edge: four devices saying one thing. The hairline is --sk-border on --sk-surface-2,
+ * 1.23:1 — invisible on a projector while still fragmenting the layout (deck-research §B.3, §D.4).
+ * The fill and the hairline are gone; the red rule stays, because it is the signal. Space does the
+ * separating the box used to do, so the grid gap opens 12px -> 22px.
+ *
+ * Six walls now contribute six marks to the box count instead of six boxes.
+ */
 .sk-wall-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 22px;
 }
 
 .sk-wall {
-  background: var(--sk-surface-2);
-  border: 1px solid var(--sk-border);
   border-left: 3px solid var(--sk-red-2);
-  border-radius: 10px;
-  padding: 12px 14px;
+  padding: 2px 0 2px 14px;
 }
 
 /* .w-q — the quoted complaint. */
@@ -41,17 +47,21 @@
  * an 11px radius. The buyer decks' centred `.pillar` (conflict C10) is gone — see report §8.2.
  * ═════════════════════════════════════════════════════════════════════════ */
 
+/*
+ * Decision C — de-box. Same argument as the wall: the pillar's fill and hairline were doing the
+ * alignment a grid should do. Both are gone and the gap opens 7px -> 18px. The tinted icon tile
+ * stays: it is the one place per pillar where colour is spent, and it is the object the eye lands
+ * on. The Company Brain pillar keeps its gradient — one "this is us" object per slide is the whole
+ * point of the colour discipline (deck-research §D.3), and it is the exception that reads as one.
+ */
 .sk-pillar-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 7px;
+  gap: 18px;
 }
 
 .sk-pillar {
-  background: var(--sk-surface-2);
-  border: 1px solid var(--sk-border);
-  border-radius: 11px;
-  padding: 7px 11px;
+  padding: 0;
 }
 .sk-pillar-ico {
   width: 30px;
@@ -73,7 +83,8 @@
   margin-bottom: 2px;
 }
 .sk-pillar-name {
-  font-family: var(--sk-font-display);
+  /* Decision A: 13px — far under the serif's 24px floor. Inter. */
+  font-family: var(--sk-font-body);
   font-size: 13px;
   font-weight: 700;
   color: var(--sk-ink);
@@ -196,7 +207,8 @@
   color: var(--sk-phase-accent);
 }
 .sk-phase-title {
-  font-family: var(--sk-font-display);
+  /* Decision A: 19px, under the serif floor. */
+  font-family: var(--sk-font-body);
   font-size: 19px;
   font-weight: 700;
   color: var(--sk-ink);
@@ -264,17 +276,25 @@
  * UseCaseCard — "what runs on it". `.uc` + `.uk`, 24 occurrences in the VC decks.
  * ═════════════════════════════════════════════════════════════════════════ */
 
+/*
+ * Decision C — de-box. The use-case card keeps its fill: unlike the wall and the pillar it carries
+ * three stacked text levels and needs a surface to sit them on. What goes is the 1px --border
+ * hairline around that fill — the invisible-on-a-projector line whose only job was to redraw an
+ * edge the fill already draws. Gap opens 12px -> 16px. The flagship keeps its 1.5px indigo border:
+ * it is the deliberate exception, and an exception that is the only bordered object on the slide
+ * actually reads as one.
+ */
 .sk-usecase-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 .sk-usecase {
   --sk-usecase-kicker: var(--sk-muted);
   border-radius: 13px;
   padding: 15px 17px;
-  border: 1px solid var(--sk-border);
+  border: none;
   background: var(--sk-surface-2);
 }
 .sk-usecase-kicker {
@@ -287,7 +307,8 @@
   color: var(--sk-usecase-kicker);
 }
 .sk-usecase-title {
-  font-family: var(--sk-font-display);
+  /* Decision A: 15.5px, under the serif floor. */
+  font-family: var(--sk-font-body);
   font-size: 15.5px;
   font-weight: 700;
   color: var(--sk-ink);
@@ -303,9 +324,10 @@
 .sk-usecase--indigo {
   --sk-usecase-kicker: var(--sk-indigo);
 }
+/* The violet tone is now carried by the fill alone — decision C removed the hairline it used to
+   tint, so `border-color: var(--sk-violet-br)` would be a dead declaration. */
 .sk-usecase--violet {
   background: var(--sk-violet-bg);
-  border-color: var(--sk-violet-br);
   --sk-usecase-kicker: var(--sk-violet);
 }
 .sk-usecase--emerald {
@@ -341,10 +363,22 @@
   padding: 22px 18px;
   text-align: center;
 }
+/*
+ * Decision A: the third and last Instrument Serif role. 48px/800 sans becomes 72px/400 serif.
+ *
+ * This is the position where losing bold costs the most: a stat value's whole job is to be the
+ * loudest thing on the slide, and 400 weight at the old 48px does not do that. Size is the only
+ * lever the face leaves, so it takes the largest step in the pass — rendered at 56px first and it
+ * still read thin against the 40px h1 above it. 72px = 10%EH, which also puts the one number a
+ * partner is meant to remember well clear of every projection floor in deck-research §B.2.
+ *
+ * It is also why decision E matters here more than anywhere: once weight is gone, hue is the only
+ * other emphasis left, so the hue has to be legible. It was not.
+ */
 .sk-stat-value {
   font-family: var(--sk-font-display);
-  font-size: 48px;
-  font-weight: 800;
+  font-size: 72px;
+  font-weight: 400;
   line-height: 1;
   color: var(--sk-stat-value);
 }
@@ -390,14 +424,21 @@
  * 12 occurrences in the VC decks.
  * ═════════════════════════════════════════════════════════════════════════ */
 
+/*
+ * Decision C — de-box, and this is the component where nesting was the problem rather than the
+ * border count: step (fill + hairline) -> quote (fill + hairline + 3px violet rule) is two levels
+ * of box drawing the same rectangle twice. The step keeps its fill and its gradient cap and loses
+ * its hairline; the quote inside loses both its fill and its hairline and keeps only the violet
+ * rule. Nesting depth is now 2 with one box at each level instead of two.
+ */
 .sk-step-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 .sk-step {
   border-radius: 14px;
-  border: 1px solid var(--sk-border);
+  border: none;
   background: var(--sk-surface-2);
   overflow: hidden;
 }
@@ -418,7 +459,8 @@
   margin-bottom: 5px;
 }
 .sk-step-title {
-  font-family: var(--sk-font-display);
+  /* Decision A: 17px, under the serif floor. */
+  font-family: var(--sk-font-body);
   font-size: 17px;
   font-weight: 700;
   color: var(--sk-ink);
@@ -433,12 +475,9 @@
 }
 /* `.dq` — the quoted prompt under the step. */
 .sk-step-quote {
-  margin-top: 9px;
-  background: var(--sk-surface);
-  border: 1px solid var(--sk-border);
+  margin-top: 11px;
   border-left: 3px solid var(--sk-violet);
-  border-radius: 7px;
-  padding: 7px 10px;
+  padding: 2px 0 2px 10px;
   font-size: 12px;
   color: var(--sk-ink-2);
   font-style: italic;
@@ -487,8 +526,10 @@
   --sk-split-eyebrow: var(--sk-red);
 }
 /* `.c-eyebrow` — the column's own eyebrow, tracked 1.4px rather than the slide eyebrow's 1.6px. */
+/* Decision C: the column eyebrow is the same register as the slide eyebrow and takes the same
+   13px step. One vocabulary — there is no reason for two eyebrow sizes in one system. */
 .sk-split-eyebrow {
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.4px;
   text-transform: uppercase;
@@ -496,7 +537,8 @@
   color: var(--sk-split-eyebrow);
 }
 .sk-split-title {
-  font-family: var(--sk-font-display);
+  /* Decision A: 19px, under the serif floor. */
+  font-family: var(--sk-font-body);
   font-size: 19px;
   font-weight: 700;
   color: var(--sk-ink);

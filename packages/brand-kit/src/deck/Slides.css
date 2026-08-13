@@ -11,27 +11,39 @@
  * of pills) is reachable via `tone="indigo"` + `spacedEyebrow={false}` + `tags`.
  */
 
+/*
+ * Decision A: the cover headline is the second of the three Instrument Serif roles. 47px/800 sans
+ * becomes 56px/400 serif — the face has no bold, so the lost weight is bought back with size, and
+ * the cover stays a clear step above the 40px h1. -1.4px of tracking was set for a geometric sans
+ * at 47px; a serif at 56px needs less, so it goes to -0.02em (≈ -1.1px).
+ */
 .sk-cover-title {
   font-family: var(--sk-font-display);
-  font-size: 47px;
-  font-weight: 800;
-  line-height: 1.06;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.04;
   margin: 4px 0 18px;
-  letter-spacing: -1.4px;
+  letter-spacing: -0.02em;
   color: var(--sk-ink);
 }
 .sk-cover-lead {
-  font-family: var(--sk-font-display);
-  font-size: 16.5px;
-  font-weight: 700;
+  font-family: var(--sk-font-body);
+  font-size: 20px;
+  font-weight: 600;
   color: var(--sk-ink);
   max-width: 1040px;
   margin: 0 auto 18px;
   line-height: 1.35;
   letter-spacing: -0.01em;
 }
+/*
+ * Decision D: the OPTIONAL long-paragraph slot. It is not removed — see CoverSlide's `lede` prop
+ * for which register sets it. Decision C moves it from 12.3px (1.71%EH, below the eyebrow it sits
+ * under, which is incoherent) onto the scale's body step at 16px. It is a paragraph; it is set at
+ * paragraph size.
+ */
 .sk-cover-lede {
-  font-size: 12.3px;
+  font-size: 16px;
   color: var(--sk-ink-3);
   max-width: 960px;
   margin: 0 auto 24px;
@@ -40,8 +52,9 @@
 .sk-cover-lede strong {
   color: var(--sk-ink-2);
 }
+/* Decision C: the tracked uppercase footer is the eyebrow register, so it takes the eyebrow step. */
 .sk-cover-foot {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--sk-muted);
   margin-top: 22px;
   letter-spacing: 1px;
@@ -54,7 +67,9 @@
  */
 
 .sk-bigtype-l1 {
-  font-family: var(--sk-font-display);
+  /* Decision A: Instrument Serif is restricted to h1, the cover headline and stat values. The
+     big-type statement lines keep Inter and keep their weight. */
+  font-family: var(--sk-font-body);
   font-size: 44px;
   font-weight: 800;
   line-height: 1.12;
@@ -63,7 +78,7 @@
   letter-spacing: -0.02em;
 }
 .sk-bigtype-l2 {
-  font-family: var(--sk-font-display);
+  font-family: var(--sk-font-body);
   font-size: 48px;
   font-weight: 800;
   line-height: 1.1;
@@ -79,7 +94,7 @@
   line-height: 1.55;
 }
 .sk-bigtype-punch {
-  font-family: var(--sk-font-display);
+  font-family: var(--sk-font-body);
   font-size: 25px;
   font-weight: 700;
   color: var(--sk-ink);
