@@ -1,0 +1,70 @@
+/*
+ * SlideFrame — the white card every one of the 148 slides in the corpus sits inside.
+ *
+ * Source: synos-vc-deck-presenting.html lines 27-38 (`.card-frame`, `.card-frame.arch-card`,
+ * `section.has-card`). Conflicts C1/C2/C3: the buyer decks use 1180x— / 1256x— frames with
+ * different padding and an 800px stage. The newest deck wins.
+ */
+
+.sk-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--sk-stage-height);
+  background: var(--sk-bg);
+}
+
+.sk-slide {
+  width: var(--sk-slide-width);
+  height: var(--sk-slide-height);
+  max-height: var(--sk-slide-height);
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-slide-radius);
+  box-shadow: var(--sk-shadow-card);
+  padding: var(--sk-slide-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/*
+ * .card-frame.arch-card — tightened for diagram-heavy slides.
+ *
+ * The source also declares `.arch-card h1 { font-size:24px }` and `.arch-card h2 { font-size:13.5px }`
+ * at lines 35-36 — but both are (0,1,1) and lose the tie to `.reveal h1` / `.reveal h2` at lines
+ * 42-43, which come later in the same stylesheet. Measured in a browser, an arch-card h1 renders at
+ * 34px and h2 at 18px: the overrides are dead. They are deliberately NOT reproduced here, because
+ * reproducing them would make this component differ from the shipped deck. See inventory §5.7.
+ *
+ * The `.arch-card .title-block` and `.arch-card .eyebrow` overrides ARE live — (0,2,0) against
+ * (0,1,0) — and are reproduced.
+ */
+.sk-slide--arch {
+  padding: var(--sk-slide-pad-arch);
+}
+.sk-slide--arch .sk-header {
+  margin-bottom: 5px;
+}
+.sk-slide--arch .sk-eyebrow {
+  margin-bottom: 5px;
+}
+
+/* .cover */
+.sk-slide--cover {
+  text-align: center;
+  padding: 56px 60px 48px;
+}
+
+/* .big-type */
+.sk-slide--big-type {
+  text-align: center;
+  padding: 56px 64px;
+}
+
+@media print {
+  .sk-slide {
+    box-shadow: none;
+  }
+}

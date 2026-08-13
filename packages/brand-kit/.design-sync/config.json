@@ -1,0 +1,124 @@
+{
+  "pkg": "@synos/brand-kit",
+  "globalName": "SynosBrandKit",
+  "projectId": "f733f13d-112b-4f02-ae4c-a4a33e99f7a6",
+  "shape": "package",
+  "buildCmd": "npm run build",
+  "cssEntry": "./dist/brand-kit.css",
+  "guidelinesGlob": [
+    "../../docs/plans/2026-08-13-slide-inventory.md",
+    "../../docs/plans/2026-08-13-brand-kit-report.md"
+  ],
+  "srcDir": "src/deck",
+  "docsMap": {
+    "SlideFrame": ".design-sync/docs/SlideFrame.md",
+    "SlideHeader": ".design-sync/docs/SlideHeader.md",
+    "CoverSlide": ".design-sync/docs/CoverSlide.md",
+    "BigTypeSlide": ".design-sync/docs/BigTypeSlide.md",
+    "Eyebrow": ".design-sync/docs/Eyebrow.md",
+    "Caption": ".design-sync/docs/Caption.md",
+    "QuoteBar": ".design-sync/docs/QuoteBar.md",
+    "Callout": ".design-sync/docs/Callout.md",
+    "Chip": ".design-sync/docs/Chip.md",
+    "ChipRow": ".design-sync/docs/ChipRow.md",
+    "WallCard": ".design-sync/docs/WallCard.md",
+    "PillarCard": ".design-sync/docs/PillarCard.md",
+    "PhaseCard": ".design-sync/docs/PhaseCard.md",
+    "UseCaseCard": ".design-sync/docs/UseCaseCard.md",
+    "StatCard": ".design-sync/docs/StatCard.md",
+    "StepCard": ".design-sync/docs/StepCard.md",
+    "SplitColumn": ".design-sync/docs/SplitColumn.md",
+    "SplitItem": ".design-sync/docs/SplitItem.md",
+    "WallGrid": ".design-sync/docs/WallGrid.md",
+    "PillarGrid": ".design-sync/docs/PillarGrid.md",
+    "PhaseRow": ".design-sync/docs/PhaseRow.md",
+    "UseCaseGrid": ".design-sync/docs/UseCaseGrid.md",
+    "StatRow": ".design-sync/docs/StatRow.md",
+    "StepGrid": ".design-sync/docs/StepGrid.md",
+    "SplitColumns": ".design-sync/docs/SplitColumns.md",
+    "OnePagerPage": ".design-sync/docs/OnePagerPage.md",
+    "OnePagerHeader": ".design-sync/docs/OnePagerHeader.md",
+    "SectionHeading": ".design-sync/docs/SectionHeading.md",
+    "OutcomeCard": ".design-sync/docs/OutcomeCard.md",
+    "OutcomeGrid": ".design-sync/docs/OutcomeGrid.md",
+    "CtaBar": ".design-sync/docs/CtaBar.md"
+  },
+  "overrides": {
+    "SlideFrame": {
+      "cardMode": "column",
+      "primaryStory": "Default"
+    },
+    "CoverSlide": {
+      "cardMode": "column",
+      "primaryStory": "Cover"
+    },
+    "BigTypeSlide": {
+      "cardMode": "column",
+      "primaryStory": "TheGap"
+    },
+    "SlideHeader": {
+      "cardMode": "column",
+      "primaryStory": "Row"
+    },
+    "WallGrid": {
+      "cardMode": "column",
+      "primaryStory": "SixWalls"
+    },
+    "PillarGrid": {
+      "cardMode": "column",
+      "primaryStory": "OperatingLayer"
+    },
+    "PhaseRow": {
+      "cardMode": "column",
+      "primaryStory": "ThePlay"
+    },
+    "UseCaseGrid": {
+      "cardMode": "column",
+      "primaryStory": "WhatTeamsBuild"
+    },
+    "StatRow": {
+      "cardMode": "column",
+      "primaryStory": "WhyNow"
+    },
+    "StepGrid": {
+      "cardMode": "column",
+      "primaryStory": "HowItWorks"
+    },
+    "SplitColumns": {
+      "cardMode": "column",
+      "primaryStory": "BuyItOwnIt"
+    },
+    "OnePagerPage": {
+      "cardMode": "column",
+      "primaryStory": "VcOnePager"
+    },
+    "OutcomeGrid": {
+      "cardMode": "column",
+      "primaryStory": "WhatChanges"
+    },
+    "SectionHeading": {
+      "cardMode": "column",
+      "primaryStory": "WithSub"
+    },
+    "OnePagerHeader": {
+      "cardMode": "column",
+      "primaryStory": "Gradient"
+    },
+    "CtaBar": {
+      "cardMode": "column",
+      "primaryStory": "Teal"
+    },
+    "Caption": {
+      "cardMode": "column",
+      "primaryStory": "Summary"
+    },
+    "QuoteBar": {
+      "cardMode": "column",
+      "primaryStory": "DeckScale"
+    },
+    "ChipRow": {
+      "cardMode": "column",
+      "primaryStory": "SystemsOfRecord"
+    }
+  }
+}

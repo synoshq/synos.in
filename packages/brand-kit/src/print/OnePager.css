@@ -1,0 +1,247 @@
+/*
+ * One-pager components. A4 portrait, print-oriented.
+ *
+ * Sources: pitch-materials/SYNOS_VC_1PAGER.html (2026-08-11, newest — canonical),
+ *          pitch-materials/1pager-retail-multistore-cto.html and
+ *          pitch-materials/1pager-financial-inclusion-cto.html (2026-08-09, a matched pair).
+ *
+ * These share tokens and fonts with the deck components and share no padding or type scale with
+ * them. Where the deck runs 10-19px, the one-pagers run 7-13px, and the ratio is not constant.
+ */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+/* `.page` */
+.sk-page {
+  width: var(--sk-page-width);
+  min-height: var(--sk-page-height);
+  padding: var(--sk-page-pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-page-gap);
+  background: var(--sk-surface);
+  font-family: var(--sk-font-body);
+  color: var(--sk-ink);
+}
+/* `.page + .page` — the CTO one-pagers run to two pages with a visible seam on screen. */
+.sk-page + .sk-page {
+  border-top: 1px dashed var(--sk-border-2);
+}
+@media print {
+  .sk-page {
+    page-break-after: always;
+    border-top: none;
+  }
+  .sk-page:last-child {
+    page-break-after: auto;
+  }
+}
+
+/* ── OnePagerHeader. `.hd` ─────────────────────────────────────────────────
+ * Conflict: 1p-vc rules the header off with an indigo→teal `border-image`; the CTO pair uses a
+ * flat 2px `--indigo` bottom border. The newest (1p-vc) gradient rule wins; `rule="solid"` gives
+ * the CTO treatment.
+ */
+.sk-ph {
+  border-bottom: 2.5px solid transparent;
+  border-image: linear-gradient(90deg, var(--sk-indigo-2), var(--sk-teal-2)) 1;
+  padding-bottom: 9px;
+}
+.sk-ph--solid {
+  border-bottom: 2px solid var(--sk-indigo);
+  border-image: none;
+  padding-bottom: 8px;
+}
+.sk-ph-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.sk-ph-brand {
+  font-family: var(--sk-font-display);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--sk-ink);
+  letter-spacing: -0.5px;
+}
+/* The `OS` in `SynOS` is always the accent. */
+.sk-ph-brand .sk-a {
+  color: var(--sk-indigo-2);
+}
+.sk-ph-tag {
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--sk-teal);
+}
+.sk-ph--solid .sk-ph-tag {
+  font-family: var(--sk-font-body);
+  font-size: 8.2px;
+  letter-spacing: 1.2px;
+  color: var(--sk-muted);
+}
+.sk-ph-title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.12;
+  margin: 8px 0 5px;
+  color: var(--sk-ink);
+}
+/* `.hd .lede` — the CTO one-pagers' bold restatement between title and sub. */
+.sk-ph-lede {
+  font-family: var(--sk-font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  line-height: 1.28;
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+.sk-ph-sub {
+  font-size: 10.5px;
+  color: var(--sk-ink-3);
+  line-height: 1.5;
+  max-width: 176mm;
+}
+.sk-ph-sub strong,
+.sk-ph-sub b {
+  color: var(--sk-ink-2);
+  font-weight: 600;
+}
+/* `.hd .runner` — the small uppercase line under the header on the CTO pair. */
+.sk-ph-runner {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+}
+
+/* Accent span, shared by the header, headings and the CTA. `.a` */
+.sk-a {
+  color: var(--sk-indigo-2);
+}
+.sk-t {
+  color: var(--sk-teal);
+}
+
+/* ── SectionHeading. `.sh` ───────────────────────────────────────────────── */
+.sk-sh {
+  margin-bottom: 6px;
+}
+.sk-sh-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--sk-ink);
+  line-height: 1.2;
+}
+.sk-sh-sub {
+  font-size: 8.8px;
+  color: var(--sk-muted);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* ── OutcomeCard. `.oc` + `.ot` / `.od` ─────────────────────────────────── */
+.sk-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+.sk-outcome {
+  --sk-outcome-bg: var(--sk-emerald-bg);
+  --sk-outcome-br: var(--sk-emerald-br);
+  background: var(--sk-outcome-bg);
+  border: 1px solid var(--sk-outcome-br);
+  border-radius: 9px;
+  padding: 8px 11px;
+}
+.sk-outcome-title {
+  font-size: 10.6px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  line-height: 1.24;
+  margin-bottom: 3px;
+}
+.sk-outcome-body {
+  font-size: 8.6px;
+  color: var(--sk-ink-2);
+  line-height: 1.45;
+}
+.sk-outcome-body b,
+.sk-outcome-body strong {
+  color: var(--sk-ink);
+  font-weight: 600;
+}
+.sk-outcome--indigo {
+  --sk-outcome-bg: var(--sk-indigo-bg);
+  --sk-outcome-br: var(--sk-indigo-br);
+}
+.sk-outcome--violet {
+  --sk-outcome-bg: var(--sk-violet-bg);
+  --sk-outcome-br: var(--sk-violet-br);
+}
+.sk-outcome--amber {
+  --sk-outcome-bg: var(--sk-amber-bg);
+  --sk-outcome-br: var(--sk-amber-br);
+}
+.sk-outcome--red {
+  --sk-outcome-bg: var(--sk-red-bg);
+  --sk-outcome-br: var(--sk-red-br);
+}
+
+/* ── CtaBar. `.cta` ──────────────────────────────────────────────────────
+ * Conflict C12: `.cta` in synos-tech-buyer-v2.html is a full centred closing-slide layout, and it
+ * has zero uses in that deck's body — dead CSS. The one-pager banner is the live meaning and the
+ * one built here.
+ *
+ * 1p-vc fills left→right indigo-bg → teal-bg with a 1.5px teal border; the CTO pair fills
+ * top→bottom indigo-bg → --sk-indigo-tint with a 1.5px indigo border. Newest (1p-vc) is default.
+ */
+.sk-cta {
+  margin-top: auto;
+  background: linear-gradient(90deg, var(--sk-indigo-bg) 0%, var(--sk-teal-bg) 100%);
+  border: 1.5px solid var(--sk-teal-2);
+  border-radius: 10px;
+  padding: 11px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.sk-cta--indigo {
+  background: linear-gradient(180deg, var(--sk-indigo-bg) 0%, var(--sk-indigo-tint) 100%);
+  border-color: var(--sk-indigo-2);
+  padding: 10px 14px;
+  gap: 12px;
+}
+.sk-cta-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--sk-ink);
+}
+.sk-cta-body {
+  font-size: 9.3px;
+  color: var(--sk-ink-3);
+  margin-top: 3px;
+  line-height: 1.5;
+  max-width: 132mm;
+}
+.sk-cta-right {
+  text-align: right;
+  font-size: 8.5px;
+  color: var(--sk-ink-2);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.sk-cta-right b {
+  font-family: var(--sk-font-display);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--sk-ink);
+}

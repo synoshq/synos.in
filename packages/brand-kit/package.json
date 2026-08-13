@@ -1,0 +1,40 @@
+{
+  "name": "@synos/brand-kit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SynOS brand components for investor decks and prospect one-pagers, extracted from the shipped deck and one-pager HTML.",
+  "type": "module",
+  "files": ["dist"],
+  "main": "./dist/brand-kit.umd.cjs",
+  "module": "./dist/brand-kit.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/brand-kit.js",
+      "require": "./dist/brand-kit.umd.cjs"
+    },
+    "./styles.css": "./dist/brand-kit.css"
+  },
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "fidelity": "node fidelity/scripts/run-fidelity.mjs",
+    "inventory": "node fidelity/scripts/inventory.mjs"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "@vitejs/plugin-react": "^4.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vite-plugin-dts": "^4.0.3"
+  }
+}

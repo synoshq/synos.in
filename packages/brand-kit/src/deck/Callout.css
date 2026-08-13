@@ -1,0 +1,139 @@
+/*
+ * Callout — the tinted box. The single most-used block pattern in the corpus: a hue's `bg`, its
+ * `br` border, saturated text of the same hue, and usually a 3px accent rule on one edge.
+ *
+ * Deck sources: .stk-note .nw-fit .q2note .lstk-foot .grad-foot .fw-band .cf .sm-auto .edge-pt .qp
+ *               .oneliner-foot (buyer decks)
+ * Print sources: .gap .joint .bx .ag .ob .mbox .proof
+ *
+ * Deviation (inventory §5.3): the sources vary by 1-2px in padding and radius between instances.
+ * This component takes the newest deck instance (.stk-note: padding 11px 16px, radius 10px,
+ * font-size 13px) as the deck geometry and the newest one-pager instance (.gap in 1p-vc:
+ * padding 8px 12px, radius 8px, font-size 10px) as the print geometry.
+ */
+
+.sk-callout {
+  --sk-callout-bg: var(--sk-surface-2);
+  --sk-callout-br: var(--sk-border);
+  --sk-callout-accent: var(--sk-indigo-2);
+  --sk-callout-text: var(--sk-indigo);
+
+  background: var(--sk-callout-bg);
+  border: 1px solid var(--sk-callout-br);
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: 13px;
+  color: var(--sk-ink-2);
+  line-height: 1.5;
+}
+.sk-callout strong,
+.sk-callout b {
+  color: var(--sk-ink);
+  font-weight: 600;
+}
+.sk-callout p {
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+.sk-callout p + p {
+  margin-top: 6px;
+}
+
+/* ── Tone: sets the triple. ─────────────────────────────────────────────── */
+.sk-callout--indigo {
+  --sk-callout-bg: var(--sk-indigo-bg);
+  --sk-callout-br: var(--sk-indigo-br);
+  --sk-callout-accent: var(--sk-indigo-2);
+  --sk-callout-text: var(--sk-indigo);
+}
+.sk-callout--violet {
+  --sk-callout-bg: var(--sk-violet-bg);
+  --sk-callout-br: var(--sk-violet-br);
+  --sk-callout-accent: var(--sk-violet);
+  --sk-callout-text: var(--sk-violet);
+}
+.sk-callout--emerald {
+  --sk-callout-bg: var(--sk-emerald-bg);
+  --sk-callout-br: var(--sk-emerald-br);
+  --sk-callout-accent: var(--sk-emerald);
+  --sk-callout-text: var(--sk-emerald);
+}
+.sk-callout--amber {
+  --sk-callout-bg: var(--sk-amber-bg);
+  --sk-callout-br: var(--sk-amber-br);
+  --sk-callout-accent: var(--sk-amber-2);
+  --sk-callout-text: var(--sk-amber);
+}
+.sk-callout--red {
+  --sk-callout-bg: var(--sk-red-bg);
+  --sk-callout-br: var(--sk-red-br);
+  --sk-callout-accent: var(--sk-red-2);
+  --sk-callout-text: var(--sk-red);
+}
+
+/*
+ * fill="neutral" keeps the grey surface and only takes the hue for the accent rule and the label —
+ * the .stk-note / .bx / .mbox / .joint shape. It must come after the tone rules to win.
+ */
+.sk-callout--neutral-fill {
+  --sk-callout-bg: var(--sk-surface-2);
+  --sk-callout-br: var(--sk-border);
+  background: var(--sk-surface-2);
+  border-color: var(--sk-border);
+}
+
+/* ── Accent rule. ───────────────────────────────────────────────────────── */
+.sk-callout--accent-left {
+  border-left: 3px solid var(--sk-callout-accent);
+}
+.sk-callout--accent-top {
+  border-top: 3px solid var(--sk-callout-accent);
+}
+
+/* .q2note / .lstk-foot / .grad-foot square off the accented edge. */
+.sk-callout--flush.sk-callout--accent-left {
+  border-radius: 0 10px 10px 0;
+}
+
+/* ── Label. .mbox .ml / .proof .pl2 / .df .h / .ob .oq ──────────────────── */
+.sk-callout-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sk-callout-text);
+  margin-bottom: 4px;
+}
+
+/* ── Print scale. .gap in SYNOS_VC_1PAGER.html ──────────────────────────── */
+.sk-callout--print {
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 10px;
+}
+.sk-callout--print .sk-callout-label {
+  font-size: 7.8px;
+  letter-spacing: 1.1px;
+  margin-bottom: 4px;
+}
+.sk-callout--print.sk-callout--flush.sk-callout--accent-left {
+  border-radius: 0 8px 8px 0;
+}
+
+/* ── Banner. .oneliner-foot — centred, gradient-filled, heavier border. ──── */
+.sk-callout--banner {
+  text-align: center;
+  padding: 14px 22px;
+  border-radius: 12px;
+  border: 1.5px solid var(--sk-callout-accent);
+  background: linear-gradient(180deg, var(--sk-callout-bg) 0%, var(--sk-indigo-tint) 100%);
+  font-size: 16px;
+  color: var(--sk-ink);
+}
+.sk-callout--banner em {
+  color: var(--sk-callout-text);
+  font-weight: 700;
+  font-style: normal;
+}

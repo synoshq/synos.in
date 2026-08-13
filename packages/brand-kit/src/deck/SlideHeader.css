@@ -1,0 +1,33 @@
+/*
+ * SlideHeader — eyebrow + h1 (+ h2), the block 125 of 148 slides open with.
+ *
+ * Conflict C6: the corpus does this two ways and the two never co-occur.
+ *   `.title-block { margin-bottom: 16px }`  — VC decks (canonical)
+ *   `.title-block { margin-bottom: 18px; }` + `.title-block h1 { 26px } h2 { 14px }` — buyer decks
+ *   `.head-row { display:flex; align-items:flex-end; justify-content:space-between;
+ *                margin-bottom:18px }` — VC decks, 58 uses
+ *
+ * They are one job with two layouts, so this is one component with a `layout` prop. The buyer
+ * decks' 26px/14px shrink is a deliberate omission (inventory §4 C6).
+ */
+
+.sk-header {
+  margin-bottom: 16px;
+}
+
+/* .head-row — title on the left, an aside pinned to the same baseline on the right. */
+.sk-header--row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.sk-header-main {
+  min-width: 0;
+}
+
+.sk-header-aside {
+  flex-shrink: 0;
+  padding-left: 24px;
+}

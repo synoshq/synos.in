@@ -1,0 +1,117 @@
+/*
+ * Base type scale. Scoped to .sk-deck / .sk-print so importing this stylesheet never restyles a
+ * host page's own headings.
+ *
+ * Deck values from synos-vc-deck-presenting.html lines 40-47 (conflict C5: the buyer decks run a
+ * smaller scale — 30/16/15/14 at line-height 1.25 — and lose).
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+.sk-deck,
+.sk-print {
+  box-sizing: border-box;
+}
+.sk-deck *,
+.sk-print *,
+.sk-deck *::before,
+.sk-print *::before,
+.sk-deck *::after,
+.sk-print *::after {
+  box-sizing: border-box;
+}
+
+/* ── Deck ─────────────────────────────────────────────────────────────────── */
+
+.sk-deck {
+  font-family: var(--sk-font-body);
+  color: var(--sk-ink);
+  text-align: left;
+  /*
+   * reveal.js sets `line-height: 1.3` on `.reveal .slides > section`, and every element in the
+   * decks that does not declare its own line-height inherits it — the eyebrow, the chip labels,
+   * the pillar kickers. Replicated here so the components read the same outside reveal.
+   */
+  line-height: 1.3;
+}
+
+/*
+ * `:where()` keeps these element rules at class-only specificity (0,1,0), so a component class on
+ * the same element wins by source order. Without it `.sk-deck h3` (0,1,1) would beat
+ * `.sk-phase-title` (0,1,0) and every card's own type scale would be silently overridden.
+ */
+.sk-deck :where(h1, h2, h3) {
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--sk-ink);
+  font-family: var(--sk-font-display);
+  line-height: 1.2;
+}
+.sk-deck :where(h1) {
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+.sk-deck :where(h2) {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--sk-ink-3);
+  margin: 0 0 22px;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+.sk-deck :where(h3) {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 0 0 6px;
+}
+.sk-deck :where(p, li) {
+  font-size: 16px;
+  color: var(--sk-ink-3);
+  line-height: 1.55;
+  margin: 0 0 7px;
+}
+.sk-deck :where(strong) {
+  color: var(--sk-ink);
+  font-weight: 600;
+}
+/* .reveal em — flagged, not italic. */
+.sk-deck :where(em) {
+  font-style: normal;
+  color: var(--sk-indigo);
+  font-weight: 500;
+}
+
+/* .gradient — gradient-clipped display text. The print fallback is the source's own:
+   Chrome's PDF engine paints a clipped background as a solid block, so it falls back to solid. */
+.sk-gradient-text {
+  background: var(--sk-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media print {
+  .sk-gradient-text {
+    background: none;
+    -webkit-text-fill-color: var(--sk-violet);
+    color: var(--sk-violet);
+  }
+}
+
+/* ── One-pager ────────────────────────────────────────────────────────────── */
+
+.sk-print {
+  font-family: var(--sk-font-body);
+  color: var(--sk-ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.sk-print :where(h1, h2, h3, h4) {
+  font-family: var(--sk-font-display);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.sk-print :where(p) {
+  margin: 0;
+}
