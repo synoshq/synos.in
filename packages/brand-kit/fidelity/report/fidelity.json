@@ -31,6 +31,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(255, 255, 255)",
             "background-image": "none",
@@ -94,6 +95,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "padding-top": "14px",
             "padding-right": "44px",
@@ -119,7 +121,30 @@
             "font-family",
             "font-weight"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "34px",
+              "now": "40px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", Inter, sans-serif",
+              "now": "\"Instrument Serif\", Georgia, serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "font-weight",
+              "was": "700",
+              "now": "400",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-size": "34px",
@@ -127,9 +152,9 @@
             "font-weight": "700"
           },
           "built_values": {
-            "font-size": "34px",
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
-            "font-weight": "700"
+            "font-size": "40px",
+            "font-family": "\"Instrument Serif\", Georgia, serif",
+            "font-weight": "400"
           }
         },
         {
@@ -140,7 +165,16 @@
             "font-weight",
             "color"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "18px",
+              "now": "26px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-size": "18px",
@@ -148,7 +182,7 @@
             "color": "rgb(71, 85, 105)"
           },
           "built_values": {
-            "font-size": "18px",
+            "font-size": "26px",
             "font-weight": "500",
             "color": "rgb(71, 85, 105)"
           }
@@ -161,6 +195,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "margin-bottom": "5px"
           },
@@ -176,6 +211,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "margin-bottom": "5px"
           },
@@ -207,7 +243,23 @@
             "text-transform",
             "margin-bottom"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "11.5px",
+              "now": "13px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "line-height",
+              "was": "14.95px",
+              "now": "16.9px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
@@ -221,10 +273,10 @@
           },
           "built_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
-            "font-size": "11.5px",
+            "font-size": "13px",
             "font-weight": "700",
             "letter-spacing": "1.6px",
-            "line-height": "14.95px",
+            "line-height": "16.9px",
             "color": "rgb(67, 56, 202)",
             "text-transform": "uppercase",
             "margin-bottom": "11px"
@@ -254,7 +306,23 @@
             "text-transform",
             "margin-bottom"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "11.5px",
+              "now": "13px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "line-height",
+              "was": "14.95px",
+              "now": "16.9px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
@@ -268,10 +336,10 @@
           },
           "built_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
-            "font-size": "11.5px",
+            "font-size": "13px",
             "font-weight": "700",
             "letter-spacing": "1.6px",
-            "line-height": "14.95px",
+            "line-height": "16.9px",
             "color": "rgb(124, 58, 237)",
             "text-transform": "uppercase",
             "margin-bottom": "11px"
@@ -301,7 +369,23 @@
             "text-transform",
             "margin-bottom"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "11.5px",
+              "now": "13px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "line-height",
+              "was": "14.95px",
+              "now": "16.9px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
@@ -315,10 +399,10 @@
           },
           "built_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
-            "font-size": "11.5px",
+            "font-size": "13px",
             "font-weight": "700",
             "letter-spacing": "1.6px",
-            "line-height": "14.95px",
+            "line-height": "16.9px",
             "color": "rgb(185, 28, 28)",
             "text-transform": "uppercase",
             "margin-bottom": "11px"
@@ -346,13 +430,17 @@
             "text-transform",
             "margin-bottom"
           ],
-          "status": "DIFF",
-          "diffs": [
+          "intentional": [
             {
               "prop": "font-size",
-              "source": "10px",
-              "built": "11.5px"
-            },
+              "was": "10px",
+              "now": "13px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "DIFF",
+          "diffs": [
             {
               "prop": "margin-bottom",
               "source": "8px",
@@ -367,7 +455,7 @@
             "margin-bottom": "8px"
           },
           "built_values": {
-            "font-size": "11.5px",
+            "font-size": "13px",
             "letter-spacing": "1.6px",
             "font-weight": "700",
             "text-transform": "uppercase",
@@ -396,6 +484,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "display": "flex",
             "align-items": "flex-end",
@@ -422,7 +511,51 @@
             "text-transform",
             "margin-bottom"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", Inter, sans-serif",
+              "now": "\"Instrument Serif\", Georgia, serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "font-size",
+              "was": "34px",
+              "now": "40px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "font-weight",
+              "was": "700",
+              "now": "400",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "letter-spacing",
+              "was": "-0.34px",
+              "now": "-0.6px",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "line-height",
+              "was": "40.8px",
+              "now": "44.8px",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "margin-bottom",
+              "was": "10px",
+              "now": "12px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
@@ -435,14 +568,14 @@
             "margin-bottom": "10px"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
-            "font-size": "34px",
-            "font-weight": "700",
-            "letter-spacing": "-0.34px",
-            "line-height": "40.8px",
+            "font-family": "\"Instrument Serif\", Georgia, serif",
+            "font-size": "40px",
+            "font-weight": "400",
+            "letter-spacing": "-0.6px",
+            "line-height": "44.8px",
             "color": "rgb(15, 23, 42)",
             "text-transform": "none",
-            "margin-bottom": "10px"
+            "margin-bottom": "12px"
           }
         }
       ],
@@ -468,6 +601,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "padding-top": "56px",
             "padding-right": "60px",
@@ -495,8 +629,45 @@
             "color",
             "text-transform"
           ],
-          "note": "Declared 58px, overridden to 47px by the v7 cover refit. See inventory C8.",
-          "status": "MATCH",
+          "note": "Declared 58px, overridden to 47px by the v7 cover refit (inventory C8). Decision A then took it to 56px serif, so the refit is superseded, not reverted.",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", sans-serif",
+              "now": "\"Instrument Serif\", Georgia, serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "font-size",
+              "was": "47px",
+              "now": "56px",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "font-weight",
+              "was": "800",
+              "now": "400",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "letter-spacing",
+              "was": "-1.4px",
+              "now": "-1.12px",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "line-height",
+              "was": "49.82px",
+              "now": "58.24px",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", sans-serif",
@@ -508,11 +679,11 @@
             "text-transform": "none"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
-            "font-size": "47px",
-            "font-weight": "800",
-            "letter-spacing": "-1.4px",
-            "line-height": "49.82px",
+            "font-family": "\"Instrument Serif\", Georgia, serif",
+            "font-size": "56px",
+            "font-weight": "400",
+            "letter-spacing": "-1.12px",
+            "line-height": "58.24px",
             "color": "rgb(15, 23, 42)",
             "text-transform": "none"
           }
@@ -529,7 +700,37 @@
             "color",
             "text-transform"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "font-size",
+              "was": "16.5px",
+              "now": "20px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "font-weight",
+              "was": "700",
+              "now": "600",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "line-height",
+              "was": "22.275px",
+              "now": "27px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", sans-serif",
@@ -541,11 +742,11 @@
             "text-transform": "none"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
-            "font-size": "16.5px",
-            "font-weight": "700",
-            "letter-spacing": "-0.165px",
-            "line-height": "22.275px",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "20px",
+            "font-weight": "600",
+            "letter-spacing": "-0.2px",
+            "line-height": "27px",
             "color": "rgb(15, 23, 42)",
             "text-transform": "none"
           }
@@ -558,7 +759,23 @@
             "color",
             "line-height"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "12.3px",
+              "now": "16px",
+              "key": "D",
+              "reason": "**Decision D — the cover paragraph slot stays, and is optional.** SynOS ships a reading deck\nand a presenting deck deliberately, as two artifacts with two jobs. The reading deck is sent\nwithout a presenter and the paragraph is doing real work there; the presenting deck should omit\nit and speak it. `CoverSlide`'s `lede` prop documents which register sets it. The slot was not\nremoved — deleting it would have made the reading deck worse in order to fix the presenting\ndeck. Its size moved onto the scale as part of decision C."
+            },
+            {
+              "prop": "line-height",
+              "was": "18.45px",
+              "now": "24px",
+              "key": "D",
+              "reason": "**Decision D — the cover paragraph slot stays, and is optional.** SynOS ships a reading deck\nand a presenting deck deliberately, as two artifacts with two jobs. The reading deck is sent\nwithout a presenter and the paragraph is doing real work there; the presenting deck should omit\nit and speak it. `CoverSlide`'s `lede` prop documents which register sets it. The slot was not\nremoved — deleting it would have made the reading deck worse in order to fix the presenting\ndeck. Its size moved onto the scale as part of decision C."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-size": "12.3px",
@@ -566,9 +783,9 @@
             "line-height": "18.45px"
           },
           "built_values": {
-            "font-size": "12.3px",
+            "font-size": "16px",
             "color": "rgb(71, 85, 105)",
-            "line-height": "18.45px"
+            "line-height": "24px"
           }
         },
         {
@@ -581,6 +798,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "color": "rgb(124, 58, 237)",
             "letter-spacing": "2.4px",
@@ -604,7 +822,23 @@
             "color",
             "text-transform"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "12px",
+              "now": "13px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "line-height",
+              "was": "15.6px",
+              "now": "16.9px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
@@ -617,10 +851,10 @@
           },
           "built_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
-            "font-size": "12px",
+            "font-size": "13px",
             "font-weight": "400",
             "letter-spacing": "1px",
-            "line-height": "15.6px",
+            "line-height": "16.9px",
             "color": "rgb(100, 116, 139)",
             "text-transform": "uppercase"
           }
@@ -646,6 +880,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "padding-top": "56px",
             "padding-left": "64px",
@@ -669,7 +904,16 @@
             "color",
             "text-transform"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", sans-serif",
@@ -681,7 +925,7 @@
             "text-transform": "none"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "44px",
             "font-weight": "800",
             "letter-spacing": "-0.88px",
@@ -700,7 +944,16 @@
             "line-height",
             "letter-spacing"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", sans-serif",
@@ -710,7 +963,7 @@
             "letter-spacing": "-0.96px"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "48px",
             "font-weight": "800",
             "line-height": "52.8px",
@@ -727,6 +980,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "20px",
             "color": "rgb(71, 85, 105)",
@@ -750,7 +1004,16 @@
             "color",
             "text-transform"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", sans-serif",
@@ -762,7 +1025,7 @@
             "text-transform": "none"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "25px",
             "font-weight": "700",
             "letter-spacing": "normal",
@@ -780,6 +1043,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "14px",
             "color": "rgb(100, 116, 139)"
@@ -819,7 +1083,23 @@
             "color",
             "line-height"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "border-top-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-color",
+              "was": "rgb(226, 232, 240)",
+              "now": "rgb(51, 65, 85)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
@@ -840,9 +1120,9 @@
           "built_values": {
             "background-color": "rgb(248, 250, 252)",
             "background-image": "none",
-            "border-top-width": "1px",
+            "border-top-width": "0px",
             "border-left-width": "3px",
-            "border-top-color": "rgb(226, 232, 240)",
+            "border-top-color": "rgb(51, 65, 85)",
             "border-left-color": "rgb(99, 102, 241)",
             "border-top-left-radius": "10px",
             "padding-top": "11px",
@@ -886,6 +1166,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
             "background-image": "none",
@@ -930,6 +1211,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "display": "flex",
             "gap": "8px",
@@ -975,6 +1257,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(255, 255, 255)",
             "background-image": "none",
@@ -1035,7 +1318,58 @@
             "padding-bottom",
             "padding-left"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "background-color",
+              "was": "rgb(248, 250, 252)",
+              "now": "rgba(0, 0, 0, 0)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-color",
+              "was": "rgb(226, 232, 240)",
+              "now": "rgb(15, 23, 42)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-left-radius",
+              "was": "10px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-top",
+              "was": "12px",
+              "now": "2px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-right",
+              "was": "14px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-bottom",
+              "was": "12px",
+              "now": "2px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
@@ -1051,16 +1385,16 @@
             "padding-left": "14px"
           },
           "built_values": {
-            "background-color": "rgb(248, 250, 252)",
+            "background-color": "rgba(0, 0, 0, 0)",
             "background-image": "none",
-            "border-top-width": "1px",
+            "border-top-width": "0px",
             "border-left-width": "3px",
-            "border-top-color": "rgb(226, 232, 240)",
+            "border-top-color": "rgb(15, 23, 42)",
             "border-left-color": "rgb(239, 68, 68)",
-            "border-top-left-radius": "10px",
-            "padding-top": "12px",
-            "padding-right": "14px",
-            "padding-bottom": "12px",
+            "border-top-left-radius": "0px",
+            "padding-top": "2px",
+            "padding-right": "0px",
+            "padding-bottom": "2px",
             "padding-left": "14px"
           }
         },
@@ -1080,6 +1414,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "15px",
@@ -1112,6 +1447,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "13px",
             "color": "rgb(100, 116, 139)"
@@ -1129,7 +1465,16 @@
             "grid-template-columns",
             "gap"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "gap",
+              "was": "12px",
+              "now": "22px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "display": "grid",
@@ -1138,8 +1483,8 @@
           },
           "built_values": {
             "display": "grid",
-            "grid-template-columns": "358.656px 358.672px 358.656px",
-            "gap": "12px"
+            "grid-template-columns": "352px 352px 352px",
+            "gap": "22px"
           }
         }
       ],
@@ -1169,7 +1514,79 @@
             "padding-bottom",
             "padding-left"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "background-color",
+              "was": "rgb(248, 250, 252)",
+              "now": "rgba(0, 0, 0, 0)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-left-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-color",
+              "was": "rgb(226, 232, 240)",
+              "now": "rgb(15, 23, 42)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-left-color",
+              "was": "rgb(226, 232, 240)",
+              "now": "rgb(15, 23, 42)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-left-radius",
+              "was": "11px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-top",
+              "was": "7px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-right",
+              "was": "11px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-bottom",
+              "was": "7px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-left",
+              "was": "11px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
@@ -1185,17 +1602,17 @@
             "padding-left": "11px"
           },
           "built_values": {
-            "background-color": "rgb(248, 250, 252)",
+            "background-color": "rgba(0, 0, 0, 0)",
             "background-image": "none",
-            "border-top-width": "1px",
-            "border-left-width": "1px",
-            "border-top-color": "rgb(226, 232, 240)",
-            "border-left-color": "rgb(226, 232, 240)",
-            "border-top-left-radius": "11px",
-            "padding-top": "7px",
-            "padding-right": "11px",
-            "padding-bottom": "7px",
-            "padding-left": "11px"
+            "border-top-width": "0px",
+            "border-left-width": "0px",
+            "border-top-color": "rgb(15, 23, 42)",
+            "border-left-color": "rgb(15, 23, 42)",
+            "border-top-left-radius": "0px",
+            "padding-top": "0px",
+            "padding-right": "0px",
+            "padding-bottom": "0px",
+            "padding-left": "0px"
           }
         },
         {
@@ -1208,7 +1625,16 @@
             "color",
             "margin-bottom"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", sans-serif",
@@ -1218,7 +1644,7 @@
             "margin-bottom": "3px"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "13px",
             "font-weight": "700",
             "color": "rgb(15, 23, 42)",
@@ -1235,6 +1661,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "10.5px",
             "color": "rgb(71, 85, 105)",
@@ -1258,6 +1685,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "width": "30px",
             "height": "30px",
@@ -1281,7 +1709,16 @@
             "grid-template-columns",
             "gap"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "gap",
+              "was": "7px",
+              "now": "18px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "display": "grid",
@@ -1290,8 +1727,8 @@
           },
           "built_values": {
             "display": "grid",
-            "grid-template-columns": "268.656px 268.672px 268.656px",
-            "gap": "7px"
+            "grid-template-columns": "261.328px 261.328px 261.344px",
+            "gap": "18px"
           }
         }
       ],
@@ -1315,7 +1752,16 @@
             "gap",
             "border-top-width"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "background-image",
+              "was": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))",
+              "now": "linear-gradient(135deg, rgb(99, 102, 241), rgb(76, 29, 149))",
+              "key": "B",
+              "reason": "**Decision B — the gradient ends at `--sk-violet-ink`, not `--sk-violet`.** An accessibility\nfix, not taste. White text on the old ramp ran 4.47:1 at the light end and 3.45:1 at the 80%\nopacity the Company Brain block actually used — a WCAG AA failure on the single most important\nobject in the deck (§E.2). `#4c1d95` was already a token, sits 16.6° from `--sk-violet` so the\nbrand hue is unchanged, and raises perceptual travel from ΔE_ok 0.087 to 0.215 — 2.5×, and the\nfirst time the ramp moves lightness at all (ΔL −0.206 vs −0.044).\n\nThe light end is unchanged, so it is still the binding constraint: every white-on-gradient text\ncolour therefore also moved from `rgba(255,255,255,0.8/0.88)` to solid `--sk-on-brand`. Proof\nfor both halves: `node tools/contrast.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))",
@@ -1325,7 +1771,7 @@
             "border-top-width": "0px"
           },
           "built_values": {
-            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))",
+            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(76, 29, 149))",
             "display": "flex",
             "align-items": "center",
             "gap": "14px",
@@ -1341,6 +1787,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "color": "rgb(255, 255, 255)",
             "font-size": "16px"
@@ -1360,7 +1807,23 @@
             "text-transform",
             "color"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "letter-spacing",
+              "was": "1.2px",
+              "now": "1.6px",
+              "key": "B",
+              "reason": "**Decision B — the gradient ends at `--sk-violet-ink`, not `--sk-violet`.** An accessibility\nfix, not taste. White text on the old ramp ran 4.47:1 at the light end and 3.45:1 at the 80%\nopacity the Company Brain block actually used — a WCAG AA failure on the single most important\nobject in the deck (§E.2). `#4c1d95` was already a token, sits 16.6° from `--sk-violet` so the\nbrand hue is unchanged, and raises perceptual travel from ΔE_ok 0.087 to 0.215 — 2.5×, and the\nfirst time the ramp moves lightness at all (ΔL −0.206 vs −0.044).\n\nThe light end is unchanged, so it is still the binding constraint: every white-on-gradient text\ncolour therefore also moved from `rgba(255,255,255,0.8/0.88)` to solid `--sk-on-brand`. Proof\nfor both halves: `node tools/contrast.mjs`."
+            },
+            {
+              "prop": "color",
+              "was": "rgba(255, 255, 255, 0.8)",
+              "now": "rgb(255, 255, 255)",
+              "key": "B",
+              "reason": "**Decision B — the gradient ends at `--sk-violet-ink`, not `--sk-violet`.** An accessibility\nfix, not taste. White text on the old ramp ran 4.47:1 at the light end and 3.45:1 at the 80%\nopacity the Company Brain block actually used — a WCAG AA failure on the single most important\nobject in the deck (§E.2). `#4c1d95` was already a token, sits 16.6° from `--sk-violet` so the\nbrand hue is unchanged, and raises perceptual travel from ΔE_ok 0.087 to 0.215 — 2.5×, and the\nfirst time the ramp moves lightness at all (ΔL −0.206 vs −0.044).\n\nThe light end is unchanged, so it is still the binding constraint: every white-on-gradient text\ncolour therefore also moved from `rgba(255,255,255,0.8/0.88)` to solid `--sk-on-brand`. Proof\nfor both halves: `node tools/contrast.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\", monospace",
@@ -1372,9 +1835,9 @@
           "built_values": {
             "font-family": "\"JetBrains Mono\", monospace",
             "font-size": "9px",
-            "letter-spacing": "1.2px",
+            "letter-spacing": "1.6px",
             "text-transform": "uppercase",
-            "color": "rgba(255, 255, 255, 0.8)"
+            "color": "rgb(255, 255, 255)"
           }
         },
         {
@@ -1388,6 +1851,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "width": "38px",
             "height": "38px",
@@ -1433,6 +1897,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(255, 255, 255)",
             "background-image": "none",
@@ -1481,6 +1946,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\"",
             "font-size": "10px",
@@ -1516,6 +1982,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "10.5px",
@@ -1544,7 +2011,16 @@
             "font-weight",
             "color"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", Inter, sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
@@ -1553,7 +2029,7 @@
             "color": "rgb(15, 23, 42)"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "19px",
             "font-weight": "700",
             "color": "rgb(15, 23, 42)"
@@ -1569,6 +2045,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "13px",
             "color": "rgb(51, 65, 85)",
@@ -1593,6 +2070,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\", monospace",
             "font-size": "10px",
@@ -1618,6 +2096,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "color": "rgb(124, 58, 237)"
           },
@@ -1636,6 +2115,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "display": "grid",
             "grid-template-columns": "375.062px 375.062px 375.062px",
@@ -1678,6 +2158,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgba(0, 0, 0, 0)",
             "background-image": "linear-gradient(rgb(238, 242, 255), rgb(224, 231, 255))",
@@ -1718,6 +2199,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\", monospace",
             "font-size": "9px",
@@ -1743,7 +2225,16 @@
             "font-family",
             "font-weight"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", Inter, sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-size": "15.5px",
@@ -1752,7 +2243,7 @@
           },
           "built_values": {
             "font-size": "15.5px",
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-weight": "700"
           }
         },
@@ -1766,6 +2257,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "12.5px",
             "color": "rgb(51, 65, 85)",
@@ -1787,6 +2279,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-image": "linear-gradient(rgb(238, 242, 255), rgb(224, 231, 255))",
             "border-top-width": "1px",
@@ -1806,7 +2299,16 @@
             "grid-template-columns",
             "gap"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "gap",
+              "was": "12px",
+              "now": "16px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "display": "grid",
@@ -1815,8 +2317,8 @@
           },
           "built_values": {
             "display": "grid",
-            "grid-template-columns": "358.656px 358.672px 358.656px",
-            "gap": "12px"
+            "grid-template-columns": "356px 356px 356px",
+            "gap": "16px"
           }
         }
       ],
@@ -1849,6 +2351,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
             "background-image": "none",
@@ -1887,7 +2390,37 @@
             "font-weight",
             "line-height"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\"",
+              "now": "\"Instrument Serif\", Georgia, serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "font-size",
+              "was": "48px",
+              "now": "72px",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "font-weight",
+              "was": "800",
+              "now": "400",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            },
+            {
+              "prop": "line-height",
+              "was": "48px",
+              "now": "72px",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\"",
@@ -1896,10 +2429,34 @@
             "line-height": "48px"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
-            "font-size": "48px",
-            "font-weight": "800",
-            "line-height": "48px"
+            "font-family": "\"Instrument Serif\", Georgia, serif",
+            "font-size": "72px",
+            "font-weight": "400",
+            "line-height": "72px"
+          }
+        },
+        {
+          "source": ".stat-card.a .n",
+          "built": ".sk-stat--amber .sk-stat-value",
+          "props": [
+            "color"
+          ],
+          "intentional": [
+            {
+              "prop": "color",
+              "was": "rgb(245, 158, 11)",
+              "now": "rgb(146, 64, 14)",
+              "key": "E",
+              "reason": "**Decision E — `.sk-stat--amber` takes `--sk-amber`, not `--sk-amber-2`.** A straight defect\nfix. `--sk-amber-2 #f59e0b` on `--sk-surface-2` is **2.05:1** — it failed even the 3:1 large-\ntext threshold, at 72px, making it the kit's worst live WCAG failure. `--sk-amber #92400e` is\n6.78:1 and is already the amber *text* token in every other component. `--sk-amber-2` remains a\nborder and accent colour and is now used for no text anywhere."
+            }
+          ],
+          "status": "INTENTIONAL",
+          "diffs": [],
+          "source_values": {
+            "color": "rgb(245, 158, 11)"
+          },
+          "built_values": {
+            "color": "rgb(146, 64, 14)"
           }
         },
         {
@@ -1913,6 +2470,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "13px",
             "color": "rgb(71, 85, 105)",
@@ -1938,6 +2496,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\"",
             "font-size": "10px",
@@ -1963,6 +2522,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "display": "grid",
             "grid-template-columns": "375.062px 375.062px 375.062px",
@@ -2002,7 +2562,37 @@
             "padding-left",
             "overflow"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "border-top-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-left-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-color",
+              "was": "rgb(226, 232, 240)",
+              "now": "rgb(15, 23, 42)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-left-color",
+              "was": "rgb(226, 232, 240)",
+              "now": "rgb(15, 23, 42)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
@@ -2021,10 +2611,10 @@
           "built_values": {
             "background-color": "rgb(248, 250, 252)",
             "background-image": "none",
-            "border-top-width": "1px",
-            "border-left-width": "1px",
-            "border-top-color": "rgb(226, 232, 240)",
-            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-width": "0px",
+            "border-left-width": "0px",
+            "border-top-color": "rgb(15, 23, 42)",
+            "border-left-color": "rgb(15, 23, 42)",
             "border-top-left-radius": "14px",
             "padding-top": "0px",
             "padding-right": "0px",
@@ -2040,7 +2630,16 @@
             "height",
             "background-image"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "background-image",
+              "was": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))",
+              "now": "linear-gradient(135deg, rgb(99, 102, 241), rgb(76, 29, 149))",
+              "key": "B",
+              "reason": "**Decision B — the gradient ends at `--sk-violet-ink`, not `--sk-violet`.** An accessibility\nfix, not taste. White text on the old ramp ran 4.47:1 at the light end and 3.45:1 at the 80%\nopacity the Company Brain block actually used — a WCAG AA failure on the single most important\nobject in the deck (§E.2). `#4c1d95` was already a token, sits 16.6° from `--sk-violet` so the\nbrand hue is unchanged, and raises perceptual travel from ΔE_ok 0.087 to 0.215 — 2.5×, and the\nfirst time the ramp moves lightness at all (ΔL −0.206 vs −0.044).\n\nThe light end is unchanged, so it is still the binding constraint: every white-on-gradient text\ncolour therefore also moved from `rgba(255,255,255,0.8/0.88)` to solid `--sk-on-brand`. Proof\nfor both halves: `node tools/contrast.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "height": "9px",
@@ -2048,7 +2647,7 @@
           },
           "built_values": {
             "height": "9px",
-            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))"
+            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(76, 29, 149))"
           }
         },
         {
@@ -2060,6 +2659,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "padding-top": "15px",
             "padding-left": "18px"
@@ -2081,6 +2681,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\", monospace",
             "font-size": "10px",
@@ -2104,7 +2705,16 @@
             "font-family",
             "font-weight"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\", Inter, sans-serif",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-size": "17px",
@@ -2113,7 +2723,7 @@
           },
           "built_values": {
             "font-size": "17px",
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-weight": "700"
           }
         },
@@ -2127,6 +2737,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "13px",
             "color": "rgb(51, 65, 85)",
@@ -2156,7 +2767,58 @@
             "font-size",
             "font-style"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "background-color",
+              "was": "rgb(255, 255, 255)",
+              "now": "rgba(0, 0, 0, 0)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-color",
+              "was": "rgb(226, 232, 240)",
+              "now": "rgb(51, 65, 85)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-left-radius",
+              "was": "7px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-top",
+              "was": "7px",
+              "now": "2px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-right",
+              "was": "10px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "padding-bottom",
+              "was": "7px",
+              "now": "2px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "background-color": "rgb(255, 255, 255)",
@@ -2174,16 +2836,16 @@
             "font-style": "italic"
           },
           "built_values": {
-            "background-color": "rgb(255, 255, 255)",
+            "background-color": "rgba(0, 0, 0, 0)",
             "background-image": "none",
-            "border-top-width": "1px",
+            "border-top-width": "0px",
             "border-left-width": "3px",
-            "border-top-color": "rgb(226, 232, 240)",
+            "border-top-color": "rgb(51, 65, 85)",
             "border-left-color": "rgb(124, 58, 237)",
-            "border-top-left-radius": "7px",
-            "padding-top": "7px",
-            "padding-right": "10px",
-            "padding-bottom": "7px",
+            "border-top-left-radius": "0px",
+            "padding-top": "2px",
+            "padding-right": "0px",
+            "padding-bottom": "2px",
             "padding-left": "10px",
             "font-size": "12px",
             "font-style": "italic"
@@ -2197,7 +2859,16 @@
             "grid-template-columns",
             "gap"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "gap",
+              "was": "14px",
+              "now": "16px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "display": "grid",
@@ -2206,8 +2877,8 @@
           },
           "built_values": {
             "display": "grid",
-            "grid-template-columns": "357.328px 357.328px 357.344px",
-            "gap": "14px"
+            "grid-template-columns": "356px 356px 356px",
+            "gap": "16px"
           }
         }
       ],
@@ -2239,6 +2910,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
             "background-image": "none",
@@ -2275,6 +2947,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(245, 243, 255)",
             "border-top-color": "rgb(221, 214, 254)"
@@ -2294,7 +2967,16 @@
             "text-transform",
             "margin-bottom"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-size",
+              "was": "11.5px",
+              "now": "13px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-size": "11.5px",
@@ -2304,7 +2986,7 @@
             "margin-bottom": "8px"
           },
           "built_values": {
-            "font-size": "11.5px",
+            "font-size": "13px",
             "font-weight": "700",
             "letter-spacing": "1.4px",
             "text-transform": "uppercase",
@@ -2320,6 +3002,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "19px",
             "margin-bottom": "10px"
@@ -2339,6 +3022,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "display": "grid",
             "grid-template-columns": "569.594px 569.594px",
@@ -2372,6 +3056,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "text-align": "center",
             "font-size": "14.5px",
@@ -2418,6 +3103,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(248, 250, 252)",
             "background-image": "none",
@@ -2476,6 +3162,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "width": "793.688px",
             "padding-top": "41.5748px",
@@ -2502,6 +3189,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "border-bottom-width": "2px",
             "padding-bottom": "9px"
@@ -2520,7 +3208,16 @@
             "font-weight",
             "letter-spacing"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "font-family",
+              "was": "\"Plus Jakarta Sans\"",
+              "now": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+              "key": "A",
+              "reason": "**Decision A — Instrument Serif as the display face.** The display face was Plus Jakarta Sans,\nwhich deck-research §C.1 measured as the modal face of the free-template ecosystem: it cannot\nmake a deck read expensive because it is exactly what an inexpensive deck also uses. It is\nretired outright rather than demoted, because a display face used for nothing is drift.\nInstrument Serif replaces it in exactly three roles — `h1`, `.sk-cover-title` and\n`.sk-stat-value` — and nowhere else; it is the face synos.in already uses, so this is the one\nchange in the pass that makes two artifacts converge instead of adding a variant.\n\nThe face has **one weight and no bold**, so every 700/800 it replaced is re-solved with size:\nh1 34/700 → 40/400, cover 47/800 → 56/400, stat value 48/800 → 56/400. It loses its thin\nstrokes first under projector gamma (§B.3), so it must never render below 24px — which is why\n`h2` (26px) and `h3` (20px) and every card title stay Inter, moving from `--sk-font-display` to\n`--sk-font-body` without changing size."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "font-family": "\"Plus Jakarta Sans\"",
@@ -2529,7 +3226,7 @@
             "letter-spacing": "-0.5px"
           },
           "built_values": {
-            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
             "font-size": "17px",
             "font-weight": "800",
             "letter-spacing": "-0.5px"
@@ -2548,6 +3245,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\"",
             "font-size": "9px",
@@ -2575,6 +3273,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "22px",
             "font-weight": "800",
@@ -2596,6 +3295,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "10.5px",
             "color": "rgb(71, 85, 105)",
@@ -2617,6 +3317,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "display": "flex",
             "justify-content": "space-between",
@@ -2654,7 +3355,23 @@
             "padding-bottom",
             "padding-left"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "border-top-width",
+              "was": "1px",
+              "now": "0px",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            },
+            {
+              "prop": "border-top-color",
+              "was": "rgb(254, 202, 202)",
+              "now": "rgb(51, 65, 85)",
+              "key": "C",
+              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
           "source_values": {
             "background-color": "rgb(254, 242, 242)",
@@ -2672,9 +3389,9 @@
           "built_values": {
             "background-color": "rgb(254, 242, 242)",
             "background-image": "none",
-            "border-top-width": "1px",
+            "border-top-width": "0px",
             "border-left-width": "3px",
-            "border-top-color": "rgb(254, 202, 202)",
+            "border-top-color": "rgb(51, 65, 85)",
             "border-left-color": "rgb(239, 68, 68)",
             "border-top-left-radius": "8px",
             "padding-top": "8px",
@@ -2693,6 +3410,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "10px",
             "color": "rgb(51, 65, 85)",
@@ -2725,6 +3443,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(255, 255, 255)",
             "background-image": "none",
@@ -2768,6 +3487,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(236, 253, 245)",
             "border-top-color": "rgb(110, 231, 183)",
@@ -2794,6 +3514,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "8.5px",
             "font-weight": "800",
@@ -2829,6 +3550,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\"",
             "font-size": "7.5px",
@@ -2879,6 +3601,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(255, 255, 255)",
             "background-image": "none",
@@ -2926,6 +3649,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\"",
             "font-size": "8px",
@@ -2955,6 +3679,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "12px",
             "font-weight": "800",
@@ -2976,6 +3701,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "8.8px",
             "color": "rgb(71, 85, 105)",
@@ -2999,6 +3725,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "7.5px",
             "font-weight": "800",
@@ -3046,6 +3773,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgba(0, 0, 0, 0)",
             "background-image": "linear-gradient(90deg, rgb(238, 242, 255) 0%, rgb(240, 253, 250) 100%)",
@@ -3091,6 +3819,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "13.5px",
             "font-weight": "800",
@@ -3113,6 +3842,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "9.3px",
             "color": "rgb(71, 85, 105)",
@@ -3137,6 +3867,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "text-align": "right",
             "font-size": "8.5px",
@@ -3171,6 +3902,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "13px",
             "font-weight": "800",
@@ -3195,6 +3927,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "8.8px",
             "color": "rgb(100, 116, 139)",
@@ -3226,6 +3959,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "background-color": "rgb(236, 253, 245)",
             "background-image": "none",
@@ -3265,6 +3999,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "10.6px",
             "font-weight": "700",
@@ -3290,6 +4025,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "font-size": "8.6px",
             "color": "rgb(51, 65, 85)",
@@ -3311,6 +4047,7 @@
           ],
           "status": "MATCH",
           "diffs": [],
+          "intentional": [],
           "source_values": {
             "display": "grid",
             "grid-template-columns": "348px 348px",
