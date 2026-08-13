@@ -4,7 +4,9 @@
   "private": true,
   "description": "SynOS brand components for investor decks and prospect one-pagers, extracted from the shipped deck and one-pager HTML.",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/brand-kit.umd.cjs",
   "module": "./dist/brand-kit.js",
   "types": "./dist/index.d.ts",
@@ -16,12 +18,17 @@
     },
     "./styles.css": "./dist/brand-kit.css"
   },
-  "sideEffects": ["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && node tools/css-lint.mjs && vite build",
     "typecheck": "tsc --noEmit",
     "fidelity": "node fidelity/scripts/run-fidelity.mjs",
-    "inventory": "node fidelity/scripts/inventory.mjs"
+    "inventory": "node fidelity/scripts/inventory.mjs",
+    "lint:css": "node tools/css-lint.mjs",
+    "contrast": "node tools/contrast.mjs",
+    "boxes": "node tools/boxes.mjs"
   },
   "peerDependencies": {
     "react": "^18.2.0",
