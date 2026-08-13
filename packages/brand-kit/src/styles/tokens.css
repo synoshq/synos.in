@@ -63,8 +63,35 @@
   --sk-teal-bg: #f0fdfa;
   --sk-teal-br: #99f6e4;
 
-  /* ── Gradient ─────────────────────────────────────────────────────────── */
-  --sk-grad: linear-gradient(135deg, #6366f1, #7c3aed);
+  /* ── Gradient ───────────────────────────────────────────────────────────
+   * DECISION B (2026-08-13 improvement pass). Was `135deg, #6366f1, #7c3aed`.
+   *
+   * This is an accessibility fix that happens to also look better, not a taste change. The old
+   * ramp ended at --sk-violet #7c3aed; white text on it ran 4.47:1 at the light end and 3.45:1 at
+   * the 80% opacity the Company Brain block actually used — a WCAG AA failure on the single most
+   * important object in the deck. Ending at --sk-violet-ink #4c1d95 takes white to 10.95:1 at the
+   * far end and 7.52:1 at 80% opacity, and raises perceptual travel from ΔE_ok 0.087 to 0.215 —
+   * 2.5x — because it finally moves lightness (ΔL −0.206 vs −0.044), the channel the eye reads a
+   * gradient by. Same violet family: Δh is 16.6° from --sk-violet, so nothing about the brand hue
+   * changes. No new token — #4c1d95 was already --sk-violet-ink.
+   *
+   * The light end is unchanged, so white text near t=0 is still the binding constraint. Every
+   * white-on-gradient surface therefore paints at full opacity (--sk-on-brand), never at 0.8/0.88.
+   * Proof: `node tools/contrast.mjs`.
+   */
+  --sk-grad: linear-gradient(135deg, var(--sk-indigo-2), var(--sk-violet-ink));
+
+  /*
+   * The only white in the system. Components used to write `#fff` and `rgba(255,255,255,0.8)`
+   * inline; both are now this token at full opacity, so no component carries a literal colour and
+   * no white-on-brand surface can drift back below AA by way of an opacity.
+   */
+  --sk-on-brand: #ffffff;
+  /*
+   * The icon tile's scrim on a gradient surface. A decorative fill, never a text colour — nothing
+   * legible may sit on a translucent white, which is the whole point of --sk-on-brand above.
+   */
+  --sk-on-brand-scrim: rgba(255, 255, 255, 0.18);
 
   /* ── Deep hue inks ────────────────────────────────────────────────────────
    * Hardcoded in the sources rather than tokenised. Promoted here so no component carries a hex.
