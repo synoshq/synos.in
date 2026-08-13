@@ -9,6 +9,31 @@ Companion to `docs/plans/2026-08-13-brand-kit-improvement-pass.md` (the pass), a
 
 ---
 
+> ## CORRECTION — added 2026-08-13 after founder review
+>
+> **SynOS ships a reading deck and a presenting deck deliberately, as two artifacts with two jobs.**
+> Verified: `synos-vc-deck-v6.html` has 35 slides and **zero** `class="notes"` blocks — it is the
+> **reading deck**, self-contained, and the one that is sent. `synos-vc-deck-presenting.html` has the
+> same 35 slides with **22** speaker-note blocks — it is the **presenting deck**, with content
+> deliberately moved into notes to be spoken.
+>
+> §E.1 treats v6's higher density as a defect ("the version investors read is the denser one"). That
+> framing is wrong. A reading deck must stand alone without a presenter and is *supposed* to carry
+> more. Re-grade everything below against the artifact's own job:
+>
+> | Finding | Reading deck (v6) | Presenting deck | Buyer decks (sent) |
+> |---|---|---|---|
+> | Density (§E.1) | 236 w/slide — defensible, not a defect | 190 w/slide — **too dense**, this is where the 11s argument bites | 138–158 w/slide |
+> | Type size (§B.2) | laptop reading standard, forgiving | **real defect** — 2.1 m legibility fails the back row | as presenting |
+> | PDF export (§B.4) | **fine** — 35pp parity, fonts embedded, 51,864 extractable chars | 30pp for 35 slides, but not the sent artifact | **worst defect** — 0 fonts, 0 extractable text, 96 ppi, 10.4 MB, and these ARE sent |
+>
+> Unaffected by this correction: the `h1` position drift (§D.1), the 3.45:1 white-on-gradient AA
+> failure (§E.2), the one-pager 6.6pt body (§B.5), the four-font leak (§C.4).
+>
+> **Implication for the improvement pass:** projection standards apply to the presenting deck, reading
+> standards to the reading deck and the one-pagers, and the export pipeline must be fixed for the
+> buyer decks first. Do not apply one density target across all of them.
+
 ## 0. Method, and what is a measurement vs. an opinion
 
 Three kinds of statement appear below and they are labelled:
