@@ -155,35 +155,6 @@
   line-height: 1.4;
 }
 
-/* `.d1-pillar.d1-brain` — the Company Brain anchor. Full gradient, spans two columns, icon inline. */
-.sk-pillar--brain {
-  grid-column: 1 / span 2;
-  background: var(--sk-grad);
-  border: none;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-}
-.sk-pillar--brain .sk-pillar-ico {
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-  margin: 0;
-}
-.sk-pillar--brain .sk-pillar-kicker {
-  color: rgba(255, 255, 255, 0.8);
-}
-.sk-pillar--brain .sk-pillar-name {
-  color: #fff;
-  font-size: 16px;
-}
-.sk-pillar--brain .sk-pillar-desc {
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 11.5px;
-}
-
 /* Icon tint follows the pillar's hue — `.pillar.skills .ico`, `.pillar.loop .ico`, etc. */
 .sk-pillar--indigo .sk-pillar-ico {
   background: var(--sk-indigo-bg);
@@ -204,6 +175,37 @@
 .sk-pillar--red .sk-pillar-ico {
   background: var(--sk-red-bg);
   color: var(--sk-red);
+}
+
+/* `.d1-pillar.d1-brain` — the Company Brain anchor. Declared after the per-tone icon tints and at
+ * (0,3,0), mirroring the source's `.d1-pillar.d1-brain .d1-ico`, so the white-on-gradient icon
+ * survives whatever `tone` the card also carries. Full gradient, spans two columns, icon inline. */
+.sk-pillar--brain {
+  grid-column: 1 / span 2;
+  background: var(--sk-grad);
+  border: none;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.sk-pillar.sk-pillar--brain .sk-pillar-ico {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  margin: 0;
+}
+.sk-pillar.sk-pillar--brain .sk-pillar-kicker {
+  color: rgba(255, 255, 255, 0.8);
+}
+.sk-pillar.sk-pillar--brain .sk-pillar-name {
+  color: #fff;
+  font-size: 16px;
+}
+.sk-pillar.sk-pillar--brain .sk-pillar-desc {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 11.5px;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════

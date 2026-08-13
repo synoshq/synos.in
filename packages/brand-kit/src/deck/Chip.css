@@ -62,7 +62,23 @@
   font-family: var(--sk-font-mono);
 }
 
-/* ── Tones. Same bg/br/text triple as Callout. ─────────────────────────── */
+/* ── Print scale. .pchip ───────────────────────────────────────────────── */
+.sk-chip--print {
+  border-radius: 7px;
+  padding: 3px 9px;
+  font-size: 8.8px;
+  font-weight: 600;
+  --sk-chip-br: var(--sk-border-2);
+}
+.sk-chip--print.sk-chip--mono {
+  font-size: 7.6px;
+}
+
+/* ── Tones. Same bg/br/text triple as Callout. ───────────────────────────
+ * These come after the size and scale blocks on purpose: `sm` and `print` narrow the default
+ * border to --border-2, and a toned chip must still take its hue's border (`.pchip.paid` is
+ * emerald-bordered in the source). Equal specificity, so source order decides.
+ */
 .sk-chip--indigo {
   --sk-chip-bg: var(--sk-indigo-bg);
   --sk-chip-br: var(--sk-indigo-br);
@@ -87,18 +103,6 @@
   --sk-chip-bg: var(--sk-red-bg);
   --sk-chip-br: var(--sk-red-br);
   --sk-chip-fg: var(--sk-red-ink);
-}
-
-/* ── Print scale. .pchip ───────────────────────────────────────────────── */
-.sk-chip--print {
-  border-radius: 7px;
-  padding: 3px 9px;
-  font-size: 8.8px;
-  font-weight: 600;
-  --sk-chip-br: var(--sk-border-2);
-}
-.sk-chip--print.sk-chip--mono {
-  font-size: 7.6px;
 }
 
 /* ── Row. .stk-row / .nw-chips / .tagchips / .proofrow ─────────────────── */

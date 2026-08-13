@@ -29,17 +29,20 @@
   position: relative;
 }
 
-/* .card-frame.arch-card — tightened for diagram-heavy slides, plus its descendant overrides. */
+/*
+ * .card-frame.arch-card — tightened for diagram-heavy slides.
+ *
+ * The source also declares `.arch-card h1 { font-size:24px }` and `.arch-card h2 { font-size:13.5px }`
+ * at lines 35-36 — but both are (0,1,1) and lose the tie to `.reveal h1` / `.reveal h2` at lines
+ * 42-43, which come later in the same stylesheet. Measured in a browser, an arch-card h1 renders at
+ * 34px and h2 at 18px: the overrides are dead. They are deliberately NOT reproduced here, because
+ * reproducing them would make this component differ from the shipped deck. See inventory §5.7.
+ *
+ * The `.arch-card .title-block` and `.arch-card .eyebrow` overrides ARE live — (0,2,0) against
+ * (0,1,0) — and are reproduced.
+ */
 .sk-slide--arch {
   padding: var(--sk-slide-pad-arch);
-}
-.sk-slide--arch h1 {
-  font-size: 24px;
-  margin-bottom: 4px;
-}
-.sk-slide--arch h2 {
-  font-size: 13.5px;
-  margin-bottom: 8px;
 }
 .sk-slide--arch .sk-header {
   margin-bottom: 5px;

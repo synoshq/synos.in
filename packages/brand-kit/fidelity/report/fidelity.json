@@ -1,0 +1,3489 @@
+{
+  "generated": "see git commit date",
+  "results": [
+    {
+      "id": "slide-frame-default",
+      "component": "SlideFrame",
+      "file": "presenting",
+      "slide": 1,
+      "checks": [
+        {
+          "source": ".card-frame",
+          "built": ".sk-slide",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "width",
+            "height",
+            "box-shadow",
+            "display",
+            "flex-direction",
+            "justify-content"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "20px",
+            "padding-top": "40px",
+            "padding-right": "56px",
+            "padding-bottom": "34px",
+            "padding-left": "56px",
+            "width": "1267.19px",
+            "height": "712px",
+            "box-shadow": "rgba(15, 23, 42, 0.06) 0px 1px 3px 0px, rgba(15, 23, 42, 0.04) 0px 8px 24px 0px",
+            "display": "flex",
+            "flex-direction": "column",
+            "justify-content": "center"
+          },
+          "built_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "20px",
+            "padding-top": "40px",
+            "padding-right": "56px",
+            "padding-bottom": "34px",
+            "padding-left": "56px",
+            "width": "1267.19px",
+            "height": "712px",
+            "box-shadow": "rgba(15, 23, 42, 0.06) 0px 1px 3px 0px, rgba(15, 23, 42, 0.04) 0px 8px 24px 0px",
+            "display": "flex",
+            "flex-direction": "column",
+            "justify-content": "center"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/slide-frame-default.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/slide-frame-default.built.png"
+    },
+    {
+      "id": "slide-frame-arch",
+      "component": "SlideFrame variant=\"arch\"",
+      "file": "presenting",
+      "slide": 5,
+      "checks": [
+        {
+          "source": ".card-frame.arch-card",
+          "built": ".sk-slide",
+          "props": [
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "border-top-left-radius",
+            "justify-content"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "padding-top": "14px",
+            "padding-right": "44px",
+            "padding-bottom": "12px",
+            "padding-left": "44px",
+            "border-top-left-radius": "20px",
+            "justify-content": "center"
+          },
+          "built_values": {
+            "padding-top": "14px",
+            "padding-right": "44px",
+            "padding-bottom": "12px",
+            "padding-left": "44px",
+            "border-top-left-radius": "20px",
+            "justify-content": "center"
+          }
+        },
+        {
+          "source": ".arch-card h1",
+          "built": ".sk-slide h1",
+          "props": [
+            "font-size",
+            "font-family",
+            "font-weight"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "34px",
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-weight": "700"
+          },
+          "built_values": {
+            "font-size": "34px",
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-weight": "700"
+          }
+        },
+        {
+          "source": ".arch-card h2",
+          "built": ".sk-slide h2",
+          "props": [
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "18px",
+            "font-weight": "500",
+            "color": "rgb(71, 85, 105)"
+          },
+          "built_values": {
+            "font-size": "18px",
+            "font-weight": "500",
+            "color": "rgb(71, 85, 105)"
+          }
+        },
+        {
+          "source": ".arch-card .eyebrow",
+          "built": ".sk-slide--arch .sk-eyebrow",
+          "props": [
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "margin-bottom": "5px"
+          },
+          "built_values": {
+            "margin-bottom": "5px"
+          }
+        },
+        {
+          "source": ".arch-card .title-block",
+          "built": ".sk-slide--arch .sk-header",
+          "props": [
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "margin-bottom": "5px"
+          },
+          "built_values": {
+            "margin-bottom": "5px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/slide-frame-arch.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/slide-frame-arch.built.png"
+    },
+    {
+      "id": "eyebrow-indigo",
+      "component": "Eyebrow tone=\"indigo\"",
+      "file": "presenting",
+      "slide": 6,
+      "checks": [
+        {
+          "source": ".eyebrow",
+          "built": ".sk-eyebrow--indigo",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.6px",
+            "line-height": "14.95px",
+            "color": "rgb(67, 56, 202)",
+            "text-transform": "uppercase",
+            "margin-bottom": "11px"
+          },
+          "built_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.6px",
+            "line-height": "14.95px",
+            "color": "rgb(67, 56, 202)",
+            "text-transform": "uppercase",
+            "margin-bottom": "11px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-indigo.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-indigo.built.png"
+    },
+    {
+      "id": "eyebrow-violet",
+      "component": "Eyebrow tone=\"violet\"",
+      "file": "presenting",
+      "slide": 1,
+      "checks": [
+        {
+          "source": ".eyebrow",
+          "built": ".sk-eyebrow--violet",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.6px",
+            "line-height": "14.95px",
+            "color": "rgb(124, 58, 237)",
+            "text-transform": "uppercase",
+            "margin-bottom": "11px"
+          },
+          "built_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.6px",
+            "line-height": "14.95px",
+            "color": "rgb(124, 58, 237)",
+            "text-transform": "uppercase",
+            "margin-bottom": "11px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-violet.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-violet.built.png"
+    },
+    {
+      "id": "eyebrow-red",
+      "component": "Eyebrow tone=\"red\"",
+      "file": "presenting",
+      "slide": 3,
+      "checks": [
+        {
+          "source": ".eyebrow",
+          "built": ".sk-eyebrow--red",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.6px",
+            "line-height": "14.95px",
+            "color": "rgb(185, 28, 28)",
+            "text-transform": "uppercase",
+            "margin-bottom": "11px"
+          },
+          "built_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.6px",
+            "line-height": "14.95px",
+            "color": "rgb(185, 28, 28)",
+            "text-transform": "uppercase",
+            "margin-bottom": "11px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-red.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-red.built.png"
+    },
+    {
+      "id": "eyebrow-buyer-conflict",
+      "component": "Eyebrow (vs buyer deck — conflict C4)",
+      "file": "tech-v2",
+      "slide": 2,
+      "expectFail": "C4: the buyer decks run the eyebrow at 10px / margin-bottom 8px. The newest deck wins at 11.5px / 11px. This check is expected to differ and is kept as evidence of the conflict.",
+      "checks": [
+        {
+          "source": ".eyebrow",
+          "built": ".sk-eyebrow",
+          "props": [
+            "font-size",
+            "letter-spacing",
+            "font-weight",
+            "text-transform",
+            "margin-bottom"
+          ],
+          "status": "DIFF",
+          "diffs": [
+            {
+              "prop": "font-size",
+              "source": "10px",
+              "built": "11.5px"
+            },
+            {
+              "prop": "margin-bottom",
+              "source": "8px",
+              "built": "11px"
+            }
+          ],
+          "source_values": {
+            "font-size": "10px",
+            "letter-spacing": "1.6px",
+            "font-weight": "700",
+            "text-transform": "uppercase",
+            "margin-bottom": "8px"
+          },
+          "built_values": {
+            "font-size": "11.5px",
+            "letter-spacing": "1.6px",
+            "font-weight": "700",
+            "text-transform": "uppercase",
+            "margin-bottom": "11px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-buyer-conflict.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/eyebrow-buyer-conflict.built.png"
+    },
+    {
+      "id": "slide-header-row",
+      "component": "SlideHeader layout=\"row\"",
+      "file": "presenting",
+      "slide": 1,
+      "checks": [
+        {
+          "source": ".head-row",
+          "built": ".sk-header--row",
+          "props": [
+            "display",
+            "align-items",
+            "justify-content",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "flex",
+            "align-items": "flex-end",
+            "justify-content": "space-between",
+            "margin-bottom": "18px"
+          },
+          "built_values": {
+            "display": "flex",
+            "align-items": "flex-end",
+            "justify-content": "space-between",
+            "margin-bottom": "18px"
+          }
+        },
+        {
+          "source": ".head-row h1",
+          "built": ".sk-header--row h1",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "34px",
+            "font-weight": "700",
+            "letter-spacing": "-0.34px",
+            "line-height": "40.8px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none",
+            "margin-bottom": "10px"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "34px",
+            "font-weight": "700",
+            "letter-spacing": "-0.34px",
+            "line-height": "40.8px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none",
+            "margin-bottom": "10px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/slide-header-row.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/slide-header-row.built.png"
+    },
+    {
+      "id": "cover",
+      "component": "CoverSlide",
+      "file": "presenting",
+      "slide": 0,
+      "checks": [
+        {
+          "source": ".card-frame.cover",
+          "built": ".sk-slide--cover",
+          "props": [
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "text-align"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "padding-top": "56px",
+            "padding-right": "60px",
+            "padding-bottom": "48px",
+            "padding-left": "60px",
+            "text-align": "center"
+          },
+          "built_values": {
+            "padding-top": "56px",
+            "padding-right": "60px",
+            "padding-bottom": "48px",
+            "padding-left": "60px",
+            "text-align": "center"
+          }
+        },
+        {
+          "source": ".cover .big",
+          "built": ".sk-cover-title",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform"
+          ],
+          "note": "Declared 58px, overridden to 47px by the v7 cover refit. See inventory C8.",
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", sans-serif",
+            "font-size": "47px",
+            "font-weight": "800",
+            "letter-spacing": "-1.4px",
+            "line-height": "49.82px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "47px",
+            "font-weight": "800",
+            "letter-spacing": "-1.4px",
+            "line-height": "49.82px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          }
+        },
+        {
+          "source": ".cover .hero-sub",
+          "built": ".sk-cover-lead",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", sans-serif",
+            "font-size": "16.5px",
+            "font-weight": "700",
+            "letter-spacing": "-0.165px",
+            "line-height": "22.275px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "16.5px",
+            "font-weight": "700",
+            "letter-spacing": "-0.165px",
+            "line-height": "22.275px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          }
+        },
+        {
+          "source": ".cover .lede",
+          "built": ".sk-cover-lede",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "12.3px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "18.45px"
+          },
+          "built_values": {
+            "font-size": "12.3px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "18.45px"
+          }
+        },
+        {
+          "source": ".cover .eyebrow",
+          "built": ".sk-eyebrow",
+          "props": [
+            "color",
+            "letter-spacing",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "color": "rgb(124, 58, 237)",
+            "letter-spacing": "2.4px",
+            "margin-bottom": "14px"
+          },
+          "built_values": {
+            "color": "rgb(124, 58, 237)",
+            "letter-spacing": "2.4px",
+            "margin-bottom": "14px"
+          }
+        },
+        {
+          "source": ".cover .foot",
+          "built": ".sk-cover-foot",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "12px",
+            "font-weight": "400",
+            "letter-spacing": "1px",
+            "line-height": "15.6px",
+            "color": "rgb(100, 116, 139)",
+            "text-transform": "uppercase"
+          },
+          "built_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "12px",
+            "font-weight": "400",
+            "letter-spacing": "1px",
+            "line-height": "15.6px",
+            "color": "rgb(100, 116, 139)",
+            "text-transform": "uppercase"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/cover.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/cover.built.png"
+    },
+    {
+      "id": "big-type",
+      "component": "BigTypeSlide",
+      "file": "presenting",
+      "slide": 21,
+      "checks": [
+        {
+          "source": ".big-type",
+          "built": ".sk-slide--big-type",
+          "props": [
+            "padding-top",
+            "padding-left",
+            "text-align"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "padding-top": "56px",
+            "padding-left": "64px",
+            "text-align": "center"
+          },
+          "built_values": {
+            "padding-top": "56px",
+            "padding-left": "64px",
+            "text-align": "center"
+          }
+        },
+        {
+          "source": ".big-type .l1",
+          "built": ".sk-bigtype-l1",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", sans-serif",
+            "font-size": "44px",
+            "font-weight": "800",
+            "letter-spacing": "-0.88px",
+            "line-height": "49.28px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "44px",
+            "font-weight": "800",
+            "letter-spacing": "-0.88px",
+            "line-height": "49.28px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          }
+        },
+        {
+          "source": ".big-type .l2",
+          "built": ".sk-bigtype-l2",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "line-height",
+            "letter-spacing"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", sans-serif",
+            "font-size": "48px",
+            "font-weight": "800",
+            "line-height": "52.8px",
+            "letter-spacing": "-0.96px"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "48px",
+            "font-weight": "800",
+            "line-height": "52.8px",
+            "letter-spacing": "-0.96px"
+          }
+        },
+        {
+          "source": ".big-type p.sub",
+          "built": ".sk-bigtype-sub",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "20px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "31px"
+          },
+          "built_values": {
+            "font-size": "20px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "31px"
+          }
+        },
+        {
+          "source": ".big-type .punch",
+          "built": ".sk-bigtype-punch",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", sans-serif",
+            "font-size": "25px",
+            "font-weight": "700",
+            "letter-spacing": "normal",
+            "line-height": "32.5px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "25px",
+            "font-weight": "700",
+            "letter-spacing": "normal",
+            "line-height": "32.5px",
+            "color": "rgb(15, 23, 42)",
+            "text-transform": "none"
+          }
+        },
+        {
+          "source": ".big-type .tagline",
+          "built": ".sk-bigtype-tagline",
+          "props": [
+            "font-size",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "14px",
+            "color": "rgb(100, 116, 139)"
+          },
+          "built_values": {
+            "font-size": "14px",
+            "color": "rgb(100, 116, 139)"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/big-type.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/big-type.built.png"
+    },
+    {
+      "id": "callout-deck",
+      "component": "Callout",
+      "file": "presenting",
+      "slide": 23,
+      "checks": [
+        {
+          "source": ".stk-note",
+          "built": ".sk-callout",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(99, 102, 241)",
+            "border-top-left-radius": "10px",
+            "padding-top": "11px",
+            "padding-right": "16px",
+            "padding-bottom": "11px",
+            "padding-left": "16px",
+            "font-size": "13px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "19.5px"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(99, 102, 241)",
+            "border-top-left-radius": "10px",
+            "padding-top": "11px",
+            "padding-right": "16px",
+            "padding-bottom": "11px",
+            "padding-left": "16px",
+            "font-size": "13px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "19.5px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/callout-deck.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/callout-deck.built.png"
+    },
+    {
+      "id": "chips",
+      "component": "Chip / ChipRow",
+      "file": "presenting",
+      "slide": 23,
+      "checks": [
+        {
+          "source": ".stk-chip",
+          "built": ".sk-chip--lg",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "9px",
+            "padding-top": "10px",
+            "padding-right": "18px",
+            "padding-bottom": "10px",
+            "padding-left": "18px",
+            "font-size": "15px",
+            "font-weight": "600",
+            "color": "rgb(51, 65, 85)"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "9px",
+            "padding-top": "10px",
+            "padding-right": "18px",
+            "padding-bottom": "10px",
+            "padding-left": "18px",
+            "font-size": "15px",
+            "font-weight": "600",
+            "color": "rgb(51, 65, 85)"
+          }
+        },
+        {
+          "source": ".stk-row",
+          "built": ".sk-chip-row--center",
+          "props": [
+            "display",
+            "gap",
+            "justify-content",
+            "flex-wrap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "flex",
+            "gap": "8px",
+            "justify-content": "center",
+            "flex-wrap": "wrap"
+          },
+          "built_values": {
+            "display": "flex",
+            "gap": "8px",
+            "justify-content": "center",
+            "flex-wrap": "wrap"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/chips.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/chips.built.png"
+    },
+    {
+      "id": "chip-md",
+      "component": "Chip size=\"md\"",
+      "file": "presenting",
+      "slide": 5,
+      "checks": [
+        {
+          "source": ".d1-sor-chip",
+          "built": ".sk-chip",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "8px",
+            "padding-top": "4px",
+            "padding-right": "10px",
+            "padding-bottom": "4px",
+            "padding-left": "10px",
+            "font-size": "10.5px",
+            "font-weight": "500",
+            "color": "rgb(51, 65, 85)"
+          },
+          "built_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "8px",
+            "padding-top": "4px",
+            "padding-right": "10px",
+            "padding-bottom": "4px",
+            "padding-left": "10px",
+            "font-size": "10.5px",
+            "font-weight": "500",
+            "color": "rgb(51, 65, 85)"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/chip-md.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/chip-md.built.png"
+    },
+    {
+      "id": "wall",
+      "component": "WallCard / WallGrid",
+      "file": "presenting",
+      "slide": 33,
+      "checks": [
+        {
+          "source": ".wall",
+          "built": ".sk-wall",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(239, 68, 68)",
+            "border-top-left-radius": "10px",
+            "padding-top": "12px",
+            "padding-right": "14px",
+            "padding-bottom": "12px",
+            "padding-left": "14px"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(239, 68, 68)",
+            "border-top-left-radius": "10px",
+            "padding-top": "12px",
+            "padding-right": "14px",
+            "padding-bottom": "12px",
+            "padding-left": "14px"
+          }
+        },
+        {
+          "source": ".wall .w-q",
+          "built": ".sk-wall-quote",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform",
+            "font-style",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "15px",
+            "font-weight": "600",
+            "letter-spacing": "normal",
+            "line-height": "19.5px",
+            "color": "rgb(51, 65, 85)",
+            "text-transform": "none",
+            "font-style": "italic",
+            "margin-bottom": "4px"
+          },
+          "built_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "15px",
+            "font-weight": "600",
+            "letter-spacing": "normal",
+            "line-height": "19.5px",
+            "color": "rgb(51, 65, 85)",
+            "text-transform": "none",
+            "font-style": "italic",
+            "margin-bottom": "4px"
+          }
+        },
+        {
+          "source": ".wall .w-t",
+          "built": ".sk-wall-tag",
+          "props": [
+            "font-size",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "13px",
+            "color": "rgb(100, 116, 139)"
+          },
+          "built_values": {
+            "font-size": "13px",
+            "color": "rgb(100, 116, 139)"
+          }
+        },
+        {
+          "source": ".wall-grid",
+          "built": ".sk-wall-grid",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "376.391px 376.391px 376.406px",
+            "gap": "12px"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "358.656px 358.672px 358.656px",
+            "gap": "12px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/wall.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/wall.built.png"
+    },
+    {
+      "id": "wall-numbered",
+      "component": "WallCard (numbered)",
+      "file": "tech-v2",
+      "slide": 6,
+      "checks": [
+        {
+          "source": ".wall",
+          "built": ".sk-wall--numbered",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(239, 68, 68)",
+            "border-top-left-radius": "10px",
+            "padding-top": "16px",
+            "padding-right": "18px",
+            "padding-bottom": "16px",
+            "padding-left": "18px"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(239, 68, 68)",
+            "border-top-left-radius": "10px",
+            "padding-top": "16px",
+            "padding-right": "18px",
+            "padding-bottom": "16px",
+            "padding-left": "18px"
+          }
+        },
+        {
+          "source": ".wall .num",
+          "built": ".sk-wall-num",
+          "props": [
+            "width",
+            "height",
+            "background-color",
+            "color",
+            "font-size",
+            "font-weight",
+            "border-top-left-radius"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "width": "24px",
+            "height": "24px",
+            "background-color": "rgb(254, 242, 242)",
+            "color": "rgb(185, 28, 28)",
+            "font-size": "11px",
+            "font-weight": "800",
+            "border-top-left-radius": "6px"
+          },
+          "built_values": {
+            "width": "24px",
+            "height": "24px",
+            "background-color": "rgb(254, 242, 242)",
+            "color": "rgb(185, 28, 28)",
+            "font-size": "11px",
+            "font-weight": "800",
+            "border-top-left-radius": "6px"
+          }
+        },
+        {
+          "source": ".wall h4",
+          "built": ".sk-wall-title",
+          "props": [
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "15px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)"
+          },
+          "built_values": {
+            "font-size": "15px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)"
+          }
+        },
+        {
+          "source": ".wall p",
+          "built": ".sk-wall-body",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "13px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "19.5px"
+          },
+          "built_values": {
+            "font-size": "13px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "19.5px"
+          }
+        },
+        {
+          "source": ".wall .wq",
+          "built": ".sk-wall--numbered .sk-wall-quote",
+          "props": [
+            "font-size",
+            "color",
+            "font-style",
+            "line-height",
+            "padding-top"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "11.5px",
+            "color": "rgb(51, 65, 85)",
+            "font-style": "italic",
+            "line-height": "16.675px",
+            "padding-top": "6px"
+          },
+          "built_values": {
+            "font-size": "11.5px",
+            "color": "rgb(51, 65, 85)",
+            "font-style": "italic",
+            "line-height": "16.675px",
+            "padding-top": "6px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/wall-numbered.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/wall-numbered.built.png"
+    },
+    {
+      "id": "pillar",
+      "component": "PillarCard / PillarGrid",
+      "file": "presenting",
+      "slide": 5,
+      "checks": [
+        {
+          "source": ".d1-pillar:not(.d1-brain)",
+          "built": ".sk-pillar:not(.sk-pillar--brain)",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "11px",
+            "padding-top": "7px",
+            "padding-right": "11px",
+            "padding-bottom": "7px",
+            "padding-left": "11px"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "11px",
+            "padding-top": "7px",
+            "padding-right": "11px",
+            "padding-bottom": "7px",
+            "padding-left": "11px"
+          }
+        },
+        {
+          "source": ".d1-pillar:not(.d1-brain) .d1-name",
+          "built": ".sk-pillar:not(.sk-pillar--brain) .sk-pillar-name",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "color",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", sans-serif",
+            "font-size": "13px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)",
+            "margin-bottom": "3px"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "13px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)",
+            "margin-bottom": "3px"
+          }
+        },
+        {
+          "source": ".d1-pillar:not(.d1-brain) .d1-desc",
+          "built": ".sk-pillar:not(.sk-pillar--brain) .sk-pillar-desc",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "10.5px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "14.49px"
+          },
+          "built_values": {
+            "font-size": "10.5px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "14.49px"
+          }
+        },
+        {
+          "source": ".d1-pillar:not(.d1-brain) .d1-ico",
+          "built": ".sk-pillar--indigo:not(.sk-pillar--brain) .sk-pillar-ico",
+          "props": [
+            "width",
+            "height",
+            "border-top-left-radius",
+            "background-color",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "width": "30px",
+            "height": "30px",
+            "border-top-left-radius": "9px",
+            "background-color": "rgb(238, 242, 255)",
+            "color": "rgb(67, 56, 202)"
+          },
+          "built_values": {
+            "width": "30px",
+            "height": "30px",
+            "border-top-left-radius": "9px",
+            "background-color": "rgb(238, 242, 255)",
+            "color": "rgb(67, 56, 202)"
+          }
+        },
+        {
+          "source": ".d1-pillar-grid",
+          "built": ".sk-pillar-grid",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "377.391px 377.391px 377.406px",
+            "gap": "7px"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "268.656px 268.672px 268.656px",
+            "gap": "7px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/pillar.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/pillar.built.png"
+    },
+    {
+      "id": "pillar-brain",
+      "component": "PillarCard brain",
+      "file": "presenting",
+      "slide": 5,
+      "checks": [
+        {
+          "source": ".d1-pillar.d1-brain",
+          "built": ".sk-pillar--brain",
+          "props": [
+            "background-image",
+            "display",
+            "align-items",
+            "gap",
+            "border-top-width"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))",
+            "display": "flex",
+            "align-items": "center",
+            "gap": "14px",
+            "border-top-width": "0px"
+          },
+          "built_values": {
+            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))",
+            "display": "flex",
+            "align-items": "center",
+            "gap": "14px",
+            "border-top-width": "0px"
+          }
+        },
+        {
+          "source": ".d1-pillar.d1-brain .d1-name",
+          "built": ".sk-pillar--brain .sk-pillar-name",
+          "props": [
+            "color",
+            "font-size"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "color": "rgb(255, 255, 255)",
+            "font-size": "16px"
+          },
+          "built_values": {
+            "color": "rgb(255, 255, 255)",
+            "font-size": "16px"
+          }
+        },
+        {
+          "source": ".d1-pillar.d1-brain .d1-kicker",
+          "built": ".sk-pillar--brain .sk-pillar-kicker",
+          "props": [
+            "font-family",
+            "font-size",
+            "letter-spacing",
+            "text-transform",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "9px",
+            "letter-spacing": "1.2px",
+            "text-transform": "uppercase",
+            "color": "rgba(255, 255, 255, 0.8)"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "9px",
+            "letter-spacing": "1.2px",
+            "text-transform": "uppercase",
+            "color": "rgba(255, 255, 255, 0.8)"
+          }
+        },
+        {
+          "source": ".d1-pillar.d1-brain .d1-ico",
+          "built": ".sk-pillar.sk-pillar--brain .sk-pillar-ico",
+          "props": [
+            "width",
+            "height",
+            "background-color",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "width": "38px",
+            "height": "38px",
+            "background-color": "rgba(255, 255, 255, 0.18)",
+            "color": "rgb(255, 255, 255)"
+          },
+          "built_values": {
+            "width": "38px",
+            "height": "38px",
+            "background-color": "rgba(255, 255, 255, 0.18)",
+            "color": "rgb(255, 255, 255)"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/pillar-brain.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/pillar-brain.built.png"
+    },
+    {
+      "id": "phase",
+      "component": "PhaseCard / PhaseRow",
+      "file": "presenting",
+      "slide": 9,
+      "checks": [
+        {
+          "source": ".sc",
+          "built": ".sk-phase",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "display",
+            "flex-direction",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "18px",
+            "padding-right": "18px",
+            "padding-bottom": "18px",
+            "padding-left": "18px",
+            "display": "flex",
+            "flex-direction": "column",
+            "gap": "6px"
+          },
+          "built_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "18px",
+            "padding-right": "18px",
+            "padding-bottom": "18px",
+            "padding-left": "18px",
+            "display": "flex",
+            "flex-direction": "column",
+            "gap": "6px"
+          }
+        },
+        {
+          "source": ".sc .sn",
+          "built": ".sk-phase-badge",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "color",
+            "background-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\"",
+            "font-size": "10px",
+            "font-weight": "600",
+            "color": "rgb(255, 255, 255)",
+            "background-color": "rgb(99, 102, 241)",
+            "border-top-left-radius": "20px",
+            "padding-top": "2px",
+            "padding-left": "10px"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "10px",
+            "font-weight": "600",
+            "color": "rgb(255, 255, 255)",
+            "background-color": "rgb(99, 102, 241)",
+            "border-top-left-radius": "20px",
+            "padding-top": "2px",
+            "padding-left": "10px"
+          }
+        },
+        {
+          "source": ".sc .when",
+          "built": ".sk-phase-when",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "line-height",
+            "color",
+            "text-transform"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "10.5px",
+            "font-weight": "800",
+            "letter-spacing": "0.8px",
+            "line-height": "13.65px",
+            "color": "rgb(67, 56, 202)",
+            "text-transform": "uppercase"
+          },
+          "built_values": {
+            "font-family": "Inter, -apple-system, \"Segoe UI\", sans-serif",
+            "font-size": "10.5px",
+            "font-weight": "800",
+            "letter-spacing": "0.8px",
+            "line-height": "13.65px",
+            "color": "rgb(67, 56, 202)",
+            "text-transform": "uppercase"
+          }
+        },
+        {
+          "source": ".sc h3",
+          "built": ".sk-phase-title",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "19px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "19px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)"
+          }
+        },
+        {
+          "source": ".sc p",
+          "built": ".sk-phase-body",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "13px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "19.5px"
+          },
+          "built_values": {
+            "font-size": "13px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "19.5px"
+          }
+        },
+        {
+          "source": ".sc .rev",
+          "built": ".sk-phase-foot",
+          "props": [
+            "font-family",
+            "font-size",
+            "color",
+            "border-top-width",
+            "border-top-style",
+            "padding-top"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "10px",
+            "color": "rgb(67, 56, 202)",
+            "border-top-width": "1px",
+            "border-top-style": "dashed",
+            "padding-top": "8px"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "10px",
+            "color": "rgb(67, 56, 202)",
+            "border-top-width": "1px",
+            "border-top-style": "dashed",
+            "padding-top": "8px"
+          }
+        },
+        {
+          "source": ".sc.s3 .when",
+          "built": ".sk-phase--far .sk-phase-when",
+          "props": [
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "color": "rgb(124, 58, 237)"
+          },
+          "built_values": {
+            "color": "rgb(124, 58, 237)"
+          }
+        },
+        {
+          "source": ".flow",
+          "built": ".sk-phase-row",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap",
+            "align-items"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "375.062px 375.062px 375.062px",
+            "gap": "14px",
+            "align-items": "stretch"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "357.328px 357.328px 357.344px",
+            "gap": "14px",
+            "align-items": "stretch"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/phase.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/phase.built.png"
+    },
+    {
+      "id": "usecase",
+      "component": "UseCaseCard / UseCaseGrid",
+      "file": "presenting",
+      "slide": 29,
+      "checks": [
+        {
+          "source": ".uc",
+          "built": ".sk-usecase",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgba(0, 0, 0, 0)",
+            "background-image": "linear-gradient(rgb(238, 242, 255), rgb(224, 231, 255))",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(99, 102, 241)",
+            "border-left-color": "rgb(99, 102, 241)",
+            "border-top-left-radius": "13px",
+            "padding-top": "15px",
+            "padding-right": "17px",
+            "padding-bottom": "15px",
+            "padding-left": "17px"
+          },
+          "built_values": {
+            "background-color": "rgba(0, 0, 0, 0)",
+            "background-image": "linear-gradient(rgb(238, 242, 255), rgb(224, 231, 255))",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(99, 102, 241)",
+            "border-left-color": "rgb(99, 102, 241)",
+            "border-top-left-radius": "13px",
+            "padding-top": "15px",
+            "padding-right": "17px",
+            "padding-bottom": "15px",
+            "padding-left": "17px"
+          }
+        },
+        {
+          "source": ".uc .uk",
+          "built": ".sk-usecase-kicker",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "text-transform",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "9px",
+            "font-weight": "600",
+            "letter-spacing": "1px",
+            "text-transform": "uppercase",
+            "margin-bottom": "5px"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "9px",
+            "font-weight": "600",
+            "letter-spacing": "1px",
+            "text-transform": "uppercase",
+            "margin-bottom": "5px"
+          }
+        },
+        {
+          "source": ".uc h3",
+          "built": ".sk-usecase-title",
+          "props": [
+            "font-size",
+            "font-family",
+            "font-weight"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "15.5px",
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-weight": "700"
+          },
+          "built_values": {
+            "font-size": "15.5px",
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-weight": "700"
+          }
+        },
+        {
+          "source": ".uc p",
+          "built": ".sk-usecase-body",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "12.5px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "18.5px"
+          },
+          "built_values": {
+            "font-size": "12.5px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "18.5px"
+          }
+        },
+        {
+          "source": ".uc.brain",
+          "built": ".sk-usecase--flagship",
+          "props": [
+            "background-image",
+            "border-top-width",
+            "border-top-color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-image": "linear-gradient(rgb(238, 242, 255), rgb(224, 231, 255))",
+            "border-top-width": "1px",
+            "border-top-color": "rgb(99, 102, 241)"
+          },
+          "built_values": {
+            "background-image": "linear-gradient(rgb(238, 242, 255), rgb(224, 231, 255))",
+            "border-top-width": "1px",
+            "border-top-color": "rgb(99, 102, 241)"
+          }
+        },
+        {
+          "source": ".uc-grid",
+          "built": ".sk-usecase-grid",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "376.391px 376.391px 376.406px",
+            "gap": "12px"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "358.656px 358.672px 358.656px",
+            "gap": "12px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/usecase.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/usecase.built.png"
+    },
+    {
+      "id": "stat",
+      "component": "StatCard / StatRow",
+      "file": "presenting",
+      "slide": 26,
+      "checks": [
+        {
+          "source": ".stat-card",
+          "built": ".sk-stat",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "text-align"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "22px",
+            "padding-right": "18px",
+            "padding-bottom": "22px",
+            "padding-left": "18px",
+            "text-align": "center"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "22px",
+            "padding-right": "18px",
+            "padding-bottom": "22px",
+            "padding-left": "18px",
+            "text-align": "center"
+          }
+        },
+        {
+          "source": ".stat-card .n",
+          "built": ".sk-stat-value",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\"",
+            "font-size": "48px",
+            "font-weight": "800",
+            "line-height": "48px"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "48px",
+            "font-weight": "800",
+            "line-height": "48px"
+          }
+        },
+        {
+          "source": ".stat-card .l",
+          "built": ".sk-stat-label",
+          "props": [
+            "font-size",
+            "color",
+            "margin-top",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "13px",
+            "color": "rgb(71, 85, 105)",
+            "margin-top": "12px",
+            "line-height": "18.85px"
+          },
+          "built_values": {
+            "font-size": "13px",
+            "color": "rgb(71, 85, 105)",
+            "margin-top": "12px",
+            "line-height": "18.85px"
+          }
+        },
+        {
+          "source": ".stat-card .s",
+          "built": ".sk-stat-source",
+          "props": [
+            "font-family",
+            "font-size",
+            "color",
+            "margin-top",
+            "letter-spacing"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\"",
+            "font-size": "10px",
+            "color": "rgb(100, 116, 139)",
+            "margin-top": "10px",
+            "letter-spacing": "0.4px"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "10px",
+            "color": "rgb(100, 116, 139)",
+            "margin-top": "10px",
+            "letter-spacing": "0.4px"
+          }
+        },
+        {
+          "source": ".g3",
+          "built": ".sk-stat-row",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "375.062px 375.062px 375.062px",
+            "gap": "14px"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "357.328px 357.328px 357.344px",
+            "gap": "14px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/stat.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/stat.built.png"
+    },
+    {
+      "id": "step",
+      "component": "StepCard / StepGrid",
+      "file": "presenting",
+      "slide": 6,
+      "checks": [
+        {
+          "source": ".demo-card",
+          "built": ".sk-step",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "overflow"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "0px",
+            "padding-right": "0px",
+            "padding-bottom": "0px",
+            "padding-left": "0px",
+            "overflow": "hidden"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "0px",
+            "padding-right": "0px",
+            "padding-bottom": "0px",
+            "padding-left": "0px",
+            "overflow": "hidden"
+          }
+        },
+        {
+          "source": ".demo-card .db",
+          "built": ".sk-step-bar",
+          "props": [
+            "height",
+            "background-image"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "height": "9px",
+            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))"
+          },
+          "built_values": {
+            "height": "9px",
+            "background-image": "linear-gradient(135deg, rgb(99, 102, 241), rgb(124, 58, 237))"
+          }
+        },
+        {
+          "source": ".demo-card .dc",
+          "built": ".sk-step-body",
+          "props": [
+            "padding-top",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "padding-top": "15px",
+            "padding-left": "18px"
+          },
+          "built_values": {
+            "padding-top": "15px",
+            "padding-left": "18px"
+          }
+        },
+        {
+          "source": ".demo-card .dn",
+          "built": ".sk-step-num",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "10px",
+            "font-weight": "600",
+            "letter-spacing": "1px",
+            "color": "rgb(124, 58, 237)"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "10px",
+            "font-weight": "600",
+            "letter-spacing": "1px",
+            "color": "rgb(124, 58, 237)"
+          }
+        },
+        {
+          "source": ".demo-card h3",
+          "built": ".sk-step-title",
+          "props": [
+            "font-size",
+            "font-family",
+            "font-weight"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "17px",
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-weight": "700"
+          },
+          "built_values": {
+            "font-size": "17px",
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-weight": "700"
+          }
+        },
+        {
+          "source": ".demo-card p",
+          "built": ".sk-step-text",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "13px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "19.5px"
+          },
+          "built_values": {
+            "font-size": "13px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "19.5px"
+          }
+        },
+        {
+          "source": ".demo-card .dq",
+          "built": ".sk-step-quote",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "font-size",
+            "font-style"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(124, 58, 237)",
+            "border-top-left-radius": "7px",
+            "padding-top": "7px",
+            "padding-right": "10px",
+            "padding-bottom": "7px",
+            "padding-left": "10px",
+            "font-size": "12px",
+            "font-style": "italic"
+          },
+          "built_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(124, 58, 237)",
+            "border-top-left-radius": "7px",
+            "padding-top": "7px",
+            "padding-right": "10px",
+            "padding-bottom": "7px",
+            "padding-left": "10px",
+            "font-size": "12px",
+            "font-style": "italic"
+          }
+        },
+        {
+          "source": ".demo-grid",
+          "built": ".sk-step-grid",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "375.062px 375.062px 375.062px",
+            "gap": "14px"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "357.328px 357.328px 357.344px",
+            "gap": "14px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/step.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/step.built.png"
+    },
+    {
+      "id": "split",
+      "component": "SplitColumns / SplitColumn",
+      "file": "presenting",
+      "slide": 27,
+      "checks": [
+        {
+          "source": ".moat-col.dies",
+          "built": ".sk-split-col",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "18px",
+            "padding-right": "20px",
+            "padding-bottom": "18px",
+            "padding-left": "20px"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "14px",
+            "padding-top": "18px",
+            "padding-right": "20px",
+            "padding-bottom": "18px",
+            "padding-left": "20px"
+          }
+        },
+        {
+          "source": ".moat-col.wins",
+          "built": ".sk-split-col--violet",
+          "props": [
+            "background-color",
+            "border-top-color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(245, 243, 255)",
+            "border-top-color": "rgb(221, 214, 254)"
+          },
+          "built_values": {
+            "background-color": "rgb(245, 243, 255)",
+            "border-top-color": "rgb(221, 214, 254)"
+          }
+        },
+        {
+          "source": ".moat-col .c-eyebrow",
+          "built": ".sk-split-eyebrow",
+          "props": [
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "text-transform",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.4px",
+            "text-transform": "uppercase",
+            "margin-bottom": "8px"
+          },
+          "built_values": {
+            "font-size": "11.5px",
+            "font-weight": "700",
+            "letter-spacing": "1.4px",
+            "text-transform": "uppercase",
+            "margin-bottom": "8px"
+          }
+        },
+        {
+          "source": ".moat-col h3",
+          "built": ".sk-split-title",
+          "props": [
+            "font-size",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "19px",
+            "margin-bottom": "10px"
+          },
+          "built_values": {
+            "font-size": "19px",
+            "margin-bottom": "10px"
+          }
+        },
+        {
+          "source": ".moat-split",
+          "built": ".sk-split",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "569.594px 569.594px",
+            "gap": "14px"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "543px 543px",
+            "gap": "14px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/split.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/split.built.png"
+    },
+    {
+      "id": "caption",
+      "component": "Caption",
+      "file": "presenting",
+      "slide": 24,
+      "checks": [
+        {
+          "source": ".caption",
+          "built": ".sk-caption",
+          "props": [
+            "text-align",
+            "font-size",
+            "color",
+            "margin-top"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "text-align": "center",
+            "font-size": "14.5px",
+            "color": "rgb(71, 85, 105)",
+            "margin-top": "14px"
+          },
+          "built_values": {
+            "text-align": "center",
+            "font-size": "14.5px",
+            "color": "rgb(71, 85, 105)",
+            "margin-top": "14px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/caption.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/caption.built.png"
+    },
+    {
+      "id": "quote",
+      "component": "QuoteBar",
+      "file": "presenting",
+      "slide": 25,
+      "checks": [
+        {
+          "source": ".edge-quote",
+          "built": ".sk-quote",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "font-size",
+            "color",
+            "line-height",
+            "font-style"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "11px",
+            "padding-top": "9px",
+            "padding-right": "16px",
+            "padding-bottom": "9px",
+            "padding-left": "16px",
+            "font-size": "11.5px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "17.25px",
+            "font-style": "italic"
+          },
+          "built_values": {
+            "background-color": "rgb(248, 250, 252)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "11px",
+            "padding-top": "9px",
+            "padding-right": "16px",
+            "padding-bottom": "9px",
+            "padding-left": "16px",
+            "font-size": "11.5px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "17.25px",
+            "font-style": "italic"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/quote.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/quote.built.png"
+    },
+    {
+      "id": "onepager-header",
+      "component": "OnePagerHeader",
+      "file": "1p-vc",
+      "checks": [
+        {
+          "source": ".page",
+          "built": ".sk-page",
+          "props": [
+            "width",
+            "padding-top",
+            "padding-left",
+            "display",
+            "flex-direction",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "width": "793.688px",
+            "padding-top": "41.5748px",
+            "padding-left": "49.1339px",
+            "display": "flex",
+            "flex-direction": "column",
+            "gap": "8px"
+          },
+          "built_values": {
+            "width": "793.688px",
+            "padding-top": "41.5748px",
+            "padding-left": "49.1339px",
+            "display": "flex",
+            "flex-direction": "column",
+            "gap": "8px"
+          }
+        },
+        {
+          "source": ".hd",
+          "built": ".sk-ph",
+          "props": [
+            "border-bottom-width",
+            "padding-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "border-bottom-width": "2px",
+            "padding-bottom": "9px"
+          },
+          "built_values": {
+            "border-bottom-width": "2px",
+            "padding-bottom": "9px"
+          }
+        },
+        {
+          "source": ".hd .brand",
+          "built": ".sk-ph-brand",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"Plus Jakarta Sans\"",
+            "font-size": "17px",
+            "font-weight": "800",
+            "letter-spacing": "-0.5px"
+          },
+          "built_values": {
+            "font-family": "\"Plus Jakarta Sans\", Inter, sans-serif",
+            "font-size": "17px",
+            "font-weight": "800",
+            "letter-spacing": "-0.5px"
+          }
+        },
+        {
+          "source": ".hd .tag",
+          "built": ".sk-ph-tag",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "text-transform",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\"",
+            "font-size": "9px",
+            "font-weight": "700",
+            "letter-spacing": "1.1px",
+            "text-transform": "uppercase",
+            "color": "rgb(13, 148, 136)"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "9px",
+            "font-weight": "700",
+            "letter-spacing": "1.1px",
+            "text-transform": "uppercase",
+            "color": "rgb(13, 148, 136)"
+          }
+        },
+        {
+          "source": ".hd h1",
+          "built": ".sk-ph-title",
+          "props": [
+            "font-size",
+            "font-weight",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "22px",
+            "font-weight": "800",
+            "line-height": "24.64px"
+          },
+          "built_values": {
+            "font-size": "22px",
+            "font-weight": "800",
+            "line-height": "24.64px"
+          }
+        },
+        {
+          "source": ".hd .sub",
+          "built": ".sk-ph-sub",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "10.5px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "15.75px"
+          },
+          "built_values": {
+            "font-size": "10.5px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "15.75px"
+          }
+        },
+        {
+          "source": ".hd .top",
+          "built": ".sk-ph-top",
+          "props": [
+            "display",
+            "justify-content",
+            "align-items"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "flex",
+            "justify-content": "space-between",
+            "align-items": "baseline"
+          },
+          "built_values": {
+            "display": "flex",
+            "justify-content": "space-between",
+            "align-items": "baseline"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-header.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-header.built.png"
+    },
+    {
+      "id": "onepager-callout-chip",
+      "component": "Callout / Chip at print scale",
+      "file": "1p-vc",
+      "checks": [
+        {
+          "source": ".gap",
+          "built": ".sk-callout--print",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(254, 242, 242)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(254, 202, 202)",
+            "border-left-color": "rgb(239, 68, 68)",
+            "border-top-left-radius": "8px",
+            "padding-top": "8px",
+            "padding-right": "12px",
+            "padding-bottom": "8px",
+            "padding-left": "12px"
+          },
+          "built_values": {
+            "background-color": "rgb(254, 242, 242)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "3px",
+            "border-top-color": "rgb(254, 202, 202)",
+            "border-left-color": "rgb(239, 68, 68)",
+            "border-top-left-radius": "8px",
+            "padding-top": "8px",
+            "padding-right": "12px",
+            "padding-bottom": "8px",
+            "padding-left": "12px"
+          }
+        },
+        {
+          "source": ".gap p",
+          "built": ".sk-callout--print p",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "10px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "15px"
+          },
+          "built_values": {
+            "font-size": "10px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "15px"
+          }
+        },
+        {
+          "source": ".pchip:not(.paid)",
+          "built": ".sk-chip--print",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(203, 213, 225)",
+            "border-left-color": "rgb(203, 213, 225)",
+            "border-top-left-radius": "7px",
+            "padding-top": "3px",
+            "padding-right": "9px",
+            "padding-bottom": "3px",
+            "padding-left": "9px",
+            "font-size": "8.8px",
+            "font-weight": "600",
+            "color": "rgb(51, 65, 85)"
+          },
+          "built_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(203, 213, 225)",
+            "border-left-color": "rgb(203, 213, 225)",
+            "border-top-left-radius": "7px",
+            "padding-top": "3px",
+            "padding-right": "9px",
+            "padding-bottom": "3px",
+            "padding-left": "9px",
+            "font-size": "8.8px",
+            "font-weight": "600",
+            "color": "rgb(51, 65, 85)"
+          }
+        },
+        {
+          "source": ".pchip.paid",
+          "built": ".sk-chip--print.sk-chip--emerald",
+          "props": [
+            "background-color",
+            "border-top-color",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(236, 253, 245)",
+            "border-top-color": "rgb(110, 231, 183)",
+            "color": "rgb(6, 95, 70)"
+          },
+          "built_values": {
+            "background-color": "rgb(236, 253, 245)",
+            "border-top-color": "rgb(110, 231, 183)",
+            "color": "rgb(6, 95, 70)"
+          }
+        },
+        {
+          "source": ".sec-label",
+          "built": ".sk-eyebrow--print",
+          "props": [
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "text-transform",
+            "color",
+            "display",
+            "gap",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "8.5px",
+            "font-weight": "800",
+            "letter-spacing": "1.4px",
+            "text-transform": "uppercase",
+            "color": "rgb(100, 116, 139)",
+            "display": "flex",
+            "gap": "7px",
+            "margin-bottom": "5px"
+          },
+          "built_values": {
+            "font-size": "8.5px",
+            "font-weight": "800",
+            "letter-spacing": "1.4px",
+            "text-transform": "uppercase",
+            "color": "rgb(100, 116, 139)",
+            "display": "flex",
+            "gap": "7px",
+            "margin-bottom": "5px"
+          }
+        },
+        {
+          "source": ".badge",
+          "built": ".sk-eyebrow-badge",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "color",
+            "background-color",
+            "border-top-color",
+            "border-top-left-radius"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\"",
+            "font-size": "7.5px",
+            "font-weight": "700",
+            "color": "rgb(13, 148, 136)",
+            "background-color": "rgb(240, 253, 250)",
+            "border-top-color": "rgb(153, 246, 228)",
+            "border-top-left-radius": "20px"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "7.5px",
+            "font-weight": "700",
+            "color": "rgb(13, 148, 136)",
+            "background-color": "rgb(240, 253, 250)",
+            "border-top-color": "rgb(153, 246, 228)",
+            "border-top-left-radius": "20px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-callout-chip.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-callout-chip.built.png"
+    },
+    {
+      "id": "onepager-phase",
+      "component": "PhaseCard scale=\"print\"",
+      "file": "1p-vc",
+      "checks": [
+        {
+          "source": ".sc",
+          "built": ".sk-phase--print",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "display",
+            "flex-direction",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "10px",
+            "padding-top": "9px",
+            "padding-right": "11px",
+            "padding-bottom": "9px",
+            "padding-left": "11px",
+            "display": "flex",
+            "flex-direction": "column",
+            "gap": "3px"
+          },
+          "built_values": {
+            "background-color": "rgb(255, 255, 255)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "10px",
+            "padding-top": "9px",
+            "padding-right": "11px",
+            "padding-bottom": "9px",
+            "padding-left": "11px",
+            "display": "flex",
+            "flex-direction": "column",
+            "gap": "3px"
+          }
+        },
+        {
+          "source": ".sc .sn",
+          "built": ".sk-phase--print .sk-phase-badge",
+          "props": [
+            "font-family",
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "color",
+            "padding-top",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-family": "\"JetBrains Mono\"",
+            "font-size": "8px",
+            "font-weight": "700",
+            "letter-spacing": "0.4px",
+            "color": "rgb(255, 255, 255)",
+            "padding-top": "1px",
+            "padding-left": "8px"
+          },
+          "built_values": {
+            "font-family": "\"JetBrains Mono\", monospace",
+            "font-size": "8px",
+            "font-weight": "700",
+            "letter-spacing": "0.4px",
+            "color": "rgb(255, 255, 255)",
+            "padding-top": "1px",
+            "padding-left": "8px"
+          }
+        },
+        {
+          "source": ".sc h3",
+          "built": ".sk-phase--print .sk-phase-title",
+          "props": [
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "12px",
+            "font-weight": "800",
+            "color": "rgb(15, 23, 42)"
+          },
+          "built_values": {
+            "font-size": "12px",
+            "font-weight": "800",
+            "color": "rgb(15, 23, 42)"
+          }
+        },
+        {
+          "source": ".sc p",
+          "built": ".sk-phase--print .sk-phase-body",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "8.8px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "12.496px"
+          },
+          "built_values": {
+            "font-size": "8.8px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "12.496px"
+          }
+        },
+        {
+          "source": ".sc .now",
+          "built": ".sk-phase--print .sk-phase-when",
+          "props": [
+            "font-size",
+            "font-weight",
+            "letter-spacing",
+            "text-transform",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "7.5px",
+            "font-weight": "800",
+            "letter-spacing": "0.6px",
+            "text-transform": "uppercase",
+            "color": "rgb(67, 56, 202)"
+          },
+          "built_values": {
+            "font-size": "7.5px",
+            "font-weight": "800",
+            "letter-spacing": "0.6px",
+            "text-transform": "uppercase",
+            "color": "rgb(67, 56, 202)"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-phase.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-phase.built.png"
+    },
+    {
+      "id": "onepager-cta",
+      "component": "CtaBar",
+      "file": "1p-vc",
+      "checks": [
+        {
+          "source": ".cta",
+          "built": ".sk-cta",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left",
+            "display",
+            "justify-content",
+            "align-items",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgba(0, 0, 0, 0)",
+            "background-image": "linear-gradient(90deg, rgb(238, 242, 255) 0%, rgb(240, 253, 250) 100%)",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(20, 184, 166)",
+            "border-left-color": "rgb(20, 184, 166)",
+            "border-top-left-radius": "10px",
+            "padding-top": "11px",
+            "padding-right": "16px",
+            "padding-bottom": "11px",
+            "padding-left": "16px",
+            "display": "flex",
+            "justify-content": "space-between",
+            "align-items": "center",
+            "gap": "14px"
+          },
+          "built_values": {
+            "background-color": "rgba(0, 0, 0, 0)",
+            "background-image": "linear-gradient(90deg, rgb(238, 242, 255) 0%, rgb(240, 253, 250) 100%)",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(20, 184, 166)",
+            "border-left-color": "rgb(20, 184, 166)",
+            "border-top-left-radius": "10px",
+            "padding-top": "11px",
+            "padding-right": "16px",
+            "padding-bottom": "11px",
+            "padding-left": "16px",
+            "display": "flex",
+            "justify-content": "space-between",
+            "align-items": "center",
+            "gap": "14px"
+          }
+        },
+        {
+          "source": ".cta .l h3",
+          "built": ".sk-cta-title",
+          "props": [
+            "font-size",
+            "font-weight",
+            "color"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "13.5px",
+            "font-weight": "800",
+            "color": "rgb(15, 23, 42)"
+          },
+          "built_values": {
+            "font-size": "13.5px",
+            "font-weight": "800",
+            "color": "rgb(15, 23, 42)"
+          }
+        },
+        {
+          "source": ".cta .l p",
+          "built": ".sk-cta-body",
+          "props": [
+            "font-size",
+            "color",
+            "line-height",
+            "margin-top"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "9.3px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "13.95px",
+            "margin-top": "3px"
+          },
+          "built_values": {
+            "font-size": "9.3px",
+            "color": "rgb(71, 85, 105)",
+            "line-height": "13.95px",
+            "margin-top": "3px"
+          }
+        },
+        {
+          "source": ".cta .r",
+          "built": ".sk-cta-right",
+          "props": [
+            "text-align",
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "text-align": "right",
+            "font-size": "8.5px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "12.75px"
+          },
+          "built_values": {
+            "text-align": "right",
+            "font-size": "8.5px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "12.75px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-cta.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-cta.built.png"
+    },
+    {
+      "id": "onepager-outcome-heading",
+      "component": "OutcomeCard / SectionHeading",
+      "file": "1p-retail",
+      "checks": [
+        {
+          "source": ".sh h2",
+          "built": ".sk-sh-title",
+          "props": [
+            "font-size",
+            "font-weight",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "13px",
+            "font-weight": "800",
+            "color": "rgb(15, 23, 42)",
+            "line-height": "15.6px"
+          },
+          "built_values": {
+            "font-size": "13px",
+            "font-weight": "800",
+            "color": "rgb(15, 23, 42)",
+            "line-height": "15.6px"
+          }
+        },
+        {
+          "source": ".sh p",
+          "built": ".sk-sh-sub",
+          "props": [
+            "font-size",
+            "color",
+            "line-height",
+            "margin-top"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "8.8px",
+            "color": "rgb(100, 116, 139)",
+            "line-height": "12.32px",
+            "margin-top": "2px"
+          },
+          "built_values": {
+            "font-size": "8.8px",
+            "color": "rgb(100, 116, 139)",
+            "line-height": "12.32px",
+            "margin-top": "2px"
+          }
+        },
+        {
+          "source": ".oc",
+          "built": ".sk-outcome",
+          "props": [
+            "background-color",
+            "background-image",
+            "border-top-width",
+            "border-left-width",
+            "border-top-color",
+            "border-left-color",
+            "border-top-left-radius",
+            "padding-top",
+            "padding-right",
+            "padding-bottom",
+            "padding-left"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "background-color": "rgb(236, 253, 245)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(110, 231, 183)",
+            "border-left-color": "rgb(110, 231, 183)",
+            "border-top-left-radius": "9px",
+            "padding-top": "8px",
+            "padding-right": "11px",
+            "padding-bottom": "8px",
+            "padding-left": "11px"
+          },
+          "built_values": {
+            "background-color": "rgb(236, 253, 245)",
+            "background-image": "none",
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(110, 231, 183)",
+            "border-left-color": "rgb(110, 231, 183)",
+            "border-top-left-radius": "9px",
+            "padding-top": "8px",
+            "padding-right": "11px",
+            "padding-bottom": "8px",
+            "padding-left": "11px"
+          }
+        },
+        {
+          "source": ".oc .ot",
+          "built": ".sk-outcome-title",
+          "props": [
+            "font-size",
+            "font-weight",
+            "color",
+            "line-height",
+            "margin-bottom"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "10.6px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)",
+            "line-height": "13.144px",
+            "margin-bottom": "3px"
+          },
+          "built_values": {
+            "font-size": "10.6px",
+            "font-weight": "700",
+            "color": "rgb(15, 23, 42)",
+            "line-height": "13.144px",
+            "margin-bottom": "3px"
+          }
+        },
+        {
+          "source": ".oc .od",
+          "built": ".sk-outcome-body",
+          "props": [
+            "font-size",
+            "color",
+            "line-height"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "font-size": "8.6px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "12.47px"
+          },
+          "built_values": {
+            "font-size": "8.6px",
+            "color": "rgb(51, 65, 85)",
+            "line-height": "12.47px"
+          }
+        },
+        {
+          "source": ".outcomes",
+          "built": ".sk-outcome-grid",
+          "props": [
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "status": "MATCH",
+          "diffs": [],
+          "source_values": {
+            "display": "grid",
+            "grid-template-columns": "348px 348px",
+            "gap": "7px"
+          },
+          "built_values": {
+            "display": "grid",
+            "grid-template-columns": "344.219px 344.219px",
+            "gap": "7px"
+          }
+        }
+      ],
+      "pass": true,
+      "sourceShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-outcome-heading.source.png",
+      "builtShot": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/fidelity/shots/onepager-outcome-heading.built.png"
+    }
+  ]
+}

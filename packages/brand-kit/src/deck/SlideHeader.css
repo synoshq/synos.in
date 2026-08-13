@@ -31,9 +31,3 @@
   flex-shrink: 0;
   padding-left: 24px;
 }
-
-/* Last element in a header carries no trailing margin — the header owns the gap. */
-.sk-header > .sk-header-main > :last-child,
-.sk-header > :last-child {
-  margin-bottom: 0;
-}
