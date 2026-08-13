@@ -196,6 +196,29 @@ source byte-for-byte, and why.
    observed instance except `tool-chip` (which carries a 38px icon block and is a card, not a chip —
    left out of scope as a one-family pattern).
 6. **`--teal` takes `#0d9488`, not `#0e7490`.** See C13. The older buyer-deck value is not carried.
+7. **The `.arch-card h1` / `.arch-card h2` overrides are not reproduced, because they do not fire.**
+   `synos-vc-deck-presenting.html` declares `.arch-card h1 { font-size:24px }` at line 35 and
+   `.reveal h1 { font-size:34px }` at line 42. Both selectors have specificity (0,1,1); the later
+   one wins. Measured in a browser, the h1 on the shipped arch slide renders at **34px** and the h2
+   at **18px** — the tightened sizes never take effect. The `.arch-card .title-block` and
+   `.arch-card .eyebrow` overrides in the same block are (0,2,0) and *do* fire, and are reproduced.
+   The kit follows what ships, not what is declared. Asserted by the `slide-frame-arch` specimen.
+8. **`.stk-chip.us` is not extracted.** It is declared in both VC decks and used zero times in any
+   source body. Dead CSS. `Chip tone="violet"` covers the same intent from live precedent
+   (`.tagchip.ai`, `.demo-chip`).
+
+## 5b. A measurement the declared CSS hides: the card ships at 1267px, not 1380px
+
+`.card-frame` declares `width: 1380px` **and** `max-width: 99%`. The VC decks initialise reveal.js
+with `width: 1280, height: 720, margin: 0`, so the slide box the card lives in is 1280px wide and
+`max-width: 99%` clamps the card to **1267.2px**. The declared 1380px is never the rendered width in
+the shipped deck.
+
+Both numbers are real and both are kept: the component declares `width: 1380px` with a
+`maxWidth` prop defaulting to `'99%'`, so it renders at 1267.2px inside a 1280px stage exactly as
+the deck does, and at 1380px in a wider container. The fidelity captures use each deck's own reveal
+stage size so both sides are measured under the same clamp. The buyer decks clamp differently again
+(1180px and 1256px declared, `max-width` 96% and 99%) — conflict C1.
 
 ## 6. Where the build spec disagrees with the files — the files win
 
