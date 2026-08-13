@@ -7,18 +7,9 @@ import './Cards.css'
  * ═══════════════════════════════════════════════════════════════════════════ */
 
 export interface WallCardProps {
-  /**
-   * Wall number. Supplying it switches to the numbered shape: a red badge, a bold `title`, a body
-   * paragraph, and the quote demoted below a dashed rule. This is the buyer decks' variant (C9).
-   */
-  num?: ReactNode
-  /** Bold headline. Numbered shape only. */
-  title?: ReactNode
-  /** Explanatory paragraph. Numbered shape only. */
-  body?: ReactNode
-  /** The complaint, in the operator's own words. The lead line in the default shape. */
+  /** The complaint, in the operator's own words. The lead line. */
   quote?: ReactNode
-  /** The consequence, in muted grey. Default shape only. */
+  /** The consequence, in muted grey. */
   tag?: ReactNode
   className?: string
   style?: CSSProperties
@@ -34,20 +25,11 @@ export interface WallCardProps {
  * <WallGrid>
  *   <WallCard quote="Nobody knows what anyone else automated." tag="No shared context." />
  * </WallGrid>
- *
- * @example
- * <WallCard num={1} title="No shared context" body="Every team's AI starts from zero."
- *           quote="We rebuilt the same prompt four times." />
  */
-export function WallCard({ num, title, body, quote, tag, className, style }: WallCardProps) {
-  const numbered = num != null
+export function WallCard({ quote, tag, className, style }: WallCardProps) {
   return (
-    <div className={cx('sk-wall', numbered && 'sk-wall--numbered', className)} style={style}>
-      {numbered ? <div className="sk-wall-num">{num}</div> : null}
-      {title ? <h4 className="sk-wall-title">{title}</h4> : null}
-      {!numbered && quote ? <div className="sk-wall-quote">{quote}</div> : null}
-      {body ? <p className="sk-wall-body">{body}</p> : null}
-      {numbered && quote ? <div className="sk-wall-quote">{quote}</div> : null}
+    <div className={cx('sk-wall', className)} style={style}>
+      {quote ? <div className="sk-wall-quote">{quote}</div> : null}
       {tag ? <div className="sk-wall-tag">{tag}</div> : null}
     </div>
   )
@@ -87,12 +69,6 @@ export interface PillarCardProps {
    */
   tone?: Tone
   /**
-   * Centre the card on a white surface with a 1.5px indigo border — the buyer decks' `.pillar`
-   * variant (conflict C10). The default is the newest deck's left-aligned `.d1-pillar`.
-   * @default 'start'
-   */
-  align?: 'start' | 'center'
-  /**
    * Render as the Company Brain anchor: full brand gradient, white text, icon inline, spanning two
    * grid columns. One per architecture slide.
    * @default false
@@ -118,7 +94,6 @@ export function PillarCard({
   name,
   desc,
   tone = 'indigo',
-  align = 'start',
   brain = false,
   className,
   style,
@@ -128,7 +103,6 @@ export function PillarCard({
       className={cx(
         'sk-pillar',
         `sk-pillar--${tone}`,
-        align === 'center' && !brain && 'sk-pillar--center',
         brain && 'sk-pillar--brain',
         className,
       )}
@@ -152,7 +126,7 @@ export function PillarGrid({
   style,
 }: GridProps & {
   /**
-   * Column count. The VC decks use 3; the buyer decks use 4.
+   * Column count.
    * @default 3
    */
   columns?: number

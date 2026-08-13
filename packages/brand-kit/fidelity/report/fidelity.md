@@ -1,6 +1,6 @@
 # Fidelity report
 
-28 specimens · 108 computed-style checks · 28 passing, 0 failing.
+27 specimens · 103 computed-style checks · 27 passing, 0 failing.
 
 Each specimen renders a built component and the real slide it was extracted from at the same
 viewport, screenshots both, and compares the computed values of the properties that carry the
@@ -21,7 +21,6 @@ brand. Side-by-side images are in `fidelity/side-by-side/`.
 | `chips` | Chip / ChipRow | presenting s24 | 2 | PASS |
 | `chip-md` | Chip size="md" | presenting s6 | 1 | PASS |
 | `wall` | WallCard / WallGrid | presenting s34 | 4 | PASS |
-| `wall-numbered` | WallCard (numbered) | tech-v2 s7 | 5 | PASS |
 | `pillar` | PillarCard / PillarGrid | presenting s6 | 5 | PASS |
 | `pillar-brain` | PillarCard brain | presenting s6 | 4 | PASS |
 | `phase` | PhaseCard / PhaseRow | presenting s10 | 8 | PASS |

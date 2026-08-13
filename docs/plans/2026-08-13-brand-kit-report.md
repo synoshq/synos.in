@@ -13,7 +13,7 @@ Companion documents:
 
 - `docs/plans/2026-08-13-slide-inventory.md` — every measurement, every archetype, every conflict.
 - `packages/brand-kit/fidelity/report/fidelity.md` — the machine-generated pass/fail table.
-- `packages/brand-kit/fidelity/side-by-side/*.png` — 28 side-by-side comparisons.
+- `packages/brand-kit/fidelity/side-by-side/*.png` — 27 side-by-side comparisons.
 
 ---
 
@@ -145,11 +145,13 @@ pill tag row (buyer). Resolved to the VC values; the buyer cover survives as doc
   scale (10px radius, `9px 11px`, 12px title). Same object, two scales — kept as both.
 - **`.wall`.** Identical shell in all four decks, two different sets of innards: a 15px italic
   quote plus a muted tag (VC) against a numbered red badge, a bold h4, a paragraph and a demoted
-  italic quote under a dashed rule (buyer). `WallCard` takes both prop sets; supplying `num`
-  switches shapes. Both shapes exist in the sources, so this is not an invention.
+  italic quote under a dashed rule (buyer). Originally `WallCard` took both prop sets and `num`
+  switched shapes; §8.2 has since been decided and the numbered shape is removed — `quote` + `tag`
+  is now the only shape.
 - **`.pillar` vs `.d1-pillar`.** Left-aligned on grey with a 1px border and an 11px radius (VC)
-  against centred on white with a 1.5px indigo border and a 10px radius (buyer).
-  `PillarCard align="center"` reaches the buyer variant.
+  against centred on white with a 1.5px indigo border and a 10px radius (buyer). Originally
+  reachable as `PillarCard align="center"`; §8.2 has since been decided and `align` is removed —
+  left-aligned is now the only shape.
 
 **Chromatic.** The decks' brand gradient is indigo → violet (`--grad`). The VC one-pager's is
 indigo → **teal**, and it defines `--teal: #0d9488`; the buyer decks define `--teal: #0e7490`; the
@@ -208,7 +210,8 @@ and its one-hue-per-meaning discipline.
 
 ## 6. Fidelity evidence
 
-**28 specimens · 108 computed-style checks · 28 passing.** Full table in
+**27 specimens · 103 computed-style checks · 27 passing.** (Was 28 · 108 · 28 before §8.2 removed
+the `wall-numbered` specimen along with the variant it exercised.) Full table in
 `packages/brand-kit/fidelity/report/fidelity.md`; raw values in `fidelity.json`; images in
 `fidelity/side-by-side/`.
 
@@ -263,8 +266,8 @@ plainly:
 - **Layout is compared by computed style, not by pixel diff.** The side-by-side images are for a
   human to look at; the machine gate is the style comparison. A layout bug that produced identical
   computed styles on the sampled elements would not be caught.
-- **Only the newest artifact of each pair is asserted against**, except `wall-numbered` (tech-v2),
-  `eyebrow-buyer-conflict` (tech-v2) and `onepager-outcome-heading` (1p-retail). `synos-vc-deck-v6`
+- **Only the newest artifact of each pair is asserted against**, except `eyebrow-buyer-conflict`
+  (tech-v2) and `onepager-outcome-heading` (1p-retail). `synos-vc-deck-v6`
   and `synos-ops-buyer.standalone` are inventoried but not used as fidelity targets — v6 because it
   is stylistically identical to `presenting`, ops-buyer because it is the oldest artifact and loses
   every conflict it participates in.
@@ -295,3 +298,34 @@ ever read; its pre-existing uncommitted changes were left exactly as found.
 4. **Optional, and deliberately not done:** an improvement pass. The spec is explicit that
    improvement is a later, deliberate pass, so nothing in this package tries to make the visual
    language better — only to state it exactly.
+
+## 9. Decision on §8.2 — one vocabulary, not two
+
+**Decided 2026-08-13: the buyer decks will be rebuilt on this kit.** The VC deck's vocabulary is
+therefore canonical, and the buyer-family escape hatches are dead weight. Two were removed:
+
+| Removed | Conflict | Evidence |
+| --- | --- | --- |
+| `WallCard`'s numbered shape — the `num` / `title` / `body` props, `.sk-wall--numbered`, `.sk-wall-num`, `.sk-wall-title`, `.sk-wall-body` and the demoted-quote rule | C9 | Zero uses of the numbered wall in the VC deck; buyer-only |
+| `PillarCard`'s `align` prop and the `.sk-pillar--center` block | C10 | The VC deck uses the left-aligned `.d1-pillar` shape 10 times and the centred one never |
+
+`WallCard` now takes `quote` + `tag` only; `PillarCard` is left-aligned with no alternative. The
+`wall-numbered` fidelity specimen asserted against `synos-tech-buyer-v2.html` and went with the
+variant, taking the harness from 28 specimens / 108 checks to 27 / 103. All 27 pass, and
+`eyebrow-buyer-conflict` remains the one documented expected-difference.
+
+**Nothing the VC deck renders changed.** Both removals were opt-in variants the VC deck never opted
+into; the default shapes and their fidelity checks are untouched.
+
+Deliberately **kept**, having been checked rather than assumed:
+
+- **`Eyebrow`'s `tone`** — canonical, not a hatch. The VC deck itself uses indigo 12×, violet 10×,
+  red 3× and emerald 3×.
+- **`PillarGrid`'s `columns`** — an ordinary grid prop, default 3. Only its doc comment changed, to
+  stop framing 4 as "the buyer decks".
+
+Two of §8.2's three named hatches were dropped; `rule="solid"` was out of scope for this pass and
+still stands. §4's `.wall` and `.pillar` bullets and §6's specimen counts were amended to match.
+`docs/plans/2026-08-13-slide-inventory.md` is left as written — it is a dated record of what the
+*sources* contain, and C9 / C10 are still true of those files; this section supersedes its notes on
+what the *kit* exposes.

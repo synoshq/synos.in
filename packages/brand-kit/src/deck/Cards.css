@@ -3,12 +3,8 @@
  * Six per deck, in all four decks: the only body block with that reach.
  *
  * Shell (identical in all four): surface-2, 1px --border, border-left 3px --red-2, radius 10px.
- * Conflict C9: two sets of innards.
- *   VC decks   padding 12px 14px · .w-q 15px/600 italic · .w-t 13px --muted
- *   buyer decks padding 16px 18px · .num 24px red badge · h4 15px/700 · p 13px --ink-3
- *               · .wq 11.5px italic above a dashed top rule
- * The VC innards are the default; `num` / `title` / `body` opt into the buyer shape. Both are in
- * the sources.
+ * Innards are the VC decks' single shape: padding 12px 14px · .w-q 15px/600 italic
+ * · .w-t 13px --muted. The buyer decks' numbered shape (conflict C9) is gone — see report §8.2.
  * ═════════════════════════════════════════════════════════════════════════ */
 
 .sk-wall-grid {
@@ -24,38 +20,7 @@
   border-radius: 10px;
   padding: 12px 14px;
 }
-.sk-wall--numbered {
-  padding: 16px 18px;
-}
 
-.sk-wall-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: var(--sk-red-bg);
-  color: var(--sk-red);
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 800;
-  font-family: var(--sk-font-display);
-  margin-bottom: 10px;
-}
-.sk-wall-title {
-  font-family: var(--sk-font-display);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--sk-ink);
-  margin: 0 0 4px;
-  line-height: 1.2;
-}
-.sk-wall-body {
-  font-size: 13px;
-  color: var(--sk-ink-3);
-  margin: 0;
-  line-height: 1.5;
-}
 /* .w-q — the quoted complaint. */
 .sk-wall-quote {
   font-size: 15px;
@@ -63,16 +28,6 @@
   font-weight: 600;
   font-style: italic;
   margin-bottom: 4px;
-}
-/* .wq — the same quote in the buyer decks, demoted below a dashed rule. */
-.sk-wall--numbered .sk-wall-quote {
-  font-size: 11.5px;
-  font-weight: 400;
-  color: var(--sk-ink-2);
-  margin: 6px 0 0;
-  line-height: 1.45;
-  border-top: 1px dashed var(--sk-border-2);
-  padding-top: 6px;
 }
 /* .w-t — the consequence line. */
 .sk-wall-tag {
@@ -82,9 +37,8 @@
 
 /* ══════════════════════════════════════════════════════════════════════════
  * PillarCard — the operating layer's parts. 40 occurrences across all four decks.
- * Conflict C10: `.d1-pillar` (VC, canonical) is left-aligned on surface-2 with a 1px --border and
- * an 11px radius; `.pillar` (buyer) is centred on surface with a 1.5px --indigo-br and a 10px
- * radius. `align="center"` reproduces the buyer variant.
+ * `.d1-pillar` (VC, canonical) is the only shape: left-aligned on surface-2 with a 1px --border and
+ * an 11px radius. The buyer decks' centred `.pillar` (conflict C10) is gone — see report §8.2.
  * ═════════════════════════════════════════════════════════════════════════ */
 
 .sk-pillar-grid {
@@ -129,30 +83,6 @@
   font-size: 10.5px;
   color: var(--sk-ink-3);
   line-height: 1.38;
-}
-
-/* `.pillar` — the buyer decks' centred variant. */
-.sk-pillar--center {
-  background: var(--sk-surface);
-  border: 1.5px solid var(--sk-indigo-br);
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-}
-.sk-pillar--center .sk-pillar-ico {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  margin: 0 auto 6px;
-}
-.sk-pillar--center .sk-pillar-name {
-  font-size: 12.5px;
-  color: var(--sk-indigo-ink);
-  margin-bottom: 4px;
-}
-.sk-pillar--center .sk-pillar-desc {
-  font-size: 11px;
-  line-height: 1.4;
 }
 
 /* Icon tint follows the pillar's hue — `.pillar.skills .ico`, `.pillar.loop .ico`, etc. */

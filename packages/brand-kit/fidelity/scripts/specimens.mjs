@@ -313,33 +313,6 @@ export const SPECIMENS = [
     ],
   },
   {
-    id: 'wall-numbered',
-    component: 'WallCard (numbered)',
-    file: 'tech-v2',
-    slide: 6, // "Why AI Transformation Stalls"
-    node: h(
-      'div',
-      { className: 'sk-deck', style: { padding: 40, background: '#fff', width: 1100 } },
-      h(
-        K.WallGrid,
-        null,
-        h(K.WallCard, {
-          num: 1,
-          title: 'No shared context',
-          body: "Every team's AI starts from zero, every time.",
-          quote: '“We rebuilt the same prompt four times.”',
-        }),
-      ),
-    ),
-    checks: [
-      { source: '.wall', built: '.sk-wall--numbered', props: [...BOX] },
-      { source: '.wall .num', built: '.sk-wall-num', props: ['width', 'height', 'background-color', 'color', 'font-size', 'font-weight', 'border-top-left-radius'] },
-      { source: '.wall h4', built: '.sk-wall-title', props: ['font-size', 'font-weight', 'color'] },
-      { source: '.wall p', built: '.sk-wall-body', props: ['font-size', 'color', 'line-height'] },
-      { source: '.wall .wq', built: '.sk-wall--numbered .sk-wall-quote', props: ['font-size', 'color', 'font-style', 'line-height', 'padding-top'] },
-    ],
-  },
-  {
     id: 'pillar',
     component: 'PillarCard / PillarGrid',
     file: 'presenting',
