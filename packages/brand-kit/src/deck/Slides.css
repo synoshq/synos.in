@@ -1,0 +1,92 @@
+/*
+ * CoverSlide — one per deck, in all four decks.
+ *
+ * Conflict C7/C8: two covers exist and they disagree on almost everything. The VC family
+ * (canonical) is used here. Note that the VC deck declares `.cover .big { font-size:58px }` at
+ * line 126 and then overrides it to 47px at line 509 under a "v7 cover refit" comment. The effective
+ * value is 47px and that is what is built. The same applies to .hero-sub (23 → 16.5) and
+ * .lede (16.5 → 12.3). See inventory §6.
+ *
+ * The buyer family's cover (indigo eyebrow, no extra tracking, 46px h1, 17px .sub, a `.tag-row`
+ * of pills) is reachable via `tone="indigo"` + `spacedEyebrow={false}` + `tags`.
+ */
+
+.sk-cover-title {
+  font-family: var(--sk-font-display);
+  font-size: 47px;
+  font-weight: 800;
+  line-height: 1.06;
+  margin: 4px 0 18px;
+  letter-spacing: -1.4px;
+  color: var(--sk-ink);
+}
+.sk-cover-lead {
+  font-family: var(--sk-font-display);
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  max-width: 1040px;
+  margin: 0 auto 18px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.sk-cover-lede {
+  font-size: 12.3px;
+  color: var(--sk-ink-3);
+  max-width: 960px;
+  margin: 0 auto 24px;
+  line-height: 1.5;
+}
+.sk-cover-lede strong {
+  color: var(--sk-ink-2);
+}
+.sk-cover-foot {
+  font-size: 12px;
+  color: var(--sk-muted);
+  margin-top: 22px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/*
+ * BigTypeSlide — the statement slide. `.big-type`, 6 occurrences in the VC decks.
+ * Two display lines, an optional deck, a punch line and a tagline.
+ */
+
+.sk-bigtype-l1 {
+  font-family: var(--sk-font-display);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.12;
+  color: var(--sk-ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+.sk-bigtype-l2 {
+  font-family: var(--sk-font-display);
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 22px;
+  letter-spacing: -0.02em;
+  color: var(--sk-ink);
+}
+.sk-bigtype-sub {
+  font-size: 20px;
+  color: var(--sk-ink-3);
+  max-width: 980px;
+  margin: 0 auto 14px;
+  line-height: 1.55;
+}
+.sk-bigtype-punch {
+  font-family: var(--sk-font-display);
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin-top: 20px;
+}
+.sk-bigtype-tagline {
+  font-size: 14px;
+  color: var(--sk-muted);
+  margin-top: 16px;
+}

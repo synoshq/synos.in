@@ -1,0 +1,121 @@
+/*
+ * SynOS brand tokens — the single source of truth for this package.
+ *
+ * Every value here was read out of the shipped artifacts in ~/ws/synos-gtm. No component in this
+ * package may contain a literal colour; if a source file hardcoded a hex inline, it is promoted to
+ * a token here and the origin is named in the comment.
+ *
+ * Canonical source: presentations/synos-vc-deck-presenting.html (2026-08-12), :root at line 13.
+ * Cross-checked against synos-vc-deck-v6.html, synos-tech-buyer-v2.html,
+ * synos-ops-buyer.standalone.html and the three pitch-materials one-pagers. The core palette is
+ * byte-identical in all four decks; the only disagreements are recorded in
+ * docs/plans/2026-08-13-slide-inventory.md §4 (C13, C17).
+ */
+
+:root {
+  /* ── Surfaces ─────────────────────────────────────────────────────────── */
+  --sk-bg: #f1f5f9;
+  --sk-surface: #ffffff;
+  --sk-surface-2: #f8fafc;
+  --sk-border: #e2e8f0;
+  --sk-border-2: #cbd5e1;
+
+  /* ── Text ─────────────────────────────────────────────────────────────── */
+  --sk-ink: #0f172a;
+  --sk-ink-2: #334155;
+  --sk-ink-3: #475569;
+  --sk-muted: #64748b;
+  --sk-dim: #94a3b8;
+
+  /* ── Brand hues ───────────────────────────────────────────────────────── */
+  --sk-indigo: #4338ca;
+  --sk-indigo-2: #6366f1;
+  --sk-indigo-3: #818cf8;
+  --sk-indigo-bg: #eef2ff;
+  --sk-indigo-br: #c7d2fe;
+
+  --sk-violet: #7c3aed;
+  --sk-violet-bg: #f5f3ff;
+  --sk-violet-br: #ddd6fe;
+
+  --sk-emerald: #047857;
+  --sk-emerald-bg: #ecfdf5;
+  --sk-emerald-br: #6ee7b7;
+
+  --sk-amber: #92400e;
+  --sk-amber-2: #f59e0b;
+  --sk-amber-bg: #fffbeb;
+  --sk-amber-br: #fcd34d;
+
+  --sk-red: #b91c1c;
+  --sk-red-2: #ef4444;
+  --sk-red-bg: #fef2f2;
+  --sk-red-br: #fecaca;
+
+  /*
+   * Teal. Conflict C13: the buyer decks declare #0e7490; SYNOS_VC_1PAGER.html (2026-08-11) and the
+   * inline fallback in the newest VC deck (`.fw-pay.cost { border-left:3px solid var(--teal,#0d9488) }`)
+   * both say #0d9488. The newer pair wins. Teal is a one-pager accent; the deck gradient is
+   * indigo → violet, not indigo → teal.
+   */
+  --sk-teal: #0d9488;
+  --sk-teal-2: #14b8a6;
+  --sk-teal-bg: #f0fdfa;
+  --sk-teal-br: #99f6e4;
+
+  /* ── Gradient ─────────────────────────────────────────────────────────── */
+  --sk-grad: linear-gradient(135deg, #6366f1, #7c3aed);
+
+  /* ── Deep hue inks ────────────────────────────────────────────────────────
+   * Hardcoded in the sources rather than tokenised. Promoted here so no component carries a hex.
+   * --sk-indigo-ink   #312e81  .stk-slab-hd .nm, .d1-title, .pillar .name, .land h3
+   * --sk-indigo-tint  #e0e7ff  .uc.brain, .land, .oneliner-foot, .cta (retail 1-pager) gradient end
+   * --sk-violet-ink   #4c1d95  .dual-next .dual-cell p
+   * --sk-amber-ink    #78350f  .d1-chip .d1-nm, .harness-chip .h-name
+   * --sk-amber-br-2   #fde68a  .d1-chip border, .harness-chip border, .nw-verdict border
+   * --sk-emerald-ink  #065f46  .story p, .pchip.paid colour
+   * --sk-red-ink      #991b1b  .wallchip colour (1p-vc)
+   */
+  --sk-indigo-ink: #312e81;
+  --sk-indigo-tint: #e0e7ff;
+  --sk-violet-ink: #4c1d95;
+  --sk-amber-ink: #78350f;
+  --sk-amber-br-2: #fde68a;
+  --sk-emerald-ink: #065f46;
+  --sk-red-ink: #991b1b;
+
+  /* ── Elevation ────────────────────────────────────────────────────────────
+   * .card-frame box-shadow, identical in all four decks.
+   */
+  --sk-shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.04);
+  /* .comp-us / .nw-us / .qchip.us — the "this is us" lift on gradient blocks. */
+  --sk-shadow-brand: 0 6px 18px rgba(99, 102, 241, 0.3);
+
+  /* ── Type ─────────────────────────────────────────────────────────────────
+   * Loaded from Google Fonts. Weight coverage is the union across the corpus (conflict C15, C16):
+   * Plus Jakarta Sans 500;600;700;800 · Inter 400;500;600;700 · JetBrains Mono 500;600.
+   */
+  --sk-font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --sk-font-body: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --sk-font-mono: 'JetBrains Mono', monospace;
+  /* SYNOS_FOUNDER_MEMO_SHORT.html only. Not used by any component; recorded for completeness. */
+  --sk-font-serif: 'Source Serif 4', Georgia, serif;
+
+  /* ── Deck frame geometry ──────────────────────────────────────────────────
+   * synos-vc-deck-presenting.html .card-frame + section.has-card. Conflicts C1, C2, C3.
+   */
+  --sk-slide-width: 1380px;
+  --sk-slide-height: 712px;
+  --sk-slide-radius: 20px;
+  --sk-slide-pad: 40px 56px 34px;
+  --sk-slide-pad-arch: 14px 44px 12px;
+  --sk-stage-height: 720px;
+
+  /* ── One-pager page geometry ──────────────────────────────────────────────
+   * A4 portrait. 1p-vc pads 11mm 13mm 9mm; retail/fin pad 11mm 12mm 8mm. Newest (1p-vc) wins.
+   */
+  --sk-page-width: 210mm;
+  --sk-page-height: 297mm;
+  --sk-page-pad: 11mm 13mm 9mm;
+  --sk-page-gap: 8px;
+}

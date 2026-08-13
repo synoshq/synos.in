@@ -1,0 +1,67 @@
+/*
+ * SlideFrame — the white card every one of the 148 slides in the corpus sits inside.
+ *
+ * Source: synos-vc-deck-presenting.html lines 27-38 (`.card-frame`, `.card-frame.arch-card`,
+ * `section.has-card`). Conflicts C1/C2/C3: the buyer decks use 1180x— / 1256x— frames with
+ * different padding and an 800px stage. The newest deck wins.
+ */
+
+.sk-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--sk-stage-height);
+  background: var(--sk-bg);
+}
+
+.sk-slide {
+  width: var(--sk-slide-width);
+  height: var(--sk-slide-height);
+  max-height: var(--sk-slide-height);
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-slide-radius);
+  box-shadow: var(--sk-shadow-card);
+  padding: var(--sk-slide-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* .card-frame.arch-card — tightened for diagram-heavy slides, plus its descendant overrides. */
+.sk-slide--arch {
+  padding: var(--sk-slide-pad-arch);
+}
+.sk-slide--arch h1 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+.sk-slide--arch h2 {
+  font-size: 13.5px;
+  margin-bottom: 8px;
+}
+.sk-slide--arch .sk-header {
+  margin-bottom: 5px;
+}
+.sk-slide--arch .sk-eyebrow {
+  margin-bottom: 5px;
+}
+
+/* .cover */
+.sk-slide--cover {
+  text-align: center;
+  padding: 56px 60px 48px;
+}
+
+/* .big-type */
+.sk-slide--big-type {
+  text-align: center;
+  padding: 56px 64px;
+}
+
+@media print {
+  .sk-slide {
+    box-shadow: none;
+  }
+}

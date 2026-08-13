@@ -1,0 +1,69 @@
+/*
+ * Eyebrow — the small uppercase label above 144 of the 148 slide titles.
+ *
+ * Deck source: synos-vc-deck-presenting.html line 116-117. Conflict C4 — the buyer decks run
+ * 10px / margin-bottom 8px; the newest deck's 11.5px / 11px wins. `letter-spacing: 1.6px` and
+ * `font-weight: 700` are identical in all four decks.
+ *
+ * Conflict C14 — all four decks define four hue variants (.red .indigo .violet .emerald), not the
+ * two the build spec lists. `.indigo` alone is used 75 times.
+ *
+ * Print scale source: SYNOS_VC_1PAGER.html `.sec-label` (8.5px / 1.4px / 800 / flex row with a
+ * badge slot).
+ */
+
+.sk-eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+  margin-bottom: 11px;
+}
+
+/* .cover .eyebrow — wider tracking on the cover only. */
+.sk-eyebrow--spaced {
+  letter-spacing: 2.4px;
+  margin-bottom: 14px;
+}
+
+.sk-eyebrow--indigo {
+  color: var(--sk-indigo);
+}
+.sk-eyebrow--violet {
+  color: var(--sk-violet);
+}
+.sk-eyebrow--emerald {
+  color: var(--sk-emerald);
+}
+.sk-eyebrow--amber {
+  color: var(--sk-amber);
+}
+.sk-eyebrow--red {
+  color: var(--sk-red);
+}
+
+/* .sec-label */
+.sk-eyebrow--print {
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* .badge — the small mono pill that rides inside a print eyebrow. */
+.sk-eyebrow-badge {
+  font-family: var(--sk-font-mono);
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  color: var(--sk-teal);
+  background: var(--sk-teal-bg);
+  border: 1px solid var(--sk-teal-br);
+  border-radius: 20px;
+  padding: 1px 7px;
+}

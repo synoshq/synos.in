@@ -1,0 +1,613 @@
+/* ══════════════════════════════════════════════════════════════════════════
+ * WallCard — "six walls between a clever demo and real company value".
+ * Six per deck, in all four decks: the only body block with that reach.
+ *
+ * Shell (identical in all four): surface-2, 1px --border, border-left 3px --red-2, radius 10px.
+ * Conflict C9: two sets of innards.
+ *   VC decks   padding 12px 14px · .w-q 15px/600 italic · .w-t 13px --muted
+ *   buyer decks padding 16px 18px · .num 24px red badge · h4 15px/700 · p 13px --ink-3
+ *               · .wq 11.5px italic above a dashed top rule
+ * The VC innards are the default; `num` / `title` / `body` opt into the buyer shape. Both are in
+ * the sources.
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-wall-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.sk-wall {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-left: 3px solid var(--sk-red-2);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.sk-wall--numbered {
+  padding: 16px 18px;
+}
+
+.sk-wall-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--sk-red-bg);
+  color: var(--sk-red);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--sk-font-display);
+  margin-bottom: 10px;
+}
+.sk-wall-title {
+  font-family: var(--sk-font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+.sk-wall-body {
+  font-size: 13px;
+  color: var(--sk-ink-3);
+  margin: 0;
+  line-height: 1.5;
+}
+/* .w-q — the quoted complaint. */
+.sk-wall-quote {
+  font-size: 15px;
+  color: var(--sk-ink-2);
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+/* .wq — the same quote in the buyer decks, demoted below a dashed rule. */
+.sk-wall--numbered .sk-wall-quote {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--sk-ink-2);
+  margin: 6px 0 0;
+  line-height: 1.45;
+  border-top: 1px dashed var(--sk-border-2);
+  padding-top: 6px;
+}
+/* .w-t — the consequence line. */
+.sk-wall-tag {
+  font-size: 13px;
+  color: var(--sk-muted);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * PillarCard — the operating layer's parts. 40 occurrences across all four decks.
+ * Conflict C10: `.d1-pillar` (VC, canonical) is left-aligned on surface-2 with a 1px --border and
+ * an 11px radius; `.pillar` (buyer) is centred on surface with a 1.5px --indigo-br and a 10px
+ * radius. `align="center"` reproduces the buyer variant.
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.sk-pillar {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 11px;
+  padding: 7px 11px;
+}
+.sk-pillar-ico {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--sk-indigo-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sk-indigo);
+  margin-bottom: 6px;
+}
+.sk-pillar-kicker {
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+  margin-bottom: 2px;
+}
+.sk-pillar-name {
+  font-family: var(--sk-font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin-bottom: 3px;
+}
+.sk-pillar-desc {
+  font-size: 10.5px;
+  color: var(--sk-ink-3);
+  line-height: 1.38;
+}
+
+/* `.pillar` — the buyer decks' centred variant. */
+.sk-pillar--center {
+  background: var(--sk-surface);
+  border: 1.5px solid var(--sk-indigo-br);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.sk-pillar--center .sk-pillar-ico {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  margin: 0 auto 6px;
+}
+.sk-pillar--center .sk-pillar-name {
+  font-size: 12.5px;
+  color: var(--sk-indigo-ink);
+  margin-bottom: 4px;
+}
+.sk-pillar--center .sk-pillar-desc {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* `.d1-pillar.d1-brain` — the Company Brain anchor. Full gradient, spans two columns, icon inline. */
+.sk-pillar--brain {
+  grid-column: 1 / span 2;
+  background: var(--sk-grad);
+  border: none;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.sk-pillar--brain .sk-pillar-ico {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  margin: 0;
+}
+.sk-pillar--brain .sk-pillar-kicker {
+  color: rgba(255, 255, 255, 0.8);
+}
+.sk-pillar--brain .sk-pillar-name {
+  color: #fff;
+  font-size: 16px;
+}
+.sk-pillar--brain .sk-pillar-desc {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 11.5px;
+}
+
+/* Icon tint follows the pillar's hue — `.pillar.skills .ico`, `.pillar.loop .ico`, etc. */
+.sk-pillar--indigo .sk-pillar-ico {
+  background: var(--sk-indigo-bg);
+  color: var(--sk-indigo);
+}
+.sk-pillar--violet .sk-pillar-ico {
+  background: var(--sk-violet-bg);
+  color: var(--sk-violet);
+}
+.sk-pillar--emerald .sk-pillar-ico {
+  background: var(--sk-emerald-bg);
+  color: var(--sk-emerald);
+}
+.sk-pillar--amber .sk-pillar-ico {
+  background: var(--sk-amber-bg);
+  color: var(--sk-amber);
+}
+.sk-pillar--red .sk-pillar-ico {
+  background: var(--sk-red-bg);
+  color: var(--sk-red);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * PhaseCard — the numbered horizon card. `.sc` + `.sn` + `.when` + `.rev`, 24 in the VC decks,
+ * `.hx-sc` 6 in the buyer decks, `.sc` 3 in SYNOS_VC_1PAGER.html.
+ * Conflict C11: phase 3's accent is violet in the newest deck and teal in tech-v2 / 1p-vc.
+ * Violet wins; teal remains reachable via `tone="teal"` is NOT offered — see inventory §4 C11.
+ * Conflict C18: this is the clearest two-scale component in the corpus.
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-phase-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.sk-phase {
+  --sk-phase-accent: var(--sk-indigo);
+  --sk-phase-badge: var(--sk-indigo-2);
+
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid var(--sk-border);
+  background: var(--sk-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sk-phase-badge {
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  align-self: flex-start;
+  background: var(--sk-phase-badge);
+}
+.sk-phase-when {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--sk-phase-accent);
+}
+.sk-phase-title {
+  font-family: var(--sk-font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 2px 0;
+  line-height: 1.2;
+}
+.sk-phase-body {
+  font-size: 13px;
+  color: var(--sk-ink-2);
+  margin: 0;
+  line-height: 1.5;
+}
+/* `.rev` — the revenue/outcome line, pinned to the bottom above a dashed rule. */
+.sk-phase-foot {
+  margin-top: auto;
+  padding-top: 8px;
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  color: var(--sk-phase-accent);
+  border-top: 1px dashed var(--sk-border-2);
+}
+
+/* `.sc.s2` — the middle phase carries the brand gradient on its badge. */
+.sk-phase--bridge {
+  --sk-phase-badge: var(--sk-grad);
+}
+/* `.sc.s3` — the far phase goes violet. */
+.sk-phase--far {
+  --sk-phase-accent: var(--sk-violet);
+  --sk-phase-badge: var(--sk-violet);
+}
+
+/* Print scale — `.sc` in SYNOS_VC_1PAGER.html. */
+.sk-phase--print {
+  border-radius: 10px;
+  padding: 9px 11px;
+  gap: 3px;
+}
+.sk-phase--print .sk-phase-badge {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 1px 8px;
+}
+.sk-phase--print .sk-phase-when {
+  font-size: 7.5px;
+  letter-spacing: 0.6px;
+}
+.sk-phase--print .sk-phase-title {
+  font-size: 12px;
+  font-weight: 800;
+  margin: 2px 0 0;
+}
+.sk-phase--print .sk-phase-body {
+  font-size: 8.8px;
+  color: var(--sk-ink-3);
+  line-height: 1.42;
+}
+.sk-phase--print .sk-phase-foot {
+  font-size: 8px;
+  padding-top: 5px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * UseCaseCard — "what runs on it". `.uc` + `.uk`, 24 occurrences in the VC decks.
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.sk-usecase {
+  --sk-usecase-kicker: var(--sk-muted);
+  border-radius: 13px;
+  padding: 15px 17px;
+  border: 1px solid var(--sk-border);
+  background: var(--sk-surface-2);
+}
+.sk-usecase-kicker {
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  color: var(--sk-usecase-kicker);
+}
+.sk-usecase-title {
+  font-family: var(--sk-font-display);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 0 0 5px;
+  line-height: 1.2;
+}
+.sk-usecase-body {
+  font-size: 12.5px;
+  color: var(--sk-ink-2);
+  margin: 0;
+  line-height: 1.48;
+}
+.sk-usecase--indigo {
+  --sk-usecase-kicker: var(--sk-indigo);
+}
+.sk-usecase--violet {
+  background: var(--sk-violet-bg);
+  border-color: var(--sk-violet-br);
+  --sk-usecase-kicker: var(--sk-violet);
+}
+.sk-usecase--emerald {
+  --sk-usecase-kicker: var(--sk-emerald);
+}
+.sk-usecase--amber {
+  --sk-usecase-kicker: var(--sk-amber);
+}
+.sk-usecase--red {
+  --sk-usecase-kicker: var(--sk-red);
+}
+/* `.uc.brain` — the Company Brain flagship card. */
+.sk-usecase--flagship {
+  background: linear-gradient(180deg, var(--sk-indigo-bg), var(--sk-indigo-tint));
+  border: 1.5px solid var(--sk-indigo-2);
+  --sk-usecase-kicker: var(--sk-indigo);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * StatCard — `.g3` + `.stat-card` (`.n` / `.l` / `.s`), 10 occurrences in the VC decks.
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.sk-stat {
+  --sk-stat-value: var(--sk-indigo-2);
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 14px;
+  padding: 22px 18px;
+  text-align: center;
+}
+.sk-stat-value {
+  font-family: var(--sk-font-display);
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--sk-stat-value);
+}
+.sk-stat-label {
+  font-size: 13px;
+  color: var(--sk-ink-3);
+  margin-top: 12px;
+  line-height: 1.45;
+}
+.sk-stat-source {
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  color: var(--sk-muted);
+  margin-top: 10px;
+  letter-spacing: 0.4px;
+}
+/* `.stat-card.i` / `.v` / `.a` — the three value hues actually used. */
+.sk-stat--indigo {
+  --sk-stat-value: var(--sk-indigo-2);
+}
+.sk-stat--violet {
+  --sk-stat-value: var(--sk-violet);
+}
+.sk-stat--amber {
+  --sk-stat-value: var(--sk-amber-2);
+}
+.sk-stat--emerald {
+  --sk-stat-value: var(--sk-emerald);
+}
+.sk-stat--red {
+  --sk-stat-value: var(--sk-red-2);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * StepCard — the demo storyboard card. `.demo-card` + `.db` / `.dc` / `.dn` / `.dq`,
+ * 12 occurrences in the VC decks.
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.sk-step {
+  border-radius: 14px;
+  border: 1px solid var(--sk-border);
+  background: var(--sk-surface-2);
+  overflow: hidden;
+}
+/* `.db` — the 9px gradient cap. */
+.sk-step-bar {
+  height: 9px;
+  background: var(--sk-grad);
+}
+.sk-step-body {
+  padding: 15px 18px;
+}
+.sk-step-num {
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--sk-violet);
+  margin-bottom: 5px;
+}
+.sk-step-title {
+  font-family: var(--sk-font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+.sk-step-text {
+  font-size: 13px;
+  color: var(--sk-ink-2);
+  margin: 0;
+  line-height: 1.5;
+}
+/* `.dq` — the quoted prompt under the step. */
+.sk-step-quote {
+  margin-top: 9px;
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-left: 3px solid var(--sk-violet);
+  border-radius: 7px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: var(--sk-ink-2);
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * SplitColumns — the old-world / new-world split. `.moat-split` + `.moat-col`,
+ * 8 occurrences in the VC decks (`.dies` grey, `.wins` violet, `.doorA` indigo).
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.sk-split-col {
+  --sk-split-eyebrow: var(--sk-muted);
+  border-radius: 14px;
+  padding: 18px 20px;
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+}
+.sk-split-col--violet {
+  background: var(--sk-violet-bg);
+  border: 1px solid var(--sk-violet-br);
+  --sk-split-eyebrow: var(--sk-violet);
+}
+.sk-split-col--indigo {
+  background: var(--sk-indigo-bg);
+  border: 1px solid var(--sk-indigo-2);
+  --sk-split-eyebrow: var(--sk-indigo);
+}
+.sk-split-col--emerald {
+  background: var(--sk-emerald-bg);
+  border: 1px solid var(--sk-emerald-br);
+  --sk-split-eyebrow: var(--sk-emerald);
+}
+.sk-split-col--amber {
+  background: var(--sk-amber-bg);
+  border: 1px solid var(--sk-amber-br);
+  --sk-split-eyebrow: var(--sk-amber);
+}
+.sk-split-col--red {
+  background: var(--sk-red-bg);
+  border: 1px solid var(--sk-red-br);
+  --sk-split-eyebrow: var(--sk-red);
+}
+/* `.c-eyebrow` — the column's own eyebrow, tracked 1.4px rather than the slide eyebrow's 1.6px. */
+.sk-split-eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--sk-split-eyebrow);
+}
+.sk-split-title {
+  font-family: var(--sk-font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+/* `.item` — a bullet row inside a column. */
+.sk-split-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+.sk-split-item > span {
+  font-size: 15px;
+  color: var(--sk-ink-2);
+  line-height: 1.45;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * Caption / QuoteBar — the two trailing lines under a body block.
+ * `.caption` 13 occurrences, 2 files. `.edge-quote` 3 files, `.nadella` 2 files.
+ * ═════════════════════════════════════════════════════════════════════════ */
+
+.sk-caption {
+  text-align: center;
+  font-size: 14.5px;
+  color: var(--sk-ink-3);
+  margin-top: 14px;
+}
+.sk-caption strong {
+  color: var(--sk-indigo);
+}
+/* `.nadella` — the same line, italicised for an attributed remark. */
+.sk-caption--italic {
+  font-style: italic;
+}
+.sk-caption--italic strong {
+  color: var(--sk-ink);
+  font-style: normal;
+}
+
+.sk-quote {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 11px;
+  padding: 9px 16px;
+  font-size: 11.5px;
+  color: var(--sk-ink-2);
+  line-height: 1.5;
+  font-style: italic;
+}
+.sk-quote strong {
+  color: var(--sk-ink);
+  font-style: normal;
+}
+/* Print scale — `.q` in the CTO one-pagers: indigo-tinted, 8.6px. */
+.sk-quote--print {
+  background: var(--sk-indigo-bg);
+  border: 1px solid var(--sk-indigo-br);
+  border-radius: 7px;
+  padding: 6px 9px;
+  font-size: 8.6px;
+  color: var(--sk-indigo);
+  font-weight: 500;
+  line-height: 1.42;
+}

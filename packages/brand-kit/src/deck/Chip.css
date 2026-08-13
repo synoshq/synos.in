@@ -1,0 +1,116 @@
+/*
+ * Chip — the small bordered label. 157 occurrences across seven source files under nine class
+ * names, which is more than any other single shape in the corpus.
+ *
+ * Deck sources by size:
+ *   sm  .nw-chip        radius 7px  · padding 2px 9px   · 10px   / 600 · surface on --border-2
+ *   md  .d1-sor-chip    radius 8px  · padding 4px 10px  · 10.5px / 500 · surface on --border
+ *       .source-chip    radius 8px  · padding 5px 12px  · 11.5px / 500 · surface on --border
+ *   lg  .stk-chip       radius 9px  · padding 10px 18px · 15px   / 600 · surface-2 on --border
+ *   pill .tagchip       radius 999px· padding 6px 12px  · 11px   / 600 · surface-2 on --border
+ *
+ * `md` is the workhorse and the default: .d1-sor-chip and .source-chip are 62 of the 157 and agree
+ * on radius, fill, border and weight, differing only by 1px of type and padding. This component
+ * takes the newest of the two (.d1-sor-chip, VC deck 2026-08-12).
+ *
+ * Print source: .pchip — SYNOS_VC_1PAGER.html (radius 7px, padding 3px 9px, 8.8px / 600).
+ *
+ * Excluded: .tool-chip and .harness-chip are named chips but carry a 30-38px icon block and two
+ * lines of text. They are cards, and are one-family patterns. See inventory §5.5.
+ */
+
+.sk-chip {
+  --sk-chip-bg: var(--sk-surface);
+  --sk-chip-br: var(--sk-border);
+  --sk-chip-fg: var(--sk-ink-2);
+
+  display: inline-block;
+  background: var(--sk-chip-bg);
+  border: 1px solid var(--sk-chip-br);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-family: var(--sk-font-body);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--sk-chip-fg);
+  white-space: nowrap;
+}
+
+.sk-chip--sm {
+  border-radius: 7px;
+  padding: 2px 9px;
+  font-size: 10px;
+  font-weight: 600;
+  --sk-chip-br: var(--sk-border-2);
+}
+.sk-chip--lg {
+  border-radius: 9px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  --sk-chip-bg: var(--sk-surface-2);
+}
+.sk-chip--pill {
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  --sk-chip-bg: var(--sk-surface-2);
+}
+
+.sk-chip--mono {
+  font-family: var(--sk-font-mono);
+}
+
+/* ── Tones. Same bg/br/text triple as Callout. ─────────────────────────── */
+.sk-chip--indigo {
+  --sk-chip-bg: var(--sk-indigo-bg);
+  --sk-chip-br: var(--sk-indigo-br);
+  --sk-chip-fg: var(--sk-indigo);
+}
+.sk-chip--violet {
+  --sk-chip-bg: var(--sk-violet-bg);
+  --sk-chip-br: var(--sk-violet-br);
+  --sk-chip-fg: var(--sk-violet);
+}
+.sk-chip--emerald {
+  --sk-chip-bg: var(--sk-emerald-bg);
+  --sk-chip-br: var(--sk-emerald-br);
+  --sk-chip-fg: var(--sk-emerald-ink);
+}
+.sk-chip--amber {
+  --sk-chip-bg: var(--sk-amber-bg);
+  --sk-chip-br: var(--sk-amber-br);
+  --sk-chip-fg: var(--sk-amber);
+}
+.sk-chip--red {
+  --sk-chip-bg: var(--sk-red-bg);
+  --sk-chip-br: var(--sk-red-br);
+  --sk-chip-fg: var(--sk-red-ink);
+}
+
+/* ── Print scale. .pchip ───────────────────────────────────────────────── */
+.sk-chip--print {
+  border-radius: 7px;
+  padding: 3px 9px;
+  font-size: 8.8px;
+  font-weight: 600;
+  --sk-chip-br: var(--sk-border-2);
+}
+.sk-chip--print.sk-chip--mono {
+  font-size: 7.6px;
+}
+
+/* ── Row. .stk-row / .nw-chips / .tagchips / .proofrow ─────────────────── */
+.sk-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.sk-chip-row--center {
+  justify-content: center;
+}
+.sk-chip-row--tight {
+  gap: 5px;
+}
