@@ -10,3 +10,7 @@ fidelity/shots/
 # `.design-sync/` (config, the authored previews, the doc-category stubs).
 .ds-sync/
 ds-bundle/
+
+# Headless session transcripts — noise, not artifacts.
+*-session.log
+docs-preview-session.log
