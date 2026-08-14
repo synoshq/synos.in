@@ -2015,9 +2015,17 @@
             "padding-top",
             "padding-left"
           ],
-          "status": "MATCH",
+          "intentional": [
+            {
+              "prop": "background-color",
+              "was": "rgb(99, 102, 241)",
+              "now": "rgb(67, 56, 202)",
+              "key": "H",
+              "reason": "**Decision H — the phase badge clears AA.** `.sk-phase-badge` filled with `--sk-indigo-2`\n(#6366f1) put white on 4.47:1, missing AA by 0.03 at the badge's 10px. It was carried as a\nKNOWN row through the Phase 3 pass because fixing it is a visible colour change and it was not\nin the approved set. Closed 2026-08-14 by filling with `--sk-indigo` (#4338ca), which is 7.9:1\nand is already the accent the same component uses for `--sk-phase-accent`, so the badge and its\nrail now agree on one indigo instead of two."
+            }
+          ],
+          "status": "INTENTIONAL",
           "diffs": [],
-          "intentional": [],
           "source_values": {
             "font-family": "\"JetBrains Mono\"",
             "font-size": "10px",
@@ -2033,7 +2041,7 @@
             "font-size": "10px",
             "font-weight": "600",
             "color": "rgb(255, 255, 255)",
-            "background-color": "rgb(99, 102, 241)",
+            "background-color": "rgb(67, 56, 202)",
             "border-top-left-radius": "20px",
             "padding-top": "2px",
             "padding-left": "10px"

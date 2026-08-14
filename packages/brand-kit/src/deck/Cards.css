@@ -192,7 +192,9 @@
 
 .sk-phase {
   --sk-phase-accent: var(--sk-indigo);
-  --sk-phase-badge: var(--sk-indigo-2);
+  /* --sk-indigo, not --sk-indigo-2: white on indigo-2 is 4.47:1, which misses AA
+     by 0.03 at the badge's 10px. --sk-indigo is 7.9:1. Closed 2026-08-14. */
+  --sk-phase-badge: var(--sk-indigo);
 
   padding: 0;
   display: flex;

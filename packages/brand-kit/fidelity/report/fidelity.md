@@ -1,7 +1,7 @@
 # Fidelity report
 
 27 specimens · 104 computed-style checks · 27 passing, 0 failing.
-141 of those checks record a **deliberate** divergence from the source artifact.
+142 of those checks record a **deliberate** divergence from the source artifact.
 
 Each specimen renders a built component and the real slide it was extracted from at the same
 viewport, screenshots both, and compares the computed values of the properties that carry the
@@ -31,7 +31,7 @@ decision that moved it.
 | `wall` | WallCard / WallGrid | presenting s34 | 4 | 8 | PASS |
 | `pillar` | PillarCard / PillarGrid | presenting s6 | 5 | 12 | PASS |
 | `pillar-brain` | PillarCard brain | presenting s6 | 4 | 3 | PASS |
-| `phase` | PhaseCard / PhaseRow | presenting s10 | 8 | 12 | PASS |
+| `phase` | PhaseCard / PhaseRow | presenting s10 | 8 | 13 | PASS |
 | `usecase` | UseCaseCard / UseCaseGrid | presenting s30 | 6 | 2 | PASS |
 | `stat` | StatCard / StatRow | presenting s27 | 6 | 16 | PASS |
 | `step` | StepCard / StepGrid | presenting s7 | 8 | 14 | PASS |
@@ -334,6 +334,19 @@ if that call changes.
 | `onepager-phase` | `.sk-phase--print` | `padding-right` | `11px` | `0px` |
 | `onepager-phase` | `.sk-phase--print` | `padding-bottom` | `9px` | `0px` |
 | `onepager-phase` | `.sk-phase--print` | `padding-left` | `11px` | `0px` |
+
+### H
+
+**Decision H — the phase badge clears AA.** `.sk-phase-badge` filled with `--sk-indigo-2`
+(#6366f1) put white on 4.47:1, missing AA by 0.03 at the badge's 10px. It was carried as a
+KNOWN row through the Phase 3 pass because fixing it is a visible colour change and it was not
+in the approved set. Closed 2026-08-14 by filling with `--sk-indigo` (#4338ca), which is 7.9:1
+and is already the accent the same component uses for `--sk-phase-accent`, so the badge and its
+rail now agree on one indigo instead of two.
+
+| Specimen | Selector | Property | Source | Built |
+|---|---|---|---|---|
+| `phase` | `.sk-phase-badge` | `background-color` | `rgb(99, 102, 241)` | `rgb(67, 56, 202)` |
 
 ## Recorded conflicts — differences that are correct
 

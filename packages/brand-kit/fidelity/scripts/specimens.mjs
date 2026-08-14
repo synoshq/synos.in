@@ -143,6 +143,14 @@ export const REASONS = {
     'reason that three or more stacked text levels need a surface, and both named so the number moves',
     'if that call changes.',
   ].join('\n'),
+  H: [
+    '**Decision H — the phase badge clears AA.** `.sk-phase-badge` filled with `--sk-indigo-2`',
+    '(#6366f1) put white on 4.47:1, missing AA by 0.03 at the badge\'s 10px. It was carried as a',
+    'KNOWN row through the Phase 3 pass because fixing it is a visible colour change and it was not',
+    'in the approved set. Closed 2026-08-14 by filling with `--sk-indigo` (#4338ca), which is 7.9:1',
+    'and is already the accent the same component uses for `--sk-phase-accent`, so the badge and its',
+    'rail now agree on one indigo instead of two.',
+  ].join('\n'),
 }
 
 /** A stand-in for the stroked 16px icons the sources draw inline. */
@@ -687,7 +695,11 @@ export const SPECIMENS = [
           'padding-left': ['18px', '0px', 'G'],
         },
       },
-      { source: '.sc .sn', built: '.sk-phase-badge', props: ['font-family', 'font-size', 'font-weight', 'color', 'background-color', 'border-top-left-radius', 'padding-top', 'padding-left'] },
+      {
+        source: '.sc .sn', built: '.sk-phase-badge',
+        props: ['font-family', 'font-size', 'font-weight', 'color', 'background-color', 'border-top-left-radius', 'padding-top', 'padding-left'],
+        intentional: { 'background-color': ['rgb(99, 102, 241)', 'rgb(67, 56, 202)', 'H'] },
+      },
       { source: '.sc .when', built: '.sk-phase-when', props: [...CORE] },
       {
         source: '.sc h3', built: '.sk-phase-title', props: ['font-family', 'font-size', 'font-weight', 'color'],
