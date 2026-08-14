@@ -4,6 +4,7 @@
  *
  *   node deck/build.mjs                       # -> deck/out/synos-vc-deck-v6-kit.html
  *   node deck/build.mjs --out path/to.html
+ *   node deck/build.mjs --deck ops-buyer      # any src/<name>.jsx exporting deck(K)
  *
  * The approach, and why it is this one: the slides are React components from `dist/brand-kit.js`,
  * server-rendered to static markup at build time and injected into a reveal.js shell. The output is
@@ -33,7 +34,11 @@ import * as esbuild from 'esbuild'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(HERE, '..')
 const outArg = process.argv.indexOf('--out')
-const OUT = resolve(outArg > -1 ? process.argv[outArg + 1] : resolve(HERE, 'out/synos-vc-deck-v6-kit.html'))
+/* Which deck. `src/<name>.jsx` must export a `deck(K)` returning the slide records. Defaults to the
+   VC reading deck, so every existing invocation keeps working unchanged. */
+const deckArg = process.argv.indexOf('--deck')
+const DECK = deckArg > -1 ? process.argv[deckArg + 1] : 'deck'
+const OUT = resolve(outArg > -1 ? process.argv[outArg + 1] : resolve(HERE, `out/${DECK === 'deck' ? 'synos-vc-deck-v6-kit' : DECK}.html`))
 
 /* ── The kit ─────────────────────────────────────────────────────────────── */
 
@@ -84,10 +89,10 @@ const deckCss = readFileSync(resolve(HERE, 'src/deck.css'), 'utf8')
  * with `react` and `react/jsx-runtime` left external, so the components below and the ones in
  * `dist/` are the same React instance.
  */
-const BUNDLE = resolve(HERE, '.build/deck.bundle.mjs')
+const BUNDLE = resolve(HERE, `.build/${DECK}.bundle.mjs`)
 mkdirSync(dirname(BUNDLE), { recursive: true })
 await esbuild.build({
-  entryPoints: [resolve(HERE, 'src/deck.jsx')],
+  entryPoints: [resolve(HERE, `src/${DECK}.jsx`)],
   bundle: true,
   format: 'esm',
   jsx: 'automatic',
@@ -100,7 +105,15 @@ await esbuild.build({
 const mod = await import(pathToFileURL(BUNDLE).href)
 const slides = mod.deck(K)
 
-if (slides.length !== 35) throw new Error(`expected 35 slides, the definition has ${slides.length}`)
+/* Per-deck section count, asserted rather than trusted: a silently short deck is the failure mode
+   that survives every other check here, and the PDF verifier is downstream of this file. */
+const EXPECTED = { deck: 35, 'ops-buyer': 43 }
+/* A deck under construction says so, and the count is not enforced until it stops saying so. The
+   alternative — dropping the assertion while porting and remembering to restore it — is how a deck
+   ships three sections short. `mod.wip` is the deliberate, visible opt-out. */
+if (EXPECTED[DECK] && !mod.wip && slides.length !== EXPECTED[DECK])
+  throw new Error(`expected ${EXPECTED[DECK]} slides in "${DECK}", the definition has ${slides.length}`)
+if (mod.wip) console.log(`  WIP: ${slides.length} of ${EXPECTED[DECK] ?? '?'} sections ported`)
 
 /*
  * Each slide goes inside `section.has-card`, which is the source deck's own wrapper and what
