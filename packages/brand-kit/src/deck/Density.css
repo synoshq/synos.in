@@ -1,0 +1,140 @@
+/*
+ * Density.css — the kit's second register.
+ *
+ * WHY THIS EXISTS. The kit's scale (54 / 26 / 20 / 16 / 13, decisions A/C/F) is tuned for a
+ * PRESENTING deck: read from across a room, off a projector, with a presenter carrying the words
+ * that are not on the slide. A READING deck is a different artifact with a different job — it is
+ * sent without a presenter, so it legitimately carries more words per slide (measured: 236 against
+ * 190) and it is read at arm's length off a laptop, where the projector-gamma floor that sets the
+ * presenting minimum does not apply.
+ *
+ * Rebuilding `synos-vc-deck-v6.html` on the kit made the size of that gap countable
+ * (`deck/probe/measure.mjs`, 2026-08-14):
+ *
+ *   header block (eyebrow + h1 + subtitle)   source mean 158px / max 193px
+ *                                            kit    mean 223px / max 286px   -> +65px a slide
+ *   slides whose content runs past the card  source 0 / 35 · kit 8 / 35, worst +112px
+ *   PDF pages via _build_deck_pdf.py         source 35 · kit 42 (reveal splits an overflowing
+ *                                            slide across pages)
+ *
+ * That deck shipped the fix as `.dk-dense`, a second type scale living inside one deck's local
+ * stylesheet. This is that scale, moved into the kit and made a deliberate choice a deck opts into
+ * — `<SlideFrame density="compact">` — because a per-artifact scale is precisely how a design
+ * system becomes two design systems again. The next reading deck selects a register; it does not
+ * reinvent one.
+ *
+ * WHAT IT IS ALLOWED TO MOVE, AND WHAT IT IS NOT. Everything compact pays is paid out of the
+ * subtitle, the body, the card titles and the gaps. It is deliberately NOT "the same slide, 15%
+ * smaller":
+ *
+ *   - `h1` DOES NOT MOVE — not its size, not its face, not its position. It is the brand's one
+ *     display role and its top offset is decision I: the rebuild collapsed 27 distinct h1
+ *     positions across 35 slides down to 2, which is the single most visible improvement in the
+ *     whole pass. A register that shifts it per slide throws that away.
+ *   - NOTHING ABOVE THE h1 MAY BE TOUCHED. The eyebrow sits above the headline, so tightening it
+ *     MOVES the headline. This was found the hard way: a `.sk-eyebrow` rule in the deck's original
+ *     dense block made the probe report a third distinct h1 position immediately. It is now
+ *     enforced rather than remembered — `tools/css-lint.mjs` rule 3 fails the build on any
+ *     selector in this file that reaches above the headline.
+ *   - No colour changes. Density is a spatial register; contrast is settled elsewhere and
+ *     `tools/contrast.mjs` gates it.
+ *
+ * The floor is 13.5px body / 11.5px quote. Below that the reading deck stops being comfortable at
+ * arm's length, and the honest fix becomes cutting words or splitting the slide, not shrinking
+ * type further. If a slide still overflows at compact, that is content feedback, not a CSS bug.
+ */
+
+/* ── The header block ─────────────────────────────────────────────────────
+ * The subtitle carries most of the +65px. It is the one element in the header with a real measure,
+ * so it is where the room comes from.
+ */
+.sk-density-compact .sk-header h2 {
+  font-size: 19px;
+  line-height: 1.28;
+  margin-bottom: 10px;
+}
+
+/* The h1's own BOTTOM margin is fair game — it closes the gap under the headline without moving
+   the headline. Its top, its size, and everything above it are not. See css-lint rule 3. */
+.sk-density-compact .sk-header h1 {
+  margin-bottom: 8px;
+}
+
+.sk-density-compact .sk-header {
+  margin-bottom: 12px;
+}
+
+/* ── Body copy ─────────────────────────────────────────────────────────────
+ * 16 -> 13.5. Still above the source deck's 11.5, and still clearing the eyebrow beneath it.
+ */
+.sk-density-compact p,
+.sk-density-compact li {
+  font-size: 13.5px;
+  line-height: 1.42;
+}
+
+.sk-density-compact .sk-caption {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* ── Card titles ───────────────────────────────────────────────────────────
+ * 20 -> 17. These are Inter, not Instrument Serif (decision A scopes the serif to h1 / cover title
+ * / stat value only), so there is no 24px display-face floor to respect here.
+ */
+.sk-density-compact .sk-step-title,
+.sk-density-compact .sk-usecase-title,
+.sk-density-compact .sk-phase-title {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+/* PillarCard's title (`.sk-pillar-name`) and WallCard's quote are deliberately NOT here. They are
+   13px and 15px at the default register — already below this register's 17px, and `.sk-pillar-name`
+   would GROW if it were swept into the rule above. A density register that enlarges anything is a
+   bug, so the sweep is written out longhand rather than as a `[class$='-title']` shortcut. */
+
+.sk-density-compact .sk-step-body {
+  padding-top: 6px;
+}
+
+.sk-density-compact .sk-callout {
+  font-size: 13px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.sk-density-compact .sk-callout-label {
+  margin-bottom: 3px;
+}
+
+.sk-density-compact .sk-step-quote,
+.sk-density-compact .sk-quote {
+  font-size: 11.5px;
+  line-height: 1.3;
+  margin-top: 6px;
+}
+
+/* ── Grid gaps ─────────────────────────────────────────────────────────────
+ * Decisions C and G opened every grid gap to replace the borders they removed — space doing the
+ * work a 1.23:1 hairline was pretending to do. On a compact slide that room is not available, so
+ * the gaps come back toward 12px. The borders stay gone: this register trades space, never
+ * legibility or the de-box decision.
+ */
+.sk-density-compact .sk-step-grid,
+.sk-density-compact .sk-usecase-grid,
+.sk-density-compact .sk-phase-row,
+.sk-density-compact .sk-split {
+  gap: 12px;
+}
+
+/* The two grids with the widest default gaps, brought down proportionally rather than to a flat
+   12px — WallGrid's 22px and PillarGrid's 18px are carrying the borders decision C removed, so
+   collapsing them to the same value as the tighter grids would re-fragment the layout the de-box
+   pass just cleaned up. */
+.sk-density-compact .sk-wall-grid {
+  gap: 14px;
+}
+.sk-density-compact .sk-pillar-grid {
+  gap: 12px;
+}

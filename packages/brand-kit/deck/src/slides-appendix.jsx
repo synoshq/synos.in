@@ -486,9 +486,8 @@ export const appendixSlides = (K) => {
      * is no table in the kit; this is `.dk-comp` in deck.css. The two footnotes are Callouts. */
     {
       id: 'apx-landscape-detail',
-      dense: true,
       node: (
-        <SlideFrame stage={false}>
+        <SlideFrame density="compact" stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="Appendix · Landscape detail"

@@ -108,121 +108,40 @@
   letter-spacing: 0.4px;
 }
 
-/* ── 4. The density register the kit does not have ─────────────────────────
+/* ── 4. Deck-local classes under the kit's compact register ────────────────
  *
- * THIS IS THE HEADLINE FINDING OF THE WHOLE REBUILD, and it is a hack, stated as one.
+ * The density register itself now lives in the kit — `src/deck/Density.css`, opted into per slide
+ * with `<SlideFrame density="compact">`. That was the headline finding of this rebuild: the kit had
+ * one type scale, tuned for a PRESENTING deck, and this is the READING deck, so eight of the
+ * thirty-five slides overflowed the 712px card and reveal split them across extra PDF pages. The
+ * deck shipped a `.dk-dense` block as a stopgap and said so in this comment.
  *
- * The kit has exactly one type scale: 54 / 26 / 20 / 16 / 13 (decisions C and F). It is the right
- * scale for a *presenting* deck and it is measurably better than the 34 / 18 / 17 / 16 / 11.5 it
- * replaced — every adjacent ratio now clears 1.25 where three levels used to sit inside 12.5%.
- *
- * But `synos-vc-deck-v6.html` is the READING deck. deck-research's correction block establishes
- * that it is sent without a presenter and therefore legitimately carries more words than the
- * presenting build — 236 a slide against 190 — and that thinning it is the wrong fix. So the deck
- * arrives with 1,438 rendered characters a slide and the kit arrives with a scale that needs more
- * room per character, and the card is a fixed 712px with no slack.
- *
- * Measured with `node deck/probe/measure.mjs`:
- *
- *   header block (eyebrow + h1 + subtitle)   source mean 158px / max 193px
- *                                            kit    mean 223px / max 286px   -> +65px a slide
- *   slides whose content runs past the card  source 0 / 35 · kit 8 / 35, worst +112px
- *   PDF pages via _build_deck_pdf.py         source 35 · kit 42 (reveal splits an overflowing
- *                                            slide across pages, which is exactly the page-count
- *                                            drift deck-research §B.4 flagged on two other decks)
- *
- * `.dk-dense` is applied to the eight slides that overflow and to nothing else. It is a SECOND
- * TYPE SCALE living in a deck, which is precisely the drift these passes exist to remove — a
- * per-artifact scale is how you end up with two design systems again. It is here because the
- * alternative was shipping a deck with eight broken slides and a PDF that fails its own verifier,
- * and because writing the numbers down is more useful than either.
- *
- * The fix belongs in the kit, not here, and it is not "make the scale smaller": it is a density
- * register the kit chooses deliberately, plus the column grid and spacing scale the improvement
- * report has had at item 1 since 2026-08-13. See the report's §5 for the shape of it.
- *
- * `h1` deliberately does NOT move. It is the brand's one display role, its position is what
- * decision I just pinned, and shrinking it per slide would split the register across the deck.
- * Everything paid here is paid out of the subtitle and the body.
+ * What remains here is only the part the kit cannot own: the compact values for THIS DECK's own
+ * spacing and matrix classes, which exist because the kit still has no column grid, no spacing
+ * scale and no table (report §14, items 1 and 2 — the next two things on the backlog). They key
+ * off the kit's `.sk-density-compact`, so there is exactly one switch and this file no longer
+ * decides anything about type. When the grid and the table land in the kit, this block goes with
+ * them.
  */
-.dk-dense .sk-header h2 {
-  font-size: 19px;
-  line-height: 1.28;
-  margin-bottom: 10px;
-}
-/* h1's own bottom margin is fair game; the EYEBROW's is not. The eyebrow sits above the h1, so
-   tightening it moves the headline — `deck/probe/measure.mjs` caught a `.dk-dense .sk-eyebrow`
-   rule here immediately, reporting a third distinct h1 position. Decision I's guarantee is that
-   nothing in this file may touch anything above the headline. */
-.dk-dense .sk-header h1 {
-  margin-bottom: 8px;
-}
-.dk-dense .sk-step-title,
-.dk-dense .sk-usecase-title,
-.dk-dense .sk-phase-title {
-  margin-bottom: 4px;
-}
-.dk-dense .sk-header {
-  margin-bottom: 12px;
-}
-.dk-dense p,
-.dk-dense li {
-  font-size: 13.5px;
-  line-height: 1.42;
-}
-/* Decisions C and G opened every grid gap to replace the borders they removed. On a dense slide
-   that room is not available, so the gaps come back toward the source's 12–14px. */
-.dk-dense .sk-step-grid,
-.dk-dense .sk-usecase-grid,
-.dk-dense .sk-phase-row,
-.dk-dense .sk-split {
-  gap: 12px;
-}
-.dk-dense .sk-caption {
-  font-size: 13px;
-  margin-top: 8px;
-}
-.dk-dense .dk-gap {
+.sk-density-compact .dk-gap {
   margin-top: 10px;
 }
-.dk-dense .sk-callout {
-  font-size: 13px;
-  padding-top: 6px;
-  padding-bottom: 6px;
+.sk-density-compact .dk-gap-sm {
+  margin-top: 8px;
 }
-.dk-dense .sk-step-quote,
-.dk-dense .sk-quote {
-  font-size: 11.5px;
-  line-height: 1.3;
-  margin-top: 6px;
+.sk-density-compact .dk-stack {
+  gap: 10px;
 }
-.dk-dense .sk-step-body {
-  padding-top: 6px;
+.sk-density-compact .dk-cols {
+  gap: 14px;
 }
-.dk-dense .sk-callout-label {
-  margin-bottom: 3px;
-}
-.dk-dense .dk-matrix-c {
+.sk-density-compact .dk-matrix-c {
   font-size: 10px;
   padding: 5px 7px;
 }
-.dk-dense .dk-comp-c {
+.sk-density-compact .dk-comp-c {
   font-size: 11px;
   padding: 4px 0;
-}
-.dk-dense .sk-step-title,
-.dk-dense .sk-usecase-title,
-.dk-dense .sk-phase-title {
-  font-size: 17px;
-}
-.dk-dense .dk-gap-sm {
-  margin-top: 8px;
-}
-.dk-dense .dk-stack {
-  gap: 10px;
-}
-.dk-dense .dk-cols {
-  gap: 14px;
 }
 
 /* ── 2. The matrices ───────────────────────────────────────────────────────

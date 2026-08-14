@@ -365,10 +365,9 @@ export const mainSlides = (K) => {
      * from Eyebrow / Chip / ChipRow / Callout / Caption. */
     {
       id: 'architecture-today',
-      dense: true,
       variant: 'arch',
       node: (
-        <SlideFrame stage={false} variant="arch">
+        <SlideFrame density="compact" stage={false} variant="arch">
           <SlideHeader
             eyebrow="What we built · job one, today"
             eyebrowTone="indigo"
@@ -454,9 +453,8 @@ export const mainSlides = (K) => {
      * `.dn` → num, h3 → title, p → body, `.dq` → quote. */
     {
       id: 'hard-part',
-      dense: true,
       node: (
-        <SlideFrame stage={false}>
+        <SlideFrame density="compact" stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="The hard part we're taking on"
@@ -592,10 +590,9 @@ export const mainSlides = (K) => {
      * PillarCard takes a ReactNode name, so this needs no new prop. */
     {
       id: 'architecture-training',
-      dense: true,
       variant: 'arch',
       node: (
-        <SlideFrame stage={false} variant="arch">
+        <SlideFrame density="compact" stage={false} variant="arch">
           <SlideHeader
             eyebrow="What we're building · job two"
             eyebrowTone="violet"
@@ -832,9 +829,8 @@ export const mainSlides = (K) => {
      * SlideHeader + the loop SVG (deck content) + Caption + Callout. */
     {
       id: 'compounds',
-      dense: true,
       node: (
-        <SlideFrame stage={false}>
+        <SlideFrame density="compact" stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="Why it compounds"
@@ -932,9 +928,8 @@ export const mainSlides = (K) => {
      * `.sm-flow` (a four-step arrow sequence) is composed from Chips and `.dk-arrow`. */
     {
       id: 'the-wedge',
-      dense: true,
       node: (
-        <SlideFrame stage={false}>
+        <SlideFrame density="compact" stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="The wedge"
@@ -1148,9 +1143,8 @@ export const mainSlides = (K) => {
      * footnote below it is a Callout. */
     {
       id: 'landscape',
-      dense: true,
       node: (
-        <SlideFrame stage={false}>
+        <SlideFrame density="compact" stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="Landscape"
@@ -1269,9 +1263,8 @@ export const mainSlides = (K) => {
      * `.dproof` → quote. `.tstakes` → a Callout. */
     {
       id: 'differently',
-      dense: true,
       node: (
-        <SlideFrame stage={false}>
+        <SlideFrame density="compact" stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="How we build this differently"

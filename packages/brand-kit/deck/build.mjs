@@ -107,11 +107,17 @@ if (slides.length !== 35) throw new Error(`expected 35 slides, the definition ha
  * reveal's print-pdf path counts. The page number is rendered here rather than injected by a script
  * on load, as the source does — a `.pnum` appended by JS is a thing that can silently not run
  * during a PDF export, and the count is known at build time.
+ *
+ * The section carries no density class. Density used to be a `dense: true` flag on the slide record
+ * that this line turned into `.dk-dense` on the wrapper; it is now `<SlideFrame density="compact">`
+ * inside the slide itself, because the register moved into the kit (`src/deck/Density.css`) and the
+ * card is the thing that has a register. One source of truth, and it travels with the component
+ * rather than with this deck's build script.
  */
 const sections = slides
   .map(
     (s, i) =>
-      `<section class="has-card${s.dense ? ' dk-dense' : ''}" data-slide="${s.id}">${renderToStaticMarkup(s.node)}` +
+      `<section class="has-card" data-slide="${s.id}">${renderToStaticMarkup(s.node)}` +
       (i === 0 ? '' : `<div class="dk-pnum">${i + 1} / ${slides.length}</div>`) +
       `</section>`,
   )

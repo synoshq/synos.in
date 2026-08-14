@@ -16,7 +16,7 @@ import './styles/tokens.css'
 import './styles/base.css'
 
 export { SlideFrame } from './deck/SlideFrame'
-export type { SlideFrameProps, SlideVariant } from './deck/SlideFrame'
+export type { SlideFrameProps, SlideVariant, SlideDensity } from './deck/SlideFrame'
 
 export { Eyebrow } from './deck/Eyebrow'
 export type { EyebrowProps } from './deck/Eyebrow'

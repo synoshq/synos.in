@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { cx } from '../types'
 import './SlideFrame.css'
+import './Density.css'
 
 /** Which frame treatment the slide uses. */
 export type SlideVariant =
@@ -12,6 +13,26 @@ export type SlideVariant =
   | 'cover'
   /** `.big-type` — centred, `56px 64px`. Pair with `BigTypeSlide` for the contents. */
   | 'bigType'
+
+/**
+ * Which type register the slide's contents use.
+ *
+ * This is an artifact-level choice, not a per-slide escape hatch: a deck picks one and applies it
+ * to every slide that needs it. See `Density.css` for what compact moves and what it may never
+ * touch.
+ */
+export type SlideDensity =
+  /**
+   * The kit's scale — 54 / 26 / 20 / 16 / 13. Tuned for a PRESENTING deck: read across a room off
+   * a projector, with a presenter carrying the words that are not on the slide.
+   */
+  | 'default'
+  /**
+   * The reading register — subtitle 19, body 13.5, card titles 17, gaps back to ~12px. For a deck
+   * that is SENT rather than presented, so it legitimately carries more words a slide and is read
+   * at arm's length. `h1` and everything above it are identical to `default` by construction.
+   */
+  | 'compact'
 
 export interface SlideFrameProps {
   /**
@@ -31,6 +52,11 @@ export interface SlideFrameProps {
    * @default '99%'
    */
   maxWidth?: string
+  /**
+   * Type register for the slide's contents. Defaults to `'default'` (the presenting scale).
+   * @default 'default'
+   */
+  density?: SlideDensity
   /** Slide contents. Normally a `SlideHeader` followed by one body block. */
   children?: ReactNode
   className?: string
@@ -58,6 +84,7 @@ const VARIANT_CLASS: Record<SlideVariant, string | false> = {
  */
 export function SlideFrame({
   variant = 'default',
+  density = 'default',
   stage = true,
   maxWidth = '99%',
   children,
@@ -66,7 +93,13 @@ export function SlideFrame({
 }: SlideFrameProps) {
   const card = (
     <div
-      className={cx('sk-deck', 'sk-slide', VARIANT_CLASS[variant], className)}
+      className={cx(
+        'sk-deck',
+        'sk-slide',
+        VARIANT_CLASS[variant],
+        density === 'compact' && 'sk-density-compact',
+        className,
+      )}
       style={maxWidth === 'none' ? style : { maxWidth, ...style }}
     >
       {children}

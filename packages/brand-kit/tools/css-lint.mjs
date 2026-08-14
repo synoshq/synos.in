@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Two rules the kit states about itself, checked instead of trusted.
+ * Three rules the kit states about itself, checked instead of trusted.
  *
  * **1. Comments must balance.** Added after a CSS comment described "72px/400" with markdown bold
  * around the size. Two asterisks followed by a slash is a comment terminator, so the comment closed
@@ -11,6 +11,13 @@
  * **2. No literal colour in a component.** Every colour lives in `tokens.css`; a component that
  * hardcodes one is a colour the brand does not know it has — deck-research §D.3 found eight of
  * those in the source decks. `tokens.css` itself is exempt: that is where the literals belong.
+ *
+ * **3. The density register may not reach above the headline.** `Density.css` is a second type
+ * register a deck opts into (`<SlideFrame density="compact">`). The eyebrow sits ABOVE the h1, so
+ * any rule that tightens it MOVES the headline — and the h1's fixed top offset is decision I, the
+ * thing the 2026-08-14 rebuild bought by collapsing 27 distinct h1 positions across 35 slides down
+ * to 2. A `.sk-eyebrow` rule in that deck's original dense block produced a third position
+ * immediately, which is how the constraint was found. A comment cannot enforce it; this can.
  *
  *   node tools/css-lint.mjs
  */
@@ -67,6 +74,62 @@ for (const file of walk(SRC)) {
   }
 }
 
+/* ── 3. The density register may not reach above the headline ─────────────── */
+const DENSITY = join(SRC, 'deck', 'Density.css')
+{
+  const src = readFileSync(DENSITY, 'utf8')
+  const rel = relative(ROOT, DENSITY)
+  const lineAt = (n) => src.slice(0, n).split('\n').length
+  /* Blank comments out in place, so offsets — and therefore line numbers — stay true. */
+  const code = src.replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '))
+
+  /* The h1 may give up the space BELOW it and nothing else: its own bottom margin closes the gap
+     under the headline without moving the headline. */
+  const H1_ALLOWED = new Set(['margin-bottom', 'padding-bottom'])
+
+  for (const rule of code.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const selector = rule[1].trim().replace(/\s+/g, ' ')
+    const at = lineAt(rule.index)
+    const props = [...rule[2].matchAll(/([a-z-]+)\s*:/g)].map((m) => m[1])
+
+    if (/\.sk-eyebrow\b/.test(selector)) {
+      problems.push(
+        `${rel}:${at} — \`${selector}\` targets the eyebrow. The eyebrow sits above the h1, so ` +
+          `changing it moves the headline and breaks decision I. Pay the space out of the ` +
+          `subtitle, the body or the gaps instead.`,
+      )
+    }
+
+    if (/\bh1\b/.test(selector)) {
+      const bad = props.filter((p) => !H1_ALLOWED.has(p))
+      if (bad.length) {
+        problems.push(
+          `${rel}:${at} — \`${selector}\` sets ${bad.map((p) => `\`${p}\``).join(', ')}. The ` +
+            `density register may only set ${[...H1_ALLOWED].map((p) => `\`${p}\``).join(' or ')} ` +
+            `on the h1: its size, face and top position are fixed across every register.`,
+        )
+      }
+    }
+
+    /* `.sk-header` itself: its bottom margin is the gap under the whole block and is fair game;
+       anything that shortens it from the top drags the headline up with it. */
+    if (/\.sk-header\s*$/.test(selector)) {
+      const bad = props.filter((p) => /^(margin|padding)-top$/.test(p) || p === 'margin' || p === 'padding')
+      if (bad.length) {
+        problems.push(
+          `${rel}:${at} — \`${selector}\` sets ${bad.map((p) => `\`${p}\``).join(', ')}, which ` +
+            `moves the header block's top edge and therefore the h1. Only its bottom spacing may ` +
+            `change between registers.`,
+        )
+      }
+    }
+  }
+}
+
 for (const p of problems) console.log(`FAIL ${p}`)
-console.log(problems.length ? `\n${problems.length} problem(s).` : 'css-lint: comments balance, no literal colour outside tokens.css.')
+console.log(
+  problems.length
+    ? `\n${problems.length} problem(s).`
+    : 'css-lint: comments balance, no literal colour outside tokens.css, density register stays below the h1.',
+)
 process.exit(problems.length ? 1 : 0)
