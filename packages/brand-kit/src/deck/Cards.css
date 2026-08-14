@@ -596,6 +596,15 @@
 .sk-caption strong {
   color: var(--sk-indigo);
 }
+/* Evidence rather than remark: the mono register, one step down in size because JetBrains Mono
+   runs wider than Inter at the same nominal size and a centred caption that fills the measure stops
+   reading as an aside. */
+.sk-caption--mono {
+  font-family: var(--sk-font-mono);
+  font-size: 13px;
+  letter-spacing: -0.1px;
+}
+
 /* `.nadella` — the same line, italicised for an attributed remark. */
 .sk-caption--italic {
   font-style: italic;

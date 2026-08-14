@@ -489,6 +489,18 @@ export interface CaptionProps {
    * @default false
    */
   italic?: boolean
+  /**
+   * Set the line in JetBrains Mono at the caption's size, for a line of *evidence* rather than a
+   * remark — a contract shape, a metric, a status. The mono face is the kit's third and quietest
+   * register and it reads as "this is a fact, not a claim", which is precisely the job a caption
+   * under a traction slide is doing.
+   *
+   * Added because the v7 rebuild lost that face: the traction line had been a `StepCard.quote`,
+   * which renders mono, and moving it to a Caption silently dropped it. Rather than route the
+   * content back through a card it does not belong in, the register it needed became a prop.
+   * @default false
+   */
+  mono?: boolean
   children: ReactNode
   className?: string
   style?: CSSProperties
@@ -499,9 +511,17 @@ export interface CaptionProps {
  *
  * `<strong>` inside a caption goes indigo — that is the emphasis convention, not a colour choice.
  */
-export function Caption({ italic = false, children, className, style }: CaptionProps) {
+export function Caption({ italic = false, mono = false, children, className, style }: CaptionProps) {
   return (
-    <div className={cx('sk-caption', italic && 'sk-caption--italic', className)} style={style}>
+    <div
+      className={cx(
+        'sk-caption',
+        italic && 'sk-caption--italic',
+        mono && 'sk-caption--mono',
+        className,
+      )}
+      style={style}
+    >
       {children}
     </div>
   )

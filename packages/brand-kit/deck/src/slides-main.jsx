@@ -1036,10 +1036,10 @@ export const mainSlides = (K) => {
                 </>
               }
             />
-            {/* Was StepCard's `quote` slot, which rendered mono. UseCaseCard has no quote slot and
-                Caption has no mono option, so this keeps the content and loses the mono face. A
-                `mono` prop on Caption is the kit-side fix. */}
-            <Caption>
+            {/* Was StepCard's `quote` slot, which rendered mono. UseCaseCard has no quote slot,
+                so the line moved to a Caption — and the mono face came back as a Caption prop
+                rather than by routing the content through a card it does not belong in. */}
+            <Caption mono>
               committed paid monthly POC · Cloud FinOps Brain + DevOps agents · expansion in discussion
             </Caption>
             </div>
