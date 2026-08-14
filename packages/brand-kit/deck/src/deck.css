@@ -59,13 +59,19 @@
   line-height: 1;
 }
 
+/* A wrapping row of tiles at content width, tightened. `TileRow even={false}` is a flex-wrap row on
+   the kit's 8px step; the architecture slides need 5px to fit six harness tiles on one line. */
+.dk-tile-row-tight {
+  gap: 5px;
+}
+
 /* A chip whose label carries a second, quieter line. Source: `.d1-chip .d1-kd`, `.sm-st .xs`.
  *
- * The kit's Chip is deliberately a single nowrap line — the inventory (§5.5) excluded `.tool-chip`
- * and `.harness-chip`, the two-line chips with an icon block, on the grounds that they are cards.
- * The architecture slides need the two-line form anyway, so the deck relaxes `white-space` and caps
- * the measure on the chips that carry a descriptor. This is a deck-local override of a kit class,
- * which is the smell it looks like; it is recorded in the report rather than pushed into the kit.
+ * The kit's Chip is deliberately a single nowrap line, and stays that way. Most of what used this
+ * override is now the kit's `Tile` — the two-line card built once the buyer decks put 77 uses
+ * behind it. What is left is ONE row: the Qualify -> Land -> Expand flow, where the chips are
+ * large and separated by connector arrows, and where a tile would read as four cards instead of a
+ * sequence. That row keeps the override deliberately.
  */
 .sk-chip:has(.dk-chip-kd) {
   white-space: normal;

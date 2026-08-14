@@ -27,6 +27,9 @@ export type { SlideHeaderProps, SlideHeaderLayout } from './deck/SlideHeader'
 export { CoverSlide, BigTypeSlide } from './deck/Slides'
 export type { CoverSlideProps, BigTypeSlideProps } from './deck/Slides'
 
+export { Tile, TileRow } from './deck/Tile'
+export type { TileProps, TileRowProps, TileSize } from './deck/Tile'
+
 export { Stack, Columns } from './deck/Layout'
 export type { StackProps, ColumnsProps, ColumnsRatio, Space } from './deck/Layout'
 

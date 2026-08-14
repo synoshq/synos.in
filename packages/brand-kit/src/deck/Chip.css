@@ -15,8 +15,10 @@
  *
  * Print source: .pchip — SYNOS_VC_1PAGER.html (radius 7px, padding 3px 9px, 8.8px / 600).
  *
- * Excluded: .tool-chip and .harness-chip are named chips but carry a 30-38px icon block and two
- * lines of text. They are cards, and are one-family patterns. See inventory §5.5.
+ * Excluded, and still excluded: .tool-chip and .harness-chip are named chips but carry a 30-38px
+ * icon block and two lines of text. They are cards. `Chip` stays one nowrap line. They now have
+ * their own component — see `Tile` — built once the buyer decks put 77 uses behind them; the
+ * inventory's §5.5 call was right about the shape and only short of evidence about the volume.
  */
 
 .sk-chip {

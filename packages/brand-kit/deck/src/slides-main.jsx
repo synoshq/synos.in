@@ -78,6 +78,8 @@ export const mainSlides = (K) => {
     SlideFrame,
     SlideHeader,
     Matrix,
+    Tile,
+    TileRow,
     Stack,
     Columns,
     Eyebrow,
@@ -122,14 +124,11 @@ export const mainSlides = (K) => {
   const HarnessRow = ({ label, chips }) => (
     <div>
       <Eyebrow tone="muted">{label}</Eyebrow>
-      <ChipRow tight>
+      <TileRow even={false} className="dk-tile-row-tight">
         {chips.map(([nm, kd]) => (
-          <Chip key={nm} mono>
-            {nm}
-            <span className="dk-chip-kd">{kd}</span>
-          </Chip>
+          <Tile key={nm} size="sm" mono name={nm} kind={kd} />
         ))}
-      </ChipRow>
+      </TileRow>
     </div>
   )
 
@@ -1487,13 +1486,13 @@ export const mainSlides = (K) => {
             />
           </PhaseRow>
           <Callout tone="emerald" fill="neutral" className="dk-gap" label="What is true when this round is spent">
-            <ChipRow>
-              <Chip tone="emerald">Revenue<span className="dk-chip-kd">Committed contracts paid and referenceable</span></Chip>
-              <Chip tone="emerald">Repeatability<span className="dk-chip-kd">Delivery cost per engagement instrumented, falling</span></Chip>
-              <Chip tone="emerald">Product<span className="dk-chip-kd">Eval + fine-tuning infra live on real capture</span></Chip>
-              <Chip tone="emerald">Phase-two proof<span className="dk-chip-kd">First training run on one customer’s own data</span></Chip>
-              <Chip tone="emerald">Geography<span className="dk-chip-kd">India motion scaled; first US logo outside the Bay Area</span></Chip>
-            </ChipRow>
+            <TileRow>
+              <Tile size="sm" tone="emerald" name="Revenue" kind="Committed contracts paid and referenceable" />
+              <Tile size="sm" tone="emerald" name="Repeatability" kind="Delivery cost per engagement instrumented, falling" />
+              <Tile size="sm" tone="emerald" name="Product" kind="Eval + fine-tuning infra live on real capture" />
+              <Tile size="sm" tone="emerald" name="Phase-two proof" kind="First training run on one customer’s own data" />
+              <Tile size="sm" tone="emerald" name="Geography" kind="India motion scaled; first US logo outside the Bay Area" />
+            </TileRow>
           </Callout>
           <Caption className="dk-gap-sm">
             What it buys, plainly:{' '}

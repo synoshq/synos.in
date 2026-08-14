@@ -1,0 +1,120 @@
+/*
+ * Tile — the two-line label. Sources: `.harness-chip` / `.h-name` / `.h-kind` and `.tool-chip` /
+ * `.t-ic` / `.t-nm` / `.t-kd`, both from `synos-ops-buyer.html` and `synos-tech-buyer.html`
+ * (identical in both — the two buyer decks share 91% of their class vocabulary).
+ *
+ * Measured: 77 uses across the buyer pair. See `Tile.tsx` for why this is a component now when the
+ * inventory excluded it, and why it is a card rather than a `Chip` prop.
+ *
+ * Deliberate departures from the two sources:
+ *
+ *   - **The name takes the body face, not the display face.** Both sources set `.h-name` and
+ *     `.t-nm` in Plus Jakarta Sans. Decision A retired that face and scopes Instrument Serif to
+ *     h1 / cover title / stat value only, never below 24px — and these run 12-13px.
+ *   - **The tone drives the border, not a hardcoded amber.** `.harness-chip` hardcodes `#fde68a`
+ *     with `#78350f` text: an amber tile whose amber the brand did not know it had. Both are
+ *     tokens, so it becomes `tone="amber"` and every other hue comes free.
+ */
+
+.sk-tile {
+  --sk-tile-bg: var(--sk-surface-2);
+  --sk-tile-br: var(--sk-border);
+  --sk-tile-fg: var(--sk-ink);
+  --sk-tile-kind: var(--sk-muted);
+
+  background: var(--sk-tile-bg);
+  border: 1px solid var(--sk-tile-br);
+  border-radius: 12px;
+  padding: 16px 10px;
+  text-align: center;
+}
+
+.sk-tile-ico {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sk-indigo-bg);
+  border: 1px solid var(--sk-indigo-br);
+  color: var(--sk-indigo);
+}
+
+.sk-tile-name {
+  /* Decision A: the display face is Instrument Serif and never renders below 24px. */
+  font-family: var(--sk-font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sk-tile-fg);
+  line-height: 1.25;
+}
+
+.sk-tile-name--mono {
+  font-family: var(--sk-font-mono);
+}
+
+.sk-tile-kind {
+  font-size: 10px;
+  color: var(--sk-tile-kind);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* The dense form, for a row of six or more. `.harness-chip`: white fill, tighter padding, and the
+   name a step smaller. No icon — at this size the glyph block is taller than both lines of text. */
+.sk-tile--sm {
+  --sk-tile-bg: var(--sk-surface);
+  border-radius: 8px;
+  padding: 10px 8px;
+}
+.sk-tile--sm .sk-tile-name {
+  font-size: 12px;
+}
+
+/* ── Tones. Same bg/br/text triple as Chip and Callout. ─────────────────── */
+.sk-tile--indigo {
+  --sk-tile-bg: var(--sk-indigo-bg);
+  --sk-tile-br: var(--sk-indigo-br);
+  --sk-tile-fg: var(--sk-indigo);
+  --sk-tile-kind: var(--sk-indigo);
+}
+.sk-tile--violet {
+  --sk-tile-bg: var(--sk-violet-bg);
+  --sk-tile-br: var(--sk-violet-br);
+  --sk-tile-fg: var(--sk-violet);
+  --sk-tile-kind: var(--sk-violet);
+}
+.sk-tile--emerald {
+  --sk-tile-bg: var(--sk-emerald-bg);
+  --sk-tile-br: var(--sk-emerald-br);
+  --sk-tile-fg: var(--sk-emerald-ink);
+  --sk-tile-kind: var(--sk-emerald);
+}
+/* The source's `.harness-chip` exactly: white fill, amber border, amber-ink name, amber kind. */
+.sk-tile--amber {
+  --sk-tile-br: var(--sk-amber-br-2);
+  --sk-tile-fg: var(--sk-amber-ink);
+  --sk-tile-kind: var(--sk-amber);
+}
+.sk-tile--red {
+  --sk-tile-bg: var(--sk-red-bg);
+  --sk-tile-br: var(--sk-red-br);
+  --sk-tile-fg: var(--sk-red-ink);
+  --sk-tile-kind: var(--sk-red);
+}
+
+.sk-tile-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--sk-space-3);
+  align-items: stretch;
+}
+/* Content-width tiles, for a row that wraps. */
+.sk-tile-row--auto {
+  display: flex;
+  flex-wrap: wrap;
+  grid-auto-flow: unset;
+}
