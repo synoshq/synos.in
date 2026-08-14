@@ -143,8 +143,8 @@ export const REASONS = {
     'reason that three or more stacked text levels need a surface, and both named so the number moves',
     'if that call changes.',
   ].join('\n'),
-  H: [
-    '**Decision H — the title stops moving (2026-08-14, the deck-on-kit pass).** `.sk-slide` was',
+  I: [
+    '**Decision I — the title stops moving (2026-08-14, the deck-on-kit pass).** `.sk-slide` was',
     '`justify-content: center`, copied faithfully from `.card-frame`. That makes a slide title\'s',
     'vertical position a function of how much content sits BELOW it, so the headline walks up and',
     'down the screen as the deck advances — and in a live presentation the transition is what you',
@@ -243,7 +243,7 @@ export const SPECIMENS = [
     checks: [
       {
         source: '.card-frame', built: '.sk-slide', props: [...BOX, 'width', 'height', 'box-shadow', 'display', 'flex-direction', 'justify-content'],
-        intentional: { 'justify-content': ['center', 'flex-start', 'H'] },
+        intentional: { 'justify-content': ['center', 'flex-start', 'I'] },
       },
     ],
   },
@@ -270,9 +270,9 @@ export const SPECIMENS = [
     checks: [
       {
         source: '.card-frame.arch-card', built: '.sk-slide', props: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'border-top-left-radius', 'justify-content'],
-        // The arch frame declares `justify-content: center` a second time, so decision H has to be
+        // The arch frame declares `justify-content: center` a second time, so decision I has to be
         // recorded on both specimens or the arch card would silently keep centring.
-        intentional: { 'justify-content': ['center', 'flex-start', 'H'] },
+        intentional: { 'justify-content': ['center', 'flex-start', 'I'] },
       },
       // `.arch-card h1 { 24px }` / `h2 { 13.5px }` lose the specificity tie to `.reveal h1/h2` and
       // never take effect; the shipped arch slide renders h1 at 34px and h2 at 18px. Asserting the

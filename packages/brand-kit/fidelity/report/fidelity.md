@@ -346,9 +346,36 @@ rail now agree on one indigo instead of two.
 
 | Specimen | Selector | Property | Source | Built |
 |---|---|---|---|---|
+| `phase` | `.sk-phase-badge` | `background-color` | `rgb(99, 102, 241)` | `rgb(67, 56, 202)` |
+
+### I
+
+**Decision I — the title stops moving (2026-08-14, the deck-on-kit pass).** `.sk-slide` was
+`justify-content: center`, copied faithfully from `.card-frame`. That makes a slide title's
+vertical position a function of how much content sits BELOW it, so the headline walks up and
+down the screen as the deck advances — and in a live presentation the transition is what you
+see. deck-research §D.1 calls it "the highest-value single change in this document" and §D.5
+ranks it the single most visible "homemade" tell there is.
+
+**Measured, not asserted.** `node deck/probe/measure.mjs --source` reports the shipped
+`synos-vc-deck-v6.html` landing its `h1` at **25 distinct top offsets across 35 slides,
+spanning 175px — 24.3% of stage height**. The same probe on the deck rebuilt on this kit
+reports **2 positions and a 32px spread**: one value for the default frame, one for the tighter
+`arch` frame, which is exactly G1's stated success criterion of `distinctH1Tops ≤ 2`.
+
+This is the one place in three passes where the kit deliberately stops reproducing the source
+rather than reproducing it exactly, on a defect the source is known to have. It stayed undone
+through the whole improvement pass for a good reason — nothing consumed the kit, so there were
+no real slides on which a moving headline could be seen. Building a real deck is what made it
+visible, and fixing it is one declaration.
+
+The cost, accepted in advance by G1: sparse slides now carry their slack at the bottom rather
+than split top and bottom, which reads as unfinished until the eye adjusts.
+
+| Specimen | Selector | Property | Source | Built |
+|---|---|---|---|---|
 | `slide-frame-default` | `.sk-slide` | `justify-content` | `center` | `flex-start` |
 | `slide-frame-arch` | `.sk-slide` | `justify-content` | `center` | `flex-start` |
-| `phase` | `.sk-phase-badge` | `background-color` | `rgb(99, 102, 241)` | `rgb(67, 56, 202)` |
 
 ## Recorded conflicts — differences that are correct
 
