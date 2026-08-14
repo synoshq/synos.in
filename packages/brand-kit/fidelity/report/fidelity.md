@@ -1,7 +1,7 @@
 # Fidelity report
 
 27 specimens · 104 computed-style checks · 27 passing, 0 failing.
-142 of those checks record a **deliberate** divergence from the source artifact.
+144 of those checks record a **deliberate** divergence from the source artifact.
 
 Each specimen renders a built component and the real slide it was extracted from at the same
 viewport, screenshots both, and compares the computed values of the properties that carry the
@@ -16,8 +16,8 @@ decision that moved it.
 
 | Specimen | Component | Source | Checks | Recorded moves | Result |
 |---|---|---|---:|---:|---|
-| `slide-frame-default` | SlideFrame | presenting s2 | 1 | 0 | PASS |
-| `slide-frame-arch` | SlideFrame variant="arch" | presenting s6 | 5 | 4 | PASS |
+| `slide-frame-default` | SlideFrame | presenting s2 | 1 | 1 | PASS |
+| `slide-frame-arch` | SlideFrame variant="arch" | presenting s6 | 5 | 5 | PASS |
 | `eyebrow-indigo` | Eyebrow tone="indigo" | presenting s7 | 1 | 2 | PASS |
 | `eyebrow-violet` | Eyebrow tone="violet" | presenting s2 | 1 | 2 | PASS |
 | `eyebrow-red` | Eyebrow tone="red" | presenting s4 | 1 | 2 | PASS |
@@ -346,6 +346,8 @@ rail now agree on one indigo instead of two.
 
 | Specimen | Selector | Property | Source | Built |
 |---|---|---|---|---|
+| `slide-frame-default` | `.sk-slide` | `justify-content` | `center` | `flex-start` |
+| `slide-frame-arch` | `.sk-slide` | `justify-content` | `center` | `flex-start` |
 | `phase` | `.sk-phase-badge` | `background-color` | `rgb(99, 102, 241)` | `rgb(67, 56, 202)` |
 
 ## Recorded conflicts — differences that are correct
