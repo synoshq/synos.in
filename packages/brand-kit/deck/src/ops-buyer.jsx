@@ -24,6 +24,7 @@ export const deck = (K) => {
     SlideFrame,
     SlideHeader,
     CoverSlide,
+    Eyebrow,
     Callout,
     Caption,
     Chip,
@@ -545,6 +546,94 @@ export const deck = (K) => {
           <div className="ob-capnote dk-gap-sm">
             The brain knows your business <em>and</em> how your company runs Synos —{' '}
             <em>so it can answer questions and help you operate it, in the same breath.</em>
+          </div>
+        </SlideFrame>
+      ),
+    },
+    /* ── 11 · No migration ────────────────────────────────────────────────
+     * `.tool-chip` is exactly the kit's `Tile` at `md` — this is the slide the component was
+     * measured from. The connector row below it is Eyebrow + ChipRow, unchanged. */
+    {
+      id: 'no-migration',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="No Migration, No New Habits"
+            eyebrowTone="indigo"
+            title="Your people keep working in the tools they already love."
+            subtitle="Synos sits underneath — making every one of them safe, shared, and always-on."
+          />
+          <TileRow>
+            <Tile name="ChatGPT" kind="marketing · sales" />
+            <Tile name="Claude Code" kind="ops · analysts" />
+            <Tile name="Codex" kind="analysts · eng" />
+            <Tile name="Slack" kind="everyone" />
+            <Tile name="WhatsApp" kind="field · ops" />
+          </TileRow>
+          <Caption className="dk-gap-sm">▼ all run on the same shared foundation ▼</Caption>
+          <div className="dk-gap-sm">
+            <Eyebrow tone="muted">
+              Connected to your existing stack out of the box — not replaced
+            </Eyebrow>
+            <ChipRow tight className="dk-gap-sm">
+              <Chip mono>Warehouse · BigQuery</Chip>
+              <Chip mono>CRM · Salesforce · HubSpot</Chip>
+              <Chip mono>Sheets · Docs · Notion</Chip>
+              <Chip mono>Drive · S3</Chip>
+              <Chip mono>Slack · Email · WhatsApp</Chip>
+              <Chip mono>Ads · GA</Chip>
+              <Chip mono>Tickets · Internal APIs</Chip>
+            </ChipRow>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 12 · The honest question ─────────────────────────────────────────
+     * `.why-card` is an icon, a heading and a paragraph, three across — UseCaseGrid, with the
+     * icons dropped. The kit's UseCaseCard has no icon slot and should not grow one for this: the
+     * three glyphs here (a brain, a shield, a person) restate their own headings and carry no
+     * information the heading does not. Decision C removed decoration that was doing no work;
+     * this is the same call. Recorded in the report as a deliberate loss, not an oversight. */
+    {
+      id: 'honest-question',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="The Honest Question"
+            eyebrowTone="indigo"
+            title="“Why not just ChatGPT or Claude Code?”"
+            subtitle={
+              <>
+                Because those are the driver. The hard part is everything the driver needs to run{' '}
+                <em>your</em> company — safely, and shared across the team. Keep them; Synos is the
+                layer underneath.
+              </>
+            }
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              title="A chat window forgets your business"
+              body="Every session starts blank. What one person teaches it stays in their account — and leaves when they do. Synos gives the whole team one shared memory that sticks."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="To help, it needs your data — safely"
+              body="On its own, that means pasting sensitive data or passwords into a chat. Synos is the one safe, logged door to your systems — with permissions and an instant off-switch."
+            />
+            <UseCaseCard
+              tone="violet"
+              title="It helps one person, on demand"
+              body="Great tools — but still one person, one request at a time. Synos turns them into always-on assistants the whole team shares, running on a schedule with approvals."
+            />
+          </UseCaseGrid>
+          <div className="ob-capnote dk-gap-sm">
+            Keep ChatGPT, Claude Code, Copilot — bring any of them.{' '}
+            <em>
+              Synos is the layer underneath that makes them work on your company — and lets you swap
+              the AI anytime without losing what it has learned.
+            </em>
           </div>
         </SlideFrame>
       ),
