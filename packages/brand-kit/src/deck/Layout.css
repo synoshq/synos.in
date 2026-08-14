@@ -1,0 +1,35 @@
+/*
+ * Layout.css — the kit's vertical rhythm and column grid.
+ *
+ * These two shapes were the largest single category of deck-local CSS: `.dk-stack`, `.dk-cols` and
+ * three `.dk-gap-*` margin utilities, collected in one deck's stylesheet precisely so the size of
+ * the missing subsystem was countable. It counted 72 call sites across 35 slides.
+ *
+ * The gap comes in as an inline custom-property value rather than a class per step, so a stack
+ * carries exactly one spacing decision and it is visible at the call site. The ratios are classes
+ * because there are three of them and they are geometry, not spacing.
+ */
+
+.sk-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-gap, var(--sk-space-5));
+  /* A stack inside the card's flex column must be allowed to shrink; the default `min-height:auto`
+     on a flex item means a tall child pushes the whole stack past the card edge instead. */
+  min-height: 0;
+}
+
+.sk-cols {
+  display: grid;
+  gap: var(--sk-gap, var(--sk-space-5));
+  align-items: stretch;
+}
+.sk-cols--even {
+  grid-template-columns: 1fr 1fr;
+}
+.sk-cols--lead {
+  grid-template-columns: 1.25fr 1fr;
+}
+.sk-cols--nudge {
+  grid-template-columns: 1.15fr 1fr;
+}

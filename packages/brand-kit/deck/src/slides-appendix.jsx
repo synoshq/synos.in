@@ -11,6 +11,8 @@ export const appendixSlides = (K) => {
     SlideFrame,
     SlideHeader,
     Matrix,
+    Stack,
+    Columns,
     Eyebrow,
     Callout,
     Chip,
@@ -177,9 +179,9 @@ export const appendixSlides = (K) => {
             title="New value is created at the edge of what models know."
             subtitle="Humans and agents, working together on one layer, create what no model holds, and everything they create teaches your AI. Humans move at AI speed; your AI learns your company."
           />
-          <div className="dk-cols dk-cols--54">
+          <Columns ratio="lead">
             <EdgeDiagram />
-            <div className="dk-stack">
+            <Stack>
               <Callout tone="indigo" fill="neutral" label="Humans get faster">
                 Knowledge work runs at AI speed, on the company's own context rather than generic
                 answers.
@@ -192,8 +194,8 @@ export const appendixSlides = (K) => {
                 Every piece of edge-work feeds the loop: your agents, skills and brain sharpen with the
                 work itself.
               </Callout>
-            </div>
-          </div>
+            </Stack>
+          </Columns>
           <QuoteBar className="dk-gap-sm">
             "You can offload a task, or even a job — <strong>you can never offload your learning.</strong>"
             As models commoditize expertise, the durable advantage moves from the model to the learning
@@ -548,7 +550,7 @@ export const appendixSlides = (K) => {
             sets the rails once; the domain experts operate on them. An agent- and data-infra play:
             every run and correction accumulates and compounds into your enterprise's own data.
           </Callout>
-          <div className="dk-cols dk-cols--12 dk-gap-sm">
+          <Columns className="dk-gap-sm">
             <Callout tone="indigo" fill="neutral" label="Built for a different person">
               Every category above is built for engineers. The developer is the user, and the
               enterprise's domain experts are downstream of a ticket. That is the gap: the knowledge
@@ -560,7 +562,7 @@ export const appendixSlides = (K) => {
               It must be self-hosted, neutral across every AI tool, and made of <strong>your</strong>{' '}
               corrections: three things a model vendor structurally will not do.
             </Callout>
-          </div>
+          </Columns>
         </SlideFrame>
       ),
     },
@@ -663,7 +665,7 @@ export const appendixSlides = (K) => {
 
     /* ── 35 · Appendix · why the neutral layer wins ───────────────────────
      * `.nw-wrap` is a two-column contrast: three tagged chip rows and a verdict on the left, a
-     * paragraph block and a chip row on the right. Composed from `.dk-cols` + Eyebrow + ChipRow +
+     * paragraph block and a chip row on the right. Composed from `Columns` + Eyebrow + ChipRow +
      * Callout rather than SplitColumns, because SplitColumns' item vocabulary (eyebrow, title,
      * marker rows) does not fit chip rows. */
     {
@@ -677,8 +679,8 @@ export const appendixSlides = (K) => {
             title="Each vendor's AI exists to lock in its own platform."
             subtitle="Enterprises already run multiple clouds, multiple SaaS platforms, multiple model providers, and no CIO will standardize the company's AI on a stack that belongs to one of them."
           />
-          <div className="dk-cols dk-cols--12">
-            <div className="dk-stack">
+          <Columns>
+            <Stack>
               <h3>The enterprise stack today: every layer pushing its own AI</h3>
               {[
                 ['Hyperscalers', ['each cloud → its own AI suite', 'tied to its own compute']],
@@ -698,8 +700,8 @@ export const appendixSlides = (K) => {
                 Each one's AI exists to defend its own platform, which makes it structurally unable to
                 be the layer that spans all of them.
               </Callout>
-            </div>
-            <div className="dk-stack">
+            </Stack>
+            <Stack>
               <h3>The neutral layer is the only one everyone can meet on.</h3>
               <p>
                 Model-agnostic, tool-agnostic, self-hosted on the customer's infra.{' '}
@@ -721,8 +723,8 @@ export const appendixSlides = (K) => {
                   <Chip key={c} tone="violet" mono>{c}</Chip>
                 ))}
               </ChipRow>
-            </div>
-          </div>
+            </Stack>
+          </Columns>
           <Callout tone="indigo" fill="neutral" className="dk-gap-sm" label="Why us">
             This layer is the intersection of three disciplines: agentic analytics and semantic layers,
             on-prem enterprise infrastructure, and enterprise go-to-market in this region.{' '}

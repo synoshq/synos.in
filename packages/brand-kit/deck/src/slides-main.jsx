@@ -78,6 +78,8 @@ export const mainSlides = (K) => {
     SlideFrame,
     SlideHeader,
     Matrix,
+    Stack,
+    Columns,
     Eyebrow,
     CoverSlide,
     BigTypeSlide,
@@ -241,7 +243,7 @@ export const mainSlides = (K) => {
               foot="vendor-built platforms succeed 2× as often as internal builds · MIT"
             />
           </PhaseRow>
-          <div className="dk-cols dk-cols--12 dk-gap">
+          <Columns className="dk-gap">
             <Callout tone="red" label="And it is going badly">
               <strong>95%</strong> of enterprise GenAI pilots deliver no P&L impact (MIT).{' '}
               <strong>~40%</strong> of agentic projects cancelled by 2027 (Gartner). The failure is
@@ -251,7 +253,7 @@ export const mainSlides = (K) => {
               The destination isn't in doubt. What none of them has is{' '}
               <strong>somewhere to do it</strong>, that they own.
             </Callout>
-          </div>
+          </Columns>
         </SlideFrame>
       ),
     },
@@ -492,7 +494,7 @@ export const mainSlides = (K) => {
               quote="traces + corrections + private evals → their dataset, on their infra"
             />
           </StepGrid>
-          <div className="dk-cols dk-cols--12 dk-gap">
+          <Columns className="dk-gap">
             <Callout tone="emerald" label="Live today">
               Profiling and the capture loop ship today and are accumulating in every deployment.
               Increasingly we solve these problems with our own specialised infra and agents, which is
@@ -506,7 +508,7 @@ export const mainSlides = (K) => {
               reads, writes captured and scored — and RL where a workflow’s volume earns it. Ours to
               own, because only we sit on the live capture.
             </Callout>
-          </div>
+          </Columns>
         </SlideFrame>
       ),
     },
@@ -561,7 +563,7 @@ export const mainSlides = (K) => {
               },
             ]}
           />
-          <div className="dk-cols dk-cols--12 dk-gap">
+          <Columns className="dk-gap">
             <Callout tone="indigo" label="Why this is infrastructure work">
               A world where every enterprise has AI of its own is not a world of a few frontier models
               doing everything. It is thousands of company-specific models, each needing somewhere to
@@ -573,7 +575,7 @@ export const mainSlides = (K) => {
               scarce part and only happens inside real work. Private evals are in build. Fine-tuning and
               distillation stack on top, with no rebuild and nothing new for the customer to install.
             </Callout>
-          </div>
+          </Columns>
         </SlideFrame>
       ),
     },
@@ -899,7 +901,7 @@ export const mainSlides = (K) => {
               body="An organisation that has always bought its systems. It will buy this one too, where an eng-heavy company would build and stall."
             />
           </UseCaseGrid>
-          <div className="dk-cols dk-cols--12 dk-gap-sm">
+          <Columns className="dk-gap-sm">
             <UseCaseCard
               tone="indigo"
               kicker="Who signs · the owner of the mandate"
@@ -912,7 +914,7 @@ export const mainSlides = (K) => {
               title="The people who hold the knowledge"
               body="Ops, sales, marketing, finance and support author the agent workflows themselves, in plain English, without a ticket."
             />
-          </div>
+          </Columns>
         </SlideFrame>
       ),
     },
@@ -1005,7 +1007,7 @@ export const mainSlides = (K) => {
 
     /* ── 15 · Traction ────────────────────────────────────────────────────
      * `.story-grid` is a 1.15fr / 1fr split with one long narrative on the left and two small cards
-     * on the right. Composed: `.dk-cols--65` for the geometry, a StepCard for the story (the only
+     * on the right. Composed: `Columns ratio="nudge"` for the geometry, a StepCard for the story (the only
      * kit block that carries num + title + body + a footer line), two UseCaseCards on the right. */
     {
       id: 'traction',
@@ -1018,7 +1020,7 @@ export const mainSlides = (K) => {
             title="Three engagements live. All three verbally committed to paid contracts, in contracting now."
             subtitle="Names under NDA. Introduced live on request."
           />
-          <div className="dk-cols dk-cols--65">
+          <Columns ratio="nudge">
             <div>
             <UseCaseCard
               tone="emerald"
@@ -1041,7 +1043,7 @@ export const mainSlides = (K) => {
               committed paid monthly POC · Cloud FinOps Brain + DevOps agents · expansion in discussion
             </Caption>
             </div>
-            <div className="dk-stack">
+            <Stack>
               <UseCaseCard
                 tone="emerald"
                 kicker="Door 2 · committed paid POC · air-gapped on-prem"
@@ -1062,9 +1064,9 @@ export const mainSlides = (K) => {
                   </>
                 }
               />
-            </div>
-          </div>
-          <div className="dk-cols dk-cols--12 dk-gap-sm">
+            </Stack>
+          </Columns>
+          <Columns className="dk-gap-sm">
             <Callout tone="emerald" label="Live & demo-able today">
               Company Brain, living and continuously updated · access controls · agent-native storage ·
               app deploy from Claude Code · works across AI tools via MCP · triggers · usage analytics
@@ -1074,7 +1076,7 @@ export const mainSlides = (K) => {
               The fine-tuning and deeper data-capture layers for custom / distilled models. The data is
               being captured today; training is the next layer.
             </Callout>
-          </div>
+          </Columns>
         </SlideFrame>
       ),
     },
@@ -1115,7 +1117,7 @@ export const mainSlides = (K) => {
               foot="evals · training runs · model ops — on the environment phase one paid for"
             />
           </PhaseRow>
-          <div className="dk-cols dk-cols--12 dk-gap">
+          <Columns className="dk-gap">
             <Callout tone="indigo" label="Why not per seat">
               Agents don’t hold seats, and the buyer’s win condition is more people and more agents on
               the layer. The price follows the footprint of what the environment knows and governs, so
@@ -1126,7 +1128,7 @@ export const mainSlides = (K) => {
               is underwriting, and you can only underwrite a business you understand — which is
               precisely what the environment accumulates.
             </Callout>
-          </div>
+          </Columns>
         </SlideFrame>
       ),
     },
@@ -1423,7 +1425,7 @@ export const mainSlides = (K) => {
               body="Amit, ex-Google, anchors go-to-market with strong India and SEA reach. Hiring from the same three pools is the first line in the use of funds."
             />
           </UseCaseGrid>
-          <div className="dk-stack dk-gap">
+          <Stack className="dk-gap">
             <Callout tone="indigo" fill="neutral">
               <strong>Delivery is an FDE model</strong>, a domain expert plus a forward-deployed
               engineer. That embedded work is the wedge; <strong>revenue scales with the platform</strong>
@@ -1440,7 +1442,7 @@ export const mainSlides = (K) => {
               and the US wedge is enterprise outside the Bay Area. Which market we scale into is an
               output of the GTM test.
             </Callout>
-          </div>
+          </Stack>
         </SlideFrame>
       ),
     },

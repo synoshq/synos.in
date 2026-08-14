@@ -16,10 +16,12 @@
  *   2. THE MATRICES (`.dk-matrix`). Four slides are tables — a 5x3 component matrix, a 6x5
  *      landscape grid, a 6x3 comparison table and a 2x2 quadrant. The kit has grids with fixed
  *      column counts and no table primitive at all. This is the gap that costs the most.
- *   3. SHELL AND SPACING (`.dk-stack`, `.dk-cols`, `.dk-arrow`, `.dk-gap-*`). The kit has no
- *      spacing scale and no column grid, so every vertical gap between two blocks on a slide is a
- *      number somebody picked. They are collected here rather than sprayed across 35 slides as
- *      inline styles, so the size of the missing subsystem is countable.
+ *   3. SHELL AND SPACING (`.dk-arrow`, `.dk-gap-*`). This bucket used to hold `.dk-stack` and
+ *      `.dk-cols` too, and existed because the kit had no spacing scale and no column grid — every
+ *      vertical gap between two blocks on a slide was a number somebody picked. Collecting them
+ *      here rather than spraying inline styles across 35 slides is what made the missing subsystem
+ *      countable, and it has now been built: see `--sk-space-*` in tokens.css, plus `Stack` and
+ *      `Columns` in the kit.
  *
  * The typographic substitutions are deliberate: every 'Plus Jakarta Sans' in the source diagram CSS
  * becomes `--sk-font-body` (Inter), because decision A retired that face and scopes Instrument Serif
@@ -27,42 +29,26 @@
  */
 
 /* ── 3. Shell and spacing ──────────────────────────────────────────────────
- * The kit has no spacing scale (improvement report §11, §14 item 1). These are the four gaps this
- * deck actually needed, named once instead of inlined 40 times.
+ * The kit now has a spacing scale (`--sk-space-*`) and the two layout shapes this deck was
+ * reaching for: `Stack` and `Columns`. `.dk-stack` and `.dk-cols` are gone — 15 call sites moved
+ * onto the components.
+ *
+ * What is left is the three margin utilities. They stay deck-local, on the scale, and they are the
+ * honest remainder rather than an oversight: a margin on a block is the WRONG model — it makes
+ * spacing a property of the block, so the same component spaces differently depending on where it
+ * lands. `Stack` is the right model and it exists now. Converting the remaining 45 call sites means
+ * restructuring 35 slides into stacks, which is a content-shaped change to a deck rather than a
+ * platform one, and it belongs in the next deck authored fresh on the kit — not in a migration
+ * whose whole value is that nothing else moved.
  */
 .dk-gap-sm {
-  margin-top: 12px;
+  margin-top: var(--sk-space-4);
 }
 .dk-gap {
-  margin-top: 18px;
+  margin-top: var(--sk-space-5);
 }
 .dk-gap-lg {
-  margin-top: 26px;
-}
-
-/* A vertical stack with one rhythm, for slides that are a sequence of blocks rather than a grid. */
-.dk-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-height: 0;
-}
-
-/* Two columns at an arbitrary ratio. SplitColumns is 1fr 1fr and is a *contrast* component with its
-   own eyebrow/marker vocabulary; several slides need only the geometry. */
-.dk-cols {
-  display: grid;
-  gap: 18px;
-  align-items: stretch;
-}
-.dk-cols--12 {
-  grid-template-columns: 1fr 1fr;
-}
-.dk-cols--54 {
-  grid-template-columns: 1.25fr 1fr;
-}
-.dk-cols--65 {
-  grid-template-columns: 1.15fr 1fr;
+  margin-top: var(--sk-space-6);
 }
 
 /* The connector arrow between steps in a horizontal sequence. Source: `.garr`, `.fw-arr`, `.sm-arr`. */
@@ -124,17 +110,17 @@
  * its compact values live in the kit beside it. When the grid and the spacing scale land, the rest
  * follows.
  */
-.sk-density-compact .dk-gap {
-  margin-top: 10px;
-}
+/* One step down the scale each, the same rule the kit's register applies to Stack and Columns.
+   The pre-scale values here were 8 and 10, which is the noise the scale exists to remove: at these
+   sizes 8 and 10 are not two different quantities. */
 .sk-density-compact .dk-gap-sm {
-  margin-top: 8px;
+  margin-top: var(--sk-space-2);
 }
-.sk-density-compact .dk-stack {
-  gap: 10px;
+.sk-density-compact .dk-gap {
+  margin-top: var(--sk-space-3);
 }
-.sk-density-compact .dk-cols {
-  gap: 14px;
+.sk-density-compact .dk-gap-lg {
+  margin-top: var(--sk-space-4);
 }
 
 /* ── 2. The matrices ───────────────────────────────────────────────────────

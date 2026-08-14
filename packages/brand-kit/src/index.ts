@@ -27,6 +27,9 @@ export type { SlideHeaderProps, SlideHeaderLayout } from './deck/SlideHeader'
 export { CoverSlide, BigTypeSlide } from './deck/Slides'
 export type { CoverSlideProps, BigTypeSlideProps } from './deck/Slides'
 
+export { Stack, Columns } from './deck/Layout'
+export type { StackProps, ColumnsProps, ColumnsRatio, Space } from './deck/Layout'
+
 export { Matrix } from './deck/Matrix'
 export type {
   MatrixProps,

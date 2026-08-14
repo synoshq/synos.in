@@ -155,3 +155,13 @@
   font-size: 11px;
   padding: 4px 0;
 }
+
+/* ── Layout rhythm ─────────────────────────────────────────────────────────
+ * One step down the scale for both, which is why `Stack` and `Columns` pass their step as a custom
+ * property rather than an inline `gap`: an inline gap is unbeatable by a stylesheet, and the whole
+ * job of this register is to beat it.
+ */
+.sk-density-compact .sk-stack,
+.sk-density-compact .sk-cols {
+  --sk-gap: var(--sk-space-4);
+}

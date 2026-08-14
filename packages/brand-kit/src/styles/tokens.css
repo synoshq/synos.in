@@ -156,4 +156,31 @@
   --sk-page-height: 297mm;
   --sk-page-pad: 11mm 13mm 9mm;
   --sk-page-gap: 8px;
+
+  /* ── The spacing scale ────────────────────────────────────────────────────
+   * The kit had no spacing scale, which is item 1 on the improvement report's de-box list and the
+   * reason every vertical gap on a slide was a number somebody picked. Measured across the kit's
+   * own stylesheets on 2026-08-14: **28 distinct spacing values** between 1px and 64px, with
+   * 5/6/7, 8/9/10/11 and 14/15/16/17/18 all in use as if they were different quantities. At the
+   * sizes involved those are not different quantities; they are noise that reads as a layout
+   * nobody controlled.
+   *
+   * Eight steps, ~1.41 apart above 8px, chosen to sit ON the observed clusters rather than to
+   * impose an unrelated grid: 6, 8, 12, 16 and 22 are each already the modal value of a cluster,
+   * so adopting the scale moves most call sites by 0–2px.
+   *
+   * WHAT THIS DOES NOT YET DO. Components' internal padding is deliberately NOT migrated in this
+   * pass. Every one of those values is pinned by a fidelity assertion against the shipped source
+   * artifact, so moving them is a visual change to the brand rather than a tidy-up, and it needs
+   * its own decision key and Anoop's eye. This pass puts the scale in place and builds the layout
+   * components (`Stack`, `Columns`) on it, which is where the unprincipled numbers actually were.
+   */
+  --sk-space-1: 4px;
+  --sk-space-2: 6px;
+  --sk-space-3: 8px;
+  --sk-space-4: 12px;
+  --sk-space-5: 16px;
+  --sk-space-6: 22px;
+  --sk-space-7: 32px;
+  --sk-space-8: 48px;
 }
