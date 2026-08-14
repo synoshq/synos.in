@@ -142,11 +142,24 @@ html, body { background: var(--sk-bg); margin: 0; padding: 0; }
 `
 
 const html = `<!DOCTYPE html>
+<!--
+  GENERATED FILE — DO NOT EDIT.
+
+  Built from @synos/brand-kit by packages/brand-kit/deck/build.mjs in the
+  synos-landing repo. Any edit here is lost on the next build.
+
+  To change a slide, edit deck/src/slides-main.jsx or slides-appendix.jsx and run:
+      node deck/build.mjs --out <path>
+
+  Fonts and reveal.js 5.1.0 are vendored and inlined: this file renders correctly
+  with no network. reveal's theme/white.css is deliberately absent — loading it
+  leaked Source Sans Pro into the deck and into the exported PDF.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SynOS — The Human-Agent Operating Layer (VC · v6 · reading deck · brand kit)</title>
+<title>SynOS — The Human-Agent Operating Layer (VC · v7 · reading deck · built on the brand kit)</title>
 <!--
   Built by packages/brand-kit/deck/build.mjs from @synos/brand-kit.
   Self-contained by design: no stylesheet, script or font is fetched at render time.

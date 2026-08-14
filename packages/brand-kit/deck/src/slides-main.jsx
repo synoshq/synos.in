@@ -1030,8 +1030,10 @@ export const mainSlides = (K) => {
             subtitle="Names under NDA. Introduced live on request."
           />
           <div className="dk-cols dk-cols--65">
-            <StepCard
-              num="The proof story"
+            <div>
+            <UseCaseCard
+              tone="emerald"
+              kicker="The proof story"
               title="A manufacturing enterprise, beginning with a Cloud FinOps Brain, plus agents that take critical DevOps actions. A committed paid POC."
               body={
                 <>
@@ -1042,8 +1044,14 @@ export const mainSlides = (K) => {
                   conversation is already about the next function.
                 </>
               }
-              quote="committed paid monthly POC · Cloud FinOps Brain + DevOps agents · expansion in discussion"
             />
+            {/* Was StepCard's `quote` slot, which rendered mono. UseCaseCard has no quote slot and
+                Caption has no mono option, so this keeps the content and loses the mono face. A
+                `mono` prop on Caption is the kit-side fix. */}
+            <Caption>
+              committed paid monthly POC · Cloud FinOps Brain + DevOps agents · expansion in discussion
+            </Caption>
+            </div>
             <div className="dk-stack">
               <UseCaseCard
                 tone="emerald"
@@ -1073,7 +1081,7 @@ export const mainSlides = (K) => {
               app deploy from Claude Code · works across AI tools via MCP · triggers · usage analytics
               & observability.
             </Callout>
-            <Callout tone="violet" label="Roadmap">
+            <Callout tone="amber" label="Roadmap">
               The fine-tuning and deeper data-capture layers for custom / distilled models. The data is
               being captured today; training is the next layer.
             </Callout>
