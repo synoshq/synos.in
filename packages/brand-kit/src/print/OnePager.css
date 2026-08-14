@@ -61,7 +61,8 @@
   align-items: baseline;
 }
 .sk-ph-brand {
-  font-family: var(--sk-font-display);
+  /* Decision A: print headings never take the serif — all are under 24px. */
+  font-family: var(--sk-font-body);
   font-size: 17px;
   font-weight: 800;
   color: var(--sk-ink);
@@ -94,7 +95,8 @@
 }
 /* `.hd .lede` — the CTO one-pagers' bold restatement between title and sub. */
 .sk-ph-lede {
-  font-family: var(--sk-font-display);
+  /* Decision A: print headings never take the serif — all are under 24px. */
+  font-family: var(--sk-font-body);
   font-size: 13.5px;
   font-weight: 700;
   color: var(--sk-ink);
@@ -240,7 +242,8 @@
   white-space: nowrap;
 }
 .sk-cta-right b {
-  font-family: var(--sk-font-display);
+  /* Decision A: print headings never take the serif — all are under 24px. */
+  font-family: var(--sk-font-body);
   font-size: 13px;
   font-weight: 800;
   color: var(--sk-ink);

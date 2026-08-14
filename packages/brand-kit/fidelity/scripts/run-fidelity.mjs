@@ -18,7 +18,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { createRequire } from 'node:module'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { SPECIMENS } from './specimens.mjs'
+import { SPECIMENS, REASONS } from './specimens.mjs'
 import { byKey, SOURCE_ROOT, STAGE } from './sources.mjs'
 
 const require = createRequire(import.meta.url)
@@ -164,24 +164,70 @@ for (const spec of specimens) {
         diffs: [],
       }
     }
-    const diffs = c.props
-      .filter((p) => normalise(p, s[p]) !== normalise(p, b[p]))
-      .map((p) => ({ prop: p, source: s[p], built: b[p] }))
-    return { ...c, status: diffs.length ? 'DIFF' : 'MATCH', diffs, source_values: s, built_values: b }
+    /*
+     * A property listed in `intentional` is one the kit deliberately no longer takes from the
+     * source. The assertion is not deleted and it is not weakened to "anything goes" — it is
+     * REPLACED by a stronger one that pins BOTH sides:
+     *
+     *   the source must still read `was`, and the built component must read `now`.
+     *
+     * So the check still fails if the kit drifts off its new value, AND it now also fails if the
+     * source artifact changes underneath us — which the plain equality check could never catch.
+     * Every entry names the decision that moved it; `REASONS` holds the text.
+     */
+    const diffs = []
+    const intentional = []
+    for (const p of c.props) {
+      const sv = normalise(p, s[p])
+      const bv = normalise(p, b[p])
+      if (sv === bv) continue
+      const decl = c.intentional?.[p]
+      if (!decl) {
+        diffs.push({ prop: p, source: s[p], built: b[p] })
+        continue
+      }
+      const [was, now, key] = decl
+      const sOk = sv === normalise(p, was)
+      const bOk = bv === normalise(p, now)
+      if (sOk && bOk) {
+        intentional.push({ prop: p, was: s[p], now: b[p], key, reason: REASONS[key] })
+      } else {
+        diffs.push({
+          prop: p,
+          source: s[p],
+          built: b[p],
+          detail: !sOk
+            ? `source moved: the recorded source value was "${was}", it now reads "${s[p]}"`
+            : `built drifted off its recorded value "${now}"`,
+        })
+      }
+    }
+    const status = diffs.length ? 'DIFF' : intentional.length ? 'INTENTIONAL' : 'MATCH'
+    return { ...c, status, diffs, intentional, source_values: s, built_values: b }
   })
 
   // A specimen carrying `expectFail` documents a recorded conflict: the built component follows
   // the newest artifact, so it must NOT match this older one. It fails the gate only if it matches.
-  const matched = checks.every((c) => c.status === 'MATCH')
-  const pass = spec.expectFail ? !matched : matched
+  /*
+   * `expectFail` documents a recorded CONFLICT between two source artifacts — the kit follows the
+   * newer one, so it must not match this older one. Such a specimen is meant to carry a real DIFF,
+   * so it is graded only on "something differs", exactly as before. A specimen without
+   * `expectFail` passes when every check is either MATCH or a recorded INTENTIONAL divergence.
+   */
+  const identical = checks.every((c) => c.status === 'MATCH')
+  const pass = spec.expectFail ? !identical : checks.every((c) => c.status === 'MATCH' || c.status === 'INTENTIONAL')
   results.push({ ...spec, node: undefined, checks, pass, sourceShot, builtShot })
-  const verdict = spec.expectFail ? (pass ? 'CONFLICT' : 'FAIL') : pass ? 'PASS' : 'FAIL'
-  console.log(`${verdict.padEnd(5)} ${spec.id.padEnd(26)} ${spec.component}`)
+  const nInt = checks.reduce((n, c) => n + c.intentional.length, 0)
+  const verdict = spec.expectFail ? (pass ? 'CONFLICT' : 'FAIL') : pass ? (nInt ? 'MOVED' : 'PASS') : 'FAIL'
+  console.log(`${verdict.padEnd(5)} ${spec.id.padEnd(26)} ${spec.component}${nInt ? `  (${nInt} recorded)` : ''}`)
   if (spec.expectFail) console.log(`      expected: ${spec.expectFail}`)
-  for (const c of checks.filter((c) => c.status !== 'MATCH')) {
+  for (const c of checks.filter((c) => c.status === 'DIFF' || c.status === 'MISSING')) {
     console.log(`      ${c.status} ${c.source} -> ${c.built}`)
     if (c.detail) console.log(`        ${c.detail}`)
-    for (const d of c.diffs) console.log(`        ${d.prop}: source=${d.source}  built=${d.built}`)
+    for (const d of c.diffs) {
+      console.log(`        ${d.prop}: source=${d.source}  built=${d.built}`)
+      if (d.detail) console.log(`          ${d.detail}`)
+    }
   }
 }
 
@@ -223,31 +269,55 @@ const totalChecks = results.reduce((n, r) => n + r.checks.length, 0)
 const failed = results.filter((r) => !r.pass)
 writeFileSync(`${REPORT}/fidelity.json`, JSON.stringify({ generated: 'see git commit date', results }, null, 2))
 
+const moved = results.flatMap((r) =>
+  r.checks.flatMap((c) => c.intentional.map((i) => ({ ...i, id: r.id, source: c.source, built: c.built }))),
+)
+const byDecision = {}
+for (const m of moved) (byDecision[m.key] ??= []).push(m)
+
 const md = [
   '# Fidelity report',
   '',
   `${results.length} specimens · ${totalChecks} computed-style checks · ${results.length - failed.length} passing, ${failed.length} failing.`,
+  `${moved.length} of those checks record a **deliberate** divergence from the source artifact.`,
   '',
   'Each specimen renders a built component and the real slide it was extracted from at the same',
   "viewport, screenshots both, and compares the computed values of the properties that carry the",
   'brand. Side-by-side images are in `fidelity/side-by-side/`.',
   '',
-  '| Specimen | Component | Source | Checks | Result |',
-  '|---|---|---|---:|---|',
+  'The harness was a *spec* while the kit was being extracted. Since the 2026-08-13 improvement',
+  'pass it is a **regression net**: the kit is deliberately no longer byte-faithful to the decks it',
+  'came from. A property the kit has moved off is not deleted from the harness and not loosened —',
+  'it is pinned on both sides, so the check still fails if the kit drifts off its new value *and*',
+  'now also fails if the source artifact moves underneath it. Every one is listed below with the',
+  'decision that moved it.',
+  '',
+  '| Specimen | Component | Source | Checks | Recorded moves | Result |',
+  '|---|---|---|---:|---:|---|',
   ...results.map(
     (r) =>
-      `| \`${r.id}\` | ${r.component} | ${byKey(r.file).key}${r.slide != null ? ` s${r.slide + 1}` : ''} | ${r.checks.length} | ${
+      `| \`${r.id}\` | ${r.component} | ${byKey(r.file).key}${r.slide != null ? ` s${r.slide + 1}` : ''} | ${r.checks.length} | ${r.checks.reduce((n, c) => n + c.intentional.length, 0)} | ${
         r.expectFail
           ? r.pass
             ? 'CONFLICT (expected difference)'
             : '**FAIL** — matched an artifact it should not'
           : r.pass
             ? 'PASS'
-            : `**FAIL** (${r.checks.filter((c) => c.status !== 'MATCH').length})`
+            : `**FAIL** (${r.checks.filter((c) => c.status === 'DIFF' || c.status === 'MISSING').length})`
       } |`,
   ),
   '',
 ]
+if (moved.length) {
+  md.push('## Deliberate divergences, by decision', '')
+  for (const key of Object.keys(byDecision).sort()) {
+    md.push(`### ${key}`, '', REASONS[key] ?? '**No reason recorded — this is a bug.**', '')
+    md.push('| Specimen | Selector | Property | Source | Built |', '|---|---|---|---|---|')
+    for (const m of byDecision[key])
+      md.push(`| \`${m.id}\` | \`${m.built}\` | \`${m.prop}\` | \`${m.was}\` | \`${m.now}\` |`)
+    md.push('')
+  }
+}
 const conflicts = results.filter((r) => r.expectFail && r.pass)
 if (conflicts.length) {
   md.push('## Recorded conflicts — differences that are correct', '')
@@ -255,6 +325,9 @@ if (conflicts.length) {
     md.push(`### \`${r.id}\``, '', r.expectFail, '')
     for (const c of r.checks.flatMap((c) => c.diffs)) {
       md.push(`- \`${c.prop}\`: source \`${c.source}\` · built \`${c.built}\``)
+    }
+    for (const c of r.checks.flatMap((c) => c.intentional)) {
+      md.push(`- \`${c.prop}\`: source \`${c.was}\` · built \`${c.now}\` — also moved by ${c.key}`)
     }
     md.push('')
   }
@@ -264,16 +337,21 @@ if (failed.length) {
   for (const r of failed) {
     md.push(`### \`${r.id}\``, '')
     if (r.expectFail) md.push(`Expected difference: ${r.expectFail}`, '')
-    for (const c of r.checks.filter((c) => c.status !== 'MATCH')) {
+    for (const c of r.checks.filter((c) => c.status === 'DIFF' || c.status === 'MISSING')) {
       md.push(`- \`${c.source}\` → \`${c.built}\` — ${c.status}`)
       if (c.detail) md.push(`  - ${c.detail}`)
-      for (const d of c.diffs) md.push(`  - \`${d.prop}\`: source \`${d.source}\` · built \`${d.built}\``)
+      for (const d of c.diffs) {
+        md.push(`  - \`${d.prop}\`: source \`${d.source}\` · built \`${d.built}\``)
+        if (d.detail) md.push(`    - ${d.detail}`)
+      }
     }
     md.push('')
   }
 }
 writeFileSync(`${REPORT}/fidelity.md`, md.join('\n'))
 
-console.log(`\n${results.length - failed.length}/${results.length} specimens pass · ${totalChecks} checks`)
+console.log(
+  `\n${results.length - failed.length}/${results.length} specimens pass · ${totalChecks} checks · ${moved.length} deliberate divergences recorded`,
+)
 console.log(`report: fidelity/report/fidelity.md · images: fidelity/side-by-side/`)
 process.exit(failed.length ? 1 : 0)

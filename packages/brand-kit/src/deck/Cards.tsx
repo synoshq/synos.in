@@ -296,7 +296,11 @@ export function UseCaseGrid({ children, className, style }: GridProps) {
  * ═══════════════════════════════════════════════════════════════════════════ */
 
 export interface StatCardProps {
-  /** The number. Rendered at 48px / 800 in the tone's hue. Keep it short — it is the whole card. */
+  /**
+   * The number. Rendered at 72px Instrument Serif in the tone's hue. Keep it short — since decision
+   * G de-boxed the card it is not merely the whole card, it IS the card: there is no surface behind
+   * it, so the number and its hue are the only things marking the object out.
+   */
   value: ReactNode
   /** What the number means. */
   label?: ReactNode

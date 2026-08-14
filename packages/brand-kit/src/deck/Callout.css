@@ -14,12 +14,19 @@
 
 .sk-callout {
   --sk-callout-bg: var(--sk-surface-2);
-  --sk-callout-br: var(--sk-border);
   --sk-callout-accent: var(--sk-indigo-2);
   --sk-callout-text: var(--sk-indigo);
 
+  /*
+   * Decision C — de-box. A callout was a tint, a 1px border in the same hue as the tint, and an
+   * accent rule: three devices for one job. The border is gone in every tone. A callout is now a
+   * tint plus a rule, always, with no exceptions to remember — which is the point of keeping one
+   * vocabulary. The `--sk-callout-br` custom property went with it: nothing read it any more, and
+   * a token every tone still sets but nothing paints is exactly the drift this pass is removing.
+   * The banner variant draws its own 1.5px border from `--sk-callout-accent` and is unaffected.
+   */
   background: var(--sk-callout-bg);
-  border: 1px solid var(--sk-callout-br);
+  border: none;
   border-radius: 10px;
   padding: 11px 16px;
   font-size: 13px;
@@ -44,31 +51,26 @@
 /* ── Tone: sets the triple. ─────────────────────────────────────────────── */
 .sk-callout--indigo {
   --sk-callout-bg: var(--sk-indigo-bg);
-  --sk-callout-br: var(--sk-indigo-br);
   --sk-callout-accent: var(--sk-indigo-2);
   --sk-callout-text: var(--sk-indigo);
 }
 .sk-callout--violet {
   --sk-callout-bg: var(--sk-violet-bg);
-  --sk-callout-br: var(--sk-violet-br);
   --sk-callout-accent: var(--sk-violet);
   --sk-callout-text: var(--sk-violet);
 }
 .sk-callout--emerald {
   --sk-callout-bg: var(--sk-emerald-bg);
-  --sk-callout-br: var(--sk-emerald-br);
   --sk-callout-accent: var(--sk-emerald);
   --sk-callout-text: var(--sk-emerald);
 }
 .sk-callout--amber {
   --sk-callout-bg: var(--sk-amber-bg);
-  --sk-callout-br: var(--sk-amber-br);
   --sk-callout-accent: var(--sk-amber-2);
   --sk-callout-text: var(--sk-amber);
 }
 .sk-callout--red {
   --sk-callout-bg: var(--sk-red-bg);
-  --sk-callout-br: var(--sk-red-br);
   --sk-callout-accent: var(--sk-red-2);
   --sk-callout-text: var(--sk-red);
 }
@@ -79,9 +81,7 @@
  */
 .sk-callout--neutral-fill {
   --sk-callout-bg: var(--sk-surface-2);
-  --sk-callout-br: var(--sk-border);
   background: var(--sk-surface-2);
-  border-color: var(--sk-border);
 }
 
 /* ── Accent rule. ───────────────────────────────────────────────────────── */
