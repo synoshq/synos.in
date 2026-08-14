@@ -95,9 +95,19 @@ for (const [h, tint] of [['--sk-indigo', '--sk-indigo-bg'], ['--sk-violet', '--s
   pair(`${h} on ${tint}`, h, tint, 4.5)
   pair(`${h} on surface`, h, '--sk-surface', 4.5)
 }
-/* Stat values at 56px — large text, 3:1. */
-for (const v of ['--sk-indigo-2', '--sk-violet', '--sk-amber', '--sk-emerald', '--sk-red-2'])
-  pair(`stat value ${v} on surface-2`, v, '--sk-surface-2', 3.0, 'large')
+/*
+ * Stat values at 72px — large text, 3:1.
+ *
+ * Decision G de-boxed StatCard, so the surface behind the number moved from --sk-surface-2 to the
+ * slide's own --sk-surface. Both are checked: `surface` is where it renders today, `surface-2` is
+ * kept because it is still the fill of every other card the number could be dropped onto and a stat
+ * value must not become illegible by being moved. The white row is the tighter of the two only for
+ * light hues; the pair that mattered (decision E's amber) clears both by a wide margin.
+ */
+for (const v of ['--sk-indigo-2', '--sk-violet', '--sk-amber', '--sk-emerald', '--sk-red-2']) {
+  pair(`stat value ${v} on surface (de-boxed, decision G)`, v, '--sk-surface', 3.0, 'large')
+  pair(`stat value ${v} on surface-2 (if re-placed on a card)`, v, '--sk-surface-2', 3.0, 'large')
+}
 /* White on the gradient, sampled where text actually sits on the Company Brain block. */
 const BRAIN = { w: 833, h: 62 }
 const samples = [

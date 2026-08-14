@@ -1,7 +1,7 @@
 # Fidelity report
 
 27 specimens · 104 computed-style checks · 27 passing, 0 failing.
-84 of those checks record a **deliberate** divergence from the source artifact.
+141 of those checks record a **deliberate** divergence from the source artifact.
 
 Each specimen renders a built component and the real slide it was extracted from at the same
 viewport, screenshots both, and compares the computed values of the properties that carry the
@@ -31,16 +31,16 @@ decision that moved it.
 | `wall` | WallCard / WallGrid | presenting s34 | 4 | 8 | PASS |
 | `pillar` | PillarCard / PillarGrid | presenting s6 | 5 | 12 | PASS |
 | `pillar-brain` | PillarCard brain | presenting s6 | 4 | 3 | PASS |
-| `phase` | PhaseCard / PhaseRow | presenting s10 | 8 | 1 | PASS |
+| `phase` | PhaseCard / PhaseRow | presenting s10 | 8 | 12 | PASS |
 | `usecase` | UseCaseCard / UseCaseGrid | presenting s30 | 6 | 2 | PASS |
-| `stat` | StatCard / StatRow | presenting s27 | 6 | 5 | PASS |
+| `stat` | StatCard / StatRow | presenting s27 | 6 | 16 | PASS |
 | `step` | StepCard / StepGrid | presenting s7 | 8 | 14 | PASS |
-| `split` | SplitColumns / SplitColumn | presenting s28 | 5 | 1 | PASS |
+| `split` | SplitColumns / SplitColumn | presenting s28 | 5 | 14 | PASS |
 | `caption` | Caption | presenting s25 | 1 | 0 | PASS |
-| `quote` | QuoteBar | presenting s26 | 1 | 0 | PASS |
+| `quote` | QuoteBar | presenting s26 | 1 | 12 | PASS |
 | `onepager-header` | OnePagerHeader | 1p-vc | 7 | 1 | PASS |
 | `onepager-callout-chip` | Callout / Chip at print scale | 1p-vc | 6 | 2 | PASS |
-| `onepager-phase` | PhaseCard scale="print" | 1p-vc | 5 | 0 | PASS |
+| `onepager-phase` | PhaseCard scale="print" | 1p-vc | 5 | 10 | PASS |
 | `onepager-cta` | CtaBar | 1p-vc | 4 | 0 | PASS |
 | `onepager-outcome-heading` | OutcomeCard / SectionHeading | 1p-retail | 6 | 0 | PASS |
 
@@ -68,13 +68,8 @@ strokes first under projector gamma (§B.3), so it must never render below 24px 
 | `slide-frame-arch` | `.sk-slide h1` | `font-weight` | `700` | `400` |
 | `slide-header-row` | `.sk-header--row h1` | `font-family` | `"Plus Jakarta Sans", Inter, sans-serif` | `"Instrument Serif", Georgia, serif` |
 | `slide-header-row` | `.sk-header--row h1` | `font-weight` | `700` | `400` |
-| `slide-header-row` | `.sk-header--row h1` | `letter-spacing` | `-0.34px` | `-0.6px` |
-| `slide-header-row` | `.sk-header--row h1` | `line-height` | `40.8px` | `44.8px` |
 | `cover` | `.sk-cover-title` | `font-family` | `"Plus Jakarta Sans", sans-serif` | `"Instrument Serif", Georgia, serif` |
-| `cover` | `.sk-cover-title` | `font-size` | `47px` | `56px` |
 | `cover` | `.sk-cover-title` | `font-weight` | `800` | `400` |
-| `cover` | `.sk-cover-title` | `letter-spacing` | `-1.4px` | `-1.12px` |
-| `cover` | `.sk-cover-title` | `line-height` | `49.82px` | `58.24px` |
 | `cover` | `.sk-cover-lead` | `font-family` | `"Plus Jakarta Sans", sans-serif` | `Inter, -apple-system, "Segoe UI", sans-serif` |
 | `big-type` | `.sk-bigtype-l1` | `font-family` | `"Plus Jakarta Sans", sans-serif` | `Inter, -apple-system, "Segoe UI", sans-serif` |
 | `big-type` | `.sk-bigtype-l2` | `font-family` | `"Plus Jakarta Sans", sans-serif` | `Inter, -apple-system, "Segoe UI", sans-serif` |
@@ -127,7 +122,6 @@ removed the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `Use
 
 | Specimen | Selector | Property | Source | Built |
 |---|---|---|---|---|
-| `slide-frame-arch` | `.sk-slide h1` | `font-size` | `34px` | `40px` |
 | `slide-frame-arch` | `.sk-slide h2` | `font-size` | `18px` | `26px` |
 | `eyebrow-indigo` | `.sk-eyebrow--indigo` | `font-size` | `11.5px` | `13px` |
 | `eyebrow-indigo` | `.sk-eyebrow--indigo` | `line-height` | `14.95px` | `16.9px` |
@@ -136,8 +130,6 @@ removed the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `Use
 | `eyebrow-red` | `.sk-eyebrow--red` | `font-size` | `11.5px` | `13px` |
 | `eyebrow-red` | `.sk-eyebrow--red` | `line-height` | `14.95px` | `16.9px` |
 | `eyebrow-buyer-conflict` | `.sk-eyebrow` | `font-size` | `10px` | `13px` |
-| `slide-header-row` | `.sk-header--row h1` | `font-size` | `34px` | `40px` |
-| `slide-header-row` | `.sk-header--row h1` | `margin-bottom` | `10px` | `12px` |
 | `cover` | `.sk-cover-lead` | `font-size` | `16.5px` | `20px` |
 | `cover` | `.sk-cover-lead` | `font-weight` | `700` | `600` |
 | `cover` | `.sk-cover-lead` | `line-height` | `22.275px` | `27px` |
@@ -206,6 +198,142 @@ border and accent colour and is now used for no text anywhere.
 | Specimen | Selector | Property | Source | Built |
 |---|---|---|---|---|
 | `stat` | `.sk-stat--amber .sk-stat-value` | `color` | `rgb(245, 158, 11)` | `rgb(146, 64, 14)` |
+
+### F
+
+**Decision F — the serif re-solve (2026-08-14 follow-on).** Decision A applied Instrument Serif
+and moved `h1` 34px/700 sans → 40px/400 serif, calling that a re-solve of the lost weight. It was
+not. Presence on a wall is *ink*, not nominal point size, and Instrument Serif is both
+lighter-stemmed and narrower-set than Plus Jakarta Sans, so the swap lost on both terms at once.
+`node tools/ink.mjs` draws the longest headline in the corpus at each spec and counts glyph
+pixels:
+
+| spec | set width | ink |
+|---|---|---|
+| PJS 34/700 (before) | 919px | 9528px² |
+| IS 40/400 (decision A) | 734px — **0.80×** | 6173px² — **0.65×** |
+| IS 54/400 (decision F) | 963px — 1.05× | 11320px² — 1.19× |
+
+A serif headline painting two thirds of the ink of the sans it replaced reads QUIETER, which
+inverts the whole point of the face change — visible in the phase-3 before/after on
+`slide-six-walls`, where the old headline lands harder. **h1 is now 54px**, the first step that
+clears the old headline on both terms with margin rather than merely matching it, at -0.024em
+tracking (closing the sidebearings is the only other lever a single-weight face offers) and
+line-height 1.08. It still leaves 305px of the 1268px content width in hand on the longest
+headline in the corpus, which 58px would not.
+
+Colour was measured as a third lever and rejected: `--sk-ink #0f172a` is already 17.4:1 on white
+and the darkest thing left (#020617, 19.6:1) is a 12% luminance move, invisible at any projector
+gamma — a token bought for nothing.
+
+`.sk-cover-title` follows to **72px**, not as a second opinion about the cover but as a
+consequence: at 56px it would sit 1.04× the h1 on the slide after it, which is not a step. The
+old system ran cover/h1 = 47/34 = 1.38; 72/54 = 1.33 holds it, and 72px is where
+`.sk-stat-value` already sits, so the deck's two "largest object on the slide" roles agree on
+one size instead of on two near-misses.
+
+| Specimen | Selector | Property | Source | Built |
+|---|---|---|---|---|
+| `slide-frame-arch` | `.sk-slide h1` | `font-size` | `34px` | `54px` |
+| `slide-header-row` | `.sk-header--row h1` | `font-size` | `34px` | `54px` |
+| `slide-header-row` | `.sk-header--row h1` | `letter-spacing` | `-0.34px` | `-1.296px` |
+| `slide-header-row` | `.sk-header--row h1` | `line-height` | `40.8px` | `58.32px` |
+| `slide-header-row` | `.sk-header--row h1` | `margin-bottom` | `10px` | `14px` |
+| `cover` | `.sk-cover-title` | `font-size` | `47px` | `72px` |
+| `cover` | `.sk-cover-title` | `letter-spacing` | `-1.4px` | `-1.728px` |
+| `cover` | `.sk-cover-title` | `line-height` | `49.82px` | `73.44px` |
+
+### G
+
+**Decision G — de-box, second pass (2026-08-14 follow-on).** Decision C left the composed-slide
+mean at 11.6 boxes against a target of 6, and named `PhaseCard`, `StatCard`, `SplitColumn` and
+`QuoteBar` as the remaining candidates. All four are taken here, on the argument decision C
+already made for `WallCard` and `PillarCard`: a fill that paints nothing (`.sk-phase` is
+`--sk-surface` on a `--sk-surface` slide) and a 1.23:1 hairline nobody can see on a projector are
+two devices doing zero work between them. In each case the grid gap opens to do the separating
+the box was pretending to do — phase and stat rows 14 → 28px, the moat split 14 → 40px.
+
+What is kept, and why, in each: the **phase badge** (this component's one colour spend, and the
+only place the brand gradient appears on that slide — the argument that kept `.sk-pillar-ico`);
+the **dashed phase foot** and the **stat hue** (a rule and a colour, not containers); the
+**split column's tone**, moved off the plate and onto the eyebrow and the ✓/✕ marker, which puts
+the hue on the two glyphs that carry the argument instead of washing it across 300px of
+background that text must then survive. `QuoteBar` takes the same 3px rule `StepCard`'s quote
+took under decision C, deliberately rather than inventing a second answer, and rises 11.5 → 13px
+because a line that was getting away with being smaller than the eyebrow above it can only do
+that while a plate marks it out. Print scales move with deck scales, for the reason decision C
+gave: a print-only exception is the "one more variant" these passes exist to remove.
+
+**The mean-6 target is retired at 10, on a measurement.** `SK_FLOOR=1 node tools/boxes.mjs`
+strips every remaining optional container fill — the callout tint, the use-case fill, the step
+fill — and the count lands at **mean 9.0 boxes / 5.8 panels**. What survives is vocabulary, not
+composition: the slide card (5), the chips (10), the pillar icon tiles (6), the phase badges (3),
+the gradient step cap (3), the Company Brain block, the flagship border and 13 rules. A target of
+6 sits 3.0 below a floor that already costs three components their surfaces. The gate is now
+mean ≤ 10 boxes and ≤ 7.5 panels, and the entire distance between 10 and the 9.0 floor is the
+three step fills and the two non-flagship use-case fills — both kept for decision C's stated
+reason that three or more stacked text levels need a surface, and both named so the number moves
+if that call changes.
+
+| Specimen | Selector | Property | Source | Built |
+|---|---|---|---|---|
+| `phase` | `.sk-phase` | `background-color` | `rgb(255, 255, 255)` | `rgba(0, 0, 0, 0)` |
+| `phase` | `.sk-phase` | `border-top-width` | `1px` | `0px` |
+| `phase` | `.sk-phase` | `border-left-width` | `1px` | `0px` |
+| `phase` | `.sk-phase` | `border-top-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `phase` | `.sk-phase` | `border-left-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `phase` | `.sk-phase` | `border-top-left-radius` | `14px` | `0px` |
+| `phase` | `.sk-phase` | `padding-top` | `18px` | `0px` |
+| `phase` | `.sk-phase` | `padding-right` | `18px` | `0px` |
+| `phase` | `.sk-phase` | `padding-bottom` | `18px` | `0px` |
+| `phase` | `.sk-phase` | `padding-left` | `18px` | `0px` |
+| `phase` | `.sk-phase-row` | `gap` | `14px` | `28px` |
+| `stat` | `.sk-stat` | `background-color` | `rgb(248, 250, 252)` | `rgba(0, 0, 0, 0)` |
+| `stat` | `.sk-stat` | `border-top-width` | `1px` | `0px` |
+| `stat` | `.sk-stat` | `border-left-width` | `1px` | `0px` |
+| `stat` | `.sk-stat` | `border-top-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `stat` | `.sk-stat` | `border-left-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `stat` | `.sk-stat` | `border-top-left-radius` | `14px` | `0px` |
+| `stat` | `.sk-stat` | `padding-top` | `22px` | `0px` |
+| `stat` | `.sk-stat` | `padding-right` | `18px` | `0px` |
+| `stat` | `.sk-stat` | `padding-bottom` | `22px` | `0px` |
+| `stat` | `.sk-stat` | `padding-left` | `18px` | `0px` |
+| `stat` | `.sk-stat-row` | `gap` | `14px` | `28px` |
+| `split` | `.sk-split-col` | `background-color` | `rgb(248, 250, 252)` | `rgba(0, 0, 0, 0)` |
+| `split` | `.sk-split-col` | `border-top-width` | `1px` | `0px` |
+| `split` | `.sk-split-col` | `border-left-width` | `1px` | `0px` |
+| `split` | `.sk-split-col` | `border-top-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `split` | `.sk-split-col` | `border-left-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `split` | `.sk-split-col` | `border-top-left-radius` | `14px` | `0px` |
+| `split` | `.sk-split-col` | `padding-top` | `18px` | `0px` |
+| `split` | `.sk-split-col` | `padding-right` | `20px` | `0px` |
+| `split` | `.sk-split-col` | `padding-bottom` | `18px` | `0px` |
+| `split` | `.sk-split-col` | `padding-left` | `20px` | `0px` |
+| `split` | `.sk-split-col--violet` | `background-color` | `rgb(245, 243, 255)` | `rgba(0, 0, 0, 0)` |
+| `split` | `.sk-split-col--violet` | `border-top-color` | `rgb(221, 214, 254)` | `rgb(15, 23, 42)` |
+| `split` | `.sk-split` | `gap` | `14px` | `40px` |
+| `quote` | `.sk-quote` | `background-color` | `rgb(248, 250, 252)` | `rgba(0, 0, 0, 0)` |
+| `quote` | `.sk-quote` | `border-top-width` | `1px` | `0px` |
+| `quote` | `.sk-quote` | `border-left-width` | `1px` | `3px` |
+| `quote` | `.sk-quote` | `border-top-color` | `rgb(226, 232, 240)` | `rgb(51, 65, 85)` |
+| `quote` | `.sk-quote` | `border-left-color` | `rgb(226, 232, 240)` | `rgb(124, 58, 237)` |
+| `quote` | `.sk-quote` | `border-top-left-radius` | `11px` | `0px` |
+| `quote` | `.sk-quote` | `padding-top` | `9px` | `2px` |
+| `quote` | `.sk-quote` | `padding-right` | `16px` | `0px` |
+| `quote` | `.sk-quote` | `padding-bottom` | `9px` | `2px` |
+| `quote` | `.sk-quote` | `padding-left` | `16px` | `12px` |
+| `quote` | `.sk-quote` | `font-size` | `11.5px` | `13px` |
+| `quote` | `.sk-quote` | `line-height` | `17.25px` | `19.5px` |
+| `onepager-phase` | `.sk-phase--print` | `background-color` | `rgb(255, 255, 255)` | `rgba(0, 0, 0, 0)` |
+| `onepager-phase` | `.sk-phase--print` | `border-top-width` | `1px` | `0px` |
+| `onepager-phase` | `.sk-phase--print` | `border-left-width` | `1px` | `0px` |
+| `onepager-phase` | `.sk-phase--print` | `border-top-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `onepager-phase` | `.sk-phase--print` | `border-left-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
+| `onepager-phase` | `.sk-phase--print` | `border-top-left-radius` | `10px` | `0px` |
+| `onepager-phase` | `.sk-phase--print` | `padding-top` | `9px` | `0px` |
+| `onepager-phase` | `.sk-phase--print` | `padding-right` | `11px` | `0px` |
+| `onepager-phase` | `.sk-phase--print` | `padding-bottom` | `9px` | `0px` |
+| `onepager-phase` | `.sk-phase--print` | `padding-left` | `11px` | `0px` |
 
 ## Recorded conflicts — differences that are correct
 

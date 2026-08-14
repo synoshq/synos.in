@@ -80,6 +80,69 @@ export const REASONS = {
     '6.78:1 and is already the amber *text* token in every other component. `--sk-amber-2` remains a',
     'border and accent colour and is now used for no text anywhere.',
   ].join('\n'),
+  F: [
+    '**Decision F — the serif re-solve (2026-08-14 follow-on).** Decision A applied Instrument Serif',
+    'and moved `h1` 34px/700 sans → 40px/400 serif, calling that a re-solve of the lost weight. It was',
+    'not. Presence on a wall is *ink*, not nominal point size, and Instrument Serif is both',
+    'lighter-stemmed and narrower-set than Plus Jakarta Sans, so the swap lost on both terms at once.',
+    '`node tools/ink.mjs` draws the longest headline in the corpus at each spec and counts glyph',
+    'pixels:',
+    '',
+    '| spec | set width | ink |',
+    '|---|---|---|',
+    '| PJS 34/700 (before) | 919px | 9528px² |',
+    '| IS 40/400 (decision A) | 734px — **0.80×** | 6173px² — **0.65×** |',
+    '| IS 54/400 (decision F) | 963px — 1.05× | 11320px² — 1.19× |',
+    '',
+    'A serif headline painting two thirds of the ink of the sans it replaced reads QUIETER, which',
+    'inverts the whole point of the face change — visible in the phase-3 before/after on',
+    '`slide-six-walls`, where the old headline lands harder. **h1 is now 54px**, the first step that',
+    'clears the old headline on both terms with margin rather than merely matching it, at -0.024em',
+    'tracking (closing the sidebearings is the only other lever a single-weight face offers) and',
+    'line-height 1.08. It still leaves 305px of the 1268px content width in hand on the longest',
+    'headline in the corpus, which 58px would not.',
+    '',
+    'Colour was measured as a third lever and rejected: `--sk-ink #0f172a` is already 17.4:1 on white',
+    'and the darkest thing left (#020617, 19.6:1) is a 12% luminance move, invisible at any projector',
+    'gamma — a token bought for nothing.',
+    '',
+    '`.sk-cover-title` follows to **72px**, not as a second opinion about the cover but as a',
+    'consequence: at 56px it would sit 1.04× the h1 on the slide after it, which is not a step. The',
+    'old system ran cover/h1 = 47/34 = 1.38; 72/54 = 1.33 holds it, and 72px is where',
+    '`.sk-stat-value` already sits, so the deck\'s two "largest object on the slide" roles agree on',
+    'one size instead of on two near-misses.',
+  ].join('\n'),
+  G: [
+    '**Decision G — de-box, second pass (2026-08-14 follow-on).** Decision C left the composed-slide',
+    'mean at 11.6 boxes against a target of 6, and named `PhaseCard`, `StatCard`, `SplitColumn` and',
+    '`QuoteBar` as the remaining candidates. All four are taken here, on the argument decision C',
+    'already made for `WallCard` and `PillarCard`: a fill that paints nothing (`.sk-phase` is',
+    '`--sk-surface` on a `--sk-surface` slide) and a 1.23:1 hairline nobody can see on a projector are',
+    'two devices doing zero work between them. In each case the grid gap opens to do the separating',
+    'the box was pretending to do — phase and stat rows 14 → 28px, the moat split 14 → 40px.',
+    '',
+    'What is kept, and why, in each: the **phase badge** (this component\'s one colour spend, and the',
+    'only place the brand gradient appears on that slide — the argument that kept `.sk-pillar-ico`);',
+    'the **dashed phase foot** and the **stat hue** (a rule and a colour, not containers); the',
+    '**split column\'s tone**, moved off the plate and onto the eyebrow and the ✓/✕ marker, which puts',
+    'the hue on the two glyphs that carry the argument instead of washing it across 300px of',
+    'background that text must then survive. `QuoteBar` takes the same 3px rule `StepCard`\'s quote',
+    'took under decision C, deliberately rather than inventing a second answer, and rises 11.5 → 13px',
+    'because a line that was getting away with being smaller than the eyebrow above it can only do',
+    'that while a plate marks it out. Print scales move with deck scales, for the reason decision C',
+    'gave: a print-only exception is the "one more variant" these passes exist to remove.',
+    '',
+    '**The mean-6 target is retired at 10, on a measurement.** `SK_FLOOR=1 node tools/boxes.mjs`',
+    'strips every remaining optional container fill — the callout tint, the use-case fill, the step',
+    'fill — and the count lands at **mean 9.0 boxes / 5.8 panels**. What survives is vocabulary, not',
+    'composition: the slide card (5), the chips (10), the pillar icon tiles (6), the phase badges (3),',
+    'the gradient step cap (3), the Company Brain block, the flagship border and 13 rules. A target of',
+    '6 sits 3.0 below a floor that already costs three components their surfaces. The gate is now',
+    'mean ≤ 10 boxes and ≤ 7.5 panels, and the entire distance between 10 and the 9.0 floor is the',
+    'three step fills and the two non-flagship use-case fills — both kept for decision C\'s stated',
+    'reason that three or more stacked text levels need a surface, and both named so the number moves',
+    'if that call changes.',
+  ].join('\n'),
 }
 
 /** A stand-in for the stroked 16px icons the sources draw inline. */
@@ -180,7 +243,9 @@ export const SPECIMENS = [
         intentional: {
           'font-family': ['Plus Jakarta Sans', 'Instrument Serif', 'A'],
           'font-weight': ['700', '400', 'A'],
-          'font-size': ['34px', '40px', 'C'],
+          // Was ['34px', '40px', 'C'] — decision C's type scale moved it to 40px, decision F then
+          // measured 40px/400 serif at 0.65x the ink of the 34px/700 sans and re-solved at 54px.
+          'font-size': ['34px', '54px', 'F'],
         },
       },
       {
@@ -296,10 +361,13 @@ export const SPECIMENS = [
         intentional: {
           'font-family': ['Plus Jakarta Sans', 'Instrument Serif', 'A'],
           'font-weight': ['700', '400', 'A'],
-          'letter-spacing': ['-0.34px', '-0.6px', 'A'],
-          'line-height': ['40.8px', '44.8px', 'A'],
-          'font-size': ['34px', '40px', 'C'],
-          'margin-bottom': ['10px', '12px', 'C'],
+          // All four were decision A/C values pinned at the 40px h1. Decision F re-solved the size
+          // at 54px and every derived metric moved with it: tracking -0.015em -> -0.024em
+          // (-1.296px), leading 1.12 -> 1.08 (58.32px), and the block margin 12 -> 14px.
+          'letter-spacing': ['-0.34px', '-1.296px', 'F'],
+          'line-height': ['40.8px', '58.32px', 'F'],
+          'font-size': ['34px', '54px', 'F'],
+          'margin-bottom': ['10px', '14px', 'F'],
         },
       },
     ],
@@ -331,13 +399,15 @@ export const SPECIMENS = [
       { source: '.card-frame.cover', built: '.sk-slide--cover', props: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'text-align'] },
       {
         source: '.cover .big', built: '.sk-cover-title', props: [...CORE],
-        note: 'Declared 58px, overridden to 47px by the v7 cover refit (inventory C8). Decision A then took it to 56px serif, so the refit is superseded, not reverted.',
+        note: 'Declared 58px, overridden to 47px by the v7 cover refit (inventory C8). Decision A took it to 56px serif and decision F to 72px, so the refit is superseded, not reverted.',
         intentional: {
           'font-family': ['Plus Jakarta Sans', 'Instrument Serif', 'A'],
-          'font-size': ['47px', '56px', 'A'],
           'font-weight': ['800', '400', 'A'],
-          'letter-spacing': ['-1.4px', '-1.12px', 'A'],
-          'line-height': ['49.82px', '58.24px', 'A'],
+          // Decision A set 56px against a 40px h1. Decision F moved h1 to 54px, at which point 56px
+          // is not a step above it, so the cover follows to 72px and its tracking and leading with it.
+          'font-size': ['47px', '72px', 'F'],
+          'letter-spacing': ['-1.4px', '-1.728px', 'F'],
+          'line-height': ['49.82px', '73.44px', 'F'],
         },
       },
       {
@@ -598,7 +668,25 @@ export const SPECIMENS = [
       ),
     ),
     checks: [
-      { source: '.sc', built: '.sk-phase', props: [...BOX, 'display', 'flex-direction', 'gap'] },
+      {
+        // Decision G. `display: flex`, `flex-direction: column` and the internal 6px gap are
+        // unchanged and still asserted — the card's layout is not what was wrong with it, the
+        // rectangle around the layout was. Note the source fill is `rgb(255,255,255)` on a white
+        // slide: a fill that painted nothing, wrapped in a 1.23:1 hairline nobody could see.
+        source: '.sc', built: '.sk-phase', props: [...BOX, 'display', 'flex-direction', 'gap'],
+        intentional: {
+          'background-color': ['rgb(255, 255, 255)', 'rgba(0, 0, 0, 0)', 'G'],
+          'border-top-width': ['1px', '0px', 'G'],
+          'border-left-width': ['1px', '0px', 'G'],
+          'border-top-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-left-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-top-left-radius': ['14px', '0px', 'G'],
+          'padding-top': ['18px', '0px', 'G'],
+          'padding-right': ['18px', '0px', 'G'],
+          'padding-bottom': ['18px', '0px', 'G'],
+          'padding-left': ['18px', '0px', 'G'],
+        },
+      },
       { source: '.sc .sn', built: '.sk-phase-badge', props: ['font-family', 'font-size', 'font-weight', 'color', 'background-color', 'border-top-left-radius', 'padding-top', 'padding-left'] },
       { source: '.sc .when', built: '.sk-phase-when', props: [...CORE] },
       {
@@ -608,7 +696,11 @@ export const SPECIMENS = [
       { source: '.sc p', built: '.sk-phase-body', props: ['font-size', 'color', 'line-height'] },
       { source: '.sc .rev', built: '.sk-phase-foot', props: ['font-family', 'font-size', 'color', 'border-top-width', 'border-top-style', 'padding-top'] },
       { source: '.sc.s3 .when', built: '.sk-phase--far .sk-phase-when', props: ['color'] },
-      { source: '.flow', built: '.sk-phase-row', props: ['display', 'grid-template-columns', 'gap', 'align-items'] },
+      {
+        source: '.flow', built: '.sk-phase-row', props: ['display', 'grid-template-columns', 'gap', 'align-items'],
+        // Space replaces the card edge that was removed above. Three equal stretched columns unchanged.
+        intentional: { gap: ['14px', '28px', 'G'] },
+      },
     ],
   },
   {
@@ -659,7 +751,24 @@ export const SPECIMENS = [
       ),
     ),
     checks: [
-      { source: '.stat-card', built: '.sk-stat', props: [...BOX, 'text-align'] },
+      {
+        // Decision G. `text-align: center` is unchanged and still asserted — the centring is the
+        // component, the plate under it was not. A 72px numeral is the loudest object on its slide;
+        // a 1.23:1 hairline and a 2%-lighter fill around it are a plate under a spotlight.
+        source: '.stat-card', built: '.sk-stat', props: [...BOX, 'text-align'],
+        intentional: {
+          'background-color': ['rgb(248, 250, 252)', 'rgba(0, 0, 0, 0)', 'G'],
+          'border-top-width': ['1px', '0px', 'G'],
+          'border-left-width': ['1px', '0px', 'G'],
+          'border-top-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-left-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-top-left-radius': ['14px', '0px', 'G'],
+          'padding-top': ['22px', '0px', 'G'],
+          'padding-right': ['18px', '0px', 'G'],
+          'padding-bottom': ['22px', '0px', 'G'],
+          'padding-left': ['18px', '0px', 'G'],
+        },
+      },
       {
         source: '.stat-card .n', built: '.sk-stat-value', props: ['font-family', 'font-size', 'font-weight', 'line-height'],
         intentional: {
@@ -678,7 +787,10 @@ export const SPECIMENS = [
       },
       { source: '.stat-card .l', built: '.sk-stat-label', props: ['font-size', 'color', 'margin-top', 'line-height'] },
       { source: '.stat-card .s', built: '.sk-stat-source', props: ['font-family', 'font-size', 'color', 'margin-top', 'letter-spacing'] },
-      { source: '.g3', built: '.sk-stat-row', props: ['display', 'grid-template-columns', 'gap'] },
+      {
+        source: '.g3', built: '.sk-stat-row', props: ['display', 'grid-template-columns', 'gap'],
+        intentional: { gap: ['14px', '28px', 'G'] },
+      },
     ],
   },
   {
@@ -771,8 +883,34 @@ export const SPECIMENS = [
       ),
     ),
     checks: [
-      { source: '.moat-col.dies', built: '.sk-split-col', props: [...BOX] },
-      { source: '.moat-col.wins', built: '.sk-split-col--violet', props: ['background-color', 'border-top-color'] },
+      {
+        // Decision G. A two-column contrast is the one layout that does not need a container to be
+        // read as two columns: the reader is being asked to compare left against right, and a
+        // gutter says that as clearly as two tinted plates.
+        source: '.moat-col.dies', built: '.sk-split-col', props: [...BOX],
+        intentional: {
+          'background-color': ['rgb(248, 250, 252)', 'rgba(0, 0, 0, 0)', 'G'],
+          'border-top-width': ['1px', '0px', 'G'],
+          'border-left-width': ['1px', '0px', 'G'],
+          'border-top-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-left-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-top-left-radius': ['14px', '0px', 'G'],
+          'padding-top': ['18px', '0px', 'G'],
+          'padding-right': ['20px', '0px', 'G'],
+          'padding-bottom': ['18px', '0px', 'G'],
+          'padding-left': ['20px', '0px', 'G'],
+        },
+      },
+      {
+        // The violet column's tone did not disappear with its tint — it moved onto the eyebrow (next
+        // check, still asserted) and onto the ✓ marker. This assertion is the record that the plate
+        // it used to live on is gone.
+        source: '.moat-col.wins', built: '.sk-split-col--violet', props: ['background-color', 'border-top-color'],
+        intentional: {
+          'background-color': ['rgb(245, 243, 255)', 'rgba(0, 0, 0, 0)', 'G'],
+          'border-top-color': ['rgb(221, 214, 254)', 'rgb(15, 23, 42)', 'G'],
+        },
+      },
       {
         // The column eyebrow is the same register as the slide eyebrow, so it takes the same step.
         // Its 1.4px tracking, which is genuinely its own, is unchanged and still asserted.
@@ -780,7 +918,12 @@ export const SPECIMENS = [
         intentional: { 'font-size': ['11.5px', '13px', 'C'] },
       },
       { source: '.moat-col h3', built: '.sk-split-title', props: ['font-size', 'margin-bottom'] },
-      { source: '.moat-split', built: '.sk-split', props: ['display', 'grid-template-columns', 'gap'] },
+      {
+        source: '.moat-split', built: '.sk-split', props: ['display', 'grid-template-columns', 'gap'],
+        // The gutter is now the only thing dividing the two sides, so it takes the largest gap
+        // opening in the pass. Two equal columns unchanged.
+        intentional: { gap: ['14px', '40px', 'G'] },
+      },
     ],
   },
   {
@@ -805,7 +948,33 @@ export const SPECIMENS = [
       { className: 'sk-deck', style: { padding: 40, background: '#fff', width: 900 } },
       h(K.QuoteBar, null, h('strong', null, 'The edge moves. '), 'New value is created at the edge of what models cannot do for you.'),
     ),
-    checks: [{ source: '.edge-quote', built: '.sk-quote', props: [...BOX, 'font-size', 'color', 'line-height', 'font-style'] }],
+    checks: [
+      {
+        // Decision G. The quote bar takes the SAME replacement StepCard's quote took under decision
+        // C — a 3px violet left rule — deliberately rather than inventing a second answer to the
+        // same question, so the kit says one thing about quoted lines in both places it says
+        // anything. `color` and `font-style: italic` are unchanged and still asserted.
+        source: '.edge-quote', built: '.sk-quote', props: [...BOX, 'font-size', 'color', 'line-height', 'font-style'],
+        intentional: {
+          'background-color': ['rgb(248, 250, 252)', 'rgba(0, 0, 0, 0)', 'G'],
+          'border-top-width': ['1px', '0px', 'G'],
+          'border-top-color': ['rgb(226, 232, 240)', 'rgb(51, 65, 85)', 'G'],
+          'border-top-left-radius': ['11px', '0px', 'G'],
+          // Not "the border went": the border BECAME the rule. 1px hairline on four edges -> 3px
+          // violet on one, which is the shape de-boxing converts a container into.
+          'border-left-width': ['1px', '3px', 'G'],
+          'border-left-color': ['rgb(226, 232, 240)', 'rgb(124, 58, 237)', 'G'],
+          'padding-top': ['9px', '2px', 'G'],
+          'padding-right': ['16px', '0px', 'G'],
+          'padding-bottom': ['9px', '2px', 'G'],
+          'padding-left': ['16px', '12px', 'G'],
+          // 11.5px was smaller than the eyebrow above it and got away with it because the plate
+          // marked the object out. With the plate gone it takes decision C's 13px label step.
+          'font-size': ['11.5px', '13px', 'G'],
+          'line-height': ['17.25px', '19.5px', 'G'],
+        },
+      },
+    ],
   },
 
   /* ── One-pager, print scale ─────────────────────────────────────────────── */
@@ -890,7 +1059,26 @@ export const SPECIMENS = [
       ),
     ),
     checks: [
-      { source: '.sc', built: '.sk-phase--print', props: [...BOX, 'display', 'flex-direction', 'gap'] },
+      {
+        // Decision G applies to print as well as deck, for the reason decision C gave when it
+        // de-boxed `.sk-callout--print`: a print-only exception is exactly the "one more variant"
+        // these passes exist to remove, and deck-research found the same box-nesting habit on the
+        // one-pagers (17-30 bordered boxes per A4 page). The tighter print `gap: 3px` is unchanged
+        // and still asserted — the print SCALE survives, only the print BOX went.
+        source: '.sc', built: '.sk-phase--print', props: [...BOX, 'display', 'flex-direction', 'gap'],
+        intentional: {
+          'background-color': ['rgb(255, 255, 255)', 'rgba(0, 0, 0, 0)', 'G'],
+          'border-top-width': ['1px', '0px', 'G'],
+          'border-left-width': ['1px', '0px', 'G'],
+          'border-top-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-left-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
+          'border-top-left-radius': ['10px', '0px', 'G'],
+          'padding-top': ['9px', '0px', 'G'],
+          'padding-right': ['11px', '0px', 'G'],
+          'padding-bottom': ['9px', '0px', 'G'],
+          'padding-left': ['11px', '0px', 'G'],
+        },
+      },
       { source: '.sc .sn', built: '.sk-phase--print .sk-phase-badge', props: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'padding-top', 'padding-left'] },
       { source: '.sc h3', built: '.sk-phase--print .sk-phase-title', props: ['font-size', 'font-weight', 'color'] },
       { source: '.sc p', built: '.sk-phase--print .sk-phase-body', props: ['font-size', 'color', 'line-height'] },

@@ -540,3 +540,228 @@ and both were verified against injected instances of the bugs they exist for. Th
 rule reports clean now, but run against the pre-pass kit it flags six real violations in
 `Cards.css` alone — the ones decision B removed on its way past. The rule is what stops them
 coming back.
+
+---
+
+# Follow-on pass — 2026-08-14
+
+Two of Phase 3's decisions half-landed. Both were visible in the before/after renders, and both are
+fixed here. Same branch, `feat/brand-kit-improve-aug13`. Nothing merged, nothing pushed, still not
+re-synced to the design project.
+
+## 9. Bottom line
+
+| | Phase 3 | Now | Target | |
+|---|---|---|---|---|
+| Fidelity specimens passing | 27/27 | 27/27 | — | ✅ |
+| Fidelity checks | 104 | 104 | never fewer | ✅ |
+| Assertions deleted | 0 | **0** | 0 | ✅ |
+| Assertions recorded with a reason | 84 | **141** | all diverging ones | ✅ |
+| Unexpected AA failures introduced | 0 | **0** | 0 | ✅ |
+| h1 ink vs the sans it replaced | **0.65×** ❌ | **1.18×** | > 1.0 | ✅ |
+| h1 set width vs the sans it replaced | **0.80×** ❌ | **1.05×** | ≥ 1.0 | ✅ |
+| Boxes per composed slide (mean) | 11.6 | **10.0** | ≤ 10 (was 6) | ✅ **target rewritten — §12** |
+| Panels per composed slide (mean) | 9.2 | **7.4** | ≤ 7.5 | ✅ |
+| Boxes per composed slide (max) | 15 | 15 | ≤ 15 | ✅ |
+| Content nesting depth | 2 | 2 | ≤ 2 | ✅ |
+| Literal colours in components | 0 | 0 | 0 | ✅ |
+
+```bash
+cd packages/brand-kit
+npm run build && npm run fidelity && npm run contrast && npm run boxes   # all four exit 0
+node tools/ink.mjs                     # the headline calibration behind decision F
+SK_FLOOR=1 npm run boxes               # the de-box floor behind decision G
+node tools/render-slides.mjs fidelity/composed/after
+```
+
+## 10. Decision F — the serif lost presence, and why
+
+**The claim in §1 was wrong.** It said every 700/800 the face replaced "was re-solved with size,
+never with weight", and cited the research's line that each one "has to be re-solved with size and
+colour". Moving `h1` from 34px to 40px is not a re-solve. It is a size bump that lost the argument,
+and the phase-3 render of `slide-six-walls` shows it: the old sans headline lands harder than the
+serif one meant to replace it.
+
+The reason is that **presence on a wall is ink, not point size**, and Instrument Serif loses on both
+of the two terms that make ink at once — it is lighter-stemmed *and* narrower-set than Plus Jakarta
+Sans. `node tools/ink.mjs` draws the longest headline in the corpus at each spec and counts glyph
+pixels:
+
+| spec | set width | ink |
+|---|---|---|
+| PJS 34/700 — before the kit | 919px | 9528px² |
+| IS 40/400 — decision A | 734px · **0.80×** | 6173px² · **0.65×** |
+| IS 46/400 | 831px · 0.90× | 8260px² · 0.87× |
+| IS 50/400 | 898px · 0.98× | 9875px² · 1.04× |
+| **IS 54/400 — decision F** | **963px · 1.05×** | **11320px² · 1.19×** |
+| IS 58/400 | 1035px · 1.13× | 12774px² · 1.34× |
+
+A serif headline painting **two thirds** of the ink of the sans it replaced reads quieter. That
+inverts the entire point of the face change, and it is the sort of thing a report can assert its way
+past — which is what happened.
+
+**`h1` is now 54px**, at `-0.024em` tracking and `line-height: 1.08`. 54 is the first step that
+clears the old headline on both terms with margin rather than merely matching it; 58px clears it
+further but leaves only 233px of the 1268px content width in hand on the longest headline already in
+the corpus, and a longer one is not a hypothetical. Tighter tracking is the only other lever a
+single-weight face offers, so it is spent too.
+
+**Colour was measured and rejected.** `--sk-ink #0f172a` is already 17.4:1 on white; the darkest
+thing left, `#020617`, is 19.6:1 — a 12% luminance move, invisible at any projector gamma. It would
+have been a token bought for nothing, so no token was added. Size and tracking are the whole
+re-solve, and that is stated rather than implied.
+
+`.sk-cover-title` follows to **72px**. Not a second opinion about the cover: at 56px it would sit
+1.04× the `h1` on the slide after it, which is not a step, and a deck whose cover is the same size as
+its body headlines has no cover. The old system ran cover/h1 = 47/34 = 1.38; 72/54 = 1.33 holds it.
+72px is also where `.sk-stat-value` already sits, so the deck's two "largest object on the slide"
+roles now agree on one size instead of on two near-misses.
+
+### The proof, per slide
+
+`node tools/render-slides.mjs` renders the same five composed slides `npm run boxes` counts, and
+measures each slide's live `h1`. Three states are in `fidelity/composed/`:
+
+| slide | before (PJS 34/700) | phase 3 (IS 40/400) | now (IS 54/400) |
+|---|---|---|---|
+| `six-walls` | 919px · 9516px² | 734px · 6173px² — **0.65×** | 964px · 11265px² — **1.18×** |
+| `architecture` | 559px · 5728px² | 450px · 3737px² — **0.65×** | 592px · 6855px² — **1.20×** |
+| `the-play` | 742px · 7546px² | 590px · 4908px² — **0.65×** | 776px · 8935px² — **1.18×** |
+| `demo` | 729px · 7206px² | 584px · 4701px² — **0.65×** | 766px · 8491px² — **1.18×** |
+| `moat` | 580px · 5694px² | 469px · 3716px² — **0.65×** | 615px · 6726px² — **1.18×** |
+
+The 0.65× is not one bad slide. It is the face, on every headline in the deck.
+
+**The renders are now reproducible**, which they were not. Phase 3's before/after images in
+`~/ws/synos-gtm/design-corpus/phase3-before-after/` were made by hand and left no script, so they
+could not be regenerated when the design moved — which is exactly how a headline that reads quieter
+survived a report claiming the opposite. `tools/render-slides.mjs` and `tools/composed.mjs` are
+committed; the five slides are now shared between the counter and the camera, so the number and the
+picture are always of the same build. Evidence lives in the repo at
+`packages/brand-kit/fidelity/composed/{before,phase3,after}/`. **The copy under `~/ws/synos-gtm` is
+stale and was deliberately not overwritten.**
+
+## 11. Decision G — the de-box, second pass
+
+§6 named `PhaseCard`, `StatCard`, `SplitColumn` and `QuoteBar` as the remaining candidates. All four
+are taken, on the argument decision C already made for `WallCard` and `PillarCard`.
+
+| Component | What went | What stayed, and why |
+|---|---|---|
+| `StatCard` | fill, hairline, radius, all padding; row gap 14 → 28px | the centring and the hue. A 72px numeral is the loudest object on its slide; a plate under a spotlight is not a card |
+| `PhaseCard` | fill, hairline, radius, all padding; row gap 14 → 28px | the **badge** — this component's one colour spend and the only place the brand gradient appears on that slide, which is the argument that kept `.sk-pillar-ico`; and the dashed foot, which is a rule |
+| `SplitColumn` | fill, hairline, radius, padding; gutter 14 → 40px | the tone, **moved onto the type** — the eyebrow already carried it, and the ✓/✕ marker now does too |
+| `QuoteBar` | fill, hairline, radius | a 3px violet left rule, and 11.5 → 13px |
+
+Two of those deserve their reasoning stated rather than tabulated.
+
+**`.sk-phase`'s fill was `--sk-surface` on a `--sk-surface` slide.** It painted nothing. Around that
+nothing was a 1px `--sk-border` hairline at 1.23:1, invisible on a projector. Two devices doing zero
+work between them, fragmenting the row into three panels for it.
+
+**`QuoteBar` takes the same rule `StepCard`'s quote took under decision C**, deliberately rather than
+inventing a second answer to the same question — the kit now says "a quoted line is a rule plus
+italics" in both places it says anything about quoted lines. Its 11.5px was smaller than the eyebrow
+above it and was getting away with it because the plate marked the object out; with the plate gone
+it takes decision C's 13px label step. Print scales moved with deck scales throughout, for the
+reason decision C gave: a print-only exception is the "one more variant" these passes exist to
+remove.
+
+### The cost, and where it showed
+
+Removing two grids' worth of card edges from `the-play` made the phase row and the stat row read as
+**one block** — 18px of gap that the card edges used to make legible was suddenly the only thing
+between them. The composed slide now spends 40px there, and that number is a judgement call sitting
+in a composition file because **the kit still has no spacing scale**. It is recorded in
+`tools/composed.mjs` next to the value rather than left to be rediscovered. This is the same finding
+as §4's pillar-scatter, arriving a second time from a different direction, and it is the same fix:
+the kit needs a grid and a spacing scale. Still item 1 on the list.
+
+## 12. The mean-boxes target of 6 is wrong, and here is the number instead
+
+§4 marked mean ≤ 6 as "not met… for a scope reason". Having now taken every candidate §6 named, the
+honest conclusion is stronger than that: **6 is unreachable for this component set, and it is
+unreachable by 3.0.**
+
+`SK_FLOOR=1 npm run boxes` strips every remaining optional container fill in the kit — the callout
+tint, the use-case fill, the step fill — and re-counts:
+
+| | now | floor (every optional fill stripped) | old target |
+|---|---|---|---|
+| Boxes, mean | 10.0 | **9.0** | 6 |
+| Panels, mean | 7.4 | **5.8** | — |
+| Boxes, max | 15 | 15 | 15 |
+
+What survives at the floor is not composition, it is **vocabulary**: the slide card (5, one per
+slide), the chips (10 — 157 occurrences across seven source files, the single most-used shape in the
+corpus), the pillar icon tiles (6), the phase badges (3), the gradient step cap (3), the Company
+Brain block, the flagship use-case border, and 13 rules. A target of 6 sits three whole boxes per
+slide below a floor that has already cost three components their surfaces and made the slides worse
+to get there. **A target below the floor is not a target; it is a number that can only ever be
+reported as missed.**
+
+**The number I can defend is 10 boxes and 7.5 panels**, and it is not the number I happened to land
+on. It is the 9.0 floor plus exactly two things:
+
+| | boxes | verdict |
+|---|---|---|
+| the three `.sk-step` fills | 3 | **keep** — a step carries a cap, a number, a title, a paragraph and a quote. Decision C's rule was three or more stacked text levels need a surface; this is five |
+| the two non-flagship `.sk-usecase` fills | 2 | **keep** — decision C's original case, unchanged |
+
+That is the entire distance between 10 and the floor. If either call changes, the gate moves down by
+exactly that much, and both are named here so it can. `tools/boxes.mjs` gates on both `mean` and
+`panels` now and carries the full derivation on the constant, so the retirement of 6 is in the code
+and not only in this document.
+
+`panels` is also promoted to a gate, because it is the number that actually answers deck-research
+§D.4 — §D.4 called slide 9 "a dashboard screenshot", which is a statement about *rectangles*, and a
+rule is the shape de-boxing converts a rectangle into.
+
+## 13. Fidelity, contrast, and what else was found
+
+**Zero assertions deleted, zero loosened, 104 checks — the same 104.** 57 new `intentional` records
+under two new keys, `F` and `G`, whose full text is in `REASONS` and reproduced in
+`fidelity/report/fidelity.md` on every run. Where a property this pass moved was already recorded
+under an older key, the key was **re-pointed to the decision that actually moved it** rather than
+leaving `h1`'s 54px filed under decision C's type scale — the old value is named in a comment beside
+it, so the history is not lost. Both ends stay pinned: every one of these still fails if the kit
+drifts *and* if the source artifact moves.
+
+**Contrast: 40/43 gated rows pass · 3 known · 0 unexpected.** The gradient fix and the amber fix both
+hold. The three known failures are the same three pre-existing ones from §5 — the two teal pairs and
+the phase badge — none introduced here.
+
+One probe correction rather than a new finding: `tools/contrast.mjs` was checking stat values against
+`--sk-surface-2`, which was the card fill decision G just removed. It now checks both the surface the
+number actually renders on and the card fill it could be dropped onto. All ten rows pass; the pair
+that mattered, decision E's amber, clears both by a wide margin.
+
+**Also on the record:** the kit has **seven** declared-but-unreferenced tokens, not the three §5
+named — `--sk-dim`, `--sk-indigo-3`, `--sk-font-serif`, plus `--sk-indigo-ink`, `--sk-amber-ink`,
+`--sk-amber-br-2` and `--sk-shadow-brand`. All seven were already orphaned before this pass; **this
+pass orphaned none**, which was checked rather than assumed. They remain loaded guns for the next
+deck author and are still a decision nobody has made.
+
+## 14. Still not done, in order
+
+1. **A column grid and a spacing scale.** Found by §4, found again by §11 from the other direction.
+   The 40px in `tools/composed.mjs` is a token that does not exist yet.
+2. **The three AA failures in §5**, unchanged. The teal one still needs a token that does not exist.
+3. **The two remaining de-box calls** — the step fill and the use-case fill (§12). Both argued to
+   stay; both would move the gate to 9.0 if overruled.
+4. **`.sk-bigtype-l1` / `l2`.** §6 flagged a 48px Inter-800 statement line sitting between a serif
+   `h1` and a serif stat value as possibly too tight a reading of decision A. With `h1` now at 54px
+   the split is wider, not narrower: the statement slide is the one place in the deck a display serif
+   most wants to be, and it is the only large type left that is not it. Still a two-line change.
+5. **The seven orphaned tokens** (§13).
+6. **Build one real deck on the kit.** Nothing consumes it. Every number in both halves of this
+   report is measured against a proxy, and that has not moved since Phase 3.
+7. **Then** re-sync to the design project — and regenerate
+   `~/ws/synos-gtm/design-corpus/phase3-before-after/`, which is now stale.
+
+## 15. Commits, this pass
+
+| | |
+|---|---|
+| `feat(brand-kit)` | decision F — the serif re-solve, and decision G — de-box round two |
+| `test(brand-kit)` | the ink probe, the reproducible slide renderer, the de-box floor, the retired target |
