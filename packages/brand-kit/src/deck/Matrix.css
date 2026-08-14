@@ -1,0 +1,166 @@
+/*
+ * Matrix.css — the kit's table.
+ *
+ * Extracted from `.dk-matrix` and `.dk-comp` in the VC deck's local stylesheet, which existed
+ * because the kit had no table primitive and four slides needed one. See `Matrix.tsx` for why the
+ * capability matrix and the comparison table are one component with two variants.
+ *
+ * Two things are deliberate and worth stating, because both look like oversights:
+ *
+ * 1. **The cells are the ONLY place in the kit where a fill carries meaning.** Decision C de-boxed
+ *    everything else: containers gave up borders in favour of space, because a 1.23:1 hairline is
+ *    invisible on a projector while still fragmenting the layout. A matrix is the exception, and it
+ *    is a principled one — the fill is not decoration here, it IS the datum. The reader is scanning
+ *    a column for where the colour stops. Take the fills away and the slide says nothing.
+ *
+ * 2. **An absent capability is drawn, not left blank.** `--none` is a dashed outline rather than an
+ *    empty cell, so a gap in coverage reads as a deliberate hole instead of as a rendering bug.
+ *    It carries no text and therefore no contrast obligation.
+ *
+ * Every tone pair here is already gated by `tools/contrast.mjs` (hue-on-tint, line 92) — this file
+ * introduces no new colour pair, which is the reason it can reuse the semantic palette rather than
+ * inventing a table palette.
+ */
+
+.sk-matrix {
+  display: grid;
+  gap: 5px;
+  align-items: stretch;
+}
+
+/* ── The header row ────────────────────────────────────────────────────────
+ * 12/700, with the examples line at 10.5/500 beneath it. Smaller than the kit's `h3` because a
+ * column heading is a label, not a level in the document's hierarchy.
+ */
+.sk-matrix-head {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  padding: 2px 8px 4px;
+  line-height: 1.25;
+}
+.sk-matrix-head span {
+  display: block;
+  font-weight: 500;
+  font-size: 10.5px;
+  color: var(--sk-muted);
+  margin-top: 2px;
+}
+/* Our column. The heading changes colour and nothing else — the cells beneath it are already
+   doing the work, and a second emphasis mechanism on the same column reads as shouting. */
+.sk-matrix-head--ours,
+.sk-matrix-head--ours span {
+  color: var(--sk-violet);
+}
+
+/* ── The row labels ────────────────────────────────────────────────────────
+ * Right-padded only: the label column has no fill, so its left edge is the card's text edge and
+ * the row reads as a sentence starting in the margin.
+ */
+.sk-matrix-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--sk-ink-2);
+  padding: 6px 8px 6px 0;
+  line-height: 1.25;
+}
+.sk-matrix-label span {
+  display: block;
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--sk-muted);
+  margin-top: 2px;
+}
+
+/* ── The cells ─────────────────────────────────────────────────────────────
+ * `align-items: center` so a one-word cell sits level with a three-line neighbour: the eye tracks
+ * along a row of centres, and ragged tops in a matrix read as misalignment rather than as content.
+ */
+.sk-matrix-cell {
+  font-size: 10.5px;
+  line-height: 1.3;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: var(--sk-ink-3);
+  background: var(--sk-surface-2);
+  display: flex;
+  align-items: center;
+}
+.sk-matrix-cell--none {
+  background: transparent;
+  border: 1px dashed var(--sk-border);
+}
+.sk-matrix-cell--partial {
+  background: var(--sk-amber-bg);
+  color: var(--sk-amber);
+}
+.sk-matrix-cell--full {
+  background: var(--sk-violet-bg);
+  color: var(--sk-violet);
+  font-weight: 600;
+}
+.sk-matrix-cell--brand {
+  background: var(--sk-grad);
+  color: var(--sk-on-brand);
+  font-weight: 600;
+  align-items: flex-start;
+}
+/* The cell's single flex item. Everything the caller passes lives inside it, so inline runs stay
+   inline; see the comment at the render site in Matrix.tsx. */
+.sk-matrix-cell-in {
+  display: block;
+}
+.sk-matrix-cell b {
+  display: block;
+  font-size: 12.5px;
+  margin-bottom: 2px;
+}
+
+/* ── The `rules` variant ───────────────────────────────────────────────────
+ * The plain comparison table: no fills, no rounding, a hairline between rows and the heading in
+ * the kit's uppercase label register. Same component because the header and label structure is
+ * identical; only the cells stop carrying state.
+ */
+.sk-matrix--rules {
+  gap: 0 14px;
+}
+.sk-matrix--rules .sk-matrix-head {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+  padding: 0 0 6px;
+}
+.sk-matrix--rules .sk-matrix-label,
+.sk-matrix--rules .sk-matrix-cell {
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: var(--sk-ink-3);
+  padding: 5px 0;
+  border-top: 1px solid var(--sk-border);
+  border-radius: 0;
+  background: transparent;
+  display: block;
+}
+.sk-matrix--rules .sk-matrix-label {
+  font-weight: 600;
+  color: var(--sk-ink-2);
+}
+.sk-matrix--rules .sk-matrix-cell--none {
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 1px solid var(--sk-border);
+}
+.sk-matrix--rules .sk-matrix-cell b {
+  display: block;
+  font-size: 13px;
+  color: var(--sk-ink);
+}
+.sk-matrix--rules .sk-matrix-cell span,
+.sk-matrix--rules .sk-matrix-label span {
+  display: block;
+  font-size: 10.5px;
+  color: var(--sk-muted);
+}

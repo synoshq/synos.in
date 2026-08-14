@@ -138,3 +138,20 @@
 .sk-density-compact .sk-pillar-grid {
   gap: 12px;
 }
+
+/* ── The table ─────────────────────────────────────────────────────────────
+ * `Matrix` cells are labels, not prose, so they legitimately go below the 13.5px body floor this
+ * register otherwise holds — a cell reads as a scanned datum inside a column, not as a sentence.
+ * They are also the densest object in the deck: on the landscape slide the table is 6 rows x 5
+ * columns and its cell padding alone decides whether the slide fits. Without this block that slide
+ * overflows the card by 16px, which is how these two values were chosen rather than guessed.
+ */
+.sk-density-compact .sk-matrix-cell {
+  font-size: 10px;
+  padding: 5px 7px;
+}
+.sk-density-compact .sk-matrix--rules .sk-matrix-cell,
+.sk-density-compact .sk-matrix--rules .sk-matrix-label {
+  font-size: 11px;
+  padding: 4px 0;
+}

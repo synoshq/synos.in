@@ -27,6 +27,16 @@ export type { SlideHeaderProps, SlideHeaderLayout } from './deck/SlideHeader'
 export { CoverSlide, BigTypeSlide } from './deck/Slides'
 export type { CoverSlideProps, BigTypeSlideProps } from './deck/Slides'
 
+export { Matrix } from './deck/Matrix'
+export type {
+  MatrixProps,
+  MatrixColumn,
+  MatrixRow,
+  MatrixCell,
+  MatrixCellTone,
+  MatrixVariant,
+} from './deck/Matrix'
+
 export { Callout } from './deck/Callout'
 export type { CalloutProps, CalloutAccent } from './deck/Callout'
 

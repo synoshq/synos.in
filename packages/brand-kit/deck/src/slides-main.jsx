@@ -77,6 +77,7 @@ export const mainSlides = (K) => {
   const {
     SlideFrame,
     SlideHeader,
+    Matrix,
     Eyebrow,
     CoverSlide,
     BigTypeSlide,
@@ -526,47 +527,40 @@ export const mainSlides = (K) => {
             title="Nothing new gets installed. Every component starts doing a second job."
             subtitle="The pieces that make AI work inside a company are the same pieces you need to train a model on how that company operates. Only the name of the job changes."
           />
-          <div className="dk-matrix" style={{ gridTemplateColumns: '150px repeat(5, 1fr)' }}>
-            <div />
-            {[
-              ['Component 01', 'Company Brain'],
-              ['Component 02', 'Governed tool access'],
-              ['Component 03', 'Sandboxes & deploy'],
-              ['Component 04', 'Traces & corrections'],
-              ['Component 05', 'Private evals'],
-            ].map(([n, t]) => (
-              <div className="dk-matrix-hd" key={t}>
-                {t}
-                <span>{n}</span>
-              </div>
-            ))}
-            <div className="dk-matrix-lab">
-              Today
-              <span>what it does for the transformation</span>
-            </div>
-            {[
-              'Context an agent is grounded in, so answers cite the company instead of guessing.',
-              'Safe, audited actions inside real systems. No raw credentials, revocable.',
-              'Somewhere a non-engineer can ship an app or an agent without a ticket.',
-              'Observability. What ran, what it touched, what a person fixed afterwards.',
-              'Did this workflow actually work, measured against the outcome.',
-            ].map((t) => (
-              <div className="dk-matrix-c" key={t}>{t}</div>
-            ))}
-            <div className="dk-matrix-lab">
-              Tomorrow
-              <span>what the same thing becomes for training</span>
-            </div>
-            {[
-              [<>The <strong>grounding corpus</strong> a model is fine-tuned against.</>, 'a'],
-              [<>The <strong>action space</strong> a model is trained and tested in.</>, 'b'],
-              [<>The <strong>rollout environment</strong> where attempts run safely, over and over.</>, 'c'],
-              [<><strong>Labelled data and preference signal</strong>, produced by their people doing real work.</>, 'd'],
-              [<>The <strong>benchmark only they own</strong>, and the gate a candidate model has to pass.</>, 'e'],
-            ].map(([t, k]) => (
-              <div className="dk-matrix-c is-us" key={k}>{t}</div>
-            ))}
-          </div>
+          <Matrix
+            labelWidth="150px"
+            columns={[
+              { label: 'Company Brain', sub: 'Component 01' },
+              { label: 'Governed tool access', sub: 'Component 02' },
+              { label: 'Sandboxes & deploy', sub: 'Component 03' },
+              { label: 'Traces & corrections', sub: 'Component 04' },
+              { label: 'Private evals', sub: 'Component 05' },
+            ]}
+            rows={[
+              {
+                label: 'Today',
+                sub: 'what it does for the transformation',
+                cells: [
+                  { text: 'Context an agent is grounded in, so answers cite the company instead of guessing.' },
+                  { text: 'Safe, audited actions inside real systems. No raw credentials, revocable.' },
+                  { text: 'Somewhere a non-engineer can ship an app or an agent without a ticket.' },
+                  { text: 'Observability. What ran, what it touched, what a person fixed afterwards.' },
+                  { text: 'Did this workflow actually work, measured against the outcome.' },
+                ],
+              },
+              {
+                label: 'Tomorrow',
+                sub: 'what the same thing becomes for training',
+                cells: [
+                  { tone: 'full', text: <>The <strong>grounding corpus</strong> a model is fine-tuned against.</> },
+                  { tone: 'full', text: <>The <strong>action space</strong> a model is trained and tested in.</> },
+                  { tone: 'full', text: <>The <strong>rollout environment</strong> where attempts run safely, over and over.</> },
+                  { tone: 'full', text: <><strong>Labelled data and preference signal</strong>, produced by their people doing real work.</> },
+                  { tone: 'full', text: <>The <strong>benchmark only they own</strong>, and the gate a candidate model has to pass.</> },
+                ],
+              },
+            ]}
+          />
           <div className="dk-cols dk-cols--12 dk-gap">
             <Callout tone="indigo" label="Why this is infrastructure work">
               A world where every enterprise has AI of its own is not a world of a few frontier models
@@ -1138,9 +1132,9 @@ export const mainSlides = (K) => {
     },
 
     /* ── 17 · Landscape ───────────────────────────────────────────────────
-     * GAP, and the biggest one. `.lstk` is a 6-column × 7-row capability matrix with four cell
-     * states (none / partial / full / ours). No kit component comes close; it is `.dk-matrix`. The
-     * footnote below it is a Callout. */
+     * WAS the biggest gap in the rebuild: `.lstk` is a 6-column capability matrix with four cell
+     * states, and the kit had no table at all. It is now the kit's `Matrix` — this slide and the
+     * report's item 2 are what that component was built for. The footnote below it is a Callout. */
     {
       id: 'landscape',
       node: (
@@ -1151,92 +1145,94 @@ export const mainSlides = (K) => {
             title="Everyone owns one band. Nobody owns the three in the middle."
             subtitle="These are different categories doing different jobs, and each is good at its own. The gap between a company's systems and the AI its people already have is the part none of them was built for."
           />
-          <div className="dk-matrix" style={{ gridTemplateColumns: '180px repeat(5, 1fr)' }}>
-            <div />
-            {[
-              ['Data platforms', 'Databricks · Snowflake · Fabric', false],
-              ['Enterprise search', 'Glean', false],
-              ['Workflow and iPaaS', 'n8n · Workato', false],
-              ['Agent platforms', 'Dust · UnifyApps', false],
-              ['SynOS', 'today, and what it becomes', true],
-            ].map(([h, s, us]) => (
-              <div className={`dk-matrix-hd${us ? ' is-us' : ''}`} key={h}>
-                {h}
-                <span>{s}</span>
-              </div>
-            ))}
-            {[
-              [
-                'People and their AI tools',
-                'Claude Code, Cursor, chat, apps',
-                [['none', ''], ['part', 'assistant'], ['none', ''], ['full', 'their agent'], ['us', 'any harness']],
-              ],
-              [
-                'Execution and isolation',
-                'tools, sandboxes, governed deploy',
-                [['none', ''], ['none', ''], ['part', 'runs flows'], ['part', 'runs agents'], ['us', 'sandboxes · governed deploy']],
-              ],
-              [
-                'Governance',
-                'identity, credentials, RBAC, audit, kill switch',
-                [['none', ''], ['none', ''], ['none', ''], ['none', ''], ['us', 'agent acts as a revocable person']],
-              ],
-              [
-                'The data layer',
-                'context today · training data tomorrow',
-                [
-                  ['part', 'catalog, once the data moves in'],
-                  ['part', 'a copy of your documents'],
-                  ['none', ''],
-                  ['part', 'connectors'],
-                  ['brand', 'Company Brain|profiled in place · every run traced, every correction captured'],
+          <Matrix
+            labelWidth="180px"
+            columns={[
+              { label: 'Data platforms', sub: 'Databricks · Snowflake · Fabric' },
+              { label: 'Enterprise search', sub: 'Glean' },
+              { label: 'Workflow and iPaaS', sub: 'n8n · Workato' },
+              { label: 'Agent platforms', sub: 'Dust · UnifyApps' },
+              { label: 'SynOS', sub: 'today, and what it becomes', emphasis: true },
+            ]}
+            rows={[
+              {
+                label: 'People and their AI tools',
+                sub: 'Claude Code, Cursor, chat, apps',
+                cells: [
+                  { tone: 'none' },
+                  { tone: 'partial', text: 'assistant' },
+                  { tone: 'none' },
+                  { tone: 'full', text: 'their agent' },
+                  { tone: 'full', text: 'any harness' },
                 ],
-              ],
-              [
-                'Systems of record',
-                'ERP, CRM, warehouse, docs, tickets',
-                [
-                  ['part', 'move it here first'],
-                  ['none', ''],
-                  ['part', 'moves data'],
-                  ['none', ''],
-                  ['us', 'existing: stay yours, untouched · new apps & agents: born on the layer'],
+              },
+              {
+                label: 'Execution and isolation',
+                sub: 'tools, sandboxes, governed deploy',
+                cells: [
+                  { tone: 'none' },
+                  { tone: 'none' },
+                  { tone: 'partial', text: 'runs flows' },
+                  { tone: 'partial', text: 'runs agents' },
+                  { tone: 'full', text: 'sandboxes · governed deploy' },
                 ],
-              ],
-              [
-                'Where it goes',
-                'what this round builds',
-                [
-                  ['part', 'fine-tuning too — once your data lives in theirs'],
-                  ['none', ''],
-                  ['none', ''],
-                  ['none', ''],
-                  ['us', '→ the same infra becomes the training ground for models they own'],
+              },
+              {
+                label: 'Governance',
+                sub: 'identity, credentials, RBAC, audit, kill switch',
+                cells: [
+                  { tone: 'none' },
+                  { tone: 'none' },
+                  { tone: 'none' },
+                  { tone: 'none' },
+                  { tone: 'full', text: 'agent acts as a revocable person' },
                 ],
-              ],
-            ].map(([lab, sub, cells]) => (
-              <Fragment key={lab}>
-                <div className="dk-matrix-lab">
-                  {lab}
-                  <span>{sub}</span>
-                </div>
-                {cells.map(([state, text], i) => {
-                  if (state === 'brand') {
-                    const [b, rest] = text.split('|')
-                    return (
-                      <div className="dk-matrix-c is-brand" key={`${lab}-${i}`}>
-                        <b>{b}</b>
-                        {rest}
-                      </div>
-                    )
-                  }
-                  return (
-                    <div className={`dk-matrix-c is-${state}`} key={`${lab}-${i}`}>{text}</div>
-                  )
-                })}
-              </Fragment>
-            ))}
-          </div>
+              },
+              {
+                label: 'The data layer',
+                sub: 'context today · training data tomorrow',
+                cells: [
+                  { tone: 'partial', text: 'catalog, once the data moves in' },
+                  { tone: 'partial', text: 'a copy of your documents' },
+                  { tone: 'none' },
+                  { tone: 'partial', text: 'connectors' },
+                  {
+                    tone: 'brand',
+                    title: 'Company Brain',
+                    text: 'profiled in place · every run traced, every correction captured',
+                  },
+                ],
+              },
+              {
+                label: 'Systems of record',
+                sub: 'ERP, CRM, warehouse, docs, tickets',
+                cells: [
+                  { tone: 'partial', text: 'move it here first' },
+                  { tone: 'none' },
+                  { tone: 'partial', text: 'moves data' },
+                  { tone: 'none' },
+                  {
+                    tone: 'full',
+                    text: 'existing: stay yours, untouched · new apps & agents: born on the layer',
+                  },
+                ],
+              },
+              {
+                label: 'Where it goes',
+                sub: 'what this round builds',
+                cells: [
+                  { tone: 'partial', text: 'fine-tuning too — once your data lives in theirs' },
+                  { tone: 'none' },
+                  { tone: 'none' },
+                  { tone: 'none' },
+                  {
+                    tone: 'full',
+                    text: '→ the same infra becomes the training ground for models they own',
+                  },
+                ],
+              },
+            ]}
+          />
           <Callout tone="indigo" fill="neutral" className="dk-gap-sm">
             <strong>One data layer, two jobs.</strong> The Company Brain is the primary data layer:
             today it grounds every answer and agent in how the business actually runs, and the traces,

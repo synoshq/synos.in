@@ -117,11 +117,12 @@
  * deck shipped a `.dk-dense` block as a stopgap and said so in this comment.
  *
  * What remains here is only the part the kit cannot own: the compact values for THIS DECK's own
- * spacing and matrix classes, which exist because the kit still has no column grid, no spacing
- * scale and no table (report §14, items 1 and 2 — the next two things on the backlog). They key
- * off the kit's `.sk-density-compact`, so there is exactly one switch and this file no longer
- * decides anything about type. When the grid and the table land in the kit, this block goes with
- * them.
+ * spacing classes, which exist because the kit still has no column grid and no spacing scale
+ * (report §14, item 1 — the next thing on the backlog). They key off the kit's
+ * `.sk-density-compact`, so there is exactly one switch and this file no longer decides anything
+ * about type. The matrix half of this block has already gone: `Matrix` is a kit component now, so
+ * its compact values live in the kit beside it. When the grid and the spacing scale land, the rest
+ * follows.
  */
 .sk-density-compact .dk-gap {
   margin-top: 10px;
@@ -134,14 +135,6 @@
 }
 .sk-density-compact .dk-cols {
   gap: 14px;
-}
-.sk-density-compact .dk-matrix-c {
-  font-size: 10px;
-  padding: 5px 7px;
-}
-.sk-density-compact .dk-comp-c {
-  font-size: 11px;
-  padding: 4px 0;
 }
 
 /* ── 2. The matrices ───────────────────────────────────────────────────────

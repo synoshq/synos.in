@@ -10,6 +10,7 @@ export const appendixSlides = (K) => {
   const {
     SlideFrame,
     SlideHeader,
+    Matrix,
     Eyebrow,
     Callout,
     Chip,
@@ -482,8 +483,9 @@ export const appendixSlides = (K) => {
     },
 
     /* ── 32 · Appendix · Landscape detail ─────────────────────────────────
-     * GAP. `.comp` is a six-row × three-column comparison table with a highlighted "us" row. There
-     * is no table in the kit; this is `.dk-comp` in deck.css. The two footnotes are Callouts. */
+     * `.comp` is a six-row comparison table. It is the kit's `Matrix` in its `rules` variant — same
+     * component as the landscape slide, cells carrying prose instead of state. The two footnotes
+     * are Callouts. */
     {
       id: 'apx-landscape-detail',
       node: (
@@ -499,58 +501,47 @@ export const appendixSlides = (K) => {
               </>
             }
           />
-          <div className="dk-comp">
-            <div className="dk-comp-h">You'll bucket us with…</div>
-            <div className="dk-comp-h">What they unblock</div>
-            <div className="dk-comp-h">What stays blocked</div>
-            {[
-              [
-                'Eval & observability platforms',
-                'agent tracing & eval tooling',
-                'Scoring recorded outputs against datasets an engineer authors.',
-                "No environment attached: they score what an agent said; we execute against the real systems and score what it did, authored by the SME, judged against the company's own outcomes.",
-              ],
-              [
-                'Enterprise search & RAG',
-                'knowledge retrieval products',
-                'Finding documents across silos.',
-                'No hands: can’t act in systems, no outcome to learn from, so the loop never starts.',
-              ],
-              [
-                'Context / memory layers',
-                'agent memory stores',
-                'Memory for one agent, one app.',
-                'A component, not a layer: no entity resolution across systems, no governance, no deploy, and framework lock-in.',
-              ],
-              [
-                'Tool proxies & MCP gateways',
-                'connectivity & governance pipes',
-                'Governed pipes to real systems.',
-                'Pipes without a brain: no shared context, no skills, nothing compounds between calls.',
-              ],
-              [
-                'AI workflow builders',
-                'low-code automation platforms',
-                'Automating one defined flow.',
-                'Every run starts from zero: no company brain, rigid graphs, per-vendor lock-in.',
-              ],
-              [
-                'Agent harnesses',
-                'Claude Code · Codex · Cursor',
-                'A very capable individual agent.',
-                'No company underneath: no shared brain, no safe data access, nowhere governed to deploy, no way to share wins.',
-              ],
-            ].map(([who, sub, unblock, blocked]) => (
-              <Fragment key={who}>
-                <div className="dk-comp-c">
-                  <b>{who}</b>
-                  <span>{sub}</span>
-                </div>
-                <div className="dk-comp-c">{unblock}</div>
-                <div className="dk-comp-c">{blocked}</div>
-              </Fragment>
-            ))}
-          </div>
+          <Matrix
+            variant="rules"
+            labelWidth="1.05fr"
+            cornerLabel="You'll bucket us with…"
+            columns={[
+              { label: 'What they unblock' },
+              { label: 'What stays blocked', width: '1.5fr' },
+            ]}
+            rows={[
+              {
+                label: 'Eval & observability platforms',
+                sub: 'agent tracing & eval tooling',
+                cells: [{ text: 'Scoring recorded outputs against datasets an engineer authors.' }, { text: "No environment attached: they score what an agent said; we execute against the real systems and score what it did, authored by the SME, judged against the company's own outcomes." }],
+              },
+              {
+                label: 'Enterprise search & RAG',
+                sub: 'knowledge retrieval products',
+                cells: [{ text: 'Finding documents across silos.' }, { text: 'No hands: can’t act in systems, no outcome to learn from, so the loop never starts.' }],
+              },
+              {
+                label: 'Context / memory layers',
+                sub: 'agent memory stores',
+                cells: [{ text: 'Memory for one agent, one app.' }, { text: 'A component, not a layer: no entity resolution across systems, no governance, no deploy, and framework lock-in.' }],
+              },
+              {
+                label: 'Tool proxies & MCP gateways',
+                sub: 'connectivity & governance pipes',
+                cells: [{ text: 'Governed pipes to real systems.' }, { text: 'Pipes without a brain: no shared context, no skills, nothing compounds between calls.' }],
+              },
+              {
+                label: 'AI workflow builders',
+                sub: 'low-code automation platforms',
+                cells: [{ text: 'Automating one defined flow.' }, { text: 'Every run starts from zero: no company brain, rigid graphs, per-vendor lock-in.' }],
+              },
+              {
+                label: 'Agent harnesses',
+                sub: 'Claude Code · Codex · Cursor',
+                cells: [{ text: 'A very capable individual agent.' }, { text: 'No company underneath: no shared brain, no safe data access, nowhere governed to deploy, no way to share wins.' }],
+              },
+            ]}
+          />
           <Callout tone="violet" className="dk-gap-sm" label="SynOS · built ground-up for non-engineering knowledge work, provider-agnostic">
             The full agent & agent-data infra stack: Company Brain, permissioned access, sandboxes,
             governed deploy, and the learning loop, all under any AI tool, on your infra. Engineering
