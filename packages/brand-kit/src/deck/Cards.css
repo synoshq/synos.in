@@ -28,6 +28,30 @@
 }
 
 /* .w-q — the quoted complaint. */
+/* The buyer decks' richer form. The number is a marker, not a heading: it sits at the eyebrow's
+   size and weight so it labels the card without competing with the title under it. */
+.sk-wall-num {
+  font-family: var(--sk-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sk-red);
+  margin-bottom: 4px;
+}
+.sk-wall-title {
+  font-family: var(--sk-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+.sk-wall-body {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--sk-ink-3);
+  margin: 0;
+}
+
 .sk-wall-quote {
   font-size: 15px;
   color: var(--sk-ink-2);

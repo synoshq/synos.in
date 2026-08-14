@@ -1,0 +1,43 @@
+/*
+ * ops-buyer.css — what THIS deck needs that the kit deliberately does not provide.
+ *
+ * Same rule as `deck.css`: express it in kit components, compose it from kit primitives, or record
+ * it here as a gap. Nothing here is a component. Everything here is either a one-slide shape or a
+ * geometry the kit has no opinion about yet.
+ */
+
+/* Slide 2 is one full-bleed illustration and nothing else, so its header centres over the image.
+   A `center` layout on SlideHeader would be a third layout for one slide in one deck — recorded
+   rather than added. */
+.ob-center {
+  text-align: center;
+}
+
+/* The illustration itself. `max-height` is in card-relative units on purpose: the image is
+   1400px wide and would otherwise push the card open — which is exactly what it did on the first
+   build of this port. */
+.ob-hero {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+}
+.ob-hero img {
+  max-width: 100%;
+  max-height: 460px;
+  object-fit: contain;
+}
+
+/* A badge beside a line of prose. Three of them on one slide is not a pattern, so this is geometry,
+   not a component — `align-items: baseline` so the chip sits on the text's first line rather than
+   floating at the top of a two-line paragraph. */
+.ob-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sk-space-4);
+}
+.ob-row > :first-child {
+  flex: 0 0 auto;
+}
+.ob-row p {
+  margin: 0;
+}

@@ -25,7 +25,7 @@
  * the theme removes that leak by construction rather than by override, and the shell CSS below
  * supplies the handful of rules the theme was actually providing.
  */
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -80,7 +80,10 @@ if (fontCss.includes('http')) throw new Error('a font face still points at a URL
 
 const revealCss = readFileSync(resolve(HERE, 'vendor/reveal/reveal.css'), 'utf8')
 const revealJs = readFileSync(resolve(HERE, 'vendor/reveal/reveal.js'), 'utf8')
-const deckCss = readFileSync(resolve(HERE, 'src/deck.css'), 'utf8')
+/* Each deck's own one-offs. `src/<deck>.css` is optional — a deck that needs nothing local says so
+   by not having one, which is the outcome to aim for. */
+const localCssPath = resolve(HERE, `src/${DECK}.css`)
+const deckCss = existsSync(localCssPath) ? readFileSync(localCssPath, 'utf8') : ''
 
 /* ── The slides ──────────────────────────────────────────────────────────── */
 
@@ -99,6 +102,11 @@ await esbuild.build({
   platform: 'node',
   outfile: BUNDLE,
   external: ['react', 'react/jsx-runtime', 'react-dom'],
+  /* An imported image becomes a data: URI at bundle time. The alternative is what the hand-written
+     ops-buyer deck does — `<img src="../blogs/…png">`, a path OUTSIDE the deck's own directory,
+     which resolves on the authoring machine and arrives broken in the buyer's inbox. Here it is
+     impossible to ship that mistake: an image either imports and is embedded, or the build fails. */
+  loader: { '.png': 'dataurl', '.jpg': 'dataurl', '.svg': 'dataurl' },
 })
 /* Written to disk rather than imported as a data: URL — a data: module cannot resolve the bare
    `react` specifier the externals leave behind. `.build/` is generated and gitignored. */

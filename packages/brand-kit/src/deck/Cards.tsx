@@ -7,7 +7,13 @@ import './Cards.css'
  * ═══════════════════════════════════════════════════════════════════════════ */
 
 export interface WallCardProps {
-  /** The complaint, in the operator's own words. The lead line. */
+  /** Position in the sequence — `1`..`6`. The buyer decks number their walls; the VC deck does not. */
+  num?: ReactNode
+  /** What the wall is, named. */
+  title?: ReactNode
+  /** Why it blocks, in a line. */
+  body?: ReactNode
+  /** The complaint, in the operator's own words. */
   quote?: ReactNode
   /** The consequence, in muted grey. */
   tag?: ReactNode
@@ -21,14 +27,23 @@ export interface WallCardProps {
  * The only body block that appears six times in every deck in the corpus. The red left rule is
  * fixed — a wall is always pain, so `WallCard` takes no `tone`.
  *
+ * Every slot is optional because the two deck families say a wall differently and both are right.
+ * The VC deck leads with the operator's complaint and follows with the consequence
+ * (`quote` + `tag`); the buyer decks number the wall, name it, explain it, and put the complaint
+ * last (`num` + `title` + `body` + `quote`). Same object, same red rule, different depth for a
+ * different room.
+ *
  * @example
  * <WallGrid>
  *   <WallCard quote="Nobody knows what anyone else automated." tag="No shared context." />
  * </WallGrid>
  */
-export function WallCard({ quote, tag, className, style }: WallCardProps) {
+export function WallCard({ num, title, body, quote, tag, className, style }: WallCardProps) {
   return (
     <div className={cx('sk-wall', className)} style={style}>
+      {num ? <div className="sk-wall-num">{num}</div> : null}
+      {title ? <h4 className="sk-wall-title">{title}</h4> : null}
+      {body ? <p className="sk-wall-body">{body}</p> : null}
       {quote ? <div className="sk-wall-quote">{quote}</div> : null}
       {tag ? <div className="sk-wall-tag">{tag}</div> : null}
     </div>
