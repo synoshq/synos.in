@@ -170,10 +170,23 @@
  * Conflict C18: this is the clearest two-scale component in the corpus.
  * ═════════════════════════════════════════════════════════════════════════ */
 
+/*
+ * DECISION G (2026-08-14 follow-on de-box). Same argument decision C made for WallCard and
+ * PillarCard, applied to the component that survived it: the phase card's fill is --sk-surface on a
+ * --sk-surface slide, so it paints nothing at all, and its 1px --sk-border hairline is 1.23:1 —
+ * invisible on a projector while still fragmenting the row into three panels. A fill that paints
+ * nothing and a border nobody can see are two devices doing zero work between them.
+ *
+ * What separates the three phases instead: the gap opens 14 -> 28px, and each column already has a
+ * strong top-left anchor in its badge, which is kept. The badge is this component's one colour spend
+ * and the only place the brand gradient appears on the slide (`--sk-phase--bridge`), exactly the
+ * argument that kept `.sk-pillar-ico` through decision C. The dashed foot rule is kept too: it is a
+ * rule, not a container, which is the shape de-boxing converts panels INTO.
+ */
 .sk-phase-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 28px;
   align-items: stretch;
 }
 
@@ -181,10 +194,7 @@
   --sk-phase-accent: var(--sk-indigo);
   --sk-phase-badge: var(--sk-indigo-2);
 
-  border-radius: 14px;
-  padding: 18px;
-  border: 1px solid var(--sk-border);
-  background: var(--sk-surface);
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -241,10 +251,12 @@
   --sk-phase-badge: var(--sk-violet);
 }
 
-/* Print scale — `.sc` in SYNOS_VC_1PAGER.html. */
+/* Print scale — `.sc` in SYNOS_VC_1PAGER.html. Decision G applies to print as well as deck, for the
+   reason decision C gave when it de-boxed the print callout: a print-only exception would be exactly
+   the "one more variant" the pass exists to remove, and deck-research found the same box-nesting
+   habit on the one-pagers (17-30 bordered boxes per A4 page). Radius and padding went with the fill
+   they were shaping; the tighter print gap stays. */
 .sk-phase--print {
-  border-radius: 10px;
-  padding: 9px 11px;
   gap: 3px;
 }
 .sk-phase--print .sk-phase-badge {
@@ -350,17 +362,24 @@
  * StatCard — `.g3` + `.stat-card` (`.n` / `.l` / `.s`), 10 occurrences in the VC decks.
  * ═════════════════════════════════════════════════════════════════════════ */
 
+/*
+ * DECISION G (2026-08-14 follow-on de-box). The stat card is the clearest case left in the kit and
+ * decision C should have taken it: a 72px numeral is the single loudest object on its slide, and
+ * putting a 1.23:1 hairline and a 2%-lighter fill around it is drawing a plate under a spotlight.
+ * The number is the card. Fill, hairline, radius and padding all go; the row gap opens 14 -> 28px so
+ * three numbers read as three columns by space, which is what the fill was standing in for.
+ *
+ * Colour survives untouched — --sk-stat-value is the per-stat hue and, since decision A took the
+ * face down to one weight, it is the only emphasis channel the number has left besides size.
+ */
 .sk-stat-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 28px;
 }
 .sk-stat {
   --sk-stat-value: var(--sk-indigo-2);
-  background: var(--sk-surface-2);
-  border: 1px solid var(--sk-border);
-  border-radius: 14px;
-  padding: 22px 18px;
+  padding: 0;
   text-align: center;
 }
 /*
@@ -488,41 +507,40 @@
  * 8 occurrences in the VC decks (`.dies` grey, `.wins` violet, `.doorA` indigo).
  * ═════════════════════════════════════════════════════════════════════════ */
 
+/*
+ * DECISION G (2026-08-14 follow-on de-box). A two-column contrast is the one layout that does not
+ * need a container to be read as two columns — the reader is being asked to compare left against
+ * right, and a gutter says that as clearly as two tinted plates do. Fill, hairline, radius and
+ * padding go; the gutter opens 14 -> 40px.
+ *
+ * The tone survives, moved from the plate onto the type: the column eyebrow already took its hue
+ * from `--sk-split-eyebrow`, and the item marker (the ✓ / ✕ that carries the whole argument of the
+ * slide) now takes it too instead of sitting in --sk-ink-2 like the sentence beside it. That is more
+ * colour discipline, not less: the hue lands on the two glyphs that mean something rather than being
+ * washed across 300px of background behind text that must then survive the tint.
+ */
 .sk-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 40px;
 }
 .sk-split-col {
   --sk-split-eyebrow: var(--sk-muted);
-  border-radius: 14px;
-  padding: 18px 20px;
-  background: var(--sk-surface-2);
-  border: 1px solid var(--sk-border);
+  padding: 0;
 }
 .sk-split-col--violet {
-  background: var(--sk-violet-bg);
-  border: 1px solid var(--sk-violet-br);
   --sk-split-eyebrow: var(--sk-violet);
 }
 .sk-split-col--indigo {
-  background: var(--sk-indigo-bg);
-  border: 1px solid var(--sk-indigo-2);
   --sk-split-eyebrow: var(--sk-indigo);
 }
 .sk-split-col--emerald {
-  background: var(--sk-emerald-bg);
-  border: 1px solid var(--sk-emerald-br);
   --sk-split-eyebrow: var(--sk-emerald);
 }
 .sk-split-col--amber {
-  background: var(--sk-amber-bg);
-  border: 1px solid var(--sk-amber-br);
   --sk-split-eyebrow: var(--sk-amber);
 }
 .sk-split-col--red {
-  background: var(--sk-red-bg);
-  border: 1px solid var(--sk-red-br);
   --sk-split-eyebrow: var(--sk-red);
 }
 /* `.c-eyebrow` — the column's own eyebrow, tracked 1.4px rather than the slide eyebrow's 1.6px. */
@@ -556,6 +574,11 @@
   color: var(--sk-ink-2);
   line-height: 1.45;
 }
+/* Decision G: the marker takes the column's hue now that the column has no tint to carry it. */
+.sk-split-item > span:first-child {
+  color: var(--sk-split-eyebrow);
+  font-weight: 600;
+}
 
 /* ══════════════════════════════════════════════════════════════════════════
  * Caption / QuoteBar — the two trailing lines under a body block.
@@ -580,12 +603,21 @@
   font-style: normal;
 }
 
+/*
+ * DECISION G (2026-08-14 follow-on de-box). The quote bar was a filled, hairlined, rounded box
+ * holding one italic line at 11.5px — the same rectangle-around-a-sentence StepCard's quote already
+ * gave up under decision C. It takes the same replacement, and deliberately the same one rather than
+ * a new idea: a 3px violet rule on the left edge. The kit now says "a quoted line is a rule plus
+ * italics" in both places it says anything about quoted lines.
+ *
+ * Size goes 11.5 -> 13px with the box. 11.5px was smaller than the eyebrow above it and was getting
+ * away with it because the plate marked the object out; with the plate gone the line has to hold on
+ * its own, and 13px is the scale's label step (decision C), not a new number.
+ */
 .sk-quote {
-  background: var(--sk-surface-2);
-  border: 1px solid var(--sk-border);
-  border-radius: 11px;
-  padding: 9px 16px;
-  font-size: 11.5px;
+  border-left: 3px solid var(--sk-violet);
+  padding: 2px 0 2px 12px;
+  font-size: 13px;
   color: var(--sk-ink-2);
   line-height: 1.5;
   font-style: italic;
@@ -594,11 +626,15 @@
   color: var(--sk-ink);
   font-style: normal;
 }
-/* Print scale — `.q` in the CTO one-pagers: indigo-tinted, 8.6px. */
+/* Print scale — `.q` in the CTO one-pagers: indigo-tinted, 8.6px. Decision G takes the hairline (the
+   same 1px tint-on-tint line decision C removed from `.sk-callout--print`) and re-states the base
+   rule in indigo so the deck and print shapes stay one shape. The indigo tint stays: on A4 at 8.6px,
+   read at 40cm rather than projected, a tint is doing real work that a rule alone would not. */
 .sk-quote--print {
   background: var(--sk-indigo-bg);
-  border: 1px solid var(--sk-indigo-br);
-  border-radius: 7px;
+  border: none;
+  border-left: 3px solid var(--sk-indigo-2);
+  border-radius: 0 7px 7px 0;
   padding: 6px 9px;
   font-size: 8.6px;
   color: var(--sk-indigo);

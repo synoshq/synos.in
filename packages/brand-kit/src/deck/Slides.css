@@ -13,17 +13,24 @@
 
 /*
  * Decision A: the cover headline is the second of the three Instrument Serif roles. 47px/800 sans
- * becomes 56px/400 serif — the face has no bold, so the lost weight is bought back with size, and
- * the cover stays a clear step above the 40px h1. -1.4px of tracking was set for a geometric sans
- * at 47px; a serif at 56px needs less, so it goes to -0.02em (≈ -1.1px).
+ * became 56px/400 serif — the face has no bold, so the lost weight is bought back with size.
+ *
+ * DECISION F (2026-08-14): 72px. This step is not a second opinion about the cover, it is a
+ * consequence of h1 moving 40 -> 54px. At 56px the cover title would sit 1.04x the h1 on the slide
+ * after it, which is not a step, it is a rounding error; a deck whose cover is the same size as its
+ * body headlines has no cover. The old system ran cover/h1 = 47/34 = 1.38. 72/54 = 1.33 holds the
+ * same relationship, and 72px is where --sk-stat-value already sits, so the deck's two "largest
+ * object on the slide" roles now agree on one size instead of on two near-misses.
+ *
+ * Tracking follows h1 to -0.024em for the same reason it did there.
  */
 .sk-cover-title {
   font-family: var(--sk-font-display);
-  font-size: 56px;
+  font-size: 72px;
   font-weight: 400;
-  line-height: 1.04;
+  line-height: 1.02;
   margin: 4px 0 18px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.024em;
   color: var(--sk-ink);
 }
 .sk-cover-lead {

@@ -8,9 +8,11 @@
  * DECISION C (2026-08-13 improvement pass) then replaced that scale outright. The extracted scale
  * ran 34 / 18 / 17 / 16 / 11.5, which put h2, h3 and p inside a 12.5% range covering three
  * semantic levels — indistinguishable at Hale's 25%-zoom test, so hierarchy was being carried by
- * weight and colour instead of size (deck-research §D.2). The scale is now 40 / 26 / 20 / 16 / 13,
+ * weight and colour instead of size (deck-research §D.2). The scale is now 54 / 26 / 20 / 16 / 13,
  * with every adjacent ratio at or above 1.25 and the eyebrow lifted off the ambient-light floor
- * (13px = 1.81%EH against 11.5px = 1.60%EH, deck-research §B.3).
+ * (13px = 1.81%EH against 11.5px = 1.60%EH, deck-research §B.3). h1 was 40px until decision F
+ * (2026-08-14) measured that a 400-weight serif at 40px paints less ink than the 34px/700 sans it
+ * replaced; the h1 comment below carries the numbers.
  *
  * Plus Jakarta Sans is gone from the load (decision A). Instrument Serif is loaded regular and
  * italic — it has no other weight.
@@ -61,16 +63,40 @@
 }
 /*
  * h1 is one of exactly three Instrument Serif roles. The face has no bold, so the 700 it replaces
- * is re-solved by size: 34px/700 sans becomes 40px/400 serif. 40px = 5.56%EH, readable to 7.6 m on
- * a 55" screen, so the one element that already cleared AVIXA's lecture preset clears it wider.
+ * has to be re-solved by size and tracking.
+ *
+ * DECISION F (2026-08-14 follow-on). The first attempt at that re-solve took h1 34px/700 sans to
+ * 40px/400 serif, and 40px was not a re-solve — it was a size bump that lost the argument. Presence
+ * on a wall is ink, not point size, and Instrument Serif is both lighter-stemmed AND narrower-set
+ * than Plus Jakarta Sans, so it loses on both terms at once. `node tools/ink.mjs` renders the
+ * longest real headline in the deck at each candidate and counts glyph pixels:
+ *
+ *   PJS   34/700   set width  919px   ink  9528px²   (the face this replaced)
+ *   IS    40/400   set width  734px   ink  6173px²   0.80x width, 0.65x ink   <- phase 3
+ *   IS    50/400   set width  898px   ink  9875px²   0.98x width, 1.04x ink
+ *   IS    54/400   set width  963px   ink 11320px²   1.05x width, 1.19x ink   <- here
+ *   IS    58/400   set width 1035px   ink 12774px²   1.13x width, 1.34x ink
+ *
+ * A serif headline that paints two thirds of the ink of the sans it replaced reads QUIETER, which
+ * inverts the entire point of the face change. 54px is the first step that clears the old headline
+ * on both terms with margin rather than merely matching it, and it still leaves 305px of the 1268px
+ * content width in hand on the longest headline in the corpus — 58px does not leave enough for a
+ * longer one. Tracking goes -0.015em -> -0.024em: a display serif at 54px wants the tighter fit,
+ * and closing the sidebearings is the only other lever a single-weight face offers.
+ *
+ * Colour was measured as a third lever and rejected: --sk-ink #0f172a is already 17.4:1 on white,
+ * and the darkest thing left (#020617, 19.6:1) is a 12% luminance move that is invisible at any
+ * projector gamma. It would be a token bought for nothing.
+ *
+ * 54px = 7.5%EH, comfortably past AVIXA's lecture preset.
  */
 .sk-deck :where(h1) {
   font-family: var(--sk-font-display);
-  font-size: 40px;
+  font-size: 54px;
   font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.12;
-  margin: 0 0 12px;
+  letter-spacing: -0.024em;
+  line-height: 1.08;
+  margin: 0 0 14px;
 }
 .sk-deck :where(h2) {
   font-size: 26px;
