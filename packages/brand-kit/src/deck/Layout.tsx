@@ -22,7 +22,7 @@ export type Space =
 /* The step is passed as a custom property, NOT as an inline `gap`. An inline `gap` is an inline
    style and therefore unbeatable by any stylesheet — the density register could never tighten a
    stack, which is the one thing it most needs to do. */
-const SPACE_VAR: Record<Space, string> = {
+export const SPACE_VAR: Record<Space, string> = {
   tight: 'var(--sk-space-2)',
   snug: 'var(--sk-space-4)',
   base: 'var(--sk-space-5)',

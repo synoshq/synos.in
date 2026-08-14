@@ -21,7 +21,7 @@
   padding: var(--sk-page-pad);
   display: flex;
   flex-direction: column;
-  gap: var(--sk-page-gap);
+  gap: var(--sk-gap, var(--sk-page-gap));
   background: var(--sk-surface);
   font-family: var(--sk-font-body);
   color: var(--sk-ink);
@@ -247,4 +247,22 @@
   font-size: 13px;
   font-weight: 800;
   color: var(--sk-ink);
+}
+
+/* The page footer. The hairline stays — this is one of the few places decision C's de-boxing does
+   not apply, because the rule is separating the page's content from its sign-off rather than
+   fencing a group of cards. */
+.sk-1p-foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid var(--sk-border);
+  padding-top: 9px;
+  font-size: 10.5px;
+  color: var(--sk-muted);
+}
+.sk-1p-foot b {
+  color: var(--sk-ink);
+  font-weight: 700;
 }

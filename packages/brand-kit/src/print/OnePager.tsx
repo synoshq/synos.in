@@ -1,8 +1,15 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { cx, type ToneOrNeutral } from '../types'
+import { SPACE_VAR, type Space } from '../deck/Layout'
 import './OnePager.css'
 
 export interface OnePagerPageProps {
+  /**
+   * Rhythm between the page's blocks. Defaults to the extracted 8px, which is right for a page
+   * that is full; a page with slack should open its gaps rather than stretch its content, so give
+   * it a bigger step instead of padding the copy.
+   */
+  gap?: Space
   children: ReactNode
   className?: string
   style?: CSSProperties
@@ -22,9 +29,12 @@ export interface OnePagerPageProps {
  *   <CtaBar title="Start with one team." />
  * </OnePagerPage>
  */
-export function OnePagerPage({ children, className, style }: OnePagerPageProps) {
+export function OnePagerPage({ gap, children, className, style }: OnePagerPageProps) {
   return (
-    <div className={cx('sk-print', 'sk-page', className)} style={style}>
+    <div
+      className={cx('sk-print', 'sk-page', className)}
+      style={gap ? ({ '--sk-gap': SPACE_VAR[gap], ...style } as CSSProperties) : style}
+    >
       {children}
     </div>
   )
@@ -178,6 +188,43 @@ export function CtaBar({ title, body, right, tone = 'teal', className, style }: 
         {body ? <p className="sk-cta-body">{body}</p> : null}
       </div>
       {right ? <div className="sk-cta-right">{right}</div> : null}
+    </div>
+  )
+}
+
+export interface OnePagerFooterProps {
+  /** Who is sending it. Rendered bold in the body face. */
+  name: ReactNode
+  /** The credential line that follows the name — role, background. */
+  credential?: ReactNode
+  /** The right-hand item, normally the domain. */
+  right?: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+/**
+ * The footer every one-pager page carries: who sent it on the left, where to find them on the
+ * right, above a hairline.
+ *
+ * `margin-top: auto` pins it to the foot of the page's flex column, so a short page still puts its
+ * footer on the baseline rather than halfway up. Present on every page of all eleven one-pagers in
+ * the corpus, which is why it is a component and not a slot.
+ */
+export function OnePagerFooter({
+  name,
+  credential,
+  right,
+  className,
+  style,
+}: OnePagerFooterProps) {
+  return (
+    <div className={cx('sk-1p-foot', className)} style={style}>
+      <div>
+        <b>{name}</b>
+        {credential ? <> · {credential}</> : null}
+      </div>
+      {right ? <div>{right}</div> : null}
     </div>
   )
 }

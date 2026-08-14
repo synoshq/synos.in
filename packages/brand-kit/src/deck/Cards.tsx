@@ -359,6 +359,13 @@ export interface StepCardProps {
    * @default true
    */
   bar?: boolean
+  /**
+   * `'print'` renders the one-pager's numbered step (`.st`): the marker becomes a ringed circle,
+   * the title drops to the one-pager's kicker size, and the card sits on the page's tighter
+   * padding. Both Aug-2026 one-pager templates use a four-step sequence built this way.
+   * @default 'deck'
+   */
+  scale?: Scale
   className?: string
   style?: CSSProperties
 }
@@ -372,24 +379,53 @@ export interface StepCardProps {
  *             quote="Which stores missed target last quarter, and why?" />
  * </StepGrid>
  */
-export function StepCard({ num, title, body, quote, bar = true, className, style }: StepCardProps) {
+export function StepCard({
+  num,
+  title,
+  body,
+  quote,
+  bar = true,
+  scale = 'deck',
+  className,
+  style,
+}: StepCardProps) {
+  const print = scale === 'print'
   return (
-    <div className={cx('sk-step', className)} style={style}>
-      {bar ? <div className="sk-step-bar" /> : null}
+    <div className={cx('sk-step', print && 'sk-step--print', className)} style={style}>
+      {bar && !print ? <div className="sk-step-bar" /> : null}
       <div className="sk-step-body">
         {num ? <div className="sk-step-num">{num}</div> : null}
-        <h3 className="sk-step-title">{title}</h3>
-        {body ? <p className="sk-step-text">{body}</p> : null}
-        {quote ? <div className="sk-step-quote">{quote}</div> : null}
+        {/* `display: contents` at deck scale, so this wrapper changes nothing there. It exists for
+            the print scale, where the marker sits BESIDE the copy rather than above it and the copy
+            therefore has to be one box. */}
+        <div className="sk-step-copy">
+          <h3 className="sk-step-title">{title}</h3>
+          {body ? <p className="sk-step-text">{body}</p> : null}
+          {quote ? <div className="sk-step-quote">{quote}</div> : null}
+        </div>
       </div>
     </div>
   )
 }
 
 /** The 3-column storyboard grid. */
-export function StepGrid({ children, className, style }: GridProps) {
+/**
+ * The grid steps sit in. Three across by default — a deck slide reads a sequence left to right.
+ *
+ * `columns={2}` gives the 2x2 block the one-pagers use: on a page a four-step sequence in one row
+ * would run each step to a 40mm measure, which is too narrow to read.
+ */
+export function StepGrid({
+  columns = 3,
+  children,
+  className,
+  style,
+}: GridProps & { columns?: 2 | 3 }) {
   return (
-    <div className={cx('sk-step-grid', className)} style={style}>
+    <div
+      className={cx('sk-step-grid', columns === 2 && 'sk-step-grid--2', className)}
+      style={style}
+    >
       {children}
     </div>
   )

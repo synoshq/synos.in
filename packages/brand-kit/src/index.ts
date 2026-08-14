@@ -84,6 +84,7 @@ export {
   OutcomeCard,
   OutcomeGrid,
   CtaBar,
+  OnePagerFooter,
 } from './print/OnePager'
 export type {
   OnePagerPageProps,
@@ -91,6 +92,7 @@ export type {
   SectionHeadingProps,
   OutcomeCardProps,
   CtaBarProps,
+  OnePagerFooterProps,
 } from './print/OnePager'
 
 export type { Tone, ToneOrNeutral, Scale, BaseProps } from './types'

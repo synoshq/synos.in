@@ -1,0 +1,66 @@
+/*
+ * onepager.css — what this one page needs that the kit deliberately does not provide.
+ *
+ * Same rule as the deck's `deck.css`: express it in kit components, compose it from kit primitives,
+ * or record it here as a gap. Nothing below is a component and nothing below should migrate into
+ * `src/` without passing the inventory's frequency test.
+ *
+ * Two things only:
+ *
+ *   1. THE DIAGRAM FRAME (`.op-diagram`, `.op-side*`). The page's whole top half is two hand-drawn
+ *      SVGs side by side under a shared caption. The kit has no diagram vocabulary and should not
+ *      grow one — same call the deck made for its five SVG slides.
+ *   2. A THREE-UP GRID (`.op-three`). `OutcomeGrid` is two columns; this page's "for other
+ *      problems" row is three. A `columns` prop on OutcomeGrid is the obvious kit-side fix and is
+ *      recorded in the report rather than taken here, because one page wanting a different column
+ *      count is not yet evidence about what the grid should be.
+ */
+
+.op-diagram {
+  border: 1px solid var(--sk-border);
+  border-radius: 12px;
+  padding: 14px 16px 12px;
+  background: var(--sk-surface-2);
+}
+.op-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.op-side svg {
+  width: 100%;
+  max-height: 80mm;
+}
+.op-side-label {
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+/* The "before" side is deliberately the quietest thing on the page. */
+.op-side-label--now {
+  color: var(--sk-muted);
+}
+.op-side-label--new {
+  color: var(--sk-indigo);
+}
+.op-diagram-cap {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sk-ink-2);
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid var(--sk-border);
+}
+.op-diagram-cap b {
+  color: var(--sk-ink);
+}
+
+.op-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sk-space-4);
+}

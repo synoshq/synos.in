@@ -457,6 +457,10 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+.sk-step-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sk-space-4);
+}
 .sk-step {
   border-radius: 14px;
   border: none;
@@ -612,6 +616,66 @@
 .sk-caption--italic strong {
   color: var(--sk-ink);
   font-style: normal;
+}
+
+/*
+ * The one-pager's numbered step (`.st` in the Aug-2026 one-pager template). Same object, page
+ * scale: the marker is a ringed circle rather than a mono label because at 11px a bare "1" reads
+ * as a bullet, and the gradient cap is dropped — on a page the cards sit in a 2x2 block and eight
+ * gradient edges in one field is exactly the fragmentation decision C removed from the deck.
+ */
+.sk-step--print {
+  border-radius: 11px;
+  padding: 13px 15px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+}
+.sk-step-copy {
+  display: contents;
+}
+.sk-step--print .sk-step-body {
+  padding: 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+}
+.sk-step--print .sk-step-copy {
+  display: block;
+}
+.sk-step--print .sk-step-num {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sk-indigo-bg);
+  border: 1.5px solid var(--sk-indigo-2);
+  color: var(--sk-indigo);
+  font-family: var(--sk-font-body);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+.sk-step--print .sk-step-title {
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--sk-indigo-2);
+  margin-bottom: 3px;
+}
+.sk-step--print .sk-step-text {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--sk-ink-2);
 }
 
 /*
