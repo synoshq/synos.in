@@ -111,7 +111,7 @@ if (slides.length !== 35) throw new Error(`expected 35 slides, the definition ha
 const sections = slides
   .map(
     (s, i) =>
-      `<section class="has-card" data-slide="${s.id}">${renderToStaticMarkup(s.node)}` +
+      `<section class="has-card${s.dense ? ' dk-dense' : ''}" data-slide="${s.id}">${renderToStaticMarkup(s.node)}` +
       (i === 0 ? '' : `<div class="dk-pnum">${i + 1} / ${slides.length}</div>`) +
       `</section>`,
   )

@@ -56,6 +56,11 @@ const perSlide = () => {
   return secs.map((sec, i) => {
     const card = sec.querySelector('.card-frame, .sk-slide')
     const h1 = sec.querySelector('h1')
+    /* The opening block — eyebrow + h1 + subtitle. In the source it is `.head-row` or
+       `.title-block`; in the rebuild it is `.sk-header`. Reported because the kit's opened type
+       scale (h1 34→54px, h2 18→26px, eyebrow 11.5→13px) is paid for out of this block, and the
+       reading deck has no vertical slack to pay it from. */
+    const head = sec.querySelector('.head-row, .title-block, .sk-header')
     const cardBox = card ? card.getBoundingClientRect() : null
     const h1Box = h1 ? h1.getBoundingClientRect() : null
     const colours = new Set()
@@ -80,6 +85,7 @@ const perSlide = () => {
          change to the stage. */
       h1Top: h1Box && cardBox ? Math.round((h1Box.top - cardBox.top) * 10) / 10 : null,
       h1Size: h1 ? getComputedStyle(h1).fontSize : null,
+      headH: head ? Math.round(head.getBoundingClientRect().height) : null,
       colours: colours.size,
       boxes,
       chars: sec.innerText.replace(/\s+/g, ' ').trim().length,
@@ -163,6 +169,10 @@ const result = {
   },
   network: { offDiskRequests: offDisk.length, urls: [...new Set(offDisk)] },
   fontFamilies: families,
+  header: {
+    meanPx: mean(slides.filter((s) => s.headH).map((s) => s.headH)),
+    maxPx: Math.max(...slides.map((s) => s.headH ?? 0)),
+  },
   overflow: {
     slidesOver: slides.filter((s) => s.overflowPx > 0).length,
     worst: Math.max(...slides.map((s) => s.overflowPx ?? 0)),
@@ -186,6 +196,7 @@ console.log(`h1 top, spread          ${result.h1.spreadPx}px  (${result.h1.sprea
 console.log(`h1 distinct positions   ${result.h1.distinctPositions}   ${JSON.stringify(distinct)}`)
 console.log(`off-disk requests       ${result.network.offDiskRequests}${offDisk.length ? `  ${[...new Set(offDisk)].slice(0, 6).join(' ')}` : ''}`)
 console.log(`font families rendered  ${families.length}   ${families.join(' · ')}`)
+console.log(`header block, mean/max  ${result.header.meanPx}px / ${result.header.maxPx}px`)
 console.log(
   `slides overflowing card ${result.overflow.slidesOver} / ${slides.length}   worst +${result.overflow.worst}px` +
     (result.overflow.slidesOver ? `\n  ${result.overflow.over.join('  ')}` : ''),
