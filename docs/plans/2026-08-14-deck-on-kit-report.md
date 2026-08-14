@@ -155,7 +155,7 @@ in this deck than any other component and it never needed a variant that did not
 ### 2.1 No component was added to the kit
 
 Per the spec. The only kit change in this work is one declaration in `SlideFrame.css`
-(`justify-content`), which is a defect fix, is recorded as decision H in the fidelity harness, and
+(`justify-content`), which is a defect fix, is recorded as decision I in the fidelity harness, and
 is discussed in §3. `deck/src/deck.css` holds everything else and is deck-local by design; its
 header says so and says why nothing in it should migrate.
 
@@ -182,7 +182,7 @@ is why the numbers differ by a few pixels. Same finding, same magnitude, and bot
 
 **The cause was one declaration.** `.sk-slide` carried `justify-content: center`, extracted
 faithfully from `.card-frame`. A centring card makes a title's vertical position a function of how
-much content sits below it. It is `flex-start` now, recorded as decision H, with both ends pinned in
+much content sits below it. It is `flex-start` now, recorded as decision I, with both ends pinned in
 the fidelity harness: the check still fails if the kit drifts *and* if the source artifact moves.
 
 **Why this stayed broken through the whole improvement pass is the interesting part.** G1 was ranked
@@ -195,7 +195,7 @@ real deck is what made it visible, and then it took one line.
 One live demonstration of the same principle: while tuning the density register in §5 I added a
 `.dk-dense .sk-eyebrow { margin-bottom: 6px }` rule. The probe immediately reported a third distinct
 h1 position, because the eyebrow sits above the headline. The rule came straight back out. Without
-the probe that would have shipped and quietly undone decision H on eight slides.
+the probe that would have shipped and quietly undone decision I on eight slides.
 
 ---
 
@@ -279,7 +279,7 @@ spent before any content is placed.
 nothing else. Subtitle 26 → 19px, body 16 → 13.5px, card titles 20 → 17px, quotes 13 → 11.5px, and
 the grid gaps that decisions C and G opened to replace removed borders come back toward the source's
 12–14px. `h1` deliberately does not move — it is the brand's one display role, its position is what
-decision H just pinned, and shrinking it per slide would split the register across the deck.
+decision I just pinned, and shrinking it per slide would split the register across the deck.
 
 That fixed it: **0 / 35 slides overflow, 35 PDF pages, `verify_pdf.py` reports SAFE.**
 
@@ -450,7 +450,7 @@ Three, on `feat/deck-on-kit-aug14`:
 
 | | |
 |---|---|
-| `fix(brand-kit)` | the h1 stops moving — decision H, deck-research G1, recorded in the fidelity harness |
+| `fix(brand-kit)` | the h1 stops moving — decision I, deck-research G1, recorded in the fidelity harness |
 | `feat(brand-kit)` | the deck: build script, definition, vendored reveal and fonts, the geometry and no-CDN probe |
 | `feat(brand-kit)` | the proof: 35 comparison renders, the PDF at 35 pages, and the `.dk-dense` register that got it there |
 

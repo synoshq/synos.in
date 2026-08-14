@@ -26,7 +26,7 @@
   display: flex;
   flex-direction: column;
   /*
-   * DECISION H (2026-08-14, the deck-on-kit pass). Was `center`, copied faithfully from
+   * DECISION I (2026-08-14, the deck-on-kit pass). Was `center`, copied faithfully from
    * `.card-frame`. This is deck-research G1 — "the highest-value single change in this document" —
    * and it stayed undone through the whole improvement pass because nothing consumed the kit and
    * there were no real slides on which the defect could be seen.

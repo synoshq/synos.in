@@ -142,7 +142,7 @@
  * report has had at item 1 since 2026-08-13. See the report's §5 for the shape of it.
  *
  * `h1` deliberately does NOT move. It is the brand's one display role, its position is what
- * decision H just pinned, and shrinking it per slide would split the register across the deck.
+ * decision I just pinned, and shrinking it per slide would split the register across the deck.
  * Everything paid here is paid out of the subtitle and the body.
  */
 .dk-dense .sk-header h2 {
@@ -152,7 +152,7 @@
 }
 /* h1's own bottom margin is fair game; the EYEBROW's is not. The eyebrow sits above the h1, so
    tightening it moves the headline — `deck/probe/measure.mjs` caught a `.dk-dense .sk-eyebrow`
-   rule here immediately, reporting a third distinct h1 position. Decision H's guarantee is that
+   rule here immediately, reporting a third distinct h1 position. Decision I's guarantee is that
    nothing in this file may touch anything above the headline. */
 .dk-dense .sk-header h1 {
   margin-bottom: 8px;
