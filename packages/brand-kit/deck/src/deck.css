@@ -1,0 +1,482 @@
+/*
+ * deck.css — everything this deck needs that the brand kit deliberately does not provide.
+ *
+ * READ THIS BEFORE ADDING TO IT. The rule for the rebuild was: express a slide in kit components,
+ * or compose it from kit primitives, or record it as a gap. Nothing here is a component and nothing
+ * here should ever migrate into `src/` without going through the inventory's frequency test — the
+ * inventory excluded roughly sixty one-off classes on purpose, and a component that exists for one
+ * slide is drift.
+ *
+ * Everything below falls into exactly three buckets, and each is a finding in
+ * `docs/plans/2026-08-14-deck-on-kit-report.md`:
+ *
+ *   1. THE BESPOKE SVG DIAGRAMS (`.dk-seam`, `.dk-loop`, `.dk-edge-svg`). Five slides carry a
+ *      hand-drawn SVG. The kit has no diagram vocabulary and should not grow one; these are the
+ *      source deck's own `.u-*` / `.lp-*` rules, renamed and re-pointed at `--sk-*` tokens.
+ *   2. THE MATRICES (`.dk-matrix`). Four slides are tables — a 5x3 component matrix, a 6x5
+ *      landscape grid, a 6x3 comparison table and a 2x2 quadrant. The kit has grids with fixed
+ *      column counts and no table primitive at all. This is the gap that costs the most.
+ *   3. SHELL AND SPACING (`.dk-stack`, `.dk-cols`, `.dk-arrow`, `.dk-gap-*`). The kit has no
+ *      spacing scale and no column grid, so every vertical gap between two blocks on a slide is a
+ *      number somebody picked. They are collected here rather than sprayed across 35 slides as
+ *      inline styles, so the size of the missing subsystem is countable.
+ *
+ * The typographic substitutions are deliberate: every 'Plus Jakarta Sans' in the source diagram CSS
+ * becomes `--sk-font-body` (Inter), because decision A retired that face and scopes Instrument Serif
+ * to h1 / the cover title / stat values only. Every literal hex becomes a token.
+ */
+
+/* ── 3. Shell and spacing ──────────────────────────────────────────────────
+ * The kit has no spacing scale (improvement report §11, §14 item 1). These are the four gaps this
+ * deck actually needed, named once instead of inlined 40 times.
+ */
+.dk-gap-sm {
+  margin-top: 12px;
+}
+.dk-gap {
+  margin-top: 18px;
+}
+.dk-gap-lg {
+  margin-top: 26px;
+}
+
+/* A vertical stack with one rhythm, for slides that are a sequence of blocks rather than a grid. */
+.dk-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+}
+
+/* Two columns at an arbitrary ratio. SplitColumns is 1fr 1fr and is a *contrast* component with its
+   own eyebrow/marker vocabulary; several slides need only the geometry. */
+.dk-cols {
+  display: grid;
+  gap: 18px;
+  align-items: stretch;
+}
+.dk-cols--12 {
+  grid-template-columns: 1fr 1fr;
+}
+.dk-cols--54 {
+  grid-template-columns: 1.25fr 1fr;
+}
+.dk-cols--65 {
+  grid-template-columns: 1.15fr 1fr;
+}
+
+/* The connector arrow between steps in a horizontal sequence. Source: `.garr`, `.fw-arr`, `.sm-arr`. */
+.dk-arrow {
+  align-self: center;
+  color: var(--sk-border-2);
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* A chip whose label carries a second, quieter line. Source: `.d1-chip .d1-kd`, `.sm-st .xs`.
+ *
+ * The kit's Chip is deliberately a single nowrap line — the inventory (§5.5) excluded `.tool-chip`
+ * and `.harness-chip`, the two-line chips with an icon block, on the grounds that they are cards.
+ * The architecture slides need the two-line form anyway, so the deck relaxes `white-space` and caps
+ * the measure on the chips that carry a descriptor. This is a deck-local override of a kit class,
+ * which is the smell it looks like; it is recorded in the report rather than pushed into the kit.
+ */
+.sk-chip:has(.dk-chip-kd) {
+  white-space: normal;
+  max-width: 230px;
+  vertical-align: top;
+}
+.dk-chip-kd {
+  display: block;
+  color: var(--sk-muted);
+  font-weight: 500;
+  font-size: 0.86em;
+  letter-spacing: 0;
+}
+
+/* The slide's page number, which the source deck injects from JS so it survives PDF export. */
+.dk-pnum {
+  position: absolute;
+  right: 22px;
+  bottom: 12px;
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  /* --sk-muted, not --sk-dim. The improvement report (§5, §13) leaves --sk-dim declared at 2.56:1
+     and referenced by no component, calling it a loaded gun for the next deck author. This is that
+     author declining to fire it. */
+  color: var(--sk-muted);
+  letter-spacing: 0.4px;
+}
+
+/* ── 2. The matrices ───────────────────────────────────────────────────────
+ * Four slides are tables. `.dk-matrix` is one generic CSS grid driven entirely by inline
+ * `gridTemplateColumns`, plus cell states. It is the shape the kit is missing.
+ */
+.dk-matrix {
+  display: grid;
+  gap: 6px;
+  align-items: stretch;
+}
+.dk-matrix-hd {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--sk-ink);
+  padding: 6px 8px;
+  line-height: 1.25;
+}
+.dk-matrix-hd span {
+  display: block;
+  font-weight: 500;
+  font-size: 10.5px;
+  color: var(--sk-muted);
+  margin-top: 2px;
+}
+.dk-matrix-hd.is-us {
+  color: var(--sk-violet);
+}
+.dk-matrix-hd.is-us span {
+  color: var(--sk-violet);
+}
+.dk-matrix-lab {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sk-ink-2);
+  padding: 8px 8px 8px 0;
+  line-height: 1.25;
+}
+.dk-matrix-lab span {
+  display: block;
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--sk-muted);
+  margin-top: 2px;
+}
+.dk-matrix-c {
+  font-size: 11px;
+  line-height: 1.3;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--sk-ink-3);
+  background: var(--sk-surface-2);
+  display: flex;
+  align-items: center;
+}
+.dk-matrix-c.is-none {
+  background: transparent;
+  border: 1px dashed var(--sk-border);
+}
+.dk-matrix-c.is-part {
+  background: var(--sk-amber-bg);
+  color: var(--sk-amber);
+}
+.dk-matrix-c.is-full,
+.dk-matrix-c.is-us {
+  background: var(--sk-violet-bg);
+  color: var(--sk-violet);
+  font-weight: 600;
+}
+.dk-matrix-c.is-brand {
+  background: var(--sk-grad);
+  color: var(--sk-on-brand);
+  font-weight: 600;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.dk-matrix-c.is-brand b {
+  font-size: 12.5px;
+}
+
+/* The three-column comparison table on the landscape-detail slide. */
+.dk-comp {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1.5fr;
+  gap: 0 14px;
+}
+.dk-comp-h {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+  padding-bottom: 6px;
+}
+.dk-comp-c {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--sk-ink-3);
+  padding: 7px 0;
+  border-top: 1px solid var(--sk-border);
+}
+.dk-comp-c b {
+  display: block;
+  font-size: 13px;
+  color: var(--sk-ink);
+}
+.dk-comp-c span {
+  display: block;
+  font-size: 10.5px;
+  color: var(--sk-muted);
+}
+
+/* The 2x2 quadrant. Axis labels are the whole point of the slide and have no component. */
+.dk-quad {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  grid-template-rows: 1fr 16px;
+  gap: 8px;
+}
+.dk-quad-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.dk-quad-y {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  font-size: 10px;
+  color: var(--sk-muted);
+  letter-spacing: 0.6px;
+}
+.dk-quad-x {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--sk-muted);
+  letter-spacing: 0.6px;
+}
+
+/* ── 1. The bespoke SVG diagrams ───────────────────────────────────────────
+ * Renamed from the source's `.u-*` / `.lp-*`, re-pointed at `--sk-*` tokens, and with every
+ * 'Plus Jakarta Sans' moved to Inter (decision A retired that face).
+ */
+@keyframes dkFlow {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+.dk-seam {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dk-seam svg {
+  width: 78%;
+  height: auto;
+  display: block;
+}
+.dk-seam--cover svg {
+  width: 34%;
+}
+.dk-seam--close svg {
+  width: 50%;
+}
+
+.dk-u-blocked line {
+  stroke: var(--sk-amber-2);
+  stroke-opacity: 0.32;
+  stroke-width: 1.6;
+  stroke-dasharray: 2 8;
+  stroke-linecap: round;
+}
+.dk-u-flow {
+  stroke-dasharray: 5 9;
+  animation: dkFlow 1.7s linear infinite;
+}
+.dk-u-ring {
+  fill: var(--sk-surface);
+  stroke: var(--sk-border-2);
+  stroke-width: 1.5;
+}
+.dk-u-icon {
+  stroke: var(--sk-indigo-2);
+  stroke-width: 1.7;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dk-u-nlabel {
+  font-family: var(--sk-font-body);
+  font-weight: 700;
+  font-size: 17px;
+  fill: var(--sk-ink);
+}
+.dk-u-nsub {
+  font-family: var(--sk-font-body);
+  font-weight: 500;
+  font-size: 11.5px;
+  fill: var(--sk-muted);
+}
+.dk-u-ctitle {
+  font-family: var(--sk-font-body);
+  font-weight: 800;
+  font-size: 26px;
+  fill: var(--sk-on-brand);
+}
+.dk-u-csub {
+  font-family: var(--sk-font-mono);
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 1.6px;
+  fill: var(--sk-on-brand);
+}
+.dk-seam--cover .dk-u-nlabel {
+  font-size: 18px;
+}
+.dk-seam--cover .dk-u-nsub,
+.dk-seam--cover .dk-u-csub {
+  display: none;
+}
+.dk-seam--cover .dk-u-ctitle {
+  font-size: 24px;
+}
+.dk-seam--close .dk-u-nlabel {
+  font-size: 22px;
+}
+
+.dk-loop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dk-loop svg {
+  width: 96%;
+  height: auto;
+  display: block;
+}
+.dk-lp-node {
+  fill: var(--sk-indigo-bg);
+  stroke: var(--sk-indigo-br);
+  stroke-width: 1.4;
+}
+.dk-lp-node-plain {
+  fill: var(--sk-surface);
+  stroke: var(--sk-border-2);
+  stroke-width: 1.2;
+}
+.dk-lp-badge {
+  fill: var(--sk-indigo-2);
+}
+.dk-lp-badge-t {
+  font-family: var(--sk-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--sk-on-brand);
+}
+.dk-lp-h {
+  font-family: var(--sk-font-body);
+  font-weight: 700;
+  font-size: 13.5px;
+  fill: var(--sk-ink);
+}
+.dk-lp-m {
+  font-family: var(--sk-font-body);
+  font-weight: 500;
+  font-size: 10.5px;
+  fill: var(--sk-muted);
+}
+.dk-lp-edge {
+  stroke: var(--sk-indigo-2);
+  stroke-width: 1.8;
+  fill: none;
+}
+.dk-lp-edge-v {
+  stroke: var(--sk-violet);
+  stroke-width: 1.8;
+  fill: none;
+}
+.dk-lp-flow {
+  stroke-dasharray: 5 8;
+  animation: dkFlow 1.6s linear infinite;
+}
+.dk-lp-panel {
+  fill: var(--sk-violet-bg);
+  stroke: var(--sk-violet-br);
+  stroke-width: 1.5;
+}
+.dk-lp-ph {
+  font-family: var(--sk-font-body);
+  font-weight: 800;
+  font-size: 15px;
+  fill: var(--sk-violet-ink);
+}
+.dk-lp-pr {
+  font-family: var(--sk-font-body);
+  font-weight: 600;
+  font-size: 12px;
+  fill: var(--sk-violet);
+}
+.dk-lp-tag {
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  fill: var(--sk-violet);
+}
+.dk-lp-pay {
+  fill: var(--sk-emerald-bg);
+  stroke: var(--sk-emerald-br);
+  stroke-width: 1.3;
+}
+.dk-lp-pay-h {
+  font-family: var(--sk-font-body);
+  font-weight: 700;
+  font-size: 11.5px;
+  fill: var(--sk-emerald);
+}
+.dk-lp-pay-s {
+  font-family: var(--sk-font-body);
+  font-size: 10px;
+  fill: var(--sk-emerald);
+}
+
+.dk-edge-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dk-edge-svg svg {
+  width: 96%;
+  height: auto;
+  display: block;
+}
+.dk-eg-core {
+  font-family: var(--sk-font-body);
+  font-weight: 800;
+  font-size: 13px;
+  fill: var(--sk-indigo-ink);
+}
+.dk-eg-sub {
+  font-family: var(--sk-font-body);
+  font-size: 9.5px;
+  fill: var(--sk-indigo);
+}
+.dk-eg-ring {
+  font-family: var(--sk-font-body);
+  font-size: 10px;
+  fill: var(--sk-indigo-2);
+}
+.dk-eg-frontier {
+  font-family: var(--sk-font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.6px;
+  fill: var(--sk-violet);
+}
+.dk-eg-yours {
+  font-family: var(--sk-font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--sk-ink);
+}
+.dk-eg-edge-h {
+  font-family: var(--sk-font-body);
+  font-weight: 800;
+  font-size: 12px;
+  fill: var(--sk-emerald);
+}
+.dk-eg-edge-s {
+  font-family: var(--sk-font-body);
+  font-size: 9.5px;
+  fill: var(--sk-emerald);
+}
