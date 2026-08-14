@@ -143,6 +143,29 @@ export const REASONS = {
     'reason that three or more stacked text levels need a surface, and both named so the number moves',
     'if that call changes.',
   ].join('\n'),
+  I: [
+    '**Decision I — the title stops moving (2026-08-14, the deck-on-kit pass).** `.sk-slide` was',
+    '`justify-content: center`, copied faithfully from `.card-frame`. That makes a slide title\'s',
+    'vertical position a function of how much content sits BELOW it, so the headline walks up and',
+    'down the screen as the deck advances — and in a live presentation the transition is what you',
+    'see. deck-research §D.1 calls it "the highest-value single change in this document" and §D.5',
+    'ranks it the single most visible "homemade" tell there is.',
+    '',
+    '**Measured, not asserted.** `node deck/probe/measure.mjs --source` reports the shipped',
+    '`synos-vc-deck-v6.html` landing its `h1` at **25 distinct top offsets across 35 slides,',
+    'spanning 175px — 24.3% of stage height**. The same probe on the deck rebuilt on this kit',
+    'reports **2 positions and a 32px spread**: one value for the default frame, one for the tighter',
+    '`arch` frame, which is exactly G1\'s stated success criterion of `distinctH1Tops ≤ 2`.',
+    '',
+    'This is the one place in three passes where the kit deliberately stops reproducing the source',
+    'rather than reproducing it exactly, on a defect the source is known to have. It stayed undone',
+    'through the whole improvement pass for a good reason — nothing consumed the kit, so there were',
+    'no real slides on which a moving headline could be seen. Building a real deck is what made it',
+    'visible, and fixing it is one declaration.',
+    '',
+    'The cost, accepted in advance by G1: sparse slides now carry their slack at the bottom rather',
+    'than split top and bottom, which reads as unfinished until the eye adjusts.',
+  ].join('\n'),
   H: [
     '**Decision H — the phase badge clears AA.** `.sk-phase-badge` filled with `--sk-indigo-2`',
     '(#6366f1) put white on 4.47:1, missing AA by 0.03 at the badge\'s 10px. It was carried as a',
@@ -218,7 +241,10 @@ export const SPECIMENS = [
       ),
     ),
     checks: [
-      { source: '.card-frame', built: '.sk-slide', props: [...BOX, 'width', 'height', 'box-shadow', 'display', 'flex-direction', 'justify-content'] },
+      {
+        source: '.card-frame', built: '.sk-slide', props: [...BOX, 'width', 'height', 'box-shadow', 'display', 'flex-direction', 'justify-content'],
+        intentional: { 'justify-content': ['center', 'flex-start', 'I'] },
+      },
     ],
   },
   {
@@ -242,7 +268,12 @@ export const SPECIMENS = [
       ),
     ),
     checks: [
-      { source: '.card-frame.arch-card', built: '.sk-slide', props: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'border-top-left-radius', 'justify-content'] },
+      {
+        source: '.card-frame.arch-card', built: '.sk-slide', props: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'border-top-left-radius', 'justify-content'],
+        // The arch frame declares `justify-content: center` a second time, so decision I has to be
+        // recorded on both specimens or the arch card would silently keep centring.
+        intentional: { 'justify-content': ['center', 'flex-start', 'I'] },
+      },
       // `.arch-card h1 { 24px }` / `h2 { 13.5px }` lose the specificity tie to `.reveal h1/h2` and
       // never take effect; the shipped arch slide renders h1 at 34px and h2 at 18px. Asserting the
       // shipped values, not the declared ones. See inventory §5.7.

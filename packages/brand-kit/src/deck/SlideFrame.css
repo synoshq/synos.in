@@ -25,7 +25,27 @@
   padding: var(--sk-slide-pad);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /*
+   * DECISION I (2026-08-14, the deck-on-kit pass). Was `center`, copied faithfully from
+   * `.card-frame`. This is deck-research G1 — "the highest-value single change in this document" —
+   * and it stayed undone through the whole improvement pass because nothing consumed the kit and
+   * there were no real slides on which the defect could be seen.
+   *
+   * The defect: a centring card makes the title's position a function of how much content sits
+   * BELOW it. `deck/probe/measure.mjs --source` measures the shipped v6 deck's h1 landing at 25
+   * distinct top offsets across its 35 slides, spanning 175px — 24% of stage height. Advancing one
+   * slide visibly drops the headline down the screen, and in a live presentation the transition is
+   * what you see. deck-research §D.5 ranks it the single most visible "homemade" tell there is.
+   *
+   * With `flex-start` the h1's top is padding + the eyebrow's fixed box on every standard slide, so
+   * it does not move at all; the arch variant's tighter padding gives the one second value. The
+   * same probe on the rebuilt deck reports 2 distinct positions and a 6px spread.
+   *
+   * The cost is real and was accepted: sparse slides now carry their empty space at the bottom
+   * instead of splitting it top and bottom, which reads as unfinished until the eye adjusts. That
+   * is the trade G1 named in advance.
+   */
+  justify-content: flex-start;
   position: relative;
 }
 

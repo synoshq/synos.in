@@ -1,0 +1,428 @@
+{
+  "file": "/Users/anoopjawahar/ws/synos-landing/packages/brand-kit/deck/out/synos-vc-deck-v6-kit.html",
+  "slides": 35,
+  "h1": {
+    "slidesWithH1": 31,
+    "min": 37,
+    "max": 69,
+    "spreadPx": 32,
+    "spreadPctOfStage": 4.4,
+    "distinctPositions": 2,
+    "positions": [
+      37,
+      69
+    ]
+  },
+  "network": {
+    "offDiskRequests": 0,
+    "urls": []
+  },
+  "fontFamilies": [
+    "Instrument Serif",
+    "Inter",
+    "JetBrains Mono"
+  ],
+  "header": {
+    "meanPx": 208.8,
+    "maxPx": 286
+  },
+  "overflow": {
+    "slidesOver": 0,
+    "worst": 0,
+    "over": []
+  },
+  "density": {
+    "meanColours": 6.5,
+    "maxColours": 9,
+    "meanBoxes": 9.6,
+    "maxBoxes": 36,
+    "meanChars": 1437.5
+  },
+  "perSlide": [
+    {
+      "n": 1,
+      "id": "cover",
+      "h1Top": null,
+      "h1Size": null,
+      "headH": null,
+      "colours": 5,
+      "boxes": 5,
+      "chars": 937,
+      "overflowPx": 0
+    },
+    {
+      "n": 2,
+      "id": "premise",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 9,
+      "boxes": 9,
+      "chars": 1443,
+      "overflowPx": 0
+    },
+    {
+      "n": 3,
+      "id": "the-gap",
+      "h1Top": null,
+      "h1Size": null,
+      "headH": null,
+      "colours": 3,
+      "boxes": 2,
+      "chars": 394,
+      "overflowPx": 0
+    },
+    {
+      "n": 4,
+      "id": "today",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 4,
+      "boxes": 1,
+      "chars": 439,
+      "overflowPx": 0
+    },
+    {
+      "n": 5,
+      "id": "the-trap",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 263,
+      "colours": 7,
+      "boxes": 5,
+      "chars": 1543,
+      "overflowPx": 0
+    },
+    {
+      "n": 6,
+      "id": "architecture-today",
+      "h1Top": 36.9,
+      "h1Size": "54px",
+      "headH": 205,
+      "colours": 7,
+      "boxes": 26,
+      "chars": 1447,
+      "overflowPx": 0
+    },
+    {
+      "n": 7,
+      "id": "hard-part",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 211,
+      "colours": 8,
+      "boxes": 12,
+      "chars": 1997,
+      "overflowPx": 0
+    },
+    {
+      "n": 8,
+      "id": "second-job",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 251,
+      "colours": 6,
+      "boxes": 13,
+      "chars": 1822,
+      "overflowPx": 0
+    },
+    {
+      "n": 9,
+      "id": "architecture-training",
+      "h1Top": 36.9,
+      "h1Size": "54px",
+      "headH": 147,
+      "colours": 8,
+      "boxes": 36,
+      "chars": 2071,
+      "overflowPx": 0
+    },
+    {
+      "n": 10,
+      "id": "the-play",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 227,
+      "colours": 7,
+      "boxes": 7,
+      "chars": 1701,
+      "overflowPx": 0
+    },
+    {
+      "n": 11,
+      "id": "trust-ladder",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 8,
+      "boxes": 11,
+      "chars": 1418,
+      "overflowPx": 0
+    },
+    {
+      "n": 12,
+      "id": "compounds",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 211,
+      "colours": 6,
+      "boxes": 2,
+      "chars": 1179,
+      "overflowPx": 0
+    },
+    {
+      "n": 13,
+      "id": "who-buys",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 251,
+      "colours": 7,
+      "boxes": 7,
+      "chars": 1476,
+      "overflowPx": 0
+    },
+    {
+      "n": 14,
+      "id": "the-wedge",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 153,
+      "colours": 7,
+      "boxes": 6,
+      "chars": 2152,
+      "overflowPx": 0
+    },
+    {
+      "n": 15,
+      "id": "traction",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 216,
+      "colours": 6,
+      "boxes": 8,
+      "chars": 1744,
+      "overflowPx": 0
+    },
+    {
+      "n": 16,
+      "id": "business-model",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 227,
+      "colours": 6,
+      "boxes": 6,
+      "chars": 1754,
+      "overflowPx": 0
+    },
+    {
+      "n": 17,
+      "id": "landscape",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 153,
+      "colours": 8,
+      "boxes": 32,
+      "chars": 2479,
+      "overflowPx": 0
+    },
+    {
+      "n": 18,
+      "id": "differently",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 187,
+      "colours": 6,
+      "boxes": 11,
+      "chars": 2556,
+      "overflowPx": 0
+    },
+    {
+      "n": 19,
+      "id": "models-better",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 286,
+      "colours": 8,
+      "boxes": 7,
+      "chars": 1613,
+      "overflowPx": 0
+    },
+    {
+      "n": 20,
+      "id": "why-us",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 251,
+      "colours": 7,
+      "boxes": 7,
+      "chars": 1396,
+      "overflowPx": 0
+    },
+    {
+      "n": 21,
+      "id": "the-round",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 216,
+      "colours": 9,
+      "boxes": 13,
+      "chars": 1524,
+      "overflowPx": 0
+    },
+    {
+      "n": 22,
+      "id": "closing",
+      "h1Top": null,
+      "h1Size": null,
+      "headH": null,
+      "colours": 4,
+      "boxes": 2,
+      "chars": 451,
+      "overflowPx": 0
+    },
+    {
+      "n": 23,
+      "id": "appendix-divider",
+      "h1Top": null,
+      "h1Size": null,
+      "headH": null,
+      "colours": 3,
+      "boxes": 2,
+      "chars": 357,
+      "overflowPx": 0
+    },
+    {
+      "n": 24,
+      "id": "apx-what-it-is",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 227,
+      "colours": 5,
+      "boxes": 15,
+      "chars": 1114,
+      "overflowPx": 0
+    },
+    {
+      "n": 25,
+      "id": "apx-status",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 7,
+      "boxes": 2,
+      "chars": 1208,
+      "overflowPx": 0
+    },
+    {
+      "n": 26,
+      "id": "apx-edge",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 227,
+      "colours": 7,
+      "boxes": 5,
+      "chars": 1106,
+      "overflowPx": 0
+    },
+    {
+      "n": 27,
+      "id": "apx-why-now",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 157,
+      "colours": 8,
+      "boxes": 2,
+      "chars": 1032,
+      "overflowPx": 0
+    },
+    {
+      "n": 28,
+      "id": "apx-shift",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 251,
+      "colours": 6,
+      "boxes": 1,
+      "chars": 1002,
+      "overflowPx": 0
+    },
+    {
+      "n": 29,
+      "id": "apx-hard-layer",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 263,
+      "colours": 6,
+      "boxes": 10,
+      "chars": 1383,
+      "overflowPx": 0
+    },
+    {
+      "n": 30,
+      "id": "apx-what-runs",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 8,
+      "boxes": 7,
+      "chars": 1057,
+      "overflowPx": 0
+    },
+    {
+      "n": 31,
+      "id": "apx-flywheel",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 8,
+      "boxes": 15,
+      "chars": 1708,
+      "overflowPx": 0
+    },
+    {
+      "n": 32,
+      "id": "apx-landscape-detail",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 129,
+      "colours": 6,
+      "boxes": 22,
+      "chars": 2446,
+      "overflowPx": 0
+    },
+    {
+      "n": 33,
+      "id": "apx-quadrant",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 5,
+      "boxes": 6,
+      "chars": 1521,
+      "overflowPx": 0
+    },
+    {
+      "n": 34,
+      "id": "apx-walls",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 227,
+      "colours": 6,
+      "boxes": 7,
+      "chars": 972,
+      "overflowPx": 0
+    },
+    {
+      "n": 35,
+      "id": "apx-neutral",
+      "h1Top": 68.9,
+      "h1Size": "54px",
+      "headH": 192,
+      "colours": 7,
+      "boxes": 14,
+      "chars": 1872,
+      "overflowPx": 0
+    }
+  ]
+}
