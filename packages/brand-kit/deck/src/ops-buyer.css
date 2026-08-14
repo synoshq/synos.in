@@ -41,3 +41,280 @@
 .ob-row p {
   margin: 0;
 }
+
+/* ── The product mocks ─────────────────────────────────────────────────────
+ * Slides 8-10 show the product: a browser frame, a KPI strip, a bar chart, a chat answer, a
+ * workflow trace. These are ILLUSTRATIONS, exactly like the deck's SVG diagrams — they depict a
+ * screen rather than express brand vocabulary, and a "browser chrome" component in a brand kit is
+ * drift wearing a component's clothes. Values are the source deck's own, re-pointed at tokens.
+ *
+ * The one substantive change: every literal hex became a token. `.chip-wa` hardcoded #dcfce7 /
+ * #86efac / #166534 — a green the brand does not have — and the keyband's gradient ended in a
+ * hardcoded #fff7ed. Both now read the emerald and amber ramps.
+ */
+.ob-keyband {
+  display: flex;
+  gap: var(--sk-space-4);
+  align-items: center;
+  background: var(--sk-amber-bg);
+  border: 1.5px solid var(--sk-amber-br);
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+.ob-keyband p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--sk-ink);
+  line-height: 1.5;
+}
+
+/* prompt -> arrow -> result. The middle track is fixed because the arrow is a glyph, not content. */
+.ob-two-mock {
+  display: grid;
+  grid-template-columns: 1fr 44px 1.25fr;
+  align-items: center;
+}
+.ob-becomes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sk-indigo-2);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.ob-prompt {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  align-self: stretch;
+  background: var(--sk-surface-2);
+  border: 1.5px solid var(--sk-indigo-br);
+  border-radius: 12px;
+  padding: 13px 15px;
+}
+.ob-prompt--violet {
+  border-color: var(--sk-violet-br);
+}
+.ob-prompt-txt {
+  font-size: 13.5px;
+  color: var(--sk-ink);
+  line-height: 1.5;
+  font-weight: 500;
+}
+.ob-you {
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--sk-muted);
+  display: block;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.ob-mock {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border-2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ob-mock-chrome {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  background: var(--sk-surface-2);
+  border-bottom: 1px solid var(--sk-border);
+}
+.ob-mock-dots {
+  display: flex;
+  gap: 5px;
+}
+.ob-mock-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--sk-border-2);
+}
+.ob-mock-url {
+  flex: 1;
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-family: var(--sk-font-mono);
+  font-size: 10.5px;
+  color: var(--sk-muted);
+}
+.ob-mock-body {
+  padding: 16px 18px;
+}
+
+.ob-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sk-space-3);
+  margin-bottom: var(--sk-space-4);
+}
+.ob-kpi {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 9px;
+  padding: 9px 11px;
+}
+.ob-kpi b {
+  display: block;
+  /* Decision A: the display face never renders below 24px, and this is 17. */
+  font-family: var(--sk-font-body);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--sk-ink);
+  line-height: 1.1;
+}
+.ob-kpi b.up {
+  color: var(--sk-emerald);
+}
+.ob-kpi b.down {
+  color: var(--sk-red);
+}
+.ob-kpi span {
+  font-size: 9.5px;
+  color: var(--sk-muted);
+}
+
+.ob-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+  height: 64px;
+  padding: 4px 2px 0;
+  border-bottom: 1px solid var(--sk-border);
+}
+.ob-bars i {
+  flex: 1;
+  background: var(--sk-indigo-2);
+  border-radius: 3px 3px 0 0;
+  display: block;
+}
+.ob-bars i.hot {
+  background: var(--sk-red-2);
+}
+.ob-bars i.good {
+  background: var(--sk-emerald);
+}
+
+.ob-flag {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-3);
+  background: var(--sk-red-bg);
+  border: 1px solid var(--sk-red-br);
+  border-radius: 8px;
+  padding: 7px 11px;
+  font-size: 11.5px;
+  color: var(--sk-ink);
+}
+.ob-flag .ob-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sk-red-2);
+  flex-shrink: 0;
+}
+.ob-flag b {
+  color: var(--sk-red);
+}
+
+.ob-flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-3);
+}
+.ob-step {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-size: 12px;
+  color: var(--sk-ink);
+  line-height: 1.35;
+}
+.ob-step-n {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--sk-violet-bg);
+  color: var(--sk-violet);
+  border: 1px solid var(--sk-violet-br);
+  font-family: var(--sk-font-body);
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ob-step--approve {
+  background: var(--sk-emerald-bg);
+  border-color: var(--sk-emerald-br);
+}
+.ob-step--approve .ob-step-n {
+  background: var(--sk-surface);
+  color: var(--sk-emerald);
+  border-color: var(--sk-emerald-br);
+}
+
+.ob-ans {
+  background: var(--sk-indigo-bg);
+  border: 1px solid var(--sk-indigo-br);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+.ob-ans p {
+  font-size: 12px;
+  color: var(--sk-ink);
+  margin: 0 0 4px;
+  line-height: 1.55;
+}
+.ob-ans b {
+  color: var(--sk-indigo);
+  font-weight: 700;
+}
+.ob-src-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 11px;
+  align-items: center;
+}
+.ob-src-row .ob-lbl {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+}
+
+/* The closing emphasis line on each of these three slides. Kept as a tinted band rather than a
+   Caption because it is the slide's conclusion, not an aside under a figure. */
+.ob-capnote {
+  background: var(--sk-indigo-bg);
+  border: 1.5px solid var(--sk-indigo-2);
+  border-radius: 12px;
+  padding: 13px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--sk-ink);
+  line-height: 1.5;
+}
+.ob-capnote em {
+  color: var(--sk-indigo);
+  font-weight: 700;
+  font-style: normal;
+}

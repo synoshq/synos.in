@@ -308,5 +308,246 @@ export const deck = (K) => {
         </SlideFrame>
       ),
     },
+    /* ── 8 · AI builds it ─────────────────────────────────────────────────
+     * A prompt on the left, an arrow, and a product mock on the right. The mock is an
+     * ILLUSTRATION — a picture of a screen — so it is deck-local CSS, the same call the kit made
+     * for the SVG diagrams. The keyband and the closing note are local for the same reason: both
+     * are full-width tinted bands with a specific gradient this deck uses three times. */
+    {
+      id: 'ai-builds-it',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="AI Builds It — Not Your Backlog"
+            eyebrowTone="indigo"
+            title="Describe a full application. AI writes it in minutes."
+            subtitle="One plain-English brief — the AI builds the whole thing: screens, logic, charts, and rules — wired to your live data. No engineers, no six-month roadmap."
+          />
+          <div className="ob-keyband">
+            <p>
+              <strong>
+                AI is already brilliant at building apps and workflows — it just can't safely reach
+                your systems or truly understand your business.
+              </strong>{' '}
+              <em>Synos already has both wired in</em> — so the moment someone describes what they
+              want, it just works on your real data.
+            </p>
+          </div>
+          <div className="ob-two-mock dk-gap-sm">
+            <div className="ob-prompt">
+              <div className="ob-prompt-txt">
+                <span className="ob-you">You describe · plain English</span>
+                “Build me a <b>store-performance app</b>: daily sales vs target by region, flag any
+                store 10%+ below target for 3 days, show top &amp; bottom SKUs, and let managers add
+                a note on each flag.”
+              </div>
+            </div>
+            <div className="ob-becomes">→</div>
+            <div className="ob-mock">
+              <div className="ob-mock-chrome">
+                <div className="ob-mock-dots">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="ob-mock-url">synos · store-performance · built by AI</div>
+              </div>
+              <div className="ob-mock-body">
+                <div className="ob-kpi-row">
+                  <div className="ob-kpi">
+                    <b>₹4.2Cr</b>
+                    <span>Today · sales</span>
+                  </div>
+                  <div className="ob-kpi">
+                    <b className="up">+6%</b>
+                    <span>vs target</span>
+                  </div>
+                  <div className="ob-kpi">
+                    <b className="down">3</b>
+                    <span>stores flagged</span>
+                  </div>
+                </div>
+                <div className="ob-bars">
+                  {[
+                    ['', 80], ['good', 100], ['', 72], ['hot', 38],
+                    ['', 88], ['good', 95], ['hot', 44], ['', 76],
+                  ].map(([kind, h], i) => (
+                    <i key={i} className={kind} style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+                <div className="ob-flag">
+                  <span className="ob-dot" />
+                  <span>
+                    <b>Pune Camp</b> — 14% below target for 3 days · manager note: “festival stock
+                    delayed”
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="ob-capnote dk-gap-sm">
+            The AI wrote the app; <em>Synos gave it the safe access and business context to make it
+            real.</em> That's why a non-engineer can do this in minutes.
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 9 · Plain English to a workflow ──────────────────────────────────
+     * Same shape as slide 8, violet register, and the mock body is a workflow trace rather than a
+     * dashboard. Note the source repeats the keyband copy verbatim across both slides — flagged in
+     * the report rather than deduplicated here, because that is a content call. */
+    {
+      id: 'workflow-from-english',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Plain English → an AI Workflow"
+            eyebrowTone="violet"
+            title="Describe an agentic AI workflow — it runs the steps for you."
+            subtitle="One sentence becomes a multi-step AI worker that thinks, acts across your systems, and stops for a human before anything leaves the building."
+          />
+          <div className="ob-keyband">
+            <p>
+              <strong>
+                AI is already brilliant at building apps and workflows — it just can't safely reach
+                your systems or truly understand your business.
+              </strong>{' '}
+              <em>Synos already has both wired in</em> — so the moment someone describes what they
+              want, it just works on your real data.
+            </p>
+          </div>
+          <div className="ob-two-mock dk-gap-sm">
+            <div className="ob-prompt ob-prompt--violet">
+              <div className="ob-prompt-txt">
+                <span className="ob-you">You describe · plain English</span>
+                “When a new lead comes in, <b>research the account</b>, draft a personalized reply,
+                log it in the CRM, and WhatsApp me to approve before it sends.”
+              </div>
+            </div>
+            <div className="ob-becomes">→</div>
+            <div className="ob-mock">
+              <div className="ob-mock-chrome">
+                <div className="ob-mock-dots">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="ob-mock-url">synos · lead-response-workflow · live</div>
+              </div>
+              <div className="ob-mock-body">
+                <div className="ob-flow">
+                  <div className="ob-step">
+                    <span className="ob-step-n">1</span>
+                    <span>
+                      <b>Researches the account</b> — history, past orders, open tickets
+                    </span>
+                  </div>
+                  <div className="ob-step">
+                    <span className="ob-step-n">2</span>
+                    <span>
+                      <b>Drafts a tailored reply</b> in your tone, with the right offer
+                    </span>
+                  </div>
+                  <div className="ob-step">
+                    <span className="ob-step-n">3</span>
+                    <span>
+                      <b>Logs it in the CRM</b> and sets a follow-up
+                    </span>
+                  </div>
+                  <div className="ob-step ob-step--approve">
+                    <span className="ob-step-n">✓</span>
+                    <span>
+                      <b>WhatsApps you to approve</b>{' '}
+                      <Chip size="sm" tone="emerald">WhatsApp</Chip> — tap send, or edit first
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="ob-capnote dk-gap-sm">
+            The AI designed the workflow;{' '}
+            <em>Synos gave it safe access to your systems and the context to run it right</em> —
+            always with a human check.
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 10 · Ask anything ────────────────────────────────────────────────
+     * One mock containing two question-and-answer pairs side by side. `Columns` supplies the
+     * geometry inside the mock body, which is the point of having it in the kit. */
+    {
+      id: 'ask-anything',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Ask Anything"
+            eyebrowTone="indigo"
+            title="Your company can answer — about the business, and about itself."
+            subtitle="Everything runs on one connected brain. So anyone can ask in plain English and get a straight answer — whether it's a business question or “how do we do this in Synos?” Like onboarding someone who already knows both."
+          />
+          <div className="ob-mock">
+            <div className="ob-mock-chrome">
+              <div className="ob-mock-dots">
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="ob-mock-url">synos · ask your company</div>
+            </div>
+            <div className="ob-mock-body">
+              <Columns gap="snug">
+                <div>
+                  <div className="ob-prompt">
+                    <div className="ob-prompt-txt">
+                      <span className="ob-you">About the business</span>
+                      “How did our Diwali campaign do vs last year, and what drove it?”
+                    </div>
+                  </div>
+                  <div className="ob-ans">
+                    <p>
+                      Revenue <b>+18%</b> — led by large appliances (<b>+31%</b>) and audio. Two
+                      West stores lagged on stock.
+                    </p>
+                    <div className="ob-src-row">
+                      <span className="ob-lbl">From</span>
+                      <Chip size="sm" tone="indigo">Warehouse</Chip>
+                      <Chip size="sm" tone="indigo">CRM</Chip>
+                      <Chip size="sm" tone="indigo">Ad platforms</Chip>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="ob-prompt">
+                    <div className="ob-prompt-txt">
+                      <span className="ob-you">About running Synos</span>
+                      “What assistants run for Sales — and how do I add one for win-backs?”
+                    </div>
+                  </div>
+                  <div className="ob-ans">
+                    <p>
+                      Three are live: <b>lead-response, quote-follow-up, renewal-nudge</b>. To add
+                      win-backs, just describe it — I can set it up now.
+                    </p>
+                    <div className="ob-src-row">
+                      <span className="ob-lbl">From</span>
+                      <Chip size="sm" tone="indigo">Your Synos setup</Chip>
+                      <Chip size="sm" tone="indigo">Skills library</Chip>
+                      <Chip size="sm" tone="indigo">This workspace</Chip>
+                    </div>
+                  </div>
+                </div>
+              </Columns>
+            </div>
+          </div>
+          <div className="ob-capnote dk-gap-sm">
+            The brain knows your business <em>and</em> how your company runs Synos —{' '}
+            <em>so it can answer questions and help you operate it, in the same breath.</em>
+          </div>
+        </SlideFrame>
+      ),
+    },
   ]
 }
