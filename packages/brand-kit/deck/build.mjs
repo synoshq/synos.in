@@ -88,7 +88,11 @@ const revealJs = readFileSync(resolve(HERE, 'vendor/reveal/reveal.js'), 'utf8')
  * silently — see the note at the top of that file.
  */
 const sharedCss = readFileSync(resolve(HERE, 'src/_shared.css'), 'utf8')
-const localCssPath = resolve(HERE, `src/${DECK}.css`)
+/* A cut of another deck is the same deck: the presenting deck says less than the reading deck but
+   draws the identical slides, so it needs the identical local rules. Aliasing beats copying
+   `deck.css` — a copy is two files that must be edited together and will not be. */
+const CSS_ALIAS = { presenting: 'deck' }
+const localCssPath = resolve(HERE, `src/${CSS_ALIAS[DECK] ?? DECK}.css`)
 const deckCss = sharedCss + '\n' + (existsSync(localCssPath) ? readFileSync(localCssPath, 'utf8') : '')
 
 /* ── The slides ──────────────────────────────────────────────────────────── */
@@ -121,7 +125,7 @@ const slides = mod.deck(K)
 
 /* Per-deck section count, asserted rather than trusted: a silently short deck is the failure mode
    that survives every other check here, and the PDF verifier is downstream of this file. */
-const EXPECTED = { deck: 35, 'ops-buyer': 43 }
+const EXPECTED = { deck: 36, 'ops-buyer': 43, presenting: 36 }
 /* A deck under construction says so, and the count is not enforced until it stops saying so. The
    alternative — dropping the assertion while porting and remembering to restore it — is how a deck
    ships three sections short. `mod.wip` is the deliberate, visible opt-out. */
@@ -141,11 +145,38 @@ if (mod.wip) console.log(`  WIP: ${slides.length} of ${EXPECTED[DECK] ?? '?'} se
  * card is the thing that has a register. One source of truth, and it travels with the component
  * rather than with this deck's build script.
  */
+/*
+ * `notes` on a slide record becomes reveal's `<aside class="notes">` — the speaker view (press S),
+ * and nothing on the projected slide. This is what makes CUTTING a slide non-destructive: the
+ * presenting deck says less than the reading deck, and the sentences it stopped saying are still in
+ * the file, attached to the slide they came off, for the person doing the talking.
+ *
+ * Escaped, not trusted: a note is prose, and an unescaped `<` or `&` in prose silently eats the
+ * rest of the aside. Notes are plain text by construction — a note that wants markup is a note
+ * that is trying to be a slide.
+ */
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+/* The notes plugin is loaded ONLY by a deck that has notes, so every other deck's output stays
+   byte-for-byte what it was before this feature existed. `aside.notes` is `display:none` in
+   reveal's own stylesheet, so a deck without the plugin hides its notes rather than printing them
+   onto the slide — but it also cannot open the speaker window, which is the whole point here. */
+const hasNotes = slides.some((s) => s.notes)
+const notesJs = hasNotes ? readFileSync(resolve(HERE, 'vendor/reveal/notes.js'), 'utf8') : ''
+
+const TITLES = {
+  deck: 'SynOS — The Human-Agent Operating Layer (VC · v7 · reading deck · built on the brand kit)',
+  presenting: 'SynOS — The Human-Agent Operating Layer (VC · v7 · presenting deck · speaker notes carry the rest)',
+  'ops-buyer': 'SynOS — The Human-Agent Operating Layer (ops buyer · v3 · built on the brand kit)',
+}
+const TITLE = TITLES[DECK] ?? `SynOS — ${DECK}`
+
 const sections = slides
   .map(
     (s, i) =>
       `<section class="has-card" data-slide="${s.id}">${renderToStaticMarkup(s.node)}` +
       (i === 0 ? '' : `<div class="dk-pnum">${i + 1} / ${slides.length}</div>`) +
+      (s.notes ? `<aside class="notes">${esc(s.notes)}</aside>` : '') +
       `</section>`,
   )
   .join('\n')
@@ -192,7 +223,7 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SynOS — The Human-Agent Operating Layer (VC · v7 · reading deck · built on the brand kit)</title>
+<title>${TITLE}</title>
 <!--
   Built by packages/brand-kit/deck/build.mjs from @synos/brand-kit.
   Self-contained by design: no stylesheet, script or font is fetched at render time.
@@ -208,10 +239,10 @@ const html = `<!DOCTYPE html>
 <div class="reveal"><div class="slides">
 ${sections}
 </div></div>
-<script>${revealJs}</script>
+<script>${revealJs}</script>${hasNotes ? `\n<script>${notesJs}</script>` : ''}
 <script>
   Reveal.initialize({ width: 1280, height: 720, margin: 0, controls: true, progress: true,
-                      hash: true, transition: 'fade', center: false });
+                      hash: true, transition: 'fade', center: false${hasNotes ? ', plugins: [RevealNotes]' : ''} });
 </script>
 </body>
 </html>

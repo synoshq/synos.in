@@ -40,9 +40,15 @@ const HERE = dirname(fileURLToPath(import.meta.url))
 const useSource = process.argv.includes('--source')
 const jsonArg = process.argv.indexOf('--json')
 
+/* Which built deck to measure. The three questions above are asked of any deck this harness
+   builds, not only the VC reading deck — the presenting cut has to clear the same overflow bar,
+   and it is the deck most likely to fail it, since cutting words is exactly what buys the room. */
+const deckArg = process.argv.indexOf('--deck')
+const DECK = deckArg > -1 ? process.argv[deckArg + 1] : 'deck'
+
 const FILE = useSource
   ? `${homedir()}/ws/synos-gtm/presentations/synos-vc-deck-v6.html`
-  : resolve(HERE, '../out/synos-vc-deck-v6-kit.html')
+  : resolve(HERE, `../out/${DECK === 'deck' ? 'synos-vc-deck-v6-kit' : DECK}.html`)
 
 /** Reveal scales the 1280x720 stage to the viewport; pin it to 1 so px are px. */
 const STAGE = { width: 1280, height: 720 }

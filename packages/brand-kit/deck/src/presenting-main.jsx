@@ -1,147 +1,40 @@
 /**
- * Slides 1–23 of `synos-vc-deck-v6.html` — the cover, the 20-slide argument, the closing wordmark
- * and the appendix divider.
+ * The PRESENTING cut of slides 1–23. Same argument, same order, same diagrams — fewer words.
  *
- * THIS IS A RE-PLATFORMING, NOT A REWRITE. Every sentence below is the source deck's own text,
- * copied. Where a word differs from the source it is a bug, not an edit. The point of holding that
- * line is that if the content changed at the same time as the substrate, nobody could tell whether
- * the kit or the edit caused a difference in the comparison renders.
+ * WHY THIS IS A SECOND FILE AND NOT A FLAG. A reading deck and a presenting deck are two artifacts
+ * with two jobs, and the difference between them is editorial, not mechanical. `slides-main.jsx` is
+ * SENT: nobody is talking over it, so its words are doing real work and it legitimately runs long.
+ * This one is SHOWN while somebody speaks. Every sentence a presenter is going to say out loud is a
+ * sentence the room should not also be reading. A `presenting: true` prop threaded through the
+ * reading deck would have made every slide a conditional and left neither version legible in
+ * source.
  *
- * Each slide records, in a comment, which kit component carried it and — where the answer is "none
- * cleanly" — what had to be composed instead. Those comments are the raw material for
- * `docs/plans/2026-08-14-deck-on-kit-report.md` §2.
+ * THE RULES THIS CUT FOLLOWS (Anoop, 2026-08-15 — "cut hard … but make sure the rest has some
+ * meaning at all … else cut lightly"):
+ *
+ *   1. Cut hard by default. Fall back to a light cut on any slide where what remains stops standing
+ *      on its own. Which slides those were is recorded in `LIGHTLY_CUT` at the bottom of this file,
+ *      not silently absorbed.
+ *   2. EVERY DIAGRAM STAYS, AND SO DOES EVERY LABEL INSIDE ONE. The two architecture slides, the
+ *      seam, the loop, the landscape matrix and the second-job matrix are the argument, not
+ *      decoration around it. A diagram with its annotations stripped is worse than a paragraph.
+ *      Where those slides needed room, it came out of their *prose*, never their labels.
+ *   3. NOTHING IS DELETED. Every cut sentence moves to the slide's `notes`, which the build renders
+ *      as reveal's `<aside class="notes">` — speaker view (press S), invisible on the projector.
+ *      The presenter still has the paragraph; the room gets the claim.
+ *   4. Headlines do not move. The h1 is the claim and it is identical to the reading deck's, which
+ *      is what keeps the two artifacts recognisably one deck.
+ *   5. `density="compact"` comes off wherever the cut bought the room. Compact is the READING
+ *      register (see `Density.css`); the kit's default scale is the presenting one, and a
+ *      presenting deck still on the reading register would be the cut only half done. It came off
+ *      five of the reading deck's seven compact slides. It stays on the two architecture slides, where the default
+ *      register still overflows by 62px and 45px *after* the cut and the only remaining source of
+ *      room would be labels — see slide 6.
  */
-import { Fragment } from 'react'
 import { Seam, Loop } from './diagrams.jsx'
+import { archIcons, archParts } from './slides-main.jsx'
 
-/* The five pillar icons from the architecture slides, at the source's own geometry. */
-const ico = (d, extra) => (
-  <svg width={extra?.size ?? 17} height={extra?.size ?? 17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-    {d}
-  </svg>
-)
-const IconBrain = ico(
-  <>
-    <path d="M9 3a3 3 0 00-3 3v1a3 3 0 00-3 3v2a3 3 0 003 3v1a3 3 0 003 3h.5" />
-    <path d="M15 3a3 3 0 013 3v1a3 3 0 013 3v2a3 3 0 01-3 3v1a3 3 0 01-3 3h-.5" />
-  </>,
-  { size: 22 },
-)
-const IconLoop = ico(
-  <>
-    <path d="M21 12a9 9 0 11-3-6.7L21 8" />
-    <path d="M21 3v5h-5" />
-  </>,
-)
-const IconDoc = ico(
-  <>
-    <path d="M4 19V5a2 2 0 012-2h11l3 3v13a2 2 0 01-2 2H6a2 2 0 01-2-2z" />
-    <path d="M9 7h6M9 11h6M9 15h4" />
-  </>,
-)
-const IconDb = ico(
-  <>
-    <ellipse cx="12" cy="6" rx="8" ry="3" />
-    <path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
-  </>,
-)
-const IconDbLarge = ico(
-  <>
-    <ellipse cx="12" cy="6" rx="8" ry="3" />
-    <path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
-  </>,
-  { size: 22 },
-)
-const IconShield = ico(
-  <>
-    <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" />
-    <path d="M9 12l2 2 4-4" />
-  </>,
-)
-const IconCheck = ico(<path d="M20 6L9 17l-5-5" />)
-const IconDocCheck = ico(
-  <>
-    <path d="M4 19V5a2 2 0 012-2h11l3 3v13a2 2 0 01-2 2H6a2 2 0 01-2-2z" />
-    <path d="M9 15l2 2 4-4" />
-  </>,
-)
-const IconBars = ico(<path d="M3 20h18M6 16V9M11 16V5M16 16v-4M21 16v-8" />)
-const IconTune = ico(
-  <>
-    <path d="M12 3v6M12 15v6M3 12h6M15 12h6" />
-    <circle cx="12" cy="12" r="3" />
-  </>,
-)
-
-/* The presenting cut of this deck (`presenting-main.jsx`) draws the same two architecture slides,
-   and a diagram's icons are part of the diagram — a redrawn copy is a second source of truth for
-   artwork that must not drift between the two artifacts. Exported rather than duplicated. */
-export const archIcons = {
-  IconBrain,
-  IconLoop,
-  IconDoc,
-  IconDb,
-  IconDbLarge,
-  IconShield,
-  IconCheck,
-  IconDocCheck,
-  IconBars,
-  IconTune,
-}
-
-/**
- * The three composed blocks the two architecture slides are built from, as a factory over the kit.
- *
- * These were local to `mainSlides` until the presenting cut needed the same diagram. They are
- * *composition*, not content — the harness row, the `.d1-core` container the kit has no component
- * for, and the systems-of-record row — so the presenting deck must draw them the same way while
- * saying less inside them. A factory keeps one definition; a copy would let the two decks' diagrams
- * drift apart without anything failing.
- */
-export const archParts = (K) => {
-  const { Callout, Caption, Eyebrow, Chip, ChipRow, Tile, TileRow } = K
-
-  const ArchCore = ({ title, tag, children, guardrailsLabel, guardrails }) => (
-    <Callout tone="violet" fill="neutral" accent="none" label={title}>
-      <Caption>{tag}</Caption>
-      <div className="dk-gap-sm">{children}</div>
-      <div className="dk-gap-sm">
-        <Eyebrow tone="muted">{guardrailsLabel}</Eyebrow>
-        <ChipRow tight>
-          {guardrails.map((g) => (
-            <Chip key={g} size="sm">{g}</Chip>
-          ))}
-        </ChipRow>
-      </div>
-    </Callout>
-  )
-
-  const HarnessRow = ({ label, chips }) => (
-    <div>
-      <Eyebrow tone="muted">{label}</Eyebrow>
-      <TileRow even={false} className="dk-tile-row-tight">
-        {chips.map(([nm, kd]) => (
-          <Tile key={nm} size="sm" mono name={nm} kind={kd} />
-        ))}
-      </TileRow>
-    </div>
-  )
-
-  const SorRow = ({ label, chips }) => (
-    <div className="dk-gap-sm">
-      <Eyebrow tone="muted">{label}</Eyebrow>
-      <ChipRow tight>
-        {chips.map((c) => (
-          <Chip key={c} size="sm" mono>{c}</Chip>
-        ))}
-      </ChipRow>
-    </div>
-  )
-
-  return { ArchCore, HarnessRow, SorRow }
-}
-
-export const mainSlides = (K) => {
+export const presentingMainSlides = (K) => {
   const {
     SlideFrame,
     SlideHeader,
@@ -150,7 +43,6 @@ export const mainSlides = (K) => {
     TileRow,
     Stack,
     Columns,
-    Eyebrow,
     CoverSlide,
     BigTypeSlide,
     Callout,
@@ -170,19 +62,27 @@ export const mainSlides = (K) => {
     Caption,
   } = K
 
-  /* The two architecture slides share one shape: a harness row, an MCP seam, a bordered core
-     holding the pillar grid and a guardrails strip, and a systems-of-record row. Composed, not a
-     component — `.d1-core` is a container the kit does not have, so a neutral-fill Callout with no
-     accent rule stands in for it. Defined at module scope (`archParts`) because the presenting cut
-     draws the same diagram. */
   const { ArchCore, HarnessRow, SorRow } = archParts(K)
+  const {
+    IconBrain,
+    IconLoop,
+    IconDoc,
+    IconDb,
+    IconDbLarge,
+    IconShield,
+    IconCheck,
+    IconDocCheck,
+    IconBars,
+    IconTune,
+  } = archIcons
 
   return [
     /* ── 1 · Cover ────────────────────────────────────────────────────────
-     * CoverSlide, exactly — eyebrow / title / lead / lede / children / foot maps one-for-one onto
-     * `.eyebrow` / `.big` / `.hero-sub` / `.lede` / `.coverseam` + `.tagchips` / `.foot`.
-     * `lede` is set because this is the READING deck (CoverSlide's own prop doc decides this).
-     * The `.tagchip` row is ChipRow + Chip size="pill". The seam SVG is deck content. */
+     * The `lede` comes off. CoverSlide's own prop doc already says the slot is the reading deck's:
+     * it is a 90-word paragraph, and it is the single clearest case in the deck of the room reading
+     * ahead while the founder is still on the first sentence. Title, one-line lead, seam and the
+     * three tag chips stay — that is a cover.
+     */
     {
       id: 'cover',
       variant: 'cover',
@@ -191,23 +91,7 @@ export const mainSlides = (K) => {
           stage={false}
           eyebrow="SynOS"
           title={<>The <span className="sk-gradient-text">Human-Agent Operating Layer</span></>}
-          lead="The platform an enterprise builds its own AI on, designed for the critical knowledge work that runs the business."
-          lede={
-            <>
-              A per-company <strong>AI training and evaluation environment</strong>: company memory,
-              governed access into real systems, somewhere safe to deploy what gets built, and a trace
-              and correction loop over everything that runs. Installed{' '}
-              <strong>inside your own infrastructure</strong>, under the AI tools your teams already
-              use. Your systems are profiled where they sit and queried live, so nothing is migrated.
-              Engineering sets the rails once; we land the first workflow, then{' '}
-              <strong>hand the controls to the domain experts in ops, finance and service</strong> and
-              step back. Everything it learns belongs to them.{' '}
-              <strong>
-                Three engagements live, all three verbally committed to paid contracts and in
-                contracting now.
-              </strong>
-            </>
-          }
+          lead="The platform an enterprise builds its own AI on, for the critical knowledge work that runs the business."
           foot="Pre-seed · 2026"
         >
           <Seam uid="x" variant="cover" agentsLabel="AI & Agents" />
@@ -218,13 +102,15 @@ export const mainSlides = (K) => {
           </ChipRow>
         </CoverSlide>
       ),
+      notes:
+        'A per-company AI training and evaluation environment: company memory, governed access into real systems, somewhere safe to deploy what gets built, and a trace and correction loop over everything that runs. Installed inside your own infrastructure, under the AI tools your teams already use. Systems are profiled where they sit and queried live, so nothing is migrated. Engineering sets the rails once; we land the first workflow, then hand the controls to the domain experts in ops, finance and service and step back. Everything it learns belongs to them. Three engagements live, all three verbally committed to paid contracts and in contracting now.',
     },
 
     /* ── 2 · The premise ──────────────────────────────────────────────────
-     * `.flow` of three `.sc` cards maps exactly onto PhaseRow / PhaseCard: `.sn` → badge,
-     * `.when` → when, h3 → title, p → body, `.rev` → foot. The `.honesty-row` pair is two
-     * Callouts, one amber (the bad news) and one emerald (the opportunity), in a two-column
-     * deck-local grid because the kit has no two-up container that is not SplitColumns. */
+     * The three-card spine is the slide and it stays. Each body drops to its own first clause; the
+     * `foot` lines already carried the punch and are untouched. The red Callout keeps both numbers
+     * — they are the two facts the room writes down — and loses the sentence around them.
+     */
     {
       id: 'premise',
       node: (
@@ -234,14 +120,14 @@ export const mainSlides = (K) => {
             eyebrow="The premise"
             eyebrowTone="violet"
             title="Every company is going to have to become an AI-native company."
-            subtitle="Almost none of them wants to build the infrastructure that takes, and almost none can hire the AI bench it assumes. That is why this layer gets bought rather than built."
+            subtitle="Almost none wants to build the infrastructure that takes. That is why this layer gets bought."
           />
           <PhaseRow>
             <PhaseCard
               badge="THE PRESSURE"
               when="Not optional any more"
               title="The mandate is already on the board agenda."
-              body="A competitor ships AI features, or leadership asks for the efficiency story. Every company we meet has a programme running. None started it because they wanted one."
+              body="Every company we meet has a programme running. None started it because they wanted one."
               foot="the question is no longer whether, it's how"
             />
             <PhaseCard
@@ -251,12 +137,8 @@ export const mainSlides = (K) => {
               title="Becoming AI-native is an infrastructure problem."
               body={
                 <>
-                  Context over your systems, governed access, somewhere safe to deploy, a record of
-                  what worked.{' '}
-                  <strong>
-                    Every enterprise ends up building the same five things internally, separately and
-                    slowly.
-                  </strong>
+                  Context, governed access, somewhere safe to deploy, a record of what worked.{' '}
+                  <strong>Every enterprise builds the same five things, separately and slowly.</strong>
                 </>
               }
               foot="months of platform work before the first useful agent"
@@ -269,7 +151,7 @@ export const mainSlides = (K) => {
               body={
                 <>
                   A manufacturer's edge is manufacturing. A lender's is underwriting. Building the
-                  substrate themselves spends their scarcest engineering on{' '}
+                  substrate spends their scarcest engineering on{' '}
                   <strong>no differentiation at all</strong>.
                 </>
               }
@@ -278,21 +160,23 @@ export const mainSlides = (K) => {
           </PhaseRow>
           <Columns className="dk-gap">
             <Callout tone="red" label="And it is going badly">
-              <strong>95%</strong> of enterprise GenAI pilots deliver no P&L impact (MIT).{' '}
-              <strong>~40%</strong> of agentic projects cancelled by 2027 (Gartner). The failure is
-              never the model.
+              <strong>95%</strong> of enterprise GenAI pilots deliver no P&amp;L impact (MIT).{' '}
+              <strong>~40%</strong> of agentic projects cancelled by 2027 (Gartner).
             </Callout>
             <Callout tone="emerald" label="Which is the opportunity">
-              The destination isn't in doubt. What none of them has is{' '}
-              <strong>somewhere to do it</strong>, that they own.
+              What none of them has is <strong>somewhere to do it</strong>, that they own.
             </Callout>
           </Columns>
         </SlideFrame>
       ),
+      notes:
+        'Almost none of them can hire the AI bench it assumes either. THE PRESSURE: a competitor ships AI features, or leadership asks for the efficiency story. THE GAP: context over your systems, governed access, somewhere safe to deploy, a record of what worked. THE FAILURE: it is never the model. THE OPPORTUNITY: the destination is not in doubt — what is missing is somewhere to do it.',
     },
 
     /* ── 3 · The gap ──────────────────────────────────────────────────────
-     * BigTypeSlide, exactly. `.l1` / `.l2 .gradient` / `.sub` / `.punch` are its four slots. */
+     * BigType slides are already the presenting register — two lines and a punch. Only the `sub`
+     * is cut, from four sentences to the one that carries the contrast.
+     */
     {
       id: 'the-gap',
       variant: 'bigType',
@@ -304,19 +188,22 @@ export const mainSlides = (K) => {
           line2={<span className="sk-gradient-text">They never learned your company.</span>}
           sub={
             <>
-              Frontier models are trained on the world's <strong>common</strong> knowledge. But
-              enterprise value lives in what is <strong>not</strong> on the internet. How your company
-              actually operates: its data, its decisions, its tribal knowledge. That's exactly where
-              every agent pilot stalls.
+              Enterprise value lives in what is <strong>not</strong> on the internet: how your company
+              actually operates. That is exactly where every agent pilot stalls.
             </>
           }
           punch="The agents have hands now. They have no company to stand on."
         />
       ),
+      notes:
+        'Frontier models are trained on the world’s common knowledge. The enterprise part — its data, its decisions, its tribal knowledge — was never in the training set and never will be.',
     },
 
     /* ── 4 · Where they are today ─────────────────────────────────────────
-     * SlideHeader + a bespoke SVG. The kit has no diagram vocabulary and should not grow one. */
+     * LIGHTLY CUT. The subtitle is the diagram's legend: three nouns (people, models, systems) that
+     * name the three things the seam draws. Cutting it leaves an unlabelled picture, which rule 2
+     * exists to prevent. It loses its last clause and nothing else.
+     */
     {
       id: 'today',
       node: (
@@ -326,17 +213,21 @@ export const mainSlides = (K) => {
             eyebrow="Where they are today"
             eyebrowTone="red"
             title="Their people, their AI and their systems are blocked from each other."
-            subtitle="Knowledge sits with people. Capability sits in the models. Data sits in the systems. Nothing safely connects the three, so every attempt at AI stops in the same gap."
+            subtitle="Knowledge sits with people. Capability sits in the models. Data sits in the systems. Nothing safely connects the three."
           />
           <Seam uid="u" subs />
         </SlideFrame>
       ),
+      notes:
+        'So every attempt at AI stops in the same gap — not for want of a better model, but because nothing safely connects the three.',
     },
 
     /* ── 5 · The trap ─────────────────────────────────────────────────────
-     * `.uc-grid` → UseCaseGrid / UseCaseCard exactly (`.uk` → kicker, h3 → title, p → body).
-     * `.land` is a heading-plus-paragraph block with no kit component; composed as a neutral-fill
-     * indigo Callout carrying an h3. `.caption` → Caption. */
+     * Three cards, each cut to its trade in one line — these are the three competitors' business
+     * models and the room only has to hold the shape. The `.land` block keeps its heading and one
+     * sentence; the evidence Caption moves entirely to notes, because it is a thing the founder
+     * SAYS ("a second enterprise, in weeks, air-gapped") rather than a thing the room reads.
+     */
     {
       id: 'the-trap',
       node: (
@@ -348,10 +239,8 @@ export const mainSlides = (K) => {
             title="Everyone selling them AI is selling them a migration first."
             subtitle={
               <>
-                The platforms already in the building say the same thing more politely: bring the data
-                to us first. Rip out the legacy stack, move the data, rebuild the pipelines, and{' '}
-                <strong>then</strong> you get AI. Two years and a programme budget before a single
-                agent does real work. Many of our buyers are already inside one.
+                Rip out the legacy stack, move the data, rebuild the pipelines, and <strong>then</strong>{' '}
+                you get AI. Many of our buyers are already inside one.
               </>
             }
           />
@@ -360,45 +249,48 @@ export const mainSlides = (K) => {
               tone="amber"
               kicker="Consultancies & systems integrators"
               title="The migration is the product"
-              body="Billable hours are the business model. A multi-year transformation programme is the deliverable; working agents are a downstream promise."
+              body="Billable hours are the business model. Working agents are a downstream promise."
             />
             <UseCaseCard
               tone="amber"
               kicker="Hyperscalers & platform vendors"
               title="Your data has to move first"
-              body="Consumption is the business model. The AI is real, but it only works once the company’s data lives on their side of the line."
+              body="The AI is real, but it works only once the data lives on their side of the line."
             />
             <UseCaseCard
               tone="amber"
               kicker="AI-native SaaS"
               title="A quieter lift-and-shift"
-              body="No migration programme, but the same trade: your operational data, your corrections and your evals accumulate inside someone else’s tenancy."
+              body="Same trade, no programme: your corrections and evals accumulate in their tenancy."
             />
           </UseCaseGrid>
           <Callout tone="indigo" fill="neutral" className="dk-gap">
             <h3>SynOS comes to the data instead.</h3>
             <p>
-              Nothing is replaced, nothing is moved, and agents are doing real work in weeks — because
-              the layer installs inside the customer’s own infrastructure and reads their systems where
-              they already are. This is not a positioning choice; it is what an in-tenant,
-              model-agnostic architecture actually delivers.{' '}
+              Nothing is replaced, nothing is moved, and agents do real work in weeks.{' '}
               <strong>The messy legacy estate stops being the blocker and becomes the asset.</strong>
             </p>
           </Callout>
-          <Caption className="dk-gap-sm">
-            Evidence: a second enterprise committed on the same template{' '}
-            <strong>in weeks, fully air-gapped inside their own infrastructure</strong> — no data left
-            the building, no system was migrated.
-          </Caption>
         </SlideFrame>
       ),
+      notes:
+        'The platforms already in the building say it more politely: bring the data to us first. Two years and a programme budget before a single agent does real work. Ours installs inside the customer’s own infrastructure and reads their systems where they already are — not a positioning choice, just what an in-tenant, model-agnostic architecture delivers. Evidence: a second enterprise committed on the same template in weeks, fully air-gapped inside their own infrastructure. No data left the building, no system was migrated.',
     },
 
     /* ── 6 · What we built · job one ──────────────────────────────────────
-     * The architecture slide. PillarGrid / PillarCard carry the six pillars including the Company
-     * Brain anchor — the cleanest map in the whole deck. Everything around them (the harness row,
-     * the MCP seam, the `.d1-core` container, the guardrails strip, the systems row) is composed
-     * from Eyebrow / Chip / ChipRow / Callout / Caption. */
+     * LIGHTLY CUT, and deliberately. This is the architecture diagram: six pillars, a harness row,
+     * a guardrails strip and a systems row. Every one of those is a label (rule 2) and every one
+     * stays, including all six guardrail chips and all six harness tiles. What the cut takes is
+     * only the *prose inside the pillars* — each description down to its claim — and the header
+     * subtitle.
+     *
+     * `density="compact"` STAYS here, and this is the one place in the cut where it does. Measured:
+     * at the default register this slide runs 62px past the card and slide 9 runs 45px past it, with
+     * the whole cut already applied. The only way to buy that back would be to drop labels, which is
+     * rule 2. Two diagram slides keeping the reading register is the right trade; the other two
+     * slides that were compact in the reading deck (landscape, differently) now sit at the
+     * presenting scale, which is where that register change was actually worth having.
+     */
     {
       id: 'architecture-today',
       variant: 'arch',
@@ -408,10 +300,10 @@ export const mainSlides = (K) => {
             eyebrow="What we built · job one, today"
             eyebrowTone="indigo"
             title="One environment under the chaos, built once for the whole enterprise."
-            subtitle="Engineering sets the rails once. After that everyone, non-coders included, builds and runs real work on top of them, from the AI tools they already use."
+            subtitle="Engineering sets the rails once. After that everyone, non-coders included, builds real work on top of them."
           />
           <HarnessRow
-            label="Your teams keep their own AI tools, all connected through MCP, the open standard agents use to call tools"
+            label="Your teams keep their own AI tools, connected through MCP"
             chips={[
               ['Claude Code', 'CLI · engineers'],
               ['Codex / GPT', 'CLI · engineers'],
@@ -441,19 +333,19 @@ export const mainSlides = (K) => {
                 icon={IconBrain}
                 kicker="The loop's memory · self-improving"
                 name="Company Brain"
-                desc="A living map of how your company operates: entities, relations, citations. Sharper with every run and every correction."
+                desc="A living map of how your company operates: entities, relations, citations. Sharper with every run."
               />
               <PillarCard
                 icon={IconLoop}
                 tone="violet"
                 name="The Learning Loop"
-                desc="Every human correction is reviewed, promoted, and reaches every agent."
+                desc="Every human correction reaches every agent."
               />
               <PillarCard
                 icon={IconDoc}
                 tone="amber"
                 name="Compounding Skills"
-                desc="Authored in plain English; shared, versioned, forked across teams."
+                desc="Authored in plain English; shared, versioned, forked."
               />
               <PillarCard
                 icon={IconDb}
@@ -482,15 +374,21 @@ export const mainSlides = (K) => {
           />
         </SlideFrame>
       ),
+      notes:
+        'MCP is the open standard agents use to call tools — one interface, any model. The teams keep whatever AI tool they already use. The Learning Loop: every human correction is reviewed, promoted, and reaches every agent. Company Brain gets sharper with every run and every correction. Non-coders build and run real work from the AI tools they already have.',
     },
 
     /* ── 7 · The hard part ────────────────────────────────────────────────
-     * `.demo-grid` / `.demo-card` → StepGrid / StepCard exactly: `.db` → the gradient bar,
-     * `.dn` → num, h3 → title, p → body, `.dq` → quote. */
+     * The three `quote` lines are kept verbatim: they are the mono strip under each card and the
+     * densest statement of the claim on the slide. The bodies above them lose their middle
+     * sentences. The two Callouts hold the live/ahead split and each drop to one line, because "what
+     * ships today vs what the round pays for" is a question that gets ASKED and then answered at
+     * length out loud.
+     */
     {
       id: 'hard-part',
       node: (
-        <SlideFrame density="compact" stage={false}>
+        <SlideFrame stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="The hard part we're taking on"
@@ -498,8 +396,7 @@ export const mainSlides = (K) => {
             title="Making an enterprise AI-native is a cluster of hard problems. We take the ones nobody else wants."
             subtitle={
               <>
-                Governed integration into systems never built for it. Safe environments for AI to act
-                on real data. And underneath both, the one we are built to own:{' '}
+                The one we are built to own:{' '}
                 <strong>
                   turning messy, un-moved, on-prem data into a usable per-company AI environment
                 </strong>
@@ -511,46 +408,44 @@ export const mainSlides = (K) => {
             <StepCard
               num="MAKE BAD DATA USABLE IN PLACE"
               title="Profiling & entity resolution, agent-driven."
-              body="Legacy systems with no clean schema, thirty years of drift, no migration allowed. Agents profile the systems where they sit and resolve the same entity across all of them."
+              body="No clean schema, thirty years of drift, no migration allowed. Agents profile the systems where they sit and resolve the same entity across all of them."
               quote="no warehouse project · no schema rewrite · nothing leaves the building"
             />
             <StepCard
               num="KEEP IT ALIVE"
               title="A company brain that survives the data shifting underneath it."
-              body="Static extraction rots in weeks. The brain re-profiles, re-resolves and re-cites as the systems change, which is why it gets sharper with use instead of going stale."
+              body="Static extraction rots in weeks. The brain re-profiles, re-resolves and re-cites as the systems change."
               quote="living context · cited · continuously updated"
             />
             <StepCard
               num="MAKE IT TRAINABLE"
               title="The trace and eval loop that turns work into training data."
-              body="Governed access into internal systems through tools, CLIs and APIs; every run traced; every human correction captured for review. That is the raw material for a model of their own."
+              body="Governed access through tools, CLIs and APIs; every run traced; every human correction captured for review."
               quote="traces + corrections + private evals → their dataset, on their infra"
             />
           </StepGrid>
           <Columns className="dk-gap">
             <Callout tone="emerald" label="Live today">
-              Profiling and the capture loop ship today and are accumulating in every deployment.
-              Increasingly we solve these problems with our own specialised infra and agents, which is
-              another way of saying{' '}
-              <strong>we're building AI that's good at building enterprise AI</strong>.
+              Profiling and the capture loop ship today.{' '}
+              <strong>We're building AI that's good at building enterprise AI.</strong>
             </Callout>
             <Callout tone="amber" label="The hard problems ahead · what the pre-seed pays for">
-              The version that survives the ugliest enterprise data, then the deep end: turning live
-              capture into a <strong>real training environment</strong> — private evals scored against
-              their outcomes, preference-grade correction data, rollout against the real systems — live
-              reads, writes captured and scored — and RL where a workflow’s volume earns it. Ours to
-              own, because only we sit on the live capture.
+              Turning live capture into a <strong>real training environment</strong>: private evals,
+              preference-grade correction data, rollout against the real systems.
             </Callout>
           </Columns>
         </SlideFrame>
       ),
+      notes:
+        'Also hard, and also ours: governed integration into systems never built for it, and safe environments for AI to act on real data. Why the brain getting sharper with use matters — static extraction goes stale, and a stale brain is worse than none. Capture is accumulating in every deployment today, increasingly solved with our own specialised infra and agents. What the round pays for: the version that survives the ugliest enterprise data, then the deep end — private evals scored against their outcomes, preference-grade correction data, rollout where reads are live and writes are captured and scored, and RL where a workflow’s volume earns it. Ours to own, because only we sit on the live capture.',
     },
 
     /* ── 8 · The same environment, tomorrow ───────────────────────────────
-     * GAP. `.dual` is a 5-column × 3-row matrix: a component header row, a "today" row and a
-     * "tomorrow" row, with a rail label down the left. The kit has no table primitive and no grid
-     * with a caller-set column count outside PillarGrid, so this is `.dk-matrix` — a raw CSS grid
-     * in deck.css. The three Callouts under it ARE kit. */
+     * The matrix IS the slide — five components × two tenses — so all ten cells stay (rule 2). The
+     * Tomorrow row keeps its five bolded terms untouched, because those five phrases are the
+     * argument. What goes is the trailing explanation in each Today cell, and one of the two
+     * Callouts under it.
+     */
     {
       id: 'second-job',
       node: (
@@ -560,7 +455,7 @@ export const mainSlides = (K) => {
             eyebrow="The same environment, tomorrow"
             eyebrowTone="violet"
             title="Nothing new gets installed. Every component starts doing a second job."
-            subtitle="The pieces that make AI work inside a company are the same pieces you need to train a model on how that company operates. Only the name of the job changes."
+            subtitle="The pieces that make AI work inside a company are the pieces you need to train a model on how that company operates."
           />
           <Matrix
             labelWidth="150px"
@@ -576,11 +471,11 @@ export const mainSlides = (K) => {
                 label: 'Today',
                 sub: 'what it does for the transformation',
                 cells: [
-                  { text: 'Context an agent is grounded in, so answers cite the company instead of guessing.' },
-                  { text: 'Safe, audited actions inside real systems. No raw credentials, revocable.' },
-                  { text: 'Somewhere a non-engineer can ship an app or an agent without a ticket.' },
-                  { text: 'Observability. What ran, what it touched, what a person fixed afterwards.' },
-                  { text: 'Did this workflow actually work, measured against the outcome.' },
+                  { text: 'Context an agent is grounded in, so answers cite the company.' },
+                  { text: 'Safe, audited actions in real systems. No raw credentials.' },
+                  { text: 'Somewhere a non-engineer ships an app or agent without a ticket.' },
+                  { text: 'What ran, what it touched, what a person fixed afterwards.' },
+                  { text: 'Did this workflow work, measured against the outcome.' },
                 ],
               },
               {
@@ -590,33 +485,28 @@ export const mainSlides = (K) => {
                   { tone: 'full', text: <>The <strong>grounding corpus</strong> a model is fine-tuned against.</> },
                   { tone: 'full', text: <>The <strong>action space</strong> a model is trained and tested in.</> },
                   { tone: 'full', text: <>The <strong>rollout environment</strong> where attempts run safely, over and over.</> },
-                  { tone: 'full', text: <><strong>Labelled data and preference signal</strong>, produced by their people doing real work.</> },
+                  { tone: 'full', text: <><strong>Labelled data and preference signal</strong>, from their people doing real work.</> },
                   { tone: 'full', text: <>The <strong>benchmark only they own</strong>, and the gate a candidate model has to pass.</> },
                 ],
               },
             ]}
           />
-          <Columns className="dk-gap">
-            <Callout tone="indigo" label="Why this is infrastructure work">
-              A world where every enterprise has AI of its own is not a world of a few frontier models
-              doing everything. It is thousands of company-specific models, each needing somewhere to
-              be built, grounded, run and measured.{' '}
-              <strong>That environment has to be repeatable, or it does not happen at all.</strong>
-            </Callout>
-            <Callout tone="violet" label="What is live, and what the round builds">
-              The capture layer ships today and accumulates in every deployment, because capture is the
-              scarce part and only happens inside real work. Private evals are in build. Fine-tuning and
-              distillation stack on top, with no rebuild and nothing new for the customer to install.
-            </Callout>
-          </Columns>
+          <Callout tone="indigo" className="dk-gap" label="Why this is infrastructure work">
+            Not a few frontier models doing everything — thousands of company-specific models, each
+            needing somewhere to be built, grounded, run and measured.{' '}
+            <strong>That environment has to be repeatable, or it does not happen at all.</strong>
+          </Callout>
         </SlideFrame>
       ),
+      notes:
+        'Only the name of the job changes — nothing new is installed and nothing new is bought. What is live and what the round builds: the capture layer ships today and accumulates in every deployment, because capture is the scarce part and only happens inside real work. Private evals are in build. Fine-tuning and distillation stack on top, with no rebuild and nothing new for the customer to install.',
     },
 
     /* ── 9 · What we're building · job two ────────────────────────────────
-     * The second architecture slide. Same composition as slide 6. The `.d1-st` status badges
-     * (LIVE / IN BUILD / THE ROUND BUILDS) ride inside the pillar name as Chips — the kit's
-     * PillarCard takes a ReactNode name, so this needs no new prop. */
+     * Same treatment as slide 6, same reason. All five status badges (LIVE / IN BUILD / THE ROUND
+     * BUILDS) stay — on this slide the badges ARE the information — as do the six model-layer tiles,
+     * the six brain contents chips and the five governance chips. Only the pillar prose is cut.
+     */
     {
       id: 'architecture-training',
       variant: 'arch',
@@ -626,7 +516,7 @@ export const mainSlides = (K) => {
             eyebrow="What we're building · job two"
             eyebrowTone="violet"
             title="The same environment, drawn as the training layer."
-            subtitle="One centralised store, four things acting on it. Three of the five ship today because the transformation needs them; the round builds the last two on top."
+            subtitle="One centralised store, four things acting on it. Three of the five ship today; the round builds the last two."
           />
           <HarnessRow
             label="The model layer · whatever the company runs, bought or trained"
@@ -662,8 +552,8 @@ export const mainSlides = (K) => {
                 name={<>Company Brain <Chip size="sm" tone="emerald">LIVE</Chip></>}
                 desc={
                   <>
-                    The same centralised layer that grounds agents today is the corpus models are
-                    trained against tomorrow. One store, per company, on their own infrastructure.
+                    The layer that grounds agents today is the corpus models are trained against
+                    tomorrow. One store, per company, on their own infrastructure.
                     <ChipRow tight className="dk-gap-sm">
                       {[
                         'entities & relations',
@@ -683,25 +573,25 @@ export const mainSlides = (K) => {
                 icon={IconCheck}
                 tone="emerald"
                 name={<>Capture & labelling <Chip size="sm" tone="emerald">LIVE</Chip></>}
-                desc="What fills the brain. Every run traced with full lineage; every correction, approval and rejection captured from SMEs doing real work rather than an annotation vendor."
+                desc="Every run traced with full lineage; every correction captured from SMEs doing real work, not an annotation vendor."
               />
               <PillarCard
                 icon={IconDocCheck}
                 tone="emerald"
                 name={<>Rollout environment <Chip size="sm" tone="emerald">LIVE</Chip></>}
-                desc="Sandboxed execution against real systems, repeatable and reversible, on the same permissions and kill-switch the transformation runs on."
+                desc="Sandboxed execution against real systems, repeatable and reversible."
               />
               <PillarCard
                 icon={IconBars}
                 tone="amber"
                 name={<>Eval harness <Chip size="sm" tone="amber">IN BUILD</Chip></>}
-                desc="Task suites built from real traces, scored against the company's own outcomes. The gate a candidate model passes before promotion."
+                desc="Task suites from real traces, scored against the company's own outcomes."
               />
               <PillarCard
                 icon={IconTune}
                 tone="violet"
                 name={<>Fine-tune & distillation <Chip size="sm" tone="violet">THE ROUND BUILDS</Chip></>}
-                desc="Supervised and preference tuning on open weights, distilled to small models per function, trained and served inside the customer's infrastructure."
+                desc="Tuning on open weights, distilled per function, inside the customer's infrastructure."
               />
             </PillarGrid>
           </ArchCore>
@@ -718,10 +608,15 @@ export const mainSlides = (K) => {
           />
         </SlideFrame>
       ),
+      notes:
+        'Three of the five ship today because the transformation needs them — that is the point: phase two is not a new product, it is the same install. Rollout runs on the same permissions and kill-switch the transformation runs on. The eval harness is the gate a candidate model passes before promotion. Fine-tuning is supervised and preference tuning on open weights, trained and served inside their infrastructure.',
     },
 
     /* ── 10 · The play ────────────────────────────────────────────────────
-     * `.flow` → PhaseRow / PhaseCard, `.caption` → Caption. Nothing composed. */
+     * Three phases, three cards, three `foot` lines naming the revenue at each — all kept. Bodies
+     * cut to the claim. The long Caption underneath ("the order is forced…") is the founder's own
+     * explanation of why entry has to come first, so it goes to notes whole.
+     */
     {
       id: 'the-play',
       node: (
@@ -731,7 +626,7 @@ export const mainSlides = (K) => {
             eyebrow="The play"
             eyebrowTone="violet"
             title="One environment, three phases. The first pays for the rest."
-            subtitle="Everyone else authors a copy of the business and trains in the copy. This one instruments the original. The environment that makes AI work today is the one they need to train their own models tomorrow. Entry is how the position gets earned."
+            subtitle="Everyone else authors a copy of the business and trains in the copy. This one instruments the original."
           />
           <PhaseRow>
             <PhaseCard
@@ -740,9 +635,8 @@ export const mainSlides = (K) => {
               title="Unblock the knowledge work"
               body={
                 <>
-                  The layer installs in their cloud or fully air-gapped, and the company's
-                  non-engineers start doing real work on it, in the AI tools they already use, against
-                  their own systems. This is the pain they're paying to fix now, and{' '}
+                  The layer installs in their cloud or fully air-gapped, and their non-engineers start
+                  doing real work on it. This is the pain they're paying to fix now, and{' '}
                   <strong>it's a good business on its own</strong>.
                 </>
               }
@@ -756,9 +650,8 @@ export const mainSlides = (K) => {
               body={
                 <>
                   Every run traced, every correction a label, private evals against <em>their</em>{' '}
-                  outcomes rather than public benchmarks. That is a{' '}
-                  <strong>per-company AI training environment</strong>, and what you need to fine-tune
-                  open-weight models on how this business operates.
+                  outcomes. That is a{' '}
+                  <strong>per-company AI training environment</strong>.
                 </>
               }
               foot="revenue: data layer + evals + per-model / training runs"
@@ -771,30 +664,23 @@ export const mainSlides = (K) => {
               body={
                 <>
                   Most work running through agents and the software they wrote, on{' '}
-                  <strong>models the company owns</strong>. We operate the layer it lives on and get
-                  paid for what it produces.
+                  <strong>models the company owns</strong>. We operate the layer it lives on.
                 </>
               }
               foot="the operating layer of the agent-native enterprise"
             />
           </PhaseRow>
-          <Caption className="dk-gap">
-            The order is forced.{' '}
-            <strong>Capture is the scarce part and it only happens inside real work</strong>, which is
-            why the entry motion is the only way to earn the position the rest depends on, and it
-            happens to be where the budget is today. What that makes us:{' '}
-            <strong>an AI-infrastructure play</strong> — transformation is the entry motion,
-            forward-deployed is only the delivery mechanics. One layer, three tenses, not three
-            businesses.
-          </Caption>
         </SlideFrame>
       ),
+      notes:
+        'The environment that makes AI work today is the one they need to train their own models tomorrow. Entry is how the position gets earned, and the order is forced: capture is the scarce part and it only happens inside real work, which is why the entry motion is the only way to earn the position the rest depends on — and it happens to be where the budget is today. What that makes us: an AI-infrastructure play. Transformation is the entry motion; forward-deployed is only the delivery mechanics. One layer, three tenses, not three businesses. Phase two work runs in the tools they already use, against their own systems, and needs no second procurement.',
     },
 
     /* ── 11 · How trust is earned ─────────────────────────────────────────
-     * `.grad` / `.gcard` → StepGrid / StepCard: `.gnum` → num, h3 → title, the two paragraphs →
-     * body, `.gst` → a Chip inside the body. The `.garr` connector arrows between cards are
-     * decoration with no kit home and are dropped rather than faked — see the report. */
+     * The three rungs and their live/round status chips are the ladder and stay. Each body drops to
+     * one sentence. The Callout keeps its first and last sentences — "the same ladder onboards both
+     * generations" is the reason the slide is in the deck at all.
+     */
     {
       id: 'trust-ladder',
       node: (
@@ -804,7 +690,7 @@ export const mainSlides = (K) => {
             eyebrow="How trust is earned"
             eyebrowTone="indigo"
             title="AI earns autonomy here the way a new team member does."
-            subtitle="Nobody hands a new hire the keys on day one. The environment makes that graduation explicit — for agents on frontier models today, and for the company’s own models tomorrow."
+            subtitle="Nobody hands a new hire the keys on day one. The environment makes that graduation explicit."
           />
           <StepGrid>
             <StepCard
@@ -812,10 +698,8 @@ export const mainSlides = (K) => {
               title="Sandboxes cut from the real systems."
               body={
                 <>
-                  Practice inside the customer’s environment with no blast radius: dry-runs, scanned
-                  deploys, rehearsal copies we can spin up because the environment already knows their
-                  systems. A practice room, not the curriculum.{' '}
-                  <Chip size="sm" tone="emerald">live today</Chip>
+                  Practice inside the customer's environment with no blast radius: dry-runs, scanned
+                  deploys, rehearsal copies. <Chip size="sm" tone="emerald">live today</Chip>
                 </>
               }
             />
@@ -824,8 +708,7 @@ export const mainSlides = (K) => {
               title="Real work, human sign-off."
               body={
                 <>
-                  Approval gates on actions that matter, every run traced, every correction captured
-                  from the person who owns the process.{' '}
+                  Approval gates, every run traced, every correction captured.{' '}
                   <strong>This is where the training data comes from</strong> — supervised real work,
                   not a replica. <Chip size="sm" tone="emerald">live today</Chip>
                 </>
@@ -836,62 +719,56 @@ export const mainSlides = (K) => {
               title="Runs alone once the evals clear their bar."
               body={
                 <>
-                  Private evals scored against their outcomes decide the promotion. Circuit breakers,
-                  kill switch, full audit stay on; authority is granted, revocable and re-checked.{' '}
-                  <Chip size="sm" tone="amber">evals & mandates · the round builds</Chip>
+                  Private evals decide the promotion. Kill switch and full audit stay on; authority is
+                  revocable. <Chip size="sm" tone="amber">evals & mandates · the round builds</Chip>
                 </>
               }
             />
           </StepGrid>
           <Callout tone="indigo" fill="neutral" className="dk-gap">
-            <strong>The same ladder onboards both generations of their AI.</strong> An agent on a
-            frontier model climbs it today; a model of their own climbs it tomorrow. And the onboarding
+            <strong>The same ladder onboards both generations of their AI.</strong> The onboarding
             record — every review, every correction, every outcome —{' '}
-            <strong>is the curriculum their models train on</strong>. That is why the unblocking work
-            and the training ground are one environment, not two products.
+            <strong>is the curriculum their models train on</strong>.
           </Callout>
         </SlideFrame>
       ),
+      notes:
+        'For agents on frontier models today, and for the company’s own models tomorrow. Rehearsal copies are possible because the environment already knows their systems — a practice room, not the curriculum. Corrections come from the person who owns the process. Promotion is scored against their outcomes, not a public benchmark; circuit breakers and re-checks stay on afterwards. That is why the unblocking work and the training ground are one environment, not two products.',
     },
 
     /* ── 12 · Why it compounds ────────────────────────────────────────────
-     * SlideHeader + the loop SVG (deck content) + Caption + Callout. */
+     * The loop diagram carries this slide, so everything textual around it is cut to one Caption:
+     * the design-partner proof plus the one sentence the whole deck turns on ("data the model can
+     * never train on"). The status Callout goes to notes — it is the answer to a question, not a
+     * thing to project.
+     */
     {
       id: 'compounds',
       node: (
-        <SlideFrame density="compact" stage={false}>
+        <SlideFrame stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="Why it compounds"
             eyebrowTone="violet"
             title="The moat is the loop: the record of how your company works, not the model."
-            subtitle="Humans correct. Agents act. Systems return the measured outcome. Every turn builds data no public model can ever train on, and it pays off whichever model wins."
+            subtitle="Humans correct. Agents act. Systems return the measured outcome. Every turn builds data no public model can ever train on."
           />
           <Loop />
           <Caption className="dk-gap-sm">
-            Live today: at a martech design partner, every marketer correction feeds one learning layer
-            their whole platform gets smarter from.{' '}
-            <strong>
-              This is data the model can never train on, and it accrues to the customer, on their
-              infrastructure.
-            </strong>
+            Live today at a martech design partner: every marketer correction feeds one learning layer.{' '}
+            <strong>It accrues to the customer, on their infrastructure.</strong>
           </Caption>
-          <Callout tone="violet" accent="none" className="dk-gap-sm">
-            <strong>Where we are:</strong> the capture layer, meaning tracing, corrections and
-            agent-native storage, is live and accumulating in every deployment. Private evals are in
-            build, and fine-tuning on the loop is the layer after that. Built data-first on purpose,
-            because <strong>capture is the scarce part</strong> and training stacks on top with no
-            rebuild. <em>Full flywheel in the appendix.</em>
-          </Callout>
         </SlideFrame>
       ),
+      notes:
+        'And it pays off whichever model wins. Where we are: the capture layer — tracing, corrections and agent-native storage — is live and accumulating in every deployment. Private evals are in build; fine-tuning on the loop is the layer after that. Built data-first on purpose, because capture is the scarce part and training stacks on top with no rebuild. Full flywheel is in the appendix.',
     },
 
     /* ── 13 · Who buys ────────────────────────────────────────────────────
-     * `.land` → Callout, `.uc-grid` → UseCaseGrid, `.icp2` / `.icard` → two UseCaseCards. `.icard`
-     * was excluded from the kit by the inventory's own frequency test (4 uses, 2 files, one slide
-     * each) and UseCaseCard carries the same kicker/title/body shape, which is the check that the
-     * exclusion was right. */
+     * Five cards on this slide already, so the intro Callout above them goes entirely to notes and
+     * the three triggers cut to their tell. The two buyer cards keep their kickers — "who signs" and
+     * "who wins day one" is the distinction the slide exists to draw.
+     */
     {
       id: 'who-buys',
       node: (
@@ -903,68 +780,67 @@ export const mainSlides = (K) => {
             title="Enterprises under real AI pressure, with no bench to build their way out."
             subtitle={
               <>
-                Not the eng-heavy tech companies. The ones that <strong>buy rather than build</strong>,
-                with a mandate they can't fulfil internally. Every deal we've closed fits this shape.
+                The ones that <strong>buy rather than build</strong>, with a mandate they can't fulfil
+                internally. Every deal we've closed fits this shape.
               </>
             }
           />
-          <Callout tone="indigo" fill="neutral">
-            They own the domain expertise and the customer relationships, held by people who do not
-            write code. What they lack is the engineering capacity to turn any of it into agents, and
-            that gap closes only if the{' '}
-            <strong>non-engineers can build and run on the layer themselves</strong>.
-          </Callout>
-          <UseCaseGrid className="dk-gap-sm">
+          <UseCaseGrid>
             <UseCaseCard
               tone="red"
               kicker="Trigger · capacity"
               title="Thin AI bench"
-              body="AI/ML req open for months, or re-posted; few or no ML titles; senior hires with no mid-level bench behind them."
+              body="AI/ML req open for months or re-posted; few or no ML titles; senior hires with no bench behind them."
             />
             <UseCaseCard
               tone="red"
               kicker="Trigger · failed build"
               title="Attempted, hasn't shipped"
-              body="An AI initiative announced 6-12 months ago with nothing shipped, or a platform build that stalled after months. Enterprise AI licences are being cancelled at renewal because integration proved harder than it was sold as."
+              body="An AI initiative announced 6-12 months ago with nothing shipped, or a platform build that stalled."
             />
             <UseCaseCard
               tone="red"
               kicker="Trigger · posture"
               title="Buy-first procurement DNA"
-              body="An organisation that has always bought its systems. It will buy this one too, where an eng-heavy company would build and stall."
+              body="An organisation that has always bought its systems. It will buy this one too."
             />
           </UseCaseGrid>
-          <Columns className="dk-gap-sm">
+          <Columns className="dk-gap">
             <UseCaseCard
               tone="indigo"
               kicker="Who signs · the owner of the mandate"
               title="Business or product leadership, with CEO air-cover"
-              body="The person accountable for the AI outcome, not the VP Eng being asked to build it. Budget follows the mandate."
+              body="The person accountable for the AI outcome, not the VP Eng being asked to build it."
             />
             <UseCaseCard
               tone="violet"
               kicker="Who wins day one · the SMEs"
               title="The people who hold the knowledge"
-              body="Ops, sales, marketing, finance and support author the agent workflows themselves, in plain English, without a ticket."
+              body="Ops, sales, marketing, finance and support author the agent workflows themselves, in plain English."
             />
           </Columns>
         </SlideFrame>
       ),
+      notes:
+        'Not the eng-heavy tech companies. They own the domain expertise and the customer relationships, held by people who do not write code. What they lack is the engineering capacity to turn any of it into agents, and that gap closes only if the non-engineers can build and run on the layer themselves. Enterprise AI licences are being cancelled at renewal because integration proved harder than it was sold as. Where an eng-heavy company would build and stall, a buy-first one buys. Budget follows the mandate.',
     },
 
     /* ── 14 · The wedge ───────────────────────────────────────────────────
-     * `.moat-split` / `.moat-col` / `.item` → SplitColumns / SplitColumn / SplitItem exactly.
-     * `.sm-flow` (a four-step arrow sequence) is composed from Chips and `.dk-arrow`. */
+     * Each door keeps its claim and its evidence line and loses its middle item — the buyer/expansion
+     * detail is exactly what gets said out loud in answer to "who do you sell to". The four-step
+     * chip flow is a diagram and stays whole. The "why this is one company" Callout and the FDE
+     * Caption both go to notes.
+     */
     {
       id: 'the-wedge',
       node: (
-        <SlideFrame density="compact" stage={false}>
+        <SlideFrame stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="The wedge"
             eyebrowTone="indigo"
             title="Two doors into the same layer. One qualifier opens both."
-            subtitle="The same buyer feels it in two directions: outward at their product, inward at their operations. Same substrate, same buyer shape, same paid-POC contract."
+            subtitle="The same buyer feels it in two directions: outward at their product, inward at their operations."
           />
           <SplitColumns>
             <SplitColumn
@@ -974,12 +850,7 @@ export const mainSlides = (K) => {
             >
               <SplitItem>
                 Their competitors shipped AI features; their own platform build stalled. We make their
-                product agent-native <strong>in their own tenancy</strong>, the enterprise-readiness
-                layer they would otherwise spend two years building.
-              </SplitItem>
-              <SplitItem>
-                Buyer: the AI/product owner carrying the roadmap, with CEO sponsorship. Expansion path:
-                their clients, one at a time, on one substrate.
+                product agent-native <strong>in their own tenancy</strong>.
               </SplitItem>
               <SplitItem>
                 Evidence today:{' '}
@@ -993,12 +864,7 @@ export const mainSlides = (K) => {
             >
               <SplitItem>
                 Internal automation is blocked on engineering. We put the layer in and the{' '}
-                <strong>SMEs author the agent workflows themselves</strong>. The knowledge holders
-                build; engineering just sets the rails once.
-              </SplitItem>
-              <SplitItem>
-                Enters at whatever hurts most today: a cost line, a sales-ops queue, a marketing
-                pipeline. The pain is the <em>entry point</em>; the brain is the product.
+                <strong>SMEs author the agent workflows themselves</strong>.
               </SplitItem>
               <SplitItem>
                 Evidence today:{' '}
@@ -1009,13 +875,7 @@ export const mainSlides = (K) => {
               </SplitItem>
             </SplitColumn>
           </SplitColumns>
-          <Callout tone="indigo" fill="neutral" className="dk-gap-sm">
-            <strong>Why this is one company, not two:</strong> both doors deploy the identical
-            substrate: in-tenant deployment, governed writes back to the systems of record, and the
-            per-customer record of corrections that compounds. Nothing forks. A door is a sales entry
-            point; the asset being built is the same one, and it stays inside the customer's account.
-          </Callout>
-          <ChipRow center className="dk-gap-sm">
+          <ChipRow center className="dk-gap">
             <Chip size="lg" mono>Qualify<span className="dk-chip-kd">buy-first · no AI bench</span></Chip>
             <span className="dk-arrow">→</span>
             <Chip size="lg" mono>Land<span className="dk-chip-kd">paid POC · weeks</span></Chip>
@@ -1026,22 +886,18 @@ export const mainSlides = (K) => {
               Platform account<span className="dk-chip-kd">annual platform license</span>
             </Chip>
           </ChipRow>
-          <Caption className="dk-gap-sm">
-            <strong>Delivery compounds, and that's what keeps it a platform:</strong> an{' '}
-            <strong>FDE pair</strong>, a domain expert plus a forward-deployed engineer, lands each
-            account and runs the engagement on SynOS itself, so engagement N costs a fraction of
-            engagement 1's human hours and every one mints reusable brains and skills.{' '}
-            <strong>Pipeline:</strong> founder-led and advisor networks → design-partner referrals →
-            embedded distribution → content and open-source inbound.
-          </Caption>
         </SlideFrame>
       ),
+      notes:
+        'Same substrate, same buyer shape, same paid-POC contract. Door 1 buyer: the AI/product owner carrying the roadmap, with CEO sponsorship; expansion path is their clients, one at a time, on one substrate — the enterprise-readiness layer they would otherwise spend two years building. Door 2 enters at whatever hurts most today: a cost line, a sales-ops queue, a marketing pipeline. The pain is the entry point; the brain is the product. Engineering just sets the rails once. Why this is one company, not two: both doors deploy the identical substrate — in-tenant deployment, governed writes back to the systems of record, and the per-customer record of corrections that compounds. Nothing forks; a door is a sales entry point. Delivery compounds, and that is what keeps it a platform: an FDE pair, a domain expert plus a forward-deployed engineer, lands each account and runs the engagement on SynOS itself, so engagement N costs a fraction of engagement 1 and every one mints reusable brains and skills. Pipeline: founder-led and advisor networks, design-partner referrals, embedded distribution, content and open-source inbound.',
     },
 
     /* ── 15 · Traction ────────────────────────────────────────────────────
-     * `.story-grid` is a 1.15fr / 1fr split with one long narrative on the left and two small cards
-     * on the right. Composed: `Columns ratio="nudge"` for the geometry, a StepCard for the story (the only
-     * kit block that carries num + title + body + a footer line), two UseCaseCards on the right. */
+     * LIGHTLY CUT. This is the evidence slide and the details ARE the evidence — "two weeks", "300
+     * columns", "no documentation", "post-POC pricing agreed" are the specifics an investor tests
+     * the claim against, and a version that says "three engagements, going well" is worth nothing.
+     * Only connective tissue comes out.
+     */
     {
       id: 'traction',
       node: (
@@ -1055,33 +911,30 @@ export const mainSlides = (K) => {
           />
           <Columns ratio="nudge">
             <div>
-            <UseCaseCard
-              tone="emerald"
-              kicker="The proof story"
-              title="A manufacturing enterprise, beginning with a Cloud FinOps Brain, plus agents that take critical DevOps actions. A committed paid POC."
-              body={
-                <>
-                  Cloud-cost knowledge lived in a few engineers' heads. It moves onto the layer: billing
-                  data and people on one Company Brain, cited answers in plain English, every correction
-                  captured once. Agents then carry the DevOps actions on the same rails.{' '}
-                  <strong>Committed paid monthly POC, kickoff underway</strong>, and the expansion
-                  conversation is already about the next function.
-                </>
-              }
-            />
-            {/* Was StepCard's `quote` slot, which rendered mono. UseCaseCard has no quote slot,
-                so the line moved to a Caption — and the mono face came back as a Caption prop
-                rather than by routing the content through a card it does not belong in. */}
-            <Caption mono>
-              committed paid monthly POC · Cloud FinOps Brain + DevOps agents · expansion in discussion
-            </Caption>
+              <UseCaseCard
+                tone="emerald"
+                kicker="The proof story"
+                title="A manufacturing enterprise: a Cloud FinOps Brain, plus agents that take critical DevOps actions."
+                body={
+                  <>
+                    Cloud-cost knowledge lived in a few engineers' heads. It moves onto the layer:
+                    billing data and people on one Company Brain, cited answers in plain English, every
+                    correction captured once.{' '}
+                    <strong>Committed paid monthly POC, kickoff underway</strong>, and the expansion
+                    conversation is already about the next function.
+                  </>
+                }
+              />
+              <Caption mono>
+                committed paid monthly POC · Cloud FinOps Brain + DevOps agents · expansion in discussion
+              </Caption>
             </div>
             <Stack>
               <UseCaseCard
                 tone="emerald"
                 kicker="Door 2 · committed paid POC · air-gapped on-prem"
                 title="A US software company"
-                body="Same landing template as the manufacturing enterprise, reused for a second close two weeks later, fully inside their own infrastructure. Post-POC pricing agreed."
+                body="The same landing template, reused for a second close two weeks later, fully inside their own infrastructure. Post-POC pricing agreed."
               />
               <UseCaseCard
                 tone="emerald"
@@ -1089,34 +942,35 @@ export const mainSlides = (K) => {
                 title="A martech SaaS platform"
                 body={
                   <>
-                    Their product made agent-native on our rails, after their own platform build
-                    stalled. Four months on a warehouse-native assistant had not produced what they
-                    needed; ours ran in <strong>two weeks</strong>, on raw data of about 300 columns
-                    with no documentation. POC succeeded; moving to a paid pilot with a few of their own
-                    clients.
+                    Four months on a warehouse-native assistant had not produced what they needed; ours
+                    ran in <strong>two weeks</strong>, on raw data of about 300 columns with no
+                    documentation. Moving to a paid pilot with their own clients.
                   </>
                 }
               />
             </Stack>
           </Columns>
-          <Columns className="dk-gap-sm">
+          <Columns className="dk-gap">
             <Callout tone="emerald" label="Live & demo-able today">
-              Company Brain, living and continuously updated · access controls · agent-native storage ·
-              app deploy from Claude Code · works across AI tools via MCP · triggers · usage analytics
-              & observability.
+              Company Brain · access controls · agent-native storage · app deploy from Claude Code ·
+              any AI tool via MCP · triggers · observability.
             </Callout>
             <Callout tone="amber" label="Roadmap">
-              The fine-tuning and deeper data-capture layers for custom / distilled models. The data is
-              being captured today; training is the next layer.
+              Fine-tuning and deeper capture for custom / distilled models. The data is being captured
+              today; training is the next layer.
             </Callout>
           </Columns>
         </SlideFrame>
       ),
+      notes:
+        'Agents carry the DevOps actions on the same rails as the FinOps brain. The martech platform’s product was made agent-native on our rails after their own platform build stalled. The US software company is the reuse proof: same template, second close, two weeks later, air-gapped.',
     },
 
     /* ── 16 · Business model ──────────────────────────────────────────────
-     * `.bm` / `.bcard` → PhaseRow / PhaseCard with no badge: `.bnum` → when, h3 → title, p → body,
-     * `.brev` → foot. `.bm-foot` → two Callouts. */
+     * The three rungs keep their `foot` lines, which name the revenue. Bodies cut to one sentence
+     * each. Both Callouts go to notes: "why not per seat" is an objection answered out loud, not a
+     * thing to read while it is being answered.
+     */
     {
       id: 'business-model',
       node: (
@@ -1125,60 +979,52 @@ export const mainSlides = (K) => {
             layout="row"
             eyebrow="Business model"
             eyebrowTone="violet"
-            title="Priced like infrastructure, because that’s what it is."
-            subtitle="The revenue ladder is the play restated in money. Platform fee on the footprint the environment covers — never per seat, because per-seat pricing punishes the thing we sell: more of the company on the layer."
+            title="Priced like infrastructure, because that's what it is."
+            subtitle="Platform fee on the footprint the environment covers — never per seat, because per-seat pricing punishes the thing we sell."
           />
           <PhaseRow>
             <PhaseCard
               when="Land · today"
               title="Paid POC → annual platform licence."
-              body="Live in weeks on one expensive workflow. Converts to a licence priced on the data footprint the environment covers, the way on-prem infrastructure has always been bought."
+              body="Live in weeks on one expensive workflow. Converts to a licence priced on the data footprint the environment covers."
               foot="platform licence + deployment · grows with footprint, not headcount"
             />
             <PhaseCard
               position="bridge"
               when="Expand · the margin story"
               title="Licence grows. Delivery cost falls."
-              body="Each new function lands on rails already built, so the licence grows with coverage while templated delivery gets cheaper per engagement. That widening gap is what makes this a platform business, not a services one."
+              body="Each new function lands on rails already built. That widening gap is what makes this a platform business, not a services one."
               foot="the number we hold ourselves to: delivery cost per engagement, falling"
             />
             <PhaseCard
               position="far"
               when="Phase two · stacks on the same install"
               title="The training layers become revenue lines."
-              body="Private eval suites, then fine-tuning and distillation runs on the captured data. Sold onto an environment already installed and already trusted, so there is no second procurement mountain."
+              body="Private eval suites, then fine-tuning and distillation runs. Sold onto an environment already installed and already trusted."
               foot="evals · training runs · model ops — on the environment phase one paid for"
             />
           </PhaseRow>
-          <Columns className="dk-gap">
-            <Callout tone="indigo" label="Why not per seat">
-              Agents don’t hold seats, and the buyer’s win condition is more people and more agents on
-              the layer. The price follows the footprint of what the environment knows and governs, so
-              our revenue grows exactly when the customer gets more value.
-            </Callout>
-            <Callout tone="violet" label="Where it points">
-              As the layer proves what work produces, pricing moves toward outcomes. Pricing an outcome
-              is underwriting, and you can only underwrite a business you understand — which is
-              precisely what the environment accumulates.
-            </Callout>
-          </Columns>
         </SlideFrame>
       ),
+      notes:
+        'The revenue ladder is the play restated in money. The thing we sell is more of the company on the layer, which is exactly what per-seat pricing punishes. Why not per seat: agents do not hold seats, and the buyer’s win condition is more people and more agents on the layer — so the price follows the footprint of what the environment knows and governs, and our revenue grows exactly when the customer gets more value. Where it points: as the layer proves what work produces, pricing moves toward outcomes. Pricing an outcome is underwriting, and you can only underwrite a business you understand — which is precisely what the environment accumulates. No second procurement mountain for phase two.',
     },
 
     /* ── 17 · Landscape ───────────────────────────────────────────────────
-     * WAS the biggest gap in the rebuild: `.lstk` is a 6-column capability matrix with four cell
-     * states, and the kit had no table at all. It is now the kit's `Matrix` — this slide and the
-     * report's item 2 are what that component was built for. The footnote below it is a Callout. */
+     * The 6×5 matrix stays entirely — every cell is a competitive claim and the row labels are the
+     * six bands being argued over (rule 2). Underneath it, the reading deck carries a ~200-word
+     * Callout: the longest single block in the deck. It goes to notes whole and is replaced by the
+     * one line it was arguing for.
+     */
     {
       id: 'landscape',
       node: (
-        <SlideFrame density="compact" stage={false}>
+        <SlideFrame stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="Landscape"
             title="Everyone owns one band. Nobody owns the three in the middle."
-            subtitle="These are different categories doing different jobs, and each is good at its own. The gap between a company's systems and the AI its people already have is the part none of them was built for."
+            subtitle="Different categories doing different jobs, each good at its own. The gap between a company's systems and the AI its people already have is the part none of them was built for."
           />
           <Matrix
             labelWidth="180px"
@@ -1268,34 +1114,26 @@ export const mainSlides = (K) => {
               },
             ]}
           />
-          <Callout tone="indigo" fill="neutral" className="dk-gap-sm">
-            <strong>One data layer, two jobs.</strong> The Company Brain is the primary data layer:
-            today it grounds every answer and agent in how the business actually runs, and the traces,
-            corrections and evals it captures doing that are tomorrow’s training data. Around it: an
-            identity and permission model an agent can act through, and somewhere isolated to build and
-            deploy. The data platforms own the bottom band and ask you to move everything into it
-            first. Search reads a copy. Workflow tools execute without knowing what anything means. We
-            deliberately do not touch your existing systems of record, and we do not need to own the
-            tools your people already use. What your people build <em>new</em> gets an agent-native
-            store inside the same environment — on your infrastructure, yours like everything else it
-            accumulates — so the AI-era workflows never need a second procurement. Governance is the
-            permission to act, isolation is where a rollout can safely run: built once for the
-            transformation, and together with the Brain they are the place a company trains models of
-            its own. The training compute underneath stays pluggable — Prime Intellect, Fireworks, or
-            their own GPUs — the same neutrality we hold toward models. The environment is the part
-            nobody else produces.
-          </Callout>
+          <Caption className="dk-gap-sm">
+            <strong>One data layer, two jobs.</strong> The Company Brain grounds every answer today,
+            and the traces, corrections and evals it captures doing that are tomorrow's training data.
+            The environment is the part nobody else produces.
+          </Caption>
         </SlideFrame>
       ),
+      notes:
+        'Around the Brain: an identity and permission model an agent can act through, and somewhere isolated to build and deploy. The data platforms own the bottom band and ask you to move everything into it first. Search reads a copy. Workflow tools execute without knowing what anything means. We deliberately do not touch your existing systems of record, and we do not need to own the tools your people already use. What your people build new gets an agent-native store inside the same environment — on your infrastructure, yours like everything else it accumulates — so the AI-era workflows never need a second procurement. Governance is the permission to act; isolation is where a rollout can safely run. Built once for the transformation, and together with the Brain they are the place a company trains models of its own. The training compute underneath stays pluggable — Prime Intellect, Fireworks, or their own GPUs — the same neutrality we hold toward models.',
     },
 
     /* ── 18 · How we build differently ────────────────────────────────────
-     * `.dfx` / `.dcard` → StepGrid / StepCard exactly: `.dnum` → num, h3 → title, p → body,
-     * `.dproof` → quote. `.tstakes` → a Callout. */
+     * LIGHTLY CUT on the quotes, hard on the bodies. The two customer verbatims are kept whole:
+     * they are the only two places in the deck where a buyer says the thesis in their own words,
+     * and paraphrasing a quote to save a line destroys the thing that makes it evidence.
+     */
     {
       id: 'differently',
       node: (
-        <SlideFrame density="compact" stage={false}>
+        <SlideFrame stage={false}>
           <SlideHeader
             layout="row"
             eyebrow="How we build this differently"
@@ -1310,10 +1148,9 @@ export const mainSlides = (K) => {
               body={
                 <>
                   Every serious vendor lands with forward-deployed engineers. We are the one building
-                  for the handover: engineering keeps the rails, their domain experts operate and
-                  correct, and the record of how the company works stays on their side of the wall. A
-                  firm that bills for embedded engineers cannot copy this without cutting its own
-                  revenue. A multi-tenant platform cannot, because the learning lives in its product.
+                  for the handover. A firm that bills for embedded engineers cannot copy this without
+                  cutting its own revenue; a multi-tenant platform cannot, because the learning lives
+                  in its product.
                 </>
               }
               quote="A martech platform said it back to us: “if tomorrow the customer says we don’t want to continue, fine, we exit, but that data stays with us. You can’t take my structured data which I have curated.”"
@@ -1323,14 +1160,10 @@ export const mainSlides = (K) => {
               title="They author a copy and learn in the copy. We instrument the original."
               body={
                 <>
-                  Training environments are a funded category — Mercor and Fleet sell mocks to the
-                  labs, Prime Intellect sells the gym at a $1B valuation. Every one of them, including
-                  the few that deploy the copy in your cloud,{' '}
-                  <strong>authors a replica of your business and trains in the replica</strong>. A
-                  replica cannot hold twelve years of exceptions in one company's order-to-cash. Ours
-                  is their own systems, instrumented during real work, with rewards from real
-                  corrections and outcomes — only possible because we were already doing the
-                  transformation. In phase two the gym vendors sit under us, not against us.
+                  Training environments are a funded category — Mercor, Fleet, Prime Intellect. Every
+                  one of them{' '}
+                  <strong>authors a replica of your business and trains in the replica</strong>, and a
+                  replica cannot hold twelve years of exceptions in one company's order-to-cash.
                 </>
               }
               quote="Why the order is forced: capture only happens inside real work. And the pull is cost — a lending platform’s data lead: “it’s exorbitant, the amount of tokens you consume; it just makes it unfeasible.”"
@@ -1338,22 +1171,25 @@ export const mainSlides = (K) => {
             <StepCard
               num="03 · Horizontal surface, vertical delivery"
               title="One expensive workflow at a time, on one layer."
-              body="Every engagement lands a single high-value piece of knowledge work with an ROI the buyer can name, the way a vertical product would. The layer underneath is the same one every time, so the second function costs less than the first and the tenth costs least of all."
+              body="Every engagement lands a single high-value piece of knowledge work with an ROI the buyer can name. The layer underneath is the same one every time."
               quote="This is what makes it infrastructure rather than a services business, and the automation curve is how we prove it."
             />
           </StepGrid>
           <Callout tone="amber" fill="neutral" className="dk-gap" label="What we don't claim as an edge">
             A context layer, non-engineers building agents, bring-your-own-model, private-cloud and
-            air-gapped deployment, forward-deployed delivery. Every serious vendor now has these, and a
-            room that hears them pitched as differentiators learns something about the pitch rather
-            than the product.
+            air-gapped deployment, forward-deployed delivery. Every serious vendor now has these.
           </Callout>
         </SlideFrame>
       ),
+      notes:
+        'The handover in detail: engineering keeps the rails, their domain experts operate and correct, and the record of how the company works stays on their side of the wall. Prime Intellect sells the gym at a $1B valuation; Mercor and Fleet sell mocks to the labs. Even the ones that deploy the copy in your cloud are still training in a copy. Ours is their own systems, instrumented during real work, with rewards from real corrections and outcomes — only possible because we were already doing the transformation. In phase two the gym vendors sit under us, not against us. The second function costs less than the first and the tenth costs least of all. And a room that hears the commodity list pitched as differentiators learns something about the pitch rather than the product.',
     },
 
     /* ── 19 · If models get better ────────────────────────────────────────
-     * `.flow` → PhaseRow / PhaseCard, `.caption` → Caption. Nothing composed. */
+     * The three `foot` lines are compressed arrows and carry the whole argument, so they stay and
+     * the bodies above them cut to one sentence. The closing Caption is two short sentences and the
+     * slide's punchline — kept.
+     */
     {
       id: 'models-better',
       node: (
@@ -1366,9 +1202,7 @@ export const mainSlides = (K) => {
             subtitle={
               <>
                 Enterprises don't stop at the model. They do <em>more</em> with it, and all of it still
-                needs to know how the company operates and what it may touch. The test for built
-                capital: take any one model away, and the company’s capability survives, because it was
-                never built into the model.
+                needs to know how the company operates and what it may touch.
               </>
             }
           />
@@ -1379,8 +1213,7 @@ export const mainSlides = (K) => {
               title="Better models mean more agents, and every one needs a company underneath it."
               body={
                 <>
-                  Each jump raises what an enterprise will hand over, and every one still needs the
-                  brain, the policies, the tools and something to evaluate against.{' '}
+                  Each jump raises what an enterprise will hand over.{' '}
                   <strong>Capability doesn't grant permissions, and it doesn't know your exceptions.</strong>
                 </>
               }
@@ -1393,9 +1226,8 @@ export const mainSlides = (K) => {
               title="The FDE work automates onto our own rails."
               body={
                 <>
-                  Today the motion is <strong>platform plus a forward-deployed engineer</strong>. Each
-                  jump moves more of what that engineer does into the platform, until delivery is
-                  agentic. Cost per outcome falls and the platform carries the growth.
+                  Each jump moves more of what the forward-deployed engineer does into the platform,
+                  until delivery is agentic. <strong>Cost per outcome falls.</strong>
                 </>
               }
               foot="platform + FDE → agentic FDE → platform-led delivery"
@@ -1408,8 +1240,7 @@ export const mainSlides = (K) => {
               body={
                 <>
                   Their own models, trained on their own loop, running more of the company.{' '}
-                  <strong>Model progress shortens the distance to what we are actually building for</strong>
-                  , on the environment we install today.
+                  <strong>Model progress shortens the distance to what we are building for.</strong>
                 </>
               }
               foot="capability ↑ → the next phase arrives sooner, on the same environment"
@@ -1417,16 +1248,19 @@ export const mainSlides = (K) => {
           </PhaseRow>
           <Caption className="dk-gap">
             None of this asks you to bet that model progress slows down.{' '}
-            <strong>It asks you to bet that it continues</strong>, which is the only part of this
-            everyone already agrees on.
+            <strong>It asks you to bet that it continues.</strong>
           </Caption>
         </SlideFrame>
       ),
+      notes:
+        'The test for built capital: take any one model away, and the company’s capability survives, because it was never built into the model. Every agent still needs the brain, the policies, the tools and something to evaluate against. Today the motion is platform plus a forward-deployed engineer; the platform carries the growth as that work automates. And betting that progress continues is the only part of this everyone in the room already agrees on.',
     },
 
     /* ── 20 · Why us ──────────────────────────────────────────────────────
-     * `.team-grid` / `.tcard` → UseCaseGrid / UseCaseCard (`.tp` → kicker). The two `.velocity`
-     * bands and `.geo` → Callouts. */
+     * Three cards, three disciplines, one line each — the names (Sundial, Nutanix, Google) do most
+     * of the work and the room reads them in two seconds. Of the three Callouts, only the one that
+     * is a claim about the business survives; the FDE and geography notes are answers to questions.
+     */
     {
       id: 'why-us',
       node: (
@@ -1436,53 +1270,43 @@ export const mainSlides = (K) => {
             eyebrow="Why us"
             eyebrowTone="indigo"
             title="This layer sits at the intersection of three disciplines. We have all three."
-            subtitle="Agentic analytics and semantic layers. On-prem enterprise infrastructure. Enterprise go-to-market in this region. Most teams attacking this problem have one of the three."
+            subtitle="Most teams attacking this problem have one of the three."
           />
           <UseCaseGrid>
             <UseCaseCard
               tone="violet"
               kicker="Data & agentic analytics"
               title="Sundial"
-              body="Founder was CTO: built agentic analytics and semantic layers, and worked through the challenges of transforming a SaaS product to be AI-native."
+              body="Founder was CTO: built agentic analytics and semantic layers, and transformed a SaaS product to be AI-native."
             />
             <UseCaseCard
               tone="indigo"
               kicker="On-prem enterprise infra"
               title="Nutanix"
-              body="Eight years on distributed data systems. What on-prem demands of a product: air-gapped installs, upgrade paths, correctness with nobody from your team watching."
+              body="Eight years on distributed data systems. Air-gapped installs, upgrade paths, correctness with nobody watching."
             />
             <UseCaseCard
               tone="emerald"
               kicker="Enterprise go-to-market"
               title="Google"
-              body="Amit, ex-Google, anchors go-to-market with strong India and SEA reach. Hiring from the same three pools is the first line in the use of funds."
+              body="Amit, ex-Google, anchors go-to-market with strong India and SEA reach."
             />
           </UseCaseGrid>
-          <Stack className="dk-gap">
-            <Callout tone="indigo" fill="neutral">
-              <strong>Delivery is an FDE model</strong>, a domain expert plus a forward-deployed
-              engineer. That embedded work is the wedge; <strong>revenue scales with the platform</strong>
-              , not with hours billed, and what the FDE team learns becomes brains and skills on the
-              platform.
-            </Callout>
-            <Callout tone="indigo" fill="neutral">
-              <strong>We run SynOS on SynOS</strong>. Our own GTM, research and operations run as
-              agents on the layer. It's why, four months in, there's a live platform and three
-              committed engagements.
-            </Callout>
-            <Callout tone="emerald" fill="neutral">
-              <strong>India first, US in test.</strong> The buyer profile is not geography-specific,
-              and the US wedge is enterprise outside the Bay Area. Which market we scale into is an
-              output of the GTM test.
-            </Callout>
-          </Stack>
+          <Callout tone="indigo" fill="neutral" className="dk-gap">
+            <strong>We run SynOS on SynOS</strong> — our own GTM, research and operations run as agents
+            on the layer. It's why, four months in, there's a live platform and three committed
+            engagements.
+          </Callout>
         </SlideFrame>
       ),
+      notes:
+        'The three disciplines: agentic analytics and semantic layers; on-prem enterprise infrastructure; enterprise go-to-market in this region. Hiring from the same three pools is the first line in the use of funds. Delivery is an FDE model — a domain expert plus a forward-deployed engineer. That embedded work is the wedge; revenue scales with the platform, not with hours billed, and what the FDE team learns becomes brains and skills on the platform. India first, US in test: the buyer profile is not geography-specific, the US wedge is enterprise outside the Bay Area, and which market we scale into is an output of the GTM test.',
     },
 
     /* ── 21 · The round ───────────────────────────────────────────────────
-     * `.flow` → PhaseRow. `.mstone` (a titled row of five short label/value pairs) has no kit
-     * component; composed as a Callout carrying a ChipRow. */
+     * The five outcome Tiles are the ask restated as a checklist and stay whole — this is the slide
+     * an investor photographs. Card bodies cut to one sentence; the closing Caption goes to notes.
+     */
     {
       id: 'the-round',
       node: (
@@ -1499,7 +1323,7 @@ export const mainSlides = (K) => {
               badge="01"
               when="First line, first rupee"
               title="Senior founding hires"
-              body="Engineering deep enough to own the messy-data problem, go-to-market, and domain SMEs who can run an FDE pair. The binding constraint on everything else."
+              body="Engineering deep enough to own the messy-data problem, go-to-market, and domain SMEs who can run an FDE pair."
               foot="the team is the use of funds"
             />
             <PhaseCard
@@ -1507,7 +1331,7 @@ export const mainSlides = (K) => {
               badge="02"
               when="Six months, in parallel"
               title="India GTM at scale, US GTM opened"
-              body="Scale the India motion that is already converting; open the US through enterprise outside the Bay Area. Three routes carry kill thresholds written before the data, then we concentrate."
+              body="Scale the India motion that is already converting; open the US through enterprise outside the Bay Area."
               foot="one entry wedge, chosen on evidence"
             />
             <PhaseCard
@@ -1515,7 +1339,7 @@ export const mainSlides = (K) => {
               badge="03"
               when="Stacks on what ships"
               title="R&D: the fine-tuning infra and environment"
-              body="Private eval suites hardened first, then fine-tuning and distillation on top of the capture already running. This is what turns the transformation environment into the one they build their own AI in."
+              body="Private eval suites hardened first, then fine-tuning and distillation on top of the capture already running."
               foot="phase one funds it, phase two compounds it"
             />
           </PhaseRow>
@@ -1524,24 +1348,21 @@ export const mainSlides = (K) => {
               <Tile size="sm" tone="emerald" name="Revenue" kind="Committed contracts paid and referenceable" />
               <Tile size="sm" tone="emerald" name="Repeatability" kind="Delivery cost per engagement instrumented, falling" />
               <Tile size="sm" tone="emerald" name="Product" kind="Eval + fine-tuning infra live on real capture" />
-              <Tile size="sm" tone="emerald" name="Phase-two proof" kind="First training run on one customer’s own data" />
+              <Tile size="sm" tone="emerald" name="Phase-two proof" kind="First training run on one customer's own data" />
               <Tile size="sm" tone="emerald" name="Geography" kind="India motion scaled; first US logo outside the Bay Area" />
             </TileRow>
           </Callout>
-          <Caption className="dk-gap-sm">
-            What it buys, plainly:{' '}
-            <strong>
-              a team, a proven way to repeat the deals we already have, and the layer that makes the
-              second phase real
-            </strong>
-            . Terms and the current round structure on a call.
-          </Caption>
         </SlideFrame>
       ),
+      notes:
+        'Hires are the binding constraint on everything else. The three GTM routes carry kill thresholds written before the data, then we concentrate. R&D is what turns the transformation environment into the one they build their own AI in. What it buys, plainly: a team, a proven way to repeat the deals we already have, and the layer that makes the second phase real. Terms and the current round structure on a call.',
     },
 
     /* ── 22 · Closing wordmark ────────────────────────────────────────────
-     * BigTypeSlide with the seam diagram in its `children` slot, which is what the slot is for. */
+     * The seam, the two lines and the ask. The explanatory paragraph under the diagram goes to
+     * notes; the tagline stays because it is the one place the qualifiers (self-hosted,
+     * model-agnostic, yours) are listed at the end, and somebody photographs this slide.
+     */
     {
       id: 'closing',
       variant: 'bigType',
@@ -1555,16 +1376,17 @@ export const mainSlides = (K) => {
           tagline="Self-hosted · model-agnostic · works with any AI stack · built for the knowledge workers, not just the engineers · your data, your moat"
         >
           <Seam uid="c" variant="close" agentsLabel="AI & Agents" />
-          <p className="sk-bigtype-sub">
-            The layer where <strong>humans, AI and systems work at light speed</strong>, creating value
-            at the edge of what current AI capabilities can achieve.
-          </p>
         </BigTypeSlide>
       ),
+      notes:
+        'The layer where humans, AI and systems work at light speed, creating value at the edge of what current AI capabilities can achieve.',
     },
 
     /* ── 23 · Appendix divider ────────────────────────────────────────────
-     * BigTypeSlide, exactly. */
+     * A divider's job is to say "the deck ended, ask me anything". The list of what is in the
+     * appendix is for the reader of a sent deck; the presenter has it in notes and turns to the
+     * slide that gets asked for.
+     */
     {
       id: 'appendix-divider',
       variant: 'bigType',
@@ -1574,10 +1396,25 @@ export const mainSlides = (K) => {
           eyebrow="End of the main deck"
           line1="Appendix"
           line2={<span className="sk-gradient-text">Detail on request.</span>}
-          sub="What runs on the layer, the status of the two doors, where value gets created at the edge of model capability, the market evidence, the SaaS shift, plain-English build and deploy, and the full data flywheel."
           tagline="Security and readiness overview, architecture deep-dive and a live demo available on a call."
         />
       ),
+      notes:
+        'In the appendix: what runs on the layer, the status of the two doors, where value gets created at the edge of model capability, the market evidence, the SaaS shift, plain-English build and deploy, the full data flywheel, the landscape in detail, and the open-source memory audit.',
     },
   ]
 }
+
+/**
+ * The slides where the hard cut was pulled back, and why. Recorded rather than absorbed, because
+ * "cut hard, unless" is only honest if the exceptions are countable.
+ *
+ *   today       the subtitle names the three things the seam diagram draws. Cutting it leaves an
+ *               unlabelled picture — rule 2.
+ *   arch (x2)   labels are the content. The cut came out of the pillar prose only; every chip,
+ *               tile, badge and guardrail is intact.
+ *   traction    the specifics ARE the evidence: two weeks, ~300 columns, no documentation, post-POC
+ *               pricing agreed. A vaguer traction slide is a weaker one.
+ *   differently the two customer verbatims are kept whole. A paraphrased quote is not a quote.
+ */
+export const LIGHTLY_CUT = ['today', 'architecture-today', 'architecture-training', 'traction', 'differently']

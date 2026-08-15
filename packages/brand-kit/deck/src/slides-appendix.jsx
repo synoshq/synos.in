@@ -524,8 +524,8 @@ export const appendixSlides = (K) => {
               },
               {
                 label: 'Context / memory layers',
-                sub: 'agent memory stores',
-                cells: [{ text: 'Memory for one agent, one app.' }, { text: 'A component, not a layer: no entity resolution across systems, no governance, no deploy, and framework lock-in.' }],
+                sub: 'cognee · Graphiti · mem0 · Semantica',
+                cells: [{ text: 'Memory for one agent, one app.' }, { text: 'A component, not a layer: no connectors, no governance, no deploy, and none of them profiles a structured source. Detail on the next slide.' }],
               },
               {
                 label: 'Tool proxies & MCP gateways',
@@ -563,6 +563,83 @@ export const appendixSlides = (K) => {
               corrections: three things a model vendor structurally will not do.
             </Callout>
           </Columns>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 32b · Appendix · the open-source graph question ──────────────────
+     * Added 2026-08-15 from `cursor_experiment/docs/reports/OPEN_SOURCE_GRAPH_MEMORY_AUDIT.md`
+     * §7A and its companion `GRAPH_MEMORY_FEATURE_MATRIX.md`. Every number here is a cell in that
+     * matrix or a file path in the audit — do not edit a figure without re-pulling it there. Star
+     * counts are a GitHub API pull dated on the slide because they rot within weeks. The
+     * "where they are ahead" callout is not optional: all of it is checkable from a GitHub
+     * account in minutes, and a deck that omits it loses the room the moment someone looks. */
+    {
+      id: 'apx-oss-memory',
+      node: (
+        <SlideFrame density="compact" stage={false}>
+          <SlideHeader
+            layout="row"
+            eyebrow="Appendix · the open-source question"
+            title="“Why not just use the open-source graph memory?”"
+            subtitle={
+              <>
+                One question, three unrelated categories — and the answer differs per category.
+                Separating them <em>is</em> half the answer. Stars: GitHub API, 2026-08-15.
+              </>
+            }
+          />
+          <Matrix
+            variant="rules"
+            labelWidth="1.05fr"
+            cornerLabel="What people actually mean"
+            columns={[{ label: 'What it does' }, { label: 'What it is not', width: '1.5fr' }]}
+            rows={[
+              {
+                label: 'GraphRAG',
+                sub: 'LightRAG 38.9k★ · Microsoft GraphRAG 35.5k★',
+                cells: [
+                  { text: 'Turns a document pile you already collected into a queryable graph.' },
+                  { text: 'The largest category by stars, and not a memory system: no connectors, no tenancy, no temporality, no live source. Collecting, governing and connecting to running systems is the part it leaves to you.' },
+                ],
+              },
+              {
+                label: 'Graph memory engines',
+                sub: 'cognee 30.0k★ · Graphiti 29.9k★ · Semantica 7.5k★',
+                cells: [
+                  { text: 'Real peers on the graph itself. cognee is the honest benchmark.' },
+                  { text: 'Components, not layers. Graphiti ships zero connectors and its README says bring your own database and build your own tooling; Zep’s scaled engine is proprietary. None of the three profiles a structured source or binds a metric to a column.' },
+                ],
+              },
+              {
+                label: 'Agent memory, no graph',
+                sub: 'mem0 63.3k★ · letta 24.2k★',
+                cells: [
+                  { text: 'Conversational personalisation for one agent.' },
+                  { text: 'mem0 — the most-starred of all — deleted graph memory from its open source in v3 (~4,000 lines, five drivers) and made it Platform-only. Useful both ways: the graph is not table stakes, and it has to earn its cost.' },
+                ],
+              },
+            ]}
+          />
+          <Callout tone="indigo" fill="neutral" className="dk-gap-sm" label="What none of them do — measured against the source, not asserted">
+            <strong>No system in the study computes a single column statistic on a structured source.</strong>{' '}
+            Semantica does schema introspection plus <code>SELECT … LIMIT</code>; cognee pulls rows in
+            via <code>dlt</code>. We profile in place — null rate, distinct counts, length bounds,
+            samples — then semantically type the columns and bind metrics to them, while{' '}
+            <strong>the rows stay in the customer’s warehouse and are queried live at answer time</strong>.
+            Data residency, cost and freshness in one sentence. Around it: 64 connectors with five
+            independently revocable credential surfaces, a graph shaped by a declared domain template
+            rather than by whatever the model inferred, a human review gate on what enters the brain,
+            and read-time access control at the node, per source, across five stores.
+          </Callout>
+          <Callout tone="amber" fill="neutral" className="dk-gap-sm" label="Where they are genuinely ahead — we say this in the room">
+            Graphiti on bi-temporal, point-in-time querying (cognee reaches for Graphiti to get it).
+            Semantica on W3C PROV-O provenance with a tamper-evident hash chain. cognee on
+            self-improvement, zero-infra onboarding and evaluation tooling — its <em>memify</em> loop is
+            ahead of our human-gated one, which is a trade-off we chose, not a win. We are Neo4j-only;
+            cognee runs on six backends. And nobody in this field, ourselves included, has an
+            independently verified benchmark — which is worth saying out loud.
+          </Callout>
         </SlideFrame>
       ),
     },
