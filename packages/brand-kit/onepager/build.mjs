@@ -28,7 +28,7 @@ const outArg = args.indexOf('--out')
    name — is the thing that gets skipped. */
 const name = args.find((a, i) => !a.startsWith('--') && !(outArg > -1 && i === outArg + 1))
 if (!name) throw new Error('usage: node onepager/build.mjs <name> [--out path]')
-const OUT = resolve(outArg > -1 ? args[outArg + 1] : resolve(HERE, `out/1pager-${name}-kit.html`))
+const OUT = resolve(outArg > -1 ? args[outArg + 1] : resolve(HERE, `out/1pager-${name}-v2.html`))
 
 const K = await import(pathToFileURL(resolve(ROOT, 'dist/brand-kit.js')).href)
 

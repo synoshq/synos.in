@@ -585,7 +585,7 @@ export const appendixSlides = (K) => {
             subtitle={
               <>
                 One question, three unrelated categories — and the answer differs per category.
-                Separating them <em>is</em> half the answer. Stars: GitHub API, 2026-08-15.
+                Separating them <em>is</em> half the answer. Read from source, 2026-08-15.
               </>
             }
           />
@@ -597,7 +597,7 @@ export const appendixSlides = (K) => {
             rows={[
               {
                 label: 'GraphRAG',
-                sub: 'LightRAG 38.9k★ · Microsoft GraphRAG 35.5k★',
+                sub: 'LightRAG · Microsoft GraphRAG',
                 cells: [
                   { text: 'Turns a document pile you already collected into a queryable graph.' },
                   { text: 'The largest category by stars, and not a memory system: no connectors, no tenancy, no temporality, no live source. Collecting, governing and connecting to running systems is the part it leaves to you.' },
