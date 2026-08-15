@@ -228,3 +228,228 @@
 .op-step-done .sk-step-title {
   color: var(--sk-emerald);
 }
+
+/* ── The dense infrastructure pages ────────────────────────────────────────
+ * `human-agent-operating-layer`, `w2-saas` and `ai-enablement` are one artifact type: nine or ten
+ * blocks on a single A4, aimed at a technical buyer who wants the whole layer on one sheet. They
+ * share four shapes, which is why these are here rather than as per-page furniture — three uses is
+ * the same frequency test `.op-three` was held to and failed.
+ *
+ * `.op-dense` is the register they run in. The kit's print scale was measured against these pages
+ * before any of them was ported (every source font size scaled 18%, page re-measured): the type
+ * itself fits, but the page rhythm does not — nine blocks at the kit's 8px column gap overflow.
+ * So the type stays at the kit's size and the GAPS give way, which is the right order: a reader
+ * loses a page to tight spacing and loses it permanently to 7px text.
+ */
+.op-dense .sk-sh {
+  margin-bottom: 1.2mm;
+}
+.op-dense .sk-eyebrow--print {
+  margin-bottom: 1.2mm;
+}
+/* The quiet half of a section label — "How it gets built · per customer, without a data team". The
+   second clause is a caveat, not part of the label, and the source drops it out of the tracking. */
+.op-hint {
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--sk-border-2);
+}
+
+/* A row of micro-steps: a build pipeline, a flywheel. Six or five across, so each step gets about
+   30mm — two words and a clause.
+   NOT `StepCard`. Its print scale is a 26px ringed numeral beside the copy, which is right for a
+   four-beat walkthrough and leaves nothing for the text at six across. The ordinal here is a mono
+   index, not a numeral you are meant to count on. */
+.op-microrow {
+  display: grid;
+  gap: 1.4mm;
+}
+.op-microrow--5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+.op-microrow--6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.op-micro {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 7px;
+  padding: 1.6mm 2mm;
+}
+.op-micro--violet {
+  background: var(--sk-violet-bg);
+  border-color: var(--sk-violet-br);
+}
+/* w2-saas tints its flywheel indigo where HAL tints it violet. Carried rather than normalised:
+   on w2-saas the flywheel is the product argument and sits in the indigo run; on HAL it is the
+   thing underneath everything else and is deliberately a different colour from the layer above. */
+.op-micro--indigo {
+  background: var(--sk-indigo-bg);
+  border-color: var(--sk-indigo-br);
+}
+.op-micro-i {
+  font-family: var(--sk-font-mono);
+  font-size: 6pt;
+  font-weight: 600;
+  color: var(--sk-indigo-2);
+}
+.op-micro-n {
+  font-size: 7.4pt;
+  font-weight: 700;
+  color: var(--sk-ink);
+  margin: 0.2mm 0;
+}
+.op-micro-d {
+  font-size: 6.2pt;
+  color: var(--sk-ink-3);
+  line-height: 1.3;
+}
+/* The status mark. This is the most load-bearing detail on the flywheel row — it is the page
+   saying out loud which parts are live and which are roadmap — so the three states stay three
+   colours rather than collapsing to one muted line. */
+.op-micro-s {
+  font-family: var(--sk-font-mono);
+  font-size: 5.4pt;
+  font-weight: 600;
+  margin-top: 0.6mm;
+}
+.op-micro-s--live {
+  color: var(--sk-emerald);
+}
+.op-micro-s--build {
+  color: var(--sk-amber);
+}
+.op-micro-s--road {
+  color: var(--sk-muted);
+}
+
+/* A tighter three-up than `.op-three`, for six cards rather than three. */
+.op-three--tight {
+  gap: 1.4mm;
+}
+
+/* The Context Brain feature card and the operating-layer tile. Two names for what is nearly one
+   shape, kept apart because the amber left rule is the only thing separating "what the brain is"
+   from "what else is in the box" — they sit four inches apart on the same page. */
+.op-brain-f {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-indigo-br);
+  border-radius: 7px;
+  padding: 1.6mm 2.2mm;
+}
+.op-brain-n {
+  font-size: 7.6pt;
+  font-weight: 700;
+  color: var(--sk-ink);
+}
+.op-brain-d {
+  font-size: 6.3pt;
+  color: var(--sk-ink-3);
+  line-height: 1.36;
+}
+.op-brain-d b {
+  color: var(--sk-ink-2);
+  font-weight: 600;
+}
+/* The generic small tile: a name and a clause. `--rule-amber` is HAL's operating-layer row, where
+   the rule is what separates "what the brain is" from "what else is in the box" — they sit four
+   inches apart on the same page and are otherwise the same rectangle. w2-saas's enterprise grid is
+   the same tile with no rule. */
+.op-tile {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 8px;
+  padding: 1.6mm 2.2mm;
+}
+.op-tile--rule-amber {
+  border-left: 3px solid var(--sk-amber-br);
+}
+.op-tile-n {
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: var(--sk-ink);
+}
+.op-tile-d {
+  font-size: 6.3pt;
+  color: var(--sk-ink-3);
+  line-height: 1.34;
+}
+
+/* The harness band: a heading and its sentence on the left, the chip wall filling the rest. It is
+   a Callout laid out as a row, which no other Callout in the corpus is — hence the override rather
+   than a `direction` prop nothing else would use. */
+.op-harness {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+.op-harness-t {
+  flex: 0 0 62mm;
+}
+.op-harness-h {
+  display: block;
+  font-size: 8.4pt;
+  color: var(--sk-ink);
+}
+.op-harness-c {
+  flex: 1;
+}
+
+/* ── w2-saas: the three "what your product can ship" columns ───────────────
+ * Each is a Callout with a top accent, and each ends on the commercial line — the upsell tier, the
+ * seconds-not-minutes, the customisation without a fork. That line is pinned to the bottom of the
+ * column with `margin-top: auto` so the three land level regardless of how much copy is above.
+ */
+.op-who {
+  font-size: 5.9pt;
+  font-weight: 700;
+  letter-spacing: 0.6pt;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+  margin-bottom: 0.8mm;
+}
+.op-col {
+  display: flex;
+  flex-direction: column;
+}
+.op-win {
+  margin-top: auto;
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-left: 3px solid var(--sk-indigo-2);
+  border-radius: 6px;
+  padding: 1.2mm 1.8mm;
+  font-size: 6.3pt;
+  color: var(--sk-ink-2);
+  line-height: 1.38;
+}
+.op-win--violet {
+  border-left-color: var(--sk-violet);
+}
+.op-win--emerald {
+  border-left-color: var(--sk-emerald);
+}
+.op-win b {
+  color: var(--sk-ink);
+}
+
+/* Four across — w2-saas's pillar row, the one place in the corpus where all four brand hues
+   appear as peers rather than as a hierarchy. */
+.op-four {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4mm;
+}
+.op-two--tight {
+  gap: 1.4mm;
+}
+
+/* `<code>` inherits the BROWSER's monospace, not the kit's. The deck learned this the hard way and
+   fixed it in `_shared.css`; that file is deck-only, so print needed the same rule. Caught by
+   probing rendered font families on ai-enablement, which was showing a fourth family for the one
+   `<code>` span on it. */
+.sk-print code {
+  font-family: var(--sk-font-mono);
+  font-size: 0.92em;
+}
