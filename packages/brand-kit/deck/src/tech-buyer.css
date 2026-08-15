@@ -183,11 +183,14 @@
   border: 1px solid var(--sk-violet-br);
   border-radius: 22px;
   padding: 8px 30px 12px;
+  min-height: 0;
 }
+/* 470px was the source's cap and it does not survive the kit's header, which is taller: measured,
+   the slide ran 58px past the card. 400 is the number that fits with the caption below it. */
 .tb-seam svg {
   width: 100%;
   height: auto;
-  max-height: 470px;
+  max-height: 400px;
   display: block;
 }
 .tb-seam text {
@@ -233,4 +236,20 @@
 }
 .tb-row p {
   margin: 0;
+}
+
+/* A carried diagram that fills the width it is given. Without this the SVG renders at its intrinsic
+   viewBox size — the living-brain drawing is 1080 units wide and pushed its bottom row off the
+   card. `max-height` is the real constraint: a slide is 712px tall and the header takes ~200 of it,
+   so a diagram that does not cap its height cannot be made to fit by capping its width. */
+.tb-diagram {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+}
+.tb-diagram svg {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  display: block;
 }

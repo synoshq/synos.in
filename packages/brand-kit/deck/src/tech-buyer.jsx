@@ -90,6 +90,52 @@ const ORDER = [
   'closing',
 ]
 
+/* The pillar icons, at the source's own geometry and paths. Carried rather than swapped for the VC
+   deck's set (`archIcons` in slides-main.jsx): four of the six are the same drawing, but the wrench
+   and the chart are this deck's, and a half-carried icon set is how two decks quietly stop looking
+   like the same product. */
+const ico = (d, size = 20) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+    {d}
+  </svg>
+)
+const IcoBrain = ico(
+  <>
+    <path d="M9 3a3 3 0 00-3 3v1a3 3 0 00-3 3v2a3 3 0 003 3v1a3 3 0 003 3" />
+    <path d="M15 3a3 3 0 013 3v1a3 3 0 013 3v2a3 3 0 01-3 3v1a3 3 0 01-3 3" />
+  </>,
+)
+const IcoDoc = ico(
+  <>
+    <path d="M4 19V5a2 2 0 012-2h11l3 3v13a2 2 0 01-2 2H6a2 2 0 01-2-2z" />
+    <path d="M9 7h6M9 11h6M9 15h4" />
+  </>,
+)
+const IcoShield = ico(
+  <>
+    <path d="M12 2L4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z" />
+    <path d="M9 12l2 2 4-4" />
+  </>,
+)
+const IcoWrench = ico(
+  <>
+    <path d="M14.7 6.3a1 1 0 010 1.4l-7 7-3.4-3.4 7-7a1 1 0 011.4 0z" />
+    <path d="M16 4l4 4M3 21l3-1 1-3" />
+  </>,
+)
+const IcoLoop = ico(
+  <>
+    <path d="M21 12a9 9 0 11-3-6.7L21 8" />
+    <path d="M21 3v5h-5" />
+  </>,
+)
+const IcoChart = ico(
+  <>
+    <path d="M3 3v18h18" />
+    <path d="M7 14l4-4 4 4 5-5" />
+  </>,
+)
+
 export const deck = (K) => {
   const {
     SlideFrame,
@@ -475,6 +521,332 @@ export const deck = (K) => {
           <Caption className="dk-gap">
             <em>Let your people work in their own tools. We handle the hard infrastructure underneath.</em>
           </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 9 · The AI-native operating layer ────────────────────────────────
+     * The architecture stack, and the same three-band shape the VC deck draws. `Band` puts the
+     * outer two inside boxes deliberately: see `.dk-band` in _shared.css for what happened when
+     * they were de-boxed and the three layers ended up three different widths.
+     *
+     * The six pillars are `PillarCard` / `PillarGrid` — the cleanest map in either buyer deck. The
+     * Context Brain is the `brain` variant, which is what the source's `.featured` class means. */
+    {
+      id: 'operating-layer',
+      variant: 'arch',
+      node: (
+        <SlideFrame density="compact" stage={false} variant="arch">
+          <SlideHeader
+            eyebrow="The AI-Native Operating Layer"
+            eyebrowTone="indigo"
+            title="More than a brain — a full operating layer."
+            subtitle="Six capabilities working as one. The Company Brain is just one of them — and the whole thing compounds with every use."
+          />
+          <Band tone="models" label="Your teams work in their own tools">
+            <TileRow className="dk-tile-row-tight">
+              {[
+                ['ChatGPT', 'marketing · sales'],
+                ['Claude Code', 'ops · analysts'],
+                ['Codex', 'analysts · eng'],
+                ['Slack', 'everyone'],
+                ['WhatsApp', 'field · ops'],
+                ['Apps', 'shared'],
+              ].map(([nm, kd]) => (
+                <Tile key={nm} size="sm" mono name={nm} kind={kd} />
+              ))}
+            </TileRow>
+          </Band>
+          <Callout
+            tone="violet"
+            fill="neutral"
+            accent="none"
+            label="The Operating Layer"
+            className="dk-gap-sm"
+          >
+            <Caption>Self-hosted · governed · model- &amp; tool-agnostic</Caption>
+            <div className="dk-gap-sm">
+              <PillarGrid>
+                <PillarCard
+                  brain
+                  wide={false}
+                  icon={IcoBrain}
+                  name="Context Brain"
+                  desc="Knowledge that compounds across every source — batch + streaming, continuously curated."
+                />
+                <PillarCard
+                  icon={IcoDoc}
+                  tone="amber"
+                  name="Skills Marketplace"
+                  desc="Shared, reusable workflows. Install once, run anywhere, fork across teams."
+                />
+                <PillarCard
+                  icon={IcoShield}
+                  tone="emerald"
+                  name="Safe Data Access"
+                  desc="One governed door to your systems. Gated by role, audited on every call."
+                />
+                <PillarCard
+                  icon={IcoWrench}
+                  tone="indigo"
+                  name="Safe App Deploy"
+                  desc="Sandboxed apps + their data your team can share — scanned, never on personal accounts."
+                />
+                <PillarCard
+                  icon={IcoLoop}
+                  tone="violet"
+                  name="Self-Learning Loop"
+                  desc="Every correction reviewed + promoted. The brain and the agents improve themselves."
+                />
+                <PillarCard
+                  icon={IcoChart}
+                  tone="indigo"
+                  name="Observability"
+                  desc="Who ran what, what's working, what it costs — and an instant kill-switch."
+                />
+              </PillarGrid>
+            </div>
+          </Callout>
+          <Band tone="sor" label="Connected to your existing systems — not replaced">
+            <ChipRow tight>
+              {[
+                'Warehouse · BigQuery',
+                'CRM · Marketing SaaS',
+                'Sheets · Docs · Notion',
+                'Drive · S3',
+                'Slack · Email · WhatsApp',
+                'Ads · GA · Tickets',
+              ].map((c) => (
+                <Chip key={c} size="sm" mono>{c}</Chip>
+              ))}
+            </ChipRow>
+          </Band>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 10 · Six capabilities ────────────────────────────────────────────
+     * `.cap-grid` → UseCaseGrid at three columns; each `.cap` is an icon, a heading and a line.
+     * The `.selflearn-strip` beneath it is a two-up of worked examples — the agent asking, the
+     * human answering — which is a Columns of two Callouts, tinted to match who is speaking. */
+    {
+      id: 'six-capabilities',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="The Operating Layer"
+            eyebrowTone="indigo"
+            title="Six capabilities most teams ship one of — as one governed platform."
+            subtitle="Engineering sets the rails once; the whole org self-serves on top — non-coders included. Build agents, build apps, all on the real brain."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="violet"
+              title="Self-learning company brain"
+              body="Every source → one graph that corrects itself from every run. Not static RAG."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="Skills marketplace"
+              body="Company know-how as reusable, versioned skills. Build once, share across teams."
+            />
+            <UseCaseCard
+              tone="indigo"
+              title="Agent builder"
+              body="Describe an agent in plain English — assembled from skills, live in minutes."
+            />
+            <UseCaseCard
+              tone="indigo"
+              title="AI app builder"
+              body="SMEs ship internal apps + live dashboards on the real brain — sandboxed, governed."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Bring your own harness + tools"
+              body="Point Claude Code, Codex or Cursor at the brain — they operate on top. One MCP door, plus warehouse, object store, SaaS & internal APIs."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Self-hosted & governed"
+              body="On-prem-capable, RBAC, audited, egress-controlled. Your data and your moat stay yours."
+            />
+          </UseCaseGrid>
+          <Caption className="dk-gap-sm">
+            <strong>Self-learning in practice</strong> — the agent surfaces, a human approves, the
+            brain compounds.
+          </Caption>
+          <Columns className="dk-gap-sm">
+            <Callout tone="indigo" label="Agent → human">
+              Found a new entity <strong>“Gift Recipient”</strong> across 3 tables — add it to the
+              ontology?
+              <ChipRow tight className="dk-gap-sm">
+                <Chip size="sm" tone="emerald">✓ Approve</Chip>
+                <Chip size="sm" tone="red">Reject</Chip>
+              </ChipRow>
+            </Callout>
+            <Callout tone="violet" label="Human → brain · doctrine">
+              Correction: treat tracked CVR as directional.
+              <Caption>
+                → becomes <strong>a rule every future run inherits.</strong>
+              </Caption>
+            </Callout>
+          </Columns>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 11 · The living context brain ────────────────────────────────────
+     * The scattered-context diagram: six silos, one resolved graph. Carried. The `.metric-strip`
+     * beneath it is four claims about the approach, which is a ChipRow — they are labels on the
+     * diagram rather than prose, and each has a bolded lead. */
+    {
+      id: 'living-brain',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="The living context brain"
+            eyebrowTone="violet"
+            title="A living context brain — it knows how & where, it doesn't hoard your data."
+            subtitle="Agentic profiling — with a human in the loop — builds the ontology, access maps and curation rules. Agents run on top, drawing the right context per task; agents and people feed learnings and tribal knowledge back. No bulk ETL, no data migration."
+          />
+          <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: BRAIN_SVG }} />
+          <ChipRow tight className="dk-gap-sm">
+            <Chip size="sm"><strong>Agentic profiling</strong> — human-in-the-loop, no bulk ETL</Chip>
+            <Chip size="sm"><strong>Profiled, not copied</strong> — stats + column roles; the rows stay in your systems</Chip>
+            <Chip size="sm"><strong>Periodic re-curation</strong> — refreshes itself on a schedule</Chip>
+            <Chip size="sm"><strong>Self-learning &amp; living</strong> — every run and correction feeds back</Chip>
+          </ChipRow>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 12 · Retrieval, the router ───────────────────────────────────────
+     * Six modes x three columns — mode, what it does, when to use it. This is `Matrix` in its
+     * `rules` variant: a comparison table, not a capability grid, so the cells are rows of prose
+     * with no fill and the label column carries the mode name plus its mono tag.
+     *
+     * The table IS the slide for a technical reader, which is why every one of the eighteen cells
+     * is carried rather than summarised. */
+    {
+      id: 'retrieval-router',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Retrieval"
+            eyebrowTone="indigo"
+            title="Accuracy starts with retrieving the right slice — every mode, one router."
+            subtitle="The >1M-token hallucination is a retrieval problem, not a model problem. Synos picks the right retrieval mode per query — automatically."
+          />
+          <Matrix
+            variant="rules"
+            labelWidth="210px"
+            columns={[{ label: 'What it does' }, { label: 'When it fires', width: '1.05fr' }]}
+            rows={[
+              {
+                label: 'Auto router',
+                sub: 'mode=auto',
+                cells: [
+                  { text: 'An LLM selector picks the best mode (and source) per query — one goes to SQL, another to vector, another to graph.' },
+                  { text: 'Mixed query types & heterogeneous sources — the default.' },
+                ],
+              },
+              {
+                label: 'Keyword / lexical',
+                sub: 'BM25',
+                cells: [
+                  { text: 'Sparse retrieval on exact term overlap. Fast, transparent, no GPU.' },
+                  { text: 'Order IDs, account numbers, SKUs, error & policy codes, exact literals.' },
+                ],
+              },
+              {
+                label: 'Semantic / vector',
+                sub: 'dense embeddings',
+                cells: [
+                  { text: 'Encodes query + docs as embeddings, ranks by meaning — handles paraphrase, synonyms, cross-lingual.' },
+                  { text: 'Natural-language questions, paraphrase & vocabulary variety.' },
+                ],
+              },
+              {
+                label: 'Hybrid + rerank',
+                sub: 'BM25 + vector + RRF',
+                cells: [
+                  { text: 'Runs lexical + vector in parallel, fuses, then a cross-encoder reranks for precision.' },
+                  { text: 'Production default — NL mixed with literal IDs.' },
+                ],
+              },
+              {
+                label: 'Agentic retrieval',
+                sub: 'plan → retrieve → reason',
+                cells: [
+                  { text: 'LLM decomposes a complex query into sub-queries, runs each, merges + reranks. A large relevance lift on hard queries.' },
+                  { text: 'Multi-part questions, long support threads, follow-ups.' },
+                ],
+              },
+              {
+                label: 'Graph / GraphRAG',
+                sub: 'entity traversal',
+                cells: [
+                  { text: 'Traverses linked entities + relationships. Deferred to query-time — no giant persisted graph to maintain.' },
+                  { text: 'Multi-hop reasoning across connected entities.' },
+                ],
+              },
+            ]}
+          />
+          <Caption className="dk-gap-sm">
+            Same model, same cost per token — dramatically fewer tokens and fewer wrong answers,
+            because the brain decides what the model sees.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 13 · No migration, no new habits ─────────────────────────────────
+     * Five tools, an arrow, and the connector band. `Tile` is exactly the source's `.tool-chip` —
+     * this slide is one of the 77 uses that argued the component into existence. The per-tool
+     * icons are dropped: five tiles distinguished by name and a descriptor line do not also need a
+     * glyph, and the source's are generic shapes rather than the vendors' marks. */
+    {
+      id: 'no-migration',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="No Migration, No New Habits"
+            eyebrowTone="indigo"
+            title="Your people keep working in the tools they already love."
+            subtitle="Synos sits underneath — making every one of them safe, shared, and governed."
+          />
+          <TileRow>
+            {[
+              ['ChatGPT', 'marketing · sales'],
+              ['Claude Code', 'ops · analysts'],
+              ['Codex', 'analysts · eng'],
+              ['Slack', 'everyone'],
+              ['WhatsApp', 'field · ops'],
+            ].map(([nm, kd]) => (
+              <Tile key={nm} mono name={nm} kind={kd} />
+            ))}
+          </TileRow>
+          <Caption className="dk-gap">
+            ▼ &nbsp; all flow through the Synos operating layer &nbsp; ▼
+          </Caption>
+          <div className="dk-band dk-band--sor dk-gap">
+            <Eyebrow tone="muted">
+              Connected to your existing stack out of the box — not replaced
+            </Eyebrow>
+            <ChipRow tight>
+              {[
+                'Warehouse · BigQuery',
+                'CRM · Salesforce · HubSpot',
+                'Sheets · Docs · Notion',
+                'Drive · S3',
+                'Slack · Email · WhatsApp',
+                'Ads · GA',
+                'Tickets · Internal APIs',
+              ].map((c) => (
+                <Chip key={c} size="sm" mono>{c}</Chip>
+              ))}
+            </ChipRow>
+          </div>
         </SlideFrame>
       ),
     },

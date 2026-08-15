@@ -89,6 +89,17 @@ export interface PillarCardProps {
    * @default false
    */
   brain?: boolean
+  /**
+   * Whether the brain card spans two grid columns. Defaults to `true`, which is what every VC-deck
+   * architecture slide draws and what `brain` alone used to mean.
+   *
+   * Set `false` where the anchor is one cell of an even grid — the tech-buyer deck arranges its six
+   * pillars 3x2 with a filled, single-width Context Brain. The distinction is real: `brain` says
+   * *this is the anchor*, `wide` says *how much room the grid gives it*, and hard-coding the second
+   * into the first meant the component could only draw one deck's architecture.
+   * @default true
+   */
+  wide?: boolean
   className?: string
   style?: CSSProperties
 }
@@ -110,6 +121,7 @@ export function PillarCard({
   desc,
   tone = 'indigo',
   brain = false,
+  wide = true,
   className,
   style,
 }: PillarCardProps) {
@@ -119,6 +131,7 @@ export function PillarCard({
         'sk-pillar',
         `sk-pillar--${tone}`,
         brain && 'sk-pillar--brain',
+        brain && !wide && 'sk-pillar--brain-narrow',
         className,
       )}
       style={style}

@@ -161,6 +161,15 @@
   color: var(--sk-red);
 }
 
+/* The anchor at one column wide. The tech-buyer deck arranges six pillars 3x2 with a filled but
+   single-width Context Brain, so the span is a `wide` prop rather than part of `brain` itself. Only
+   the span is dropped — gradient, white text and inline icon are what `brain` means and they stay. */
+.sk-pillar.sk-pillar--brain-narrow {
+  /* (0,2,0), so it beats `.sk-pillar--brain` regardless of which rule comes first in the file. The
+     first version of this lost to source order and shipped a two-column brain on a 3x2 grid. */
+  grid-column: auto;
+}
+
 /* `.d1-pillar.d1-brain` — the Company Brain anchor. Declared after the per-tone icon tints and at
  * (0,3,0), mirroring the source's `.d1-pillar.d1-brain .d1-ico`, so the white-on-gradient icon
  * survives whatever `tone` the card also carries. Full gradient, spans two columns, icon inline. */
