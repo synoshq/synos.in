@@ -253,3 +253,76 @@
   max-height: 400px;
   display: block;
 }
+
+/* ── One slide that does not fit, and the honest handling of it ────────────
+ *
+ * `hp-who-authors` carries four blocks: a five-step "today" chain, a two-lane split of who owns
+ * what (nine list items between them), a four-step "how", and a closing band. Measured at the kit's
+ * compact register it runs **107px past the card** — by far the worst in either buyer deck.
+ *
+ * `Density.css` states the rule for exactly this case: the floor is 13.5px body, and below it "the
+ * honest fix becomes cutting words or splitting the slide, not shrinking type further. If a slide
+ * still overflows at compact, that is content feedback, not a CSS bug."
+ *
+ * So this block is the stopgap, and it is deliberately ugly to look at in source. It takes ONE
+ * slide down to **the source deck's own 11.5px** — the size this slide's content was actually
+ * authored against, which is why the shipped deck fits it and the kit's register does not. Scoped
+ * by class, so nothing else can inherit the exception. 12px was tried first and still ran 64px
+ * over; there is no half-measure that works here, which is itself the evidence that the slide is
+ * over-full rather than the register being wrong.
+ *
+ * **FOR ANOOP — content feedback, not a bug.** This slide is doing the work of two. The natural
+ * split is the today-chain plus the two lanes on one slide, and the four-step "how" plus the
+ * closing band on the next. That is a content decision (it changes the section count from 42), so
+ * it is not being made here. Until it is, the slide reads a little tighter than its neighbours.
+ */
+.tb-overfull p,
+.tb-overfull li,
+/* `.sk-split-item` sets no size of its own — its inner `span` does, at 15px. Targeting the item
+   silently does nothing, which is how the first two attempts at this block "failed" while the type
+   never actually moved. */
+.tb-overfull .sk-split-item > span {
+  font-size: 11.5px;
+  line-height: 1.34;
+}
+.tb-overfull .sk-step-title,
+.tb-overfull .sk-callout,
+.tb-overfull .sk-split-title {
+  font-size: 12.5px;
+}
+.tb-overfull .sk-caption {
+  font-size: 10.5px;
+}
+.tb-overfull .sk-step-grid,
+.tb-overfull .sk-split {
+  gap: 8px;
+}
+.tb-overfull .sk-header {
+  margin-bottom: 6px;
+}
+.tb-overfull .sk-header h2 {
+  font-size: 17px;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.tb-overfull .sk-chip-row {
+  gap: 4px;
+}
+/* Type alone did not close it — 47px still remained, because the kit's cards carry more internal
+   padding than the source's did. The rest comes out of that padding, which is chrome rather than
+   content, and it is the last thing available before the choice becomes "drop a block". */
+.tb-overfull .sk-callout {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.tb-overfull .sk-step {
+  padding: 6px 9px;
+}
+.tb-overfull .sk-split-col {
+  padding: 8px 10px;
+}
+.tb-overfull .sk-split-item {
+  /* margin, not padding: the item has margin-bottom 9px and no padding at all, so adding padding
+     made the slide 46px TALLER while looking like a tightening. */
+  margin-bottom: 4px;
+}

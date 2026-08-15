@@ -850,6 +850,223 @@ export const deck = (K) => {
         </SlideFrame>
       ),
     },
+
+    /* ── 14 · Five hard parts ─────────────────────────────────────────────
+     * The map for the next seven slides. `.hp` is num + name + body + a muted "what most teams do"
+     * line — which is `WallCard`'s exact four-slot shape (`num` / `title` / `body` / `tag`), and the
+     * reason that component takes every slot optionally. Five in a six-cell grid, so the last cell
+     * is empty; that reads as deliberate here because the band underneath closes the row. */
+    {
+      id: 'hard-parts',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Where The Work Actually Is"
+            eyebrowTone="indigo"
+            title="Five hard parts — the ones a demo never shows."
+            subtitle="Connecting data and calling a model is the easy half. These five are what stand between a clever agent and one you'd let near a real customer. The next slides take them one at a time."
+          />
+          <WallGrid>
+            <WallCard
+              num="1"
+              title="Keeping context current"
+              body="Schemas drift, definitions change, docs go stale. Agents keep answering — just wrongly."
+              tag="Most teams: a one-time setup, then decay."
+            />
+            <WallCard
+              num="2"
+              title="Who authors the rules"
+              body="The rules that make an agent correct live with your ops leads and analysts, not your platform team."
+              tag="Most teams: engineers relay it, badly."
+            />
+            <WallCard
+              num="3"
+              title="Agents that actually act"
+              body="Reading is safe. Writing to a CRM, a ledger, a campaign is where the blast radius starts."
+              tag="Most teams: keys in chat, no audit."
+            />
+            <WallCard
+              num="4"
+              title="Earning autonomy"
+              body="Nobody flips an agent to unsupervised on day one. What is the gate, and what is the rollback?"
+              tag="Most teams: no gate — a judgement call."
+            />
+            <WallCard
+              num="5"
+              title="Learning from what ran"
+              body="Every run and correction is signal. Stored, it's a log. Fed back, it's compounding accuracy."
+              tag="Most teams: traces stored, never used."
+            />
+          </WallGrid>
+          <Callout tone="indigo" className="dk-gap-sm">
+            <strong>You may already have one or two of these.</strong> Almost nobody has all five
+            wired together — and it's the wiring, not any single piece, that makes agents safe enough
+            to leave running.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 15 · Hard part 1 · staying current ───────────────────────────────
+     * Two columns: a three-step cycle on the left, the admin review queue on the right. The queue
+     * is six severity-tagged rows — a Matrix in `rules` form would flatten the severity, which is
+     * the one thing an admin actually scans for, so the rows are Callouts carrying their own tone.
+     * That is the tone system doing the job the source's `.pf-row.amber/red/violet` classes did. */
+    {
+      id: 'hp-staying-current',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Hard Part 1 · Staying Current"
+            eyebrowTone="indigo"
+            title="The brain re-profiles itself — and tells your admins what needs a human."
+            subtitle="A company brain built once starts going stale immediately. Agents don't fail loudly when it does; they keep answering with the old meaning. So profiling runs on a schedule, and anything it isn't sure about becomes a review item — not a silent guess."
+          />
+          <Columns>
+            <Stack gap="snug">
+              <Eyebrow tone="muted">On a schedule</Eyebrow>
+              <Stack gap="tight">
+                <StepCard
+                  num="1"
+                  title="Re-profile"
+                  body="Agents re-read schemas, samples, docs and APIs. New tables, dropped columns, renamed fields, changed distributions."
+                />
+                <StepCard
+                  num="2"
+                  title="Compare & score"
+                  body="Diff against what the brain believed. Each mapping carries a confidence score and a freshness stamp."
+                />
+                <StepCard
+                  num="3"
+                  title="Auto-fix or escalate"
+                  body="High-confidence changes apply themselves. Anything ambiguous stops and asks a human."
+                />
+              </Stack>
+              <Caption>No bulk ETL. No re-migration. The maps refresh; your data never moves.</Caption>
+            </Stack>
+            <Stack gap="tight">
+              <Eyebrow tone="muted">Admin review queue — what needs your attention</Eyebrow>
+              <Callout tone="amber" label="STALE">
+                <strong>7 tables</strong> not re-profiled in 30 days — 2 feed a live agent
+              </Callout>
+              <Callout tone="red" label="DRIFT">
+                <strong>orders.status</strong> gained 3 new enum values — mapping no longer covers them
+              </Callout>
+              <Callout tone="red" label="CONFLICT">
+                Two tables both claim <strong>“revenue”</strong> — which is authoritative?
+              </Callout>
+              <Callout tone="amber" label="LOW CONF">
+                <strong>4 metric bindings</strong> below threshold — agent is guessing
+              </Callout>
+              <Callout tone="violet" label="PROPOSED">
+                Agent found a new entity <strong>“Gift Recipient”</strong> across 3 tables — add it?
+              </Callout>
+              <Callout tone="indigo" label="RUNS">
+                <strong>12 failures</strong> · 3 permission denials · cost up 18% week-on-week
+              </Callout>
+              <Caption>
+                One place an admin can answer: <em>is the brain still right, and is anything running
+                badly?</em>
+              </Caption>
+            </Stack>
+          </Columns>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 16 · Hard part 2 · who authors ───────────────────────────────────
+     * The densest slide in the deck: a today-chain, a two-lane split of who owns what, a four-step
+     * how, and a closing band. The chain is Chips separated by `.dk-arrow`, the same sequence
+     * vocabulary the VC deck's wedge slide uses. The two lanes are SplitColumns with real lists,
+     * which is the one place in either buyer deck a `<ul>` survives the port — the items are a
+     * checklist of responsibilities and flattening them into prose loses the count. */
+    {
+      id: 'hp-who-authors',
+      node: (
+        <SlideFrame stage={false} density="compact" className="tb-overfull">
+          <SlideHeader
+            eyebrow="Hard Part 2 · Who Authors"
+            eyebrowTone="violet"
+            title="Engineers set the rails. The people who know the work build the agents."
+            subtitle="The knowledge that makes an agent correct lives with your SMEs — ops leads, analysts, marketers, support veterans. Today it can only reach production through an engineer. That queue is the bottleneck."
+          />
+          <Callout tone="red" label="Today">
+            <ChipRow tight>
+              <Chip size="sm">SME explains the rule</Chip>
+              <span className="dk-arrow">→</span>
+              <Chip size="sm">ticket / doc</Chip>
+              <span className="dk-arrow">→</span>
+              <Chip size="sm">engineer codes it</Chip>
+              <span className="dk-arrow">→</span>
+              <Chip size="sm">v1 misses the exception</Chip>
+              <span className="dk-arrow">→</span>
+              <Chip size="sm" tone="red">back in the queue</Chip>
+            </ChipRow>
+            <Caption>weeks per change · the real rules stay in heads</Caption>
+          </Callout>
+          <SplitColumns className="dk-gap-sm">
+            <SplitColumn tone="indigo" eyebrow="Engineering owns · set once" title="The rails">
+              <SplitItem>Connectors and data scopes — what an agent may read</SplitItem>
+              <SplitItem>
+                Governed tools and write-actions — what it may do, and what needs approval
+              </SplitItem>
+              <SplitItem>
+                RBAC, full audit trail, sandboxed execution, rate and cost limits
+              </SplitItem>
+              <SplitItem>Eval harness and promotion gates</SplitItem>
+              <SplitItem>
+                <Caption>Built once and reviewed — not re-implemented for every new request.</Caption>
+              </SplitItem>
+            </SplitColumn>
+            <SplitColumn tone="violet" eyebrow="SMEs own · every day" title="The knowledge">
+              <SplitItem>
+                Skills written in plain English — how <em>we</em> actually do this
+              </SplitItem>
+              <SplitItem>
+                Rules, exceptions and judgment calls, captured where they come up
+              </SplitItem>
+              <SplitItem>
+                Corrections on agent output — each becomes a rule every agent follows, and material a
+                future training set is built from
+              </SplitItem>
+              <SplitItem>Test cases: “here are ten real ones — get them right”</SplitItem>
+              <SplitItem>
+                <Caption>
+                  No code, no ticket, no waiting. Inside the rails there is nothing they can break.
+                </Caption>
+              </SplitItem>
+            </SplitColumn>
+          </SplitColumns>
+          <StepGrid columns={4} className="dk-gap-sm">
+            <StepCard
+              num="1"
+              title="Rails published"
+              body="Engineering exposes scoped data and governed tools once. Everything authored above them is safe by construction."
+            />
+            <StepCard
+              num="2"
+              title="SME authors in plain English"
+              body="In chat, Slack or Claude Code: “T3 billing escalations never go by SMS — email finance first.” Stored as a versioned skill."
+            />
+            <StepCard
+              num="3"
+              title="Corrections in the flow"
+              body="Edit the agent's draft; the diff is captured and reviewed, and the promoted rule reaches every agent. Tribal knowledge lands the moment it surfaces."
+            />
+            <StepCard
+              num="4"
+              title="Tested, then promoted"
+              body="Replayed against past cases and scored, then moved assist → reviewed → autonomous. Versioned, diffable, revertible."
+            />
+          </StepGrid>
+          <Callout tone="emerald" className="dk-gap-sm">
+            <strong>The handoff disappears.</strong> The person who holds the knowledge is the one who
+            encodes it — and engineering moves from transcribing requirements to owning the rails and
+            reviewing what ships.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
   ]
 
   const byId = new Map(slides.map((s) => [s.id, s]))
