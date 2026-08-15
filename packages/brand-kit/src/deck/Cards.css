@@ -81,11 +81,30 @@
 .sk-pillar-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: var(--sk-space-4);
+  /* Stretch, so every card in a row is the same height regardless of how much text it carries.
+     Without it the cards top-align and their bottoms rag, which is what made this grid look
+     unaligned next to the full-height brain card. */
+  align-items: stretch;
 }
 
+/*
+ * The pillars are a GRID OF PEERS, and that is why they keep their card.
+ *
+ * Decision C de-boxed the deck, and this is the one place it was applied too literally. Stripping
+ * the border here left five bare text blocks sitting beside one filled gradient card — so the six
+ * stopped reading as one set, nothing shared an edge, and the row tops no longer lined up with the
+ * brain card beside them. De-boxing works when a box is fencing a single item that needs no fence.
+ * It fails when the box IS the grouping: six peers need a shared shape to read as six of a kind.
+ *
+ * The card is deliberately quiet — surface-2 fill and a hairline, not the heavy border it had
+ * before — so the gradient brain card still dominates the group.
+ */
 .sk-pillar {
-  padding: 0;
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 11px;
+  padding: 8px 10px;
 }
 .sk-pillar-ico {
   width: 30px;
