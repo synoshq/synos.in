@@ -845,3 +845,16 @@
   text-transform: uppercase;
   color: var(--sk-muted);
 }
+
+/* The architecture slide runs 3px past the card once the pillars carry their own padding again.
+   Its band is the densest object in the deck — six tiles, four pillars, a guardrail strip and a
+   source row — so the band's own padding gives up the 3px rather than the pillars inside it, which
+   would break their alignment with the same component on slide 29. Measured, not guessed: the
+   geometry probe fails the build below 0 overflow. */
+#architecture-tight .ob-band,
+.ob-arch-tight .ob-band {
+  padding: 9px 12px;
+}
+.ob-arch-tight .ob-band-head {
+  margin-bottom: var(--sk-space-2);
+}

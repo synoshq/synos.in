@@ -1679,7 +1679,7 @@ export const deck = (K) => {
     {
       id: 'architecture',
       node: (
-        <SlideFrame stage={false} variant="arch">
+        <SlideFrame stage={false} variant="arch" className="ob-arch-tight">
           <SlideHeader
             eyebrow="Architecture"
             eyebrowTone="indigo"
