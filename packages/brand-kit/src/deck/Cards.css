@@ -403,6 +403,12 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
+/* Four across, on a tighter gutter — at 28px the four columns run out of measure before the
+   labels do. */
+.sk-stat-row--4 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sk-space-6);
+}
 .sk-stat {
   --sk-stat-value: var(--sk-indigo-2);
   padding: 0;

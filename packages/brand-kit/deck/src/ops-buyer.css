@@ -417,3 +417,97 @@
   background: var(--sk-usecase-kicker, var(--sk-border-2));
   opacity: 0.75;
 }
+
+/* ── The two hand-drawn diagrams (slides 16 and 17) ───────────────────────
+ * Carried across from the source verbatim, markup and all. The kit has no diagram vocabulary and
+ * should not grow one — the same call the VC deck made for its five SVG slides. What changed:
+ * every literal hex became a token, and the display face became the body face (decision A retired
+ * Plus Jakarta Sans, and none of this type reaches the serif's 24px floor).
+ */
+.ob-loop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-indigo-br);
+  border-radius: 14px;
+  padding: 8px 12px;
+}
+.ob-loop svg,
+.ob-edge-svg svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.lp-node { fill: var(--sk-indigo-bg); stroke: var(--sk-indigo-br); stroke-width: 1.4; }
+.lp-node-plain { fill: var(--sk-surface); stroke: var(--sk-border-2); stroke-width: 1.2; }
+.lp-badge { fill: var(--sk-indigo-2); }
+.lp-badge-t { font-family: var(--sk-font-mono); font-size: 11px; font-weight: 600; fill: var(--sk-on-brand); }
+.lp-h { font-family: var(--sk-font-body); font-weight: 700; font-size: 13.5px; fill: var(--sk-ink); }
+.lp-m { font-family: var(--sk-font-body); font-weight: 500; font-size: 10.5px; fill: var(--sk-muted); }
+.lp-edge { stroke: var(--sk-indigo-2); stroke-width: 1.8; fill: none; }
+.lp-edge-v { stroke: var(--sk-violet); stroke-width: 1.8; fill: none; }
+/* The source animates the dashes. A deck exported to PDF freezes mid-animation, so the motion is
+   dropped and the dash pattern kept — the line still reads as flow, and the PDF is deterministic. */
+.lp-flow { stroke-dasharray: 5 8; }
+.lp-panel { fill: var(--sk-violet-bg); stroke: var(--sk-violet-br); stroke-width: 1.5; }
+.lp-ph { font-family: var(--sk-font-body); font-weight: 800; font-size: 15px; fill: var(--sk-violet-ink); }
+.lp-pr { font-family: var(--sk-font-body); font-weight: 600; font-size: 12px; fill: var(--sk-violet); }
+.lp-tag { font-family: var(--sk-font-mono); font-size: 11px; fill: var(--sk-violet); }
+.lp-pay { fill: var(--sk-emerald-bg); stroke: var(--sk-emerald-br); stroke-width: 1.3; }
+.lp-pay-h { font-family: var(--sk-font-body); font-weight: 700; font-size: 12.5px; fill: var(--sk-emerald-ink); }
+.lp-pay-s { font-family: var(--sk-font-body); font-size: 11px; fill: var(--sk-emerald); }
+
+.ob-edge {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--sk-space-5);
+  align-items: stretch;
+}
+.ob-edge-svg {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: 14px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ob-edge-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-4);
+  justify-content: center;
+}
+.ob-edge-pt {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-left: 3px solid var(--sk-indigo-2);
+  border-radius: 11px;
+  padding: 10px 14px;
+}
+.ob-edge-pt--em { border-left-color: var(--sk-emerald-2); }
+.ob-edge-pt--vi { border-left-color: var(--sk-violet); }
+.ob-edge-pt h3 { font-size: 13.5px; margin: 0 0 3px; }
+.ob-edge-pt p { font-size: 11.5px; color: var(--sk-ink-2); line-height: 1.45; margin: 0; }
+.ob-edge-quote {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 11px;
+  padding: 9px 16px;
+  font-size: 12px;
+  color: var(--sk-ink-2);
+  line-height: 1.5;
+  font-style: italic;
+}
+.ob-edge-quote strong { color: var(--sk-ink); font-style: normal; }
+
+/* The outcome column's closing result line. Emerald because every one of them is a gain. */
+.ob-result {
+  margin-top: var(--sk-space-3);
+  padding-top: var(--sk-space-2);
+  border-top: 1px solid var(--sk-border);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--sk-emerald-ink);
+}

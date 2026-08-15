@@ -348,9 +348,21 @@ export function StatCard({ value, label, source, tone = 'indigo', className, sty
 }
 
 /** The 3-column stat row. */
-export function StatRow({ children, className, style }: GridProps) {
+/**
+ * The row stats sit in. Three across by default — the VC deck's traction numbers.
+ *
+ * `columns={4}` is for a four-number payoff row: at four the stats still clear the measure a
+ * one-line label needs, and wrapping the fourth onto its own line reads as a mistake rather than
+ * as a set.
+ */
+export function StatRow({
+  columns = 3,
+  children,
+  className,
+  style,
+}: GridProps & { columns?: 3 | 4 }) {
   return (
-    <div className={cx('sk-stat-row', className)} style={style}>
+    <div className={cx('sk-stat-row', columns === 4 && 'sk-stat-row--4', className)} style={style}>
       {children}
     </div>
   )

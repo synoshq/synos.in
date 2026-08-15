@@ -17,6 +17,13 @@
  */
 import unblockDiagram from './ops-assets/unblock.png'
 
+/* The two hand-drawn diagrams, verbatim from the source. Injected rather than transcribed into
+   JSX: re-typing shaped elements is a way to introduce differences that then get mistaken for
+   design decisions. Their classes are styled in ops-buyer.css. */
+const LOOP_SVG = "<svg viewBox=\"0 0 1080 320\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <radialGradient id=\"obLpCore\" cx=\"50%\" cy=\"36%\" r=\"72%\">\n            <stop offset=\"0\" stop-color=\"#8B8DF7\"/><stop offset=\"0.55\" stop-color=\"#6366F1\"/><stop offset=\"1\" stop-color=\"#7C3AED\"/>\n          </radialGradient>\n          <filter id=\"obLpGlow\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\">\n            <feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"12\" flood-color=\"#6366F1\" flood-opacity=\"0.28\"/>\n          </filter>\n          <marker id=\"obLpA\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#6366F1\"/>\n          </marker>\n          <marker id=\"obLpAv\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#7C3AED\"/>\n          </marker>\n        </defs>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"url(#obLpCore)\" filter=\"url(#obLpGlow)\"/>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"none\" stroke=\"#fff\" stroke-opacity=\".35\" stroke-width=\"1.4\"/>\n        <text x=\"300\" y=\"156\" text-anchor=\"middle\" style=\"font-family:'Plus Jakarta Sans';font-weight:800;font-size:19px;fill:#fff\">Synos</text>\n        <text x=\"300\" y=\"177\" text-anchor=\"middle\" style=\"font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:1.4px;fill:rgba(255,255,255,.85)\">THE LOOP</text>\n        <rect class=\"lp-node\" x=\"196\" y=\"16\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"42\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"46\" text-anchor=\"middle\">1</text>\n        <text class=\"lp-h\" x=\"234\" y=\"38\">Your team corrects it</text>\n        <text class=\"lp-m\" x=\"234\" y=\"56\">\"top-tier \u2014 email, never SMS\"</text>\n        <rect class=\"lp-node\" x=\"452\" y=\"134\" width=\"160\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"472\" cy=\"160\" r=\"10\"/><text class=\"lp-badge-t\" x=\"472\" y=\"164\" text-anchor=\"middle\">2</text>\n        <text class=\"lp-h\" x=\"490\" y=\"156\">The AI acts</text>\n        <text class=\"lp-m\" x=\"490\" y=\"174\">in any tool you use</text>\n        <rect class=\"lp-node-plain\" x=\"196\" y=\"252\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"278\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"282\" text-anchor=\"middle\">3</text>\n        <text class=\"lp-h\" x=\"234\" y=\"274\">Systems report results</text>\n        <text class=\"lp-m\" x=\"234\" y=\"292\">measured, not guessed</text>\n        <path class=\"lp-edge lp-flow\" d=\"M 350 72 C 396 92, 428 112, 452 142\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 456 186 C 424 226, 396 244, 360 258\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 208 252 C 178 220, 178 100, 210 66\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge-v lp-flow\" d=\"M 366 178 C 500 236, 620 216, 686 178\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-panel\" x=\"692\" y=\"62\" width=\"230\" height=\"196\" rx=\"15\"/>\n        <text class=\"lp-ph\" x=\"807\" y=\"92\" text-anchor=\"middle\">What builds up</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"122\" text-anchor=\"middle\">What actually worked</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"152\" text-anchor=\"middle\">Ways of working that improve</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"182\" text-anchor=\"middle\">The Company Brain itself</text>\n        <text class=\"lp-tag\" x=\"807\" y=\"216\" text-anchor=\"middle\">sharper every week</text>\n        <path class=\"lp-edge-v\" d=\"M 922 122 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <path class=\"lp-edge-v\" d=\"M 922 196 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-pay\" x=\"950\" y=\"96\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"117\" text-anchor=\"middle\">Better results now</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"133\" text-anchor=\"middle\">with today's AI</text>\n        <rect class=\"lp-pay\" x=\"950\" y=\"170\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"191\" text-anchor=\"middle\">An asset you own</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"207\" text-anchor=\"middle\">yours, not a vendor's</text>\n      </svg>"
+
+const EDGE_SVG = "<svg viewBox=\"0 0 640 330\" xmlns=\"http://www.w3.org/2000/svg\">\n          <defs>\n            <radialGradient id=\"obEgCore\" cx=\"50%\" cy=\"50%\" r=\"65%\">\n              <stop offset=\"0\" stop-color=\"#c7d2fe\"/><stop offset=\"1\" stop-color=\"#a5b4fc\"/>\n            </radialGradient>\n            <marker id=\"obEgA\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#10b981\"/></marker>\n          </defs>\n          <circle cx=\"240\" cy=\"168\" r=\"150\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.6\" stroke-dasharray=\"7 6\"/>\n          <circle cx=\"240\" cy=\"168\" r=\"112\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.4\"/>\n          <circle cx=\"240\" cy=\"168\" r=\"64\" fill=\"url(#obEgCore)\"/>\n          <text x=\"240\" y=\"163\" text-anchor=\"middle\" style=\"font-family:'Plus Jakarta Sans';font-weight:800;font-size:13px;fill:#312e81\">Public internet</text>\n          <text x=\"240\" y=\"180\" text-anchor=\"middle\" style=\"font-family:'Inter';font-size:9.5px;fill:#4338ca\">what every AI knows</text>\n          <text x=\"240\" y=\"80\" text-anchor=\"middle\" style=\"font-family:'Inter';font-size:10px;fill:#4f46e5\">licensed expert data</text>\n          <text x=\"240\" y=\"12\" text-anchor=\"middle\" style=\"font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.6px;fill:#7c3aed\">GROWS WITH EVERY AI RELEASE</text>\n          <g style=\"font-family:'Inter';font-size:10.5px;font-weight:600;fill:#0f172a\">\n            <text x=\"475\" y=\"96\">your operations</text>\n            <text x=\"490\" y=\"128\">your corrections</text>\n            <text x=\"498\" y=\"160\">your customer history</text>\n            <text x=\"490\" y=\"192\">your judgment calls</text>\n            <text x=\"475\" y=\"224\">your way of working</text>\n          </g>\n          <path d=\"M 392 168 q 22 0 40 0\" fill=\"none\" stroke=\"#10b981\" stroke-width=\"2\" marker-end=\"url(#obEgA)\"/>\n          <rect x=\"404\" y=\"248\" width=\"216\" height=\"58\" rx=\"12\" fill=\"#ecfdf5\" stroke=\"#6ee7b7\" stroke-width=\"1.4\"/>\n          <text x=\"512\" y=\"272\" text-anchor=\"middle\" style=\"font-family:'Plus Jakarta Sans';font-weight:800;font-size:12px;fill:#065f46\">THE EDGE</text>\n          <text x=\"512\" y=\"290\" text-anchor=\"middle\" style=\"font-family:'Inter';font-size:9.5px;fill:#047857\">your people + AI create value here</text>\n          <circle cx=\"418\" cy=\"110\" r=\"4\" fill=\"#10b981\"/><circle cx=\"434\" cy=\"142\" r=\"4\" fill=\"#10b981\"/>\n          <circle cx=\"440\" cy=\"174\" r=\"4\" fill=\"#10b981\"/><circle cx=\"434\" cy=\"206\" r=\"4\" fill=\"#10b981\"/>\n          <circle cx=\"418\" cy=\"238\" r=\"4\" fill=\"#10b981\"/>\n        </svg>"
+
 export const wip = true
 
 export const deck = (K) => {
@@ -37,6 +44,10 @@ export const deck = (K) => {
     WallGrid,
     StepCard,
     StepGrid,
+    StatCard,
+    StatRow,
+    PhaseCard,
+    PhaseRow,
     SplitColumns,
     SplitColumn,
     SplitItem,
@@ -880,6 +891,313 @@ export const deck = (K) => {
             Nobody worked the weekend. The people didn't change —{' '}
             <em>the work simply stopped waiting on them.</em>
           </Callout>
+        </SlideFrame>
+      ),
+    },
+    /* ── 16 · Why it compounds ────────────────────────────────────────────
+     * The loop diagram, carried across verbatim. Its CSS is in ops-buyer.css, re-pointed at
+     * tokens; the source's dash ANIMATION is dropped, because a deck exported to PDF freezes
+     * mid-animation and the export has to be deterministic. */
+    {
+      id: 'why-it-compounds',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Why It Compounds"
+            eyebrowTone="violet"
+            title="What compounds is the record of how your company works."
+            subtitle="Your people correct. The AI acts. Your systems report what actually happened. Every turn builds something no public AI can ever learn on its own — and it keeps paying off no matter which AI you use next year."
+          />
+          <div className="ob-loop" dangerouslySetInnerHTML={{ __html: LOOP_SVG }} />
+          <Caption className="dk-gap-sm">
+            Live today at a martech design partner: every correction an operator makes feeds one
+            shared memory their whole platform gets smarter from.{' '}
+            <strong>This is knowledge no outside AI can have — and it stays with you.</strong>
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 17 · Where value gets created ────────────────────────────────────
+     * Diagram on the left, three points on the right, a quotation underneath. The three points are
+     * a bordered list rather than cards — kept local, because a left-ruled point is the source's
+     * own shape and the kit's Callout would restate it at a different weight. */
+    {
+      id: 'the-edge',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Where Value Gets Created Now"
+            eyebrowTone="indigo"
+            title="New value gets created at the edge of what AI already knows."
+            subtitle="Public AI knows the public internet. It doesn't know your customers, your exceptions or your judgment. That's where your people create value — and on Synos, everything they create teaches your AI."
+          />
+          <div className="ob-edge">
+            <div className="ob-edge-svg" dangerouslySetInnerHTML={{ __html: EDGE_SVG }} />
+            <div className="ob-edge-side">
+              <div className="ob-edge-pt">
+                <h3>Your people move faster</h3>
+                <p>Work runs at AI speed — on your own context, not generic answers off the internet.</p>
+              </div>
+              <div className="ob-edge-pt ob-edge-pt--em">
+                <h3>The edge is yours alone</h3>
+                <p>
+                  The decisions, corrections and outcomes created here exist nowhere else — not in
+                  any AI, not at any competitor.
+                </p>
+              </div>
+              <div className="ob-edge-pt ob-edge-pt--vi">
+                <h3>Doing the work improves the AI</h3>
+                <p>
+                  Every bit of that work feeds back: your assistants and your shared memory get
+                  better as the team simply does its job.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="ob-edge-quote dk-gap-sm">
+            “You can offload a task, or even a job — <strong>you can never offload your
+            learning.</strong>” As AI makes expertise cheap, the lasting advantage moves from the AI
+            to the learning loop you own. — <strong>Satya Nadella, 2026</strong>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 18 · What your teams get ─────────────────────────────────────────
+     * Three outcome columns, each a heading, a tag, a list and a result line. UseCaseGrid again,
+     * with the result line as a Caption inside the card body — and one hue per column, which is
+     * the lesson from slide 14: a set of near-identical cards needs colour to be scannable. */
+    {
+      id: 'what-teams-get',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="What Your Teams Get"
+            eyebrowTone="emerald"
+            title="Run leaner and faster — where it shows up on the P&L."
+            subtitle="The same team, doing more — because the repetitive work runs itself and the judgement work is better-informed."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              kicker="Revenue"
+              title="Sales Ops"
+              body={
+                <>
+                  <ul className="ob-tpl-list">
+                    <li>Leads followed up instantly, not next day</li>
+                    <li>Every rep armed with live battlecards</li>
+                    <li>Pipeline kept clean without nagging</li>
+                  </ul>
+                  <div className="ob-result">↑ Higher conversion &amp; revenue per rep</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="amber"
+              kicker="Demand"
+              title="Marketing Ops"
+              body={
+                <>
+                  <ul className="ob-tpl-list">
+                    <li>Campaigns planned &amp; launched faster</li>
+                    <li>More content, on-brand, less manual effort</li>
+                    <li>Spend steered by always-on performance reads</li>
+                  </ul>
+                  <div className="ob-result">↑ More qualified leads &amp; better ROAS</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="emerald"
+              kicker="Efficiency"
+              title="Internal Ops"
+              body={
+                <>
+                  <ul className="ob-tpl-list">
+                    <li>Manual reporting &amp; monitoring runs itself</li>
+                    <li>Issues caught early, fewer fire-drills</li>
+                    <li>Institutional knowledge survives churn</li>
+                  </ul>
+                  <div className="ob-result">↑ Leaner ops, faster cycles, fewer errors</div>
+                </>
+              }
+            />
+          </UseCaseGrid>
+          <Caption italic className="dk-gap-sm">
+            The compounding effect: the brain gets smarter, the assistants do more, and the team's
+            leverage grows every quarter — without growing headcount at the same rate.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+    /* ── 19 · The payoff ──────────────────────────────────────────────────
+     * Four big numbers with a line each. StatCard / StatRow is exactly this and the kit already
+     * has it — the source's `.vision-pill` with an inline 26px override is a stat card that had
+     * not been recognised as one. */
+    {
+      id: 'the-payoff',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="The Payoff"
+            eyebrowTone="emerald"
+            title="What a team tends to feel in the first quarter."
+            subtitle="Illustrative targets from early pilots — not a promise, but what we point a first workflow at."
+          />
+          <StatRow columns={4}>
+            <StatCard value="~5 hrs" label="per person, per week, handed back from repetitive work." />
+            <StatCard tone="amber" value="Minutes" label="to first follow-up — not the next working day." />
+            <StatCard tone="emerald" value="Weeks" label="to go live on the first workflow — not quarters." />
+            <StatCard value="Zero" label="of your data leaves your own systems." />
+          </StatRow>
+          <Caption italic className="dk-gap">
+            Same headcount, more output — and the know-how stays with you when people move on.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 20 · From early pilots ───────────────────────────────────────────
+     * Same card shape as slide 14, one hue each for the same reason. */
+    {
+      id: 'early-pilots',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="From Early Pilots"
+            eyebrowTone="indigo"
+            title="Real teams, real workflows — already running."
+            subtitle="A few of the first workflows live today, kept anonymous by request. Different industries, same pattern."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              kicker="Reporting"
+              title="A retail team"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Monthly partner-performance deck, once hand-built</li>
+                  <li>Now drafted automatically for a human to review</li>
+                  <li>Days of manual work → a morning's review</li>
+                </ul>
+              }
+            />
+            <UseCaseCard
+              tone="amber"
+              kicker="Sales response"
+              title="A D2C brand"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>After-hours leads used to wait till morning</li>
+                  <li>Now get an instant, on-brand first reply</li>
+                  <li>A person still approves anything unusual</li>
+                </ul>
+              }
+            />
+            <UseCaseCard
+              tone="emerald"
+              kicker="Weekly digest"
+              title="An operations team"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Exception reports lived in one person's head</li>
+                  <li>Now produced and shared every Monday</li>
+                  <li>Survives when that person is on leave</li>
+                </ul>
+              }
+            />
+          </UseCaseGrid>
+          <div className="ob-capnote dk-gap-sm">
+            <strong>Same pattern every time:</strong> work that used to wait on a person now runs —{' '}
+            <em>with a person still approving.</em>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 21 · Your AI transformation ──────────────────────────────────────
+     * A three-step arc with arrows between. PhaseCard/PhaseRow is the kit's horizon component and
+     * carries `when` (TODAY / IN WEEKS / WITHIN THE YEAR) as its own slot — the arrows go, because
+     * the row already reads left to right and three glyphs between three cards is the kind of
+     * connective decoration decision C removed. */
+    {
+      id: 'transformation-arc',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Your AI Transformation"
+            eyebrowTone="indigo"
+            title="From scattered AI experiments to an AI-run company."
+            subtitle="Most companies are stuck at step one. Synos is how you move through all three — in weeks, not years."
+          />
+          <PhaseRow>
+            <PhaseCard
+              when="Today"
+              title="AI on laptops"
+              body="A few sharp people get wins in ChatGPT. It lives in their account, isn't shared, and disappears the day they leave."
+            />
+            <PhaseCard
+              position="bridge"
+              when="In weeks"
+              title="A shared brain + first assistants"
+              body="Your business knowledge lives in one place. The first assistants handle real work — follow-ups, reports, digests — with a person approving each step."
+            />
+            <PhaseCard
+              position="far"
+              when="Within the year"
+              title="Every team compounds"
+              body="Sales, Marketing and Ops each run on assistants that get better every week. The same headcount does far more — and the knowledge stays with you."
+            />
+          </PhaseRow>
+          <div className="ob-capnote dk-gap">
+            <strong>The gap was never the AI.</strong> It's everything around it — shared memory,
+            safe access, approvals. <em>That's what Synos gives you.</em>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 22 · Graduated trust ─────────────────────────────────────────────
+     * The same three-step shape as 21, so the same PhaseRow. Two slides on one component again. */
+    {
+      id: 'graduated-trust',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Graduated Trust"
+            eyebrowTone="indigo"
+            title="From a helping hand to work that runs itself — you stay in control."
+            subtitle="Start with AI helping one person; grow to always-on help — with a person approving every step, at every stage."
+          />
+          <PhaseRow>
+            <PhaseCard
+              badge="01"
+              when="Stage one"
+              title="Run it yourself"
+              body="Your team uses AI in the tools they already have. A person drives every step and approves every action."
+            />
+            <PhaseCard
+              badge="02"
+              position="bridge"
+              when="Stage two"
+              title="Runs on a schedule"
+              body="It runs on a schedule and drafts the work. A person reviews and approves before anything goes out — most of the work, a fraction of the time."
+            />
+            <PhaseCard
+              badge="03"
+              position="far"
+              when="Stage three"
+              title="Runs on its own"
+              body="It runs continuously, posting to Slack/WhatsApp, and only comes back to a person for the exceptions. You can pause or stop it any time."
+            />
+          </PhaseRow>
+          <div className="ob-capnote dk-gap">
+            <strong>Every stage stays under your control.</strong> Permissions, a full activity log,
+            human review and an instant off-switch apply at every level — so{' '}
+            <em>running on its own never means out of your control</em>.
+          </div>
         </SlideFrame>
       ),
     },
