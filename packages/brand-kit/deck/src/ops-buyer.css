@@ -511,3 +511,66 @@
   font-weight: 700;
   color: var(--sk-emerald-ink);
 }
+
+/* ── The neutrality rails (slide 24) ──────────────────────────────────────
+ * A labelled row of options with a verdict pinned right, three times. The shape only exists on
+ * this slide, so it stays here — but the chips inside it are the kit's Chip, not a local pill.
+ */
+.ob-rail {
+  display: flex;
+  align-items: center;
+  gap: var(--sk-space-4);
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 11px;
+  padding: 7px 13px;
+}
+.ob-rail-k {
+  flex-shrink: 0;
+  width: 132px;
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+}
+.ob-rail-sw {
+  flex-shrink: 0;
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.6px;
+  color: var(--sk-indigo);
+  background: var(--sk-indigo-bg);
+  border: 1px solid var(--sk-indigo-br);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+/* The one block on the slide that is the thing you own. The source gives it the brand gradient;
+   decision B ends that gradient at --sk-violet-ink so white on it clears AA. */
+.ob-core {
+  background: var(--sk-grad);
+  border-radius: 14px;
+  padding: 14px 20px;
+  color: var(--sk-on-brand);
+}
+.ob-core h3 {
+  font-family: var(--sk-font-body);
+  font-size: 16.5px;
+  color: var(--sk-on-brand);
+  margin: 0 0 5px;
+}
+.ob-core p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0 0 8px;
+  color: var(--sk-on-brand);
+}
+/* `strong` inside the gradient block inherits the deck's ink colour otherwise, which renders as a
+   dark word on a dark fill — invisible. Caught by rendering, not by contrast.mjs, because the tool
+   gates token pairs and this was an unstated inherit. */
+.ob-core strong,
+.ob-core b {
+  color: var(--sk-on-brand);
+}

@@ -31,6 +31,7 @@ export const deck = (K) => {
     SlideFrame,
     SlideHeader,
     CoverSlide,
+    BigTypeSlide,
     Eyebrow,
     Callout,
     Caption,
@@ -1199,6 +1200,242 @@ export const deck = (K) => {
             <em>running on its own never means out of your control</em>.
           </div>
         </SlideFrame>
+      ),
+    },
+    /* ── 23 · Safe by design ──────────────────────────────────────────────
+     * Three promises. UseCaseGrid with `.t-eyebrow` as the kicker — the same mapping as every
+     * other three-card slide in this deck, which is the point of a kit. */
+    {
+      id: 'safe-by-design',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Safe by Design"
+            eyebrowTone="emerald"
+            title="Your data stays yours. You stay in control."
+            subtitle="Three promises that make this safe to roll out — no technical background needed."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              kicker="Your data"
+              title="It stays in your systems."
+              body="Synos runs inside your own environment. Your customer and business data isn't copied out to us — it never leaves your walls."
+            />
+            <UseCaseCard
+              tone="amber"
+              kicker="Undo"
+              title="You can undo anything."
+              body="Every change is reversible. A wrong step can be rolled back, and nothing important is ever quietly overwritten."
+            />
+            <UseCaseCard
+              tone="emerald"
+              kicker="Visibility"
+              title="You see everything."
+              body="Who ran what, when, and what it cost — all in one place, with an instant off-switch if you ever want to stop."
+            />
+          </UseCaseGrid>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 24 · Neutral by design ───────────────────────────────────────────
+     * Three rails, the owned core, four tests, a closing band. The rails and the core are local;
+     * the options inside the rails are kit Chips, and the four tests are UseCaseCards. */
+    {
+      id: 'no-lock-in',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Neutral by Design · No Lock-In"
+            eyebrowTone="indigo"
+            title="Change any vendor. Keep everything you've taught it."
+            subtitle="The AI you pick today won't be the best one in a year — and the tools your teams love will change too. Synos sits underneath all of them, in your own environment, so switching is a choice you can make freely."
+          />
+          <Stack gap="tight">
+            {[
+              ['AI providers', ['Anthropic', 'OpenAI', 'Google', "your cloud's AI"], 'open-source models', 'switch anytime'],
+              ['AI tools', ['Claude Code', 'ChatGPT', 'Cursor', 'Copilot'], 'open-source tools', 'bring your own'],
+              ['Where it runs', ['your cloud account', 'your data centre'], 'fully offline', 'your environment'],
+            ].map(([label, items, os, verdict]) => (
+              <div className="ob-rail" key={label}>
+                <span className="ob-rail-k">{label}</span>
+                <ChipRow tight>
+                  {items.map((i) => (
+                    <Chip size="sm" key={i}>{i}</Chip>
+                  ))}
+                  <Chip size="sm" tone="emerald">{os}</Chip>
+                </ChipRow>
+                <span className="ob-rail-sw">{verdict}</span>
+              </div>
+            ))}
+          </Stack>
+          <div className="ob-core dk-gap-sm">
+            <h3>What never moves — the part you own</h3>
+            <p>
+              Your Company Brain: what the AI knows about your business, the rules and exceptions
+              your team wrote, every correction, and the record of what worked. It lives in{' '}
+              <strong>your</strong> environment and carries across every choice above.
+            </p>
+            <ChipRow tight>
+              <Chip size="sm" tone="indigo">any AI provider</Chip>
+              <Chip size="sm" tone="indigo">any AI tool</Chip>
+              <Chip size="sm" tone="indigo">any cloud</Chip>
+              <Chip size="sm" tone="indigo">your data</Chip>
+              <Chip size="sm" tone="indigo">your knowledge</Chip>
+            </ChipRow>
+          </div>
+          <UseCaseGrid columns={4} className="dk-gap-sm">
+            <UseCaseCard
+              tone="indigo"
+              title="Change the AI provider"
+              body="Point it at a different model and carry on. Cheaper or open-source models can do the routine work; the expensive one only where it's worth it."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="Change the tool"
+              body="ChatGPT, Claude, Copilot or whatever comes next — all of them reach the same shared memory and the same safe access."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Change the cloud"
+              body="It runs in your environment already. Moving it is an IT task, not a re-do of everything you built."
+            />
+            <UseCaseCard
+              tone="violet"
+              title="A vendor disappears"
+              body="None of your knowledge was sitting inside them. Your team's work carries on untouched."
+            />
+          </UseCaseGrid>
+          <div className="ob-band-violet dk-gap-sm">
+            <strong>The test to hold any AI vendor to:</strong> take them away — does what your
+            company has learned survive? Here it does. Nothing leaves your environment and nothing
+            is used to train someone else's AI, so what you build is an asset you own rather than
+            intelligence you rent.
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 25 · How a brand gets there ──────────────────────────────────────
+     * The third PhaseRow in this deck. */
+    {
+      id: 'how-it-lands',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="How a Brand Gets There"
+            eyebrowTone="indigo"
+            title="Live in weeks — and your team owns it."
+            subtitle="Our team works alongside yours to build the 20% that's specific to your business, then hands it over."
+          />
+          <PhaseRow>
+            <PhaseCard
+              badge="01"
+              when="Discover"
+              title="Pair with your team"
+              body="We sit with Sales, Marketing & Ops, connect your systems, and pick the highest-leverage workflows to start with."
+            />
+            <PhaseCard
+              badge="02"
+              position="bridge"
+              when="Build"
+              title="Stand up the brains + assistants"
+              body="Set up the ready-made brains, tune them to your data, and ship the first assistants and apps — safely."
+            />
+            <PhaseCard
+              badge="03"
+              position="far"
+              when="Hand over"
+              title="Your team carries it forward"
+              body="Non-coders author and tweak workflows in plain English. The brain compounds inside your business — not ours."
+            />
+          </PhaseRow>
+          <div className="ob-capnote dk-gap">
+            <strong>Platform + people.</strong> The platform stands on its own; our team gets you to{' '}
+            <em>outcomes this quarter</em>, not just a tool installed.
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 26 · The outcome ─────────────────────────────────────────────────
+     * A recap slide: big title, three pills. BigTypeSlide carries the title register; the pills
+     * are UseCaseCards so the recap uses the same cards as the argument that preceded it. */
+    {
+      id: 'the-outcome',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="The Outcome"
+            eyebrowTone="violet"
+            title={
+              <>
+                Lean teams running Sales, Marketing &amp; Ops on a{' '}
+                <span className="sk-a">brain that compounds</span>.
+              </>
+            }
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              title="Higher sales"
+              body="Faster follow-up, better-armed reps, cleaner pipeline."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="More leads"
+              body="More campaigns & content, steered by live performance."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Leaner ops"
+              body="Repetitive work automated; knowledge that never leaves."
+            />
+          </UseCaseGrid>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 27 · To the demo ─────────────────────────────────────────────────
+     * A hinge slide: title, one line, four chips. BigTypeSlide is the kit's component for a slide
+     * that is one statement. */
+    {
+      id: 'to-the-demo',
+      node: (
+        <BigTypeSlide
+          stage={false}
+          eyebrow="Let's see it live"
+          eyebrowTone="indigo"
+          line1="From slides to the"
+          line2={<span className="sk-gradient-text">running product.</span>}
+          sub="A quick walkthrough of the real platform — the brain, an assistant running, and the governance underneath."
+        >
+          <ChipRow center className="dk-gap">
+            <Chip size="lg">The Company Brain in action</Chip>
+            <Chip size="lg">An assistant at work, step by step</Chip>
+            <Chip size="lg">Human review + audit trail</Chip>
+            <Chip size="lg">Slack / WhatsApp delivery</Chip>
+          </ChipRow>
+        </BigTypeSlide>
+      ),
+    },
+
+    /* ── 28 · Appendix divider ────────────────────────────────────────────
+     * Note for the report: the source says "a worker running" on slide 27, which the terminology
+     * rule retired in favour of "agent"/"assistant". Changed here to "an assistant running",
+     * because it is the same word the rest of this deck already uses — flagged rather than assumed. */
+    {
+      id: 'appendix-divider',
+      node: (
+        <BigTypeSlide
+          stage={false}
+          eyebrow="Appendix · For your IT & data team"
+          eyebrowTone="muted"
+          line1="For your"
+          line2={<span className="sk-gradient-text">technical team</span>}
+          sub="How it works under the hood — architecture, safe access, and the learning loop. Bring these out only if a technical person is in the room."
+        />
       ),
     },
   ]

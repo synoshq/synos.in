@@ -327,6 +327,13 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+.sk-usecase-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.sk-usecase-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sk-space-4);
+}
 
 .sk-usecase {
   --sk-usecase-kicker: var(--sk-muted);

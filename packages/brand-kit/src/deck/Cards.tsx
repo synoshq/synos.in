@@ -298,9 +298,24 @@ export function UseCaseCard({
 }
 
 /** The 3-column use-case grid. */
-export function UseCaseGrid({ children, className, style }: GridProps) {
+/**
+ * The grid use-case cards sit in. Three across by default.
+ *
+ * `columns={2}` and `columns={4}` exist because a set of cards that wraps unevenly — three then a
+ * lonely fourth — reads as a mistake rather than as a set. Same reasoning as `StepGrid` and
+ * `StatRow`; the three grids now agree.
+ */
+export function UseCaseGrid({
+  columns = 3,
+  children,
+  className,
+  style,
+}: GridProps & { columns?: 2 | 3 | 4 }) {
   return (
-    <div className={cx('sk-usecase-grid', className)} style={style}>
+    <div
+      className={cx('sk-usecase-grid', columns !== 3 && `sk-usecase-grid--${columns}`, className)}
+      style={style}
+    >
       {children}
     </div>
   )
