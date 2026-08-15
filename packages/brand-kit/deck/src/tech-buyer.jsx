@@ -1067,6 +1067,339 @@ export const deck = (K) => {
         </SlideFrame>
       ),
     },
+
+    /* ── 17 · Hard part 3 · agents that act ───────────────────────────────
+     * A without / with pair. SplitColumns carries the contrast; the right column's body is the
+     * governed-gate diagram rather than prose, which is why the two halves are a `Columns` of a
+     * SplitColumn and a plate rather than a plain SplitColumns — the drawing needs its own frame. */
+    {
+      id: 'hp-agents-act',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Hard Part 3 · Agents That Act"
+            eyebrowTone="indigo"
+            title="Every action gated. Every action audited."
+            subtitle="Reading data is the safe half. The moment an agent writes to a CRM, a ledger or a campaign, you need one door it must pass through — and a row in a log for every attempt."
+          />
+          <SplitColumns>
+            <SplitColumn
+              tone="red"
+              eyebrow="Without the layer"
+              title="Raw keys in chat history. No permissions. No audit. No boundary."
+            >
+              <SplitItem>
+                The moment someone pastes a CRM key into a chat window, the blast radius is unbounded.
+              </SplitItem>
+              <SplitItem>Keys on personal laptops.</SplitItem>
+              <SplitItem>No “this role can't do that” gate.</SplitItem>
+              <SplitItem>No log of who did what, when.</SplitItem>
+            </SplitColumn>
+            <SplitColumn
+              tone="emerald"
+              eyebrow="With Synos — one governed door"
+              title="UI, AI tool, or always-on agent — every call goes through the same gate."
+            >
+              <SplitItem>
+                <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: GOV_SVG }} />
+              </SplitItem>
+            </SplitColumn>
+          </SplitColumns>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 18 · Hard part 4 · earning autonomy ──────────────────────────────
+     * Three stages with connector arrows. `PhaseCard` is the kit's three-across arc and carries
+     * badge / title / body exactly; the source's arrows between them are decoration the ops-buyer
+     * port already decided to drop rather than fake — the `position` prop's colour progression
+     * (near -> bridge -> far) is what carries the direction now. */
+    {
+      id: 'hp-earning-autonomy',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Hard Part 4 · Earning Autonomy"
+            eyebrowTone="indigo"
+            title="From a skill you run yourself to an agent that runs the system."
+            subtitle="Start in your own AI tool; graduate into the platform as trust builds — review gates and human oversight at every step."
+          />
+          <PhaseRow>
+            <PhaseCard
+              badge="STAGE 01"
+              title="Run it yourself"
+              body="Pull a skill from the marketplace and run it in your own Claude Code or ChatGPT. You drive every run; a person approves every action."
+            />
+            <PhaseCard
+              position="bridge"
+              badge="STAGE 02"
+              title="Scheduled + reviewed"
+              body="Promote it to run on a schedule in the system. It proposes actions; a person clears them at a review gate. Most of the work, a fraction of the time."
+            />
+            <PhaseCard
+              position="far"
+              badge="STAGE 03"
+              title="Autonomous + overseen"
+              body="It runs continuously in the system, posting to Slack/WhatsApp and stopping at a review gate only on exceptions. Human oversight + kill-switch stay on."
+            />
+          </PhaseRow>
+          <Callout tone="indigo" className="dk-gap">
+            <strong>Every stage is governed.</strong> Permissions, full audit trail, human review and
+            an instant kill-switch apply at every level — so <em>autonomous never means
+            unsupervised</em>.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 19 · Hard part 4 · the gate ──────────────────────────────────────
+     * The autonomy ladder: four rungs, each taller than the last, which is the source drawing a
+     * staircase with inline `min-height`. That rising geometry IS the point — it is the one place
+     * in the deck where the layout carries meaning rather than decorating it — so it is kept, as
+     * four `Tile`s in a row with explicit heights rather than flattened into equal cards.
+     *
+     * Each rung is a level, a name, what it does, and who does the work plus the gate that promotes
+     * it. Four slots, so `StepCard` (num / title / body / quote) maps cleanly. */
+    {
+      id: 'hp-the-gate',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Hard Part 4 · The Gate"
+            eyebrowTone="indigo"
+            title="Every function climbs an autonomy ladder — gated by evals, not by faith."
+            subtitle="Graduated trust, per function. One function can be fully autonomous while another is still only assisted. Humans never leave — they move to the edge. Governed and reversible at every rung."
+          />
+          <div className="tb-ladder">
+            <StepCard
+              num="LEVEL 1"
+              title="Assisted"
+              body="Agent drafts; the human decides and sends."
+              quote="Human does the work · Gate — just start"
+            />
+            <StepCard
+              num="LEVEL 2"
+              title="Reviewed"
+              body="Agent acts; the human approves every action."
+              quote="Human approves each · Gate — eval accuracy clears the bar"
+            />
+            <StepCard
+              num="LEVEL 3"
+              title="Supervised-autonomous"
+              body="Agent runs; the human samples and handles exceptions."
+              quote="Human samples + exceptions · Gate — sustained eval pass, low breach"
+            />
+            <StepCard
+              num="LEVEL 4 · THE SUMMIT"
+              title="Autonomous"
+              body="Agent runs the function; humans set policy, watch dashboards, hold the kill-switch."
+              quote="Human sets policy · edge only · Gate — evals hold at scale"
+            />
+          </div>
+          <Caption className="dk-gap-sm">
+            <em>The loop is the ladder.</em> Better context + stronger evals + self-learning → more
+            functions earn autonomy. You never hand off what you can't measure.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 20 · Hard part 5 · learning from runs ────────────────────────────
+     * The learning-pipeline diagram, carried. `.tb-lp` scopes its own `lp-*` vocabulary so it never
+     * collides with the `.node` / `.edge` set the other eight diagrams share. */
+    {
+      id: 'hp-learning',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Hard Part 5 · Learning From Runs"
+            eyebrowTone="violet"
+            title="What compounds is the loop — the record of how your company works, not the model."
+            subtitle="Humans correct. Agents act. Systems return the measured outcome. Every turn builds data no public model can ever train on — and it pays off whichever model wins."
+          />
+          <div className="tb-lp tb-diagram" dangerouslySetInnerHTML={{ __html: LOOP_SVG }} />
+          <Caption className="dk-gap-sm">
+            Live today at a martech design partner: every operator correction feeds one learning layer
+            their whole platform gets smarter from.{' '}
+            <strong>
+              This is data the model can never train on — and it accrues to you, on your
+              infrastructure.
+            </strong>
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 21 · Hard part 5 · where it leads ────────────────────────────────
+     * A five-stage pipeline, then three payoffs, then the honesty band. The stage status flags
+     * (LIVE TODAY / IN BUILD / ACCUMULATING NOW / ROADMAP) are the most-scrutinised text on the
+     * slide for a technical reader — they are what separates shipped from promised — so each rides
+     * as a toned Chip inside its card rather than as a coloured line that could be skimmed past. */
+    {
+      id: 'hp-where-it-leads',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Hard Part 5 · Where It Leads"
+            eyebrowTone="violet"
+            title="Every run is traced. Every trace is future training data."
+            subtitle="The same environment is your training ground: every run traced, every review and correction captured, private evals against your own outcomes — the raw material to fine-tune open-weight models on how your company operates. Models that are yours, on your infrastructure."
+          />
+          <div className="tb-pipe">
+            <StepCard
+              num="01 · Trace"
+              title="Every run captured"
+              body={
+                <>
+                  Inputs, tool calls, decisions, outcome — full lineage on every agent run.{' '}
+                  <Chip size="sm" tone="emerald">● LIVE TODAY</Chip>
+                </>
+              }
+            />
+            <StepCard
+              num="02 · Capture"
+              title="Corrections captured"
+              body={
+                <>
+                  Every human correction and approval is captured and reviewed in the flow of work —
+                  the material labels are built from.{' '}
+                  <Chip size="sm" tone="emerald">● LIVE TODAY</Chip>
+                </>
+              }
+            />
+            <StepCard
+              num="03 · Eval"
+              title="Private evals"
+              body={
+                <>
+                  Agents scored against <em>your</em> outcomes, not public benchmarks — ground truth
+                  only you own. <Chip size="sm" tone="amber">◐ IN BUILD</Chip>
+                </>
+              }
+            />
+            <StepCard
+              num="04 · Dataset"
+              title="Outcome-verified data"
+              body={
+                <>
+                  Curated for you: traces that worked, corrections that fixed, evals that prove it.{' '}
+                  <Chip size="sm" tone="emerald">● ACCUMULATING NOW</Chip>
+                </>
+              }
+            />
+            <StepCard
+              num="05 · Fine-tune & distill"
+              title="Your own models"
+              body={
+                <>
+                  Custom and distilled small models for your workflows — trained on the loop, run on
+                  your infra. <Chip size="sm" tone="violet">◆ ROADMAP</Chip>
+                </>
+              }
+            />
+          </div>
+          <UseCaseGrid className="dk-gap-sm">
+            <UseCaseCard
+              tone="emerald"
+              kicker="Cost"
+              title="Small models carry the routine"
+              body="Distilled models run the ~80% of routine work at a fraction of frontier-token cost — the open-source future, powered by your data."
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Sovereignty"
+              title="Your data, your models, your infra"
+              body="Nothing trains a public model. Your models live in your cloud — swap providers freely without losing what you've learned."
+            />
+            <UseCaseCard
+              tone="violet"
+              kicker="Moat"
+              title="A dataset nobody can buy"
+              body="Minted from your own operations and corrections — the one asset a competitor or a lab can't replicate."
+            />
+          </UseCaseGrid>
+          <Callout tone="amber" className="dk-gap-sm">
+            <strong>Where we honestly are:</strong> the data layer — tracing, corrections,
+            agent-native storage — is live and accumulating in every deployment. The eval and
+            training layers are still being built — deliberately data-first, because{' '}
+            <strong>capture is the scarce part</strong>; training stacks on top, with no rebuild.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 22 · Neutral by design ───────────────────────────────────────────
+     * Three swappable rails, the layer that never moves, four swap tests, and the band. The rails
+     * are the slide's spine — the ops-buyer port lost one of them entirely when a `Stack` shrank
+     * below its content and painted the row behind the next block. Stacks no longer shrink; the
+     * comment stays because the failure was invisible in the DOM. */
+    {
+      id: 'no-lock-in',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Neutral by Design · No Lock-In"
+            eyebrowTone="indigo"
+            title="Swap any vendor. Keep everything you've learned."
+            subtitle="Models, harnesses and clouds will each change several times over the life of this system. Synos is the neutral, self-hosted layer underneath them — so a vendor decision never becomes an identity decision."
+          />
+          <Stack gap="tight">
+            {[
+              ['Model providers', ['Anthropic', 'OpenAI', 'Google', 'Bedrock / Vertex', 'open-weight, self-hosted'], 'swap anytime'],
+              ['Agent harnesses', ['Claude Code', 'Codex', 'Cursor', 'your in-house agents', 'open-source frameworks'], 'bring your own'],
+              ['Infrastructure', ['your VPC', 'any cloud', 'on-prem', 'air-gapped'], 'your deployment'],
+            ].map(([rail, items, swap]) => (
+              <div className="tb-row" key={rail}>
+                <Eyebrow tone="muted">{rail}</Eyebrow>
+                <ChipRow tight>
+                  {items.map((i) => (
+                    <Chip key={i} size="sm">{i}</Chip>
+                  ))}
+                </ChipRow>
+                <Caption mono>{swap}</Caption>
+              </div>
+            ))}
+          </Stack>
+          <Callout tone="violet" className="dk-gap-sm" label="What never moves — the layer you own">
+            Company Brain · skills and SOPs · rules and exceptions · corrections · decision traces ·
+            evals · governed tools and policy. It runs on <strong>your</strong> infrastructure and
+            stays portable across every choice above.
+            <ChipRow tight className="dk-gap-sm">
+              {['any model', 'any harness', 'any cloud', 'your data', 'your models later'].map((c) => (
+                <Chip key={c} size="sm" tone="violet">{c}</Chip>
+              ))}
+            </ChipRow>
+          </Callout>
+          <UseCaseGrid columns={4} className="dk-gap-sm">
+            <UseCaseCard
+              tone="indigo"
+              kicker="Swap the model"
+              body="Skills, rules, evals and traces repoint. Route the routine 80% to a cheap or open-weight model; keep frontier where it earns its cost."
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Swap the harness"
+              body="Claude Code, Codex, Cursor or your own — every one reaches the same brain and the same governed tools over MCP."
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Swap the cloud"
+              body="Self-hosted in your VPC, on-prem or air-gapped. Moving it is a deployment, not a migration."
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="A vendor disappears"
+              body="Nothing of yours lived inside them. Your knowledge, your loop and your agents carry on."
+            />
+          </UseCaseGrid>
+          <Callout tone="emerald" className="dk-gap-sm">
+            <strong>The test we hold ourselves to:</strong> take any one vendor away — does your
+            company's capability survive? Nothing leaves your infrastructure and nothing trains a
+            public model, so what you build here is capital you own, not intelligence you rent.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
   ]
 
   const byId = new Map(slides.map((s) => [s.id, s]))

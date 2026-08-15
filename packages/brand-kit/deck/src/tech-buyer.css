@@ -326,3 +326,37 @@
      made the slide 46px TALLER while looking like a tightening. */
   margin-bottom: 4px;
 }
+
+/* The autonomy ladder (slide 19). Four rungs, each taller than the last — the source draws a
+   staircase with inline `min-height` on every rung, and that rising geometry is the argument: trust
+   is earned upward. It is the one place in this deck where the layout means something rather than
+   arranging something, so it survives the port as a real grid rather than being flattened into four
+   equal cards. `align-items: end` is what makes the tops rise while the bases stay on one line. */
+.tb-ladder {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sk-space-4);
+  align-items: end;
+}
+.tb-ladder > :nth-child(1) {
+  min-height: 112px;
+}
+.tb-ladder > :nth-child(2) {
+  min-height: 140px;
+}
+.tb-ladder > :nth-child(3) {
+  min-height: 168px;
+}
+.tb-ladder > :nth-child(4) {
+  min-height: 196px;
+}
+
+/* The five-stage pipeline (slide 21). `StepGrid` tops out at four columns and this is five — not a
+   reason to widen the component, because five-across is this one slide's shape and a `columns={5}`
+   would immediately be used at a measure too narrow to read. */
+.tb-pipe {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sk-space-3);
+  align-items: stretch;
+}
