@@ -1,7 +1,7 @@
 # Fidelity report
 
 27 specimens · 104 computed-style checks · 27 passing, 0 failing.
-144 of those checks record a **deliberate** divergence from the source artifact.
+138 of those checks record a **deliberate** divergence from the source artifact.
 
 Each specimen renders a built component and the real slide it was extracted from at the same
 viewport, screenshots both, and compares the computed values of the properties that carry the
@@ -29,7 +29,7 @@ decision that moved it.
 | `chips` | Chip / ChipRow | presenting s24 | 2 | 0 | PASS |
 | `chip-md` | Chip size="md" | presenting s6 | 1 | 0 | PASS |
 | `wall` | WallCard / WallGrid | presenting s34 | 4 | 8 | PASS |
-| `pillar` | PillarCard / PillarGrid | presenting s6 | 5 | 12 | PASS |
+| `pillar` | PillarCard / PillarGrid | presenting s6 | 5 | 6 | PASS |
 | `pillar-brain` | PillarCard brain | presenting s6 | 4 | 3 | PASS |
 | `phase` | PhaseCard / PhaseRow | presenting s10 | 8 | 13 | PASS |
 | `usecase` | UseCaseCard / UseCaseGrid | presenting s30 | 6 | 2 | PASS |
@@ -145,17 +145,6 @@ removed the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `Use
 | `wall` | `.sk-wall` | `padding-right` | `14px` | `0px` |
 | `wall` | `.sk-wall` | `padding-bottom` | `12px` | `2px` |
 | `wall` | `.sk-wall-grid` | `gap` | `12px` | `22px` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `background-color` | `rgb(248, 250, 252)` | `rgba(0, 0, 0, 0)` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `border-top-width` | `1px` | `0px` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `border-left-width` | `1px` | `0px` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `border-top-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `border-left-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `border-top-left-radius` | `11px` | `0px` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-top` | `7px` | `0px` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-right` | `11px` | `0px` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-bottom` | `7px` | `0px` |
-| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-left` | `11px` | `0px` |
-| `pillar` | `.sk-pillar-grid` | `gap` | `7px` | `18px` |
 | `usecase` | `.sk-usecase-grid` | `gap` | `12px` | `16px` |
 | `step` | `.sk-step` | `border-top-width` | `1px` | `0px` |
 | `step` | `.sk-step` | `border-left-width` | `1px` | `0px` |
@@ -376,6 +365,36 @@ than split top and bottom, which reads as unfinished until the eye adjusts.
 |---|---|---|---|---|
 | `slide-frame-default` | `.sk-slide` | `justify-content` | `center` | `flex-start` |
 | `slide-frame-arch` | `.sk-slide` | `justify-content` | `center` | `flex-start` |
+
+### J
+
+**Decision J — the pillar card comes back (2026-08-15). A partial reversal of C, on review.**
+Decision C removed the 1px `--sk-border` hairline from grouped cards and opened the grid gap to
+replace it, on the measured argument that a 1.23:1 line is invisible on a projector while still
+fragmenting the layout. That argument holds everywhere it was applied EXCEPT `PillarGrid`, and
+Anoop caught the exception by looking at the rendered architecture slide: five bare text blocks
+sitting beside one filled gradient card, rows top-aligned and ragging against it. Nothing failed
+— boxes, contrast and the overflow probe were all green on the version that looked wrong.
+
+The distinction the reversal draws: **a border that decorates a group can go; a border that IS
+the group has to stay.** In every other grid the cards are prose blocks and the gap reads as the
+separation. In `PillarGrid` the cards are objects in a diagram, one of them is a filled gradient
+panel, and without a card of their own the other five stop being the same kind of thing as it.
+
+So `.sk-pillar` regains `--sk-surface-2`, a 1px `--sk-border` and an 11px radius; the grid gains
+`align-items: stretch` so the rows stop ragging. The numbers below are the shipped values, and
+they are tuned rather than restored: padding is **8px 10px**, not the source's 7px 11px, and the
+gap is `--sk-space-4` (12px), not 7px — at 12px padding the architecture slide overflowed the
+card by 16px, and every pixel here is spent against a diagram that has to fit. The de-box
+decision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`.
+
+| Specimen | Selector | Property | Source | Built |
+|---|---|---|---|---|
+| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-top` | `7px` | `8px` |
+| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-right` | `11px` | `10px` |
+| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-bottom` | `7px` | `8px` |
+| `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-left` | `11px` | `10px` |
+| `pillar` | `.sk-pillar-grid` | `gap` | `7px` | `12px` |
 
 ## Recorded conflicts — differences that are correct
 

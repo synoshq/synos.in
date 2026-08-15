@@ -174,6 +174,27 @@ export const REASONS = {
     'and is already the accent the same component uses for `--sk-phase-accent`, so the badge and its',
     'rail now agree on one indigo instead of two.',
   ].join('\n'),
+  J: [
+    '**Decision J — the pillar card comes back (2026-08-15). A partial reversal of C, on review.**',
+    'Decision C removed the 1px `--sk-border` hairline from grouped cards and opened the grid gap to',
+    'replace it, on the measured argument that a 1.23:1 line is invisible on a projector while still',
+    'fragmenting the layout. That argument holds everywhere it was applied EXCEPT `PillarGrid`, and',
+    'Anoop caught the exception by looking at the rendered architecture slide: five bare text blocks',
+    'sitting beside one filled gradient card, rows top-aligned and ragging against it. Nothing failed',
+    '— boxes, contrast and the overflow probe were all green on the version that looked wrong.',
+    '',
+    'The distinction the reversal draws: **a border that decorates a group can go; a border that IS',
+    'the group has to stay.** In every other grid the cards are prose blocks and the gap reads as the',
+    'separation. In `PillarGrid` the cards are objects in a diagram, one of them is a filled gradient',
+    'panel, and without a card of their own the other five stop being the same kind of thing as it.',
+    '',
+    'So `.sk-pillar` regains `--sk-surface-2`, a 1px `--sk-border` and an 11px radius; the grid gains',
+    '`align-items: stretch` so the rows stop ragging. The numbers below are the shipped values, and',
+    'they are tuned rather than restored: padding is **8px 10px**, not the source\'s 7px 11px, and the',
+    'gap is `--sk-space-4` (12px), not 7px — at 12px padding the architecture slide overflowed the',
+    'card by 16px, and every pixel here is spent against a diagram that has to fit. The de-box',
+    'decision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`.',
+  ].join('\n'),
 }
 
 /** A stand-in for the stroked 16px icons the sources draw inline. */
@@ -626,17 +647,14 @@ export const SPECIMENS = [
     checks: [
       {
         source: '.d1-pillar:not(.d1-brain)', built: '.sk-pillar:not(.sk-pillar--brain)', props: [...BOX],
+        /* Decision J restored the card, so background, border and radius now MATCH the source and
+           are asserted rather than excused — only the padding is still a deliberate divergence, and
+           by 1px in each axis, spent to make the architecture slide fit. */
         intentional: {
-          'background-color': ['rgb(248, 250, 252)', 'rgba(0, 0, 0, 0)', 'C'],
-          'border-top-width': ['1px', '0px', 'C'],
-          'border-left-width': ['1px', '0px', 'C'],
-          'border-top-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'C'],
-          'border-left-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'C'],
-          'border-top-left-radius': ['11px', '0px', 'C'],
-          'padding-top': ['7px', '0px', 'C'],
-          'padding-right': ['11px', '0px', 'C'],
-          'padding-bottom': ['7px', '0px', 'C'],
-          'padding-left': ['11px', '0px', 'C'],
+          'padding-top': ['7px', '8px', 'J'],
+          'padding-right': ['11px', '10px', 'J'],
+          'padding-bottom': ['7px', '8px', 'J'],
+          'padding-left': ['11px', '10px', 'J'],
         },
       },
       {
@@ -651,7 +669,7 @@ export const SPECIMENS = [
       { source: '.d1-pillar:not(.d1-brain) .d1-ico', built: '.sk-pillar--indigo:not(.sk-pillar--brain) .sk-pillar-ico', props: ['width', 'height', 'border-top-left-radius', 'background-color', 'color'] },
       {
         source: '.d1-pillar-grid', built: '.sk-pillar-grid', props: ['display', 'grid-template-columns', 'gap'],
-        intentional: { gap: ['7px', '18px', 'C'] },
+        intentional: { gap: ['7px', '12px', 'J'] },
       },
     ],
   },

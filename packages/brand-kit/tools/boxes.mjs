@@ -202,8 +202,24 @@ console.log()
  * `panels` is gated too, and is the number that actually answers deck-research §D.4's complaint —
  * §D.4 called slide 9 "a dashboard screenshot", which is a statement about rectangles, and a rule is
  * the shape de-boxing converts a rectangle INTO. Floor 5.8, gate 7.5, currently 7.4.
+ *
+ * DECISION J (2026-08-15) moves all three numbers up, and the arithmetic is the whole justification.
+ * The pillar card came back — see `REASONS.J` in `fidelity/scripts/specimens.mjs`; short version, a
+ * border that IS the grouping cannot be treated like a border that decorates one, and the rendered
+ * architecture slide made that obvious in a way none of these counts could. That restores exactly
+ * FIVE panels, all of them on `slide/architecture`, all of them `.sk-pillar`:
+ *
+ *   max     15 -> 20   the architecture slide alone, +5
+ *   mean    10 -> 11   +5 boxes spread over 5 composed slides, so +1.0 exactly
+ *   panels 7.5 -> 8.5  same 5 panels, same 5 slides
+ *
+ * Every one of those is the same five rectangles counted three ways. The floor line below is
+ * unchanged and still reports 9.0 / 5.8, so the distance between the gate and the floor is still
+ * itemised: the three step fills, the two non-flagship use-case fills, and now the five pillars.
+ * Nothing else moved, and if the pillars are ever de-boxed again these three numbers go back down by
+ * exactly this much.
  */
-const T = { mean: 10, panels: 7.5, max: 15, depth: 2 }
+const T = { mean: 11, panels: 8.5, max: 20, depth: 2 }
 console.log(`\nmean ${mean.toFixed(1)} boxes (target <= ${T.mean})   max ${max} (target <= ${T.max})   content nesting depth ${depth} (target <= ${T.depth}, raw ${rawDepth} incl. the slide card)`)
 console.log(`mean ${meanPanels.toFixed(1)} PANELS per slide (target <= ${T.panels}) — the rectangles, which is what de-boxing removes`)
 console.log('floor for this component set, every optional fill stripped (SK_FLOOR=1): mean 9.0 boxes / 5.8 panels')

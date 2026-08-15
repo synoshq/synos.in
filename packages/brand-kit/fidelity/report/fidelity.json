@@ -1532,74 +1532,32 @@
           ],
           "intentional": [
             {
-              "prop": "background-color",
-              "was": "rgb(248, 250, 252)",
-              "now": "rgba(0, 0, 0, 0)",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
-            },
-            {
-              "prop": "border-top-width",
-              "was": "1px",
-              "now": "0px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
-            },
-            {
-              "prop": "border-left-width",
-              "was": "1px",
-              "now": "0px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
-            },
-            {
-              "prop": "border-top-color",
-              "was": "rgb(226, 232, 240)",
-              "now": "rgb(15, 23, 42)",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
-            },
-            {
-              "prop": "border-left-color",
-              "was": "rgb(226, 232, 240)",
-              "now": "rgb(15, 23, 42)",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
-            },
-            {
-              "prop": "border-top-left-radius",
-              "was": "11px",
-              "now": "0px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
-            },
-            {
               "prop": "padding-top",
               "was": "7px",
-              "now": "0px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+              "now": "8px",
+              "key": "J",
+              "reason": "**Decision J — the pillar card comes back (2026-08-15). A partial reversal of C, on review.**\nDecision C removed the 1px `--sk-border` hairline from grouped cards and opened the grid gap to\nreplace it, on the measured argument that a 1.23:1 line is invisible on a projector while still\nfragmenting the layout. That argument holds everywhere it was applied EXCEPT `PillarGrid`, and\nAnoop caught the exception by looking at the rendered architecture slide: five bare text blocks\nsitting beside one filled gradient card, rows top-aligned and ragging against it. Nothing failed\n— boxes, contrast and the overflow probe were all green on the version that looked wrong.\n\nThe distinction the reversal draws: **a border that decorates a group can go; a border that IS\nthe group has to stay.** In every other grid the cards are prose blocks and the gap reads as the\nseparation. In `PillarGrid` the cards are objects in a diagram, one of them is a filled gradient\npanel, and without a card of their own the other five stop being the same kind of thing as it.\n\nSo `.sk-pillar` regains `--sk-surface-2`, a 1px `--sk-border` and an 11px radius; the grid gains\n`align-items: stretch` so the rows stop ragging. The numbers below are the shipped values, and\nthey are tuned rather than restored: padding is **8px 10px**, not the source's 7px 11px, and the\ngap is `--sk-space-4` (12px), not 7px — at 12px padding the architecture slide overflowed the\ncard by 16px, and every pixel here is spent against a diagram that has to fit. The de-box\ndecision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`."
             },
             {
               "prop": "padding-right",
               "was": "11px",
-              "now": "0px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+              "now": "10px",
+              "key": "J",
+              "reason": "**Decision J — the pillar card comes back (2026-08-15). A partial reversal of C, on review.**\nDecision C removed the 1px `--sk-border` hairline from grouped cards and opened the grid gap to\nreplace it, on the measured argument that a 1.23:1 line is invisible on a projector while still\nfragmenting the layout. That argument holds everywhere it was applied EXCEPT `PillarGrid`, and\nAnoop caught the exception by looking at the rendered architecture slide: five bare text blocks\nsitting beside one filled gradient card, rows top-aligned and ragging against it. Nothing failed\n— boxes, contrast and the overflow probe were all green on the version that looked wrong.\n\nThe distinction the reversal draws: **a border that decorates a group can go; a border that IS\nthe group has to stay.** In every other grid the cards are prose blocks and the gap reads as the\nseparation. In `PillarGrid` the cards are objects in a diagram, one of them is a filled gradient\npanel, and without a card of their own the other five stop being the same kind of thing as it.\n\nSo `.sk-pillar` regains `--sk-surface-2`, a 1px `--sk-border` and an 11px radius; the grid gains\n`align-items: stretch` so the rows stop ragging. The numbers below are the shipped values, and\nthey are tuned rather than restored: padding is **8px 10px**, not the source's 7px 11px, and the\ngap is `--sk-space-4` (12px), not 7px — at 12px padding the architecture slide overflowed the\ncard by 16px, and every pixel here is spent against a diagram that has to fit. The de-box\ndecision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`."
             },
             {
               "prop": "padding-bottom",
               "was": "7px",
-              "now": "0px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+              "now": "8px",
+              "key": "J",
+              "reason": "**Decision J — the pillar card comes back (2026-08-15). A partial reversal of C, on review.**\nDecision C removed the 1px `--sk-border` hairline from grouped cards and opened the grid gap to\nreplace it, on the measured argument that a 1.23:1 line is invisible on a projector while still\nfragmenting the layout. That argument holds everywhere it was applied EXCEPT `PillarGrid`, and\nAnoop caught the exception by looking at the rendered architecture slide: five bare text blocks\nsitting beside one filled gradient card, rows top-aligned and ragging against it. Nothing failed\n— boxes, contrast and the overflow probe were all green on the version that looked wrong.\n\nThe distinction the reversal draws: **a border that decorates a group can go; a border that IS\nthe group has to stay.** In every other grid the cards are prose blocks and the gap reads as the\nseparation. In `PillarGrid` the cards are objects in a diagram, one of them is a filled gradient\npanel, and without a card of their own the other five stop being the same kind of thing as it.\n\nSo `.sk-pillar` regains `--sk-surface-2`, a 1px `--sk-border` and an 11px radius; the grid gains\n`align-items: stretch` so the rows stop ragging. The numbers below are the shipped values, and\nthey are tuned rather than restored: padding is **8px 10px**, not the source's 7px 11px, and the\ngap is `--sk-space-4` (12px), not 7px — at 12px padding the architecture slide overflowed the\ncard by 16px, and every pixel here is spent against a diagram that has to fit. The de-box\ndecision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`."
             },
             {
               "prop": "padding-left",
               "was": "11px",
-              "now": "0px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+              "now": "10px",
+              "key": "J",
+              "reason": "**Decision J — the pillar card comes back (2026-08-15). A partial reversal of C, on review.**\nDecision C removed the 1px `--sk-border` hairline from grouped cards and opened the grid gap to\nreplace it, on the measured argument that a 1.23:1 line is invisible on a projector while still\nfragmenting the layout. That argument holds everywhere it was applied EXCEPT `PillarGrid`, and\nAnoop caught the exception by looking at the rendered architecture slide: five bare text blocks\nsitting beside one filled gradient card, rows top-aligned and ragging against it. Nothing failed\n— boxes, contrast and the overflow probe were all green on the version that looked wrong.\n\nThe distinction the reversal draws: **a border that decorates a group can go; a border that IS\nthe group has to stay.** In every other grid the cards are prose blocks and the gap reads as the\nseparation. In `PillarGrid` the cards are objects in a diagram, one of them is a filled gradient\npanel, and without a card of their own the other five stop being the same kind of thing as it.\n\nSo `.sk-pillar` regains `--sk-surface-2`, a 1px `--sk-border` and an 11px radius; the grid gains\n`align-items: stretch` so the rows stop ragging. The numbers below are the shipped values, and\nthey are tuned rather than restored: padding is **8px 10px**, not the source's 7px 11px, and the\ngap is `--sk-space-4` (12px), not 7px — at 12px padding the architecture slide overflowed the\ncard by 16px, and every pixel here is spent against a diagram that has to fit. The de-box\ndecision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`."
             }
           ],
           "status": "INTENTIONAL",
@@ -1618,17 +1576,17 @@
             "padding-left": "11px"
           },
           "built_values": {
-            "background-color": "rgba(0, 0, 0, 0)",
+            "background-color": "rgb(248, 250, 252)",
             "background-image": "none",
-            "border-top-width": "0px",
-            "border-left-width": "0px",
-            "border-top-color": "rgb(15, 23, 42)",
-            "border-left-color": "rgb(15, 23, 42)",
-            "border-top-left-radius": "0px",
-            "padding-top": "0px",
-            "padding-right": "0px",
-            "padding-bottom": "0px",
-            "padding-left": "0px"
+            "border-top-width": "1px",
+            "border-left-width": "1px",
+            "border-top-color": "rgb(226, 232, 240)",
+            "border-left-color": "rgb(226, 232, 240)",
+            "border-top-left-radius": "11px",
+            "padding-top": "8px",
+            "padding-right": "10px",
+            "padding-bottom": "8px",
+            "padding-left": "10px"
           }
         },
         {
@@ -1729,9 +1687,9 @@
             {
               "prop": "gap",
               "was": "7px",
-              "now": "18px",
-              "key": "C",
-              "reason": "**Decision C — open the type scale and de-box.** The extracted scale ran 34/18/17/16/11.5,\nwhich put `h2`, `h3` and `p` inside a 12.5% range covering three semantic levels (§D.2). At\nHale's 25%-zoom test they are 4.5, 4.25 and 4.0px: indistinguishable. Hierarchy was therefore\nbeing carried by weight and colour, which is why the deck needed 7.7 text colours a slide —\ncolour doing the job size should do. The scale is now **40 / 26 / 20 / 16 / 13**, every\nadjacent ratio ≥ 1.25, with the eyebrow rising 11.5 → 13px (1.60%EH → 1.81%EH), lifting the\nlabel that appears on 144 of 148 slides off the ambient-light floor (§B.3).\n\nDe-box, same decision: nesting capped at 2, a group's outer container gives up its border in\nfavour of space, and 1px `--sk-border` hairlines go in most positions — they are 1.23:1, so\nthey are invisible on a projector while still fragmenting the layout (§D.4). Where a border is\nremoved the grid gap opens to replace it. Affects `WallGrid`, `PillarGrid`, `UseCaseGrid`,\n`StepGrid` and `Callout`. Measured by `node tools/boxes.mjs`."
+              "now": "12px",
+              "key": "J",
+              "reason": "**Decision J — the pillar card comes back (2026-08-15). A partial reversal of C, on review.**\nDecision C removed the 1px `--sk-border` hairline from grouped cards and opened the grid gap to\nreplace it, on the measured argument that a 1.23:1 line is invisible on a projector while still\nfragmenting the layout. That argument holds everywhere it was applied EXCEPT `PillarGrid`, and\nAnoop caught the exception by looking at the rendered architecture slide: five bare text blocks\nsitting beside one filled gradient card, rows top-aligned and ragging against it. Nothing failed\n— boxes, contrast and the overflow probe were all green on the version that looked wrong.\n\nThe distinction the reversal draws: **a border that decorates a group can go; a border that IS\nthe group has to stay.** In every other grid the cards are prose blocks and the gap reads as the\nseparation. In `PillarGrid` the cards are objects in a diagram, one of them is a filled gradient\npanel, and without a card of their own the other five stop being the same kind of thing as it.\n\nSo `.sk-pillar` regains `--sk-surface-2`, a 1px `--sk-border` and an 11px radius; the grid gains\n`align-items: stretch` so the rows stop ragging. The numbers below are the shipped values, and\nthey are tuned rather than restored: padding is **8px 10px**, not the source's 7px 11px, and the\ngap is `--sk-space-4` (12px), not 7px — at 12px padding the architecture slide overflowed the\ncard by 16px, and every pixel here is spent against a diagram that has to fit. The de-box\ndecision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`."
             }
           ],
           "status": "INTENTIONAL",
@@ -1743,8 +1701,8 @@
           },
           "built_values": {
             "display": "grid",
-            "grid-template-columns": "261.328px 261.328px 261.344px",
-            "gap": "18px"
+            "grid-template-columns": "265.328px 265.328px 265.344px",
+            "gap": "12px"
           }
         }
       ],
