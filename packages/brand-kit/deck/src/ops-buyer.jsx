@@ -734,8 +734,11 @@ export const deck = (K) => {
     /* ── 14 · Templated brains ────────────────────────────────────────────
      * Six `.template` cards: an icon, a name, a vertical, and a list. UseCaseGrid holds them —
      * `.t-vertical` is the kicker, and the list goes in the body. The custom-brain card takes
-     * violet because it is the one that is not a template, which the source says with a different
-     * border colour. Icons dropped for the same reason as slide 12. */
+     * Six DIFFERENT hues, deliberately. The first pass dropped the source's per-card icons and
+     * left every card the same colour — and the A/B against the source showed that was wrong: six
+     * near-identical cards are hard to scan, and each icon's hue was doing real work telling them
+     * apart. The distinction is restored through the kit's tones instead of six glyphs, so the
+     * information survives and the decoration does not. */
     {
       id: 'templated-brains',
       node: (
@@ -761,7 +764,7 @@ export const deck = (K) => {
               }
             />
             <UseCaseCard
-              tone="indigo"
+              tone="amber"
               kicker="Growth · Demand"
               title="Marketing Brain"
               body={
@@ -774,7 +777,7 @@ export const deck = (K) => {
               }
             />
             <UseCaseCard
-              tone="indigo"
+              tone="emerald"
               kicker="Operations · SOPs"
               title="Internal Ops Brain"
               body={
@@ -787,7 +790,7 @@ export const deck = (K) => {
               }
             />
             <UseCaseCard
-              tone="indigo"
+              tone="red"
               kicker="FP&amp;A · Spend"
               title="Finance Brain"
               body={
@@ -799,7 +802,7 @@ export const deck = (K) => {
               }
             />
             <UseCaseCard
-              tone="indigo"
+              tone="violet"
               kicker="Customer · Retention"
               title="Support / CX Brain"
               body={

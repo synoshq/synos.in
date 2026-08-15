@@ -402,6 +402,10 @@
   position: relative;
   padding-left: 13px;
 }
+/* The bullet takes the CARD's hue, by reading the variable UseCaseCard already sets for its
+   kicker. The source colour-codes six otherwise-identical cards this way, and the first pass of
+   this port lost it — an A/B against the shipped slide is what caught that. Reading the kit's own
+   variable rather than restating six colours means this cannot drift from the card it sits in. */
 .ob-tpl-list li::before {
   content: "";
   position: absolute;
@@ -410,5 +414,6 @@
   width: 5px;
   height: 5px;
   border-radius: 2px;
-  background: var(--sk-border-2);
+  background: var(--sk-usecase-kicker, var(--sk-border-2));
+  opacity: 0.75;
 }
