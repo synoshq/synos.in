@@ -608,7 +608,7 @@ export const appendixSlides = (K) => {
                 sub: 'cognee · Graphiti · Semantica',
                 cells: [
                   { text: 'Real peers on the graph itself. cognee is the honest benchmark.' },
-                  { text: 'Components, not layers. Graphiti ships zero connectors and its README says bring your own database and build your own tooling; Zep’s scaled engine is proprietary. None of the three profiles a structured source or binds a metric to a column.' },
+                  { text: 'Components, not layers. Graphiti ships zero connectors and its README says bring your own database and build your own tooling; Zep’s scaled engine is proprietary. None of the three profiles a source it is connected to, or binds a metric to a column.' },
                 ],
               },
               {
@@ -622,15 +622,23 @@ export const appendixSlides = (K) => {
             ]}
           />
           <Callout tone="indigo" fill="neutral" className="dk-gap-sm" label="What none of them do — measured against the source, not asserted">
-            <strong>No system in the study computes a single column statistic on a structured source.</strong>{' '}
-            Semantica does schema introspection plus <code>SELECT … LIMIT</code>; cognee pulls rows in
-            via <code>dlt</code>. We profile in place — null rate, distinct counts, length bounds,
-            samples — then semantically type the columns and bind metrics to them, while{' '}
+            <strong>No rival profiles a <em>connected</em> structured source.</strong> Semantica’s
+            warehouse path is schema introspection plus <code>SELECT … LIMIT</code>; cognee pulls rows
+            in via <code>dlt</code>. We profile in place — null rate, distinct counts, length bounds,
+            value samples — then semantically type the columns and bind metrics to them, while{' '}
             <strong>the rows stay in the customer’s warehouse and are queried live at answer time</strong>.
-            Data residency, cost and freshness in one sentence. Around it: 64 connectors with five
+            Data residency, cost and freshness in one sentence. Around it: 57 connector types with five
             independently revocable credential surfaces, a graph shaped by a declared domain template
             rather than by whatever the model inferred, a human review gate on what enters the brain,
             and read-time access control at the node, per source, across five stores.
+          </Callout>
+          <Callout tone="violet" fill="neutral" className="dk-gap-sm" label="The one line that separates us from the closest rival">
+            Only two systems in this field operate rather than assemble, and{' '}
+            <strong>they automate opposite halves</strong>. We automate <strong>acquisition</strong> —
+            credentials, connectors, scheduling, freshness, per-tenant isolation. cognee automates{' '}
+            <strong>cognition</strong> — zero-infra defaults, auto-routed retrieval, a self-improvement
+            loop. Graphiti is a component by its own description; Semantica is a toolkit that reads as
+            a platform. Acquisition is the half a buyer cannot skip and cannot buy anywhere else.
           </Callout>
           <Callout tone="amber" fill="neutral" className="dk-gap-sm" label="Where they are genuinely ahead — we say this in the room">
             Graphiti on bi-temporal, point-in-time querying (cognee reaches for Graphiti to get it).
