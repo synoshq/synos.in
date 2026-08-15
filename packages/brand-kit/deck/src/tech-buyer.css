@@ -1,0 +1,236 @@
+/*
+ * tech-buyer.css — the deck-local rules for `synos-tech-buyer-v3` rebuilt on the kit.
+ *
+ * SCOPE. Everything here is one of two things:
+ *
+ *   1. **Diagram vocabulary.** The nine carried SVGs need their `class=` hooks styled. The mapping
+ *      doc measured this at 66 uses and concluded it should stay OUT of the kit, exactly as the VC
+ *      deck's SVG slides did: the kit has no diagram language, and one that exists to serve two
+ *      decks is drift wearing a component's clothes.
+ *   2. **Containers the kit deliberately has no component for** — the seam canvas, the two-column
+ *      diagram-plus-prose split. Each is one slide's furniture, not a pattern.
+ *
+ * Everything else on these 42 slides is a kit component. If a rule here starts looking like a
+ * component, it belongs in the kit instead — that is the test the ops-buyer port used and it is
+ * what produced `Tile`.
+ *
+ * TOKENS. Every `var(--...)` below was rewritten from the source's namespace to the kit's and then
+ * CHECKED against `src/styles/tokens.css` — none is missing. That check is not ceremony: the
+ * ops-buyer port shipped a diagram with a black bar across it because `var(--red-bg)` is undefined
+ * in the kit, and an undefined custom property in an SVG paint does not fall back, it renders black.
+ * Nothing warns. The file stays valid.
+ */
+
+/* ── The carried diagrams ───────────────────────────────────────────────── */
+
+.diagram-svg .node {
+  fill: var(--sk-surface);
+  stroke: var(--sk-border-2);
+  stroke-width: 1;
+}
+.diagram-svg .node-indigo {
+  fill: var(--sk-indigo-bg);
+  stroke: var(--sk-indigo-br);
+  stroke-width: 1.2;
+}
+.diagram-svg .node-violet {
+  fill: var(--sk-violet-bg);
+  stroke: var(--sk-violet-br);
+  stroke-width: 1.2;
+}
+.diagram-svg .node-emerald {
+  fill: var(--sk-emerald-bg);
+  stroke: var(--sk-emerald-br);
+  stroke-width: 1.2;
+}
+.diagram-svg .node-red {
+  fill: var(--sk-red-bg);
+  stroke: var(--sk-red-br);
+  stroke-width: 1.2;
+}
+.diagram-svg text {
+  fill: var(--sk-ink);
+  font-family: var(--sk-font-body);
+  font-size: 11px;
+  font-weight: 500;
+}
+.diagram-svg text.h {
+  font-weight: 700;
+}
+.diagram-svg text.muted {
+  fill: var(--sk-muted);
+  font-size: 10px;
+  font-weight: 400;
+}
+.diagram-svg text.tag {
+  fill: var(--sk-indigo);
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+}
+.diagram-svg .edge {
+  stroke: var(--sk-border-2);
+  stroke-width: 1.2;
+  fill: none;
+}
+.diagram-svg .edge-indigo {
+  stroke: var(--sk-indigo-2);
+  stroke-width: 1.4;
+  fill: none;
+}
+.diagram-svg .edge-violet {
+  stroke: var(--sk-violet);
+  stroke-width: 1.4;
+  fill: none;
+}
+
+/* The learning-pipeline diagram (slide 20) carries its own vocabulary rather than reusing `.node`,
+   because it is drawn at a different scale from the rest. Scoped to `.tb-lp` so the two never
+   collide. */
+.tb-lp .lp-node {
+  fill: var(--sk-indigo-bg);
+  stroke: var(--sk-indigo-br);
+  stroke-width: 1.4;
+}
+.tb-lp .lp-node-plain {
+  fill: var(--sk-surface);
+  stroke: var(--sk-border-2);
+  stroke-width: 1.2;
+}
+.tb-lp .lp-badge {
+  fill: var(--sk-indigo-2);
+}
+.tb-lp .lp-badge-t {
+  font-family: var(--sk-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  fill: #fff;
+}
+.tb-lp .lp-h {
+  font-family: var(--sk-font-body);
+  font-weight: 700;
+  font-size: 13.5px;
+  fill: var(--sk-ink);
+}
+.tb-lp .lp-m {
+  font-family: var(--sk-font-body);
+  font-weight: 500;
+  font-size: 10.5px;
+  fill: var(--sk-muted);
+}
+.tb-lp .lp-edge {
+  stroke: var(--sk-indigo-2);
+  stroke-width: 1.8;
+  fill: none;
+}
+.tb-lp .lp-edge-v {
+  stroke: var(--sk-violet);
+  stroke-width: 1.8;
+  fill: none;
+}
+.tb-lp .lp-panel {
+  fill: var(--sk-violet-bg);
+  stroke: var(--sk-violet-br);
+  stroke-width: 1.5;
+}
+.tb-lp .lp-ph {
+  font-family: var(--sk-font-body);
+  font-weight: 800;
+  font-size: 15px;
+  fill: var(--sk-violet-ink);
+}
+.tb-lp .lp-pr {
+  font-family: var(--sk-font-body);
+  font-weight: 600;
+  font-size: 12px;
+  fill: var(--sk-violet);
+}
+.tb-lp .lp-tag {
+  font-family: var(--sk-font-mono);
+  font-size: 11px;
+  fill: var(--sk-violet);
+}
+.tb-lp .lp-pay {
+  fill: var(--sk-emerald-bg);
+  stroke: var(--sk-emerald-br);
+  stroke-width: 1.3;
+}
+.tb-lp .lp-pay-h {
+  font-family: var(--sk-font-body);
+  font-weight: 700;
+  font-size: 12.5px;
+  fill: var(--sk-emerald-ink);
+}
+.tb-lp .lp-pay-s {
+  font-family: var(--sk-font-body);
+  font-size: 11px;
+  fill: var(--sk-emerald);
+}
+
+/* ── Containers with no kit component ───────────────────────────────────── */
+
+/* The seam canvas (slide 2). A tinted, rounded stage the seam diagram sits inside — one slide's
+   furniture. The source animates the dashed ring; that is dropped, because an animation that runs
+   forever is a thing a PDF export freezes at an arbitrary frame. */
+.tb-seam {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto 0;
+  background: linear-gradient(180deg, var(--sk-surface) 0%, var(--sk-violet-bg) 100%);
+  border: 1px solid var(--sk-violet-br);
+  border-radius: 22px;
+  padding: 8px 30px 12px;
+}
+.tb-seam svg {
+  width: 100%;
+  height: auto;
+  max-height: 470px;
+  display: block;
+}
+.tb-seam text {
+  text-anchor: middle;
+  font-family: var(--sk-font-body);
+}
+
+/* A diagram beside prose. Used by the slides where the drawing carries the argument and the text
+   annotates it — deliberately NOT `Columns`, because the diagram half must be a framed plate and
+   `Columns` is a bare two-up. */
+.tb-plate {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: 14px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tb-plate svg {
+  width: 97%;
+  height: auto;
+  display: block;
+}
+
+/* A slide whose header is centred. Three slides do this and each is a full-bleed diagram or a
+   divider, where a left-ragged title over a centred drawing reads as a mistake. */
+.tb-center,
+.tb-center .sk-header {
+  text-align: center;
+}
+
+/* A badge and a line of prose on one baseline. The source's `.shift-row`; the ops deck carries the
+   identical rule as `.ob-row`. Not a component — it is a flex row with a gap, and the moment a
+   two-part row like this becomes a component the kit acquires a layout language it does not want. */
+.tb-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sk-space-4);
+}
+.tb-row > :first-child {
+  flex: 0 0 auto;
+}
+.tb-row p {
+  margin: 0;
+}
