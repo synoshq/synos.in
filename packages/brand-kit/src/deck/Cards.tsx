@@ -428,17 +428,20 @@ export function StepCard({
  * The grid steps sit in. Three across by default — a deck slide reads a sequence left to right.
  *
  * `columns={2}` gives the 2x2 block the one-pagers use: on a page a four-step sequence in one row
- * would run each step to a 40mm measure, which is too narrow to read.
+ * would run each step to a 40mm measure, which is too narrow to read. `columns={4}` is the
+ * opposite case — a slide is 1380px wide, so four steps across still leave a readable measure, and
+ * the buyer decks use it where the fourth step is the payoff and must be visible at the same time
+ * as the first.
  */
 export function StepGrid({
   columns = 3,
   children,
   className,
   style,
-}: GridProps & { columns?: 2 | 3 }) {
+}: GridProps & { columns?: 2 | 3 | 4 }) {
   return (
     <div
-      className={cx('sk-step-grid', columns === 2 && 'sk-step-grid--2', className)}
+      className={cx('sk-step-grid', columns !== 3 && `sk-step-grid--${columns}`, className)}
       style={style}
     >
       {children}

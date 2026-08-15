@@ -485,6 +485,10 @@
   grid-template-columns: repeat(2, 1fr);
   gap: var(--sk-space-4);
 }
+.sk-step-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sk-space-4);
+}
 .sk-step {
   border-radius: 14px;
   border: none;

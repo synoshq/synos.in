@@ -35,6 +35,8 @@ export const deck = (K) => {
     UseCaseGrid,
     WallCard,
     WallGrid,
+    StepCard,
+    StepGrid,
     SplitColumns,
     SplitColumn,
     SplitItem,
@@ -635,6 +637,246 @@ export const deck = (K) => {
               the AI anytime without losing what it has learned.
             </em>
           </div>
+        </SlideFrame>
+      ),
+    },
+    /* ── 13 · The handoff nobody solves ───────────────────────────────────
+     * `.sme-lanes` is IT-owns versus experts-own — a genuine contrast, so SplitColumns rather than
+     * two cards side by side. The four `.sme-how` cards are StepCards at 4-up. Only the "today"
+     * chain stays local: five states with connector arrows is a picture of a process. */
+    {
+      id: 'sme-authoring',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="The Handoff Nobody Solves"
+            eyebrowTone="violet"
+            title="Your experts build the agents. IT just sets the rails."
+            subtitle="The rules that make an agent right sit with the people doing the work — your ops leads, analysts, marketers, support veterans. Today those rules only reach a working system through an engineer, and that queue is where AI projects die."
+          />
+          <div className="ob-chain">
+            <span className="ob-chain-k">Today</span>
+            <div className="ob-chain-links">
+              <span className="s">expert explains the rule</span>
+              <span className="a">→</span>
+              <span className="s">ticket or doc</span>
+              <span className="a">→</span>
+              <span className="s">engineer interprets it</span>
+              <span className="a">→</span>
+              <span className="s">v1 misses the exception</span>
+              <span className="a">→</span>
+              <span className="s bad">back in the queue</span>
+            </div>
+            <span className="ob-chain-t">weeks per change · the real rules stay in heads</span>
+          </div>
+          <SplitColumns className="dk-gap-sm">
+            <SplitColumn
+              tone="indigo"
+              eyebrow="IT / engineering owns · set up once"
+              title="The rails"
+            >
+              <SplitItem>Which systems the AI can see, and which it can't</SplitItem>
+              <SplitItem>
+                What it's allowed to do on its own, and what needs a human to approve
+              </SplitItem>
+              <SplitItem>Permissions, full activity log, spend limits, instant off-switch</SplitItem>
+              <SplitItem>The check that must pass before anything goes live</SplitItem>
+              <Caption>A one-time setup they own — not a new project for every request.</Caption>
+            </SplitColumn>
+            <SplitColumn tone="violet" eyebrow="Your experts own · every day" title="The know-how">
+              <SplitItem>How we do this, written in plain English — no code</SplitItem>
+              <SplitItem>
+                The rules, the exceptions, the judgment calls, captured as they come up
+              </SplitItem>
+              <SplitItem>
+                Corrections on the AI's drafts — each one teaches it permanently
+              </SplitItem>
+              <SplitItem>“Here are ten real cases — get them right”</SplitItem>
+              <Caption>
+                No ticket, no waiting. Inside the rails, there is nothing they can break.
+              </Caption>
+            </SplitColumn>
+          </SplitColumns>
+          <StepGrid columns={4} className="dk-gap-sm">
+            <StepCard
+              bar={false}
+              num="1"
+              title="Rails set up once"
+              body="IT decides what the AI can see and do. Everything your team writes on top of that is safe by design."
+            />
+            <StepCard
+              bar={false}
+              num="2"
+              title="Your expert writes it in plain English"
+              body="In chat or Slack: “Billing escalations from top-tier accounts never go by SMS — email finance first.” Saved as a rule the AI follows."
+            />
+            <StepCard
+              bar={false}
+              num="3"
+              title="Corrections while working"
+              body="Edit the AI's draft the way you'd fix a junior's. The change is remembered — that's how tribal knowledge finally gets written down."
+            />
+            <StepCard
+              bar={false}
+              num="4"
+              title="Tried out, then trusted"
+              body="Run it against past real cases, check the results, then let it go from suggesting → reviewed → running on its own. Reversible at any point."
+            />
+          </StepGrid>
+          <div className="ob-band-violet dk-gap-sm">
+            <strong>The handoff disappears.</strong> The person who knows the work is the one who
+            teaches the system — and IT moves from writing down other people's rules to owning the
+            rails and reviewing what goes live.
+          </div>
+        </SlideFrame>
+      ),
+    },
+    /* ── 14 · Templated brains ────────────────────────────────────────────
+     * Six `.template` cards: an icon, a name, a vertical, and a list. UseCaseGrid holds them —
+     * `.t-vertical` is the kicker, and the list goes in the body. The custom-brain card takes
+     * violet because it is the one that is not a template, which the source says with a different
+     * border colour. Icons dropped for the same reason as slide 12. */
+    {
+      id: 'templated-brains',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Templated Brains"
+            eyebrowTone="indigo"
+            title="A starting brain for every operating team."
+            subtitle="Pre-built for the functions a lean consumer company runs — live in weeks, then tuned to you."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              kicker="Revenue · Pipeline"
+              title="Sales Brain"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Lead triage &amp; instant follow-up</li>
+                  <li>AI battlecards &amp; objection handling</li>
+                  <li>Pipeline hygiene &amp; deal nudges</li>
+                  <li>Account &amp; competitor context</li>
+                </ul>
+              }
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Growth · Demand"
+              title="Marketing Brain"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Campaign planning &amp; decisioning</li>
+                  <li>Content &amp; creative drafting</li>
+                  <li>Channel &amp; ROAS performance digests</li>
+                  <li>Audience &amp; cohort context</li>
+                </ul>
+              }
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Operations · SOPs"
+              title="Internal Ops Brain"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Weekly ops digests &amp; exceptions</li>
+                  <li>SOP capture &amp; playbook lookup</li>
+                  <li>Vendor / supply / fleet monitoring</li>
+                  <li>Incident &amp; escalation handling</li>
+                </ul>
+              }
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="FP&amp;A · Spend"
+              title="Finance Brain"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Budget &amp; spend pacing</li>
+                  <li>Margin &amp; unit-economics watch</li>
+                  <li>Anomaly &amp; variance alerts</li>
+                </ul>
+              }
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Customer · Retention"
+              title="Support / CX Brain"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Ticket triage &amp; drafted replies</li>
+                  <li>Voice-of-customer themes</li>
+                  <li>Churn &amp; CSAT signal watch</li>
+                </ul>
+              }
+            />
+            <UseCaseCard
+              tone="violet"
+              kicker="The 20% that's you"
+              title="Your custom brain"
+              body={
+                <ul className="ob-tpl-list">
+                  <li>Whatever your business runs on</li>
+                  <li>Built on the same rails</li>
+                  <li>Owned and extended by your team</li>
+                </ul>
+              }
+            />
+          </UseCaseGrid>
+          <div className="ob-capnote dk-gap-sm">
+            <strong>Templates are the starting point, not the ceiling.</strong> Each ships day-one
+            and then <em>compounds on your data and your corrections</em> until it operates the way
+            you do.
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 15 · A day in the difference ─────────────────────────────────────
+     * The same `.belief-cols` contrast as slide 3, so the same SplitColumns. Two slides using one
+     * component the same way is the argument for the component. */
+    {
+      id: 'two-mondays',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="A Day in the Difference"
+            eyebrowTone="indigo"
+            title="Same lead. Same team. Two very different Mondays."
+            subtitle="What changes isn't the people — it's whether the work waited for them."
+          />
+          <SplitColumns>
+            <SplitColumn
+              tone="neutral"
+              eyebrow="Today · the work waits"
+              title="A lead comes in Friday, 6pm."
+            >
+              <SplitItem marker="×">
+                It sits over the weekend. Monday, someone finally notices, pieces the account
+                history together across three different tools, then writes a reply.
+              </SplitItem>
+              <SplitItem marker="×">
+                <strong>First contact: ~62 hours later — if it isn't missed entirely.</strong>
+              </SplitItem>
+            </SplitColumn>
+            <SplitColumn
+              tone="violet"
+              eyebrow="With Synos · the work is ready"
+              title="A lead comes in Friday, 6pm."
+            >
+              <SplitItem marker="✓">
+                An assistant pulls the full history, drafts a tailored reply, and queues it. Monday
+                9am your rep reads it, adjusts a line, and sends.
+              </SplitItem>
+              <SplitItem marker="✓">
+                <strong>First contact: minutes — every time, even after hours.</strong>
+              </SplitItem>
+            </SplitColumn>
+          </SplitColumns>
+          <Callout tone="indigo" className="dk-gap">
+            Nobody worked the weekend. The people didn't change —{' '}
+            <em>the work simply stopped waiting on them.</em>
+          </Callout>
         </SlideFrame>
       ),
     },
