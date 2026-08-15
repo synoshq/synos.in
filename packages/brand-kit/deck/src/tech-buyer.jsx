@@ -1400,6 +1400,357 @@ export const deck = (K) => {
         </SlideFrame>
       ),
     },
+
+    /* ── 23 · Where this goes ─────────────────────────────────────────────
+     * Three horizons. `PhaseCard` carries badge / when / title / body one-for-one, and its
+     * `position` progression is the same near -> bridge -> far the source's `.s1/.s2/.s3` tints
+     * were doing by hand. */
+    {
+      id: 'where-this-goes',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Where this goes"
+            eyebrowTone="emerald"
+            title="Today you install the layer. Then it compounds into something bigger."
+            subtitle="The layer you deploy now sits between your people, agents and systems — it takes you from transforming today to a truly AI-native company — and it becomes the training ground for AI of your own."
+          />
+          <PhaseRow>
+            <PhaseCard
+              badge="HORIZON 1"
+              when="Now"
+              title="Install the layer"
+              body="Engineering sets the rails once; your teams build and run agents safely on a shared brain. The work you're starting today."
+            />
+            <PhaseCard
+              position="bridge"
+              badge="HORIZON 2"
+              when="Compounds"
+              title="Your own AI"
+              body={
+                <>
+                  Every run traced, every review and correction captured, evals against <em>your</em>{' '}
+                  outcomes — the training ground to fine-tune open-weight models you own, graduated
+                  into real work the way you onboard a new team member.
+                </>
+              }
+            />
+            <PhaseCard
+              position="far"
+              badge="HORIZON 3"
+              when="Where it leads"
+              title="Operations that run themselves"
+              body="The routine work runs on models and agents that are yours; your people create value at the edge of what AI can do, on a company brain that keeps learning."
+            />
+          </PhaseRow>
+          <Caption className="dk-gap">
+            Build horizontal, deploy vertical — each team (Sales, Marketing, Ops, FinOps) is its own
+            curve on the same layer.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 24 · Two ways to deploy ──────────────────────────────────────────
+     * Inward / outward, which is SplitColumns again — the same contrast component the viewpoint
+     * slide uses, and the third time in this deck that a two-up with a label, a claim, a list and a
+     * bottom line turns out to be one shape. */
+    {
+      id: 'two-ways',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Two Ways To Deploy"
+            eyebrowTone="indigo"
+            title="One substrate. Two ways to become agent-native."
+            subtitle="The same operating layer can point inward at your company — or outward through your product. Same brain, skills, and governance; different go-to-market."
+          />
+          <SplitColumns>
+            <SplitColumn
+              tone="indigo"
+              eyebrow="Motion 1 · Internal"
+              title="Make your company agent-native"
+            >
+              <SplitItem>
+                An internal operating brain that unblocks your own teams — ops, support, finance,
+                product — on the tools they already use.
+              </SplitItem>
+              <SplitItem>A shared brain over your systems, not per-laptop context</SplitItem>
+              <SplitItem>Skills &amp; agents your teams author and own</SplitItem>
+              <SplitItem>Every run and correction compounds internally</SplitItem>
+              <SplitItem>
+                <Caption mono>Shows up as leaner ops on the P&amp;L</Caption>
+              </SplitItem>
+            </SplitColumn>
+            <SplitColumn
+              tone="violet"
+              eyebrow="Motion 2 · Product"
+              title="Make your product agent-native"
+            >
+              <SplitItem>
+                Embed the layer beneath your own SaaS so every customer gets an AI-native surface —
+                without building the infrastructure yourself.
+              </SplitItem>
+              <SplitItem>An isolated, governed brain per customer / tenant</SplitItem>
+              <SplitItem>Agent experiences you ship to your users</SplitItem>
+              <SplitItem>New revenue &amp; retention, not just internal savings</SplitItem>
+              <SplitItem>
+                <Caption mono>Shows up as a differentiated product</Caption>
+              </SplitItem>
+            </SplitColumn>
+          </SplitColumns>
+          <Caption className="dk-gap">
+            <em>
+              Different packaging, one platform — so you never rebuild the substrate to switch
+              motions.
+            </em>
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 25 · Product transformation ──────────────────────────────────────
+     * `.three-box` again, same map as slide 8. Icons dropped for the same reason: three cards
+     * already separated by kicker and tone do not also need a glyph, and the source's are the same
+     * three generic shapes reused. */
+    {
+      id: 'product-transformation',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Product Transformation"
+            eyebrowTone="violet"
+            title="Make your product agent-native — on the same layer."
+            subtitle="Give every customer a living brain and agents over their own data. The infrastructure ships with Synos, so your team builds the experience, not the plumbing."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              kicker="A brain per customer"
+              title="Their data, mapped automatically"
+              body="Agentic profilers scan each customer's tables and documents, build an entity graph, and stand up an isolated, tenant-scoped brain — no manual onboarding per account."
+            />
+            <UseCaseCard
+              tone="emerald"
+              kicker="Agents you ship to users"
+              title="An AI-native surface in your product"
+              body="Insights, planning, diagnostics, assistants — authored once as skills, exposed to your customers through chat, Slack, or your own UI. Governed and cost-metered per tenant."
+            />
+            <UseCaseCard
+              tone="violet"
+              kicker="Compounds per account"
+              title="Gets smarter with every use"
+              body="Every customer interaction and correction feeds that tenant's brain. Your product's value grows per account over time — a moat competitors can't copy by swapping models."
+            />
+          </UseCaseGrid>
+          <Caption className="dk-gap">
+            <em>
+              The pattern SaaS teams use to turn “AI-first” ambition into a shipped, differentiated
+              product — in weeks, not a year.
+            </em>
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 26 · Templated brains ────────────────────────────────────────────
+     * Six function templates. The colour-coding is the content here: six cards that all say "a
+     * brain for X" are told apart by hue and nothing else, which is why the bullets read the card's
+     * own kicker variable rather than a colour restated per list. The ops-buyer port lost exactly
+     * this and it took an A/B against the shipped slide to see it. */
+    {
+      id: 'templated-brains',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Templated Brains"
+            eyebrowTone="indigo"
+            title="A starting brain for every operating team."
+            subtitle="Pre-built for the functions a lean company runs — live in weeks, then tuned to you."
+          />
+          <UseCaseGrid>
+            {[
+              ['indigo', 'Revenue · Pipeline', 'Sales Brain', ['Lead triage & instant follow-up', 'AI battlecards & objection handling', 'Pipeline hygiene & deal nudges', 'Account & competitor context']],
+              ['amber', 'Growth · Demand', 'Marketing Brain', ['Campaign planning & decisioning', 'Content & creative drafting', 'Channel & ROAS performance digests', 'Audience & cohort context']],
+              ['emerald', 'Operations · SOPs', 'Internal Ops Brain', ['Weekly ops digests & exceptions', 'SOP capture & playbook lookup', 'Vendor / supply / fleet monitoring', 'Incident & escalation handling']],
+              ['violet', 'Discovery · Roadmap', 'Product Brain', ['PRDs & specs drafted from real context', 'Roadmap trade-offs on live usage data', 'Feature adoption & funnel digests', 'Feedback & research → themes → backlog']],
+              ['indigo', 'FP&A · Spend', 'Finance Brain', ['Budget & spend pacing', 'Margin & unit-economics watch', 'Anomaly & variance alerts']],
+              ['red', 'Customer · Retention', 'Support / CX Brain', ['Ticket triage & drafted replies', 'Voice-of-customer themes', 'Churn & CSAT signal watch']],
+            ].map(([tone, kicker, title, items]) => (
+              <UseCaseCard
+                key={title}
+                tone={tone}
+                kicker={kicker}
+                title={title}
+                body={
+                  <ul className="tb-tpl-list">
+                    {items.map((i) => (
+                      <li key={i}>{i}</li>
+                    ))}
+                  </ul>
+                }
+              />
+            ))}
+          </UseCaseGrid>
+          <Caption className="dk-gap-sm">
+            <strong>Templates are the starting point, not the ceiling.</strong> Each ships day-one and
+            then <em>compounds on your data and your corrections</em> until it operates the way you do
+            — and any function not shown here is built on the same rails, owned and extended by your
+            team.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 27 · What your teams get ─────────────────────────────────────────
+     * Three functions, each a checklist plus a result line. The result is the row that matters, so
+     * it rides as a `Caption mono` under the list rather than as another bullet. */
+    {
+      id: 'what-teams-get',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="What Your Teams Get"
+            eyebrowTone="emerald"
+            title="Run leaner and faster — where it shows up on the P&L."
+            subtitle="The same team, doing more — because the repetitive work runs itself and the judgement work is better-informed."
+          />
+          <UseCaseGrid>
+            {[
+              ['indigo', 'Revenue', 'Sales Ops', ['Leads followed up instantly, not next day', 'Every rep armed with live battlecards', 'Pipeline kept clean without nagging'], '↑ Higher conversion & revenue per rep'],
+              ['amber', 'Demand', 'Marketing Ops', ['Campaigns planned & launched faster', 'More content, on-brand, less manual effort', 'Spend steered by always-on performance reads'], '↑ More qualified leads & better ROAS'],
+              ['emerald', 'Efficiency', 'Internal Ops', ['Manual reporting & monitoring runs itself', 'Issues caught early, fewer fire-drills', 'Institutional knowledge survives churn'], '↑ Leaner ops, faster cycles, fewer errors'],
+            ].map(([tone, kicker, title, items, result]) => (
+              <UseCaseCard
+                key={title}
+                tone={tone}
+                kicker={kicker}
+                title={title}
+                body={
+                  <>
+                    <ul className="tb-tpl-list">
+                      {items.map((i) => (
+                        <li key={i}>{i}</li>
+                      ))}
+                    </ul>
+                    <Caption mono>{result}</Caption>
+                  </>
+                }
+              />
+            ))}
+          </UseCaseGrid>
+          <Caption className="dk-gap">
+            <em>
+              The compounding effect: the brain gets smarter, the agents do more, and the team's
+              leverage grows every quarter — without growing headcount at the same rate.
+            </em>
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 28 · How a brand gets there ──────────────────────────────────────
+     * Discover / build / hand over. Same `PhaseRow` shape as the autonomy stages, and the same
+     * dropped arrows. */
+    {
+      id: 'how-it-lands',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="How a Brand Gets There"
+            eyebrowTone="indigo"
+            title="Live in weeks — and your team owns it."
+            subtitle="We forward-deploy engineers alongside your team to build the 20% custom to your business, then hand it over."
+          />
+          <PhaseRow>
+            <PhaseCard
+              badge="01 · DISCOVER"
+              title="Pair with your team"
+              body="We sit with Sales, Marketing & Ops, connect your systems, and pick the highest-leverage workflows to start with."
+            />
+            <PhaseCard
+              position="bridge"
+              badge="02 · BUILD"
+              title="Stand up the brains + agents"
+              body="Deploy the templated brains, tune them to your data, and ship the first agents and apps on the governed layer."
+            />
+            <PhaseCard
+              position="far"
+              badge="03 · HAND OVER"
+              title="Your team carries it forward"
+              body="Non-coders author and tweak workflows in plain English. The brain compounds inside your business — not ours."
+            />
+          </PhaseRow>
+          <Callout tone="indigo" className="dk-gap">
+            <strong>Platform + people.</strong> The layer stands on its own; the FDE team gets you to{' '}
+            <em>outcomes this quarter</em>, not just a tool installed.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 29 · The outcome ─────────────────────────────────────────────────
+     * A vision slide: a headline and three payoff pills. `BigTypeSlide` carries the headline; the
+     * pills are a Columns of three Callouts in its children slot, which is what that slot is for. */
+    {
+      id: 'the-outcome',
+      variant: 'bigType',
+      node: (
+        <BigTypeSlide
+          stage={false}
+          eyebrow="The Outcome"
+          line1="Lean teams running Sales, Marketing & Ops"
+          line2={<>on a <span className="sk-gradient-text">brain that compounds</span>.</>}
+        >
+          {/* Three across, so UseCaseGrid rather than Columns — `Columns` is a two-up and wrapped
+              these 2 + 1, which reads as one payoff being less important than the other two. */}
+          <UseCaseGrid className="dk-gap">
+            <UseCaseCard tone="indigo" title="Higher sales" body="Faster follow-up, better-armed reps, cleaner pipeline." />
+            <UseCaseCard tone="amber" title="More leads" body="More campaigns & content, steered by live performance." />
+            <UseCaseCard tone="emerald" title="Leaner ops" body="Repetitive work automated; knowledge that never leaves." />
+          </UseCaseGrid>
+        </BigTypeSlide>
+      ),
+    },
+
+    /* ── 30 · To the demo ─────────────────────────────────────────────────
+     * The handover to the live walkthrough. Four chips of what is about to be shown. */
+    {
+      id: 'to-the-demo',
+      variant: 'bigType',
+      node: (
+        <BigTypeSlide
+          stage={false}
+          eyebrow="Let's see it live"
+          line1="From slides to the"
+          line2={<span className="sk-gradient-text">running product.</span>}
+          sub="A quick walkthrough of the real platform — the brain, an agent running, and the governance underneath."
+        >
+          <ChipRow center className="dk-gap">
+            <Chip size="pill">The Company Brain in action</Chip>
+            <Chip size="pill">An agent run, step by step</Chip>
+            <Chip size="pill">Human review + audit trail</Chip>
+            <Chip size="pill">Slack / WhatsApp delivery</Chip>
+          </ChipRow>
+        </BigTypeSlide>
+      ),
+    },
+
+    /* ── 31 · Appendix divider ────────────────────────────────────────────
+     * Everything after this is the engineering deep dive. */
+    {
+      id: 'under-the-hood',
+      variant: 'bigType',
+      node: (
+        <BigTypeSlide
+          stage={false}
+          eyebrow="Appendix"
+          line1="Under the"
+          line2={<span className="sk-gradient-text">hood</span>}
+          sub="Architecture, retrieval, governance and the self-learning loop — the engineering deep dive."
+        />
+      ),
+    },
   ]
 
   const byId = new Map(slides.map((s) => [s.id, s]))

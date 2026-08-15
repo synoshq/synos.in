@@ -360,3 +360,33 @@
   gap: var(--sk-space-3);
   align-items: stretch;
 }
+
+/* A checklist inside a UseCaseCard. Identical to the ops deck's `.ob-tpl-list`, and kept as a copy
+   rather than shared for one reason: the bullet colour reads `--sk-usecase-kicker`, the variable
+   UseCaseCard sets for its own kicker, so the six template cards stay colour-coded to their card.
+   The ops-buyer port lost that colour-coding on its first pass — six cards that had been six
+   different colours went identical — and it was caught by an A/B against the shipped slide, not by
+   any gate. Restating it here keeps that fix visible in both decks. */
+.tb-tpl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tb-tpl-list li {
+  position: relative;
+  padding-left: 13px;
+}
+.tb-tpl-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 2px;
+  background: var(--sk-usecase-kicker, var(--sk-border-2));
+  opacity: 0.75;
+}
