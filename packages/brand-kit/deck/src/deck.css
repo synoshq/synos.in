@@ -43,6 +43,95 @@
   gap: 5px;
 }
 
+/* ── The architecture bands (`.dk-band`) ───────────────────────────────────
+ *
+ * The two architecture slides are a STACK: a model/harness band on top, the SynOS core in the
+ * middle, a systems-of-record band underneath. Three horizontal bands, one above the other, and the
+ * whole point of the drawing is that they are the same object at three levels.
+ *
+ * The rebuild de-boxed the outer two (decision C) and left the middle one boxed, because the middle
+ * one is a `Callout` and the outer two were composed from a bare `Eyebrow` plus a row. Two things
+ * broke, and they are the same thing twice:
+ *
+ *   1. The outer bands stopped having edges, so there was nothing left to align with. Their
+ *      contents shrink-to-fit — the top row ended ~500px short of the card, the bottom row ~750px
+ *      short — while the core spanned the full width. A stack whose layers are three different
+ *      widths is not a stack.
+ *   2. The captions under them are centred, so a centred line sat over a left-ragged row inside a
+ *      full-width card, centred on nothing.
+ *
+ * Anoop caught both by eye, twice, while every measurement was green — the same failure decision J
+ * records for the pillar cards, and the same resolution: **a box that IS the grouping stays.** The
+ * de-box decision is unchanged everywhere it applies to prose blocks in a grid.
+ *
+ * Geometry is the source's own (`.d1-harness`, `.d1-sor` in synos-vc-deck-v6.html), except padding,
+ * which is tightened from 7/6px to 5px vertical. That is what the two bands cost in height, and
+ * these slides are the tightest in the deck — see the density note in `presenting-main.jsx`.
+ */
+.dk-band {
+  border-radius: 12px;
+  padding: 5px 14px;
+}
+.dk-band--models {
+  background: var(--sk-amber-bg);
+  border: 1.5px solid var(--sk-amber-br);
+}
+.dk-band--sor {
+  background: var(--sk-surface-2);
+  border: 1.5px solid var(--sk-border-2);
+  text-align: center;
+}
+/* The chips centre inside the band, as the source has them, rather than ragging off the left edge
+   of a band that now visibly extends past them. */
+.dk-band--sor .sk-chip-row {
+  justify-content: center;
+}
+
+/* ── What the bands cost, and where it was paid from ───────────────────────
+ *
+ * Two bands is two borders and four paddings: measured, **+24px**, and the two architecture slides
+ * had 0px spare. They are the densest slides in the deck — six pillars, six harness tiles, six
+ * guardrail chips, six systems chips, all of which are labels and none of which may be cut.
+ *
+ * So the 24px comes out of RHYTHM, scoped to `.sk-slide--arch` so no other slide moves. Every
+ * declaration below is a gap or a margin; not one is type, colour, or content. Itemised, because a
+ * pile of 2px shavings is otherwise indistinguishable from drift:
+ *
+ *   header margin-bottom      12 -> 8    -4
+ *   h1 margin-bottom           8 -> 6    -2   (bottom only — css-lint rule 3 forbids the rest)
+ *   band padding               5 -> 4    -4   (2 bands, top and bottom)
+ *   caption above the core     6 -> 3    -3
+ *   the two gaps inside it     6 -> 4    -4
+ *   the core's tag line        8 -> 4    -4
+ *   gap above the SOR band     6 -> 3    -3
+ *                                       ----
+ *                                        -24
+ *
+ * These two slides are now AT their limit, not near it: the probe reports 0px spare on both. Adding
+ * one line of prose to a pillar, or one more chip to a row, will push them over — and that is
+ * content feedback, not a CSS bug. The presenting cut has room (its pillar prose is shorter), which
+ * is why this block is scoped to the frame rather than the deck.
+ */
+.sk-slide--arch .sk-header {
+  margin-bottom: 8px;
+}
+.sk-slide--arch .sk-header h1 {
+  margin-bottom: 6px;
+}
+.sk-slide--arch .dk-band {
+  padding: 4px 14px;
+}
+.sk-slide--arch > .sk-caption.dk-gap-sm,
+.sk-slide--arch > .dk-band--sor.dk-gap-sm {
+  margin-top: 3px;
+}
+.sk-slide--arch .sk-callout > .dk-gap-sm {
+  margin-top: 4px;
+}
+.sk-slide--arch .sk-callout > .sk-caption {
+  margin-top: 4px;
+}
+
 /* A chip whose label carries a second, quieter line. Source: `.d1-chip .d1-kd`, `.sm-st .xs`.
  *
  * The kit's Chip is deliberately a single nowrap line, and stays that way. Most of what used this

@@ -116,10 +116,13 @@ export const archParts = (K) => {
     </Callout>
   )
 
+  /* `even` (the TileRow default) is load-bearing here, not cosmetic: six equal columns filling the
+     band, which is what makes the top layer of the stack the same width as the two below it. The
+     source draws it as `grid-template-columns: repeat(6, 1fr)` for the same reason. */
   const HarnessRow = ({ label, chips }) => (
-    <div>
+    <div className="dk-band dk-band--models">
       <Eyebrow tone="muted">{label}</Eyebrow>
-      <TileRow even={false} className="dk-tile-row-tight">
+      <TileRow className="dk-tile-row-tight">
         {chips.map(([nm, kd]) => (
           <Tile key={nm} size="sm" mono name={nm} kind={kd} />
         ))}
@@ -128,7 +131,7 @@ export const archParts = (K) => {
   )
 
   const SorRow = ({ label, chips }) => (
-    <div className="dk-gap-sm">
+    <div className="dk-gap-sm dk-band dk-band--sor">
       <Eyebrow tone="muted">{label}</Eyebrow>
       <ChipRow tight>
         {chips.map((c) => (
