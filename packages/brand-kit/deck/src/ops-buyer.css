@@ -646,3 +646,33 @@
   font-size: 11px;
   color: var(--sk-violet);
 }
+
+/* A five-stage pipeline. The kit's StepGrid stops at four because four is where a slide still
+   gives each step a readable measure; five needs the cards to carry less, which they do here. The
+   CARDS are the kit's StepCard — only the five-track geometry is local. */
+.ob-pipe {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sk-space-3);
+  align-items: stretch;
+}
+/* The status line each stage ends with: live, in build, accumulating, roadmap. Mono because it is
+   a state, not prose. */
+.ob-stage-state {
+  margin-top: var(--sk-space-2);
+  font-family: var(--sk-font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.5px;
+  color: var(--sk-emerald);
+}
+.ob-stage-state--build { color: var(--sk-amber); }
+.ob-stage-state--next { color: var(--sk-violet); }
+
+/* The example line on a memory-type card: a literal value, so mono. */
+.ob-example {
+  margin-top: var(--sk-space-2);
+  font-family: var(--sk-font-mono);
+  font-size: 9.5px;
+  color: var(--sk-muted);
+  line-height: 1.35;
+}

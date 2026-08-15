@@ -1685,5 +1685,218 @@ export const deck = (K) => {
         </SlideFrame>
       ),
     },
+    /* ── 32 · What lives in the brain ─────────────────────────────────────
+     * Eight memory types, four across, two rows — UseCaseGrid at `columns={4}`, which is the
+     * column count added earlier in this port. `.t-store` is the kicker, `.t-ex` a mono example
+     * line, and the hue groups the types: knowledge indigo, rules red, outcome emerald, learning
+     * violet. */
+    {
+      id: 'memory-types',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="What Lives In The Brain"
+            eyebrowTone="indigo"
+            title="Eight kinds of memory — every shape an agent needs."
+            subtitle="Schema-less and extensible, each mapped to a concrete store so the brain stays queryable, auditable, and rollback-safe."
+          />
+          <UseCaseGrid columns={4}>
+            <UseCaseCard
+              tone="indigo"
+              kicker="Knowledge graph"
+              title="Semantic"
+              body={
+                <>
+                  Stable facts about entities — customer, product, cohort, region.
+                  <div className="ob-example">“Acme Corp · T2 · Mumbai · WhatsApp-preferred”</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Operational store"
+              title="Episodic"
+              body={
+                <>
+                  Time-stamped events — orders, messages, sessions, tickets.
+                  <div className="ob-example">“Order #4821 placed · 19:42”</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="violet"
+              kicker="Skill library"
+              title="Procedural"
+              body={
+                <>
+                  How-to recipes — the workflows and playbooks agents follow.
+                  <div className="ob-example">“Win-back campaign workflow”</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="red"
+              kicker="Policy graph"
+              title="Policy / Rules"
+              body={
+                <>
+                  Brand-mandated constraints — frequency caps, channel + consent rules.
+                  <div className="ob-example">“Never message before 9am local”</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Knowledge graph"
+              title="Preferences"
+              body={
+                <>
+                  Per-entity modifiers learned from behaviour.
+                  <div className="ob-example">“Prefers WhatsApp · evenings”</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="amber"
+              kicker="Decision log"
+              title="Decision Trace"
+              body={
+                <>
+                  Input-state → action → outcome. Every agent call recorded.
+                  <div className="ob-example">“Win-back dispatch · WA · 10% offer”</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="emerald"
+              kicker="Outcome log"
+              title="Reward / Outcome"
+              body={
+                <>
+                  Did the action move the baseline? Measured uplift per action.
+                  <div className="ob-example">“10% offer · conv +3.2% vs baseline”</div>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="violet"
+              kicker="Review queue"
+              title="Reflective"
+              body={
+                <>
+                  Human + agent corrections compounded back. One-line corrections become rules.
+                  <div className="ob-example">“Exception: skip VIP tier on discount blasts”</div>
+                </>
+              }
+            />
+          </UseCaseGrid>
+          <Caption className="dk-gap-sm">
+            <strong>Open list, not closed.</strong> Adding a new kind of memory is configuration,
+            not a migration.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 36 · The data flywheel ───────────────────────────────────────────
+     * A five-stage pipeline, three payoffs, an honesty band. The cards are kit StepCards; only the
+     * five-track geometry is local, because StepGrid stops at four and a fifth column is this
+     * slide's problem rather than the kit's. */
+    {
+      id: 'data-flywheel',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="The Data Flywheel"
+            eyebrowTone="violet"
+            title="Every run is recorded. Every record is future training data."
+            subtitle="The tracing that ships today is quietly building your own training dataset — the raw material for models trained on how your company works. Built data-first, on purpose."
+          />
+          <div className="ob-pipe">
+            <StepCard
+              bar={false}
+              num="01"
+              title="Every run captured"
+              body={
+                <>
+                  Inputs, tool calls, decisions, outcome — full lineage on every agent run.
+                  <div className="ob-stage-state">● LIVE TODAY</div>
+                </>
+              }
+            />
+            <StepCard
+              bar={false}
+              num="02"
+              title="Corrections = labels"
+              body={
+                <>
+                  Every human correction and approval becomes a labelled example — for free, in the flow of work.
+                  <div className="ob-stage-state">● LIVE TODAY</div>
+                </>
+              }
+            />
+            <StepCard
+              bar={false}
+              num="03"
+              title="Your own scoring"
+              body={
+                <>
+                  Agents scored against your outcomes, not public benchmarks — ground truth only you own.
+                  <div className="ob-stage-state ob-stage-state--build">◐ IN BUILD</div>
+                </>
+              }
+            />
+            <StepCard
+              bar={false}
+              num="04"
+              title="Outcome-verified data"
+              body={
+                <>
+                  Curated for you: the runs that worked, the corrections that fixed them, the scores that prove it.
+                  <div className="ob-stage-state">● ACCUMULATING NOW</div>
+                </>
+              }
+            />
+            <StepCard
+              bar={false}
+              num="05"
+              title="Your own models"
+              body={
+                <>
+                  Custom and smaller models tuned to your workflows — trained on the loop, run on your infrastructure.
+                  <div className="ob-stage-state ob-stage-state--next">◆ ROADMAP</div>
+                </>
+              }
+            />
+          </div>
+          <UseCaseGrid className="dk-gap-sm">
+            <UseCaseCard
+              tone="emerald"
+              kicker="Cost"
+              title="Small models carry the routine"
+              body="Cheaper models handle the ~80% of routine work at a fraction of the token cost — the open-source future, powered by your data."
+            />
+            <UseCaseCard
+              tone="indigo"
+              kicker="Control"
+              title="Your data, your models, your infra"
+              body="Nothing trains a public model. Your models live in your environment — switch providers freely without losing what you've learned."
+            />
+            <UseCaseCard
+              tone="violet"
+              kicker="Advantage"
+              title="A dataset nobody can buy"
+              body="Minted from your own operations and corrections — the one asset a competitor can't replicate."
+            />
+          </UseCaseGrid>
+          <div className="ob-band-violet dk-gap-sm">
+            <strong>Where we honestly are:</strong> the data layer — tracing, corrections,
+            agent-native storage — is live and accumulating in every deployment. The scoring and
+            training layers are still being built — deliberately data-first, because{' '}
+            <strong>capture is the scarce part</strong>; training stacks on top, with no rebuild.
+          </div>
+        </SlideFrame>
+      ),
+    },
   ]
 }
