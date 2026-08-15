@@ -32,11 +32,12 @@ import {
   FLYWHEEL_SVG,
   SOR_SVG,
   BUILD_SVG,
+  TRACE_HTML,
 } from './tech-buyer-svgs.js'
 
-/* Under construction. While this is exported, `build.mjs` reports the count instead of asserting
-   it — the deliberate, visible opt-out, so that a deck cannot ship short by being forgotten. */
-export const wip = true
+/* COMPLETE at 42 of 42. The `wip` export is gone, so `build.mjs` now ASSERTS the section count on
+   every build and the ORDER check below fails on a slide named but not written — a deck that
+   silently loses a section fails rather than ships short. */
 
 /*
  * The running order, stated once and enforced.
@@ -1751,15 +1752,578 @@ export const deck = (K) => {
         />
       ),
     },
+
+    /* ── 32 · Architecture ────────────────────────────────────────────────
+     * Identical to the ops deck's, and lifted from it rather than re-derived — the two decks share
+     * this slide word for word, and two hand-written copies of one diagram is how they drift. The
+     * three bands are the same stack rule as slide 9: outer bands are boxes, all three the same
+     * width. */
+    {
+      id: 'architecture',
+      variant: 'arch',
+      node: (
+        <SlideFrame stage={false} variant="arch" density="compact">
+          <SlideHeader
+            eyebrow="Architecture"
+            eyebrowTone="indigo"
+            title="One substrate. Any tool, any model."
+            subtitle="Engineering sets the rails once. Non-engineers ship safely on top."
+          />
+          <Stack gap="tight">
+            <Band tone="sor" label="Bring Your Own Tool — all speak one interface (MCP)">
+              <TileRow className="dk-tile-row-tight">
+                <Tile size="sm" mono name="ChatGPT" kind="teams" />
+                <Tile size="sm" mono name="Claude Code" kind="power users" />
+                <Tile size="sm" mono name="Cursor" kind="IDE" />
+                <Tile size="sm" mono name="In-house agents" kind="custom" />
+                <Tile size="sm" mono name="Synos Apps" kind="sandboxed" />
+                <Tile size="sm" mono name="Synos Agents" kind="managed" />
+              </TileRow>
+            </Band>
+            <Caption mono>One interface · any model · swap for price or capability</Caption>
+            <div className="dk-band tb-band--core">
+              <div className="tb-band-head">
+                <span className="tb-band-title">Synos Core</span>
+                <Chip size="sm" tone="indigo">
+                  Self-hosted · multi-tenant · model-agnostic · tool-agnostic
+                </Chip>
+              </div>
+              <PillarGrid columns={4}>
+                <PillarCard
+                  brain
+                  wide={false}
+                  name="Context Brain"
+                  desc="Knowledge graph across sources. Entities, relationships, citations."
+                />
+                <PillarCard
+                  name="Skills Library"
+                  desc="Workflows authored in plain English. Shared & versioned."
+                />
+                <PillarCard
+                  name="System of Record"
+                  desc="Schema-enforced operational data. Agents write, apps read."
+                />
+                <PillarCard
+                  name="Self-Learning Loop"
+                  desc="Every correction reviewed & promoted. Improves without rewrites."
+                />
+              </PillarGrid>
+              <ChipRow tight className="dk-gap-sm">
+                <Chip size="sm" tone="indigo">Guardrails</Chip>
+                <Chip size="sm">RBAC · role · tenant</Chip>
+                <Chip size="sm">Audit on every action</Chip>
+                <Chip size="sm">Build scan on every app</Chip>
+                <Chip size="sm">Egress proxy</Chip>
+                <Chip size="sm">Kill-switch · approvals</Chip>
+              </ChipRow>
+            </div>
+            <Band tone="sor" label="Your existing systems — connected, not replaced">
+              <ChipRow tight>
+                <Chip size="sm" mono>Warehouse · BigQuery</Chip>
+                <Chip size="sm" mono>CRM · Salesforce · HubSpot</Chip>
+                <Chip size="sm" mono>Sheets · Docs · Notion</Chip>
+                <Chip size="sm" mono>Drive · S3</Chip>
+                <Chip size="sm" mono>Slack · Email · WhatsApp</Chip>
+                <Chip size="sm" mono>Ads · GA · Tickets</Chip>
+              </ChipRow>
+            </Band>
+            <div className="tb-actors">
+              <Callout tone="indigo" label="Engineering — sets rails once">
+                Connects systems · defines tools + permissions · picks models. Stops being the
+                workflow bottleneck.
+              </Callout>
+              <Callout tone="violet" label="Non-engineering — ships daily">
+                Sales · Marketing · Ops author workflows in plain English. Safely. With analytics.
+              </Callout>
+            </div>
+          </Stack>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 33 · What lives in the brain ─────────────────────────────────────
+     * Eight memory types, four across. The hue groups them — knowledge indigo, rules red, outcome
+     * emerald, learning violet — so the grid reads as four families rather than eight cards. */
+    {
+      id: 'memory-types',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="What Lives In The Brain"
+            eyebrowTone="indigo"
+            title="Eight kinds of memory — every shape an agent needs."
+            subtitle="Schema-less and extensible, each mapped to a concrete store so the brain stays queryable, auditable, and rollback-safe."
+          />
+          <UseCaseGrid columns={4}>
+            {[
+              ['indigo', 'Knowledge graph', 'Semantic', 'Stable facts about entities — customer, product, cohort, region.', '“Acme Corp · T2 · Mumbai · WhatsApp-preferred”'],
+              ['indigo', 'Operational store', 'Episodic', 'Time-stamped events — orders, messages, sessions, tickets.', '“Order #4821 placed · 19:42”'],
+              ['violet', 'Skill library', 'Procedural', 'How-to recipes — the workflows and playbooks agents follow.', '“Win-back campaign workflow”'],
+              ['red', 'Policy graph', 'Policy / Rules', 'Brand-mandated constraints — frequency caps, channel + consent rules.', '“Never message before 9am local”'],
+              ['indigo', 'Knowledge graph', 'Preferences', 'Per-entity modifiers learned from behaviour.', '“Prefers WhatsApp · evenings”'],
+              ['amber', 'Decision log', 'Decision Trace', 'Input-state → action → outcome. Every agent call recorded.', '“Win-back dispatch · WA · 10% offer”'],
+              ['emerald', 'Outcome log', 'Reward / Outcome', 'Did the action move the baseline? Measured uplift per action.', '“10% offer · conv +3.2% vs baseline”'],
+              ['violet', 'Review queue', 'Reflective', 'Human + agent corrections compounded back. One-line corrections become rules.', '“Exception: skip VIP tier on discount blasts”'],
+            ].map(([tone, kicker, title, def, ex]) => (
+              <UseCaseCard
+                key={title}
+                tone={tone}
+                kicker={kicker}
+                title={title}
+                body={
+                  <>
+                    {def}
+                    <div className="tb-example">{ex}</div>
+                  </>
+                }
+              />
+            ))}
+          </UseCaseGrid>
+          <Caption className="dk-gap-sm">
+            <strong>Open list, not closed.</strong> Adding a new kind of memory is configuration, not
+            a migration.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 34 · Retrieval, deep ─────────────────────────────────────────────
+     * Two modes side by side: a deterministic five-step pack assembly, and the agentic traversal
+     * with its own diagram plus a mono trace of the four tool calls it actually made. The trace is
+     * the most convincing object on the slide for an engineer — it is the thing that says this is
+     * implemented rather than described — so it is carried verbatim. */
+    {
+      id: 'retrieval-deep',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Retrieval"
+            eyebrowTone="indigo"
+            title="Every agent gets the right slice — deterministic or agentic."
+            subtitle="Job-specific context packs assembled per query. Hybrid retrieval, authority-ranked, freshness-aware, policy-redacted. MCP-native envelope."
+          />
+          <div className="tb-retrieval">
+            <div>
+              <div className="tb-ret-head">
+                <Chip size="sm" tone="indigo">Mode A</Chip>
+                <span className="tb-ret-name">Deterministic pack assembly</span>
+                <span className="tb-ret-when">~300ms · single call</span>
+              </div>
+              <div className="tb-ret-flow">
+                {[
+                  ['Query · scoped by agent role + intent', '“Next-best action for Maya” + agent capabilities + project_id'],
+                  ['Hybrid retrieval · vec + graph + keyword', 'ChromaDB embeddings · Neo4j multi-hop · Postgres FTS — fused'],
+                  ['Authority + freshness rank', 'AgentPromoted > Document > SOR row · staleness penalty'],
+                  ['Policy redact + token budget', 'RBAC filter · PII redaction · 4K/16K/32K envelope per agent'],
+                  ['Context Pack → MCP response', 'Typed JSON · citation IDs · authority score · staleness ts'],
+                ].map(([name, desc], i) => (
+                  <div className="tb-ret-step" key={name}>
+                    <div className="tb-ret-num">{i + 1}</div>
+                    <div>
+                      <div className="tb-ret-name">{name}</div>
+                      <div className="tb-ret-desc">{desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="tb-ret-head">
+                <Chip size="sm" tone="violet">Mode B</Chip>
+                <span className="tb-ret-name">Agentic retrieval — multi-step graph traversal</span>
+                <span className="tb-ret-when">3–6 hops · adaptive</span>
+              </div>
+              <div className="tb-agentic diagram-svg">
+                <div dangerouslySetInnerHTML={{ __html: RETRIEVAL_SVG }} />
+                <div className="tb-trace" dangerouslySetInnerHTML={{ __html: TRACE_HTML }} />
+              </div>
+            </div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 35 · Compared to the open-source stack ───────────────────────────
+     * Three categories x what-it-does / what-it-is-not. `Matrix` in `rules` form: the label column
+     * carries the category name plus its projects and star counts, which is exactly the label +
+     * `sub` shape.
+     *
+     * The star counts are dated ON the slide because they rot. Carried verbatim, dates included —
+     * a number without its date is the kind of claim that quietly becomes wrong. */
+    {
+      id: 'oss-question',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Compared to the open-source stack"
+            eyebrowTone="violet"
+            title="“Why not just use the open-source graph memory?”"
+            subtitle="Three unrelated categories get named in that one question, and the honest answer differs per category. Star counts: GitHub API, 2026-08-15 — they rot fast, so they are dated."
+          />
+          <Matrix
+            variant="rules"
+            labelWidth="220px"
+            columns={[{ label: 'What it does' }, { label: 'What it is not', width: '1.35fr' }]}
+            rows={[
+              {
+                label: 'GraphRAG',
+                sub: 'LightRAG 38.9k★ · Microsoft GraphRAG 35.5k★',
+                cells: [
+                  { text: 'Turns a document corpus you have already collected into a queryable knowledge graph. Cheap, good, available today.' },
+                  {
+                    text: (
+                      <>
+                        The biggest category by stars — and <strong>not a memory system</strong>. No
+                        connectors, no tenancy, no temporality, no live source. Collecting, governing
+                        and connecting to running systems is left entirely to you.
+                      </>
+                    ),
+                  },
+                ],
+              },
+              {
+                label: 'Graph memory engines',
+                sub: 'cognee 30.0k★ · Graphiti 29.9k★ · Semantica 7.5k★',
+                cells: [
+                  { text: 'Real peers on the graph itself. Graphiti has the best temporal model in the field; cognee is the most complete system and the honest benchmark.' },
+                  {
+                    text: (
+                      <>
+                        <strong>Components, not layers.</strong> Graphiti ships{' '}
+                        <strong>zero connectors</strong> — its own README says bring your own database
+                        and build your own tooling, and Zep's scaled engine is proprietary. cognee
+                        reaches for Graphiti to get temporal.
+                      </>
+                    ),
+                  },
+                ],
+              },
+              {
+                label: 'Agent memory, no graph',
+                sub: 'mem0 63.3k★ · letta 24.2k★',
+                cells: [
+                  { text: 'Conversational personalisation for one agent — memory blocks, extracted facts, vector recall.' },
+                  {
+                    text: (
+                      <>
+                        mem0 — the most-starred of all —{' '}
+                        <strong>deleted graph memory from its open source in v3</strong> (~4,000
+                        lines, all five drivers) and made it Platform-only. A graph is not table
+                        stakes; it has to earn its ingestion cost.
+                      </>
+                    ),
+                  },
+                ],
+              },
+            ]}
+          />
+          <Callout tone="violet" className="dk-gap-sm">
+            <strong>The fact that separates us from all three:</strong> no system in this study
+            computes a single column statistic on a structured source. Semantica does schema
+            introspection plus <code>SELECT … LIMIT</code>; cognee pulls rows in through{' '}
+            <code>dlt</code> and derives foreign-key edges. We <strong>profile in place</strong> —
+            null rate, distinct counts, length bounds, samples — then semantically type each column
+            and bind your metrics to it, while{' '}
+            <strong>the rows stay in your warehouse and are queried live at answer time</strong>.
+            That is data residency, cost and freshness in one design decision.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 36 · The honest comparison ───────────────────────────────────────
+     * Ours / theirs, and the right column is the point of the slide: six places named competitors
+     * are genuinely ahead. Every claim carries its matrix reference, which is what makes the slide
+     * checkable rather than assertive — those refs are carried verbatim as mono captions rather
+     * than dropped as clutter, because a citation you cannot follow is decoration. */
+    {
+      id: 'oss-comparison',
+      node: (
+        <SlideFrame stage={false} density="compact" className="tb-overfull">
+          <SlideHeader
+            eyebrow="The honest comparison"
+            eyebrowTone="violet"
+            title="What no open-source engine ships — and the four places they are ahead of us."
+            subtitle="Read from source on 2026-08-15 across Graphiti, cognee, Semantica, LightRAG, mem0 and letta. Everything on this slide is checkable from a GitHub account, which is exactly why the right column is here."
+          />
+          <SplitColumns>
+            <SplitColumn tone="emerald" eyebrow="Ours — absent from every engine measured">
+              {[
+                [<><strong>Profiling of structured sources.</strong> Statistics plus tiered LLM semantic typing of every column. Rivals ingest rows or read schemas; none profiles.</>, 'matrix I-04 / I-05'],
+                [<><strong>Metric binding &amp; column-role grounding.</strong> What turns “a graph of your warehouse” into the right number for a business question. Unique in the field.</>, 'matrix I-07'],
+                [<><strong>Connecting a source is configuration, not engineering.</strong> 64 connectors, five separate credential surfaces with independent revocation, scheduling and incremental watermarks. Graphiti: 0 connectors. Semantica: instantiate the class, pass creds in code.</>, 'matrix I-01 / I-02 / I-03'],
+                [<><strong>A graph shaped by your domain, not by what the model found.</strong> Domain templates declare the entities, metrics and relationships; extraction is constrained by them. Semantica infers an ontology instead.</>, 'matrix G-06'],
+                [<><strong>A human corrects; nothing silently rewrites your knowledge.</strong> Writes go through a review queue. cognee auto-weights instead; Graphiti and Semantica have no gate.</>, 'matrix T-04'],
+                [<><strong>One deployment, many tenants, ACL enforced at read time per source.</strong> Project isolation across five stores, node-grained visibility tiers. cognee's ACL is dataset-grained; Graphiti's is a partition string; Semantica has none.</>, 'matrix T-01 / T-02'],
+              ].map(([body, src], i) => (
+                <SplitItem key={i}>
+                  <span>
+                    {body}
+                    <span className="tb-src">{src}</span>
+                  </span>
+                </SplitItem>
+              ))}
+            </SplitColumn>
+            <SplitColumn tone="amber" eyebrow="Theirs — where they are genuinely ahead">
+              {[
+                [<><strong>Graphiti — bi-temporal, point-in-time querying.</strong> Facts carry system and world time; “as of last quarter” is a first-class query. We track supersession only. cognee delegates to Graphiti for exactly this, which is the strongest signal available that it is the reference design.</>, 'matrix G-01 / G-02'],
+                [<><strong>Semantica — audit-grade provenance.</strong> W3C PROV-O export with a sha256 hash chain, so lineage is tamper-evident. Ours is citations and source objects.</>, 'matrix T-05 / T-06'],
+                [<><strong>cognee — self-improvement, onboarding and evaluation.</strong> Its <em>memify</em> loop folds feedback, frequency and agent traces back in as weights; it starts with embedded defaults and no infrastructure; and it has five benchmark adapters. Our human-in-the-loop gate is a deliberate trade-off, not a superiority claim.</>, 'matrix O-01 / O-02 / O-04'],
+                [<><strong>Backend choice.</strong> cognee runs on six graph backends, Graphiti on four. We are Neo4j-only.</>, 'matrix O-06'],
+              ].map(([body, src], i) => (
+                <SplitItem key={i}>
+                  <span>
+                    {body}
+                    <span className="tb-src">{src}</span>
+                  </span>
+                </SplitItem>
+              ))}
+            </SplitColumn>
+          </SplitColumns>
+          <Callout tone="indigo" className="dk-gap-sm">
+            <strong>And one thing nobody in this field can claim:</strong> a verified benchmark. We
+            have run none, and no one has independently verified mem0's or cognee's published numbers
+            either. If retrieval quality on your corpus decides the deal, the way to settle it is a
+            bake-off on your data — which we will help you set up.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 37 · The compounding flywheel ────────────────────────────────────
+     * The flywheel diagram beside three signals and the anchor line. */
+    {
+      id: 'compounding-flywheel',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="The Compounding Flywheel"
+            eyebrowTone="indigo"
+            title="Every action is captured with its outcome and its review — the material your evals and future training sets are built from."
+            subtitle="The brain holds the input. Decision traces hold the action + outcome. Human review calibrates it back. The moat is the traces, not the model."
+          />
+          <Columns>
+            <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: FLYWHEEL_SVG }} />
+            <Stack gap="snug">
+              <Callout tone="indigo" label="The best examples">
+                Strong decision traces are curated as reference examples of how your company should
+                operate.
+              </Callout>
+              <Callout tone="emerald" label="The outcome signal">
+                Actions that moved the needle get reinforced; the ones that didn't get down-weighted.
+              </Callout>
+              <Callout tone="violet" label="Human review">
+                A person reviews a sample each week; disagreements become new rules in the brain.
+              </Callout>
+              <Caption>
+                <em>The moat is the traces, not the model.</em> Years of real decisions across your
+                customers and your business can't be replicated by a competitor starting today.
+              </Caption>
+            </Stack>
+          </Columns>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 38 · Operational data ────────────────────────────────────────────
+     * The same without / with pair as slide 17, with the system-of-record diagram. */
+    {
+      id: 'operational-data',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Operational Data"
+            eyebrowTone="indigo"
+            title="A shared, governed store agents write to and read from."
+            subtitle="Agents write structured rows; apps and agents read them back. Schema-enforced, tenant-scoped, audited."
+          />
+          <SplitColumns>
+            <SplitColumn
+              tone="red"
+              eyebrow="Without the layer"
+              title="Agent outputs land in Sheets, Slack DMs, local files."
+            >
+              <SplitItem>
+                Agents have nowhere structured to write. The next run can't read the last one.
+              </SplitItem>
+              <SplitItem>No shared table for outputs.</SplitItem>
+              <SplitItem>Scattered, lost, un-reusable.</SplitItem>
+              <SplitItem>No schema, no audit.</SplitItem>
+            </SplitColumn>
+            <SplitColumn
+              tone="emerald"
+              eyebrow="With Synos — System of Record"
+              title="Project-scoped collections. Agents write, apps read — audited."
+            >
+              <SplitItem>
+                <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: SOR_SVG }} />
+              </SplitItem>
+            </SplitColumn>
+          </SplitColumns>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 39 · Safe to build ───────────────────────────────────────────────
+     * The build pipeline, same pair shape again — three slides in this appendix share it, which is
+     * the appendix's own rhythm: name the failure, then draw the gate. */
+    {
+      id: 'safe-to-build',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Safe to Build"
+            eyebrowTone="indigo"
+            title="Apps ship through a sandbox — a scanner gates every build."
+            subtitle="Code is scanned for unsafe access and secrets, then deployed to a sandboxed URL behind the egress proxy."
+          />
+          <SplitColumns>
+            <SplitColumn
+              tone="red"
+              eyebrow="Without the layer"
+              title="Apps ship straight to personal accounts."
+            >
+              <SplitItem>
+                No sandbox, no scan, no proxy, no kill-switch. Secrets leak into client code.
+              </SplitItem>
+              <SplitItem>Secrets in shipped code.</SplitItem>
+              <SplitItem>Calls to anywhere.</SplitItem>
+              <SplitItem>Personal deploy = no control.</SplitItem>
+            </SplitColumn>
+            <SplitColumn
+              tone="emerald"
+              eyebrow="With Synos — gated build pipeline"
+              title="Build → scan → compile → sandbox URL → audit row."
+            >
+              <SplitItem>
+                <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: BUILD_SVG }} />
+              </SplitItem>
+            </SplitColumn>
+          </SplitColumns>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 40 · Why Synos, why now ──────────────────────────────────────────
+     * Six reasons, three across. Icons dropped for the same reason as slides 8 and 25 — six cards
+     * already told apart by heading and tone. */
+    {
+      id: 'why-synos',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Why Synos · Why Now"
+            eyebrowTone="indigo"
+            title="Own the layer that compounds your AI transformation."
+            subtitle={
+              <>
+                Models are commodities. Tools are commodities. The brain that learns how <em>your</em>{' '}
+                company operates isn't.
+              </>
+            }
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="violet"
+              title="The brain is the moat"
+              body="Operational knowledge that defines your edge can't be rented. It compounds inside your tenant — or not at all."
+            />
+            <UseCaseCard
+              tone="indigo"
+              title="Model + tool agnostic"
+              body="Switch Anthropic ↔ OpenAI ↔ Gemini; move ChatGPT → Claude Code. Models change quarterly; the substrate shouldn't."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Sovereignty by default"
+              body="Self-hosted. Your tenant, your audit trail, your kill-switch. The opposite of vendor dependency."
+            />
+            <UseCaseCard
+              tone="violet"
+              title="Self-learning compounds"
+              body="Every run and correction accumulates in your tenant. Year-2 leverage builds; it doesn't reset with the next model."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="Custom is finally cheap"
+              body="The 20% that defines you was never going to ship from a SaaS vendor. AI-built custom now costs less than the seats you rent."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="The post-SaaS substrate"
+              body="SaaS sold seats for the common 80%. The agent era ships your custom 20% — if you own the substrate it learns on."
+            />
+          </UseCaseGrid>
+          <Caption className="dk-gap-sm">
+            <em>Own the layer. Swap the engine. Compound the transformation.</em>
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 41 · Appendix · the moat is yours ────────────────────────────────
+     * Four points under a lead paragraph. */
+    {
+      id: 'apx-the-moat',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Appendix · the moat is yours"
+            eyebrowTone="emerald"
+            title="The moat you walk away owning."
+            subtitle="Models are commodities. The brain that learns how your company works is not."
+          />
+          <Callout tone="violet">
+            Your moat is the <strong>feedback loop</strong> between your people, agents and systems —
+            captured in your own cloud, accumulating with every run, tied to how <strong>you</strong>{' '}
+            operate. Not a dataset a competitor can buy — a loop embedded in your workflow.
+          </Callout>
+          <UseCaseGrid columns={4} className="dk-gap">
+            <UseCaseCard
+              tone="indigo"
+              title="Model & harness sovereignty"
+              body="Swap Claude → Codex → open-source without losing your company's learned expertise. No lock-in."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Private evals on your outcomes"
+              body="Measured against your business results, not public benchmarks — ground truth only you own."
+            />
+            <UseCaseCard
+              tone="violet"
+              title="Self-hosted, your data"
+              body="Runs inside your account. The compounding IP stays yours, on your infra."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="You become the model-maker"
+              body="Only you have this data — so your domain models can beat generic ones over time."
+            />
+          </UseCaseGrid>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 42 · Closing wordmark ────────────────────────────────────────────
+     * The wordmark and the line. `BigTypeSlide` with nothing but its two lines, which is what a
+     * closing card is. */
+    {
+      id: 'closing',
+      variant: 'bigType',
+      node: (
+        <BigTypeSlide
+          stage={false}
+          line1={<>Synos<span className="sk-gradient-text">.</span></>}
+          line2="The Human-Agent Operating Layer"
+        />
+      ),
+    },
   ]
 
   const byId = new Map(slides.map((s) => [s.id, s]))
   const stray = slides.map((s) => s.id).filter((id) => !ORDER.includes(id))
   if (stray.length) throw new Error(`slides missing from ORDER: ${stray.join(', ')}`)
-  /* While `wip` is set, ORDER may name slides that do not exist yet — that is the whole point of a
-     running order written before the slides. Once `wip` goes, the missing check below turns on. */
   const missing = ORDER.filter((id) => !byId.has(id))
-  if (!wip && missing.length)
-    throw new Error(`ORDER names slides that do not exist: ${missing.join(', ')}`)
-  return ORDER.map((id) => byId.get(id)).filter(Boolean)
+  if (missing.length) throw new Error(`ORDER names slides that do not exist: ${missing.join(', ')}`)
+  return ORDER.map((id) => byId.get(id))
 }

@@ -125,7 +125,7 @@ const slides = mod.deck(K)
 
 /* Per-deck section count, asserted rather than trusted: a silently short deck is the failure mode
    that survives every other check here, and the PDF verifier is downstream of this file. */
-const EXPECTED = { deck: 36, 'ops-buyer': 43, presenting: 36 }
+const EXPECTED = { deck: 36, 'ops-buyer': 43, presenting: 36, 'tech-buyer': 42 }
 /* A deck under construction says so, and the count is not enforced until it stops saying so. The
    alternative — dropping the assertion while porting and remembering to restore it — is how a deck
    ships three sections short. `mod.wip` is the deliberate, visible opt-out. */

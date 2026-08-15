@@ -812,7 +812,10 @@
   display: flex;
   flex-direction: column;
 }
-.ob-agentic svg { width: 100%; height: auto; max-height: 360px; display: block; }
+/* 360px overflowed the card by 8px once the trace block sat under the diagram. Found only when
+   `deck/probe/measure.mjs` learned `--deck` and this deck could be measured at all — it had been
+   shipping over the card since the port. The room comes off the drawing; the trace is content. */
+.ob-agentic svg { width: 100%; height: auto; max-height: 340px; display: block; }
 .ob-trace {
   margin-top: var(--sk-space-3);
   background: var(--sk-surface);

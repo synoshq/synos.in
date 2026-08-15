@@ -390,3 +390,132 @@
   background: var(--sk-usecase-kicker, var(--sk-border-2));
   opacity: 0.75;
 }
+
+/* ── Appendix furniture ────────────────────────────────────────────────────
+ * The architecture slide's core band and its footer, and the mono example line the memory-type
+ * cards carry. Same three shapes the ops-buyer port needed, restated here rather than shared: they
+ * are one slide's furniture in each deck, and a shared "band head" would be the kit growing a
+ * layout language through the back door.
+ */
+.tb-band--core {
+  background: var(--sk-indigo-bg);
+  border-color: var(--sk-indigo-br);
+}
+.tb-band-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sk-space-4);
+  margin-bottom: var(--sk-space-3);
+}
+.tb-band-title {
+  font-family: var(--sk-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sk-ink);
+}
+.tb-actors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sk-space-4);
+}
+/* A literal value on a memory-type card — a stored string, so mono. */
+.tb-example {
+  margin-top: var(--sk-space-2);
+  font-family: var(--sk-font-mono);
+  font-size: 9.5px;
+  color: var(--sk-muted);
+  line-height: 1.35;
+}
+
+
+/* ── The retrieval slide's two modes ───────────────────────────────────────
+ * Mode A is a five-step vertical flow; Mode B is the agentic traversal diagram plus a mono trace of
+ * the four tool calls it made. Carried from the ops-buyer port, which built these shapes for the
+ * identical slide — the two decks share this one word for word.
+ */
+/* Retrieval (slide 33): a deterministic ladder beside an agentic traversal. */
+.tb-retrieval { display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--sk-space-5); align-items: stretch; }
+.tb-ret-head { display: flex; align-items: center; gap: var(--sk-space-3); margin-bottom: var(--sk-space-3); }
+.tb-ret-when { font-size: 11px; color: var(--sk-muted); margin-left: auto; }
+.tb-ret-flow {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-2);
+}
+.tb-ret-step {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.tb-ret-num {
+  width: 24px;
+  height: 24px;
+  background: var(--sk-indigo);
+  color: var(--sk-on-brand);
+  border-radius: 6px;
+  font-family: var(--sk-font-body);
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tb-ret-name { font-size: 12.5px; font-weight: 700; color: var(--sk-ink); line-height: 1.2; }
+.tb-ret-desc { font-size: 11px; color: var(--sk-ink-3); margin-top: 2px; line-height: 1.4; }
+.tb-agentic {
+  background: var(--sk-violet-bg);
+  border: 1px solid var(--sk-violet-br);
+  border-radius: 12px;
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+}
+/* 360px was the ops deck's cap; restoring the trace block under the diagram costs 8px more
+   than this slide had. The room comes off the drawing, not the trace — the trace is content. */
+.tb-agentic svg { width: 100%; height: auto; max-height: 340px; display: block; }
+.tb-trace {
+  margin-top: var(--sk-space-3);
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-violet-br);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: var(--sk-font-mono);
+  font-size: 9.5px;
+  line-height: 1.6;
+  color: var(--sk-ink-3);
+}
+.tb-trace .step { color: var(--sk-violet); font-weight: 700; }
+.tb-trace .tool { color: var(--sk-indigo); font-weight: 600; }
+.tb-trace .hit { color: var(--sk-emerald); font-weight: 600; }
+
+/* The matrix reference under a comparison claim. Small, mono and dim — it is a citation, and the
+   slide's whole argument is that every line on it is checkable from a GitHub account. Dropping
+   these would have made the slide fit more easily and made it assertive instead of verifiable. */
+.tb-src {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  color: var(--sk-muted);
+  letter-spacing: 0.3px;
+}
+
+/* `<code>` inherits the BROWSER's default monospace, not the kit's. Two inline code spans on the
+   open-source comparison slide were enough to make the geometry probe report four font families
+   where three are intended — and a font that is not in the deck's three renders in the exported PDF
+   as whatever the export machine happens to have. Same class of leak as reveal's theme dragging in
+   Source Sans Pro, found the same way. */
+.sk-slide code {
+  font-family: var(--sk-font-mono);
+  font-size: 0.92em;
+}
