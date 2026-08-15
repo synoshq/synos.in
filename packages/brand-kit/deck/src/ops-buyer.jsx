@@ -43,6 +43,8 @@ export const deck = (K) => {
     UseCaseGrid,
     WallCard,
     WallGrid,
+    PillarCard,
+    PillarGrid,
     StepCard,
     StepGrid,
     StatCard,
@@ -1436,6 +1438,251 @@ export const deck = (K) => {
           line2={<span className="sk-gradient-text">technical team</span>}
           sub="How it works under the hood — architecture, safe access, and the learning loop. Bring these out only if a technical person is in the room."
         />
+      ),
+    },
+    /* ── 29 · The AI-native operating layer ───────────────────────────────
+     * The architecture stack: your tools on top, the layer in the middle, your systems underneath.
+     * Tiles for the tools, PillarGrid for the six capabilities, Chips for the systems — the same
+     * composition the VC deck's architecture slides use, which is the strongest evidence yet that
+     * the two families really do share a vocabulary.
+     *
+     * TERMINOLOGY: the source says "The brain and the workers improve themselves". The project's
+     * terminology rule retired "worker" for "agent", and the rest of this deck already says agent
+     * or assistant, so this reads "agents". Flagged in the report, not buried. */
+    {
+      id: 'operating-layer',
+      node: (
+        <SlideFrame stage={false} variant="arch">
+          <SlideHeader
+            eyebrow="The AI-Native Operating Layer"
+            eyebrowTone="indigo"
+            title="More than a brain — a full operating layer."
+            subtitle="Six capabilities working as one. The Company Brain is just one of them — and the whole thing compounds with every use."
+          />
+          <Stack gap="tight">
+            <div className="ob-band">
+              <Eyebrow tone="muted">Your teams work in their own tools</Eyebrow>
+              <TileRow className="dk-gap-sm">
+                <Tile size="sm" mono name="ChatGPT" kind="marketing · sales" />
+                <Tile size="sm" mono name="Claude Code" kind="ops · analysts" />
+                <Tile size="sm" mono name="Codex" kind="analysts · eng" />
+                <Tile size="sm" mono name="Slack" kind="everyone" />
+                <Tile size="sm" mono name="WhatsApp" kind="field · ops" />
+                <Tile size="sm" mono name="Apps" kind="shared" />
+              </TileRow>
+            </div>
+
+            <div className="ob-band ob-band--core">
+              <div className="ob-band-head">
+                <span className="ob-band-title">The Operating Layer</span>
+                <Chip size="sm" tone="indigo">Self-hosted · governed · model- &amp; tool-agnostic</Chip>
+              </div>
+              <PillarGrid columns={3}>
+                <PillarCard
+                  brain
+                  name="Context Brain"
+                  desc="Knowledge that compounds across every source — batch + streaming, continuously curated."
+                />
+                <PillarCard
+                  name="Skills Marketplace"
+                  desc="Shared, reusable workflows. Install once, run anywhere, fork across teams."
+                />
+                <PillarCard
+                  name="Safe Data Access"
+                  desc="One governed door to your systems. Gated by role, audited on every call."
+                />
+                <PillarCard
+                  name="Safe App Deploy"
+                  desc="Sandboxed apps + their data your team can share — scanned, never on personal accounts."
+                />
+                <PillarCard
+                  name="Self-Learning Loop"
+                  desc="Every correction reviewed + promoted. The brain and the agents improve themselves."
+                />
+                <PillarCard
+                  name="Observability"
+                  desc="Who ran what, what's working, what it costs — and an instant kill-switch."
+                />
+              </PillarGrid>
+            </div>
+
+            <div className="ob-band">
+              <Eyebrow tone="muted">Connected to your existing systems — not replaced</Eyebrow>
+              <ChipRow tight className="dk-gap-sm">
+                <Chip mono>Warehouse · BigQuery</Chip>
+                <Chip mono>CRM · Marketing SaaS</Chip>
+                <Chip mono>Sheets · Docs · Notion</Chip>
+                <Chip mono>Drive · S3</Chip>
+                <Chip mono>Slack · Email · WhatsApp</Chip>
+                <Chip mono>Ads · GA · Tickets</Chip>
+              </ChipRow>
+            </div>
+          </Stack>
+          <Caption className="dk-gap-sm">
+            <strong>The Company Brain is one pillar of six.</strong> Together they're the operating
+            layer — and <em>every use makes it smarter</em>.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 30 · Six capabilities ────────────────────────────────────────────
+     * Six cards then the self-learning exchange. UseCaseGrid holds the six; the exchange is local,
+     * because a chat bubble becoming a rule is an illustration of a mechanism, not a card. */
+    {
+      id: 'six-capabilities',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="The Operating Layer"
+            eyebrowTone="indigo"
+            title="Six capabilities most teams ship one of — as one governed platform."
+            subtitle="Engineering sets the rails once; the whole org self-serves on top — non-coders included. Build agents, build apps, all on the real brain."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              title="Self-learning brain / context layer"
+              body="Every source → one graph that corrects itself from every run. Not static RAG."
+            />
+            <UseCaseCard
+              tone="violet"
+              title="Skills marketplace"
+              body="Company know-how as reusable, versioned skills. Build once, share across teams."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Agent builder"
+              body="Describe an agent in plain English — assembled from skills, live in minutes."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="AI app builder"
+              body="SMEs ship internal apps + live dashboards on the real brain — sandboxed, governed."
+            />
+            <UseCaseCard
+              tone="indigo"
+              title="Bring your own harness + tools"
+              body="Point Claude Code, Codex or Cursor at the brain — they operate on top. One MCP door, plus warehouse, object store, SaaS & internal APIs."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Self-hosted & governed"
+              body="On-prem-capable, RBAC, audited, egress-controlled. Your data and your moat stay yours."
+            />
+          </UseCaseGrid>
+          <div className="dk-gap-sm">
+            <Eyebrow tone="muted">
+              Self-learning in practice — the agent surfaces, a human approves, the brain compounds
+            </Eyebrow>
+            <div className="ob-sl dk-gap-sm">
+              <div className="ob-sl-card">
+                <div className="ob-sl-head">Agent → human</div>
+                <div className="ob-sl-bubble">
+                  Found a new entity <strong>“Gift Recipient”</strong> across 3 tables — add it to
+                  the ontology?
+                </div>
+                <ChipRow tight className="dk-gap-sm">
+                  <Chip size="sm" tone="emerald">✓ Approve</Chip>
+                  <Chip size="sm" tone="red">Reject</Chip>
+                </ChipRow>
+              </div>
+              <div className="ob-sl-card">
+                <div className="ob-sl-head">Human → brain · doctrine</div>
+                <div className="ob-sl-bubble">Correction: treat tracked CVR as directional.</div>
+                <div className="ob-sl-rule">
+                  → becomes <strong>a rule every future run inherits.</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 31 · Architecture ────────────────────────────────────────────────
+     * The same stack as 29 with the guardrail strip and the two-actor footer. Fourth slide on the
+     * band composition. */
+    {
+      id: 'architecture',
+      node: (
+        <SlideFrame stage={false} variant="arch">
+          <SlideHeader
+            eyebrow="Architecture"
+            eyebrowTone="indigo"
+            title="One substrate. Any tool, any model."
+            subtitle="Engineering sets the rails once. Non-engineers ship safely on top."
+          />
+          <Stack gap="tight">
+            <div className="ob-band">
+              <Eyebrow tone="muted">Bring Your Own Tool — all speak one interface (MCP)</Eyebrow>
+              <TileRow className="dk-gap-sm">
+                <Tile size="sm" mono name="ChatGPT" kind="teams" />
+                <Tile size="sm" mono name="Claude Code" kind="power users" />
+                <Tile size="sm" mono name="Cursor" kind="IDE" />
+                <Tile size="sm" mono name="In-house agents" kind="custom" />
+                <Tile size="sm" mono name="Synos Apps" kind="sandboxed" />
+                <Tile size="sm" mono name="Synos Agents" kind="managed" />
+              </TileRow>
+            </div>
+            <Caption mono>One interface · any model · swap for price or capability</Caption>
+            <div className="ob-band ob-band--core">
+              <div className="ob-band-head">
+                <span className="ob-band-title">Synos Core</span>
+                <Chip size="sm" tone="indigo">
+                  Self-hosted · multi-tenant · model-agnostic · tool-agnostic
+                </Chip>
+              </div>
+              <PillarGrid columns={4}>
+                <PillarCard
+                  brain
+                  name="Context Brain"
+                  desc="Knowledge graph across sources. Entities, relationships, citations."
+                />
+                <PillarCard
+                  name="Skills Library"
+                  desc="Workflows authored in plain English. Shared & versioned."
+                />
+                <PillarCard
+                  name="System of Record"
+                  desc="Schema-enforced operational data. Agents write, apps read."
+                />
+                <PillarCard
+                  name="Self-Learning Loop"
+                  desc="Every correction reviewed & promoted. Improves without rewrites."
+                />
+              </PillarGrid>
+              <ChipRow tight className="dk-gap-sm">
+                <Chip size="sm" tone="indigo">Guardrails</Chip>
+                <Chip size="sm">RBAC · role · tenant</Chip>
+                <Chip size="sm">Audit on every action</Chip>
+                <Chip size="sm">Build scan on every app</Chip>
+                <Chip size="sm">Egress proxy</Chip>
+                <Chip size="sm">Kill-switch · approvals</Chip>
+              </ChipRow>
+            </div>
+            <div className="ob-band">
+              <Eyebrow tone="muted">Your existing systems — connected, not replaced</Eyebrow>
+              <ChipRow tight className="dk-gap-sm">
+                <Chip mono>Warehouse · BigQuery</Chip>
+                <Chip mono>CRM · Salesforce · HubSpot</Chip>
+                <Chip mono>Sheets · Docs · Notion</Chip>
+                <Chip mono>Drive · S3</Chip>
+                <Chip mono>Slack · Email · WhatsApp</Chip>
+                <Chip mono>Ads · GA · Tickets</Chip>
+              </ChipRow>
+            </div>
+            <div className="ob-actors">
+              <Callout tone="indigo" label="Engineering — sets rails once">
+                Connects systems · defines tools + permissions · picks models. Stops being the
+                workflow bottleneck.
+              </Callout>
+              <Callout tone="violet" label="Non-engineering — ships daily">
+                Sales · Marketing · Ops author workflows in plain English. Safely. With analytics.
+              </Callout>
+            </div>
+          </Stack>
+        </SlideFrame>
       ),
     },
   ]

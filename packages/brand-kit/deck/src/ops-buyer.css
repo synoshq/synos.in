@@ -574,3 +574,75 @@
 .ob-core b {
   color: var(--sk-on-brand);
 }
+
+/* ── The architecture stack (slides 29 and 31) ────────────────────────────
+ * Three bands — your tools on top, the layer in the middle, your systems underneath — with the
+ * middle band tinted so the layer reads as the thing between. The VC deck composes the same shape
+ * from kit primitives; these are the two band wrappers it needs and nothing more.
+ */
+.ob-band {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.ob-band--core {
+  background: var(--sk-indigo-bg);
+  border-color: var(--sk-indigo-br);
+}
+.ob-band-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sk-space-4);
+  margin-bottom: var(--sk-space-3);
+}
+.ob-band-title {
+  font-family: var(--sk-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sk-ink);
+}
+
+/* The two-column "who does what" footer on the architecture slide. */
+.ob-actors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sk-space-4);
+}
+
+/* The self-learning exchange: an agent's message, then a human's correction becoming a rule. */
+.ob-sl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sk-space-4);
+}
+.ob-sl-card {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 11px;
+  padding: 10px 13px;
+}
+.ob-sl-head {
+  font-family: var(--sk-font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+  margin-bottom: 6px;
+}
+.ob-sl-bubble {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border-2);
+  border-radius: 9px;
+  padding: 8px 11px;
+  font-size: 11.5px;
+  color: var(--sk-ink-2);
+  line-height: 1.45;
+}
+.ob-sl-rule {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--sk-violet);
+}
