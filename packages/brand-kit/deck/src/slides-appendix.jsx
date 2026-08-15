@@ -600,12 +600,12 @@ export const appendixSlides = (K) => {
                 sub: 'LightRAG · Microsoft GraphRAG',
                 cells: [
                   { text: 'Turns a document pile you already collected into a queryable graph.' },
-                  { text: 'The largest category by stars, and not a memory system: no connectors, no tenancy, no temporality, no live source. Collecting, governing and connecting to running systems is the part it leaves to you.' },
+                  { text: 'The category a client most often actually means, and not a memory system: no connectors, no tenancy, no temporality, no live source. Collecting, governing and connecting to running systems is the part it leaves to you.' },
                 ],
               },
               {
                 label: 'Graph memory engines',
-                sub: 'cognee 30.0k★ · Graphiti 29.9k★ · Semantica 7.5k★',
+                sub: 'cognee · Graphiti · Semantica',
                 cells: [
                   { text: 'Real peers on the graph itself. cognee is the honest benchmark.' },
                   { text: 'Components, not layers. Graphiti ships zero connectors and its README says bring your own database and build your own tooling; Zep’s scaled engine is proprietary. None of the three profiles a structured source or binds a metric to a column.' },
@@ -613,10 +613,10 @@ export const appendixSlides = (K) => {
               },
               {
                 label: 'Agent memory, no graph',
-                sub: 'mem0 63.3k★ · letta 24.2k★',
+                sub: 'mem0 · letta',
                 cells: [
                   { text: 'Conversational personalisation for one agent.' },
-                  { text: 'mem0 — the most-starred of all — deleted graph memory from its open source in v3 (~4,000 lines, five drivers) and made it Platform-only. Useful both ways: the graph is not table stakes, and it has to earn its cost.' },
+                  { text: 'mem0 — the most popular open-source agent-memory project — deleted graph memory from its open source in v3 (~4,000 lines, five drivers) and made it Platform-only. Useful both ways: the graph is not table stakes, and it has to earn its cost.' },
                 ],
               },
             ]}

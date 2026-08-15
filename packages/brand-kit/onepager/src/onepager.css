@@ -64,3 +64,69 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sk-space-4);
 }
+
+/* ── The CTO page ──────────────────────────────────────────────────────────
+ * The technical brief is a denser page than the CEO one and needs four shapes the CEO layout does
+ * not: a two-up card grid, a figure run inside a paragraph, a label/value row, and a quoted ask.
+ * None is a component — each is one template's furniture.
+ */
+
+/* Two-up and three-up card grids. The kit's grids fix their column counts to a deck's needs; on
+   paper the same cards want a different count, and `OutcomeCard` is happy in any container. */
+.op-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm;
+}
+
+/* A number inside the stakes paragraph. The source sets these heavier than the sentence around
+   them, because the sentence is about the number — "three weeks", "tens of thousands". Left at
+   body weight they stop being the point. */
+.op-fig {
+  font-weight: 700;
+  color: var(--sk-indigo);
+}
+
+/* A label and its value on one row: "You provide — read access to the systems you already run".
+   Used by both the cost box and the six-week box, which is why it is one shape and not two. */
+.op-row {
+  display: grid;
+  grid-template-columns: 26mm 1fr;
+  gap: 2mm;
+  padding: 1mm 0;
+}
+.op-row + .op-row {
+  border-top: 1px solid var(--sk-border);
+}
+.op-row-k {
+  font-family: var(--sk-font-mono);
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.4pt;
+  color: var(--sk-muted);
+  padding-top: 0.4mm;
+}
+
+/* A question the buyer can actually ask, quoted. It is its own heading — putting a card title above
+   it would be a heading above a heading — so it is a ruled line, not a card. */
+.op-ask {
+  border-left: 2px solid var(--sk-indigo-br);
+  padding: 0.8mm 0 0.8mm 3mm;
+  font-size: 8.5pt;
+  line-height: 1.35;
+  color: var(--sk-ink-2);
+  font-style: italic;
+}
+
+/* The layer card's inline heading. The two layer blocks are Callouts, so their title runs inline
+   with the body rather than sitting in a title slot. */
+.op-lay-h {
+  display: block;
+  font-size: 9.5pt;
+  color: var(--sk-ink);
+  margin-bottom: 0.6mm;
+}
+
+.op-plug-chips {
+  margin-top: 2mm;
+}
