@@ -130,3 +130,101 @@
 .op-plug-chips {
   margin-top: 2mm;
 }
+
+/* ── The Softlink account page ─────────────────────────────────────────────
+ * Four shapes that page needs and no other page in the corpus has. Each is furniture for one
+ * page, recorded here rather than pushed into the kit — one page is not evidence about what a
+ * component should be, which is the same test `.op-three` and the diagram frame were held to.
+ */
+
+/* The diagram's columns hold a wrapping chip row and a paragraph, not a drawing. `.op-side`
+   centres its children, which is right for an SVG and wrong here: a chip row that wraps
+   short on its last line then sits centred over left-ragged text above it. */
+.op-side--text {
+  align-items: stretch;
+  text-align: left;
+}
+
+/* The paragraph under each chip row. The "today" side is deliberately the quieter of the two —
+   dashed and muted, so the eye lands on the SynOS side without the caption having to say so. */
+.op-flow {
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 10.5px;
+  line-height: 1.45;
+  margin-top: 8px;
+}
+.op-flow--now {
+  background: var(--sk-surface);
+  border: 1px dashed var(--sk-border-2);
+  color: var(--sk-muted);
+}
+.op-flow--new {
+  background: var(--sk-indigo-bg);
+  border: 1px solid var(--sk-indigo-2);
+  color: var(--sk-ink-2);
+}
+.op-flow b {
+  color: var(--sk-ink);
+  font-weight: 700;
+}
+
+/* A headline as the first line of a Callout. `.op-lay-h` is the neighbouring shape and was tried
+   first, but it is a 9.5pt inline heading for a labelled layer card; this line is the loudest
+   thing on page two and has to outrank the section headings around it. */
+.op-asset-h {
+  display: block;
+  font-size: 12.5pt;
+  line-height: 1.22;
+  color: var(--sk-ink);
+  margin-bottom: 1.6mm;
+}
+
+/* Four small numbers inside that callout. NOT `StatCard`: the kit's stat is a 72px Instrument
+   Serif number with no surface behind it — decision A and G together made it a projection object,
+   and it is the correct one there. On paper, four of them inside a callout is a different job. */
+.op-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2mm;
+  margin-top: 2.4mm;
+}
+.op-stat {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-indigo-br);
+  border-radius: 9px;
+  padding: 7px 9px;
+}
+.op-stat-n {
+  font-size: 13pt;
+  font-weight: 800;
+  color: var(--sk-indigo);
+  line-height: 1;
+}
+.op-stat-l {
+  font-size: 7pt;
+  color: var(--sk-ink-3);
+  line-height: 1.35;
+  margin-top: 1.2mm;
+}
+
+/* The step that lands the sequence. The fourth beat is the one the reader is meant to leave with —
+   it is where the accuracy number becomes something you can show a customer — so it turns emerald
+   while the three before it stay neutral. The kit has no "resolved" state on StepCard and should
+   not grow one for a single page. */
+.op-step-done {
+  background: var(--sk-emerald-bg);
+  border-color: var(--sk-emerald-br);
+}
+/* The source rings this circle in its `--emerald-2` (#10b981). The kit has no such token — its
+   emerald is the one accessible pair, `--sk-emerald` / `--sk-emerald-br` — so the ring takes
+   `--sk-emerald` and reads a shade darker than the source. Deliberate: inventing a token to
+   preserve a hairline colour on one page is how a palette stops being a palette. */
+.op-step-done .sk-step-num {
+  background: var(--sk-surface);
+  border-color: var(--sk-emerald);
+  color: var(--sk-emerald);
+}
+.op-step-done .sk-step-title {
+  color: var(--sk-emerald);
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --bg:#FAFAF8; --text:#1A1A1A; --muted:#6B6B73;
+    --accent:#6366F1; --teal:#0D9488; --amber:#D97706;
+    --font-display:'Instrument Serif',Georgia,serif;
+    --font-body:'DM Sans',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  html,body{ width:1200px; height:630px; }
+  .card{
+    position:relative; width:1200px; height:630px; background:var(--bg);
+    overflow:hidden; font-family:var(--font-body); color:var(--text);
+    padding:72px 80px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  /* mesh */
+  .card::before{
+    content:''; position:absolute; inset:-120px; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 900px 620px at 8% 30%, rgba(99,102,241,0.20), transparent 70%),
+      radial-gradient(ellipse 780px 680px at 92% 18%, rgba(13,148,136,0.16), transparent 70%),
+      radial-gradient(ellipse 900px 480px at 60% 100%, rgba(217,119,6,0.09), transparent 70%);
+  }
+  .card > *{ position:relative; z-index:1; }
+
+  .top{ display:flex; align-items:center; gap:14px; }
+  .logo-mark{ width:46px; height:46px; }
+  .logo-text{ font-family:var(--font-display); font-size:40px; letter-spacing:-0.02em; line-height:1; }
+  .eyebrow{
+    margin-left:auto; font-family:var(--font-mono); font-size:15px; font-weight:600;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  }
+
+  .mid{ }
+  .headline{
+    font-family:var(--font-display); font-weight:400; letter-spacing:-0.025em;
+    font-size:78px; line-height:1.04; max-width:1000px;
+  }
+  .grad{
+    background:linear-gradient(120deg,#6366F1 0%,#0D9488 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .sub{
+    margin-top:26px; font-size:25px; line-height:1.5; color:var(--muted); max-width:880px;
+  }
+  .sub b{ color:var(--text); font-weight:600; }
+
+  .bottom{ display:flex; align-items:center; gap:20px; }
+  .url{ font-family:var(--font-mono); font-size:22px; font-weight:600; letter-spacing:0.01em; }
+  .pill{
+    margin-left:auto; font-family:var(--font-body); font-size:19px; font-weight:600; color:#fff;
+    background:var(--accent); padding:13px 26px; border-radius:999px;
+  }
+  .self{ font-family:var(--font-mono); font-size:16px; color:var(--muted); letter-spacing:0.02em; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <svg class="logo-mark" viewBox="0 0 32 32" fill="none">
+      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.6" stroke-linecap="round"/>
+      <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="logo-text">SynOS</span>
+    <span class="eyebrow">The Agent-Native Operating Layer</span>
+  </div>
+
+  <div class="mid">
+    <div class="headline">The infrastructure to unblock your <span class="grad">agentic transformation.</span></div>
+    <div class="sub">A self-improving <b>Context Brain</b>, compounding <b>skills</b>, agent-native <b>storage</b>, and safe <b>deploy</b> — under any agent harness. Self-hosted.</div>
+  </div>
+
+  <div class="bottom">
+    <span class="url">synos.in</span>
+    <span class="self">Self-hosted · Model + harness agnostic</span>
+    <span class="pill">Request early access</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
-// onepager/src/_cto-template.jsx
+// onepager/src/softlink-ceo.jsx
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-var ctoOnePager = (K, c) => {
+var onePager = (K) => {
   const {
     OnePagerPage,
     OnePagerHeader,
@@ -11,28 +11,20 @@ var ctoOnePager = (K, c) => {
     Callout,
     Chip,
     ChipRow,
-    Caption,
+    Eyebrow,
+    PhaseCard,
+    PhaseRow,
     StepCard,
     StepGrid,
-    Stack,
     Columns
   } = K;
-  const foot = /* @__PURE__ */ jsx(
-    OnePagerFooter,
-    {
-      name: "Anoop Jawahar",
-      credential: "Founder \xB7 Ex-CTO Sundial \xB7 8 yrs Nutanix",
-      right: "synos.in \xB7 linkedin.com/in/anoopjawahar"
-    }
-  );
-  const Row = ({ k, children }) => /* @__PURE__ */ jsxs("div", { className: "op-row", children: [
-    /* @__PURE__ */ jsx("span", { className: "op-row-k", children: k }),
-    /* @__PURE__ */ jsx("span", { children })
-  ] });
+  const foot = (credential) => /* @__PURE__ */ jsx(OnePagerFooter, { name: "Anoop Jawahar", credential, right: "synos.in" });
+  const SYSTEMS = ["Logi-Sys", "Live IMPEX", "Documents", "Email", "30 years of code", "People"];
+  const systemChips = (tone) => /* @__PURE__ */ jsx(ChipRow, { tight: true, children: SYSTEMS.map((s) => /* @__PURE__ */ jsx(Chip, { scale: "print", tone, children: s }, s)) });
   return {
-    title: c.title,
+    title: "SynOS for Softlink Global",
     pages: [
-      /* @__PURE__ */ jsxs(OnePagerPage, { gap: "snug", children: [
+      /* @__PURE__ */ jsxs(OnePagerPage, { gap: "loose", children: [
         /* @__PURE__ */ jsx(
           OnePagerHeader,
           {
@@ -41,52 +33,125 @@ var ctoOnePager = (K, c) => {
               "Syn",
               /* @__PURE__ */ jsx("span", { className: "sk-a", children: "OS" })
             ] }),
-            tag: c.tag,
+            tag: "AI-Native Operating Layer \xB7 For Softlink Global",
             title: /* @__PURE__ */ jsxs(Fragment, { children: [
-              "Company Brain ",
-              /* @__PURE__ */ jsx("span", { className: "sk-a", children: "and Agent Platform" })
+              "You have shipped the AI features.",
+              /* @__PURE__ */ jsx("br", {}),
+              "Becoming an ",
+              /* @__PURE__ */ jsx("span", { className: "sk-a", children: "AI-native ERP" }),
+              " is a different problem."
             ] }),
-            lede: c.lede,
-            sub: c.sub
+            sub: /* @__PURE__ */ jsxs(Fragment, { children: [
+              "Boxy, LogiBRAIN and LogiLENS put Softlink ahead of most of this industry. But in December CargoWise put an agentic AI workflow engine into every customer\u2019s pack and removed seat fees entirely, and a generation of AI-native platforms is being built with no legacy to carry. ",
+              /* @__PURE__ */ jsx("b", { children: "AI features are becoming table stakes." }),
+              " What separates an AI-native ERP is the layer underneath \u2014 ",
+              /* @__PURE__ */ jsx("b", { children: "a brain for each client that gets more accurate every week it is used" }),
+              ", and experts and customers who can build what they need without going through engineering."
+            ] })
           }
         ),
-        /* @__PURE__ */ jsx(Callout, { scale: "print", tone: "red", children: c.stakes }),
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.outcomesTitle, sub: c.outcomesSub }),
-          /* @__PURE__ */ jsx("div", { className: "op-two", children: c.outcomes.map((o) => /* @__PURE__ */ jsx(OutcomeCard, { title: o.title, body: o.body }, o.title)) })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.layersTitle, sub: c.layersSub }),
-          /* @__PURE__ */ jsxs(Stack, { gap: "snug", children: [
-            c.layers.map((l) => /* @__PURE__ */ jsxs(Callout, { scale: "print", tone: l.tone, label: l.kicker, children: [
-              /* @__PURE__ */ jsx("b", { className: "op-lay-h", children: l.title }),
-              l.body
-            ] }, l.kicker)),
-            /* @__PURE__ */ jsx(Caption, { children: c.layersJoint })
+        /* @__PURE__ */ jsxs("div", { className: "op-diagram", children: [
+          /* @__PURE__ */ jsxs(Columns, { gap: "snug", children: [
+            /* @__PURE__ */ jsxs("div", { className: "op-side op-side--text", children: [
+              /* @__PURE__ */ jsx("div", { className: "op-side-label op-side-label--now", children: "Today" }),
+              systemChips("neutral"),
+              /* @__PURE__ */ jsx("div", { className: "op-flow op-flow--now", children: "Every conversation starts from zero. What the system learns on Monday is gone by Friday. Every change to what an agent does goes back to engineering, and waits." })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "op-side op-side--text", children: [
+              /* @__PURE__ */ jsx("div", { className: "op-side-label op-side-label--new", children: "With SynOS" }),
+              systemChips("indigo"),
+              /* @__PURE__ */ jsxs("div", { className: "op-flow op-flow--new", children: [
+                /* @__PURE__ */ jsx("b", { children: "A brain per client" }),
+                " that understands how that forwarder actually operates. Agents read from it and act. Your experts correct them in plain English.",
+                " ",
+                /* @__PURE__ */ jsx("b", { children: "The brain keeps the correction \u2014 permanently, for everyone." })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "op-diagram-cap", children: [
+            "Same systems on both sides. ",
+            /* @__PURE__ */ jsx("b", { children: "Nothing is moved, migrated or replaced." }),
+            " It reads what you already run, inside your own environment."
           ] })
         ] }),
         /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.actsTitle, sub: c.actsSub }),
-          /* @__PURE__ */ jsx(StepGrid, { columns: 2, children: c.steps.map((s, i) => /* @__PURE__ */ jsx(
-            StepCard,
-            {
-              scale: "print",
-              num: String(i + 1),
-              title: s.title,
-              body: s.body
-            },
-            s.title
-          )) })
+          /* @__PURE__ */ jsx(SectionHeading, { title: /* @__PURE__ */ jsxs(Fragment, { children: [
+            "What it is worth to ",
+            /* @__PURE__ */ jsx("span", { className: "sk-a", children: "Softlink" })
+          ] }) }),
+          /* @__PURE__ */ jsxs("div", { className: "op-two", children: [
+            /* @__PURE__ */ jsx(
+              OutcomeCard,
+              {
+                title: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  /* @__PURE__ */ jsx(Eyebrow, { scale: "print", tone: "emerald", children: "Topline" }),
+                  "A premium tier where customers build their own"
+                ] }),
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "Your customers describe the workflow, report or dashboard they need in plain English and get it \u2014 ",
+                  /* @__PURE__ */ jsx("b", { children: "on their own data, inside Logi-Sys, without a developer" }),
+                  ". Custom requirements stop becoming custom projects. It is a tier, not a feature, and it upsells into ",
+                  /* @__PURE__ */ jsx("b", { children: "5,000 businesses already on the platform" }),
+                  "."
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              OutcomeCard,
+              {
+                title: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  /* @__PURE__ */ jsx(Eyebrow, { scale: "print", tone: "emerald", children: "Topline" }),
+                  "Answers that get better the longer a customer stays"
+                ] }),
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "Generic AI gives every forwarder the same answer. A brain that has absorbed",
+                  " ",
+                  /* @__PURE__ */ jsx("b", { children: "one client\u2019s exceptions, rates and standing arrangements" }),
+                  " gives that client answers nobody else can. That is a renewal argument, and it strengthens every year they stay."
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              OutcomeCard,
+              {
+                tone: "violet",
+                title: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  /* @__PURE__ */ jsx(Eyebrow, { scale: "print", tone: "violet", children: "Internal" }),
+                  "Your experts change what agents do. Not your engineers."
+                ] }),
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "Someone who knows a filing rule or a client exception should be able to teach it to the system directly, in plain English. Today that is a ticket, a sprint and a release. ",
+                  /* @__PURE__ */ jsx("b", { children: "Engineering sets the rails once; the people with the knowledge do the rest." })
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              OutcomeCard,
+              {
+                tone: "violet",
+                title: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  /* @__PURE__ */ jsx(Eyebrow, { scale: "print", tone: "violet", children: "Internal" }),
+                  "Three decades of platform knowledge stops walking out of the door"
+                ] }),
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "A long-lived product carries knowledge that lives in a few people rather than anywhere readable. ",
+                  /* @__PURE__ */ jsx("b", { children: "Captured once, it becomes something a new joiner can ask" }),
+                  " ",
+                  "\u2014 so the platform gets easier to change rather than harder, without anything being rewritten."
+                ] })
+              }
+            )
+          ] })
         ] }),
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.objectionsTitle, sub: c.objectionsSub }),
-          /* @__PURE__ */ jsx("div", { className: "op-three", children: c.objections.map((o) => /* @__PURE__ */ jsx(OutcomeCard, { tone: "amber", title: o.q, body: o.a }, o.q)) })
+        /* @__PURE__ */ jsxs(Callout, { scale: "print", tone: "violet", label: "What it takes from you", children: [
+          "Read access to the systems you already run, and ",
+          /* @__PURE__ */ jsx("b", { children: "one person part time" }),
+          " as the point of contact. Nothing to migrate, nothing to clean up, nobody to hire, and not one existing system replaced. ",
+          /* @__PURE__ */ jsx("b", { children: "It runs inside your own environment \u2014 no client data moves anywhere." })
         ] }),
-        c.ownLine ? /* @__PURE__ */ jsx(Callout, { scale: "print", tone: "emerald", children: c.ownLine }) : null,
-        /* @__PURE__ */ jsx(CtaBar, { tone: "indigo", title: c.ctaTitle, body: c.ctaBody }),
-        foot
+        foot("Founder, Synos Labs \xB7 Ex-CTO Sundial \xB7 8 yrs Nutanix")
       ] }, "p1"),
-      /* @__PURE__ */ jsxs(OnePagerPage, { gap: "snug", children: [
+      /* @__PURE__ */ jsxs(OnePagerPage, { gap: "loose", children: [
         /* @__PURE__ */ jsx(
           OnePagerHeader,
           {
@@ -95,44 +160,182 @@ var ctoOnePager = (K, c) => {
               "Syn",
               /* @__PURE__ */ jsx("span", { className: "sk-a", children: "OS" })
             ] }),
-            tag: "The brain, the agents, and how it starts"
+            tag: "Softlink Global \xB7 page 2"
           }
         ),
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.brainTitle, sub: c.brainSub }),
-          /* @__PURE__ */ jsx("div", { className: "op-two", children: c.brain.map((b) => /* @__PURE__ */ jsx(OutcomeCard, { tone: "indigo", title: b.title, body: b.body }, b.title)) })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.asksTitle, sub: c.asksSub }),
-          /* @__PURE__ */ jsx(Stack, { gap: "tight", children: c.asks.map((q) => /* @__PURE__ */ jsx("div", { className: "op-ask", children: q }, q)) })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.agentsTitle, sub: c.agentsSub }),
-          /* @__PURE__ */ jsx("div", { className: "op-three", children: c.agents.map((a) => /* @__PURE__ */ jsx(OutcomeCard, { tone: "violet", title: a.title, body: a.body }, a.title)) })
-        ] }),
-        /* @__PURE__ */ jsxs(Callout, { scale: "print", tone: "violet", label: c.plugTitle, children: [
-          c.plugBody,
-          /* @__PURE__ */ jsxs(ChipRow, { tight: true, className: "op-plug-chips", children: [
-            /* @__PURE__ */ jsx(Chip, { size: "sm", mono: true, tone: "violet", children: "NOTHING MOVES" }),
-            c.plugChips.map((p) => /* @__PURE__ */ jsx(Chip, { size: "sm", children: p }, p))
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx(SectionHeading, { title: c.moneyTitle }),
-          /* @__PURE__ */ jsxs(Columns, { gap: "snug", children: [
-            /* @__PURE__ */ jsxs(Callout, { scale: "print", tone: "neutral", label: "What it takes from your side", children: [
-              /* @__PURE__ */ jsx(Row, { k: "You provide", children: c.provide }),
-              /* @__PURE__ */ jsx(Row, { k: "You do not", children: c.doNot }),
-              /* @__PURE__ */ jsx(Row, { k: "Where it runs", children: c.whereItRuns })
+        /* @__PURE__ */ jsxs(Callout, { scale: "print", tone: "indigo", label: "The part nobody else can buy", children: [
+          /* @__PURE__ */ jsx("b", { className: "op-asset-h", children: "You are sitting on the largest record of how Indian trade actually moves \u2014 and today none of it compounds." }),
+          "A model trained on the internet knows what a bill of lading is. It does not know how",
+          " ",
+          /* @__PURE__ */ jsx("b", { children: "this" }),
+          " forwarder handles a short-shipped container, which charges ",
+          /* @__PURE__ */ jsx("b", { children: "that" }),
+          " client has agreed to absorb, or the filing convention a broker learned in 2013. That knowledge lives in your code, your data, and the heads of people who will eventually retire.",
+          " ",
+          /* @__PURE__ */ jsx("b", { children: "Capture it first and you stop competing on features." }),
+          /* @__PURE__ */ jsxs("div", { className: "op-stat-row", children: [
+            /* @__PURE__ */ jsxs("div", { className: "op-stat", children: [
+              /* @__PURE__ */ jsx("div", { className: "op-stat-n", children: "~80%" }),
+              /* @__PURE__ */ jsx("div", { className: "op-stat-l", children: "of Indian ICEGATE filings run through Live IMPEX" })
             ] }),
-            /* @__PURE__ */ jsxs(Callout, { scale: "print", tone: "indigo", label: "How the six weeks run", children: [
-              /* @__PURE__ */ jsx(Row, { k: "Weeks 1 to 2", children: c.weeks12 }),
-              /* @__PURE__ */ jsx(Row, { k: "Weeks 3 to 5", children: "The agent goes live proposing rather than acting, so you see exactly what it would do before it does anything." }),
-              /* @__PURE__ */ jsx(Row, { k: "Week 6", children: "We measure the outcome on your own reporting, and you decide whether it continues." })
+            /* @__PURE__ */ jsxs("div", { className: "op-stat", children: [
+              /* @__PURE__ */ jsx("div", { className: "op-stat-n", children: "5,000+" }),
+              /* @__PURE__ */ jsx("div", { className: "op-stat-l", children: "logistics businesses on the platform" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "op-stat", children: [
+              /* @__PURE__ */ jsx("div", { className: "op-stat-n", children: "50+" }),
+              /* @__PURE__ */ jsx("div", { className: "op-stat-l", children: "countries, one million-plus users" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "op-stat", children: [
+              /* @__PURE__ */ jsx("div", { className: "op-stat-n", children: "30 yrs" }),
+              /* @__PURE__ */ jsx("div", { className: "op-stat-l", children: "of freight logic already written down in code" })
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ jsx(Callout, { scale: "print", tone: "emerald", label: "Where this already runs", children: c.proof }),
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx(SectionHeading, { title: /* @__PURE__ */ jsxs(Fragment, { children: [
+            "One of them, ",
+            /* @__PURE__ */ jsx("span", { className: "sk-a", children: "start to finish" })
+          ] }) }),
+          /* @__PURE__ */ jsxs(StepGrid, { columns: 2, children: [
+            /* @__PURE__ */ jsx(
+              StepCard,
+              {
+                scale: "print",
+                num: "1",
+                title: "It answers",
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "A user asks why a charge appeared on an invoice. The agent answers correctly from the ERP \u2014 ",
+                  /* @__PURE__ */ jsx("b", { children: "and misses that this client has a standing waiver" }),
+                  " that was never written down anywhere."
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              StepCard,
+              {
+                scale: "print",
+                num: "2",
+                title: "Someone corrects it",
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "The operations lead types one sentence explaining the waiver. ",
+                  /* @__PURE__ */ jsx("b", { children: "No ticket, no engineer, no release." }),
+                  " She is asked to confirm it, and it is recorded against her name."
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              StepCard,
+              {
+                scale: "print",
+                num: "3",
+                title: "It becomes knowledge",
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "That exception enters ",
+                  /* @__PURE__ */ jsx("b", { children: "that client\u2019s brain" }),
+                  ". Every answer after it \u2014 every user, every channel, including the customer\u2019s own portal \u2014 already knows."
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              StepCard,
+              {
+                className: "op-step-done",
+                scale: "print",
+                num: "4",
+                title: "And you can see it",
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "Accuracy for that client is scored weekly against questions your own experts wrote. ",
+                  /* @__PURE__ */ jsx("b", { children: "The number goes up, and you can show a customer that it went up." })
+                ] })
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx(
+            SectionHeading,
+            {
+              title: /* @__PURE__ */ jsxs(Fragment, { children: [
+                "The same thing, ",
+                /* @__PURE__ */ jsx("span", { className: "sk-a", children: "for the rest of it" })
+              ] }),
+              sub: "You start with one. Each one after that is faster, because the brain is already there."
+            }
+          ),
+          /* @__PURE__ */ jsxs("div", { className: "op-three", children: [
+            /* @__PURE__ */ jsx(
+              OutcomeCard,
+              {
+                tone: "violet",
+                title: "A brain for your product team",
+                body: "What was decided, why, and what has already been tried \u2014 so a PRD starts from institutional memory rather than from whoever remembers."
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              OutcomeCard,
+              {
+                tone: "violet",
+                title: "A brain for engineering",
+                body: "Thirty years of Logi-Sys, answerable in plain English. New engineers stop being blocked on the few who were there when it was written."
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              OutcomeCard,
+              {
+                tone: "violet",
+                title: "Agents your customers build",
+                body: "A forwarder describes the report or automation they want in their own words, and gets it \u2014 inside Logi-Sys, on their own data. Custom work without custom work."
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx(SectionHeading, { title: /* @__PURE__ */ jsxs(Fragment, { children: [
+            "Six weeks, ",
+            /* @__PURE__ */ jsx("span", { className: "sk-a", children: "one outcome" })
+          ] }) }),
+          /* @__PURE__ */ jsxs(PhaseRow, { children: [
+            /* @__PURE__ */ jsx(
+              PhaseCard,
+              {
+                scale: "print",
+                when: "Weeks 1\u20132",
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "We connect to the systems you already run and build the brain for ",
+                  /* @__PURE__ */ jsx("b", { children: "one client and one team" }),
+                  ". First result by the end of week two."
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              PhaseCard,
+              {
+                scale: "print",
+                position: "bridge",
+                when: "Weeks 3\u20135",
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "Agents go live ",
+                  /* @__PURE__ */ jsx("b", { children: "proposing rather than acting" }),
+                  ", so you see exactly what they would do before anything is done. Your experts correct; the brain absorbs."
+                ] })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              PhaseCard,
+              {
+                scale: "print",
+                position: "far",
+                when: "Week 6",
+                body: /* @__PURE__ */ jsxs(Fragment, { children: [
+                  "We measure accuracy ",
+                  /* @__PURE__ */ jsx("b", { children: "on questions your own people wrote" }),
+                  ", show whether it improved over the six weeks, and you decide whether it continues."
+                ] })
+              }
+            )
+          ] })
+        ] }),
         /* @__PURE__ */ jsx(
           CtaBar,
           {
@@ -141,255 +344,18 @@ var ctoOnePager = (K, c) => {
               "The first conversation is ",
               /* @__PURE__ */ jsx("span", { className: "sk-a", children: "one question." })
             ] }),
-            body: c.closingAsk
+            body: /* @__PURE__ */ jsxs(Fragment, { children: [
+              "Tell us something a customer asked your team last month that took three people and two systems to answer. We will come back with how the brain would have answered it, and what it would have learned by doing so. ",
+              /* @__PURE__ */ jsx("b", { children: "Everything the system is taught stays yours" }),
+              " \u2014 AI of your own, built on how Softlink and your customers actually work, and it never leaves your environment."
+            ] })
           }
         ),
-        foot
+        foot("Founder, Synos Labs \xB7 anoop@synos.in")
       ] }, "p2")
     ]
   };
 };
-
-// onepager/src/retail-multistore-cto.jsx
-import { Fragment as Fragment2, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
-var onePager = (K) => ctoOnePager(K, {
-  title: "SynOS for Multi-store Retail Groups \u2014 technical brief",
-  tag: "For multi-store retail groups",
-  lede: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "You already have the reports. ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "Nothing happens because of them." })
-  ] }),
-  sub: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "Someone still has to read them and then make sure something actually happens, store by store, day after day. And a question that falls outside what your systems were built to answer costs two weeks of somebody\u2019s time, so it never gets asked at all. SynOS gives your business",
-    " ",
-    /* @__PURE__ */ jsx2("b", { children: "a Company Brain that understands how you operate" }),
-    ", and",
-    " ",
-    /* @__PURE__ */ jsx2("b", { children: "agents that act on what it finds" }),
-    "."
-  ] }),
-  stakes: /* @__PURE__ */ jsx2(Fragment2, { children: /* @__PURE__ */ jsxs2("b", { children: [
-    "This is where the margin goes. Four in five retailers lose",
-    " ",
-    /* @__PURE__ */ jsx2("span", { className: "op-fig", children: "5%+ of operating margin" }),
-    " to problems that were visible and never acted on. The stock transfer nobody raised. The ageing units nobody moved. On a business running ",
-    /* @__PURE__ */ jsx2("span", { className: "op-fig", children: "4 to 8% net margin" }),
-    ", that is most of the profit, and more dashboards have not fixed it. The information was already there."
-  ] }) }),
-  outcomesTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "What changes, ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "in your P&L" })
-  ] }),
-  outcomesSub: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "The pilot moves ",
-    /* @__PURE__ */ jsx2("b", { children: "one of these, chosen by you, measured on your own reporting" }),
-    ". Not all four at once."
-  ] }),
-  outcomes: [
-    { title: "Attach rate goes up", body: "Accessories, care plans and finance carry roughly double the margin of the box itself. On thin net margins, a small shift in mix pays for the year." },
-    { title: "Less capital sitting still", body: "Ageing stock gets moved, bundled or marked down while it still has margin left in it, rather than after it has gone." },
-    { title: "Upgrades stop being missed", body: "Every customer due a replacement gets reached, with the right offer at the right moment, before they walk into somebody else's store." },
-    { title: "Store quality stops depending on who is on shift", body: "New staff sell the way your best staff sell, in their own language, from their first week rather than their sixth month." }
-  ],
-  layersTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "What you are actually getting: ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "a Company Brain, and agents that act on it" })
-  ] }),
-  layersSub: "Two layers. The brain understands your business. The agents do something about what it sees.",
-  layers: [
-    {
-      kicker: "Layer 1 \xB7 the infrastructure",
-      tone: "indigo",
-      title: "A Company Brain",
-      body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-        " ",
-        "One place that understands your whole business: every store, every brand, and the language your business actually uses for things. It reads the systems you already run and works out where the truth for each thing lives. ",
-        /* @__PURE__ */ jsx2("b", { children: "Nothing gets moved or migrated." })
-      ] })
-    },
-    {
-      kicker: "Layer 2 \xB7 the work",
-      tone: "violet",
-      title: "Agents that act",
-      body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-        " ",
-        "On top of that brain, agents that watch for what matters, work out why it is happening, do something about it, and check whether it worked.",
-        " ",
-        /* @__PURE__ */ jsx2("b", { children: "Each one is built around a problem you actually have, rather than picked off a shelf." }),
-        " ",
-        "You start with one and add more as they earn your trust."
-      ] })
-    }
-  ],
-  layersJoint: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "Because every agent shares the same brain, ",
-    /* @__PURE__ */ jsx2("b", { children: "the second one starts where the first finished" }),
-    ". The first agent takes six weeks because the brain gets built alongside it. The ones after that take days. And you are not buying six separate tools, each needing its own integration and its own explanation of how your business works."
-  ] }),
-  actsTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "What ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "\u201Cacts\u201D means: one agent, start to finish" })
-  ] }),
-  actsSub: "Attach rate. Runs every week, in every store, with nobody launching it.",
-  steps: [
-    { title: "Notices", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "One store\u2019s accessory and care plan attach has slipped ",
-      /* @__PURE__ */ jsx2("b", { children: "below its own past three months" }),
-      ", and below comparable stores."
-    ] }) },
-    { title: "Works out why", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Footfall is normal and stock is fine. It is ",
-      /* @__PURE__ */ jsx2("b", { children: "two people who joined six weeks ago" }),
-      ", working the same shifts and missing the same attachments."
-    ] }) },
-    { title: "Does something", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Sends those two a short brief ",
-      /* @__PURE__ */ jsx2("b", { children: "on their phone, in their language" }),
-      ": the exact products to offer with this month\u2019s mix, and what to say."
-    ] }) },
-    { title: "Checks it worked", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Re-measures next week. If it moved, it moves on. ",
-      /* @__PURE__ */ jsx2("b", { children: "If it did not, it escalates to the manager" }),
-      " with what it already tried."
-    ] }) }
-  ],
-  objectionsTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "Why this is not something ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "you already have" })
-  ] }),
-  objectionsSub: "Three fair objections, answered directly.",
-  objections: [
-    { q: "\u201COur ERP already does reorder points and transfers.\u201D", a: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "It does, and you should keep it. That is a threshold on one system, and a person still has to raise the indent and chase it. ",
-      /* @__PURE__ */ jsx2("b", { children: "This works across billing, service, rosters and finance at the same time, and it does the chasing." })
-    ] }) },
-    { q: "\u201CWe have dashboards and reports already.\u201D", a: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Everyone does, and that is the point. ",
-      /* @__PURE__ */ jsx2("b", { children: "Four in five retailers still lose margin to things the dashboard already showed them." }),
-      " Reports do not act. Nobody has spare hours to read one per store per day."
-    ] }) },
-    { q: "\u201CWe could just hire two more analysts.\u201D", a: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Two analysts can tell you what happened last month. ",
-      /* @__PURE__ */ jsx2("b", { children: "They cannot tell the person at the counter what to say right now" }),
-      ", in their language, in every store, every day. And each new question is another week of their time."
-    ] }) }
-  ],
-  ctaTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "Pick one number you want moved. ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "Six weeks." })
-  ] }),
-  ctaBody: "We agree what success looks like before we start, and measure it against your own reporting rather than ours. You keep everything built, whether or not you continue.",
-  brainTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "The Company Brain: ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "how it knows your business" })
-  ] }),
-  brainSub: "This is the part that takes six months and a specialist team to build in house, and it is what the agents run on.",
-  brain: [
-    { title: "It reads your systems directly", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Billing, stock, service centres, rosters, loyalty, finance partners. It learns where the truth for each thing lives and goes there when asked. ",
-      /* @__PURE__ */ jsx2("b", { children: "No warehouse project, no cleanup exercise, nothing copied out." })
-    ] }) },
-    { title: "It learns how you talk", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Your brands, your store codes, your categories, the names your business actually uses for things. So a question asked in plain English ",
-      /* @__PURE__ */ jsx2("b", { children: "lands on the right data and comes back right" }),
-      "."
-    ] }) },
-    { title: "It stays current on its own", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "A new store, a new brand, a changed system: it picks that up and carries on, ",
-      /* @__PURE__ */ jsx2("b", { children: "instead of decaying into something that needs rebuilding next year" }),
-      "."
-    ] }) },
-    { title: "It keeps what your people know", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "The rules, exceptions and judgement calls that live in your best managers\u2019 heads get captured once and stay in the business, ",
-      /* @__PURE__ */ jsx2("b", { children: "including after those people leave" }),
-      "."
-    ] }) }
-  ],
-  asksTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "Things you can just ask it, ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "in plain English" })
-  ] }),
-  asksSub: "Not a fixed set of reports. Any question about your business, answered in minutes rather than as a two week project. These each need three or four of your systems at once, which is why nobody asks them today.",
-  asks: [
-    "\u201CWhich customers who bought two years ago have not been back, and what is the right offer for each of them?\u201D",
-    "\u201CWhy did attach rate drop in Kochi last month, and is it the same reason as Coimbatore?\u201D",
-    "\u201CWhich stores run out of what before the weekend, and who nearby is holding spare?\u201D",
-    "\u201CWhat is sitting in stock past ninety days that we could still move at full margin?\u201D",
-    "\u201CWhich of my new joiners are behind, and on which products specifically?\u201D",
-    "\u201CIf we run an exchange offer next month, which stores and which customers should we aim it at?\u201D"
-  ],
-  agentsTitle: "Agents you can run on it",
-  agentsSub: "These fit most retail groups. If the problem you care about is not on this list, that is fine. The agents get built on the brain, so they follow your business rather than a product roadmap.",
-  agents: [
-    { title: "Attach rate coach", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Finds where accessories, care plans and finance are being left on the table, works out which person or shift it is, and ",
-      /* @__PURE__ */ jsx2("b", { children: "coaches them directly" }),
-      ". The example on page one."
-    ] }) },
-    { title: "Upgrade and exchange", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Who is due a replacement, from purchase date, ",
-      /* @__PURE__ */ jsx2("b", { children: "device age out of your service centres" }),
-      ", stock on hand and finance eligibility. Produces the call list, the offer and the script."
-    ] }) },
-    { title: "Launch allocation", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Splits launch stock across stores on real demand signal rather than gut feel, then ",
-      /* @__PURE__ */ jsx2("b", { children: "rebalances daily" }),
-      " through launch week as the actual numbers land."
-    ] }) },
-    { title: "Ageing stock", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Flags units past the point where they still earn their margin and proposes ",
-      /* @__PURE__ */ jsx2("b", { children: "move it, bundle it, or mark it down" }),
-      ", with the rupee impact of each option."
-    ] }) },
-    { title: "Store manager's morning brief", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "One message per manager: ",
-      /* @__PURE__ */ jsx2("b", { children: "the three things that changed in their store" }),
-      " overnight, and what to do about each. Not another dashboard nobody opens."
-    ] }) },
-    { title: "Counter assistant", body: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      "Staff ask anything, from stock to policy to exchange value, and get a real answer ",
-      /* @__PURE__ */ jsx2("b", { children: "in their own language" }),
-      ", from live data rather than a printed FAQ."
-    ] }) }
-  ],
-  plugTitle: "It reads what you already run",
-  plugBody: "No migration, no cleanup project, no replacing anything. Keep every system you have, and anything you buy later reads from the same brain.",
-  plugChips: [
-    "Your POS and billing",
-    "ERP and inventory",
-    "Service centre systems",
-    "Loyalty and CRM",
-    "Staff rosters",
-    "Finance and EMI partners"
-  ],
-  moneyTitle: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "What it takes from you, ",
-    /* @__PURE__ */ jsx2("span", { className: "sk-a", children: "and how the six weeks run" })
-  ] }),
-  provide: "Read access to the systems you already run, and one person part time as the point of contact.",
-  doNot: "Migrate data. Clean data. Hire anyone. Change or replace a single existing system.",
-  whereItRuns: "Inside your own environment, if that is what you prefer.",
-  weeks12: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "We connect to the systems you already run and build the brain.",
-    " ",
-    /* @__PURE__ */ jsx2("b", { children: "First result by the end of week two." })
-  ] }),
-  proof: /* @__PURE__ */ jsxs2(Fragment2, { children: [
-    "The same system is running today inside ",
-    /* @__PURE__ */ jsx2("b", { children: "an auto manufacturer" }),
-    " (operations and cost agents across their cloud estate), ",
-    /* @__PURE__ */ jsx2("b", { children: "a US database company" }),
-    ", ",
-    /* @__PURE__ */ jsx2("b", { children: "a marketing technology platform" }),
-    " ",
-    "serving its own clients, and ",
-    /* @__PURE__ */ jsx2("b", { children: "a healthtech company" }),
-    ", where one team moved onto it in six weeks: a shared source of truth the team works from, a checking agent that posts what needs attention at 6:30 every morning with nobody running it, and an agent that proposes changes on a live account and waits for a person to approve. Anoop\u2019s previous company built systems of this kind for ",
-    /* @__PURE__ */ jsx2("b", { children: "OpenAI and Character.AI" }),
-    "."
-  ] }),
-  closingAsk: "Tell us something about your business you wanted answered last month and could not get. We will show you the answer, and what the agent would do about it."
-});
 export {
   onePager
 };
