@@ -80,10 +80,16 @@ if (fontCss.includes('http')) throw new Error('a font face still points at a URL
 
 const revealCss = readFileSync(resolve(HERE, 'vendor/reveal/reveal.css'), 'utf8')
 const revealJs = readFileSync(resolve(HERE, 'vendor/reveal/reveal.js'), 'utf8')
-/* Each deck's own one-offs. `src/<deck>.css` is optional — a deck that needs nothing local says so
-   by not having one, which is the outcome to aim for. */
+/*
+ * Shared shell rules first, then the deck's own one-offs. `src/<deck>.css` is optional; a deck that
+ * needs nothing local says so by not having one, which is the outcome to aim for.
+ *
+ * `_shared.css` is NOT optional. Omitting it once cost an 85-page PDF from a 43-slide deck,
+ * silently — see the note at the top of that file.
+ */
+const sharedCss = readFileSync(resolve(HERE, 'src/_shared.css'), 'utf8')
 const localCssPath = resolve(HERE, `src/${DECK}.css`)
-const deckCss = existsSync(localCssPath) ? readFileSync(localCssPath, 'utf8') : ''
+const deckCss = sharedCss + '\n' + (existsSync(localCssPath) ? readFileSync(localCssPath, 'utf8') : '')
 
 /* ── The slides ──────────────────────────────────────────────────────────── */
 

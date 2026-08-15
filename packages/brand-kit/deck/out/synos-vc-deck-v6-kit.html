@@ -195,6 +195,63 @@ html, body { background: var(--sk-bg); margin: 0; padding: 0; }
 .reveal .slides section.has-card > .sk-slide { flex: 0 0 auto; }
 </style>
 <style>/*
+ * _shared.css — the handful of rules EVERY deck built by this harness needs.
+ *
+ * Loaded for every deck, before that deck's own stylesheet. It exists because of a real failure.
+ * When `build.mjs` learned to load `src/<deck>.css` per deck, the ops-buyer port stopped getting
+ * `deck.css` — and with it the page-number positioning and the three gap utilities its slides were
+ * already using. Nothing errored and nothing looked obviously wrong on screen: the gaps quietly
+ * collapsed, and `.dk-pnum` stopped being absolutely positioned, adding ~10px below every card.
+ * That pushed each section to 730px against a 720px page, so the PDF export split EVERY slide
+ * across two pages — 85 pages out of a 43-slide deck.
+ *
+ * Anything here must be true of any deck. Deck-specific rules belong in `src/<deck>.css`.
+ */
+
+/* ── The spacing utilities ────────────────────────────────────────────────
+ * A margin on a block is the wrong model — `Stack` is the right one and it lives in the kit. These
+ * remain for the decks authored before it, and they read the kit's spacing scale.
+ */
+.dk-gap-sm {
+  margin-top: var(--sk-space-4);
+}
+.dk-gap {
+  margin-top: var(--sk-space-5);
+}
+.dk-gap-lg {
+  margin-top: var(--sk-space-6);
+}
+
+/* One step down each under the compact register, the same rule the kit applies to Stack and
+   Columns. The pre-scale values here were 8 and 10, which is exactly the noise the scale removes:
+   at those sizes they are not two different quantities. */
+.sk-density-compact .dk-gap-sm {
+  margin-top: var(--sk-space-2);
+}
+.sk-density-compact .dk-gap {
+  margin-top: var(--sk-space-3);
+}
+.sk-density-compact .dk-gap-lg {
+  margin-top: var(--sk-space-4);
+}
+
+/* ── The page number ──────────────────────────────────────────────────────
+ * `position: absolute` is load-bearing, not cosmetic. In normal flow this element adds its own
+ * height below the card, and a section 10px taller than the page is a PDF with twice the pages.
+ */
+.dk-pnum {
+  position: absolute;
+  right: 22px;
+  bottom: 12px;
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  /* --sk-muted, not --sk-dim: the improvement report leaves --sk-dim declared at 2.56:1 and
+     referenced by no component, calling it a loaded gun for the next deck author. */
+  color: var(--sk-muted);
+  letter-spacing: 0.4px;
+}
+
+/*
  * deck.css — everything this deck needs that the brand kit deliberately does not provide.
  *
  * READ THIS BEFORE ADDING TO IT. The rule for the rebuild was: express a slide in kit components,
@@ -224,28 +281,6 @@ html, body { background: var(--sk-bg); margin: 0; padding: 0; }
  * to h1 / the cover title / stat values only. Every literal hex becomes a token.
  */
 
-/* ── 3. Shell and spacing ──────────────────────────────────────────────────
- * The kit now has a spacing scale (`--sk-space-*`) and the two layout shapes this deck was
- * reaching for: `Stack` and `Columns`. `.dk-stack` and `.dk-cols` are gone — 15 call sites moved
- * onto the components.
- *
- * What is left is the three margin utilities. They stay deck-local, on the scale, and they are the
- * honest remainder rather than an oversight: a margin on a block is the WRONG model — it makes
- * spacing a property of the block, so the same component spaces differently depending on where it
- * lands. `Stack` is the right model and it exists now. Converting the remaining 45 call sites means
- * restructuring 35 slides into stacks, which is a content-shaped change to a deck rather than a
- * platform one, and it belongs in the next deck authored fresh on the kit — not in a migration
- * whose whole value is that nothing else moved.
- */
-.dk-gap-sm {
-  margin-top: var(--sk-space-4);
-}
-.dk-gap {
-  margin-top: var(--sk-space-5);
-}
-.dk-gap-lg {
-  margin-top: var(--sk-space-6);
-}
 
 /* The connector arrow between steps in a horizontal sequence. Source: `.garr`, `.fw-arr`, `.sm-arr`. */
 .dk-arrow {
@@ -282,19 +317,6 @@ html, body { background: var(--sk-bg); margin: 0; padding: 0; }
   letter-spacing: 0;
 }
 
-/* The slide's page number, which the source deck injects from JS so it survives PDF export. */
-.dk-pnum {
-  position: absolute;
-  right: 22px;
-  bottom: 12px;
-  font-family: var(--sk-font-mono);
-  font-size: 10px;
-  /* --sk-muted, not --sk-dim. The improvement report (§5, §13) leaves --sk-dim declared at 2.56:1
-     and referenced by no component, calling it a loaded gun for the next deck author. This is that
-     author declining to fire it. */
-  color: var(--sk-muted);
-  letter-spacing: 0.4px;
-}
 
 /* ── 4. Deck-local classes under the kit's compact register ────────────────
  *
@@ -312,18 +334,6 @@ html, body { background: var(--sk-bg); margin: 0; padding: 0; }
  * its compact values live in the kit beside it. When the grid and the spacing scale land, the rest
  * follows.
  */
-/* One step down the scale each, the same rule the kit's register applies to Stack and Columns.
-   The pre-scale values here were 8 and 10, which is the noise the scale exists to remove: at these
-   sizes 8 and 10 are not two different quantities. */
-.sk-density-compact .dk-gap-sm {
-  margin-top: var(--sk-space-2);
-}
-.sk-density-compact .dk-gap {
-  margin-top: var(--sk-space-3);
-}
-.sk-density-compact .dk-gap-lg {
-  margin-top: var(--sk-space-4);
-}
 
 /* ── 2. The matrices ───────────────────────────────────────────────────────
  * Four slides are tables. `.dk-matrix` is one generic CSS grid driven entirely by inline

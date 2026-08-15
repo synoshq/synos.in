@@ -1,0 +1,56 @@
+/*
+ * _shared.css — the handful of rules EVERY deck built by this harness needs.
+ *
+ * Loaded for every deck, before that deck's own stylesheet. It exists because of a real failure.
+ * When `build.mjs` learned to load `src/<deck>.css` per deck, the ops-buyer port stopped getting
+ * `deck.css` — and with it the page-number positioning and the three gap utilities its slides were
+ * already using. Nothing errored and nothing looked obviously wrong on screen: the gaps quietly
+ * collapsed, and `.dk-pnum` stopped being absolutely positioned, adding ~10px below every card.
+ * That pushed each section to 730px against a 720px page, so the PDF export split EVERY slide
+ * across two pages — 85 pages out of a 43-slide deck.
+ *
+ * Anything here must be true of any deck. Deck-specific rules belong in `src/<deck>.css`.
+ */
+
+/* ── The spacing utilities ────────────────────────────────────────────────
+ * A margin on a block is the wrong model — `Stack` is the right one and it lives in the kit. These
+ * remain for the decks authored before it, and they read the kit's spacing scale.
+ */
+.dk-gap-sm {
+  margin-top: var(--sk-space-4);
+}
+.dk-gap {
+  margin-top: var(--sk-space-5);
+}
+.dk-gap-lg {
+  margin-top: var(--sk-space-6);
+}
+
+/* One step down each under the compact register, the same rule the kit applies to Stack and
+   Columns. The pre-scale values here were 8 and 10, which is exactly the noise the scale removes:
+   at those sizes they are not two different quantities. */
+.sk-density-compact .dk-gap-sm {
+  margin-top: var(--sk-space-2);
+}
+.sk-density-compact .dk-gap {
+  margin-top: var(--sk-space-3);
+}
+.sk-density-compact .dk-gap-lg {
+  margin-top: var(--sk-space-4);
+}
+
+/* ── The page number ──────────────────────────────────────────────────────
+ * `position: absolute` is load-bearing, not cosmetic. In normal flow this element adds its own
+ * height below the card, and a section 10px taller than the page is a PDF with twice the pages.
+ */
+.dk-pnum {
+  position: absolute;
+  right: 22px;
+  bottom: 12px;
+  font-family: var(--sk-font-mono);
+  font-size: 10px;
+  /* --sk-muted, not --sk-dim: the improvement report leaves --sk-dim declared at 2.56:1 and
+     referenced by no component, calling it a loaded gun for the next deck author. */
+  color: var(--sk-muted);
+  letter-spacing: 0.4px;
+}

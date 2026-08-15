@@ -11,20 +11,93 @@
  * the VC deck, which is why this needed its own measurement pass first:
  * `docs/plans/2026-08-14-buyer-decks-mapping.md`.
  *
- * WORK IN PROGRESS. `wip` below is what lets the build run with fewer than 43 sections, and it
- * prints the count every time so a half-ported deck can never be mistaken for a finished one.
- * Remove it on the last section, not before.
+ * COMPLETE at 43 of 43. The `wip` export is gone, so `build.mjs` now ASSERTS the section count
+ * on every build — a deck that silently loses a section fails rather than ships short.
  */
 import unblockDiagram from './ops-assets/unblock.png'
 
-/* The two hand-drawn diagrams, verbatim from the source. Injected rather than transcribed into
+/* CARRIED SVGs: token names are rewritten to the kit's namespace on the way in. The source's
+   stylesheet declares `--red-bg`; the kit declares `--sk-red-bg`. An SVG attribute pointing at an
+   undefined custom property does not fall back — `fill="var(--red-bg)"` renders BLACK, which is how
+   the root-cause diagram shipped a black bar across its problem band until the full-deck sweep
+   caught it. Nothing warns; the file is valid.
+
+   The two hand-drawn diagrams, verbatim from the source. Injected rather than transcribed into
    JSX: re-typing shaped elements is a way to introduce differences that then get mistaken for
    design decisions. Their classes are styled in ops-buyer.css. */
 const LOOP_SVG = "<svg viewBox=\"0 0 1080 320\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <radialGradient id=\"obLpCore\" cx=\"50%\" cy=\"36%\" r=\"72%\">\n            <stop offset=\"0\" stop-color=\"#8B8DF7\"/><stop offset=\"0.55\" stop-color=\"#6366F1\"/><stop offset=\"1\" stop-color=\"#7C3AED\"/>\n          </radialGradient>\n          <filter id=\"obLpGlow\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\">\n            <feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"12\" flood-color=\"#6366F1\" flood-opacity=\"0.28\"/>\n          </filter>\n          <marker id=\"obLpA\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#6366F1\"/>\n          </marker>\n          <marker id=\"obLpAv\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#7C3AED\"/>\n          </marker>\n        </defs>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"url(#obLpCore)\" filter=\"url(#obLpGlow)\"/>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"none\" stroke=\"#fff\" stroke-opacity=\".35\" stroke-width=\"1.4\"/>\n        <text x=\"300\" y=\"156\" text-anchor=\"middle\" style=\"font-family:'Plus Jakarta Sans';font-weight:800;font-size:19px;fill:#fff\">Synos</text>\n        <text x=\"300\" y=\"177\" text-anchor=\"middle\" style=\"font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:1.4px;fill:rgba(255,255,255,.85)\">THE LOOP</text>\n        <rect class=\"lp-node\" x=\"196\" y=\"16\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"42\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"46\" text-anchor=\"middle\">1</text>\n        <text class=\"lp-h\" x=\"234\" y=\"38\">Your team corrects it</text>\n        <text class=\"lp-m\" x=\"234\" y=\"56\">\"top-tier \u2014 email, never SMS\"</text>\n        <rect class=\"lp-node\" x=\"452\" y=\"134\" width=\"160\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"472\" cy=\"160\" r=\"10\"/><text class=\"lp-badge-t\" x=\"472\" y=\"164\" text-anchor=\"middle\">2</text>\n        <text class=\"lp-h\" x=\"490\" y=\"156\">The AI acts</text>\n        <text class=\"lp-m\" x=\"490\" y=\"174\">in any tool you use</text>\n        <rect class=\"lp-node-plain\" x=\"196\" y=\"252\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"278\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"282\" text-anchor=\"middle\">3</text>\n        <text class=\"lp-h\" x=\"234\" y=\"274\">Systems report results</text>\n        <text class=\"lp-m\" x=\"234\" y=\"292\">measured, not guessed</text>\n        <path class=\"lp-edge lp-flow\" d=\"M 350 72 C 396 92, 428 112, 452 142\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 456 186 C 424 226, 396 244, 360 258\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 208 252 C 178 220, 178 100, 210 66\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge-v lp-flow\" d=\"M 366 178 C 500 236, 620 216, 686 178\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-panel\" x=\"692\" y=\"62\" width=\"230\" height=\"196\" rx=\"15\"/>\n        <text class=\"lp-ph\" x=\"807\" y=\"92\" text-anchor=\"middle\">What builds up</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"122\" text-anchor=\"middle\">What actually worked</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"152\" text-anchor=\"middle\">Ways of working that improve</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"182\" text-anchor=\"middle\">The Company Brain itself</text>\n        <text class=\"lp-tag\" x=\"807\" y=\"216\" text-anchor=\"middle\">sharper every week</text>\n        <path class=\"lp-edge-v\" d=\"M 922 122 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <path class=\"lp-edge-v\" d=\"M 922 196 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-pay\" x=\"950\" y=\"96\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"117\" text-anchor=\"middle\">Better results now</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"133\" text-anchor=\"middle\">with today's AI</text>\n        <rect class=\"lp-pay\" x=\"950\" y=\"170\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"191\" text-anchor=\"middle\">An asset you own</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"207\" text-anchor=\"middle\">yours, not a vendor's</text>\n      </svg>"
 
+const SCATTER_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 1080 340\" xmlns=\"http://www.w3.org/2000/svg\">\n          <defs>\n            <marker id=\"sc-arr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#7c3aed\"/></marker>\n          </defs>\n          <!-- scattered silos (top) -->\n          <g>\n            <rect class=\"node\" x=\"20\"  y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"95\"  y=\"33\" text-anchor=\"middle\">Data warehouse</text><text class=\"muted\" x=\"95\"  y=\"48\" text-anchor=\"middle\">customer_id 4821</text>\n            <rect class=\"node\" x=\"200\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"275\" y=\"33\" text-anchor=\"middle\">CRM</text><text class=\"muted\" x=\"275\" y=\"48\" text-anchor=\"middle\">Acct \"Acme Corp\"</text>\n            <rect class=\"node\" x=\"380\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"455\" y=\"33\" text-anchor=\"middle\">Slack \u00b7 Email</text><text class=\"muted\" x=\"455\" y=\"48\" text-anchor=\"middle\">\"the Acme folks\"</text>\n            <rect class=\"node\" x=\"560\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"635\" y=\"33\" text-anchor=\"middle\">Docs</text><text class=\"muted\" x=\"635\" y=\"48\" text-anchor=\"middle\">SOP v3 (stale?)</text>\n            <rect class=\"node\" x=\"740\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"815\" y=\"33\" text-anchor=\"middle\">Support tickets</text><text class=\"muted\" x=\"815\" y=\"48\" text-anchor=\"middle\">acme@ \u00b7 #7781</text>\n            <rect class=\"node\" x=\"920\" y=\"14\" width=\"140\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"990\" y=\"33\" text-anchor=\"middle\">Spreadsheets</text><text class=\"muted\" x=\"990\" y=\"48\" text-anchor=\"middle\">\"ACME (EU)\"</text>\n          </g>\n          <!-- grey stubs silo \u2192 problem band -->\n          <path class=\"edge\" d=\"M 95 56 L 95 78\"/><path class=\"edge\" d=\"M 275 56 L 275 78\"/><path class=\"edge\" d=\"M 455 56 L 455 78\"/>\n          <path class=\"edge\" d=\"M 635 56 L 635 78\"/><path class=\"edge\" d=\"M 815 56 L 815 78\"/><path class=\"edge\" d=\"M 990 56 L 990 78\"/>\n          <!-- problem band -->\n          <rect x=\"40\" y=\"78\" width=\"1000\" height=\"26\" rx=\"8\" fill=\"var(--sk-red-bg)\" stroke=\"var(--sk-red-br)\"/>\n          <text x=\"540\" y=\"95\" text-anchor=\"middle\" font-style=\"italic\" font-size=\"11\" fill=\"#b91c1c\">same customer \u00b7 six identities \u00b7 no shared meaning \u00b7 no freshness \u00b7 no lineage</text>\n          <!-- 6 arrows converge band \u2192 brain -->\n          <path class=\"edge-violet\" d=\"M 95 104 L 498 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 275 104 L 516 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 455 104 L 532 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 635 104 L 548 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 815 104 L 564 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 990 104 L 582 226\" marker-end=\"url(#sc-arr)\"/>\n          <!-- brain layer node -->\n          <rect class=\"node-violet\" x=\"330\" y=\"232\" width=\"420\" height=\"76\" rx=\"14\"/>\n          <text class=\"h\" x=\"540\" y=\"260\" text-anchor=\"middle\" fill=\"#7c3aed\" font-size=\"13\">Company Brain \u2014 one resolved graph</text>\n          <text class=\"tag\" x=\"540\" y=\"281\" text-anchor=\"middle\" font-size=\"10.5\">entity-resolved \u00b7 relationship-linked \u00b7 freshness-aware \u00b7 cited</text>\n          <text class=\"muted\" x=\"540\" y=\"298\" text-anchor=\"middle\" font-size=\"10\">Acme Corp = customer_id 4821 = \"ACME (EU)\" \u00b7 one node, every source</text>\n        </svg>"
+
+const RETRIEVAL_SVG = "<svg viewBox=\"0 0 380 400\" xmlns=\"http://www.w3.org/2000/svg\">\n            <defs>\n              <marker id=\"ag-arr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n                <path d=\"M0,0 L10,5 L0,10 z\" fill=\"#7c3aed\"/>\n              </marker>\n              <marker id=\"ag-arr-dim\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n                <path d=\"M0,0 L10,5 L0,10 z\" fill=\"#a78bfa\"/>\n              </marker>\n            </defs>\n            <rect x=\"100\" y=\"6\" width=\"180\" height=\"46\" rx=\"10\" fill=\"#f5f3ff\" stroke=\"#7c3aed\" stroke-width=\"1.5\"/>\n            <text x=\"190\" y=\"24\" text-anchor=\"middle\" font-family=\"'Plus Jakarta Sans'\" font-size=\"9.5\" font-weight=\"800\" fill=\"#7c3aed\" letter-spacing=\"1.3\">RETRIEVAL SUB-AGENT</text>\n            <text x=\"190\" y=\"40\" text-anchor=\"middle\" font-family=\"'JetBrains Mono'\" font-size=\"10\" font-weight=\"600\" fill=\"#0f172a\">plan \u2192 call \u2192 observe \u2192 refine</text>\n            <path d=\"M 290 28 Q 340 28 340 56 Q 340 88 300 88\" fill=\"none\" stroke=\"#a78bfa\" stroke-width=\"1.4\" stroke-dasharray=\"3 3\" marker-end=\"url(#ag-arr-dim)\"/>\n            <text x=\"345\" y=\"60\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#7c3aed\" font-weight=\"700\">\u21bb 4\u00d7</text>\n            <text x=\"20\" y=\"30\" font-family=\"'JetBrains Mono'\" font-size=\"10\" fill=\"#475569\" font-weight=\"600\">Q:</text>\n            <text x=\"20\" y=\"44\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#64748b\">\"Why is</text>\n            <text x=\"20\" y=\"56\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#64748b\">Maya at risk?\"</text>\n            <path d=\"M 70 36 L 100 30\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr)\"/>\n            <circle cx=\"80\" cy=\"120\" r=\"22\" fill=\"#eef2ff\" stroke=\"#6366f1\" stroke-width=\"1.8\"/>\n            <text x=\"80\" y=\"118\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#4338ca\">Maya</text>\n            <text x=\"80\" y=\"129\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">Customer</text>\n            <circle cx=\"62\" cy=\"103\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"62\" y=\"106\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">1</text>\n            <circle cx=\"190\" cy=\"135\" r=\"22\" fill=\"#eef2ff\" stroke=\"#6366f1\" stroke-width=\"1.5\"/>\n            <text x=\"190\" y=\"133\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#4338ca\">Order #42</text>\n            <text x=\"190\" y=\"144\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">SLA breach</text>\n            <circle cx=\"172\" cy=\"118\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"172\" y=\"121\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">2</text>\n            <circle cx=\"310\" cy=\"160\" r=\"22\" fill=\"#eef2ff\" stroke=\"#6366f1\" stroke-width=\"1.5\"/>\n            <text x=\"310\" y=\"158\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#4338ca\">Ticket</text>\n            <text x=\"310\" y=\"169\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">delivery</text>\n            <circle cx=\"292\" cy=\"143\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"292\" y=\"146\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">3</text>\n            <circle cx=\"140\" cy=\"240\" r=\"22\" fill=\"#fef2f2\" stroke=\"#ef4444\" stroke-width=\"1.5\"/>\n            <text x=\"140\" y=\"238\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#b91c1c\">Region policy</text>\n            <text x=\"140\" y=\"249\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">apology+reship</text>\n            <circle cx=\"122\" cy=\"223\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"122\" y=\"226\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">4</text>\n            <circle cx=\"270\" cy=\"260\" r=\"22\" fill=\"#ecfeff\" stroke=\"#0e7490\" stroke-width=\"1.5\"/>\n            <text x=\"270\" y=\"258\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#0e7490\">WA evening</text>\n            <text x=\"270\" y=\"269\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">preference</text>\n            <circle cx=\"252\" cy=\"243\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"252\" y=\"246\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">5</text>\n            <circle cx=\"40\" cy=\"195\" r=\"14\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/>\n            <text x=\"40\" y=\"198\" text-anchor=\"middle\" font-size=\"7\" fill=\"#94a3b8\">Tier</text>\n            <circle cx=\"350\" cy=\"240\" r=\"14\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/>\n            <text x=\"350\" y=\"243\" text-anchor=\"middle\" font-size=\"7\" fill=\"#94a3b8\">SKU</text>\n            <path d=\"M 130 56 Q 100 80 86 100\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.6\" marker-end=\"url(#ag-arr)\"/>\n            <path d=\"M 100 125 L 168 132\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <path d=\"M 211 142 L 288 156\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <path d=\"M 295 180 Q 220 230 162 232\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <path d=\"M 162 245 L 248 257\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <rect x=\"50\" y=\"328\" width=\"280\" height=\"56\" rx=\"10\" fill=\"#ecfdf5\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n            <text x=\"190\" y=\"348\" text-anchor=\"middle\" font-family=\"'Plus Jakarta Sans'\" font-size=\"9.5\" font-weight=\"800\" fill=\"#047857\" letter-spacing=\"1.3\">SYNTHESISED CONTEXT PACK</text>\n            <text x=\"190\" y=\"364\" text-anchor=\"middle\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#0f172a\">5 nodes \u00b7 4 hops \u00b7 reasoning trace attached</text>\n            <text x=\"190\" y=\"377\" text-anchor=\"middle\" font-size=\"9\" font-style=\"italic\" fill=\"#475569\">\"Apology + reship + WA evening dispatch\"</text>\n            <path d=\"M 270 282 Q 240 310 220 326\" fill=\"none\" stroke=\"#10b981\" stroke-width=\"1.6\" marker-end=\"url(#ag-arr)\"/>\n          </svg>"
+
+const GOV_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 480 220\" xmlns=\"http://www.w3.org/2000/svg\">\n            <rect class=\"node-violet\" x=\"8\" y=\"22\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"37\" text-anchor=\"middle\">UI click</text>\n            <rect class=\"node-violet\" x=\"8\" y=\"62\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"77\" text-anchor=\"middle\">ChatGPT</text>\n            <rect class=\"node-violet\" x=\"8\" y=\"102\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"117\" text-anchor=\"middle\">Claude Code</text>\n            <rect class=\"node-violet\" x=\"8\" y=\"142\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"157\" text-anchor=\"middle\">Worker</text>\n            <path class=\"edge-indigo\" d=\"M 100 34 L 168 100\"/><path class=\"edge-indigo\" d=\"M 100 74 L 168 100\"/>\n            <path class=\"edge-indigo\" d=\"M 100 114 L 168 100\"/><path class=\"edge-indigo\" d=\"M 100 154 L 168 100\"/>\n            <rect class=\"node-indigo\" x=\"168\" y=\"50\" width=\"158\" height=\"115\" rx=\"12\"/>\n            <text class=\"h\" x=\"247\" y=\"72\" text-anchor=\"middle\">Governed Gate</text>\n            <line x1=\"178\" y1=\"82\" x2=\"316\" y2=\"82\" stroke=\"#c7d2fe\"/>\n            <text class=\"muted\" x=\"180\" y=\"98\">\u25b8 role check</text>\n            <text class=\"muted\" x=\"180\" y=\"114\">\u25b8 tool allowlist</text>\n            <text class=\"muted\" x=\"180\" y=\"130\">\u25b8 parameter contract</text>\n            <text class=\"muted\" x=\"180\" y=\"146\">\u25b8 tenant boundary</text>\n            <text class=\"muted\" x=\"180\" y=\"162\">\u25b8 egress proxy</text>\n            <path class=\"edge-indigo\" d=\"M 326 84 L 384 48\"/>\n            <rect class=\"node-emerald\" x=\"384\" y=\"32\" width=\"88\" height=\"22\" rx=\"6\"/><text x=\"428\" y=\"47\" text-anchor=\"middle\" fill=\"#047857\" font-weight=\"600\">allowed</text>\n            <path class=\"edge\" d=\"M 326 130 L 384 168\" stroke=\"#ef4444\"/>\n            <rect class=\"node-red\" x=\"384\" y=\"156\" width=\"88\" height=\"22\" rx=\"6\"/><text x=\"428\" y=\"171\" text-anchor=\"middle\" fill=\"#b91c1c\" font-weight=\"600\">denied</text>\n            <rect class=\"node\" x=\"120\" y=\"178\" width=\"254\" height=\"34\" rx=\"8\"/><text class=\"h\" x=\"247\" y=\"193\" text-anchor=\"middle\" font-size=\"11\">Audit row</text>\n            <text class=\"tag\" x=\"247\" y=\"206\" text-anchor=\"middle\" font-size=\"9.5\">who \u00b7 what \u00b7 when \u00b7 result</text>\n          </svg>"
+
+const FLYWHEEL_SVG = "<svg class=\"flywheel-svg\" viewBox=\"0 0 360 360\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <marker id=\"fwArr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M0,0 L10,5 L0,10 z\" fill=\"#6366f1\"/>\n          </marker>\n        </defs>\n        <circle cx=\"180\" cy=\"180\" r=\"48\" fill=\"#f5f3ff\" stroke=\"#7c3aed\" stroke-width=\"1.5\"/>\n        <text x=\"180\" y=\"175\" text-anchor=\"middle\" font-family=\"'Plus Jakarta Sans'\" font-size=\"12\" font-weight=\"800\" fill=\"#7c3aed\">Company</text>\n        <text x=\"180\" y=\"192\" text-anchor=\"middle\" font-family=\"'Plus Jakarta Sans'\" font-size=\"12\" font-weight=\"800\" fill=\"#7c3aed\">Brain</text>\n        <g>\n          <rect x=\"120\" y=\"20\" width=\"120\" height=\"60\" rx=\"10\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.5\"/>\n          <text x=\"180\" y=\"42\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"800\" fill=\"#4338ca\" letter-spacing=\"1.4\">1 \u00b7 INPUT \u2014 STATE</text>\n          <text x=\"180\" y=\"60\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">Context pack</text>\n          <text x=\"180\" y=\"74\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">entity \u00b7 policy \u00b7 history</text>\n        </g>\n        <g>\n          <rect x=\"280\" y=\"150\" width=\"60\" height=\"60\" rx=\"10\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.5\"/>\n          <text x=\"310\" y=\"172\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#4338ca\" letter-spacing=\"1.2\">2 \u00b7 ACTION</text>\n          <text x=\"310\" y=\"187\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">Agent</text>\n          <text x=\"310\" y=\"200\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">decision</text>\n        </g>\n        <g>\n          <rect x=\"120\" y=\"280\" width=\"120\" height=\"60\" rx=\"10\" fill=\"#ecfdf5\" stroke=\"#6ee7b7\" stroke-width=\"1.5\"/>\n          <text x=\"180\" y=\"302\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"800\" fill=\"#047857\" letter-spacing=\"1.4\">3 \u00b7 OUTCOME</text>\n          <text x=\"180\" y=\"320\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">measured uplift</text>\n          <text x=\"180\" y=\"334\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">did it work?</text>\n        </g>\n        <g>\n          <rect x=\"20\" y=\"150\" width=\"60\" height=\"60\" rx=\"10\" fill=\"#f5f3ff\" stroke=\"#ddd6fe\" stroke-width=\"1.5\"/>\n          <text x=\"50\" y=\"170\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#7c3aed\" letter-spacing=\"1.2\">4 \u00b7 REVIEW</text>\n          <text x=\"50\" y=\"184\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">calibrate</text>\n          <text x=\"50\" y=\"198\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">corrections</text>\n        </g>\n        <path d=\"M 240 50 Q 320 80 310 150\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 310 210 Q 320 280 240 310\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 120 310 Q 40 280 50 210\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 50 150 Q 40 80 120 50\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.8\" stroke-dasharray=\"4 3\" marker-end=\"url(#fwArr)\"/>\n      </svg>"
+
+const SOR_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 480 210\" xmlns=\"http://www.w3.org/2000/svg\">\n            <defs><marker id=\"aSi\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0 0 L7 3.5 L0 7 z\" fill=\"#6366f1\"/></marker>\n            <marker id=\"aSv\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0 0 L7 3.5 L0 7 z\" fill=\"#7c3aed\"/></marker></defs>\n            <rect class=\"node-indigo\" x=\"10\" y=\"84\" width=\"84\" height=\"32\" rx=\"8\"/><text class=\"h\" x=\"52\" y=\"104\" text-anchor=\"middle\">Worker</text><text class=\"muted\" x=\"52\" y=\"128\" text-anchor=\"middle\" font-size=\"9\">writes</text>\n            <path class=\"edge-indigo\" d=\"M 94 100 L 130 100\" marker-end=\"url(#aSi)\"/>\n            <rect class=\"node-emerald\" x=\"130\" y=\"10\" width=\"220\" height=\"84\" rx=\"10\"/>\n            <rect x=\"130\" y=\"10\" width=\"220\" height=\"20\" rx=\"10\" fill=\"#d1fae5\"/><rect x=\"130\" y=\"20\" width=\"220\" height=\"10\" fill=\"#d1fae5\"/>\n            <text class=\"h\" x=\"240\" y=\"24\" text-anchor=\"middle\" fill=\"#047857\" font-size=\"12\">campaign_perf</text>\n            <text class=\"muted\" x=\"142\" y=\"46\" font-size=\"10\">rows</text><text x=\"338\" y=\"46\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">channel \u00b7 spend \u00b7 ROAS</text>\n            <text class=\"muted\" x=\"142\" y=\"62\" font-size=\"10\">written_by</text><text x=\"338\" y=\"62\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">worker.ads</text>\n            <text class=\"muted\" x=\"142\" y=\"78\" font-size=\"10\">audit_id</text><text x=\"338\" y=\"78\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">#8421</text>\n            <text class=\"tag\" x=\"240\" y=\"91\" text-anchor=\"middle\" font-size=\"9.5\">schema-enforced</text>\n            <rect class=\"node-emerald\" x=\"130\" y=\"104\" width=\"220\" height=\"54\" rx=\"10\"/>\n            <rect x=\"130\" y=\"104\" width=\"220\" height=\"20\" rx=\"10\" fill=\"#d1fae5\"/><rect x=\"130\" y=\"114\" width=\"220\" height=\"10\" fill=\"#d1fae5\"/>\n            <text class=\"h\" x=\"240\" y=\"118\" text-anchor=\"middle\" fill=\"#047857\" font-size=\"12\">lead_followups</text>\n            <text class=\"muted\" x=\"142\" y=\"140\" font-size=\"10\">rows</text><text x=\"338\" y=\"140\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">owner \u00b7 stage \u00b7 next</text>\n            <path class=\"edge-violet\" d=\"M 350 52 L 388 74\" marker-end=\"url(#aSv)\"/>\n            <path class=\"edge-violet\" d=\"M 350 130 L 388 110\" marker-end=\"url(#aSv)\" stroke-dasharray=\"3 3\"/>\n            <rect class=\"node-violet\" x=\"388\" y=\"68\" width=\"86\" height=\"56\" rx=\"10\"/><text class=\"h\" x=\"431\" y=\"90\" text-anchor=\"middle\">App</text><text class=\"muted\" x=\"431\" y=\"104\" text-anchor=\"middle\" font-size=\"9\">+ Agents</text><text class=\"muted\" x=\"431\" y=\"117\" text-anchor=\"middle\" font-size=\"9\">read \u00b7 audited</text>\n            <text class=\"muted\" x=\"240\" y=\"200\" text-anchor=\"middle\" font-size=\"10\">same tenant \u00b7 permissions \u00b7 audit on every read + write</text>\n          </svg>"
+
+const BUILD_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 540 200\" xmlns=\"http://www.w3.org/2000/svg\">\n            <defs><marker id=\"aP\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0 0 L7 3.5 L0 7 z\" fill=\"#6366f1\"/></marker></defs>\n            <rect class=\"node\" x=\"6\" y=\"74\" width=\"78\" height=\"30\" rx=\"8\"/><text class=\"h\" x=\"45\" y=\"93\" text-anchor=\"middle\">commit</text>\n            <path class=\"edge-indigo\" d=\"M 84 89 L 106 89\" marker-end=\"url(#aP)\"/>\n            <rect class=\"node-indigo\" x=\"106\" y=\"74\" width=\"80\" height=\"30\" rx=\"8\"/><text class=\"h\" x=\"146\" y=\"93\" text-anchor=\"middle\">1 \u00b7 Build</text>\n            <path class=\"edge-indigo\" d=\"M 186 89 L 208 89\" marker-end=\"url(#aP)\"/>\n            <rect class=\"node-indigo\" x=\"208\" y=\"74\" width=\"86\" height=\"30\" rx=\"8\"/><text class=\"h\" x=\"251\" y=\"93\" text-anchor=\"middle\">2 \u00b7 Scan</text>\n            <text class=\"muted\" x=\"251\" y=\"120\" text-anchor=\"middle\" font-size=\"9\">access \u00b7 fetch \u00b7 secrets</text>\n            <path d=\"M 251 104 L 251 142\" stroke=\"#ef4444\" stroke-width=\"1.4\" fill=\"none\" stroke-dasharray=\"3 3\"/>\n            <rect class=\"node-red\" x=\"218\" y=\"142\" width=\"66\" height=\"24\" rx=\"6\"/><text x=\"251\" y=\"158\" text-anchor=\"middle\" fill=\"#b91c1c\" font-weight=\"600\" font-size=\"11\">block</text>\n            <path class=\"edge-indigo\" d=\"M 294 89 L 316 89\" marker-end=\"url(#aP)\"/>\n            <rect class=\"node-indigo\" x=\"316\" y=\"74\" width=\"86\" height=\"30\" rx=\"8\"/><text class=\"h\" x=\"359\" y=\"93\" text-anchor=\"middle\">3 \u00b7 Compile</text>\n            <path class=\"edge-indigo\" d=\"M 402 89 L 424 89\" marker-end=\"url(#aP)\"/>\n            <rect class=\"node-emerald\" x=\"424\" y=\"74\" width=\"106\" height=\"30\" rx=\"8\"/><text class=\"h\" x=\"477\" y=\"93\" text-anchor=\"middle\" fill=\"#047857\">4 \u00b7 Sandbox URL</text>\n            <text class=\"muted\" x=\"477\" y=\"120\" text-anchor=\"middle\" font-size=\"9\">egress proxy \u00b7 scoped token</text>\n            <path class=\"edge-indigo\" d=\"M 477 104 L 477 144\" marker-end=\"url(#aP)\"/>\n            <rect class=\"node\" x=\"429\" y=\"144\" width=\"96\" height=\"24\" rx=\"6\"/><text class=\"h\" x=\"477\" y=\"160\" text-anchor=\"middle\" font-size=\"11\">5 \u00b7 Audit row</text>\n            <text class=\"muted\" x=\"270\" y=\"192\" text-anchor=\"middle\" font-size=\"10\">scanned \u00b7 sandboxed \u00b7 audited \u00b7 zero personal deploy</text>\n          </svg>"
+
+const TRACE_HTML = "<span class=\"step\">step 1</span> <span class=\"tool\">brain_search</span>(\"maya\") \u2192 <span class=\"hit\">Customer \u00b7 VIP \u00b7 West</span><br/><span class=\"step\">step 2</span> <span class=\"tool\">graph_traverse</span>(orders, recent=30d) \u2192 <span class=\"hit\">Order#42 SLA breach</span><br/><span class=\"step\">step 3</span> <span class=\"tool\">brain_search</span>(\"delivery ticket maya\") \u2192 <span class=\"hit\">Ticket open</span><br/><span class=\"step\">step 4</span> <span class=\"tool\">brain_search</span>(\"region delivery policy\") \u2192 <span class=\"hit\">apology+reship rule</span><br/><span class=\"step\">\u2192</span> assemble + return pack"
+
 const EDGE_SVG = "<svg viewBox=\"0 0 640 330\" xmlns=\"http://www.w3.org/2000/svg\">\n          <defs>\n            <radialGradient id=\"obEgCore\" cx=\"50%\" cy=\"50%\" r=\"65%\">\n              <stop offset=\"0\" stop-color=\"#c7d2fe\"/><stop offset=\"1\" stop-color=\"#a5b4fc\"/>\n            </radialGradient>\n            <marker id=\"obEgA\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#10b981\"/></marker>\n          </defs>\n          <circle cx=\"240\" cy=\"168\" r=\"150\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.6\" stroke-dasharray=\"7 6\"/>\n          <circle cx=\"240\" cy=\"168\" r=\"112\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.4\"/>\n          <circle cx=\"240\" cy=\"168\" r=\"64\" fill=\"url(#obEgCore)\"/>\n          <text x=\"240\" y=\"163\" text-anchor=\"middle\" style=\"font-family:'Plus Jakarta Sans';font-weight:800;font-size:13px;fill:#312e81\">Public internet</text>\n          <text x=\"240\" y=\"180\" text-anchor=\"middle\" style=\"font-family:'Inter';font-size:9.5px;fill:#4338ca\">what every AI knows</text>\n          <text x=\"240\" y=\"80\" text-anchor=\"middle\" style=\"font-family:'Inter';font-size:10px;fill:#4f46e5\">licensed expert data</text>\n          <text x=\"240\" y=\"12\" text-anchor=\"middle\" style=\"font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.6px;fill:#7c3aed\">GROWS WITH EVERY AI RELEASE</text>\n          <g style=\"font-family:'Inter';font-size:10.5px;font-weight:600;fill:#0f172a\">\n            <text x=\"475\" y=\"96\">your operations</text>\n            <text x=\"490\" y=\"128\">your corrections</text>\n            <text x=\"498\" y=\"160\">your customer history</text>\n            <text x=\"490\" y=\"192\">your judgment calls</text>\n            <text x=\"475\" y=\"224\">your way of working</text>\n          </g>\n          <path d=\"M 392 168 q 22 0 40 0\" fill=\"none\" stroke=\"#10b981\" stroke-width=\"2\" marker-end=\"url(#obEgA)\"/>\n          <rect x=\"404\" y=\"248\" width=\"216\" height=\"58\" rx=\"12\" fill=\"#ecfdf5\" stroke=\"#6ee7b7\" stroke-width=\"1.4\"/>\n          <text x=\"512\" y=\"272\" text-anchor=\"middle\" style=\"font-family:'Plus Jakarta Sans';font-weight:800;font-size:12px;fill:#065f46\">THE EDGE</text>\n          <text x=\"512\" y=\"290\" text-anchor=\"middle\" style=\"font-family:'Inter';font-size:9.5px;fill:#047857\">your people + AI create value here</text>\n          <circle cx=\"418\" cy=\"110\" r=\"4\" fill=\"#10b981\"/><circle cx=\"434\" cy=\"142\" r=\"4\" fill=\"#10b981\"/>\n          <circle cx=\"440\" cy=\"174\" r=\"4\" fill=\"#10b981\"/><circle cx=\"434\" cy=\"206\" r=\"4\" fill=\"#10b981\"/>\n          <circle cx=\"418\" cy=\"238\" r=\"4\" fill=\"#10b981\"/>\n        </svg>"
 
-export const wip = true
+/*
+ * The running order, stated once and enforced.
+ *
+ * The slides below were written in the order the port worked through them, which is NOT the order
+ * the deck runs in — diagram-heavy sections were left for a later pass and appended when they were
+ * done. Relying on where a block happens to sit in this file is how a deck ships with its root-cause
+ * slide after the appendix divider. The array is the source of truth; a slide missing from it, or
+ * an id in it with no slide, fails the build.
+ */
+const ORDER = [
+  'cover',
+  'unblock',
+  'viewpoint',
+  'the-shift',
+  'six-walls',
+  'root-cause',
+  'what-synos-is',
+  'ai-builds-it',
+  'workflow-from-english',
+  'ask-anything',
+  'no-migration',
+  'honest-question',
+  'sme-authoring',
+  'templated-brains',
+  'two-mondays',
+  'why-it-compounds',
+  'the-edge',
+  'what-teams-get',
+  'the-payoff',
+  'early-pilots',
+  'transformation-arc',
+  'graduated-trust',
+  'safe-by-design',
+  'no-lock-in',
+  'how-it-lands',
+  'the-outcome',
+  'to-the-demo',
+  'appendix-divider',
+  'operating-layer',
+  'six-capabilities',
+  'architecture',
+  'memory-types',
+  'retrieval',
+  'governance',
+  'compounding-flywheel',
+  'data-flywheel',
+  'operational-data',
+  'safe-to-build',
+  'enterprise-readiness',
+  'why-synos',
+  'closing',
+  'apx-horizons',
+  'apx-the-moat',
+]
+
 
 export const deck = (K) => {
   const {
@@ -58,7 +131,7 @@ export const deck = (K) => {
     Columns,
   } = K
 
-  return [
+  const slides = [
     /* ── 1 · Cover ────────────────────────────────────────────────────────
      * `.cover` + `.tag-row` of four `.pill`s. CoverSlide takes the pills as children; the source's
      * `.sub` is the lede, because this is a deck that gets SENT as often as it is presented. */
@@ -1898,5 +1971,455 @@ export const deck = (K) => {
         </SlideFrame>
       ),
     },
+    /* ── 6 · The root cause ───────────────────────────────────────────────
+     * The scattered-context graph. Carried verbatim; the kit has no diagram vocabulary. This is the
+     * section skipped on the first pass through this deck, filled in here. */
+    {
+      id: 'root-cause',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="The Root Cause"
+            eyebrowTone="red"
+            title="Your context is scattered across every system — and no AI can see it whole."
+            subtitle="Warehouse rows, CRM fields, Slack threads, docs, tickets, sheets. Same customer, six names. No shared meaning, and no idea what's current — so AI can't give you one straight answer."
+          />
+          <div className="ob-scatter diagram-svg" dangerouslySetInnerHTML={{ __html: SCATTER_SVG }} />
+          <Caption className="dk-gap-sm">
+            AI assistants don't fail because the model is weak — they fail because{' '}
+            <em>your information is scattered and never joined up</em>. The fix is one shared memory
+            that ties it together, so every answer is consistent.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 33 · Retrieval ───────────────────────────────────────────────────
+     * Two modes side by side: a deterministic five-step ladder, and an agentic traversal with its
+     * trace. Both local — a numbered ladder inside a panel is this slide's shape, and the trace is
+     * a transcript. */
+    {
+      id: 'retrieval',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Retrieval"
+            eyebrowTone="indigo"
+            title="Every agent gets the right slice — deterministic or agentic."
+            subtitle="Job-specific context packs assembled per query. Hybrid retrieval, authority-ranked, freshness-aware, policy-redacted. MCP-native envelope."
+          />
+          <div className="ob-retrieval">
+            <div>
+              <div className="ob-ret-head">
+                <Chip size="sm" tone="indigo">Mode A</Chip>
+                <span className="ob-ret-name">Deterministic pack assembly</span>
+                <span className="ob-ret-when">~300ms · single call</span>
+              </div>
+              <div className="ob-ret-flow">
+                {[
+                  ['Query · scoped by agent role + intent', '“Next-best action for Maya” + agent capabilities + project_id'],
+                  ['Hybrid retrieval · vec + graph + keyword', 'ChromaDB embeddings · Neo4j multi-hop · Postgres FTS — fused'],
+                  ['Authority + freshness rank', 'AgentPromoted > Document > SOR row · staleness penalty'],
+                  ['Policy redact + token budget', 'RBAC filter · PII redaction · 4K/16K/32K envelope per agent'],
+                  ['Context Pack → MCP response', 'Typed JSON · citation IDs · authority score · staleness ts'],
+                ].map(([name, desc], i) => (
+                  <div className="ob-ret-step" key={name}>
+                    <div className="ob-ret-num">{i + 1}</div>
+                    <div>
+                      <div className="ob-ret-name">{name}</div>
+                      <div className="ob-ret-desc">{desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="ob-ret-head">
+                <Chip size="sm" tone="violet">Mode B</Chip>
+                <span className="ob-ret-name">Agentic retrieval — multi-step graph traversal</span>
+                <span className="ob-ret-when">3–6 hops · adaptive</span>
+              </div>
+              <div className="ob-agentic diagram-svg">
+                <div dangerouslySetInnerHTML={{ __html: RETRIEVAL_SVG }} />
+                <div className="ob-trace" dangerouslySetInnerHTML={{ __html: TRACE_HTML }} />
+              </div>
+            </div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── governance · without / with the layer ─────────────────────────────
+     * The pair: today's failure on the left, the governed path on the right with its diagram. */
+    {
+      id: 'governance',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Governance · Safe Access"
+            eyebrowTone="indigo"
+            title="Every action gated. Every action audited."
+          />
+          <div className="ob-pair">
+            <div className="ob-pair-col">
+              <div className="ob-pair-label">Without the layer</div>
+              <h3>Raw keys in chat history. No permissions. No audit. No boundary.</h3>
+              <p>The moment someone pastes a CRM key into a chat window, the blast radius is unbounded.</p>
+              <ul>
+                  <li>Keys on personal laptops.</li>
+                  <li>No “this role can’t do that” gate.</li>
+                  <li>No log of who did what, when.</li>
+              </ul>
+            </div>
+            <div className="ob-pair-col ob-pair-col--with">
+              <div className="ob-pair-label">With Synos — one governed door</div>
+              <h3>UI, AI tool, or agent — every call goes through the same gate.</h3>
+              <div className="ob-pair-diagram diagram-svg" dangerouslySetInnerHTML={{ __html: GOV_SVG }} />
+            </div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 35 · The compounding flywheel ────────────────────────────────────
+     * Diagram left, three compounding signals right, the moat line underneath. */
+    {
+      id: 'compounding-flywheel',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="The Compounding Flywheel"
+            eyebrowTone="indigo"
+            title="Every action becomes a labelled example."
+            subtitle="The brain holds the input. Decision traces hold the action + outcome. Human review calibrates it back. The moat is the traces, not the model."
+          />
+          <div className="ob-flywheel">
+            <div className="diagram-svg" dangerouslySetInnerHTML={{ __html: FLYWHEEL_SVG }} />
+            <div>
+              <Eyebrow tone="muted">Three signals compound — with a human in the loop</Eyebrow>
+              <ul className="ob-fw-list dk-gap-sm">
+                <li>
+                  <strong>The best examples</strong> — strong decision traces become labelled
+                  examples of how your company should operate.
+                </li>
+                <li>
+                  <strong>The outcome signal</strong> — actions that moved the needle get
+                  reinforced; the ones that didn't get down-weighted.
+                </li>
+                <li>
+                  <strong>Human review</strong> — a person reviews a sample each week;
+                  disagreements become new rules in the brain.
+                </li>
+              </ul>
+              <div className="ob-band-violet dk-gap-sm">
+                <strong>The moat is the traces, not the model.</strong> Years of real decisions
+                across your customers and your business can't be replicated by a competitor
+                starting today.
+              </div>
+            </div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── operational-data · without / with the layer ─────────────────────────────
+     * The pair: today's failure on the left, the governed path on the right with its diagram. */
+    {
+      id: 'operational-data',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Operational Data"
+            eyebrowTone="indigo"
+            title="A shared, governed store agents write to and read from."
+            subtitle="Agents write structured rows; apps and agents read them back. Schema-enforced, tenant-scoped, audited."
+          />
+          <div className="ob-pair">
+            <div className="ob-pair-col">
+              <div className="ob-pair-label">Without the layer</div>
+              <h3>Agent outputs land in Sheets, Slack DMs, local files.</h3>
+              <p>Agents have nowhere structured to write. The next run can’t read the last one.</p>
+              <ul>
+                  <li>No shared table for outputs.</li>
+                  <li>Scattered, lost, un-reusable.</li>
+                  <li>No schema, no audit.</li>
+              </ul>
+            </div>
+            <div className="ob-pair-col ob-pair-col--with">
+              <div className="ob-pair-label">With Synos — System of Record</div>
+              <h3>Project-scoped collections. Agents write, apps + agents read.</h3>
+              <div className="ob-pair-diagram diagram-svg" dangerouslySetInnerHTML={{ __html: SOR_SVG }} />
+            </div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+    /* ── safe-to-build · without / with the layer ─────────────────────────────
+     * The pair: today's failure on the left, the governed path on the right with its diagram. */
+    {
+      id: 'safe-to-build',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Safe to Build"
+            eyebrowTone="indigo"
+            title="Apps ship through a sandbox — a scanner gates every build."
+            subtitle="Code is scanned for unsafe access and secrets, then deployed to a sandboxed URL behind the egress proxy."
+          />
+          <div className="ob-pair">
+            <div className="ob-pair-col">
+              <div className="ob-pair-label">Without the layer</div>
+              <h3>Apps ship straight to personal accounts.</h3>
+              <p>No sandbox, no scan, no proxy, no kill-switch. Secrets leak into client code.</p>
+              <ul>
+                  <li>Secrets in shipped code.</li>
+                  <li>Calls to anywhere.</li>
+                  <li>Personal deploy = no control.</li>
+              </ul>
+            </div>
+            <div className="ob-pair-col ob-pair-col--with">
+              <div className="ob-pair-label">With Synos — gated build pipeline</div>
+              <h3>Build → scan → compile → sandbox URL → audit row.</h3>
+              <div className="ob-pair-diagram diagram-svg" dangerouslySetInnerHTML={{ __html: BUILD_SVG }} />
+            </div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 39 · Enterprise readiness ────────────────────────────────────────
+     * Three trust cards with lists. UseCaseGrid, same as every other three-card slide here. */
+    {
+      id: 'enterprise-readiness',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Enterprise Readiness"
+            eyebrowTone="indigo"
+            title="Enterprise readiness and trust."
+            subtitle="Data residency, predictable cost per decision, and reversible failure handling — built in, not bolted on."
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="indigo"
+              kicker="Data · Residency"
+              title="Your brain never leaves your tenant."
+              body={
+                <>
+                  Every store filters on your tenant ID. Self-hosted in your own cloud, or a
+                  Synos-managed isolated tenant.
+                  <ul className="ob-tpl-list">
+                    <li>Self-hosted in your VPC or isolated managed tenant</li>
+                    <li>Bring your own AI provider keys</li>
+                    <li>PII redaction on every retrieval</li>
+                    <li>Tenant-isolation tests in CI</li>
+                  </ul>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="amber"
+              kicker="Cost · Per-decision"
+              title="Cached and budgeted. Predictable at scale."
+              body={
+                <>
+                  Most context lookups are cached; every agent runs under a token budget. Cost is
+                  surfaced per run.
+                  <ul className="ob-tpl-list">
+                    <li>High cache-hit on hot entities</li>
+                    <li>Daily token cap per project and per app</li>
+                    <li>Embedding refresh batched, not per-request</li>
+                    <li>Cost visible per run in the dashboard</li>
+                  </ul>
+                </>
+              }
+            />
+            <UseCaseCard
+              tone="emerald"
+              kicker="Rollback · Control"
+              title="Every correction reversible. Every change auditable."
+              body={
+                <>
+                  Wrong learning? Reject it from the queue. Wrong rule promoted? Supersede it. Wrong
+                  action? Trace, audit, roll back.
+                  <ul className="ob-tpl-list">
+                    <li>Review queue before anything is promoted</li>
+                    <li>Contradiction detector flags conflicting rules</li>
+                    <li>History preserved — nothing silently overwritten</li>
+                    <li>Per-project snapshot &amp; restore</li>
+                  </ul>
+                </>
+              }
+            />
+          </UseCaseGrid>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 40 · Why Synos, why now ──────────────────────────────────────────
+     * Six reasons, three across, two rows. Hues group them: the moat violet, neutrality indigo,
+     * sovereignty emerald. */
+    {
+      id: 'why-synos',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Why Synos · Why Now"
+            eyebrowTone="indigo"
+            title="Own the layer that compounds your AI transformation."
+            subtitle={
+              <>
+                Models are commodities. Tools are commodities. The brain that learns how{' '}
+                <em>your</em> company operates isn't.
+              </>
+            }
+          />
+          <UseCaseGrid>
+            <UseCaseCard
+              tone="violet"
+              title="The brain is the moat"
+              body="Operational knowledge that defines your edge can't be rented. It compounds inside your tenant — or not at all."
+            />
+            <UseCaseCard
+              tone="indigo"
+              title="Model + tool agnostic"
+              body="Switch Anthropic ↔ OpenAI ↔ Gemini; move ChatGPT → Claude Code. Models change quarterly; the substrate shouldn't."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Sovereignty by default"
+              body="Self-hosted. Your tenant, your audit trail, your kill-switch. The opposite of vendor dependency."
+            />
+            <UseCaseCard
+              tone="violet"
+              title="Self-learning compounds"
+              body="Every run and correction accumulates in your tenant. Year-2 leverage builds; it doesn't reset with the next model."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="Custom is finally cheap"
+              body="The 20% that defines you was never going to ship from a SaaS vendor. AI-built custom now costs less than the seats you rent."
+            />
+            <UseCaseCard
+              tone="indigo"
+              title="The post-SaaS substrate"
+              body="SaaS sold seats for the common 80%. The agent era ships your custom 20% — if you own the substrate it learns on."
+            />
+          </UseCaseGrid>
+          <Caption italic className="dk-gap-sm">
+            Own the layer. Swap the engine. Compound the transformation.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 41 · Closing ─────────────────────────────────────────────────────
+     * The wordmark. Instrument Serif at 76px, which is the one place in this deck the display face
+     * runs at cover scale. */
+    {
+      id: 'closing',
+      node: (
+        <SlideFrame stage={false} variant="bigType">
+          <div>
+            <div className="ob-wordmark">
+              Synos<span className="sk-a">.</span>
+            </div>
+            <div className="ob-wordmark-sub">The AI Operating Layer</div>
+          </div>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 42 · Appendix · where this goes ──────────────────────────────────
+     * Three horizons. PhaseRow again — fifth slide on it in this deck. */
+    {
+      id: 'apx-horizons',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Appendix · where this goes"
+            eyebrowTone="emerald"
+            title="Today you install the layer. Then it compounds into something bigger."
+            subtitle="The layer you deploy now sits between your people, agents and systems — it becomes your data moat and, in time, an operation that largely runs itself."
+          />
+          <PhaseRow>
+            <PhaseCard
+              badge="H1"
+              when="Now"
+              title="Install the layer"
+              body="Engineering sets the rails once; your teams build and run agents safely on a shared brain. The work you're starting today."
+            />
+            <PhaseCard
+              badge="H2"
+              position="bridge"
+              when="Compounds"
+              title="Your data moat"
+              body="Every correction and trace becomes your data and training fuel — the compounding layer no generic vendor can hand you."
+            />
+            <PhaseCard
+              badge="H3"
+              position="far"
+              when="Where it leads"
+              title="Operations that run themselves"
+              body="The repetitive work runs itself; your people operate at a higher level, on top of a company brain that keeps learning."
+            />
+          </PhaseRow>
+          <Caption className="dk-gap">
+            Build horizontal, deploy vertical — each team (Sales, Marketing, Ops, FinOps) is its own
+            curve on the same layer.
+          </Caption>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 43 · Appendix · the moat is yours ────────────────────────────────
+     * The closing argument: one lead paragraph, four points. */
+    {
+      id: 'apx-the-moat',
+      node: (
+        <SlideFrame stage={false}>
+          <SlideHeader
+            eyebrow="Appendix · the moat is yours"
+            eyebrowTone="emerald"
+            title="Own the layer that compounds your AI transformation."
+            subtitle="Models are commodities. The brain that learns how your company works is not."
+          />
+          <Callout tone="violet">
+            Your moat is the <strong>feedback loop</strong> between your people, agents and systems —
+            captured in your own cloud, accumulating with every run, tied to how <strong>you</strong>{' '}
+            operate. Not a dataset a competitor can buy — a loop embedded in your workflow.
+          </Callout>
+          <UseCaseGrid columns={4} className="dk-gap">
+            <UseCaseCard
+              tone="indigo"
+              title="Model & harness sovereignty"
+              body="Swap Claude → Codex → open-source without losing your company's learned expertise. No lock-in."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="Private evals on your outcomes"
+              body="Measured against your business results, not public benchmarks — ground truth only you own."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Self-hosted, your data"
+              body="Runs inside your account. The compounding IP stays yours, on your infra."
+            />
+            <UseCaseCard
+              tone="violet"
+              title="You become the model-maker"
+              body="Only you have this data — so your domain models can beat generic ones over time."
+            />
+          </UseCaseGrid>
+        </SlideFrame>
+      ),
+    },
   ]
+
+  const byId = new Map(slides.map((s) => [s.id, s]))
+  const missing = ORDER.filter((id) => !byId.has(id))
+  const stray = slides.map((s) => s.id).filter((id) => !ORDER.includes(id))
+  if (missing.length) throw new Error(`ORDER names slides that do not exist: ${missing.join(', ')}`)
+  if (stray.length) throw new Error(`slides missing from ORDER: ${stray.join(', ')}`)
+  return ORDER.map((id) => byId.get(id))
 }

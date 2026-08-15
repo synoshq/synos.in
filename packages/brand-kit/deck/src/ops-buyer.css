@@ -676,3 +676,172 @@
   color: var(--sk-muted);
   line-height: 1.35;
 }
+
+/* ── Diagram primitives ───────────────────────────────────────────────────
+ * The classes the carried SVGs reference. Verbatim from the source with every literal hex
+ * replaced by a token and both display-face declarations moved to the body face.
+ */
+.diagram-svg .node { fill: var(--sk-surface); stroke: var(--sk-border-2); stroke-width: 1; }
+.diagram-svg .node-indigo { fill: var(--sk-indigo-bg); stroke: var(--sk-indigo-br); stroke-width: 1.2; }
+.diagram-svg .node-violet { fill: var(--sk-violet-bg); stroke: var(--sk-violet-br); stroke-width: 1.2; }
+.diagram-svg .node-emerald { fill: var(--sk-emerald-bg); stroke: var(--sk-emerald-br); stroke-width: 1.2; }
+.diagram-svg .node-red { fill: var(--sk-red-bg); stroke: var(--sk-red-br); stroke-width: 1.2; }
+.diagram-svg text { fill: var(--sk-ink); font-family: var(--sk-font-body); font-size: 11px; font-weight: 500; }
+.diagram-svg text.h { font-weight: 700; }
+.diagram-svg text.muted { fill: var(--sk-muted); font-size: 10px; font-weight: 400; }
+.diagram-svg text.tag { fill: var(--sk-indigo); font-family: var(--sk-font-mono); font-size: 10px; }
+.diagram-svg .edge { stroke: var(--sk-border-2); stroke-width: 1.2; fill: none; }
+.diagram-svg .edge-indigo { stroke: var(--sk-indigo-2); stroke-width: 1.4; fill: none; }
+.diagram-svg .edge-violet { stroke: var(--sk-violet); stroke-width: 1.4; fill: none; }
+
+/* The scattered-context diagram wrapper (slide 6). */
+.ob-scatter { display: flex; justify-content: center; }
+.ob-scatter svg { width: 100%; height: auto; max-height: 340px; }
+
+/* ── The without/with pair (slides 34, 37, 38) ────────────────────────────
+ * A red "today" column beside an indigo "with the layer" column holding a diagram. It is the same
+ * before/after contrast SplitColumns expresses — but SplitColumns is a text component and the
+ * right-hand side here is a picture, so the geometry stays local and only the type comes from the
+ * kit.
+ */
+.ob-pair { display: grid; grid-template-columns: 1fr 1.35fr; gap: var(--sk-space-5); align-items: stretch; }
+.ob-pair-col {
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  background: var(--sk-red-bg);
+  border: 1px solid var(--sk-red-br);
+}
+.ob-pair-col--with { background: var(--sk-indigo-bg); border-color: var(--sk-indigo-br); }
+.ob-pair-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--sk-red);
+}
+.ob-pair-col--with .ob-pair-label { color: var(--sk-indigo); }
+.ob-pair h3 { font-family: var(--sk-font-body); font-size: 17px; font-weight: 700; color: var(--sk-ink); margin: 0 0 8px; line-height: 1.3; }
+.ob-pair p { font-size: 13px; color: var(--sk-ink-2); margin: 0 0 6px; }
+.ob-pair ul { list-style: none; padding: 0; margin: 8px 0 0; }
+.ob-pair li { font-size: 12.5px; color: var(--sk-ink-3); padding-left: 14px; position: relative; margin-bottom: 4px; }
+.ob-pair li::before { content: ""; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; background: var(--sk-red-2); border-radius: 50%; }
+.ob-pair-diagram {
+  flex: 1;
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-indigo-br);
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ob-pair-diagram svg { width: 100%; height: auto; max-height: 240px; }
+
+/* The flywheel (slide 35): diagram left, three signals right. */
+.ob-flywheel { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--sk-space-6); align-items: center; }
+.ob-flywheel svg { width: 100%; height: auto; max-height: 330px; }
+.ob-fw-list { list-style: none; padding: 0; margin: 0; }
+.ob-fw-list li {
+  font-size: 12.5px;
+  color: var(--sk-ink-2);
+  line-height: 1.55;
+  padding: 8px 0 8px 20px;
+  position: relative;
+  border-bottom: 1px dashed var(--sk-border-2);
+}
+.ob-fw-list li:last-child { border-bottom: none; }
+.ob-fw-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sk-indigo-2);
+}
+.ob-fw-list li strong { color: var(--sk-ink); }
+
+/* Retrieval (slide 33): a deterministic ladder beside an agentic traversal. */
+.ob-retrieval { display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--sk-space-5); align-items: stretch; }
+.ob-ret-head { display: flex; align-items: center; gap: var(--sk-space-3); margin-bottom: var(--sk-space-3); }
+.ob-ret-when { font-size: 11px; color: var(--sk-muted); margin-left: auto; }
+.ob-ret-flow {
+  background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sk-space-2);
+}
+.ob-ret-step {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.ob-ret-num {
+  width: 24px;
+  height: 24px;
+  background: var(--sk-indigo);
+  color: var(--sk-on-brand);
+  border-radius: 6px;
+  font-family: var(--sk-font-body);
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ob-ret-name { font-size: 12.5px; font-weight: 700; color: var(--sk-ink); line-height: 1.2; }
+.ob-ret-desc { font-size: 11px; color: var(--sk-ink-3); margin-top: 2px; line-height: 1.4; }
+.ob-agentic {
+  background: var(--sk-violet-bg);
+  border: 1px solid var(--sk-violet-br);
+  border-radius: 12px;
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+}
+.ob-agentic svg { width: 100%; height: auto; max-height: 360px; display: block; }
+.ob-trace {
+  margin-top: var(--sk-space-3);
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-violet-br);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: var(--sk-font-mono);
+  font-size: 9.5px;
+  line-height: 1.6;
+  color: var(--sk-ink-3);
+}
+.ob-trace .step { color: var(--sk-violet); font-weight: 700; }
+.ob-trace .tool { color: var(--sk-indigo); font-weight: 600; }
+.ob-trace .hit { color: var(--sk-emerald); font-weight: 600; }
+
+/* The closing wordmark. */
+.ob-wordmark {
+  text-align: center;
+  font-family: var(--sk-font-display);
+  font-size: 76px;
+  line-height: 1;
+  color: var(--sk-ink);
+}
+.ob-wordmark-sub {
+  text-align: center;
+  margin-top: var(--sk-space-4);
+  font-family: var(--sk-font-mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sk-muted);
+}
