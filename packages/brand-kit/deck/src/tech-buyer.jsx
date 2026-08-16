@@ -195,11 +195,13 @@ export const deck = (K) => {
           spacedEyebrow={false}
           title={
             <>
-              Build your <span className="sk-gradient-text">own AI</span>.
-              <br />
-              For the knowledge work that runs your company.
+              The <span className="sk-gradient-text">Human-Agent</span> Operating Layer
             </>
           }
+          /* The positioning line sits here rather than in the headline: the headline names the
+             category, this names what the buyer gets out of it. `lead` is the slot the kit already
+             has for exactly that, at 20px semibold under the 72px serif. */
+          lead={<>Build your own AI, for the knowledge work that runs your company.</>}
           lede={
             <>
               Synos is the platform that makes a company AI-native. Engineering installs it once.
