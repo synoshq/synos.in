@@ -831,10 +831,28 @@ export const deck = (K) => {
               <Tile key={nm} mono name={nm} kind={kd} />
             ))}
           </TileRow>
-          <Caption className="dk-gap">
-            ▼ &nbsp; all flow through the Synos operating layer &nbsp; ▼
-          </Caption>
-          <div className="dk-band dk-band--sor dk-gap">
+          {/* The middle of this diagram used to be a caption reading "all flow through the Synos
+              operating layer" with an arrow either side, and nothing drawn between the tools and
+              the systems. Anoop read it as a missing box, correctly: the slide asserted a layer and
+              then did not show one, so the two rows appeared to connect to each other. The layer is
+              now an actual band, and it names what it does rather than just naming itself. */}
+          <div className="tb-arrow">▼</div>
+          <div className="dk-band dk-band--layer">
+            <Eyebrow tone="indigo">The Synos operating layer</Eyebrow>
+            <ChipRow tight>
+              {[
+                'Company Brain',
+                'Governed access · role + audit',
+                'Skills your SMEs write',
+                'Agents & apps, sandboxed',
+                'Every run traced',
+              ].map((c) => (
+                <Chip key={c} size="sm" tone="indigo">{c}</Chip>
+              ))}
+            </ChipRow>
+          </div>
+          <div className="tb-arrow">▼</div>
+          <div className="dk-band dk-band--sor">
             <Eyebrow tone="muted">
               Connected to your existing stack out of the box — not replaced
             </Eyebrow>
@@ -1105,9 +1123,11 @@ export const deck = (K) => {
               eyebrow="With Synos — one governed door"
               title="UI, AI tool, or always-on agent — every call goes through the same gate."
             >
-              <SplitItem>
-                <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: GOV_SVG }} />
-              </SplitItem>
+              {/* NOT a SplitItem. SplitItem is a bullet row — a marker glyph in a flex row beside
+                  its text — so wrapping a drawing in one renders a stray bullet next to the diagram
+                  and squeezes it into the remaining width. That is what made this diagram read as
+                  far too small; it was being laid out as if it were a sentence. */}
+              <div className="tb-diagram tb-diagram--tall" dangerouslySetInnerHTML={{ __html: GOV_SVG }} />
             </SplitColumn>
           </SplitColumns>
         </SlideFrame>

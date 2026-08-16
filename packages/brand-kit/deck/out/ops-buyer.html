@@ -352,6 +352,50 @@ html, body { background: var(--sk-bg); margin: 0; padding: 0; }
   font-size: 0.92em;
 }
 
+/* The layer band on the no-migration slide: the middle row of a three-row stack, drawn rather
+   than asserted. Indigo because it is us; the rows above and below are the buyer's own tools and
+   the buyer's own systems, and neither is. */
+.dk-band--layer {
+  background: var(--sk-indigo-bg);
+  border: 1.5px solid var(--sk-indigo-2);
+  text-align: center;
+}
+.dk-band--layer .sk-chip-row {
+  justify-content: center;
+}
+/* The connector between the three rows. A caption with arrows either side read as a sentence about
+   the diagram; a glyph on its own row reads as part of it. */
+.tb-arrow {
+  text-align: center;
+  color: var(--sk-indigo-2);
+  font-size: 15px;
+  line-height: 1;
+  margin: 6px 0;
+}
+
+/*
+ * The travelling dashed edge. Anoop asked where the moving dotted lines had gone: the hand-written
+ * tech-buyer deck animates its loop diagram with `.lp-flow`, and the port carried the class onto the
+ * four paths but never carried the rule, so they rendered as plain solid edges.
+ *
+ * It lives here rather than in a deck stylesheet because both diagrams that use it are in different
+ * decks — `deck.css` already had its own `.dk-lp-flow` copy for the VC deck's version of the same
+ * drawing, which is precisely the duplication `_shared.css` exists to stop. That copy now refers to
+ * these keyframes instead of defining its own.
+ *
+ * Static by design in print: a PDF freezes the dash at offset 0, which is a dashed line, which is
+ * what the diagram should look like on paper anyway.
+ */
+@keyframes dkFlow {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+.lp-flow {
+  stroke-dasharray: 5 8;
+  animation: dkFlow 1.6s linear infinite;
+}
+
 /*
  * ops-buyer.css — what THIS deck needs that the kit deliberately does not provide.
  *

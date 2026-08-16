@@ -227,11 +227,8 @@
  * Renamed from the source's `.u-*` / `.lp-*`, re-pointed at `--sk-*` tokens, and with every
  * 'Plus Jakarta Sans' moved to Inter (decision A retired that face).
  */
-@keyframes dkFlow {
-  to {
-    stroke-dashoffset: -14;
-  }
-}
+/* `@keyframes dkFlow` moved to `_shared.css` — the tech-buyer deck needs the same animation
+   and _shared is the one stylesheet both decks load. */
 
 .dk-seam {
   display: flex;
