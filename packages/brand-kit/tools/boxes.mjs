@@ -219,7 +219,23 @@ console.log()
  * Nothing else moved, and if the pillars are ever de-boxed again these three numbers go back down by
  * exactly this much.
  */
-const T = { mean: 11, panels: 8.5, max: 20, depth: 2 }
+/*
+ * DECISION K (2026-08-16) moved two of these again, and by a smaller amount than J:
+ *
+ *   mean   11   -> 11.4   two `.sk-split-col` plates on `slide/moat`, over 5 slides = +0.4 exactly
+ *   panels  8.5 ->  8.8   the same two rectangles
+ *   max    20   -> 20     unchanged; the split slide is nowhere near the architecture slide
+ *
+ * Two panels, counted twice. Same discipline as J: the specimen deck is the arithmetic, the floor
+ * line below still reports 9.0 / 5.8 so the distance from gate to floor stays itemised, and if the
+ * split columns are ever de-boxed again these two numbers drop by exactly this much.
+ *
+ * Worth stating plainly, since this is the second time the target has moved UP in two days: this
+ * gate measures how boxy the system is, and it has now twice been raised to admit a box a human
+ * judged necessary. That is the gate working as intended rather than being loosened, but a third
+ * raise would be evidence the de-box pass was wrong in principle rather than in two places.
+ */
+const T = { mean: 11.4, panels: 8.8, max: 20, depth: 2 }
 console.log(`\nmean ${mean.toFixed(1)} boxes (target <= ${T.mean})   max ${max} (target <= ${T.max})   content nesting depth ${depth} (target <= ${T.depth}, raw ${rawDepth} incl. the slide card)`)
 console.log(`mean ${meanPanels.toFixed(1)} PANELS per slide (target <= ${T.panels}) — the rectangles, which is what de-boxing removes`)
 console.log('floor for this component set, every optional fill stripped (SK_FLOOR=1): mean 9.0 boxes / 5.8 panels')

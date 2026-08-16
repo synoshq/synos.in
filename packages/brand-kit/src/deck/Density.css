@@ -128,6 +128,22 @@
   gap: 12px;
 }
 
+/*
+ * Decision K gave `.sk-split-col` its plate back, and a plate has padding the compact register had
+ * never had to account for: 18px top and bottom on both columns is 36px of new height on a layout
+ * that only appears on slides already dense enough to be compact. It showed up immediately as the
+ * VC deck's `the-wedge` at +8px and the ops deck's `sme-authoring` at +13px, both of which had
+ * fitted for months.
+ *
+ * 18px 20px -> 11px 16px. The 11 is not a round number because `sme-authoring` needed exactly
+ * one more pixel per edge than 12 gave it, and inventing a rounder value would have meant putting a
+ * per-slide exception in the deck instead. The plate survives, which is the whole point of K; what gives is the air
+ * inside it, which is exactly the trade this register exists to make.
+ */
+.sk-density-compact .sk-split-col {
+  padding: 11px 16px;
+}
+
 /* The two grids with the widest default gaps, brought down proportionally rather than to a flat
    12px — WallGrid's 22px and PillarGrid's 18px are carrying the borders decision C removed, so
    collapsing them to the same value as the tighter grids would re-fragment the layout the de-box

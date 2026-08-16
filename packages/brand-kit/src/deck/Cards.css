@@ -583,40 +583,67 @@
  * ═════════════════════════════════════════════════════════════════════════ */
 
 /*
- * DECISION G (2026-08-14 follow-on de-box). A two-column contrast is the one layout that does not
- * need a container to be read as two columns — the reader is being asked to compare left against
- * right, and a gutter says that as clearly as two tinted plates do. Fill, hairline, radius and
- * padding go; the gutter opens 14 -> 40px.
+ * DECISION K (2026-08-16) — the split column's plate comes back. The second partial reversal of the
+ * de-box pass, and the same distinction decision J drew, applied to the one layout G took furthest.
  *
- * The tone survives, moved from the plate onto the type: the column eyebrow already took its hue
- * from `--sk-split-eyebrow`, and the item marker (the ✓ / ✕ that carries the whole argument of the
- * slide) now takes it too instead of sitting in --sk-ink-2 like the sentence beside it. That is more
- * colour discipline, not less: the hue lands on the two glyphs that mean something rather than being
- * washed across 300px of background behind text that must then survive the tint.
+ * G's reasoning was that a two-column contrast is the one layout needing no container, because the
+ * reader is asked to compare left against right and a gutter says that as clearly as two plates do.
+ * That is true for a SHORT column. It is false for the deep ones, and the deep ones are most of the
+ * corpus: `viewpoint`, `hp-who-authors`, `hp-agents-act` and `the-outcome` all run a title plus four
+ * or five items per side. With the plate gone those slides are text floating on white with a gap in
+ * the middle, and Anoop read every one of them as "empty" — the same judgement, on the same
+ * grounds, that produced J.
+ *
+ * The rule now reads the same in both places: **a border that decorates a group can go; a border
+ * that IS the group has to stay.** On a two-column contrast the plate is not decoration, it is the
+ * thing that makes each side an object you can hold against the other.
+ *
+ * Restored to the SOURCE's geometry, not to invented values (`.moat-col`: 14px radius, 18px 20px
+ * padding, tinted fill plus a 1px hairline per tone) — restoring to source is what let J *reduce*
+ * the recorded divergences rather than add to them. The gutter goes back to 24px: 40px was G paying
+ * for the missing plate, and 14px was tuned against a plate that had no hue variation.
+ *
+ * G's one genuine improvement is kept: the ✓/✕ marker takes the column's hue. The hue now lands on
+ * both the plate and the glyph that carries the argument, which is where the reader looks.
  */
 .sk-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 24px;
 }
 .sk-split-col {
   --sk-split-eyebrow: var(--sk-muted);
-  padding: 0;
+  --sk-split-bg: var(--sk-surface-2);
+  --sk-split-br: var(--sk-border);
+  background: var(--sk-split-bg);
+  border: 1px solid var(--sk-split-br);
+  border-radius: 14px;
+  padding: 18px 20px;
 }
 .sk-split-col--violet {
   --sk-split-eyebrow: var(--sk-violet);
+  --sk-split-bg: var(--sk-violet-bg);
+  --sk-split-br: var(--sk-violet-br);
 }
 .sk-split-col--indigo {
   --sk-split-eyebrow: var(--sk-indigo);
+  --sk-split-bg: var(--sk-indigo-bg);
+  --sk-split-br: var(--sk-indigo-br);
 }
 .sk-split-col--emerald {
   --sk-split-eyebrow: var(--sk-emerald);
+  --sk-split-bg: var(--sk-emerald-bg);
+  --sk-split-br: var(--sk-emerald-br);
 }
 .sk-split-col--amber {
   --sk-split-eyebrow: var(--sk-amber);
+  --sk-split-bg: var(--sk-amber-bg);
+  --sk-split-br: var(--sk-amber-br);
 }
 .sk-split-col--red {
   --sk-split-eyebrow: var(--sk-red);
+  --sk-split-bg: var(--sk-red-bg);
+  --sk-split-br: var(--sk-red-br);
 }
 /* `.c-eyebrow` — the column's own eyebrow, tracked 1.4px rather than the slide eyebrow's 1.6px. */
 /* Decision C: the column eyebrow is the same register as the slide eyebrow and takes the same

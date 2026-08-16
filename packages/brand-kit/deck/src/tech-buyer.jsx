@@ -195,16 +195,18 @@ export const deck = (K) => {
           spacedEyebrow={false}
           title={
             <>
-              The <span className="sk-gradient-text">Human-Agent</span> Operating Layer
+              Build your <span className="sk-gradient-text">own AI</span>.
               <br />
-              Bring your company to life.
+              For the knowledge work that runs your company.
             </>
           }
           lede={
             <>
-              Unblock your humans, your agents, and your systems — from each other. The self-learning
-              brain, skills, agents and apps that let AI operate <em>your</em> company — safely,
-              shared, self-hosted, and governed.
+              Synos is the platform that makes a company AI-native. Engineering installs it once.
+              After that the people who hold the knowledge, your ops leads, analysts, marketers and
+              support veterans, build and run the agents that do the critical work themselves, on a
+              Company Brain that learns how your business actually operates. Self-hosted and
+              governed. Yours to keep.
             </>
           }
         >
@@ -532,7 +534,7 @@ export const deck = (K) => {
      * they were de-boxed and the three layers ended up three different widths.
      *
      * The six pillars are `PillarCard` / `PillarGrid` — the cleanest map in either buyer deck. The
-     * Context Brain is the `brain` variant, which is what the source's `.featured` class means. */
+     * Company Brain is the `brain` variant, which is what the source's `.featured` class means. */
     {
       id: 'operating-layer',
       variant: 'arch',
@@ -572,7 +574,7 @@ export const deck = (K) => {
                   brain
                   wide={false}
                   icon={IcoBrain}
-                  name="Context Brain"
+                  name="Company Brain"
                   desc="Knowledge that compounds across every source — batch + streaming, continuously curated."
                 />
                 <PillarCard
@@ -1792,7 +1794,7 @@ export const deck = (K) => {
                 <PillarCard
                   brain
                   wide={false}
-                  name="Context Brain"
+                  name="Company Brain"
                   desc="Knowledge graph across sources. Entities, relationships, citations."
                 />
                 <PillarCard

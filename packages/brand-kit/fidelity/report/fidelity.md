@@ -1,7 +1,7 @@
 # Fidelity report
 
 27 specimens · 104 computed-style checks · 27 passing, 0 failing.
-138 of those checks record a **deliberate** divergence from the source artifact.
+126 of those checks record a **deliberate** divergence from the source artifact.
 
 Each specimen renders a built component and the real slide it was extracted from at the same
 viewport, screenshots both, and compares the computed values of the properties that carry the
@@ -35,7 +35,7 @@ decision that moved it.
 | `usecase` | UseCaseCard / UseCaseGrid | presenting s30 | 6 | 2 | PASS |
 | `stat` | StatCard / StatRow | presenting s27 | 6 | 16 | PASS |
 | `step` | StepCard / StepGrid | presenting s7 | 8 | 14 | PASS |
-| `split` | SplitColumns / SplitColumn | presenting s28 | 5 | 14 | PASS |
+| `split` | SplitColumns / SplitColumn | presenting s28 | 5 | 2 | PASS |
 | `caption` | Caption | presenting s25 | 1 | 0 | PASS |
 | `quote` | QuoteBar | presenting s26 | 1 | 12 | PASS |
 | `onepager-header` | OnePagerHeader | 1p-vc | 7 | 1 | PASS |
@@ -288,19 +288,6 @@ if that call changes.
 | `stat` | `.sk-stat` | `padding-bottom` | `22px` | `0px` |
 | `stat` | `.sk-stat` | `padding-left` | `18px` | `0px` |
 | `stat` | `.sk-stat-row` | `gap` | `14px` | `28px` |
-| `split` | `.sk-split-col` | `background-color` | `rgb(248, 250, 252)` | `rgba(0, 0, 0, 0)` |
-| `split` | `.sk-split-col` | `border-top-width` | `1px` | `0px` |
-| `split` | `.sk-split-col` | `border-left-width` | `1px` | `0px` |
-| `split` | `.sk-split-col` | `border-top-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
-| `split` | `.sk-split-col` | `border-left-color` | `rgb(226, 232, 240)` | `rgb(15, 23, 42)` |
-| `split` | `.sk-split-col` | `border-top-left-radius` | `14px` | `0px` |
-| `split` | `.sk-split-col` | `padding-top` | `18px` | `0px` |
-| `split` | `.sk-split-col` | `padding-right` | `20px` | `0px` |
-| `split` | `.sk-split-col` | `padding-bottom` | `18px` | `0px` |
-| `split` | `.sk-split-col` | `padding-left` | `20px` | `0px` |
-| `split` | `.sk-split-col--violet` | `background-color` | `rgb(245, 243, 255)` | `rgba(0, 0, 0, 0)` |
-| `split` | `.sk-split-col--violet` | `border-top-color` | `rgb(221, 214, 254)` | `rgb(15, 23, 42)` |
-| `split` | `.sk-split` | `gap` | `14px` | `40px` |
 | `quote` | `.sk-quote` | `background-color` | `rgb(248, 250, 252)` | `rgba(0, 0, 0, 0)` |
 | `quote` | `.sk-quote` | `border-top-width` | `1px` | `0px` |
 | `quote` | `.sk-quote` | `border-left-width` | `1px` | `3px` |
@@ -395,6 +382,35 @@ decision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout
 | `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-bottom` | `7px` | `8px` |
 | `pillar` | `.sk-pillar:not(.sk-pillar--brain)` | `padding-left` | `11px` | `10px` |
 | `pillar` | `.sk-pillar-grid` | `gap` | `7px` | `12px` |
+
+### K
+
+**Decision K — the split column plate comes back (2026-08-16). The second partial reversal.**
+Decision G took the fill, hairline, radius and padding off `SplitColumn` and opened the gutter
+14 -> 40px, on the argument that a two-column contrast is the one layout needing no container:
+the reader is comparing left against right, and a gutter says that as clearly as two plates do.
+
+That argument is true for a SHORT column and false for a deep one, and the deep ones are most of
+the corpus. `viewpoint`, `hp-who-authors`, `hp-agents-act` and `the-outcome` each run a title
+plus four or five items a side. With the plate gone those slides are text floating on white with
+a gap down the middle. Anoop read them as "empty" — the same judgement, arrived at the same way
+(looking at the rendered slide, with every gate green), that produced J one day earlier.
+
+Two reversals from the same cause is the finding worth keeping: the de-box pass was measured
+against components in isolation, where a plate genuinely is decoration, and applied to slides
+where the plate was doing structural work. The rule reads identically in both places now:
+**a border that decorates a group can go; a border that IS the group has to stay.**
+
+Restored to the SOURCE geometry rather than tuned values — 14px radius, 18px 20px padding, a
+tinted fill and a 1px hairline per tone, exactly `.moat-col`. That is why this decision REMOVES
+twelve recorded divergences instead of adding any: the only one left is the gutter at 24px,
+where 40px was G paying for the missing plate and the source's 14px was tuned against a plate
+with no hue variation. G's one real improvement is kept on top of the restored plate: the ✓/✕
+marker takes the column hue, so plate and glyph now carry it together.
+
+| Specimen | Selector | Property | Source | Built |
+|---|---|---|---|---|
+| `split` | `.sk-split` | `gap` | `14px` | `24px` |
 
 ## Recorded conflicts — differences that are correct
 

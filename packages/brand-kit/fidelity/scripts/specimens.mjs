@@ -195,6 +195,30 @@ export const REASONS = {
     'card by 16px, and every pixel here is spent against a diagram that has to fit. The de-box',
     'decision stands unchanged for `WallGrid`, `UseCaseGrid`, `StepGrid` and `Callout`.',
   ].join('\n'),
+  K: [
+    '**Decision K — the split column plate comes back (2026-08-16). The second partial reversal.**',
+    'Decision G took the fill, hairline, radius and padding off `SplitColumn` and opened the gutter',
+    '14 -> 40px, on the argument that a two-column contrast is the one layout needing no container:',
+    'the reader is comparing left against right, and a gutter says that as clearly as two plates do.',
+    '',
+    'That argument is true for a SHORT column and false for a deep one, and the deep ones are most of',
+    'the corpus. `viewpoint`, `hp-who-authors`, `hp-agents-act` and `the-outcome` each run a title',
+    'plus four or five items a side. With the plate gone those slides are text floating on white with',
+    'a gap down the middle. Anoop read them as "empty" — the same judgement, arrived at the same way',
+    '(looking at the rendered slide, with every gate green), that produced J one day earlier.',
+    '',
+    'Two reversals from the same cause is the finding worth keeping: the de-box pass was measured',
+    'against components in isolation, where a plate genuinely is decoration, and applied to slides',
+    'where the plate was doing structural work. The rule reads identically in both places now:',
+    '**a border that decorates a group can go; a border that IS the group has to stay.**',
+    '',
+    'Restored to the SOURCE geometry rather than tuned values — 14px radius, 18px 20px padding, a',
+    'tinted fill and a 1px hairline per tone, exactly `.moat-col`. That is why this decision REMOVES',
+    'twelve recorded divergences instead of adding any: the only one left is the gutter at 24px,',
+    'where 40px was G paying for the missing plate and the source\'s 14px was tuned against a plate',
+    'with no hue variation. G\'s one real improvement is kept on top of the restored plate: the ✓/✕',
+    'marker takes the column hue, so plate and glyph now carry it together.',
+  ].join('\n'),
 }
 
 /** A stand-in for the stroked 16px icons the sources draw inline. */
@@ -945,32 +969,16 @@ export const SPECIMENS = [
     ),
     checks: [
       {
-        // Decision G. A two-column contrast is the one layout that does not need a container to be
-        // read as two columns: the reader is being asked to compare left against right, and a
-        // gutter says that as clearly as two tinted plates.
+        // Decision K reversed G here. The plate is back at the source's own geometry, so none of
+        // these is a divergence any more — fill, hairline, radius and padding are all asserted
+        // equal. That is the second time restoring to source has *reduced* this file rather than
+        // grown it, which is the tell that the reversal was the right call and not a compromise.
         source: '.moat-col.dies', built: '.sk-split-col', props: [...BOX],
-        intentional: {
-          'background-color': ['rgb(248, 250, 252)', 'rgba(0, 0, 0, 0)', 'G'],
-          'border-top-width': ['1px', '0px', 'G'],
-          'border-left-width': ['1px', '0px', 'G'],
-          'border-top-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
-          'border-left-color': ['rgb(226, 232, 240)', 'rgb(15, 23, 42)', 'G'],
-          'border-top-left-radius': ['14px', '0px', 'G'],
-          'padding-top': ['18px', '0px', 'G'],
-          'padding-right': ['20px', '0px', 'G'],
-          'padding-bottom': ['18px', '0px', 'G'],
-          'padding-left': ['20px', '0px', 'G'],
-        },
       },
       {
-        // The violet column's tone did not disappear with its tint — it moved onto the eyebrow (next
-        // check, still asserted) and onto the ✓ marker. This assertion is the record that the plate
-        // it used to live on is gone.
+        // The violet column's tint is back on its plate, and G's improvement is kept on top of it:
+        // the hue also drives the ✓ marker. Both channels now, which is what the deep columns need.
         source: '.moat-col.wins', built: '.sk-split-col--violet', props: ['background-color', 'border-top-color'],
-        intentional: {
-          'background-color': ['rgb(245, 243, 255)', 'rgba(0, 0, 0, 0)', 'G'],
-          'border-top-color': ['rgb(221, 214, 254)', 'rgb(15, 23, 42)', 'G'],
-        },
       },
       {
         // The column eyebrow is the same register as the slide eyebrow, so it takes the same step.
@@ -981,9 +989,10 @@ export const SPECIMENS = [
       { source: '.moat-col h3', built: '.sk-split-title', props: ['font-size', 'margin-bottom'] },
       {
         source: '.moat-split', built: '.sk-split', props: ['display', 'grid-template-columns', 'gap'],
-        // The gutter is now the only thing dividing the two sides, so it takes the largest gap
-        // opening in the pass. Two equal columns unchanged.
-        intentional: { gap: ['14px', '40px', 'G'] },
+        // Decision K: 24px. G's 40px was paying for a missing plate; the source's 14px was tuned
+        // against a plate with no hue variation. With both plate and tone back, 24px is the step
+        // that separates without the two sides drifting apart. Two equal columns unchanged.
+        intentional: { gap: ['14px', '24px', 'K'] },
       },
     ],
   },

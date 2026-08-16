@@ -1553,7 +1553,7 @@ export const deck = (K) => {
               <PillarGrid columns={3}>
                 <PillarCard
                   brain
-                  name="Context Brain"
+                  name="Company Brain"
                   desc="Knowledge that compounds across every source — batch + streaming, continuously curated."
                 />
                 <PillarCard
@@ -1709,7 +1709,7 @@ export const deck = (K) => {
               <PillarGrid columns={4}>
                 <PillarCard
                   brain
-                  name="Context Brain"
+                  name="Company Brain"
                   desc="Knowledge graph across sources. Entities, relationships, citations."
                 />
                 <PillarCard
