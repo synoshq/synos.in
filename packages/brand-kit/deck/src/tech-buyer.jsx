@@ -206,11 +206,11 @@ export const deck = (K) => {
           lead={<>Build your own AI, for the knowledge work that runs your company.</>}
           lede={
             <>
-              Synos is the platform that makes a company AI-native. Engineering installs it once.
-              After that the people who hold the knowledge, your ops leads, analysts, marketers and
-              support veterans, build and run the agents that do the critical work themselves, on a
-              Company Brain that learns how your business actually operates. Self-hosted and
-              governed. Yours to keep.
+              Synos is the platform that makes a company operate the way the best AI-native teams
+              already do. Engineering installs it once. After that the people who hold the
+              knowledge, your ops leads, analysts, marketers and support veterans, build and run the
+              AI that does the critical work themselves, on a Company Brain that learns how your
+              business actually operates. Self-hosted and governed. Yours to keep.
             </>
           }
         >
