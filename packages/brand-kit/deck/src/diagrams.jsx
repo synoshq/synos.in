@@ -187,7 +187,7 @@ export function EdgeDiagram() {
         <text className="dk-eg-core" x="240" y="163" textAnchor="middle">Public internet</text>
         <text className="dk-eg-sub" x="240" y="180" textAnchor="middle">what every model knows</text>
         <text className="dk-eg-ring" x="240" y="80" textAnchor="middle">licensed expert data</text>
-        <text className="dk-eg-frontier" x="240" y="34" textAnchor="middle">FRONTIER — EXPANDS EVERY RELEASE</text>
+        <text className="dk-eg-frontier" x="240" y="34" textAnchor="middle">FRONTIER · EXPANDS EVERY RELEASE</text>
         <g className="dk-eg-yours">
           <text x="475" y="96">your operations</text>
           <text x="490" y="128">your corrections</text>

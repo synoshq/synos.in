@@ -236,12 +236,12 @@ export const deck = (K) => {
             className="tb-center"
             eyebrow="The one idea"
             eyebrowTone="indigo"
-            title="Unblock your humans, your agents, and your systems — from each other."
+            title="Unblock your humans, your agents, and your systems from each other."
           />
           <div className="tb-seam" dangerouslySetInnerHTML={{ __html: SEAM_SVG }} />
           <Caption>
             <em>Synos is the infrastructure layer in the middle.</em> The interaction, correction
-            &amp; outcome data captured here exists nowhere else — and compounds into accuracy the
+            &amp; outcome data captured here exists nowhere else, and it compounds into accuracy the
             model alone can never reach.
           </Caption>
         </SlideFrame>
@@ -268,9 +268,9 @@ export const deck = (K) => {
               eyebrow="The old world · SaaS"
               title={
                 <>
-                  80% common features — shipped.
+                  80% common features, shipped.
                   <br />
-                  20% custom to you — never built.
+                  20% custom to you, never built.
                 </>
               }
             >
@@ -294,7 +294,7 @@ export const deck = (K) => {
               }
             >
               <SplitItem>
-                Your team describes the workflow in plain English; AI builds it — on top of a company
+                Your team describes the workflow in plain English; AI builds it on top of a company
                 brain that knows your business. The 20% you always needed, finally yours.
               </SplitItem>
               <SplitItem>
@@ -304,7 +304,7 @@ export const deck = (K) => {
           </SplitColumns>
           <Callout tone="violet" className="dk-gap-sm">
             <strong>The AI model isn't the moat.</strong> The layer that remembers how <em>your</em>{' '}
-            company operates is. That's why Synos is <em>model- and tool-agnostic</em> — switch the
+            company operates is. That's why Synos is <em>model- and tool-agnostic</em>. Switch the
             AI for price or capability, keep the brain you've built.
             <ChipRow tight className="dk-gap-sm">
               <Chip size="sm">Anthropic</Chip>
@@ -328,16 +328,16 @@ export const deck = (K) => {
             eyebrow="Where Value Gets Created Now"
             eyebrowTone="indigo"
             title="New value is created at the edge of what models know."
-            subtitle="Humans and agents, working together on one layer, create what no model holds — and everything they create teaches your AI. Humans move at AI speed; your AI learns your company."
+            subtitle="Humans and agents, working together on one layer, create what no model holds, and everything they create teaches your AI. Humans move at AI speed; your AI learns your company."
           />
           <Columns ratio="nudge">
             <div className="tb-plate" dangerouslySetInnerHTML={{ __html: EDGE_SVG }} />
             <Stack gap="snug">
               <Callout tone="indigo" label="Humans get faster">
-                Knowledge work runs at AI speed — on your own context, not generic answers.
+                Knowledge work runs at AI speed, on your own context rather than generic answers.
               </Callout>
               <Callout tone="emerald" label="The edge is yours alone">
-                What's created at the boundary — decisions, corrections, outcomes — exists in no model
+                What's created at the boundary, the decisions and corrections and outcomes, exists in no model
                 and at no competitor.
               </Callout>
               <Callout tone="violet" label="Creating value makes your AI better">
@@ -349,7 +349,7 @@ export const deck = (K) => {
           <Caption className="dk-gap-sm">
             “You can offload a task, or even a job — <strong>you can never offload your learning.</strong>”
             As models commoditize expertise, the durable advantage moves from the model to the
-            learning loop you own. — <strong>Satya Nadella, 2026</strong>
+            learning loop you own. <strong>Satya Nadella, 2026</strong>
           </Caption>
         </SlideFrame>
       ),
@@ -370,9 +370,9 @@ export const deck = (K) => {
           sub={
             <>
               Frontier models are trained on the world's <strong>common</strong> knowledge. But your
-              value lives in what's <em>not</em> on the internet — how your company actually
+              value lives in what's <em>not</em> on the internet: how your company actually
               operates: your customers, your data, your policies, your operational judgment, your
-              tribal knowledge. That's exactly where every agent stalls — and no amount of
+              tribal knowledge. That's exactly where every agent stalls, and no amount of
               fine-tuning a public model puts it there.
             </>
           }
@@ -391,7 +391,7 @@ export const deck = (K) => {
             eyebrow="The Shift"
             eyebrowTone="indigo"
             title="Individuals are already winning with AI. The team isn't compounding."
-            subtitle="Great work — but it lives on one laptop, in one account. Nothing shared, nothing building on the last win."
+            subtitle="Great work, but it lives on one laptop, in one account. Nothing shared, nothing building on the last win."
           />
           <Stack gap="snug">
             {[
@@ -426,7 +426,7 @@ export const deck = (K) => {
           <Callout tone="red" className="dk-gap">
             The individual is unblocked.{' '}
             <strong>
-              The team is blocked from sharing and compounding the AI transformation — and walled off
+              The team is blocked from sharing and compounding the AI transformation, and walled off
               from real company value.
             </strong>
           </Callout>
@@ -458,31 +458,31 @@ export const deck = (K) => {
             <WallCard
               num="2"
               title="No safe access to systems"
-              body="Reaching real data means raw keys on a laptop — no permissions, no audit."
-              quote="“How do I even get to that warehouse table for analytics — safely?”"
+              body="Reaching real data means raw keys on a laptop, with no permissions and no audit."
+              quote="“How do I even get to that warehouse table for analytics, safely?”"
             />
             <WallCard
               num="3"
               title="Nowhere governed to deploy"
               body="Apps and their data ship to personal accounts. No sandbox, no kill-switch."
-              quote="“Where does this app — and its data — actually live?”"
+              quote="“Where does this app, and its data, actually live?”"
             />
             <WallCard
               num="4"
               title="Skills don't compound"
               body="No shared library. Everyone rebuilds the same skill or app; nothing is reused or scheduled."
-              quote="“Sarah built this skill last month — why am I starting from scratch?”"
+              quote="“Sarah built this skill last month. Why am I starting from scratch?”"
             />
             <WallCard
               num="5"
               title="Engineering gets overloaded"
-              body="Every access request, guardrail and deploy routes through eng — they become the bottleneck."
+              body="Every access request, guardrail and deploy routes through eng, so they become the bottleneck."
               quote="“Why is every team's automation now a ticket in my backlog?”"
             />
             <WallCard
               num="6"
               title="No learning, no visibility"
-              body="Outputs lost in Sheets and DMs. Who ran what, what's working — invisible."
+              body="Outputs lost in Sheets and DMs. Who ran what, what's working: invisible."
               quote="“Did that even help? And is anyone else getting value from it?”"
             />
           </WallGrid>
@@ -510,19 +510,19 @@ export const deck = (K) => {
               tone="indigo"
               kicker="A company brain"
               title="Knows how you operate"
-              body="Your data, documents and decisions — organised into one living memory every AI tool can draw on. It accumulates and gets better with use."
+              body="Your data, documents and decisions, organised into one living memory every AI tool can draw on. It accumulates and gets better with use."
             />
             <UseCaseCard
               tone="emerald"
               kicker="Safe hands"
               title="Acts in your systems, governed"
-              body="AI can read and act across your tools through one gated, audited door — with permissions and a kill-switch. No raw keys on laptops."
+              body="AI can read and act across your tools through one gated, audited door, with permissions and a kill-switch. No raw keys on laptops."
             />
             <UseCaseCard
               tone="violet"
               kicker="A place to build"
               title="Apps & always-on agents your team owns"
-              body="Turn a workflow into a shared app or an always-on agent that runs on its own — built by your team, kept inside your business."
+              body="Turn a workflow into a shared app or an always-on agent that runs on its own, built by your team, kept inside your business."
             />
           </UseCaseGrid>
           <Caption className="dk-gap">
@@ -547,8 +547,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The AI-Native Operating Layer"
             eyebrowTone="indigo"
-            title="More than a brain — a full operating layer."
-            subtitle="Six capabilities working as one. The Company Brain is just one of them — and the whole thing compounds with every use."
+            title="More than a brain. A full operating layer."
+            subtitle="Six capabilities working as one. The Company Brain is just one of them, and the whole thing compounds with every use."
           />
           <Band tone="models" label="Your teams work in their own tools">
             <TileRow className="dk-tile-row-tight">
@@ -579,7 +579,7 @@ export const deck = (K) => {
                   wide={false}
                   icon={IcoBrain}
                   name="Company Brain"
-                  desc="Knowledge that compounds across every source — batch + streaming, continuously curated."
+                  desc="Knowledge that compounds across every source: batch and streaming, continuously curated."
                 />
                 <PillarCard
                   icon={IcoDoc}
@@ -597,7 +597,7 @@ export const deck = (K) => {
                   icon={IcoWrench}
                   tone="indigo"
                   name="Safe App Deploy"
-                  desc="Sandboxed apps + their data your team can share — scanned, never on personal accounts."
+                  desc="Sandboxed apps + their data your team can share, scanned, never on personal accounts."
                 />
                 <PillarCard
                   icon={IcoLoop}
@@ -609,12 +609,12 @@ export const deck = (K) => {
                   icon={IcoChart}
                   tone="indigo"
                   name="Observability"
-                  desc="Who ran what, what's working, what it costs — and an instant kill-switch."
+                  desc="Who ran what, what's working, what it costs, plus an instant kill-switch."
                 />
               </PillarGrid>
             </div>
           </Callout>
-          <Band tone="sor" label="Connected to your existing systems — not replaced">
+          <Band tone="sor" label="Connected to your existing systems, not replaced">
             <ChipRow tight>
               {[
                 'Warehouse · BigQuery',
@@ -643,8 +643,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The Operating Layer"
             eyebrowTone="indigo"
-            title="Six capabilities most teams ship one of — as one governed platform."
-            subtitle="Engineering sets the rails once; the whole org self-serves on top — non-coders included. Build agents, build apps, all on the real brain."
+            title="Six capabilities most teams ship one of, as one governed platform."
+            subtitle="Engineering sets the rails once; the whole org self-serves on top, non-coders included. Build agents, build apps, all on the real brain."
           />
           <UseCaseGrid>
             <UseCaseCard
@@ -660,17 +660,17 @@ export const deck = (K) => {
             <UseCaseCard
               tone="indigo"
               title="Agent builder"
-              body="Describe an agent in plain English — assembled from skills, live in minutes."
+              body="Describe an agent in plain English, assembled from skills, live in minutes."
             />
             <UseCaseCard
               tone="indigo"
               title="AI app builder"
-              body="SMEs ship internal apps + live dashboards on the real brain — sandboxed, governed."
+              body="SMEs ship internal apps + live dashboards on the real brain, sandboxed and governed."
             />
             <UseCaseCard
               tone="emerald"
               title="Bring your own harness + tools"
-              body="Point Claude Code, Codex or Cursor at the brain — they operate on top. One MCP door, plus warehouse, object store, SaaS & internal APIs."
+              body="Point Claude Code, Codex or Cursor at the brain and they operate on top. One MCP door, plus warehouse, object store, SaaS & internal APIs."
             />
             <UseCaseCard
               tone="emerald"
@@ -679,12 +679,12 @@ export const deck = (K) => {
             />
           </UseCaseGrid>
           <Caption className="dk-gap-sm">
-            <strong>Self-learning in practice</strong> — the agent surfaces, a human approves, the
+            <strong>Self-learning in practice.</strong> The agent surfaces, a human approves, the
             brain compounds.
           </Caption>
           <Columns className="dk-gap-sm">
             <Callout tone="indigo" label="Agent → human">
-              Found a new entity <strong>“Gift Recipient”</strong> across 3 tables — add it to the
+              Found a new entity <strong>“Gift Recipient”</strong> across 3 tables. Add it to the
               ontology?
               <ChipRow tight className="dk-gap-sm">
                 <Chip size="sm" tone="emerald">✓ Approve</Chip>
@@ -713,15 +713,15 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The living context brain"
             eyebrowTone="violet"
-            title="A living context brain — it knows how & where, it doesn't hoard your data."
-            subtitle="Agentic profiling — with a human in the loop — builds the ontology, access maps and curation rules. Agents run on top, drawing the right context per task; agents and people feed learnings and tribal knowledge back. No bulk ETL, no data migration."
+            title="A living company brain that knows how & where, and doesn't hoard your data."
+            subtitle="Agentic profiling, with a human in the loop, builds the ontology, access maps and curation rules. Agents run on top, drawing the right context per task; agents and people feed learnings and tribal knowledge back. No bulk ETL, no data migration."
           />
           <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: BRAIN_SVG }} />
           <ChipRow tight className="dk-gap-sm">
-            <Chip size="sm"><strong>Agentic profiling</strong> — human-in-the-loop, no bulk ETL</Chip>
-            <Chip size="sm"><strong>Profiled, not copied</strong> — stats + column roles; the rows stay in your systems</Chip>
-            <Chip size="sm"><strong>Periodic re-curation</strong> — refreshes itself on a schedule</Chip>
-            <Chip size="sm"><strong>Self-learning &amp; living</strong> — every run and correction feeds back</Chip>
+            <Chip size="sm"><strong>Agentic profiling</strong>: human-in-the-loop, no bulk ETL</Chip>
+            <Chip size="sm"><strong>Profiled, not copied</strong>: stats and column roles; the rows stay in your systems</Chip>
+            <Chip size="sm"><strong>Periodic re-curation</strong>: refreshes itself on a schedule</Chip>
+            <Chip size="sm"><strong>Self-learning &amp; living</strong>: every run and correction feeds back</Chip>
           </ChipRow>
         </SlideFrame>
       ),
@@ -741,8 +741,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Retrieval"
             eyebrowTone="indigo"
-            title="Accuracy starts with retrieving the right slice — every mode, one router."
-            subtitle="The >1M-token hallucination is a retrieval problem, not a model problem. Synos picks the right retrieval mode per query — automatically."
+            title="Accuracy starts with retrieving the right slice, and one router picks the mode."
+            subtitle="The >1M-token hallucination is a retrieval problem, not a model problem. Synos picks the right retrieval mode per query, automatically."
           />
           <Matrix
             variant="rules"
@@ -753,8 +753,8 @@ export const deck = (K) => {
                 label: 'Auto router',
                 sub: 'mode=auto',
                 cells: [
-                  { text: 'An LLM selector picks the best mode (and source) per query — one goes to SQL, another to vector, another to graph.' },
-                  { text: 'Mixed query types & heterogeneous sources — the default.' },
+                  { text: 'An LLM selector picks the best mode (and source) per query: one goes to SQL, another to vector, another to graph.' },
+                  { text: 'Mixed query types & heterogeneous sources, the default.' },
                 ],
               },
               {
@@ -769,7 +769,7 @@ export const deck = (K) => {
                 label: 'Semantic / vector',
                 sub: 'dense embeddings',
                 cells: [
-                  { text: 'Encodes query + docs as embeddings, ranks by meaning — handles paraphrase, synonyms, cross-lingual.' },
+                  { text: 'Encodes query + docs as embeddings, ranks by meaning, so it handles paraphrase, synonyms, cross-lingual.' },
                   { text: 'Natural-language questions, paraphrase & vocabulary variety.' },
                 ],
               },
@@ -778,7 +778,7 @@ export const deck = (K) => {
                 sub: 'BM25 + vector + RRF',
                 cells: [
                   { text: 'Runs lexical + vector in parallel, fuses, then a cross-encoder reranks for precision.' },
-                  { text: 'Production default — NL mixed with literal IDs.' },
+                  { text: 'Production default, NL mixed with literal IDs.' },
                 ],
               },
               {
@@ -793,14 +793,14 @@ export const deck = (K) => {
                 label: 'Graph / GraphRAG',
                 sub: 'entity traversal',
                 cells: [
-                  { text: 'Traverses linked entities + relationships. Deferred to query-time — no giant persisted graph to maintain.' },
+                  { text: 'Traverses linked entities + relationships. Deferred to query-time, so there is no giant persisted graph to maintain.' },
                   { text: 'Multi-hop reasoning across connected entities.' },
                 ],
               },
             ]}
           />
           <Caption className="dk-gap-sm">
-            Same model, same cost per token — dramatically fewer tokens and fewer wrong answers,
+            Same model, same cost per token, dramatically fewer tokens and fewer wrong answers,
             because the brain decides what the model sees.
           </Caption>
         </SlideFrame>
@@ -820,7 +820,7 @@ export const deck = (K) => {
             eyebrow="No Migration, No New Habits"
             eyebrowTone="indigo"
             title="Your people keep working in the tools they already love."
-            subtitle="Synos sits underneath — making every one of them safe, shared, and governed."
+            subtitle="Synos sits underneath, making every one of them safe, shared and governed."
           />
           <TileRow>
             {[
@@ -856,7 +856,7 @@ export const deck = (K) => {
           <div className="tb-arrow">▼</div>
           <div className="dk-band dk-band--sor">
             <Eyebrow tone="muted">
-              Connected to your existing stack out of the box — not replaced
+              Connected to your existing stack out of the box, not replaced
             </Eyebrow>
             <ChipRow tight>
               {[
@@ -888,14 +888,14 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Where The Work Actually Is"
             eyebrowTone="indigo"
-            title="Five hard parts — the ones a demo never shows."
+            title="Five hard parts. The ones a demo never shows."
             subtitle="Connecting data and calling a model is the easy half. These five are what stand between a clever agent and one you'd let near a real customer. The next slides take them one at a time."
           />
           <WallGrid>
             <WallCard
               num="1"
               title="Keeping context current"
-              body="Schemas drift, definitions change, docs go stale. Agents keep answering — just wrongly."
+              body="Schemas drift, definitions change, docs go stale. Agents keep answering, just wrongly."
               tag="Most teams: a one-time setup, then decay."
             />
             <WallCard
@@ -914,7 +914,7 @@ export const deck = (K) => {
               num="4"
               title="Earning autonomy"
               body="Nobody flips an agent to unsupervised on day one. What is the gate, and what is the rollback?"
-              tag="Most teams: no gate — a judgement call."
+              tag="Most teams: no gate, a judgement call."
             />
             <WallCard
               num="5"
@@ -925,7 +925,7 @@ export const deck = (K) => {
           </WallGrid>
           <Callout tone="indigo" className="dk-gap-sm">
             <strong>You may already have one or two of these.</strong> Almost nobody has all five
-            wired together — and it's the wiring, not any single piece, that makes agents safe enough
+            wired together, and it's the wiring rather than any single piece that makes agents safe enough
             to leave running.
           </Callout>
         </SlideFrame>
@@ -944,8 +944,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Hard Part 1 · Staying Current"
             eyebrowTone="indigo"
-            title="The brain re-profiles itself — and tells your admins what needs a human."
-            subtitle="A company brain built once starts going stale immediately. Agents don't fail loudly when it does; they keep answering with the old meaning. So profiling runs on a schedule, and anything it isn't sure about becomes a review item — not a silent guess."
+            title="The brain re-profiles itself, and tells your admins what needs a human."
+            subtitle="A company brain built once starts going stale immediately. Agents don't fail loudly when it does; they keep answering with the old meaning. So profiling runs on a schedule, and anything it isn't sure about becomes a review item rather than a silent guess."
           />
           <Columns>
             <Stack gap="snug">
@@ -970,21 +970,21 @@ export const deck = (K) => {
               <Caption>No bulk ETL. No re-migration. The maps refresh; your data never moves.</Caption>
             </Stack>
             <Stack gap="tight">
-              <Eyebrow tone="muted">Admin review queue — what needs your attention</Eyebrow>
+              <Eyebrow tone="muted">Admin review queue: what needs your attention</Eyebrow>
               <Callout tone="amber" label="STALE">
-                <strong>7 tables</strong> not re-profiled in 30 days — 2 feed a live agent
+                <strong>7 tables</strong> not re-profiled in 30 days, and 2 feed a live agent
               </Callout>
               <Callout tone="red" label="DRIFT">
-                <strong>orders.status</strong> gained 3 new enum values — mapping no longer covers them
+                <strong>orders.status</strong> gained 3 new enum values, so the mapping no longer covers them
               </Callout>
               <Callout tone="red" label="CONFLICT">
-                Two tables both claim <strong>“revenue”</strong> — which is authoritative?
+                Two tables both claim <strong>“revenue”</strong>. Which is authoritative?
               </Callout>
               <Callout tone="amber" label="LOW CONF">
-                <strong>4 metric bindings</strong> below threshold — agent is guessing
+                <strong>4 metric bindings</strong> below threshold, so the agent is guessing
               </Callout>
               <Callout tone="violet" label="PROPOSED">
-                Agent found a new entity <strong>“Gift Recipient”</strong> across 3 tables — add it?
+                Agent found a new entity <strong>“Gift Recipient”</strong> across 3 tables. Add it?
               </Callout>
               <Callout tone="indigo" label="RUNS">
                 <strong>12 failures</strong> · 3 permission denials · cost up 18% week-on-week
@@ -1013,7 +1013,7 @@ export const deck = (K) => {
             eyebrow="Hard Part 2 · Who Authors"
             eyebrowTone="violet"
             title="Engineers set the rails. The people who know the work build the agents."
-            subtitle="The knowledge that makes an agent correct lives with your SMEs — ops leads, analysts, marketers, support veterans. Today it can only reach production through an engineer. That queue is the bottleneck."
+            subtitle="The knowledge that makes an agent correct lives with your SMEs: ops leads, analysts, marketers, support veterans. Today it can only reach production through an engineer. That queue is the bottleneck."
           />
           <Callout tone="red" label="Today">
             <ChipRow tight>
@@ -1031,30 +1031,30 @@ export const deck = (K) => {
           </Callout>
           <SplitColumns className="dk-gap-sm">
             <SplitColumn tone="indigo" eyebrow="Engineering owns · set once" title="The rails">
-              <SplitItem>Connectors and data scopes — what an agent may read</SplitItem>
+              <SplitItem>Connectors and data scopes: what an agent may read</SplitItem>
               <SplitItem>
-                Governed tools and write-actions — what it may do, and what needs approval
+                Governed tools and write-actions: what it may do, and what needs approval
               </SplitItem>
               <SplitItem>
                 RBAC, full audit trail, sandboxed execution, rate and cost limits
               </SplitItem>
               <SplitItem>Eval harness and promotion gates</SplitItem>
               <SplitItem>
-                <Caption>Built once and reviewed — not re-implemented for every new request.</Caption>
+                <Caption>Built once and reviewed, not re-implemented for every new request.</Caption>
               </SplitItem>
             </SplitColumn>
             <SplitColumn tone="violet" eyebrow="SMEs own · every day" title="The knowledge">
               <SplitItem>
-                Skills written in plain English — how <em>we</em> actually do this
+                Skills written in plain English: how <em>we</em> actually do this
               </SplitItem>
               <SplitItem>
                 Rules, exceptions and judgment calls, captured where they come up
               </SplitItem>
               <SplitItem>
-                Corrections on agent output — each becomes a rule every agent follows, and material a
+                Corrections on agent output. Each becomes a rule every agent follows, and material a
                 future training set is built from
               </SplitItem>
-              <SplitItem>Test cases: “here are ten real ones — get them right”</SplitItem>
+              <SplitItem>Test cases: “here are ten real ones, get them right”</SplitItem>
               <SplitItem>
                 <Caption>
                   No code, no ticket, no waiting. Inside the rails there is nothing they can break.
@@ -1071,7 +1071,7 @@ export const deck = (K) => {
             <StepCard
               num="2"
               title="SME authors in plain English"
-              body="In chat, Slack or Claude Code: “T3 billing escalations never go by SMS — email finance first.” Stored as a versioned skill."
+              body="In chat, Slack or Claude Code: “T3 billing escalations never go by SMS, email finance first.” Stored as a versioned skill."
             />
             <StepCard
               num="3"
@@ -1086,7 +1086,7 @@ export const deck = (K) => {
           </StepGrid>
           <Callout tone="emerald" className="dk-gap-sm">
             <strong>The handoff disappears.</strong> The person who holds the knowledge is the one who
-            encodes it — and engineering moves from transcribing requirements to owning the rails and
+            encodes it, and engineering moves from transcribing requirements to owning the rails and
             reviewing what ships.
           </Callout>
         </SlideFrame>
@@ -1105,7 +1105,7 @@ export const deck = (K) => {
             eyebrow="Hard Part 3 · Agents That Act"
             eyebrowTone="indigo"
             title="Every action gated. Every action audited."
-            subtitle="Reading data is the safe half. The moment an agent writes to a CRM, a ledger or a campaign, you need one door it must pass through — and a row in a log for every attempt."
+            subtitle="Reading data is the safe half. The moment an agent writes to a CRM, a ledger or a campaign, you need one door it must pass through, and a row in a log for every attempt."
           />
           <SplitColumns>
             <SplitColumn
@@ -1122,8 +1122,8 @@ export const deck = (K) => {
             </SplitColumn>
             <SplitColumn
               tone="emerald"
-              eyebrow="With Synos — one governed door"
-              title="UI, AI tool, or always-on agent — every call goes through the same gate."
+              eyebrow="With Synos, one governed door"
+              title="UI, AI tool, or always-on agent, every call goes through the same gate."
             >
               {/* NOT a SplitItem. SplitItem is a bullet row — a marker glyph in a flex row beside
                   its text — so wrapping a drawing in one renders a stray bullet next to the diagram
@@ -1149,7 +1149,7 @@ export const deck = (K) => {
             eyebrow="Hard Part 4 · Earning Autonomy"
             eyebrowTone="indigo"
             title="From a skill you run yourself to an agent that runs the system."
-            subtitle="Start in your own AI tool; graduate into the platform as trust builds — review gates and human oversight at every step."
+            subtitle="Start in your own AI tool; graduate into the platform as trust builds, with review gates and human oversight at every step."
           />
           <PhaseRow>
             <PhaseCard
@@ -1172,7 +1172,7 @@ export const deck = (K) => {
           </PhaseRow>
           <Callout tone="indigo" className="dk-gap">
             <strong>Every stage is governed.</strong> Permissions, full audit trail, human review and
-            an instant kill-switch apply at every level — so <em>autonomous never means
+            an instant kill-switch apply at every level, so <em>autonomous never means
             unsupervised</em>.
           </Callout>
         </SlideFrame>
@@ -1255,33 +1255,33 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Hard Part 4 · The Gate"
             eyebrowTone="indigo"
-            title="Every function climbs an autonomy ladder — gated by evals, not by faith."
-            subtitle="Graduated trust, per function. One function can be fully autonomous while another is still only assisted. Humans never leave — they move to the edge. Governed and reversible at every rung."
+            title="Every function climbs an autonomy ladder, gated by evals rather than by faith."
+            subtitle="Graduated trust, per function. One function can be fully autonomous while another is still only assisted. Humans never leave, they move to the edge. Governed and reversible at every rung."
           />
           <div className="tb-ladder">
             <StepCard
               num="LEVEL 1"
               title="Assisted"
               body="Agent drafts; the human decides and sends."
-              quote="Human does the work · Gate — just start"
+              quote="Human does the work · Gate: just start"
             />
             <StepCard
               num="LEVEL 2"
               title="Reviewed"
               body="Agent acts; the human approves every action."
-              quote="Human approves each · Gate — eval accuracy clears the bar"
+              quote="Human approves each · Gate: eval accuracy clears the bar"
             />
             <StepCard
               num="LEVEL 3"
               title="Supervised-autonomous"
               body="Agent runs; the human samples and handles exceptions."
-              quote="Human samples + exceptions · Gate — sustained eval pass, low breach"
+              quote="Human samples + exceptions · Gate: sustained eval pass, low breach"
             />
             <StepCard
               num="LEVEL 4 · THE SUMMIT"
               title="Autonomous"
               body="Agent runs the function; humans set policy, watch dashboards, hold the kill-switch."
-              quote="Human sets policy · edge only · Gate — evals hold at scale"
+              quote="Human sets policy · edge only · Gate: evals hold at scale"
             />
           </div>
           <Caption className="dk-gap-sm">
@@ -1302,15 +1302,15 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Hard Part 5 · Learning From Runs"
             eyebrowTone="violet"
-            title="What compounds is the loop — the record of how your company works, not the model."
-            subtitle="Humans correct. Agents act. Systems return the measured outcome. Every turn builds data no public model can ever train on — and it pays off whichever model wins."
+            title="What compounds is the loop: the record of how your company works, not the model."
+            subtitle="Humans correct. Agents act. Systems return the measured outcome. Every turn builds data no public model can ever train on, and it pays off whichever model wins."
           />
           <div className="tb-lp tb-diagram" dangerouslySetInnerHTML={{ __html: LOOP_SVG }} />
           <Caption className="dk-gap-sm">
             Live today at a martech design partner: every operator correction feeds one learning layer
             their whole platform gets smarter from.{' '}
             <strong>
-              This is data the model can never train on — and it accrues to you, on your
+              This is data the model can never train on, and it accrues to you, on your
               infrastructure.
             </strong>
           </Caption>
@@ -1331,7 +1331,7 @@ export const deck = (K) => {
             eyebrow="Hard Part 5 · Where It Leads"
             eyebrowTone="violet"
             title="Every run is traced. Every trace is future training data."
-            subtitle="The same environment is your training ground: every run traced, every review and correction captured, private evals against your own outcomes — the raw material to fine-tune open-weight models on how your company operates. Models that are yours, on your infrastructure."
+            subtitle="The same environment is your training ground: every run traced, every review and correction captured, private evals against your own outcomes, the raw material to fine-tune open-weight models on how your company operates. Models that are yours, on your infrastructure."
           />
           <div className="tb-pipe">
             <StepCard
@@ -1339,7 +1339,7 @@ export const deck = (K) => {
               title="Every run captured"
               body={
                 <>
-                  Inputs, tool calls, decisions, outcome — full lineage on every agent run.{' '}
+                  Inputs, tool calls, decisions, outcome. Full lineage on every agent run.{' '}
                   <Chip size="sm" tone="emerald">● LIVE TODAY</Chip>
                 </>
               }
@@ -1349,7 +1349,7 @@ export const deck = (K) => {
               title="Corrections captured"
               body={
                 <>
-                  Every human correction and approval is captured and reviewed in the flow of work —
+                  Every human correction and approval is captured and reviewed in the flow of work,
                   the material labels are built from.{' '}
                   <Chip size="sm" tone="emerald">● LIVE TODAY</Chip>
                 </>
@@ -1360,7 +1360,7 @@ export const deck = (K) => {
               title="Private evals"
               body={
                 <>
-                  Agents scored against <em>your</em> outcomes, not public benchmarks — ground truth
+                  Agents scored against <em>your</em> outcomes, not public benchmarks. Ground truth
                   only you own. <Chip size="sm" tone="amber">◐ IN BUILD</Chip>
                 </>
               }
@@ -1380,7 +1380,7 @@ export const deck = (K) => {
               title="Your own models"
               body={
                 <>
-                  Custom and distilled small models for your workflows — trained on the loop, run on
+                  Custom and distilled small models for your workflows, trained on the loop and run on
                   your infra. <Chip size="sm" tone="violet">◆ ROADMAP</Chip>
                 </>
               }
@@ -1391,25 +1391,25 @@ export const deck = (K) => {
               tone="emerald"
               kicker="Cost"
               title="Small models carry the routine"
-              body="Distilled models run the ~80% of routine work at a fraction of frontier-token cost — the open-source future, powered by your data."
+              body="Distilled models run the ~80% of routine work at a fraction of frontier-token cost. The open-source future, powered by your data."
             />
             <UseCaseCard
               tone="indigo"
               kicker="Sovereignty"
               title="Your data, your models, your infra"
-              body="Nothing trains a public model. Your models live in your cloud — swap providers freely without losing what you've learned."
+              body="Nothing trains a public model. Your models live in your cloud, so you swap providers freely without losing what you've learned."
             />
             <UseCaseCard
               tone="violet"
               kicker="Moat"
               title="A dataset nobody can buy"
-              body="Minted from your own operations and corrections — the one asset a competitor or a lab can't replicate."
+              body="Minted from your own operations and corrections: the one asset a competitor or a lab can't replicate."
             />
           </UseCaseGrid>
           <Callout tone="amber" className="dk-gap-sm">
-            <strong>Where we honestly are:</strong> the data layer — tracing, corrections,
-            agent-native storage — is live and accumulating in every deployment. The eval and
-            training layers are still being built — deliberately data-first, because{' '}
+            <strong>Where we honestly are:</strong> the data layer, meaning tracing, corrections and
+            agent-native storage, is live and accumulating in every deployment. The eval and
+            training layers are still being built, deliberately data-first, because{' '}
             <strong>capture is the scarce part</strong>; training stacks on top, with no rebuild.
           </Callout>
         </SlideFrame>
@@ -1429,7 +1429,7 @@ export const deck = (K) => {
             eyebrow="Neutral by Design · No Lock-In"
             eyebrowTone="indigo"
             title="Swap any vendor. Keep everything you've learned."
-            subtitle="Models, harnesses and clouds will each change several times over the life of this system. Synos is the neutral, self-hosted layer underneath them — so a vendor decision never becomes an identity decision."
+            subtitle="Models, harnesses and clouds will each change several times over the life of this system. Synos is the neutral, self-hosted layer underneath them, so a vendor decision never becomes an identity decision."
           />
           <Stack gap="tight">
             {[
@@ -1448,7 +1448,7 @@ export const deck = (K) => {
               </div>
             ))}
           </Stack>
-          <Callout tone="violet" className="dk-gap-sm" label="What never moves — the layer you own">
+          <Callout tone="violet" className="dk-gap-sm" label="What never moves: the layer you own">
             Company Brain · skills and SOPs · rules and exceptions · corrections · decision traces ·
             evals · governed tools and policy. It runs on <strong>your</strong> infrastructure and
             stays portable across every choice above.
@@ -1467,7 +1467,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="indigo"
               kicker="Swap the harness"
-              body="Claude Code, Codex, Cursor or your own — every one reaches the same brain and the same governed tools over MCP."
+              body="Claude Code, Codex, Cursor or your own. Every one reaches the same brain and the same governed tools over MCP."
             />
             <UseCaseCard
               tone="indigo"
@@ -1481,7 +1481,7 @@ export const deck = (K) => {
             />
           </UseCaseGrid>
           <Callout tone="emerald" className="dk-gap-sm">
-            <strong>The test we hold ourselves to:</strong> take any one vendor away — does your
+            <strong>The test we hold ourselves to:</strong> take any one vendor away. Does your
             company's capability survive? Nothing leaves your infrastructure and nothing trains a
             public model, so what you build here is capital you own, not intelligence you rent.
           </Callout>
@@ -1501,7 +1501,7 @@ export const deck = (K) => {
             eyebrow="Where this goes"
             eyebrowTone="emerald"
             title="Today you install the layer. Then it compounds into something bigger."
-            subtitle="The layer you deploy now sits between your people, agents and systems — it takes you from transforming today to a truly AI-native company — and it becomes the training ground for AI of your own."
+            subtitle="The layer you deploy now sits between your people, agents and systems, and it takes you from transforming today to a truly AI-native company, and it becomes the training ground for AI of your own."
           />
           <PhaseRow>
             <PhaseCard
@@ -1518,7 +1518,7 @@ export const deck = (K) => {
               body={
                 <>
                   Every run traced, every review and correction captured, evals against <em>your</em>{' '}
-                  outcomes — the training ground to fine-tune open-weight models you own, graduated
+                  outcomes, the training ground to fine-tune open-weight models you own, graduated
                   into real work the way you onboard a new team member.
                 </>
               }
@@ -1532,7 +1532,7 @@ export const deck = (K) => {
             />
           </PhaseRow>
           <Caption className="dk-gap">
-            Build horizontal, deploy vertical — each team (Sales, Marketing, Ops, FinOps) is its own
+            Build horizontal, deploy vertical. Each team (Sales, Marketing, Ops, FinOps) is its own
             curve on the same layer.
           </Caption>
         </SlideFrame>
@@ -1551,7 +1551,7 @@ export const deck = (K) => {
             eyebrow="Two Ways To Deploy"
             eyebrowTone="indigo"
             title="One substrate. Two ways to become agent-native."
-            subtitle="The same operating layer can point inward at your company — or outward through your product. Same brain, skills, and governance; different go-to-market."
+            subtitle="The same operating layer can point inward at your company, or outward through your product. Same brain, skills, and governance; different go-to-market."
           />
           <SplitColumns>
             <SplitColumn
@@ -1560,8 +1560,8 @@ export const deck = (K) => {
               title="Make your company agent-native"
             >
               <SplitItem>
-                An internal operating brain that unblocks your own teams — ops, support, finance,
-                product — on the tools they already use.
+                An internal operating brain that unblocks your own teams in ops, support, finance and
+                product, on the tools they already use.
               </SplitItem>
               <SplitItem>A shared brain over your systems, not per-laptop context</SplitItem>
               <SplitItem>Skills &amp; agents your teams author and own</SplitItem>
@@ -1576,7 +1576,7 @@ export const deck = (K) => {
               title="Make your product agent-native"
             >
               <SplitItem>
-                Embed the layer beneath your own SaaS so every customer gets an AI-native surface —
+                Embed the layer beneath your own SaaS so every customer gets an AI-native surface,
                 without building the infrastructure yourself.
               </SplitItem>
               <SplitItem>An isolated, governed brain per customer / tenant</SplitItem>
@@ -1589,7 +1589,7 @@ export const deck = (K) => {
           </SplitColumns>
           <Caption className="dk-gap">
             <em>
-              Different packaging, one platform — so you never rebuild the substrate to switch
+              Different packaging, one platform, so you never rebuild the substrate to switch
               motions.
             </em>
           </Caption>
@@ -1608,7 +1608,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Product Transformation"
             eyebrowTone="violet"
-            title="Make your product agent-native — on the same layer."
+            title="Make your product agent-native, on the same layer."
             subtitle="Give every customer a living brain and agents over their own data. The infrastructure ships with Synos, so your team builds the experience, not the plumbing."
           />
           <UseCaseGrid>
@@ -1616,25 +1616,25 @@ export const deck = (K) => {
               tone="indigo"
               kicker="A brain per customer"
               title="Their data, mapped automatically"
-              body="Agentic profilers scan each customer's tables and documents, build an entity graph, and stand up an isolated, tenant-scoped brain — no manual onboarding per account."
+              body="Agentic profilers scan each customer's tables and documents, build an entity graph, and stand up an isolated, tenant-scoped brain, no manual onboarding per account."
             />
             <UseCaseCard
               tone="emerald"
               kicker="Agents you ship to users"
               title="An AI-native surface in your product"
-              body="Insights, planning, diagnostics, assistants — authored once as skills, exposed to your customers through chat, Slack, or your own UI. Governed and cost-metered per tenant."
+              body="Insights, planning, diagnostics, assistants, all authored once as skills and exposed to your customers through chat, Slack, or your own UI. Governed and cost-metered per tenant."
             />
             <UseCaseCard
               tone="violet"
               kicker="Compounds per account"
               title="Gets smarter with every use"
-              body="Every customer interaction and correction feeds that tenant's brain. Your product's value grows per account over time — a moat competitors can't copy by swapping models."
+              body="Every customer interaction and correction feeds that tenant's brain. Your product's value grows per account over time, a moat competitors can't copy by swapping models."
             />
           </UseCaseGrid>
           <Caption className="dk-gap">
             <em>
               The pattern SaaS teams use to turn “AI-first” ambition into a shipped, differentiated
-              product — in weeks, not a year.
+              product, in weeks rather than a year.
             </em>
           </Caption>
         </SlideFrame>
@@ -1654,7 +1654,7 @@ export const deck = (K) => {
             eyebrow="Templated Brains"
             eyebrowTone="indigo"
             title="A starting brain for every operating team."
-            subtitle="Pre-built for the functions a lean company runs — live in weeks, then tuned to you."
+            subtitle="Pre-built for the functions a lean company runs. Live in weeks, then tuned to you."
           />
           <UseCaseGrid>
             {[
@@ -1683,7 +1683,7 @@ export const deck = (K) => {
           <Caption className="dk-gap-sm">
             <strong>Templates are the starting point, not the ceiling.</strong> Each ships day-one and
             then <em>compounds on your data and your corrections</em> until it operates the way you do
-            — and any function not shown here is built on the same rails, owned and extended by your
+            Any function not shown here is built on the same rails, owned and extended by your
             team.
           </Caption>
         </SlideFrame>
@@ -1700,8 +1700,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="What Your Teams Get"
             eyebrowTone="emerald"
-            title="Run leaner and faster — where it shows up on the P&L."
-            subtitle="The same team, doing more — because the repetitive work runs itself and the judgement work is better-informed."
+            title="Run leaner and faster, where it shows up on the P&L."
+            subtitle="The same team, doing more, because the repetitive work runs itself and the judgement work is better-informed."
           />
           <UseCaseGrid>
             {[
@@ -1730,7 +1730,7 @@ export const deck = (K) => {
           <Caption className="dk-gap">
             <em>
               The compounding effect: the brain gets smarter, the agents do more, and the team's
-              leverage grows every quarter — without growing headcount at the same rate.
+              output grows every quarter, without growing headcount at the same rate.
             </em>
           </Caption>
         </SlideFrame>
@@ -1747,14 +1747,14 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="How a Brand Gets There"
             eyebrowTone="indigo"
-            title="Live in weeks — and your team owns it."
+            title="Live in weeks, and your team owns it."
             subtitle="We forward-deploy engineers alongside your team to build the 20% custom to your business, then hand it over."
           />
           <PhaseRow>
             <PhaseCard
               badge="01 · DISCOVER"
               title="Pair with your team"
-              body="We sit with Sales, Marketing & Ops, connect your systems, and pick the highest-leverage workflows to start with."
+              body="We sit with Sales, Marketing & Ops, connect your systems, and pick the workflows with the most waiting on them to start with."
             />
             <PhaseCard
               position="bridge"
@@ -1766,12 +1766,12 @@ export const deck = (K) => {
               position="far"
               badge="03 · HAND OVER"
               title="Your team carries it forward"
-              body="Non-coders author and tweak workflows in plain English. The brain compounds inside your business — not ours."
+              body="Non-coders author and tweak workflows in plain English. The brain compounds inside your business, not ours."
             />
           </PhaseRow>
           <Callout tone="indigo" className="dk-gap">
             <strong>Platform + people.</strong> The layer stands on its own; the FDE team gets you to{' '}
-            <em>outcomes this quarter</em>, not just a tool installed.
+            <em>outcomes this quarter</em>, rather than a tool installed.
           </Callout>
         </SlideFrame>
       ),
@@ -1831,7 +1831,7 @@ export const deck = (K) => {
           eyebrow="Let's see it live"
           line1="From slides to the"
           line2={<span className="sk-gradient-text">running product.</span>}
-          sub="A quick walkthrough of the real platform — the brain, an agent running, and the governance underneath."
+          sub="A quick walkthrough of the real platform: the brain, an agent running, and the governance underneath."
         >
           <ChipRow center className="dk-gap">
             <Chip size="pill">The Company Brain in action</Chip>
@@ -1854,7 +1854,7 @@ export const deck = (K) => {
           eyebrow="Appendix"
           line1="Under the"
           line2={<span className="sk-gradient-text">hood</span>}
-          sub="Architecture, retrieval, governance and the self-learning loop — the engineering deep dive."
+          sub="Architecture, retrieval, governance and the self-learning loop. The engineering deep dive."
         />
       ),
     },
@@ -1876,7 +1876,7 @@ export const deck = (K) => {
             subtitle="Engineering sets the rails once. Non-engineers ship safely on top."
           />
           <Stack gap="tight">
-            <Band tone="sor" label="Bring Your Own Tool — all speak one interface (MCP)">
+            <Band tone="sor" label="Bring Your Own Tool · all speak one interface (MCP)">
               <TileRow className="dk-tile-row-tight">
                 <Tile size="sm" mono name="ChatGPT" kind="teams" />
                 <Tile size="sm" mono name="Claude Code" kind="power users" />
@@ -1923,7 +1923,7 @@ export const deck = (K) => {
                 <Chip size="sm">Kill-switch · approvals</Chip>
               </ChipRow>
             </div>
-            <Band tone="sor" label="Your existing systems — connected, not replaced">
+            <Band tone="sor" label="Your existing systems · connected, not replaced">
               <ChipRow tight>
                 <Chip size="sm" mono>Warehouse · BigQuery</Chip>
                 <Chip size="sm" mono>CRM · Salesforce · HubSpot</Chip>
@@ -1934,11 +1934,11 @@ export const deck = (K) => {
               </ChipRow>
             </Band>
             <div className="tb-actors">
-              <Callout tone="indigo" label="Engineering — sets rails once">
+              <Callout tone="indigo" label="Engineering · sets rails once">
                 Connects systems · defines tools + permissions · picks models. Stops being the
                 workflow bottleneck.
               </Callout>
-              <Callout tone="violet" label="Non-engineering — ships daily">
+              <Callout tone="violet" label="Non-engineering · ships daily">
                 Sales · Marketing · Ops author workflows in plain English. Safely. With analytics.
               </Callout>
             </div>
@@ -1957,15 +1957,15 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="What Lives In The Brain"
             eyebrowTone="indigo"
-            title="Eight kinds of memory — every shape an agent needs."
+            title="Eight kinds of memory, every shape an agent needs."
             subtitle="Schema-less and extensible, each mapped to a concrete store so the brain stays queryable, auditable, and rollback-safe."
           />
           <UseCaseGrid columns={4}>
             {[
-              ['indigo', 'Knowledge graph', 'Semantic', 'Stable facts about entities — customer, product, cohort, region.', '“Acme Corp · T2 · Mumbai · WhatsApp-preferred”'],
-              ['indigo', 'Operational store', 'Episodic', 'Time-stamped events — orders, messages, sessions, tickets.', '“Order #4821 placed · 19:42”'],
-              ['violet', 'Skill library', 'Procedural', 'How-to recipes — the workflows and playbooks agents follow.', '“Win-back campaign workflow”'],
-              ['red', 'Policy graph', 'Policy / Rules', 'Brand-mandated constraints — frequency caps, channel + consent rules.', '“Never message before 9am local”'],
+              ['indigo', 'Knowledge graph', 'Semantic', 'Stable facts about entities: customer, product, cohort, region.', '“Acme Corp · T2 · Mumbai · WhatsApp-preferred”'],
+              ['indigo', 'Operational store', 'Episodic', 'Time-stamped events: orders, messages, sessions, tickets.', '“Order #4821 placed · 19:42”'],
+              ['violet', 'Skill library', 'Procedural', 'How-to recipes: the workflows and playbooks agents follow.', '“Win-back campaign workflow”'],
+              ['red', 'Policy graph', 'Policy / Rules', 'Brand-mandated constraints: frequency caps, channel and consent rules.', '“Never message before 9am local”'],
               ['indigo', 'Knowledge graph', 'Preferences', 'Per-entity modifiers learned from behaviour.', '“Prefers WhatsApp · evenings”'],
               ['amber', 'Decision log', 'Decision Trace', 'Input-state → action → outcome. Every agent call recorded.', '“Win-back dispatch · WA · 10% offer”'],
               ['emerald', 'Outcome log', 'Reward / Outcome', 'Did the action move the baseline? Measured uplift per action.', '“10% offer · conv +3.2% vs baseline”'],
@@ -2005,7 +2005,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Retrieval"
             eyebrowTone="indigo"
-            title="Every agent gets the right slice — deterministic or agentic."
+            title="Every agent gets the right slice, deterministic or agentic."
             subtitle="Job-specific context packs assembled per query. Hybrid retrieval, authority-ranked, freshness-aware, policy-redacted. MCP-native envelope."
           />
           <div className="tb-retrieval">
@@ -2018,7 +2018,7 @@ export const deck = (K) => {
               <div className="tb-ret-flow">
                 {[
                   ['Query · scoped by agent role + intent', '“Next-best action for Maya” + agent capabilities + project_id'],
-                  ['Hybrid retrieval · vec + graph + keyword', 'ChromaDB embeddings · Neo4j multi-hop · Postgres FTS — fused'],
+                  ['Hybrid retrieval · vec + graph + keyword', 'ChromaDB embeddings · Neo4j multi-hop · Postgres FTS, fused'],
                   ['Authority + freshness rank', 'AgentPromoted > Document > SOR row · staleness penalty'],
                   ['Policy redact + token budget', 'RBAC filter · PII redaction · 4K/16K/32K envelope per agent'],
                   ['Context Pack → MCP response', 'Typed JSON · citation IDs · authority score · staleness ts'],
@@ -2036,7 +2036,7 @@ export const deck = (K) => {
             <div>
               <div className="tb-ret-head">
                 <Chip size="sm" tone="violet">Mode B</Chip>
-                <span className="tb-ret-name">Agentic retrieval — multi-step graph traversal</span>
+                <span className="tb-ret-name">Agentic retrieval · multi-step graph traversal</span>
                 <span className="tb-ret-when">3–6 hops · adaptive</span>
               </div>
               <div className="tb-agentic diagram-svg">
@@ -2079,7 +2079,7 @@ export const deck = (K) => {
                   {
                     text: (
                       <>
-                        The biggest category by stars — and <strong>not a memory system</strong>. No
+                        The biggest category by stars, and <strong>not a memory system</strong>. No
                         connectors, no tenancy, no temporality, no live source. Collecting, governing
                         and connecting to running systems is left entirely to you.
                       </>
@@ -2096,7 +2096,7 @@ export const deck = (K) => {
                     text: (
                       <>
                         <strong>Components, not layers.</strong> Graphiti ships{' '}
-                        <strong>zero connectors</strong> — its own README says bring your own database
+                        <strong>zero connectors</strong>. Its own README says bring your own database
                         and build your own tooling, and Zep's scaled engine is proprietary. cognee
                         reaches for Graphiti to get temporal.
                       </>
@@ -2108,11 +2108,11 @@ export const deck = (K) => {
                 label: 'Agent memory, no graph',
                 sub: 'mem0 63.3k★ · letta 24.2k★',
                 cells: [
-                  { text: 'Conversational personalisation for one agent — memory blocks, extracted facts, vector recall.' },
+                  { text: 'Conversational personalisation for one agent: memory blocks, extracted facts, vector recall.' },
                   {
                     text: (
                       <>
-                        mem0 — the most-starred of all —{' '}
+                        mem0, the most-starred of all,{' '}
                         <strong>deleted graph memory from its open source in v3</strong> (~4,000
                         lines, all five drivers) and made it Platform-only. A graph is not table
                         stakes; it has to earn its ingestion cost.
@@ -2127,8 +2127,8 @@ export const deck = (K) => {
             <strong>The fact that separates us from all three:</strong> no system in this study
             computes a single column statistic on a structured source. Semantica does schema
             introspection plus <code>SELECT … LIMIT</code>; cognee pulls rows in through{' '}
-            <code>dlt</code> and derives foreign-key edges. We <strong>profile in place</strong> —
-            null rate, distinct counts, length bounds, samples — then semantically type each column
+            <code>dlt</code> and derives foreign-key edges. We <strong>profile in place</strong>:
+            null rate, distinct counts, length bounds and samples, then semantically type each column
             and bind your metrics to it, while{' '}
             <strong>the rows stay in your warehouse and are queried live at answer time</strong>.
             That is data residency, cost and freshness in one design decision.
@@ -2255,11 +2255,11 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The honest comparison"
             eyebrowTone="violet"
-            title="What no open-source engine ships — and the four places they are ahead of us."
+            title="What no open-source engine ships, and the four places they are ahead of us."
             subtitle="Read from source on 2026-08-15 across Graphiti, cognee, Semantica, LightRAG, mem0 and letta. Everything on this slide is checkable from a GitHub account, which is exactly why the right column is here."
           />
           <SplitColumns>
-            <SplitColumn tone="emerald" eyebrow="Ours — absent from every engine measured">
+            <SplitColumn tone="emerald" eyebrow="Ours · absent from every engine measured">
               {[
                 [<><strong>Profiling of structured sources.</strong> Statistics plus tiered LLM semantic typing of every column. Rivals ingest rows or read schemas; none profiles.</>, 'matrix I-04 / I-05'],
                 [<><strong>Metric binding &amp; column-role grounding.</strong> What turns “a graph of your warehouse” into the right number for a business question. Unique in the field.</>, 'matrix I-07'],
@@ -2276,11 +2276,11 @@ export const deck = (K) => {
                 </SplitItem>
               ))}
             </SplitColumn>
-            <SplitColumn tone="amber" eyebrow="Theirs — where they are genuinely ahead">
+            <SplitColumn tone="amber" eyebrow="Theirs · where they are genuinely ahead">
               {[
-                [<><strong>Graphiti — bi-temporal, point-in-time querying.</strong> Facts carry system and world time; “as of last quarter” is a first-class query. We track supersession only. cognee delegates to Graphiti for exactly this, which is the strongest signal available that it is the reference design.</>, 'matrix G-01 / G-02'],
-                [<><strong>Semantica — audit-grade provenance.</strong> W3C PROV-O export with a sha256 hash chain, so lineage is tamper-evident. Ours is citations and source objects.</>, 'matrix T-05 / T-06'],
-                [<><strong>cognee — self-improvement, onboarding and evaluation.</strong> Its <em>memify</em> loop folds feedback, frequency and agent traces back in as weights; it starts with embedded defaults and no infrastructure; and it has five benchmark adapters. Our human-in-the-loop gate is a deliberate trade-off, not a superiority claim.</>, 'matrix O-01 / O-02 / O-04'],
+                [<><strong>Graphiti: bi-temporal, point-in-time querying.</strong> Facts carry system and world time; “as of last quarter” is a first-class query. We track supersession only. cognee delegates to Graphiti for exactly this, which is the strongest signal available that it is the reference design.</>, 'matrix G-01 / G-02'],
+                [<><strong>Semantica: audit-grade provenance.</strong> W3C PROV-O export with a sha256 hash chain, so lineage is tamper-evident. Ours is citations and source objects.</>, 'matrix T-05 / T-06'],
+                [<><strong>cognee: self-improvement, onboarding and evaluation.</strong> Its <em>memify</em> loop folds feedback, frequency and agent traces back in as weights; it starts with embedded defaults and no infrastructure; and it has five benchmark adapters. Our human-in-the-loop gate is a deliberate trade-off, not a superiority claim.</>, 'matrix O-01 / O-02 / O-04'],
                 [<><strong>Backend choice.</strong> cognee runs on six graph backends, Graphiti on four. We are Neo4j-only.</>, 'matrix O-06'],
               ].map(([body, src], i) => (
                 <SplitItem key={i}>
@@ -2296,7 +2296,7 @@ export const deck = (K) => {
             <strong>And one thing nobody in this field can claim:</strong> a verified benchmark. We
             have run none, and no one has independently verified mem0's or cognee's published numbers
             either. If retrieval quality on your corpus decides the deal, the way to settle it is a
-            bake-off on your data — which we will help you set up.
+            bake-off on your data, which we will help you set up.
           </Callout>
         </SlideFrame>
       ),
@@ -2311,7 +2311,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The Compounding Flywheel"
             eyebrowTone="indigo"
-            title="Every action is captured with its outcome and its review — the material your evals and future training sets are built from."
+            title="Every action is captured with its outcome and its review: the material your evals and future training sets are built from."
             subtitle="The brain holds the input. Decision traces hold the action + outcome. Human review calibrates it back. The moat is the traces, not the model."
           />
           <Columns>
@@ -2364,8 +2364,8 @@ export const deck = (K) => {
             </SplitColumn>
             <SplitColumn
               tone="emerald"
-              eyebrow="With Synos — System of Record"
-              title="Project-scoped collections. Agents write, apps read — audited."
+              eyebrow="With Synos · System of Record"
+              title="Project-scoped collections. Agents write, apps read, audited."
             >
               <SplitItem>
                 <div className="tb-diagram" dangerouslySetInnerHTML={{ __html: SOR_SVG }} />
@@ -2386,7 +2386,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Safe to Build"
             eyebrowTone="indigo"
-            title="Apps ship through a sandbox — a scanner gates every build."
+            title="Apps ship through a sandbox, and a scanner gates every build."
             subtitle="Code is scanned for unsafe access and secrets, then deployed to a sandboxed URL behind the egress proxy."
           />
           <SplitColumns>
@@ -2404,7 +2404,7 @@ export const deck = (K) => {
             </SplitColumn>
             <SplitColumn
               tone="emerald"
-              eyebrow="With Synos — gated build pipeline"
+              eyebrow="With Synos · gated build pipeline"
               title="Build → scan → compile → sandbox URL → audit row."
             >
               <SplitItem>
@@ -2438,7 +2438,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="violet"
               title="The brain is the moat"
-              body="Operational knowledge that defines your edge can't be rented. It compounds inside your tenant — or not at all."
+              body="Operational knowledge that defines your edge can't be rented. It compounds inside your tenant, or not at all."
             />
             <UseCaseCard
               tone="indigo"
@@ -2453,7 +2453,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="violet"
               title="Self-learning compounds"
-              body="Every run and correction accumulates in your tenant. Year-2 leverage builds; it doesn't reset with the next model."
+              body="Every run and correction accumulates in your tenant. Year two starts ahead of year one; it doesn't reset with the next model."
             />
             <UseCaseCard
               tone="amber"
@@ -2463,7 +2463,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="emerald"
               title="The post-SaaS substrate"
-              body="SaaS sold seats for the common 80%. The agent era ships your custom 20% — if you own the substrate it learns on."
+              body="SaaS sold seats for the common 80%. The agent era ships your custom 20%, if you own the substrate it learns on."
             />
           </UseCaseGrid>
           <Caption className="dk-gap-sm">
@@ -2486,9 +2486,9 @@ export const deck = (K) => {
             subtitle="Models are commodities. The brain that learns how your company works is not."
           />
           <Callout tone="violet">
-            Your moat is the <strong>feedback loop</strong> between your people, agents and systems —
+            Your moat is the <strong>feedback loop</strong> between your people, agents and systems,
             captured in your own cloud, accumulating with every run, tied to how <strong>you</strong>{' '}
-            operate. Not a dataset a competitor can buy — a loop embedded in your workflow.
+            operate. Not a dataset a competitor can buy. A loop embedded in your workflow.
           </Callout>
           <UseCaseGrid columns={4} className="dk-gap">
             <UseCaseCard
@@ -2499,7 +2499,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="emerald"
               title="Private evals on your outcomes"
-              body="Measured against your business results, not public benchmarks — ground truth only you own."
+              body="Measured against your business results, not public benchmarks. Ground truth only you own."
             />
             <UseCaseCard
               tone="violet"
@@ -2509,7 +2509,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="amber"
               title="You become the model-maker"
-              body="Only you have this data — so your domain models can beat generic ones over time."
+              body="Only you have this data, so your domain models can beat generic ones over time."
             />
           </UseCaseGrid>
         </SlideFrame>

@@ -70,7 +70,7 @@ export const appendixSlides = (K) => {
             fill="neutral"
             accent="none"
             className="dk-gap-sm"
-            label="SynOS — one self-hosted layer · installed once · model-agnostic"
+            label="SynOS · one self-hosted layer · installed once · model-agnostic"
           >
             <PillarGrid columns={5}>
               <PillarCard name="Company Brain" tone="violet" desc="self-curating, not static RAG" />
@@ -199,7 +199,7 @@ export const appendixSlides = (K) => {
           <QuoteBar className="dk-gap-sm">
             "You can offload a task, or even a job — <strong>you can never offload your learning.</strong>"
             As models commoditize expertise, the durable advantage moves from the model to the learning
-            loop you own. — <strong>Satya Nadella, 2026</strong>
+            loop you own. <strong>Satya Nadella, 2026</strong>
           </QuoteBar>
         </SlideFrame>
       ),
@@ -417,7 +417,7 @@ export const appendixSlides = (K) => {
             eyebrow="Appendix · the data flywheel"
             eyebrowTone="violet"
             title="Every run is traced. Every trace is future training data."
-            subtitle="The tracing layer shipping today is quietly building each customer's fine-tuning dataset, the raw material for their own models tomorrow. We built it data-first on purpose."
+            subtitle="The tracing layer shipping today is already building each customer's fine-tuning dataset, the raw material for their own models tomorrow. We built it data-first on purpose."
           />
           <PhaseRow style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
             <PhaseCard
@@ -429,7 +429,7 @@ export const appendixSlides = (K) => {
             <PhaseCard
               badge="02 · Label"
               title="Corrections captured"
-              body="Every human correction and approval is captured and reviewed in the flow of work — the material labels are built from."
+              body="Every human correction and approval is captured and reviewed in the flow of work, the material labels are built from."
               foot="● LIVE TODAY"
             />
             <PhaseCard
@@ -554,7 +554,7 @@ export const appendixSlides = (K) => {
             <Callout tone="indigo" fill="neutral" label="Built for a different person">
               Every category above is built for engineers. The developer is the user, and the
               enterprise's domain experts are downstream of a ticket. That is the gap: the knowledge
-              lives with people who cannot code, and the value only unlocks when <strong>they</strong>{' '}
+              lives with people who cannot code, and the value only arrives when <strong>they</strong>{' '}
               can build and run on the layer safely. Not all rivals, either: harnesses, search and
               memory tools plug into us over MCP.
             </Callout>
@@ -584,7 +584,7 @@ export const appendixSlides = (K) => {
             title="“Why not just use the open-source graph memory?”"
             subtitle={
               <>
-                One question, three unrelated categories — and the answer differs per category.
+                One question, three unrelated categories, and the answer differs per category.
                 Separating them <em>is</em> half the answer. Read from source, 2026-08-15.
               </>
             }
@@ -616,16 +616,16 @@ export const appendixSlides = (K) => {
                 sub: 'mem0 · letta',
                 cells: [
                   { text: 'Conversational personalisation for one agent.' },
-                  { text: 'mem0 — the most popular open-source agent-memory project — deleted graph memory from its open source in v3 (~4,000 lines, five drivers) and made it Platform-only. Useful both ways: the graph is not table stakes, and it has to earn its cost.' },
+                  { text: 'mem0, the most popular open-source agent-memory project, deleted graph memory from its open source in v3 (~4,000 lines, five drivers) and made it Platform-only. Useful both ways: the graph is not table stakes, and it has to earn its cost.' },
                 ],
               },
             ]}
           />
-          <Callout tone="indigo" fill="neutral" className="dk-gap-sm" label="What none of them do — measured against the source, not asserted">
+          <Callout tone="indigo" fill="neutral" className="dk-gap-sm" label="What none of them do · measured against the source, not asserted">
             <strong>No rival profiles a <em>connected</em> structured source.</strong> Semantica’s
             warehouse path is schema introspection plus <code>SELECT … LIMIT</code>; cognee pulls rows
-            in via <code>dlt</code>. We profile in place — null rate, distinct counts, length bounds,
-            value samples — then semantically type the columns and bind metrics to them, while{' '}
+            in via <code>dlt</code>. We profile in place: null rate, distinct counts, length bounds,
+            value samples, then semantically type the columns and bind metrics to them, while{' '}
             <strong>the rows stay in the customer’s warehouse and are queried live at answer time</strong>.
             Data residency, cost and freshness in one sentence. Around it: 57 connector types with five
             independently revocable credential surfaces, a graph shaped by a declared domain template
@@ -634,19 +634,19 @@ export const appendixSlides = (K) => {
           </Callout>
           <Callout tone="violet" fill="neutral" className="dk-gap-sm" label="The one line that separates us from the closest rival">
             Only two systems in this field operate rather than assemble, and{' '}
-            <strong>they automate opposite halves</strong>. We automate <strong>acquisition</strong> —
+            <strong>they automate opposite halves</strong>. We automate <strong>acquisition</strong>:
             credentials, connectors, scheduling, freshness, per-tenant isolation. cognee automates{' '}
-            <strong>cognition</strong> — zero-infra defaults, auto-routed retrieval, a self-improvement
+            <strong>cognition</strong>: zero-infra defaults, auto-routed retrieval, a self-improvement
             loop. Graphiti is a component by its own description; Semantica is a toolkit that reads as
             a platform. Acquisition is the half a buyer cannot skip and cannot buy anywhere else.
           </Callout>
-          <Callout tone="amber" fill="neutral" className="dk-gap-sm" label="Where they are genuinely ahead — we say this in the room">
+          <Callout tone="amber" fill="neutral" className="dk-gap-sm" label="Where they are genuinely ahead · we say this in the room">
             Graphiti on bi-temporal, point-in-time querying (cognee reaches for Graphiti to get it).
             Semantica on W3C PROV-O provenance with a tamper-evident hash chain. cognee on
-            self-improvement, zero-infra onboarding and evaluation tooling — its <em>memify</em> loop is
+            self-improvement, zero-infra onboarding and evaluation tooling. Its <em>memify</em> loop is
             ahead of our human-gated one, which is a trade-off we chose, not a win. We are Neo4j-only;
             cognee runs on six backends. And nobody in this field, ourselves included, has an
-            independently verified benchmark — which is worth saying out loud.
+            independently verified benchmark, which is worth saying out loud.
           </Callout>
         </SlideFrame>
       ),
@@ -677,7 +677,7 @@ export const appendixSlides = (K) => {
               <UseCaseCard
                 flagship
                 title="Yours to operate"
-                kicker="SynOS — then: they train their own models on it"
+                kicker="SynOS · then they train their own models on it"
                 body="We install the layer, land the first workflow, then hand the controls to their domain experts and step back. What accumulates is theirs."
               />
               <UseCaseCard

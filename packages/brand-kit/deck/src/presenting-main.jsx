@@ -170,7 +170,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'Almost none of them can hire the AI bench it assumes either. THE PRESSURE: a competitor ships AI features, or leadership asks for the efficiency story. THE GAP: context over your systems, governed access, somewhere safe to deploy, a record of what worked. THE FAILURE: it is never the model. THE OPPORTUNITY: the destination is not in doubt — what is missing is somewhere to do it.',
+        'Almost none of them can hire the AI bench it assumes either. THE PRESSURE: a competitor ships AI features, or leadership asks for the efficiency story. THE GAP: context over your systems, governed access, somewhere safe to deploy, a record of what worked. THE FAILURE: it is never the model. THE OPPORTUNITY: the destination is not in doubt. What is missing is somewhere to do it.',
     },
 
     /* ── 3 · The gap ──────────────────────────────────────────────────────
@@ -196,7 +196,7 @@ export const presentingMainSlides = (K) => {
         />
       ),
       notes:
-        'Frontier models are trained on the world’s common knowledge. The enterprise part — its data, its decisions, its tribal knowledge — was never in the training set and never will be.',
+        'Frontier models are trained on the world’s common knowledge. The enterprise part, its data and its decisions and its tribal knowledge, was never in the training set and never will be.',
     },
 
     /* ── 4 · Where they are today ─────────────────────────────────────────
@@ -219,7 +219,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'So every attempt at AI stops in the same gap — not for want of a better model, but because nothing safely connects the three.',
+        'So every attempt at AI stops in the same gap, not for want of a better model, but because nothing safely connects the three.',
     },
 
     /* ── 5 · The trap ─────────────────────────────────────────────────────
@@ -260,7 +260,7 @@ export const presentingMainSlides = (K) => {
             <UseCaseCard
               tone="amber"
               kicker="AI-native SaaS"
-              title="A quieter lift-and-shift"
+              title="A smaller lift-and-shift"
               body="Same trade, no programme: your corrections and evals accumulate in their tenancy."
             />
           </UseCaseGrid>
@@ -274,7 +274,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'The platforms already in the building say it more politely: bring the data to us first. Two years and a programme budget before a single agent does real work. Ours installs inside the customer’s own infrastructure and reads their systems where they already are — not a positioning choice, just what an in-tenant, model-agnostic architecture delivers. Evidence: a second enterprise committed on the same template in weeks, fully air-gapped inside their own infrastructure. No data left the building, no system was migrated.',
+        'The platforms already in the building say it more politely: bring the data to us first. Two years and a programme budget before a single agent does real work. Ours installs inside the customer’s own infrastructure and reads their systems where they already are, not a positioning choice, just what an in-tenant, model-agnostic architecture delivers. Evidence: a second enterprise committed on the same template in weeks, fully air-gapped inside their own infrastructure. No data left the building, no system was migrated.',
     },
 
     /* ── 6 · What we built · job one ──────────────────────────────────────
@@ -315,7 +315,7 @@ export const presentingMainSlides = (K) => {
           />
           <Caption className="dk-gap-sm">MCP · one interface · any model</Caption>
           <ArchCore
-            title="SynOS — The Human-Agent Operating Layer"
+            title="SynOS · The Human-Agent Operating Layer"
             tag="Self-hosted · governed · model- & tool-agnostic"
             guardrailsLabel="Guardrails & Observability"
             guardrails={[
@@ -375,7 +375,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'MCP is the open standard agents use to call tools — one interface, any model. The teams keep whatever AI tool they already use. The Learning Loop: every human correction is reviewed, promoted, and reaches every agent. Company Brain gets sharper with every run and every correction. Non-coders build and run real work from the AI tools they already have.',
+        'MCP is the open standard agents use to call tools: one interface, any model. The teams keep whatever AI tool they already use. The Learning Loop: every human correction is reviewed, promoted, and reaches every agent. Company Brain gets sharper with every run and every correction. Non-coders build and run real work from the AI tools they already have.',
     },
 
     /* ── 7 · The hard part ────────────────────────────────────────────────
@@ -437,7 +437,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'Also hard, and also ours: governed integration into systems never built for it, and safe environments for AI to act on real data. Why the brain getting sharper with use matters — static extraction goes stale, and a stale brain is worse than none. Capture is accumulating in every deployment today, increasingly solved with our own specialised infra and agents. What the round pays for: the version that survives the ugliest enterprise data, then the deep end — private evals scored against their outcomes, preference-grade correction data, rollout where reads are live and writes are captured and scored, and RL where a workflow’s volume earns it. Ours to own, because only we sit on the live capture.',
+        'Also hard, and also ours: governed integration into systems never built for it, and safe environments for AI to act on real data. Why the brain getting sharper with use matters: static extraction goes stale, and a stale brain is worse than none. Capture is accumulating in every deployment today, increasingly solved with our own specialised infra and agents. What the round pays for: the version that survives the ugliest enterprise data, then the deep end: private evals scored against their outcomes, preference-grade correction data, rollout where reads are live and writes are captured and scored, and RL where a workflow’s volume earns it. Ours to own, because only we sit on the live capture.',
     },
 
     /* ── 8 · The same environment, tomorrow ───────────────────────────────
@@ -492,14 +492,14 @@ export const presentingMainSlides = (K) => {
             ]}
           />
           <Callout tone="indigo" className="dk-gap" label="Why this is infrastructure work">
-            Not a few frontier models doing everything — thousands of company-specific models, each
+            Not a few frontier models doing everything. Thousands of company-specific models, each
             needing somewhere to be built, grounded, run and measured.{' '}
             <strong>That environment has to be repeatable, or it does not happen at all.</strong>
           </Callout>
         </SlideFrame>
       ),
       notes:
-        'Only the name of the job changes — nothing new is installed and nothing new is bought. What is live and what the round builds: the capture layer ships today and accumulates in every deployment, because capture is the scarce part and only happens inside real work. Private evals are in build. Fine-tuning and distillation stack on top, with no rebuild and nothing new for the customer to install.',
+        'Only the name of the job changes. Nothing new is installed and nothing new is bought. What is live and what the round builds: the capture layer ships today and accumulates in every deployment, because capture is the scarce part and only happens inside real work. Private evals are in build. Fine-tuning and distillation stack on top, with no rebuild and nothing new for the customer to install.',
     },
 
     /* ── 9 · What we're building · job two ────────────────────────────────
@@ -533,7 +533,7 @@ export const presentingMainSlides = (K) => {
             One governed interface · train against it, evaluate against it, serve through it
           </Caption>
           <ArchCore
-            title="SynOS — the per-company AI training and evaluation environment"
+            title="SynOS · the per-company AI training and evaluation environment"
             tag="Self-hosted · nothing leaves the tenancy · the same install as job one"
             guardrailsLabel="Data governance, unchanged from job one"
             guardrails={[
@@ -609,7 +609,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'Three of the five ship today because the transformation needs them — that is the point: phase two is not a new product, it is the same install. Rollout runs on the same permissions and kill-switch the transformation runs on. The eval harness is the gate a candidate model passes before promotion. Fine-tuning is supervised and preference tuning on open weights, trained and served inside their infrastructure.',
+        'Three of the five ship today because the transformation needs them, and that is the point: phase two is not a new product, it is the same install. Rollout runs on the same permissions and kill-switch the transformation runs on. The eval harness is the gate a candidate model passes before promotion. Fine-tuning is supervised and preference tuning on open weights, trained and served inside their infrastructure.',
     },
 
     /* ── 10 · The play ────────────────────────────────────────────────────
@@ -673,7 +673,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'The environment that makes AI work today is the one they need to train their own models tomorrow. Entry is how the position gets earned, and the order is forced: capture is the scarce part and it only happens inside real work, which is why the entry motion is the only way to earn the position the rest depends on — and it happens to be where the budget is today. What that makes us: an AI-infrastructure play. Transformation is the entry motion; forward-deployed is only the delivery mechanics. One layer, three tenses, not three businesses. Phase two work runs in the tools they already use, against their own systems, and needs no second procurement.',
+        'The environment that makes AI work today is the one they need to train their own models tomorrow. Entry is how the position gets earned, and the order is forced: capture is the scarce part and it only happens inside real work, which is why the entry motion is the only way to earn the position the rest depends on, and it happens to be where the budget is today. What that makes us: an AI-infrastructure play. Transformation is the entry motion; forward-deployed is only the delivery mechanics. One layer, three tenses, not three businesses. Phase two work runs in the tools they already use, against their own systems, and needs no second procurement.',
     },
 
     /* ── 11 · How trust is earned ─────────────────────────────────────────
@@ -709,7 +709,7 @@ export const presentingMainSlides = (K) => {
               body={
                 <>
                   Approval gates, every run traced, every correction captured.{' '}
-                  <strong>This is where the training data comes from</strong> — supervised real work,
+                  <strong>This is where the training data comes from</strong>: supervised real work,
                   not a replica. <Chip size="sm" tone="emerald">live today</Chip>
                 </>
               }
@@ -727,13 +727,13 @@ export const presentingMainSlides = (K) => {
           </StepGrid>
           <Callout tone="indigo" fill="neutral" className="dk-gap">
             <strong>The same ladder onboards both generations of their AI.</strong> The onboarding
-            record — every review, every correction, every outcome —{' '}
+            record of every review, every correction and every outcome,{' '}
             <strong>is the curriculum their models train on</strong>.
           </Callout>
         </SlideFrame>
       ),
       notes:
-        'For agents on frontier models today, and for the company’s own models tomorrow. Rehearsal copies are possible because the environment already knows their systems — a practice room, not the curriculum. Corrections come from the person who owns the process. Promotion is scored against their outcomes, not a public benchmark; circuit breakers and re-checks stay on afterwards. That is why the unblocking work and the training ground are one environment, not two products.',
+        'For agents on frontier models today, and for the company’s own models tomorrow. Rehearsal copies are possible because the environment already knows their systems. A practice room, not the curriculum. Corrections come from the person who owns the process. Promotion is scored against their outcomes, not a public benchmark; circuit breakers and re-checks stay on afterwards. That is why the unblocking work and the training ground are one environment, not two products.',
     },
 
     /* ── 12 · Why it compounds ────────────────────────────────────────────
@@ -761,7 +761,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'And it pays off whichever model wins. Where we are: the capture layer — tracing, corrections and agent-native storage — is live and accumulating in every deployment. Private evals are in build; fine-tuning on the loop is the layer after that. Built data-first on purpose, because capture is the scarce part and training stacks on top with no rebuild. Full flywheel is in the appendix.',
+        'And it pays off whichever model wins. Where we are: the capture layer, meaning tracing and corrections and agent-native storage, is live and accumulating in every deployment. Private evals are in build; fine-tuning on the loop is the layer after that. Built data-first on purpose, because capture is the scarce part and training stacks on top with no rebuild. Full flywheel is in the appendix.',
     },
 
     /* ── 13 · Who buys ────────────────────────────────────────────────────
@@ -845,7 +845,7 @@ export const presentingMainSlides = (K) => {
           <SplitColumns>
             <SplitColumn
               tone="indigo"
-              eyebrow="Door 1 · outward — their product"
+              eyebrow="Door 1 · outward · their product"
               title="Agentic transformation of their SaaS."
             >
               <SplitItem>
@@ -859,7 +859,7 @@ export const presentingMainSlides = (K) => {
             </SplitColumn>
             <SplitColumn
               tone="violet"
-              eyebrow="Door 2 · inward — their operations"
+              eyebrow="Door 2 · inward · their operations"
               title="A company brain their non-engineers can build on."
             >
               <SplitItem>
@@ -889,7 +889,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'Same substrate, same buyer shape, same paid-POC contract. Door 1 buyer: the AI/product owner carrying the roadmap, with CEO sponsorship; expansion path is their clients, one at a time, on one substrate — the enterprise-readiness layer they would otherwise spend two years building. Door 2 enters at whatever hurts most today: a cost line, a sales-ops queue, a marketing pipeline. The pain is the entry point; the brain is the product. Engineering just sets the rails once. Why this is one company, not two: both doors deploy the identical substrate — in-tenant deployment, governed writes back to the systems of record, and the per-customer record of corrections that compounds. Nothing forks; a door is a sales entry point. Delivery compounds, and that is what keeps it a platform: an FDE pair, a domain expert plus a forward-deployed engineer, lands each account and runs the engagement on SynOS itself, so engagement N costs a fraction of engagement 1 and every one mints reusable brains and skills. Pipeline: founder-led and advisor networks, design-partner referrals, embedded distribution, content and open-source inbound.',
+        'Same substrate, same buyer shape, same paid-POC contract. Door 1 buyer: the AI/product owner carrying the roadmap, with CEO sponsorship; expansion path is their clients, one at a time, on one substrate: the enterprise-readiness layer they would otherwise spend two years building. Door 2 enters at whatever hurts most today: a cost line, a sales-ops queue, a marketing pipeline. The pain is the entry point; the brain is the product. Engineering just sets the rails once. Why this is one company, not two: both doors deploy the identical substrate: in-tenant deployment, governed writes back to the systems of record, and the per-customer record of corrections that compounds. Nothing forks; a door is a sales entry point. Delivery compounds, and that is what keeps it a platform: an FDE pair, a domain expert plus a forward-deployed engineer, lands each account and runs the engagement on SynOS itself, so engagement N costs a fraction of engagement 1 and every one mints reusable brains and skills. Pipeline: founder-led and advisor networks, design-partner referrals, embedded distribution, content and open-source inbound.',
     },
 
     /* ── 15 · Traction ────────────────────────────────────────────────────
@@ -980,7 +980,7 @@ export const presentingMainSlides = (K) => {
             eyebrow="Business model"
             eyebrowTone="violet"
             title="Priced like infrastructure, because that's what it is."
-            subtitle="Platform fee on the footprint the environment covers — never per seat, because per-seat pricing punishes the thing we sell."
+            subtitle="Platform fee on the footprint the environment covers, never per seat, because per-seat pricing punishes the thing we sell."
           />
           <PhaseRow>
             <PhaseCard
@@ -1001,13 +1001,13 @@ export const presentingMainSlides = (K) => {
               when="Phase two · stacks on the same install"
               title="The training layers become revenue lines."
               body="Private eval suites, then fine-tuning and distillation runs. Sold onto an environment already installed and already trusted."
-              foot="evals · training runs · model ops — on the environment phase one paid for"
+              foot="evals · training runs · model ops, on the environment phase one paid for"
             />
           </PhaseRow>
         </SlideFrame>
       ),
       notes:
-        'The revenue ladder is the play restated in money. The thing we sell is more of the company on the layer, which is exactly what per-seat pricing punishes. Why not per seat: agents do not hold seats, and the buyer’s win condition is more people and more agents on the layer — so the price follows the footprint of what the environment knows and governs, and our revenue grows exactly when the customer gets more value. Where it points: as the layer proves what work produces, pricing moves toward outcomes. Pricing an outcome is underwriting, and you can only underwrite a business you understand — which is precisely what the environment accumulates. No second procurement mountain for phase two.',
+        'The revenue ladder is the play restated in money. The thing we sell is more of the company on the layer, which is exactly what per-seat pricing punishes. Why not per seat: agents do not hold seats, and the buyer’s win condition is more people and more agents on the layer, so the price follows the footprint of what the environment knows and governs, and our revenue grows exactly when the customer gets more value. Where it points: as the layer proves what work produces, pricing moves toward outcomes. Pricing an outcome is underwriting, and you can only underwrite a business you understand, which is precisely what the environment accumulates. No second procurement mountain for phase two.',
     },
 
     /* ── 17 · Landscape ───────────────────────────────────────────────────
@@ -1102,7 +1102,7 @@ export const presentingMainSlides = (K) => {
                 label: 'Where it goes',
                 sub: 'what this round builds',
                 cells: [
-                  { tone: 'partial', text: 'fine-tuning too — once your data lives in theirs' },
+                  { tone: 'partial', text: 'fine-tuning too, once your data lives in theirs' },
                   { tone: 'none' },
                   { tone: 'none' },
                   { tone: 'none' },
@@ -1122,7 +1122,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'Around the Brain: an identity and permission model an agent can act through, and somewhere isolated to build and deploy. The data platforms own the bottom band and ask you to move everything into it first. Search reads a copy. Workflow tools execute without knowing what anything means. We deliberately do not touch your existing systems of record, and we do not need to own the tools your people already use. What your people build new gets an agent-native store inside the same environment — on your infrastructure, yours like everything else it accumulates — so the AI-era workflows never need a second procurement. Governance is the permission to act; isolation is where a rollout can safely run. Built once for the transformation, and together with the Brain they are the place a company trains models of its own. The training compute underneath stays pluggable — Prime Intellect, Fireworks, or their own GPUs — the same neutrality we hold toward models.',
+        'Around the Brain: an identity and permission model an agent can act through, and somewhere isolated to build and deploy. The data platforms own the bottom band and ask you to move everything into it first. Search reads a copy. Workflow tools execute without knowing what anything means. We deliberately do not touch your existing systems of record, and we do not need to own the tools your people already use. What your people build new gets an agent-native store inside the same environment, on your infrastructure, yours like everything else it accumulates, so the AI-era workflows never need a second procurement. Governance is the permission to act; isolation is where a rollout can safely run. Built once for the transformation, and together with the Brain they are the place a company trains models of its own. The training compute underneath stays pluggable: Prime Intellect, Fireworks, or their own GPUs, the same neutrality we hold toward models.',
     },
 
     /* ── 18 · How we build differently ────────────────────────────────────
@@ -1160,13 +1160,13 @@ export const presentingMainSlides = (K) => {
               title="They author a copy and learn in the copy. We instrument the original."
               body={
                 <>
-                  Training environments are a funded category — Mercor, Fleet, Prime Intellect. Every
+                  Training environments are a funded category: Mercor, Fleet, Prime Intellect. Every
                   one of them{' '}
                   <strong>authors a replica of your business and trains in the replica</strong>, and a
                   replica cannot hold twelve years of exceptions in one company's order-to-cash.
                 </>
               }
-              quote="Why the order is forced: capture only happens inside real work. And the pull is cost — a lending platform’s data lead: “it’s exorbitant, the amount of tokens you consume; it just makes it unfeasible.”"
+              quote="Why the order is forced: capture only happens inside real work. And the pull is cost. A lending platform’s data lead: “it’s exorbitant, the amount of tokens you consume; it just makes it unfeasible.”"
             />
             <StepCard
               num="03 · Horizontal surface, vertical delivery"
@@ -1182,7 +1182,7 @@ export const presentingMainSlides = (K) => {
         </SlideFrame>
       ),
       notes:
-        'The handover in detail: engineering keeps the rails, their domain experts operate and correct, and the record of how the company works stays on their side of the wall. Prime Intellect sells the gym at a $1B valuation; Mercor and Fleet sell mocks to the labs. Even the ones that deploy the copy in your cloud are still training in a copy. Ours is their own systems, instrumented during real work, with rewards from real corrections and outcomes — only possible because we were already doing the transformation. In phase two the gym vendors sit under us, not against us. The second function costs less than the first and the tenth costs least of all. And a room that hears the commodity list pitched as differentiators learns something about the pitch rather than the product.',
+        'The handover in detail: engineering keeps the rails, their domain experts operate and correct, and the record of how the company works stays on their side of the wall. Prime Intellect sells the gym at a $1B valuation; Mercor and Fleet sell mocks to the labs. Even the ones that deploy the copy in your cloud are still training in a copy. Ours is their own systems, instrumented during real work, with rewards from real corrections and outcomes, only possible because we were already doing the transformation. In phase two the gym vendors sit under us, not against us. The second function costs less than the first and the tenth costs least of all. And a room that hears the commodity list pitched as differentiators learns something about the pitch rather than the product.',
     },
 
     /* ── 19 · If models get better ────────────────────────────────────────
@@ -1293,14 +1293,14 @@ export const presentingMainSlides = (K) => {
             />
           </UseCaseGrid>
           <Callout tone="indigo" fill="neutral" className="dk-gap">
-            <strong>We run SynOS on SynOS</strong> — our own GTM, research and operations run as agents
+            <strong>We run SynOS on SynOS</strong>. Our own GTM, research and operations run as agents
             on the layer. It's why, four months in, there's a live platform and three committed
             engagements.
           </Callout>
         </SlideFrame>
       ),
       notes:
-        'The three disciplines: agentic analytics and semantic layers; on-prem enterprise infrastructure; enterprise go-to-market in this region. Hiring from the same three pools is the first line in the use of funds. Delivery is an FDE model — a domain expert plus a forward-deployed engineer. That embedded work is the wedge; revenue scales with the platform, not with hours billed, and what the FDE team learns becomes brains and skills on the platform. India first, US in test: the buyer profile is not geography-specific, the US wedge is enterprise outside the Bay Area, and which market we scale into is an output of the GTM test.',
+        'The three disciplines: agentic analytics and semantic layers; on-prem enterprise infrastructure; enterprise go-to-market in this region. Hiring from the same three pools is the first line in the use of funds. Delivery is an FDE model: a domain expert plus a forward-deployed engineer. That embedded work is the wedge; revenue scales with the platform, not with hours billed, and what the FDE team learns becomes brains and skills on the platform. India first, US in test: the buyer profile is not geography-specific, the US wedge is enterprise outside the Bay Area, and which market we scale into is an output of the GTM test.',
     },
 
     /* ── 21 · The round ───────────────────────────────────────────────────

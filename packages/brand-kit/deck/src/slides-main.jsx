@@ -374,14 +374,14 @@ export const mainSlides = (K) => {
             <UseCaseCard
               tone="amber"
               kicker="AI-native SaaS"
-              title="A quieter lift-and-shift"
+              title="A smaller lift-and-shift"
               body="No migration programme, but the same trade: your operational data, your corrections and your evals accumulate inside someone else’s tenancy."
             />
           </UseCaseGrid>
           <Callout tone="indigo" fill="neutral" className="dk-gap">
             <h3>SynOS comes to the data instead.</h3>
             <p>
-              Nothing is replaced, nothing is moved, and agents are doing real work in weeks — because
+              Nothing is replaced, nothing is moved, and agents are doing real work in weeks, because
               the layer installs inside the customer’s own infrastructure and reads their systems where
               they already are. This is not a positioning choice; it is what an in-tenant,
               model-agnostic architecture actually delivers.{' '}
@@ -390,7 +390,7 @@ export const mainSlides = (K) => {
           </Callout>
           <Caption className="dk-gap-sm">
             Evidence: a second enterprise committed on the same template{' '}
-            <strong>in weeks, fully air-gapped inside their own infrastructure</strong> — no data left
+            <strong>in weeks, fully air-gapped inside their own infrastructure</strong>, with no data left
             the building, no system was migrated.
           </Caption>
         </SlideFrame>
@@ -426,7 +426,7 @@ export const mainSlides = (K) => {
           />
           <Caption className="dk-gap-sm">MCP · one interface · any model</Caption>
           <ArchCore
-            title="SynOS — The Human-Agent Operating Layer"
+            title="SynOS · The Human-Agent Operating Layer"
             tag="Self-hosted · governed · model- & tool-agnostic"
             guardrailsLabel="Guardrails & Observability"
             guardrails={[
@@ -539,9 +539,9 @@ export const mainSlides = (K) => {
             </Callout>
             <Callout tone="amber" label="The hard problems ahead · what the pre-seed pays for">
               The version that survives the ugliest enterprise data, then the deep end: turning live
-              capture into a <strong>real training environment</strong> — private evals scored against
-              their outcomes, preference-grade correction data, rollout against the real systems — live
-              reads, writes captured and scored — and RL where a workflow’s volume earns it. Ours to
+              capture into a <strong>real training environment</strong>: private evals scored against
+              their outcomes, preference-grade correction data, rollout against the real systems, with live
+              reads, writes captured and scored, and RL where a workflow’s volume earns it. Ours to
               own, because only we sit on the live capture.
             </Callout>
           </Columns>
@@ -646,7 +646,7 @@ export const mainSlides = (K) => {
             One governed interface · train against it, evaluate against it, serve through it
           </Caption>
           <ArchCore
-            title="SynOS — the per-company AI training and evaluation environment"
+            title="SynOS · the per-company AI training and evaluation environment"
             tag="Self-hosted · nothing leaves the tenancy · the same install as job one"
             guardrailsLabel="Data governance, unchanged from job one"
             guardrails={[
@@ -786,7 +786,7 @@ export const mainSlides = (K) => {
             <strong>Capture is the scarce part and it only happens inside real work</strong>, which is
             why the entry motion is the only way to earn the position the rest depends on, and it
             happens to be where the budget is today. What that makes us:{' '}
-            <strong>an AI-infrastructure play</strong> — transformation is the entry motion,
+            <strong>an AI-infrastructure play</strong>. Transformation is the entry motion,
             forward-deployed is only the delivery mechanics. One layer, three tenses, not three
             businesses.
           </Caption>
@@ -807,7 +807,7 @@ export const mainSlides = (K) => {
             eyebrow="How trust is earned"
             eyebrowTone="indigo"
             title="AI earns autonomy here the way a new team member does."
-            subtitle="Nobody hands a new hire the keys on day one. The environment makes that graduation explicit — for agents on frontier models today, and for the company’s own models tomorrow."
+            subtitle="Nobody hands a new hire the keys on day one. The environment makes that graduation explicit, for agents on frontier models today, and for the company’s own models tomorrow."
           />
           <StepGrid>
             <StepCard
@@ -829,7 +829,7 @@ export const mainSlides = (K) => {
                 <>
                   Approval gates on actions that matter, every run traced, every correction captured
                   from the person who owns the process.{' '}
-                  <strong>This is where the training data comes from</strong> — supervised real work,
+                  <strong>This is where the training data comes from</strong>: supervised real work,
                   not a replica. <Chip size="sm" tone="emerald">live today</Chip>
                 </>
               }
@@ -849,7 +849,7 @@ export const mainSlides = (K) => {
           <Callout tone="indigo" fill="neutral" className="dk-gap">
             <strong>The same ladder onboards both generations of their AI.</strong> An agent on a
             frontier model climbs it today; a model of their own climbs it tomorrow. And the onboarding
-            record — every review, every correction, every outcome —{' '}
+            record of every review, every correction and every outcome,{' '}
             <strong>is the curriculum their models train on</strong>. That is why the unblocking work
             and the training ground are one environment, not two products.
           </Callout>
@@ -972,7 +972,7 @@ export const mainSlides = (K) => {
           <SplitColumns>
             <SplitColumn
               tone="indigo"
-              eyebrow="Door 1 · outward — their product"
+              eyebrow="Door 1 · outward · their product"
               title="Agentic transformation of their SaaS."
             >
               <SplitItem>
@@ -991,7 +991,7 @@ export const mainSlides = (K) => {
             </SplitColumn>
             <SplitColumn
               tone="violet"
-              eyebrow="Door 2 · inward — their operations"
+              eyebrow="Door 2 · inward · their operations"
               title="A company brain their non-engineers can build on."
             >
               <SplitItem>
@@ -1129,7 +1129,7 @@ export const mainSlides = (K) => {
             eyebrow="Business model"
             eyebrowTone="violet"
             title="Priced like infrastructure, because that’s what it is."
-            subtitle="The revenue ladder is the play restated in money. Platform fee on the footprint the environment covers — never per seat, because per-seat pricing punishes the thing we sell: more of the company on the layer."
+            subtitle="The revenue ladder is the play restated in money. Platform fee on the footprint the environment covers, never per seat, because per-seat pricing punishes the thing we sell: more of the company on the layer."
           />
           <PhaseRow>
             <PhaseCard
@@ -1150,7 +1150,7 @@ export const mainSlides = (K) => {
               when="Phase two · stacks on the same install"
               title="The training layers become revenue lines."
               body="Private eval suites, then fine-tuning and distillation runs on the captured data. Sold onto an environment already installed and already trusted, so there is no second procurement mountain."
-              foot="evals · training runs · model ops — on the environment phase one paid for"
+              foot="evals · training runs · model ops, on the environment phase one paid for"
             />
           </PhaseRow>
           <Columns className="dk-gap">
@@ -1161,7 +1161,7 @@ export const mainSlides = (K) => {
             </Callout>
             <Callout tone="violet" label="Where it points">
               As the layer proves what work produces, pricing moves toward outcomes. Pricing an outcome
-              is underwriting, and you can only underwrite a business you understand — which is
+              is underwriting, and you can only underwrite a business you understand, which is
               precisely what the environment accumulates.
             </Callout>
           </Columns>
@@ -1259,7 +1259,7 @@ export const mainSlides = (K) => {
                 label: 'Where it goes',
                 sub: 'what this round builds',
                 cells: [
-                  { tone: 'partial', text: 'fine-tuning too — once your data lives in theirs' },
+                  { tone: 'partial', text: 'fine-tuning too, once your data lives in theirs' },
                   { tone: 'none' },
                   { tone: 'none' },
                   { tone: 'none' },
@@ -1280,12 +1280,12 @@ export const mainSlides = (K) => {
             first. Search reads a copy. Workflow tools execute without knowing what anything means. We
             deliberately do not touch your existing systems of record, and we do not need to own the
             tools your people already use. What your people build <em>new</em> gets an agent-native
-            store inside the same environment — on your infrastructure, yours like everything else it
-            accumulates — so the AI-era workflows never need a second procurement. Governance is the
+            store inside the same environment, on your infrastructure, yours like everything else it
+            accumulates, so the AI-era workflows never need a second procurement. Governance is the
             permission to act, isolation is where a rollout can safely run: built once for the
             transformation, and together with the Brain they are the place a company trains models of
-            its own. The training compute underneath stays pluggable — Prime Intellect, Fireworks, or
-            their own GPUs — the same neutrality we hold toward models. The environment is the part
+            its own. The training compute underneath stays pluggable: Prime Intellect, Fireworks, or
+            their own GPUs, the same neutrality we hold toward models. The environment is the part
             nobody else produces.
           </Callout>
         </SlideFrame>
@@ -1326,17 +1326,17 @@ export const mainSlides = (K) => {
               title="They author a copy and learn in the copy. We instrument the original."
               body={
                 <>
-                  Training environments are a funded category — Mercor and Fleet sell mocks to the
+                  Training environments are a funded category. Mercor and Fleet sell mocks to the
                   labs, Prime Intellect sells the gym at a $1B valuation. Every one of them, including
                   the few that deploy the copy in your cloud,{' '}
                   <strong>authors a replica of your business and trains in the replica</strong>. A
                   replica cannot hold twelve years of exceptions in one company's order-to-cash. Ours
                   is their own systems, instrumented during real work, with rewards from real
-                  corrections and outcomes — only possible because we were already doing the
+                  corrections and outcomes, only possible because we were already doing the
                   transformation. In phase two the gym vendors sit under us, not against us.
                 </>
               }
-              quote="Why the order is forced: capture only happens inside real work. And the pull is cost — a lending platform’s data lead: “it’s exorbitant, the amount of tokens you consume; it just makes it unfeasible.”"
+              quote="Why the order is forced: capture only happens inside real work. And the pull is cost. A lending platform’s data lead: “it’s exorbitant, the amount of tokens you consume; it just makes it unfeasible.”"
             />
             <StepCard
               num="03 · Horizontal surface, vertical delivery"

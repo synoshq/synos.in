@@ -25,15 +25,15 @@ import unblockDiagram from './ops-assets/unblock.png'
    The two hand-drawn diagrams, verbatim from the source. Injected rather than transcribed into
    JSX: re-typing shaped elements is a way to introduce differences that then get mistaken for
    design decisions. Their classes are styled in ops-buyer.css. */
-const LOOP_SVG = "<svg viewBox=\"0 0 1080 320\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <radialGradient id=\"obLpCore\" cx=\"50%\" cy=\"36%\" r=\"72%\">\n            <stop offset=\"0\" stop-color=\"#8B8DF7\"/><stop offset=\"0.55\" stop-color=\"#6366F1\"/><stop offset=\"1\" stop-color=\"#7C3AED\"/>\n          </radialGradient>\n          <filter id=\"obLpGlow\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\">\n            <feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"12\" flood-color=\"#6366F1\" flood-opacity=\"0.28\"/>\n          </filter>\n          <marker id=\"obLpA\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#6366F1\"/>\n          </marker>\n          <marker id=\"obLpAv\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#7C3AED\"/>\n          </marker>\n        </defs>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"url(#obLpCore)\" filter=\"url(#obLpGlow)\"/>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"none\" stroke=\"#fff\" stroke-opacity=\".35\" stroke-width=\"1.4\"/>\n        <text x=\"300\" y=\"156\" text-anchor=\"middle\" style=\"font-family:var(--sk-font-body);font-weight:800;font-size:19px;fill:#fff\">Synos</text>\n        <text x=\"300\" y=\"177\" text-anchor=\"middle\" style=\"font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:1.4px;fill:rgba(255,255,255,.85)\">THE LOOP</text>\n        <rect class=\"lp-node\" x=\"196\" y=\"16\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"42\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"46\" text-anchor=\"middle\">1</text>\n        <text class=\"lp-h\" x=\"234\" y=\"38\">Your team corrects it</text>\n        <text class=\"lp-m\" x=\"234\" y=\"56\">\"top-tier \u2014 email, never SMS\"</text>\n        <rect class=\"lp-node\" x=\"452\" y=\"134\" width=\"160\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"472\" cy=\"160\" r=\"10\"/><text class=\"lp-badge-t\" x=\"472\" y=\"164\" text-anchor=\"middle\">2</text>\n        <text class=\"lp-h\" x=\"490\" y=\"156\">The AI acts</text>\n        <text class=\"lp-m\" x=\"490\" y=\"174\">in any tool you use</text>\n        <rect class=\"lp-node-plain\" x=\"196\" y=\"252\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"278\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"282\" text-anchor=\"middle\">3</text>\n        <text class=\"lp-h\" x=\"234\" y=\"274\">Systems report results</text>\n        <text class=\"lp-m\" x=\"234\" y=\"292\">measured, not guessed</text>\n        <path class=\"lp-edge lp-flow\" d=\"M 350 72 C 396 92, 428 112, 452 142\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 456 186 C 424 226, 396 244, 360 258\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 208 252 C 178 220, 178 100, 210 66\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge-v lp-flow\" d=\"M 366 178 C 500 236, 620 216, 686 178\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-panel\" x=\"692\" y=\"62\" width=\"230\" height=\"196\" rx=\"15\"/>\n        <text class=\"lp-ph\" x=\"807\" y=\"92\" text-anchor=\"middle\">What builds up</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"122\" text-anchor=\"middle\">What actually worked</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"152\" text-anchor=\"middle\">Ways of working that improve</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"182\" text-anchor=\"middle\">The Company Brain itself</text>\n        <text class=\"lp-tag\" x=\"807\" y=\"216\" text-anchor=\"middle\">sharper every week</text>\n        <path class=\"lp-edge-v\" d=\"M 922 122 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <path class=\"lp-edge-v\" d=\"M 922 196 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-pay\" x=\"950\" y=\"96\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"117\" text-anchor=\"middle\">Better results now</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"133\" text-anchor=\"middle\">with today's AI</text>\n        <rect class=\"lp-pay\" x=\"950\" y=\"170\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"191\" text-anchor=\"middle\">An asset you own</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"207\" text-anchor=\"middle\">yours, not a vendor's</text>\n      </svg>"
+const LOOP_SVG = "<svg viewBox=\"0 0 1080 320\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <radialGradient id=\"obLpCore\" cx=\"50%\" cy=\"36%\" r=\"72%\">\n            <stop offset=\"0\" stop-color=\"#8B8DF7\"/><stop offset=\"0.55\" stop-color=\"#6366F1\"/><stop offset=\"1\" stop-color=\"#7C3AED\"/>\n          </radialGradient>\n          <filter id=\"obLpGlow\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\">\n            <feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"12\" flood-color=\"#6366F1\" flood-opacity=\"0.28\"/>\n          </filter>\n          <marker id=\"obLpA\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#6366F1\"/>\n          </marker>\n          <marker id=\"obLpAv\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M1 1 L9 5 L1 9 Z\" fill=\"#7C3AED\"/>\n          </marker>\n        </defs>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"url(#obLpCore)\" filter=\"url(#obLpGlow)\"/>\n        <circle cx=\"300\" cy=\"160\" r=\"64\" fill=\"none\" stroke=\"#fff\" stroke-opacity=\".35\" stroke-width=\"1.4\"/>\n        <text x=\"300\" y=\"156\" text-anchor=\"middle\" style=\"font-family:var(--sk-font-body);font-weight:800;font-size:19px;fill:#fff\">Synos</text>\n        <text x=\"300\" y=\"177\" text-anchor=\"middle\" style=\"font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:1.4px;fill:rgba(255,255,255,.85)\">THE LOOP</text>\n        <rect class=\"lp-node\" x=\"196\" y=\"16\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"42\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"46\" text-anchor=\"middle\">1</text>\n        <text class=\"lp-h\" x=\"234\" y=\"38\">Your team corrects it</text>\n        <text class=\"lp-m\" x=\"234\" y=\"56\">\"top-tier, email never SMS\"</text>\n        <rect class=\"lp-node\" x=\"452\" y=\"134\" width=\"160\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"472\" cy=\"160\" r=\"10\"/><text class=\"lp-badge-t\" x=\"472\" y=\"164\" text-anchor=\"middle\">2</text>\n        <text class=\"lp-h\" x=\"490\" y=\"156\">The AI acts</text>\n        <text class=\"lp-m\" x=\"490\" y=\"174\">in any tool you use</text>\n        <rect class=\"lp-node-plain\" x=\"196\" y=\"252\" width=\"208\" height=\"52\" rx=\"12\"/>\n        <circle class=\"lp-badge\" cx=\"216\" cy=\"278\" r=\"10\"/><text class=\"lp-badge-t\" x=\"216\" y=\"282\" text-anchor=\"middle\">3</text>\n        <text class=\"lp-h\" x=\"234\" y=\"274\">Systems report results</text>\n        <text class=\"lp-m\" x=\"234\" y=\"292\">measured, not guessed</text>\n        <path class=\"lp-edge lp-flow\" d=\"M 350 72 C 396 92, 428 112, 452 142\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 456 186 C 424 226, 396 244, 360 258\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge lp-flow\" d=\"M 208 252 C 178 220, 178 100, 210 66\" marker-end=\"url(#obLpA)\"/>\n        <path class=\"lp-edge-v lp-flow\" d=\"M 366 178 C 500 236, 620 216, 686 178\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-panel\" x=\"692\" y=\"62\" width=\"230\" height=\"196\" rx=\"15\"/>\n        <text class=\"lp-ph\" x=\"807\" y=\"92\" text-anchor=\"middle\">What builds up</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"122\" text-anchor=\"middle\">What actually worked</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"152\" text-anchor=\"middle\">Ways of working that improve</text>\n        <text class=\"lp-pr\" x=\"807\" y=\"182\" text-anchor=\"middle\">The Company Brain itself</text>\n        <text class=\"lp-tag\" x=\"807\" y=\"216\" text-anchor=\"middle\">sharper every week</text>\n        <path class=\"lp-edge-v\" d=\"M 922 122 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <path class=\"lp-edge-v\" d=\"M 922 196 H 946\" marker-end=\"url(#obLpAv)\"/>\n        <rect class=\"lp-pay\" x=\"950\" y=\"96\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"117\" text-anchor=\"middle\">Better results now</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"133\" text-anchor=\"middle\">with today's AI</text>\n        <rect class=\"lp-pay\" x=\"950\" y=\"170\" width=\"122\" height=\"50\" rx=\"11\"/>\n        <text class=\"lp-pay-h\" x=\"1011\" y=\"191\" text-anchor=\"middle\">An asset you own</text>\n        <text class=\"lp-pay-s\" x=\"1011\" y=\"207\" text-anchor=\"middle\">yours, not a vendor's</text>\n      </svg>"
 
-const SCATTER_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 1080 340\" xmlns=\"http://www.w3.org/2000/svg\">\n          <defs>\n            <marker id=\"sc-arr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#7c3aed\"/></marker>\n          </defs>\n          <!-- scattered silos (top) -->\n          <g>\n            <rect class=\"node\" x=\"20\"  y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"95\"  y=\"33\" text-anchor=\"middle\">Data warehouse</text><text class=\"muted\" x=\"95\"  y=\"48\" text-anchor=\"middle\">customer_id 4821</text>\n            <rect class=\"node\" x=\"200\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"275\" y=\"33\" text-anchor=\"middle\">CRM</text><text class=\"muted\" x=\"275\" y=\"48\" text-anchor=\"middle\">Acct \"Acme Corp\"</text>\n            <rect class=\"node\" x=\"380\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"455\" y=\"33\" text-anchor=\"middle\">Slack \u00b7 Email</text><text class=\"muted\" x=\"455\" y=\"48\" text-anchor=\"middle\">\"the Acme folks\"</text>\n            <rect class=\"node\" x=\"560\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"635\" y=\"33\" text-anchor=\"middle\">Docs</text><text class=\"muted\" x=\"635\" y=\"48\" text-anchor=\"middle\">SOP v3 (stale?)</text>\n            <rect class=\"node\" x=\"740\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"815\" y=\"33\" text-anchor=\"middle\">Support tickets</text><text class=\"muted\" x=\"815\" y=\"48\" text-anchor=\"middle\">acme@ \u00b7 #7781</text>\n            <rect class=\"node\" x=\"920\" y=\"14\" width=\"140\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"990\" y=\"33\" text-anchor=\"middle\">Spreadsheets</text><text class=\"muted\" x=\"990\" y=\"48\" text-anchor=\"middle\">\"ACME (EU)\"</text>\n          </g>\n          <!-- grey stubs silo \u2192 problem band -->\n          <path class=\"edge\" d=\"M 95 56 L 95 78\"/><path class=\"edge\" d=\"M 275 56 L 275 78\"/><path class=\"edge\" d=\"M 455 56 L 455 78\"/>\n          <path class=\"edge\" d=\"M 635 56 L 635 78\"/><path class=\"edge\" d=\"M 815 56 L 815 78\"/><path class=\"edge\" d=\"M 990 56 L 990 78\"/>\n          <!-- problem band -->\n          <rect x=\"40\" y=\"78\" width=\"1000\" height=\"26\" rx=\"8\" fill=\"var(--sk-red-bg)\" stroke=\"var(--sk-red-br)\"/>\n          <text x=\"540\" y=\"95\" text-anchor=\"middle\" font-style=\"italic\" font-size=\"11\" fill=\"#b91c1c\">same customer \u00b7 six identities \u00b7 no shared meaning \u00b7 no freshness \u00b7 no lineage</text>\n          <!-- 6 arrows converge band \u2192 brain -->\n          <path class=\"edge-violet\" d=\"M 95 104 L 498 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 275 104 L 516 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 455 104 L 532 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 635 104 L 548 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 815 104 L 564 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 990 104 L 582 226\" marker-end=\"url(#sc-arr)\"/>\n          <!-- brain layer node -->\n          <rect class=\"node-violet\" x=\"330\" y=\"232\" width=\"420\" height=\"76\" rx=\"14\"/>\n          <text class=\"h\" x=\"540\" y=\"260\" text-anchor=\"middle\" fill=\"#7c3aed\" font-size=\"13\">Company Brain \u2014 one resolved graph</text>\n          <text class=\"tag\" x=\"540\" y=\"281\" text-anchor=\"middle\" font-size=\"10.5\">entity-resolved \u00b7 relationship-linked \u00b7 freshness-aware \u00b7 cited</text>\n          <text class=\"muted\" x=\"540\" y=\"298\" text-anchor=\"middle\" font-size=\"10\">Acme Corp = customer_id 4821 = \"ACME (EU)\" \u00b7 one node, every source</text>\n        </svg>"
+const SCATTER_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 1080 340\" xmlns=\"http://www.w3.org/2000/svg\">\n          <defs>\n            <marker id=\"sc-arr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#7c3aed\"/></marker>\n          </defs>\n          <!-- scattered silos (top) -->\n          <g>\n            <rect class=\"node\" x=\"20\"  y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"95\"  y=\"33\" text-anchor=\"middle\">Data warehouse</text><text class=\"muted\" x=\"95\"  y=\"48\" text-anchor=\"middle\">customer_id 4821</text>\n            <rect class=\"node\" x=\"200\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"275\" y=\"33\" text-anchor=\"middle\">CRM</text><text class=\"muted\" x=\"275\" y=\"48\" text-anchor=\"middle\">Acct \"Acme Corp\"</text>\n            <rect class=\"node\" x=\"380\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"455\" y=\"33\" text-anchor=\"middle\">Slack \u00b7 Email</text><text class=\"muted\" x=\"455\" y=\"48\" text-anchor=\"middle\">\"the Acme folks\"</text>\n            <rect class=\"node\" x=\"560\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"635\" y=\"33\" text-anchor=\"middle\">Docs</text><text class=\"muted\" x=\"635\" y=\"48\" text-anchor=\"middle\">SOP v3 (stale?)</text>\n            <rect class=\"node\" x=\"740\" y=\"14\" width=\"150\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"815\" y=\"33\" text-anchor=\"middle\">Support tickets</text><text class=\"muted\" x=\"815\" y=\"48\" text-anchor=\"middle\">acme@ \u00b7 #7781</text>\n            <rect class=\"node\" x=\"920\" y=\"14\" width=\"140\" height=\"42\" rx=\"8\" stroke-dasharray=\"4 3\"/><text class=\"h\" x=\"990\" y=\"33\" text-anchor=\"middle\">Spreadsheets</text><text class=\"muted\" x=\"990\" y=\"48\" text-anchor=\"middle\">\"ACME (EU)\"</text>\n          </g>\n          <!-- grey stubs silo \u2192 problem band -->\n          <path class=\"edge\" d=\"M 95 56 L 95 78\"/><path class=\"edge\" d=\"M 275 56 L 275 78\"/><path class=\"edge\" d=\"M 455 56 L 455 78\"/>\n          <path class=\"edge\" d=\"M 635 56 L 635 78\"/><path class=\"edge\" d=\"M 815 56 L 815 78\"/><path class=\"edge\" d=\"M 990 56 L 990 78\"/>\n          <!-- problem band -->\n          <rect x=\"40\" y=\"78\" width=\"1000\" height=\"26\" rx=\"8\" fill=\"var(--sk-red-bg)\" stroke=\"var(--sk-red-br)\"/>\n          <text x=\"540\" y=\"95\" text-anchor=\"middle\" font-style=\"italic\" font-size=\"11\" fill=\"#b91c1c\">same customer \u00b7 six identities \u00b7 no shared meaning \u00b7 no freshness \u00b7 no lineage</text>\n          <!-- 6 arrows converge band \u2192 brain -->\n          <path class=\"edge-violet\" d=\"M 95 104 L 498 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 275 104 L 516 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 455 104 L 532 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 635 104 L 548 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 815 104 L 564 226\" marker-end=\"url(#sc-arr)\"/>\n          <path class=\"edge-violet\" d=\"M 990 104 L 582 226\" marker-end=\"url(#sc-arr)\"/>\n          <!-- brain layer node -->\n          <rect class=\"node-violet\" x=\"330\" y=\"232\" width=\"420\" height=\"76\" rx=\"14\"/>\n          <text class=\"h\" x=\"540\" y=\"260\" text-anchor=\"middle\" fill=\"#7c3aed\" font-size=\"13\">Company Brain \u00b7 one resolved graph</text>\n          <text class=\"tag\" x=\"540\" y=\"281\" text-anchor=\"middle\" font-size=\"10.5\">entity-resolved \u00b7 relationship-linked \u00b7 freshness-aware \u00b7 cited</text>\n          <text class=\"muted\" x=\"540\" y=\"298\" text-anchor=\"middle\" font-size=\"10\">Acme Corp = customer_id 4821 = \"ACME (EU)\" \u00b7 one node, every source</text>\n        </svg>"
 
 const RETRIEVAL_SVG = "<svg viewBox=\"0 0 380 400\" xmlns=\"http://www.w3.org/2000/svg\">\n            <defs>\n              <marker id=\"ag-arr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n                <path d=\"M0,0 L10,5 L0,10 z\" fill=\"#7c3aed\"/>\n              </marker>\n              <marker id=\"ag-arr-dim\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n                <path d=\"M0,0 L10,5 L0,10 z\" fill=\"#a78bfa\"/>\n              </marker>\n            </defs>\n            <rect x=\"100\" y=\"6\" width=\"180\" height=\"46\" rx=\"10\" fill=\"#f5f3ff\" stroke=\"#7c3aed\" stroke-width=\"1.5\"/>\n            <text x=\"190\" y=\"24\" text-anchor=\"middle\" font-family=\"var(--sk-font-body)\" font-size=\"9.5\" font-weight=\"800\" fill=\"#7c3aed\" letter-spacing=\"1.3\">RETRIEVAL SUB-AGENT</text>\n            <text x=\"190\" y=\"40\" text-anchor=\"middle\" font-family=\"'JetBrains Mono'\" font-size=\"10\" font-weight=\"600\" fill=\"#0f172a\">plan \u2192 call \u2192 observe \u2192 refine</text>\n            <path d=\"M 290 28 Q 340 28 340 56 Q 340 88 300 88\" fill=\"none\" stroke=\"#a78bfa\" stroke-width=\"1.4\" stroke-dasharray=\"3 3\" marker-end=\"url(#ag-arr-dim)\"/>\n            <text x=\"345\" y=\"60\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#7c3aed\" font-weight=\"700\">\u21bb 4\u00d7</text>\n            <text x=\"20\" y=\"30\" font-family=\"'JetBrains Mono'\" font-size=\"10\" fill=\"#475569\" font-weight=\"600\">Q:</text>\n            <text x=\"20\" y=\"44\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#64748b\">\"Why is</text>\n            <text x=\"20\" y=\"56\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#64748b\">Maya at risk?\"</text>\n            <path d=\"M 70 36 L 100 30\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr)\"/>\n            <circle cx=\"80\" cy=\"120\" r=\"22\" fill=\"#eef2ff\" stroke=\"#6366f1\" stroke-width=\"1.8\"/>\n            <text x=\"80\" y=\"118\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#4338ca\">Maya</text>\n            <text x=\"80\" y=\"129\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">Customer</text>\n            <circle cx=\"62\" cy=\"103\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"62\" y=\"106\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">1</text>\n            <circle cx=\"190\" cy=\"135\" r=\"22\" fill=\"#eef2ff\" stroke=\"#6366f1\" stroke-width=\"1.5\"/>\n            <text x=\"190\" y=\"133\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#4338ca\">Order #42</text>\n            <text x=\"190\" y=\"144\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">SLA breach</text>\n            <circle cx=\"172\" cy=\"118\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"172\" y=\"121\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">2</text>\n            <circle cx=\"310\" cy=\"160\" r=\"22\" fill=\"#eef2ff\" stroke=\"#6366f1\" stroke-width=\"1.5\"/>\n            <text x=\"310\" y=\"158\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#4338ca\">Ticket</text>\n            <text x=\"310\" y=\"169\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">delivery</text>\n            <circle cx=\"292\" cy=\"143\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"292\" y=\"146\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">3</text>\n            <circle cx=\"140\" cy=\"240\" r=\"22\" fill=\"#fef2f2\" stroke=\"#ef4444\" stroke-width=\"1.5\"/>\n            <text x=\"140\" y=\"238\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#b91c1c\">Region policy</text>\n            <text x=\"140\" y=\"249\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">apology+reship</text>\n            <circle cx=\"122\" cy=\"223\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"122\" y=\"226\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">4</text>\n            <circle cx=\"270\" cy=\"260\" r=\"22\" fill=\"#ecfeff\" stroke=\"#0e7490\" stroke-width=\"1.5\"/>\n            <text x=\"270\" y=\"258\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"700\" fill=\"#0e7490\">WA evening</text>\n            <text x=\"270\" y=\"269\" text-anchor=\"middle\" font-size=\"8\" fill=\"#64748b\">preference</text>\n            <circle cx=\"252\" cy=\"243\" r=\"9\" fill=\"#7c3aed\"/>\n            <text x=\"252\" y=\"246\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#fff\">5</text>\n            <circle cx=\"40\" cy=\"195\" r=\"14\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/>\n            <text x=\"40\" y=\"198\" text-anchor=\"middle\" font-size=\"7\" fill=\"#94a3b8\">Tier</text>\n            <circle cx=\"350\" cy=\"240\" r=\"14\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/>\n            <text x=\"350\" y=\"243\" text-anchor=\"middle\" font-size=\"7\" fill=\"#94a3b8\">SKU</text>\n            <path d=\"M 130 56 Q 100 80 86 100\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.6\" marker-end=\"url(#ag-arr)\"/>\n            <path d=\"M 100 125 L 168 132\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <path d=\"M 211 142 L 288 156\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <path d=\"M 295 180 Q 220 230 162 232\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <path d=\"M 162 245 L 248 257\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.4\" marker-end=\"url(#ag-arr-dim)\"/>\n            <rect x=\"50\" y=\"328\" width=\"280\" height=\"56\" rx=\"10\" fill=\"#ecfdf5\" stroke=\"#10b981\" stroke-width=\"1.5\"/>\n            <text x=\"190\" y=\"348\" text-anchor=\"middle\" font-family=\"var(--sk-font-body)\" font-size=\"9.5\" font-weight=\"800\" fill=\"#047857\" letter-spacing=\"1.3\">SYNTHESISED CONTEXT PACK</text>\n            <text x=\"190\" y=\"364\" text-anchor=\"middle\" font-family=\"'JetBrains Mono'\" font-size=\"9\" fill=\"#0f172a\">5 nodes \u00b7 4 hops \u00b7 reasoning trace attached</text>\n            <text x=\"190\" y=\"377\" text-anchor=\"middle\" font-size=\"9\" font-style=\"italic\" fill=\"#475569\">\"Apology + reship + WA evening dispatch\"</text>\n            <path d=\"M 270 282 Q 240 310 220 326\" fill=\"none\" stroke=\"#10b981\" stroke-width=\"1.6\" marker-end=\"url(#ag-arr)\"/>\n          </svg>"
 
 const GOV_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 480 220\" xmlns=\"http://www.w3.org/2000/svg\">\n            <rect class=\"node-violet\" x=\"8\" y=\"22\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"37\" text-anchor=\"middle\">UI click</text>\n            <rect class=\"node-violet\" x=\"8\" y=\"62\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"77\" text-anchor=\"middle\">ChatGPT</text>\n            <rect class=\"node-violet\" x=\"8\" y=\"102\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"117\" text-anchor=\"middle\">Claude Code</text>\n            <rect class=\"node-violet\" x=\"8\" y=\"142\" width=\"92\" height=\"22\" rx=\"6\"/><text x=\"54\" y=\"157\" text-anchor=\"middle\">Worker</text>\n            <path class=\"edge-indigo\" d=\"M 100 34 L 168 100\"/><path class=\"edge-indigo\" d=\"M 100 74 L 168 100\"/>\n            <path class=\"edge-indigo\" d=\"M 100 114 L 168 100\"/><path class=\"edge-indigo\" d=\"M 100 154 L 168 100\"/>\n            <rect class=\"node-indigo\" x=\"168\" y=\"50\" width=\"158\" height=\"115\" rx=\"12\"/>\n            <text class=\"h\" x=\"247\" y=\"72\" text-anchor=\"middle\">Governed Gate</text>\n            <line x1=\"178\" y1=\"82\" x2=\"316\" y2=\"82\" stroke=\"#c7d2fe\"/>\n            <text class=\"muted\" x=\"180\" y=\"98\">\u25b8 role check</text>\n            <text class=\"muted\" x=\"180\" y=\"114\">\u25b8 tool allowlist</text>\n            <text class=\"muted\" x=\"180\" y=\"130\">\u25b8 parameter contract</text>\n            <text class=\"muted\" x=\"180\" y=\"146\">\u25b8 tenant boundary</text>\n            <text class=\"muted\" x=\"180\" y=\"162\">\u25b8 egress proxy</text>\n            <path class=\"edge-indigo\" d=\"M 326 84 L 384 48\"/>\n            <rect class=\"node-emerald\" x=\"384\" y=\"32\" width=\"88\" height=\"22\" rx=\"6\"/><text x=\"428\" y=\"47\" text-anchor=\"middle\" fill=\"#047857\" font-weight=\"600\">allowed</text>\n            <path class=\"edge\" d=\"M 326 130 L 384 168\" stroke=\"#ef4444\"/>\n            <rect class=\"node-red\" x=\"384\" y=\"156\" width=\"88\" height=\"22\" rx=\"6\"/><text x=\"428\" y=\"171\" text-anchor=\"middle\" fill=\"#b91c1c\" font-weight=\"600\">denied</text>\n            <rect class=\"node\" x=\"120\" y=\"178\" width=\"254\" height=\"34\" rx=\"8\"/><text class=\"h\" x=\"247\" y=\"193\" text-anchor=\"middle\" font-size=\"11\">Audit row</text>\n            <text class=\"tag\" x=\"247\" y=\"206\" text-anchor=\"middle\" font-size=\"9.5\">who \u00b7 what \u00b7 when \u00b7 result</text>\n          </svg>"
 
-const FLYWHEEL_SVG = "<svg class=\"flywheel-svg\" viewBox=\"0 0 360 360\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <marker id=\"fwArr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M0,0 L10,5 L0,10 z\" fill=\"#6366f1\"/>\n          </marker>\n        </defs>\n        <circle cx=\"180\" cy=\"180\" r=\"48\" fill=\"#f5f3ff\" stroke=\"#7c3aed\" stroke-width=\"1.5\"/>\n        <text x=\"180\" y=\"175\" text-anchor=\"middle\" font-family=\"var(--sk-font-body)\" font-size=\"12\" font-weight=\"800\" fill=\"#7c3aed\">Company</text>\n        <text x=\"180\" y=\"192\" text-anchor=\"middle\" font-family=\"var(--sk-font-body)\" font-size=\"12\" font-weight=\"800\" fill=\"#7c3aed\">Brain</text>\n        <g>\n          <rect x=\"120\" y=\"20\" width=\"120\" height=\"60\" rx=\"10\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.5\"/>\n          <text x=\"180\" y=\"42\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"800\" fill=\"#4338ca\" letter-spacing=\"1.4\">1 \u00b7 INPUT \u2014 STATE</text>\n          <text x=\"180\" y=\"60\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">Context pack</text>\n          <text x=\"180\" y=\"74\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">entity \u00b7 policy \u00b7 history</text>\n        </g>\n        <g>\n          <rect x=\"280\" y=\"150\" width=\"60\" height=\"60\" rx=\"10\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.5\"/>\n          <text x=\"310\" y=\"172\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#4338ca\" letter-spacing=\"1.2\">2 \u00b7 ACTION</text>\n          <text x=\"310\" y=\"187\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">Agent</text>\n          <text x=\"310\" y=\"200\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">decision</text>\n        </g>\n        <g>\n          <rect x=\"120\" y=\"280\" width=\"120\" height=\"60\" rx=\"10\" fill=\"#ecfdf5\" stroke=\"#6ee7b7\" stroke-width=\"1.5\"/>\n          <text x=\"180\" y=\"302\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"800\" fill=\"#047857\" letter-spacing=\"1.4\">3 \u00b7 OUTCOME</text>\n          <text x=\"180\" y=\"320\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">measured uplift</text>\n          <text x=\"180\" y=\"334\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">did it work?</text>\n        </g>\n        <g>\n          <rect x=\"20\" y=\"150\" width=\"60\" height=\"60\" rx=\"10\" fill=\"#f5f3ff\" stroke=\"#ddd6fe\" stroke-width=\"1.5\"/>\n          <text x=\"50\" y=\"170\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#7c3aed\" letter-spacing=\"1.2\">4 \u00b7 REVIEW</text>\n          <text x=\"50\" y=\"184\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">calibrate</text>\n          <text x=\"50\" y=\"198\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">corrections</text>\n        </g>\n        <path d=\"M 240 50 Q 320 80 310 150\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 310 210 Q 320 280 240 310\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 120 310 Q 40 280 50 210\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 50 150 Q 40 80 120 50\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.8\" stroke-dasharray=\"4 3\" marker-end=\"url(#fwArr)\"/>\n      </svg>"
+const FLYWHEEL_SVG = "<svg class=\"flywheel-svg\" viewBox=\"0 0 360 360\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <marker id=\"fwArr\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n            <path d=\"M0,0 L10,5 L0,10 z\" fill=\"#6366f1\"/>\n          </marker>\n        </defs>\n        <circle cx=\"180\" cy=\"180\" r=\"48\" fill=\"#f5f3ff\" stroke=\"#7c3aed\" stroke-width=\"1.5\"/>\n        <text x=\"180\" y=\"175\" text-anchor=\"middle\" font-family=\"var(--sk-font-body)\" font-size=\"12\" font-weight=\"800\" fill=\"#7c3aed\">Company</text>\n        <text x=\"180\" y=\"192\" text-anchor=\"middle\" font-family=\"var(--sk-font-body)\" font-size=\"12\" font-weight=\"800\" fill=\"#7c3aed\">Brain</text>\n        <g>\n          <rect x=\"120\" y=\"20\" width=\"120\" height=\"60\" rx=\"10\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.5\"/>\n          <text x=\"180\" y=\"42\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"800\" fill=\"#4338ca\" letter-spacing=\"1.4\">1 \u00b7 INPUT \u00b7 STATE</text>\n          <text x=\"180\" y=\"60\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">Context pack</text>\n          <text x=\"180\" y=\"74\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">entity \u00b7 policy \u00b7 history</text>\n        </g>\n        <g>\n          <rect x=\"280\" y=\"150\" width=\"60\" height=\"60\" rx=\"10\" fill=\"#eef2ff\" stroke=\"#c7d2fe\" stroke-width=\"1.5\"/>\n          <text x=\"310\" y=\"172\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#4338ca\" letter-spacing=\"1.2\">2 \u00b7 ACTION</text>\n          <text x=\"310\" y=\"187\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">Agent</text>\n          <text x=\"310\" y=\"200\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">decision</text>\n        </g>\n        <g>\n          <rect x=\"120\" y=\"280\" width=\"120\" height=\"60\" rx=\"10\" fill=\"#ecfdf5\" stroke=\"#6ee7b7\" stroke-width=\"1.5\"/>\n          <text x=\"180\" y=\"302\" text-anchor=\"middle\" font-size=\"10\" font-weight=\"800\" fill=\"#047857\" letter-spacing=\"1.4\">3 \u00b7 OUTCOME</text>\n          <text x=\"180\" y=\"320\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">measured uplift</text>\n          <text x=\"180\" y=\"334\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">did it work?</text>\n        </g>\n        <g>\n          <rect x=\"20\" y=\"150\" width=\"60\" height=\"60\" rx=\"10\" fill=\"#f5f3ff\" stroke=\"#ddd6fe\" stroke-width=\"1.5\"/>\n          <text x=\"50\" y=\"170\" text-anchor=\"middle\" font-size=\"9\" font-weight=\"800\" fill=\"#7c3aed\" letter-spacing=\"1.2\">4 \u00b7 REVIEW</text>\n          <text x=\"50\" y=\"184\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"700\" fill=\"#0f172a\">calibrate</text>\n          <text x=\"50\" y=\"198\" text-anchor=\"middle\" font-size=\"10\" fill=\"#475569\">corrections</text>\n        </g>\n        <path d=\"M 240 50 Q 320 80 310 150\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 310 210 Q 320 280 240 310\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 120 310 Q 40 280 50 210\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"1.8\" marker-end=\"url(#fwArr)\"/>\n        <path d=\"M 50 150 Q 40 80 120 50\" fill=\"none\" stroke=\"#7c3aed\" stroke-width=\"1.8\" stroke-dasharray=\"4 3\" marker-end=\"url(#fwArr)\"/>\n      </svg>"
 
 const SOR_SVG = "<svg class=\"diagram-svg\" viewBox=\"0 0 480 210\" xmlns=\"http://www.w3.org/2000/svg\">\n            <defs><marker id=\"aSi\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0 0 L7 3.5 L0 7 z\" fill=\"#6366f1\"/></marker>\n            <marker id=\"aSv\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0 0 L7 3.5 L0 7 z\" fill=\"#7c3aed\"/></marker></defs>\n            <rect class=\"node-indigo\" x=\"10\" y=\"84\" width=\"84\" height=\"32\" rx=\"8\"/><text class=\"h\" x=\"52\" y=\"104\" text-anchor=\"middle\">Worker</text><text class=\"muted\" x=\"52\" y=\"128\" text-anchor=\"middle\" font-size=\"9\">writes</text>\n            <path class=\"edge-indigo\" d=\"M 94 100 L 130 100\" marker-end=\"url(#aSi)\"/>\n            <rect class=\"node-emerald\" x=\"130\" y=\"10\" width=\"220\" height=\"84\" rx=\"10\"/>\n            <rect x=\"130\" y=\"10\" width=\"220\" height=\"20\" rx=\"10\" fill=\"#d1fae5\"/><rect x=\"130\" y=\"20\" width=\"220\" height=\"10\" fill=\"#d1fae5\"/>\n            <text class=\"h\" x=\"240\" y=\"24\" text-anchor=\"middle\" fill=\"#047857\" font-size=\"12\">campaign_perf</text>\n            <text class=\"muted\" x=\"142\" y=\"46\" font-size=\"10\">rows</text><text x=\"338\" y=\"46\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">channel \u00b7 spend \u00b7 ROAS</text>\n            <text class=\"muted\" x=\"142\" y=\"62\" font-size=\"10\">written_by</text><text x=\"338\" y=\"62\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">worker.ads</text>\n            <text class=\"muted\" x=\"142\" y=\"78\" font-size=\"10\">audit_id</text><text x=\"338\" y=\"78\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">#8421</text>\n            <text class=\"tag\" x=\"240\" y=\"91\" text-anchor=\"middle\" font-size=\"9.5\">schema-enforced</text>\n            <rect class=\"node-emerald\" x=\"130\" y=\"104\" width=\"220\" height=\"54\" rx=\"10\"/>\n            <rect x=\"130\" y=\"104\" width=\"220\" height=\"20\" rx=\"10\" fill=\"#d1fae5\"/><rect x=\"130\" y=\"114\" width=\"220\" height=\"10\" fill=\"#d1fae5\"/>\n            <text class=\"h\" x=\"240\" y=\"118\" text-anchor=\"middle\" fill=\"#047857\" font-size=\"12\">lead_followups</text>\n            <text class=\"muted\" x=\"142\" y=\"140\" font-size=\"10\">rows</text><text x=\"338\" y=\"140\" text-anchor=\"end\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#334155\">owner \u00b7 stage \u00b7 next</text>\n            <path class=\"edge-violet\" d=\"M 350 52 L 388 74\" marker-end=\"url(#aSv)\"/>\n            <path class=\"edge-violet\" d=\"M 350 130 L 388 110\" marker-end=\"url(#aSv)\" stroke-dasharray=\"3 3\"/>\n            <rect class=\"node-violet\" x=\"388\" y=\"68\" width=\"86\" height=\"56\" rx=\"10\"/><text class=\"h\" x=\"431\" y=\"90\" text-anchor=\"middle\">App</text><text class=\"muted\" x=\"431\" y=\"104\" text-anchor=\"middle\" font-size=\"9\">+ Agents</text><text class=\"muted\" x=\"431\" y=\"117\" text-anchor=\"middle\" font-size=\"9\">read \u00b7 audited</text>\n            <text class=\"muted\" x=\"240\" y=\"200\" text-anchor=\"middle\" font-size=\"10\">same tenant \u00b7 permissions \u00b7 audit on every read + write</text>\n          </svg>"
 
@@ -145,13 +145,13 @@ export const deck = (K) => {
           spacedEyebrow={false}
           title={
             <>
-              Put your team's AI to work — <span className="sk-a">across your whole company</span>.
+              Put your team's AI to work, <span className="sk-a">across your whole company</span>.
             </>
           }
           lede={
             <>
               Your people already use AI on their own laptops. Synos turns that into shared,
-              always-on help for Sales, Marketing and Ops — help that knows <em>your</em> business,
+              always-on help for Sales, Marketing and Ops. Help that knows <em>your</em> business,
               follows your rules, and gets better every week.
             </>
           }
@@ -179,7 +179,7 @@ export const deck = (K) => {
             className="ob-center"
             eyebrow="The one idea"
             eyebrowTone="indigo"
-            title="Unblock your humans, your agents, and your systems — from each other."
+            title="Unblock your humans, your agents, and your systems from each other."
           />
           <div className="ob-hero">
             <img src={unblockDiagram} alt="Humans, agents and systems freed from each other, with Synos as the shared layer in the middle" />
@@ -208,9 +208,9 @@ export const deck = (K) => {
               eyebrow="The old world · SaaS"
               title={
                 <>
-                  80% common features — shipped.
+                  80% common features, shipped.
                   <br />
-                  20% custom to you — never built.
+                  20% custom to you, never built.
                 </>
               }
             >
@@ -230,7 +230,7 @@ export const deck = (K) => {
               }
             >
               <SplitItem marker="✓">
-                Your team describes the work in plain English; AI builds it — on top of a shared
+                Your team describes the work in plain English; AI builds it on top of a shared
                 memory that knows your business. The 20% you always needed, finally yours.
               </SplitItem>
               <Caption mono>Claude Code · ChatGPT · Codex · …</Caption>
@@ -238,7 +238,7 @@ export const deck = (K) => {
           </SplitColumns>
           <Callout tone="indigo" className="dk-gap-sm">
             <strong>The AI itself isn't the advantage.</strong> The shared memory of how{' '}
-            <em>your</em> company runs is. Swap the AI whenever a better one arrives — you keep
+            <em>your</em> company runs is. Swap the AI whenever a better one arrives. You keep
             everything it has learned about your business.
             <ChipRow className="dk-gap-sm">
               <Chip size="sm">Anthropic</Chip>
@@ -262,7 +262,7 @@ export const deck = (K) => {
             eyebrow="The Shift"
             eyebrowTone="indigo"
             title="Individuals are already winning with AI. The team isn't compounding."
-            subtitle="Great work — but it lives on one laptop, in one account. Nothing shared, nothing building on the last win."
+            subtitle="Great work, but it lives on one laptop, in one account. Nothing shared, nothing building on the last win."
           />
           <Stack gap="snug">
             {[
@@ -297,7 +297,7 @@ export const deck = (K) => {
           <Callout tone="red" className="dk-gap">
             The individual is unblocked.{' '}
             <strong>
-              The team is blocked from sharing and compounding the AI transformation — and walled
+              The team is blocked from sharing and compounding the AI transformation, and walled
               off from real company value.
             </strong>
           </Callout>
@@ -327,31 +327,31 @@ export const deck = (K) => {
             <WallCard
               num="2"
               title="No safe access to systems"
-              body="Reaching real data means raw keys on a laptop — no permissions, no audit."
-              quote="“How do I even get to that warehouse table for analytics — safely?”"
+              body="Reaching real data means raw keys on a laptop, with no permissions and no audit."
+              quote="“How do I even get to that warehouse table for analytics, safely?”"
             />
             <WallCard
               num="3"
               title="Nowhere safe to put it"
               body="Apps and their data end up in personal accounts. No safe home, no off-switch."
-              quote="“Where does this app — and its data — actually live?”"
+              quote="“Where does this app, and its data, actually live?”"
             />
             <WallCard
               num="4"
               title="Skills don't compound"
               body="No shared library. Everyone rebuilds the same skill or app; nothing is reused or scheduled."
-              quote="“Sarah built this skill last month — why am I starting from scratch?”"
+              quote="“Sarah built this skill last month. Why am I starting from scratch?”"
             />
             <WallCard
               num="5"
               title="Engineering gets overloaded"
-              body="Every access request, guardrail and deploy routes through eng — they become the bottleneck."
+              body="Every access request, guardrail and deploy routes through eng, so they become the bottleneck."
               quote="“Why is every team's automation now a ticket in my backlog?”"
             />
             <WallCard
               num="6"
               title="No learning, no visibility"
-              body="Outputs lost in Sheets and DMs. Who ran what, what's working — invisible."
+              body="Outputs lost in Sheets and DMs. Who ran what, what's working: invisible."
               quote="“Did that even help? And is anyone else getting value from it?”"
             />
           </WallGrid>
@@ -377,19 +377,19 @@ export const deck = (K) => {
               tone="indigo"
               kicker="A company brain"
               title="Knows how you operate"
-              body="Your data, documents and decisions — organised into one living memory every AI tool can draw on. It accumulates and gets better with use."
+              body="Your data, documents and decisions, organised into one living memory every AI tool can draw on. It accumulates and gets better with use."
             />
             <UseCaseCard
               tone="emerald"
               kicker="Safe hands"
               title="Acts in your systems, safely"
-              body="AI can look things up and take actions across your tools through one safe, logged door — with permissions and an off-switch. No passwords floating around on laptops."
+              body="AI can look things up and take actions across your tools through one safe, logged door, with permissions and an off-switch. No passwords floating around on laptops."
             />
             <UseCaseCard
               tone="violet"
               kicker="A place to build"
               title="Apps & assistants your team owns"
-              body="Turn a task into a shared app or an assistant that runs on its own — built by your team, kept inside your business."
+              body="Turn a task into a shared app or an assistant that runs on its own, built by your team, kept inside your business."
             />
           </UseCaseGrid>
           <Caption italic className="dk-gap-sm">
@@ -408,18 +408,18 @@ export const deck = (K) => {
       node: (
         <SlideFrame stage={false} density="compact">
           <SlideHeader
-            eyebrow="AI Builds It — Not Your Backlog"
+            eyebrow="AI Builds It · Not Your Backlog"
             eyebrowTone="indigo"
             title="Describe a full application. AI writes it in minutes."
-            subtitle="One plain-English brief — the AI builds the whole thing: screens, logic, charts, and rules — wired to your live data. No engineers, no six-month roadmap."
+            subtitle="One plain-English brief, and the AI builds the whole thing: screens, logic, charts and rules, wired to your live data. No engineers, no six-month roadmap."
           />
           <div className="ob-keyband">
             <p>
               <strong>
-                AI is already brilliant at building apps and workflows — it just can't safely reach
+                AI is already brilliant at building apps and workflows. It just can't safely reach
                 your systems or truly understand your business.
               </strong>{' '}
-              <em>Synos already has both wired in</em> — so the moment someone describes what they
+              <em>Synos already has both wired in</em>, so the moment someone describes what they
               want, it just works on your real data.
             </p>
           </div>
@@ -468,7 +468,7 @@ export const deck = (K) => {
                 <div className="ob-flag">
                   <span className="ob-dot" />
                   <span>
-                    <b>Pune Camp</b> — 14% below target for 3 days · manager note: “festival stock
+                    <b>Pune Camp</b>, 14% below target for 3 days · manager note: “festival stock
                     delayed”
                   </span>
                 </div>
@@ -494,16 +494,16 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Plain English → an AI Workflow"
             eyebrowTone="violet"
-            title="Describe an agentic AI workflow — it runs the steps for you."
+            title="Describe an agentic AI workflow, and it runs the steps for you."
             subtitle="One sentence becomes a multi-step AI worker that thinks, acts across your systems, and stops for a human before anything leaves the building."
           />
           <div className="ob-keyband">
             <p>
               <strong>
-                AI is already brilliant at building apps and workflows — it just can't safely reach
+                AI is already brilliant at building apps and workflows. It just can't safely reach
                 your systems or truly understand your business.
               </strong>{' '}
-              <em>Synos already has both wired in</em> — so the moment someone describes what they
+              <em>Synos already has both wired in</em>, so the moment someone describes what they
               want, it just works on your real data.
             </p>
           </div>
@@ -530,7 +530,7 @@ export const deck = (K) => {
                   <div className="ob-step">
                     <span className="ob-step-n">1</span>
                     <span>
-                      <b>Researches the account</b> — history, past orders, open tickets
+                      <b>Researches the account</b>: history, past orders, open tickets
                     </span>
                   </div>
                   <div className="ob-step">
@@ -549,7 +549,7 @@ export const deck = (K) => {
                     <span className="ob-step-n">✓</span>
                     <span>
                       <b>WhatsApps you to approve</b>{' '}
-                      <Chip size="sm" tone="emerald">WhatsApp</Chip> — tap send, or edit first
+                      <Chip size="sm" tone="emerald">WhatsApp</Chip>. Tap send, or edit first
                     </span>
                   </div>
                 </div>
@@ -558,7 +558,7 @@ export const deck = (K) => {
           </div>
           <div className="ob-capnote dk-gap-sm">
             The AI designed the workflow;{' '}
-            <em>Synos gave it safe access to your systems and the context to run it right</em> —
+            <em>Synos gave it safe access to your systems and the context to run it right</em>,
             always with a human check.
           </div>
         </SlideFrame>
@@ -575,8 +575,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Ask Anything"
             eyebrowTone="indigo"
-            title="Your company can answer — about the business, and about itself."
-            subtitle="Everything runs on one connected brain. So anyone can ask in plain English and get a straight answer — whether it's a business question or “how do we do this in Synos?” Like onboarding someone who already knows both."
+            title="Your company can answer, about the business and about itself."
+            subtitle="Everything runs on one connected brain. So anyone can ask in plain English and get a straight answer, whether it's a business question or “how do we do this in Synos?” Like onboarding someone who already knows both."
           />
           <div className="ob-mock">
             <div className="ob-mock-chrome">
@@ -598,7 +598,7 @@ export const deck = (K) => {
                   </div>
                   <div className="ob-ans">
                     <p>
-                      Revenue <b>+18%</b> — led by large appliances (<b>+31%</b>) and audio. Two
+                      Revenue <b>+18%</b>, led by large appliances (<b>+31%</b>) and audio. Two
                       West stores lagged on stock.
                     </p>
                     <div className="ob-src-row">
@@ -613,13 +613,13 @@ export const deck = (K) => {
                   <div className="ob-prompt">
                     <div className="ob-prompt-txt">
                       <span className="ob-you">About running Synos</span>
-                      “What assistants run for Sales — and how do I add one for win-backs?”
+                      “What assistants run for Sales, and how do I add one for win-backs?”
                     </div>
                   </div>
                   <div className="ob-ans">
                     <p>
                       Three are live: <b>lead-response, quote-follow-up, renewal-nudge</b>. To add
-                      win-backs, just describe it — I can set it up now.
+                      win-backs, just describe it. I can set it up now.
                     </p>
                     <div className="ob-src-row">
                       <span className="ob-lbl">From</span>
@@ -633,7 +633,7 @@ export const deck = (K) => {
             </div>
           </div>
           <div className="ob-capnote dk-gap-sm">
-            The brain knows your business <em>and</em> how your company runs Synos —{' '}
+            The brain knows your business <em>and</em> how your company runs Synos.{' '}
             <em>so it can answer questions and help you operate it, in the same breath.</em>
           </div>
         </SlideFrame>
@@ -650,7 +650,7 @@ export const deck = (K) => {
             eyebrow="No Migration, No New Habits"
             eyebrowTone="indigo"
             title="Your people keep working in the tools they already love."
-            subtitle="Synos sits underneath — making every one of them safe, shared, and always-on."
+            subtitle="Synos sits underneath, making every one of them safe, shared and always-on."
           />
           <TileRow>
             <Tile name="ChatGPT" kind="marketing · sales" />
@@ -662,7 +662,7 @@ export const deck = (K) => {
           <Caption className="dk-gap-sm">▼ all run on the same shared foundation ▼</Caption>
           <div className="dk-gap-sm">
             <Eyebrow tone="muted">
-              Connected to your existing stack out of the box — not replaced
+              Connected to your existing stack out of the box, not replaced
             </Eyebrow>
             <ChipRow tight className="dk-gap-sm">
               <Chip mono>Warehouse · BigQuery</Chip>
@@ -695,7 +695,7 @@ export const deck = (K) => {
             subtitle={
               <>
                 Because those are the driver. The hard part is everything the driver needs to run{' '}
-                <em>your</em> company — safely, and shared across the team. Keep them; Synos is the
+                <em>your</em> company, safely and shared across the team. Keep them; Synos is the
                 layer underneath.
               </>
             }
@@ -704,23 +704,23 @@ export const deck = (K) => {
             <UseCaseCard
               tone="indigo"
               title="A chat window forgets your business"
-              body="Every session starts blank. What one person teaches it stays in their account — and leaves when they do. Synos gives the whole team one shared memory that sticks."
+              body="Every session starts blank. What one person teaches it stays in their account, and leaves when they do. Synos gives the whole team one shared memory that sticks."
             />
             <UseCaseCard
               tone="emerald"
-              title="To help, it needs your data — safely"
-              body="On its own, that means pasting sensitive data or passwords into a chat. Synos is the one safe, logged door to your systems — with permissions and an instant off-switch."
+              title="To help, it needs your data, safely"
+              body="On its own, that means pasting sensitive data or passwords into a chat. Synos is the one safe, logged door to your systems, with permissions and an instant off-switch."
             />
             <UseCaseCard
               tone="violet"
               title="It helps one person, on demand"
-              body="Great tools — but still one person, one request at a time. Synos turns them into always-on assistants the whole team shares, running on a schedule with approvals."
+              body="Great tools, but still one person and one request at a time. Synos turns them into always-on assistants the whole team shares, running on a schedule with approvals."
             />
           </UseCaseGrid>
           <div className="ob-capnote dk-gap-sm">
-            Keep ChatGPT, Claude Code, Copilot — bring any of them.{' '}
+            Keep ChatGPT, Claude Code, Copilot. Bring any of them.{' '}
             <em>
-              Synos is the layer underneath that makes them work on your company — and lets you swap
+              Synos is the layer underneath that makes them work on your company, and lets you swap
               the AI anytime without losing what it has learned.
             </em>
           </div>
@@ -739,7 +739,7 @@ export const deck = (K) => {
             eyebrow="The Handoff Nobody Solves"
             eyebrowTone="violet"
             title="Your experts build the agents. IT just sets the rails."
-            subtitle="The rules that make an agent right sit with the people doing the work — your ops leads, analysts, marketers, support veterans. Today those rules only reach a working system through an engineer, and that queue is where AI projects die."
+            subtitle="The rules that make an agent right sit with the people doing the work: your ops leads, analysts, marketers, support veterans. Today those rules only reach a working system through an engineer, and that queue is where AI projects die."
           />
           <div className="ob-chain">
             <span className="ob-chain-k">Today</span>
@@ -768,17 +768,17 @@ export const deck = (K) => {
               </SplitItem>
               <SplitItem>Permissions, full activity log, spend limits, instant off-switch</SplitItem>
               <SplitItem>The check that must pass before anything goes live</SplitItem>
-              <Caption>A one-time setup they own — not a new project for every request.</Caption>
+              <Caption>A one-time setup they own, not a new project for every request.</Caption>
             </SplitColumn>
             <SplitColumn tone="violet" eyebrow="Your experts own · every day" title="The know-how">
-              <SplitItem>How we do this, written in plain English — no code</SplitItem>
+              <SplitItem>How we do this, written in plain English, no code</SplitItem>
               <SplitItem>
                 The rules, the exceptions, the judgment calls, captured as they come up
               </SplitItem>
               <SplitItem>
-                Corrections on the AI's drafts — each one teaches it permanently
+                Corrections on the AI's drafts. Each one teaches it permanently
               </SplitItem>
-              <SplitItem>“Here are ten real cases — get them right”</SplitItem>
+              <SplitItem>“Here are ten real cases, get them right”</SplitItem>
               <Caption>
                 No ticket, no waiting. Inside the rails, there is nothing they can break.
               </Caption>
@@ -795,13 +795,13 @@ export const deck = (K) => {
               bar={false}
               num="2"
               title="Your expert writes it in plain English"
-              body="In chat or Slack: “Billing escalations from top-tier accounts never go by SMS — email finance first.” Saved as a rule the AI follows."
+              body="In chat or Slack: “Billing escalations from top-tier accounts never go by SMS, email finance first.” Saved as a rule the AI follows."
             />
             <StepCard
               bar={false}
               num="3"
               title="Corrections while working"
-              body="Edit the AI's draft the way you'd fix a junior's. The change is remembered — that's how tribal knowledge finally gets written down."
+              body="Edit the AI's draft the way you'd fix a junior's. The change is remembered, and that's how tribal knowledge finally gets written down."
             />
             <StepCard
               bar={false}
@@ -812,7 +812,7 @@ export const deck = (K) => {
           </StepGrid>
           <div className="ob-band-violet dk-gap-sm">
             <strong>The handoff disappears.</strong> The person who knows the work is the one who
-            teaches the system — and IT moves from writing down other people's rules to owning the
+            teaches the system, and IT moves from writing down other people's rules to owning the
             rails and reviewing what goes live.
           </div>
         </SlideFrame>
@@ -834,7 +834,7 @@ export const deck = (K) => {
             eyebrow="Templated Brains"
             eyebrowTone="indigo"
             title="A starting brain for every operating team."
-            subtitle="Pre-built for the functions a lean consumer company runs — live in weeks, then tuned to you."
+            subtitle="Pre-built for the functions a lean consumer company runs. Live in weeks, then tuned to you."
           />
           <UseCaseGrid>
             <UseCaseCard
@@ -933,7 +933,7 @@ export const deck = (K) => {
             eyebrow="A Day in the Difference"
             eyebrowTone="indigo"
             title="Same lead. Same team. Two very different Mondays."
-            subtitle="What changes isn't the people — it's whether the work waited for them."
+            subtitle="What changes isn't the people. It's whether the work waited for them."
           />
           <SplitColumns>
             <SplitColumn
@@ -946,7 +946,7 @@ export const deck = (K) => {
                 history together across three different tools, then writes a reply.
               </SplitItem>
               <SplitItem marker="×">
-                <strong>First contact: ~62 hours later — if it isn't missed entirely.</strong>
+                <strong>First contact: ~62 hours later, if it isn't missed entirely.</strong>
               </SplitItem>
             </SplitColumn>
             <SplitColumn
@@ -959,12 +959,12 @@ export const deck = (K) => {
                 9am your rep reads it, adjusts a line, and sends.
               </SplitItem>
               <SplitItem marker="✓">
-                <strong>First contact: minutes — every time, even after hours.</strong>
+                <strong>First contact: minutes, every time, even after hours.</strong>
               </SplitItem>
             </SplitColumn>
           </SplitColumns>
           <Callout tone="indigo" className="dk-gap">
-            Nobody worked the weekend. The people didn't change —{' '}
+            Nobody worked the weekend. The people didn't change.{' '}
             <em>the work simply stopped waiting on them.</em>
           </Callout>
         </SlideFrame>
@@ -982,13 +982,13 @@ export const deck = (K) => {
             eyebrow="Why It Compounds"
             eyebrowTone="violet"
             title="What compounds is the record of how your company works."
-            subtitle="Your people correct. The AI acts. Your systems report what actually happened. Every turn builds something no public AI can ever learn on its own — and it keeps paying off no matter which AI you use next year."
+            subtitle="Your people correct. The AI acts. Your systems report what actually happened. Every turn builds something no public AI can ever learn on its own, and it keeps paying off no matter which AI you use next year."
           />
           <div className="ob-loop" dangerouslySetInnerHTML={{ __html: LOOP_SVG }} />
           <Caption className="dk-gap-sm">
             Live today at a martech design partner: every correction an operator makes feeds one
             shared memory their whole platform gets smarter from.{' '}
-            <strong>This is knowledge no outside AI can have — and it stays with you.</strong>
+            <strong>This is knowledge no outside AI can have, and it stays with you.</strong>
           </Caption>
         </SlideFrame>
       ),
@@ -1006,19 +1006,19 @@ export const deck = (K) => {
             eyebrow="Where Value Gets Created Now"
             eyebrowTone="indigo"
             title="New value gets created at the edge of what AI already knows."
-            subtitle="Public AI knows the public internet. It doesn't know your customers, your exceptions or your judgment. That's where your people create value — and on Synos, everything they create teaches your AI."
+            subtitle="Public AI knows the public internet. It doesn't know your customers, your exceptions or your judgment. That's where your people create value, and on Synos everything they create teaches your AI."
           />
           <div className="ob-edge">
             <div className="ob-edge-svg" dangerouslySetInnerHTML={{ __html: EDGE_SVG }} />
             <div className="ob-edge-side">
               <div className="ob-edge-pt">
                 <h3>Your people move faster</h3>
-                <p>Work runs at AI speed — on your own context, not generic answers off the internet.</p>
+                <p>Work runs at AI speed, on your own context rather than generic answers off the internet.</p>
               </div>
               <div className="ob-edge-pt ob-edge-pt--em">
                 <h3>The edge is yours alone</h3>
                 <p>
-                  The decisions, corrections and outcomes created here exist nowhere else — not in
+                  The decisions, corrections and outcomes created here exist nowhere else, not in
                   any AI, not at any competitor.
                 </p>
               </div>
@@ -1034,7 +1034,7 @@ export const deck = (K) => {
           <div className="ob-edge-quote dk-gap-sm">
             “You can offload a task, or even a job — <strong>you can never offload your
             learning.</strong>” As AI makes expertise cheap, the lasting advantage moves from the AI
-            to the learning loop you own. — <strong>Satya Nadella, 2026</strong>
+            to the learning loop you own. <strong>Satya Nadella, 2026</strong>
           </div>
         </SlideFrame>
       ),
@@ -1051,8 +1051,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="What Your Teams Get"
             eyebrowTone="emerald"
-            title="Run leaner and faster — where it shows up on the P&L."
-            subtitle="The same team, doing more — because the repetitive work runs itself and the judgement work is better-informed."
+            title="Run leaner and faster, where it shows up on the P&L."
+            subtitle="The same team, doing more, because the repetitive work runs itself and the judgement work is better-informed."
           />
           <UseCaseGrid>
             <UseCaseCard
@@ -1103,7 +1103,7 @@ export const deck = (K) => {
           </UseCaseGrid>
           <Caption italic className="dk-gap-sm">
             The compounding effect: the brain gets smarter, the assistants do more, and the team's
-            leverage grows every quarter — without growing headcount at the same rate.
+            output grows every quarter, without growing headcount at the same rate.
           </Caption>
         </SlideFrame>
       ),
@@ -1120,16 +1120,16 @@ export const deck = (K) => {
             eyebrow="The Payoff"
             eyebrowTone="emerald"
             title="What a team tends to feel in the first quarter."
-            subtitle="Illustrative targets from early pilots — not a promise, but what we point a first workflow at."
+            subtitle="Illustrative targets from early pilots. Not a promise, but what we point a first workflow at."
           />
           <StatRow columns={4}>
             <StatCard value="~5 hrs" label="per person, per week, handed back from repetitive work." />
-            <StatCard tone="amber" value="Minutes" label="to first follow-up — not the next working day." />
-            <StatCard tone="emerald" value="Weeks" label="to go live on the first workflow — not quarters." />
+            <StatCard tone="amber" value="Minutes" label="to first follow-up, not the next working day." />
+            <StatCard tone="emerald" value="Weeks" label="to go live on the first workflow, not quarters." />
             <StatCard value="Zero" label="of your data leaves your own systems." />
           </StatRow>
           <Caption italic className="dk-gap">
-            Same headcount, more output — and the know-how stays with you when people move on.
+            Same headcount, more output, and the know-how stays with you when people move on.
           </Caption>
         </SlideFrame>
       ),
@@ -1144,7 +1144,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="From Early Pilots"
             eyebrowTone="indigo"
-            title="Real teams, real workflows — already running."
+            title="Real teams, real workflows, already running."
             subtitle="A few of the first workflows live today, kept anonymous by request. Different industries, same pattern."
           />
           <UseCaseGrid>
@@ -1186,7 +1186,7 @@ export const deck = (K) => {
             />
           </UseCaseGrid>
           <div className="ob-capnote dk-gap-sm">
-            <strong>Same pattern every time:</strong> work that used to wait on a person now runs —{' '}
+            <strong>Same pattern every time:</strong> work that used to wait on a person now runs,{' '}
             <em>with a person still approving.</em>
           </div>
         </SlideFrame>
@@ -1206,7 +1206,7 @@ export const deck = (K) => {
             eyebrow="Your AI Transformation"
             eyebrowTone="indigo"
             title="From scattered AI experiments to an AI-run company."
-            subtitle="Most companies are stuck at step one. Synos is how you move through all three — in weeks, not years."
+            subtitle="Most companies are stuck at step one. Synos is how you move through all three, in weeks rather than years."
           />
           <PhaseRow>
             <PhaseCard
@@ -1218,17 +1218,17 @@ export const deck = (K) => {
               position="bridge"
               when="In weeks"
               title="A shared brain + first assistants"
-              body="Your business knowledge lives in one place. The first assistants handle real work — follow-ups, reports, digests — with a person approving each step."
+              body="Your business knowledge lives in one place. The first assistants handle real work such as follow-ups, reports and digests, with a person approving each step."
             />
             <PhaseCard
               position="far"
               when="Within the year"
               title="Every team compounds"
-              body="Sales, Marketing and Ops each run on assistants that get better every week. The same headcount does far more — and the knowledge stays with you."
+              body="Sales, Marketing and Ops each run on assistants that get better every week. The same headcount does far more, and the knowledge stays with you."
             />
           </PhaseRow>
           <div className="ob-capnote dk-gap">
-            <strong>The gap was never the AI.</strong> It's everything around it — shared memory,
+            <strong>The gap was never the AI.</strong> It's everything around it: shared memory,
             safe access, approvals. <em>That's what Synos gives you.</em>
           </div>
         </SlideFrame>
@@ -1244,8 +1244,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Graduated Trust"
             eyebrowTone="indigo"
-            title="From a helping hand to work that runs itself — you stay in control."
-            subtitle="Start with AI helping one person; grow to always-on help — with a person approving every step, at every stage."
+            title="From a helping hand to work that runs itself, and you stay in control."
+            subtitle="Start with AI helping one person; grow to always-on help, with a person approving every step, at every stage."
           />
           <PhaseRow>
             <PhaseCard
@@ -1259,7 +1259,7 @@ export const deck = (K) => {
               position="bridge"
               when="Stage two"
               title="Runs on a schedule"
-              body="It runs on a schedule and drafts the work. A person reviews and approves before anything goes out — most of the work, a fraction of the time."
+              body="It runs on a schedule and drafts the work. A person reviews and approves before anything goes out. Most of the work, a fraction of the time."
             />
             <PhaseCard
               badge="03"
@@ -1271,7 +1271,7 @@ export const deck = (K) => {
           </PhaseRow>
           <div className="ob-capnote dk-gap">
             <strong>Every stage stays under your control.</strong> Permissions, a full activity log,
-            human review and an instant off-switch apply at every level — so{' '}
+            human review and an instant off-switch apply at every level, so{' '}
             <em>running on its own never means out of your control</em>.
           </div>
         </SlideFrame>
@@ -1288,26 +1288,26 @@ export const deck = (K) => {
             eyebrow="Safe by Design"
             eyebrowTone="emerald"
             title="Your data stays yours. You stay in control."
-            subtitle="Three promises that make this safe to roll out — no technical background needed."
+            subtitle="Three promises that make this safe to roll out, no technical background needed."
           />
           <UseCaseGrid>
             <UseCaseCard
               tone="indigo"
               kicker="Your data"
               title="It stays in your systems."
-              body="Synos runs inside your own environment. Your customer and business data isn't copied out to us — it never leaves your walls."
+              body="Synos runs inside your own environment. Your customer and business data isn't copied out to us. It never leaves your walls."
             />
             <UseCaseCard
               tone="amber"
               kicker="Undo"
               title="You can undo anything."
-              body="Every change is reversible. A wrong step can be rolled back, and nothing important is ever quietly overwritten."
+              body="Every change is reversible. A wrong step can be rolled back, and nothing important is overwritten without a record."
             />
             <UseCaseCard
               tone="emerald"
               kicker="Visibility"
               title="You see everything."
-              body="Who ran what, when, and what it cost — all in one place, with an instant off-switch if you ever want to stop."
+              body="Who ran what, when, and what it cost, all in one place, with an instant off-switch if you ever want to stop."
             />
           </UseCaseGrid>
         </SlideFrame>
@@ -1325,7 +1325,7 @@ export const deck = (K) => {
             eyebrow="Neutral by Design · No Lock-In"
             eyebrowTone="indigo"
             title="Change any vendor. Keep everything you've taught it."
-            subtitle="The AI you pick today won't be the best one in a year — and the tools your teams love will change too. Synos sits underneath all of them, in your own environment, so switching is a choice you can make freely."
+            subtitle="The AI you pick today won't be the best one in a year, and the tools your teams love will change too. Synos sits underneath all of them, in your own environment, so switching is a choice you can make freely."
           />
           <Stack gap="tight">
             {[
@@ -1346,7 +1346,7 @@ export const deck = (K) => {
             ))}
           </Stack>
           <div className="ob-core dk-gap-sm">
-            <h3>What never moves — the part you own</h3>
+            <h3>What never moves: the part you own</h3>
             <p>
               Your Company Brain: what the AI knows about your business, the rules and exceptions
               your team wrote, every correction, and the record of what worked. It lives in{' '}
@@ -1369,7 +1369,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="amber"
               title="Change the tool"
-              body="ChatGPT, Claude, Copilot or whatever comes next — all of them reach the same shared memory and the same safe access."
+              body="ChatGPT, Claude, Copilot or whatever comes next. All of them reach the same shared memory and the same safe access."
             />
             <UseCaseCard
               tone="emerald"
@@ -1383,7 +1383,7 @@ export const deck = (K) => {
             />
           </UseCaseGrid>
           <div className="ob-band-violet dk-gap-sm">
-            <strong>The test to hold any AI vendor to:</strong> take them away — does what your
+            <strong>The test to hold any AI vendor to:</strong> take them away. Does what your
             company has learned survive? Here it does. Nothing leaves your environment and nothing
             is used to train someone else's AI, so what you build is an asset you own rather than
             intelligence you rent.
@@ -1401,7 +1401,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="How a Brand Gets There"
             eyebrowTone="indigo"
-            title="Live in weeks — and your team owns it."
+            title="Live in weeks, and your team owns it."
             subtitle="Our team works alongside yours to build the 20% that's specific to your business, then hands it over."
           />
           <PhaseRow>
@@ -1409,26 +1409,26 @@ export const deck = (K) => {
               badge="01"
               when="Discover"
               title="Pair with your team"
-              body="We sit with Sales, Marketing & Ops, connect your systems, and pick the highest-leverage workflows to start with."
+              body="We sit with Sales, Marketing & Ops, connect your systems, and pick the workflows with the most waiting on them to start with."
             />
             <PhaseCard
               badge="02"
               position="bridge"
               when="Build"
               title="Stand up the brains + assistants"
-              body="Set up the ready-made brains, tune them to your data, and ship the first assistants and apps — safely."
+              body="Set up the ready-made brains, tune them to your data, and ship the first assistants and apps, safely."
             />
             <PhaseCard
               badge="03"
               position="far"
               when="Hand over"
               title="Your team carries it forward"
-              body="Non-coders author and tweak workflows in plain English. The brain compounds inside your business — not ours."
+              body="Non-coders author and tweak workflows in plain English. The brain compounds inside your business, not ours."
             />
           </PhaseRow>
           <div className="ob-capnote dk-gap">
             <strong>Platform + people.</strong> The platform stands on its own; our team gets you to{' '}
-            <em>outcomes this quarter</em>, not just a tool installed.
+            <em>outcomes this quarter</em>, rather than a tool installed.
           </div>
         </SlideFrame>
       ),
@@ -1484,7 +1484,7 @@ export const deck = (K) => {
           eyebrowTone="indigo"
           line1="From slides to the"
           line2={<span className="sk-gradient-text">running product.</span>}
-          sub="A quick walkthrough of the real platform — the brain, an assistant running, and the governance underneath."
+          sub="A quick walkthrough of the real platform: the brain, an assistant running, and the governance underneath."
         >
           <ChipRow center className="dk-gap">
             <Chip size="lg">The Company Brain in action</Chip>
@@ -1509,7 +1509,7 @@ export const deck = (K) => {
           eyebrowTone="muted"
           line1="For your"
           line2={<span className="sk-gradient-text">technical team</span>}
-          sub="How it works under the hood — architecture, safe access, and the learning loop. Bring these out only if a technical person is in the room."
+          sub="How it works under the hood: architecture, safe access, and the learning loop. Bring these out only if a technical person is in the room."
         />
       ),
     },
@@ -1529,8 +1529,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The AI-Native Operating Layer"
             eyebrowTone="indigo"
-            title="More than a brain — a full operating layer."
-            subtitle="Six capabilities working as one. The Company Brain is just one of them — and the whole thing compounds with every use."
+            title="More than a brain. A full operating layer."
+            subtitle="Six capabilities working as one. The Company Brain is just one of them, and the whole thing compounds with every use."
           />
           <Stack gap="tight">
             <div className="ob-band">
@@ -1554,7 +1554,7 @@ export const deck = (K) => {
                 <PillarCard
                   brain
                   name="Company Brain"
-                  desc="Knowledge that compounds across every source — batch + streaming, continuously curated."
+                  desc="Knowledge that compounds across every source: batch and streaming, continuously curated."
                 />
                 <PillarCard
                   name="Skills Marketplace"
@@ -1566,7 +1566,7 @@ export const deck = (K) => {
                 />
                 <PillarCard
                   name="Safe App Deploy"
-                  desc="Sandboxed apps + their data your team can share — scanned, never on personal accounts."
+                  desc="Sandboxed apps + their data your team can share, scanned, never on personal accounts."
                 />
                 <PillarCard
                   name="Self-Learning Loop"
@@ -1574,13 +1574,13 @@ export const deck = (K) => {
                 />
                 <PillarCard
                   name="Observability"
-                  desc="Who ran what, what's working, what it costs — and an instant kill-switch."
+                  desc="Who ran what, what's working, what it costs, plus an instant kill-switch."
                 />
               </PillarGrid>
             </div>
 
             <div className="ob-band">
-              <Eyebrow tone="muted">Connected to your existing systems — not replaced</Eyebrow>
+              <Eyebrow tone="muted">Connected to your existing systems, not replaced</Eyebrow>
               <ChipRow tight className="dk-gap-sm">
                 <Chip mono>Warehouse · BigQuery</Chip>
                 <Chip mono>CRM · Marketing SaaS</Chip>
@@ -1593,7 +1593,7 @@ export const deck = (K) => {
           </Stack>
           <Caption className="dk-gap-sm">
             <strong>The Company Brain is one pillar of six.</strong> Together they're the operating
-            layer — and <em>every use makes it smarter</em>.
+            layer, and <em>every use makes it smarter</em>.
           </Caption>
         </SlideFrame>
       ),
@@ -1609,8 +1609,8 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The Operating Layer"
             eyebrowTone="indigo"
-            title="Six capabilities most teams ship one of — as one governed platform."
-            subtitle="Engineering sets the rails once; the whole org self-serves on top — non-coders included. Build agents, build apps, all on the real brain."
+            title="Six capabilities most teams ship one of, as one governed platform."
+            subtitle="Engineering sets the rails once; the whole org self-serves on top, non-coders included. Build agents, build apps, all on the real brain."
           />
           <UseCaseGrid>
             <UseCaseCard
@@ -1626,17 +1626,17 @@ export const deck = (K) => {
             <UseCaseCard
               tone="emerald"
               title="Agent builder"
-              body="Describe an agent in plain English — assembled from skills, live in minutes."
+              body="Describe an agent in plain English, assembled from skills, live in minutes."
             />
             <UseCaseCard
               tone="amber"
               title="AI app builder"
-              body="SMEs ship internal apps + live dashboards on the real brain — sandboxed, governed."
+              body="SMEs ship internal apps + live dashboards on the real brain, sandboxed and governed."
             />
             <UseCaseCard
               tone="indigo"
               title="Bring your own harness + tools"
-              body="Point Claude Code, Codex or Cursor at the brain — they operate on top. One MCP door, plus warehouse, object store, SaaS & internal APIs."
+              body="Point Claude Code, Codex or Cursor at the brain and they operate on top. One MCP door, plus warehouse, object store, SaaS & internal APIs."
             />
             <UseCaseCard
               tone="emerald"
@@ -1646,13 +1646,13 @@ export const deck = (K) => {
           </UseCaseGrid>
           <div className="dk-gap-sm">
             <Eyebrow tone="muted">
-              Self-learning in practice — the agent surfaces, a human approves, the brain compounds
+              Self-learning in practice. The agent surfaces, a human approves, the brain compounds
             </Eyebrow>
             <div className="ob-sl dk-gap-sm">
               <div className="ob-sl-card">
                 <div className="ob-sl-head">Agent → human</div>
                 <div className="ob-sl-bubble">
-                  Found a new entity <strong>“Gift Recipient”</strong> across 3 tables — add it to
+                  Found a new entity <strong>“Gift Recipient”</strong> across 3 tables. Add it to
                   the ontology?
                 </div>
                 <ChipRow tight className="dk-gap-sm">
@@ -1688,7 +1688,7 @@ export const deck = (K) => {
           />
           <Stack gap="tight">
             <div className="ob-band">
-              <Eyebrow tone="muted">Bring Your Own Tool — all speak one interface (MCP)</Eyebrow>
+              <Eyebrow tone="muted">Bring Your Own Tool · all speak one interface (MCP)</Eyebrow>
               <TileRow className="dk-gap-sm">
                 <Tile size="sm" mono name="ChatGPT" kind="teams" />
                 <Tile size="sm" mono name="Claude Code" kind="power users" />
@@ -1735,7 +1735,7 @@ export const deck = (K) => {
               </ChipRow>
             </div>
             <div className="ob-band">
-              <Eyebrow tone="muted">Your existing systems — connected, not replaced</Eyebrow>
+              <Eyebrow tone="muted">Your existing systems · connected, not replaced</Eyebrow>
               <ChipRow tight className="dk-gap-sm">
                 <Chip mono>Warehouse · BigQuery</Chip>
                 <Chip mono>CRM · Salesforce · HubSpot</Chip>
@@ -1746,11 +1746,11 @@ export const deck = (K) => {
               </ChipRow>
             </div>
             <div className="ob-actors">
-              <Callout tone="indigo" label="Engineering — sets rails once">
+              <Callout tone="indigo" label="Engineering · sets rails once">
                 Connects systems · defines tools + permissions · picks models. Stops being the
                 workflow bottleneck.
               </Callout>
-              <Callout tone="violet" label="Non-engineering — ships daily">
+              <Callout tone="violet" label="Non-engineering · ships daily">
                 Sales · Marketing · Ops author workflows in plain English. Safely. With analytics.
               </Callout>
             </div>
@@ -1770,7 +1770,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="What Lives In The Brain"
             eyebrowTone="indigo"
-            title="Eight kinds of memory — every shape an agent needs."
+            title="Eight kinds of memory, every shape an agent needs."
             subtitle="Schema-less and extensible, each mapped to a concrete store so the brain stays queryable, auditable, and rollback-safe."
           />
           <UseCaseGrid columns={4}>
@@ -1780,7 +1780,7 @@ export const deck = (K) => {
               title="Semantic"
               body={
                 <>
-                  Stable facts about entities — customer, product, cohort, region.
+                  Stable facts about entities: customer, product, cohort, region.
                   <div className="ob-example">“Acme Corp · T2 · Mumbai · WhatsApp-preferred”</div>
                 </>
               }
@@ -1791,7 +1791,7 @@ export const deck = (K) => {
               title="Episodic"
               body={
                 <>
-                  Time-stamped events — orders, messages, sessions, tickets.
+                  Time-stamped events: orders, messages, sessions, tickets.
                   <div className="ob-example">“Order #4821 placed · 19:42”</div>
                 </>
               }
@@ -1802,7 +1802,7 @@ export const deck = (K) => {
               title="Procedural"
               body={
                 <>
-                  How-to recipes — the workflows and playbooks agents follow.
+                  How-to recipes: the workflows and playbooks agents follow.
                   <div className="ob-example">“Win-back campaign workflow”</div>
                 </>
               }
@@ -1813,7 +1813,7 @@ export const deck = (K) => {
               title="Policy / Rules"
               body={
                 <>
-                  Brand-mandated constraints — frequency caps, channel + consent rules.
+                  Brand-mandated constraints: frequency caps, channel and consent rules.
                   <div className="ob-example">“Never message before 9am local”</div>
                 </>
               }
@@ -1883,7 +1883,7 @@ export const deck = (K) => {
             eyebrow="The Data Flywheel"
             eyebrowTone="violet"
             title="Every run is recorded. Every record is future training data."
-            subtitle="The tracing that ships today is quietly building your own training dataset — the raw material for models trained on how your company works. Built data-first, on purpose."
+            subtitle="The tracing that ships today is already building your own training dataset, the raw material for models trained on how your company works. Built data-first, on purpose."
           />
           <div className="ob-pipe">
             <StepCard
@@ -1892,7 +1892,7 @@ export const deck = (K) => {
               title="Every run captured"
               body={
                 <>
-                  Inputs, tool calls, decisions, outcome — full lineage on every agent run.
+                  Inputs, tool calls, decisions, outcome. Full lineage on every agent run.
                   <div className="ob-stage-state">● LIVE TODAY</div>
                 </>
               }
@@ -1903,7 +1903,7 @@ export const deck = (K) => {
               title="Corrections = labels"
               body={
                 <>
-                  Every human correction and approval becomes a labelled example — for free, in the flow of work.
+                  Every human correction and approval becomes a labelled example, for free, in the flow of work.
                   <div className="ob-stage-state">● LIVE TODAY</div>
                 </>
               }
@@ -1914,7 +1914,7 @@ export const deck = (K) => {
               title="Your own scoring"
               body={
                 <>
-                  Agents scored against your outcomes, not public benchmarks — ground truth only you own.
+                  Agents scored against your outcomes, not public benchmarks. Ground truth only you own.
                   <div className="ob-stage-state ob-stage-state--build">◐ IN BUILD</div>
                 </>
               }
@@ -1936,7 +1936,7 @@ export const deck = (K) => {
               title="Your own models"
               body={
                 <>
-                  Custom and smaller models tuned to your workflows — trained on the loop, run on your infrastructure.
+                  Custom and smaller models tuned to your workflows, trained on the loop and run on your infrastructure.
                   <div className="ob-stage-state ob-stage-state--next">◆ ROADMAP</div>
                 </>
               }
@@ -1947,25 +1947,25 @@ export const deck = (K) => {
               tone="emerald"
               kicker="Cost"
               title="Small models carry the routine"
-              body="Cheaper models handle the ~80% of routine work at a fraction of the token cost — the open-source future, powered by your data."
+              body="Cheaper models handle the ~80% of routine work at a fraction of the token cost. The open-source future, powered by your data."
             />
             <UseCaseCard
               tone="indigo"
               kicker="Control"
               title="Your data, your models, your infra"
-              body="Nothing trains a public model. Your models live in your environment — switch providers freely without losing what you've learned."
+              body="Nothing trains a public model. Your models live in your environment, so you switch providers freely without losing what you've learned."
             />
             <UseCaseCard
               tone="violet"
               kicker="Advantage"
               title="A dataset nobody can buy"
-              body="Minted from your own operations and corrections — the one asset a competitor can't replicate."
+              body="Minted from your own operations and corrections: the one asset a competitor can't replicate."
             />
           </UseCaseGrid>
           <div className="ob-band-violet dk-gap-sm">
-            <strong>Where we honestly are:</strong> the data layer — tracing, corrections,
-            agent-native storage — is live and accumulating in every deployment. The scoring and
-            training layers are still being built — deliberately data-first, because{' '}
+            <strong>Where we honestly are:</strong> the data layer, meaning tracing, corrections and
+            agent-native storage, is live and accumulating in every deployment. The scoring and
+            training layers are still being built, deliberately data-first, because{' '}
             <strong>capture is the scarce part</strong>; training stacks on top, with no rebuild.
           </div>
         </SlideFrame>
@@ -1981,12 +1981,12 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="The Root Cause"
             eyebrowTone="red"
-            title="Your context is scattered across every system — and no AI can see it whole."
-            subtitle="Warehouse rows, CRM fields, Slack threads, docs, tickets, sheets. Same customer, six names. No shared meaning, and no idea what's current — so AI can't give you one straight answer."
+            title="Your context is scattered across every system, and no AI can see it whole."
+            subtitle="Warehouse rows, CRM fields, Slack threads, docs, tickets, sheets. Same customer, six names. No shared meaning, and no idea what's current, so AI can't give you one straight answer."
           />
           <div className="ob-scatter diagram-svg" dangerouslySetInnerHTML={{ __html: SCATTER_SVG }} />
           <Caption className="dk-gap-sm">
-            AI assistants don't fail because the model is weak — they fail because{' '}
+            AI assistants don't fail because the model is weak. They fail because{' '}
             <em>your information is scattered and never joined up</em>. The fix is one shared memory
             that ties it together, so every answer is consistent.
           </Caption>
@@ -2005,7 +2005,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Retrieval"
             eyebrowTone="indigo"
-            title="Every agent gets the right slice — deterministic or agentic."
+            title="Every agent gets the right slice, deterministic or agentic."
             subtitle="Job-specific context packs assembled per query. Hybrid retrieval, authority-ranked, freshness-aware, policy-redacted. MCP-native envelope."
           />
           <div className="ob-retrieval">
@@ -2018,7 +2018,7 @@ export const deck = (K) => {
               <div className="ob-ret-flow">
                 {[
                   ['Query · scoped by agent role + intent', '“Next-best action for Maya” + agent capabilities + project_id'],
-                  ['Hybrid retrieval · vec + graph + keyword', 'ChromaDB embeddings · Neo4j multi-hop · Postgres FTS — fused'],
+                  ['Hybrid retrieval · vec + graph + keyword', 'ChromaDB embeddings · Neo4j multi-hop · Postgres FTS, fused'],
                   ['Authority + freshness rank', 'AgentPromoted > Document > SOR row · staleness penalty'],
                   ['Policy redact + token budget', 'RBAC filter · PII redaction · 4K/16K/32K envelope per agent'],
                   ['Context Pack → MCP response', 'Typed JSON · citation IDs · authority score · staleness ts'],
@@ -2036,7 +2036,7 @@ export const deck = (K) => {
             <div>
               <div className="ob-ret-head">
                 <Chip size="sm" tone="violet">Mode B</Chip>
-                <span className="ob-ret-name">Agentic retrieval — multi-step graph traversal</span>
+                <span className="ob-ret-name">Agentic retrieval · multi-step graph traversal</span>
                 <span className="ob-ret-when">3–6 hops · adaptive</span>
               </div>
               <div className="ob-agentic diagram-svg">
@@ -2072,8 +2072,8 @@ export const deck = (K) => {
               </ul>
             </div>
             <div className="ob-pair-col ob-pair-col--with">
-              <div className="ob-pair-label">With Synos — one governed door</div>
-              <h3>UI, AI tool, or agent — every call goes through the same gate.</h3>
+              <div className="ob-pair-label">With Synos · one governed door</div>
+              <h3>UI, AI tool, or agent, every call goes through the same gate.</h3>
               <div className="ob-pair-diagram diagram-svg" dangerouslySetInnerHTML={{ __html: GOV_SVG }} />
             </div>
           </div>
@@ -2096,18 +2096,18 @@ export const deck = (K) => {
           <div className="ob-flywheel">
             <div className="diagram-svg" dangerouslySetInnerHTML={{ __html: FLYWHEEL_SVG }} />
             <div>
-              <Eyebrow tone="muted">Three signals compound — with a human in the loop</Eyebrow>
+              <Eyebrow tone="muted">Three signals compound, with a human in the loop</Eyebrow>
               <ul className="ob-fw-list dk-gap-sm">
                 <li>
-                  <strong>The best examples</strong> — strong decision traces become labelled
+                  <strong>The best examples.</strong> Strong decision traces become labelled
                   examples of how your company should operate.
                 </li>
                 <li>
-                  <strong>The outcome signal</strong> — actions that moved the needle get
+                  <strong>The outcome signal.</strong> Actions that moved the needle get
                   reinforced; the ones that didn't get down-weighted.
                 </li>
                 <li>
-                  <strong>Human review</strong> — a person reviews a sample each week;
+                  <strong>Human review.</strong> A person reviews a sample each week;
                   disagreements become new rules in the brain.
                 </li>
               </ul>
@@ -2146,7 +2146,7 @@ export const deck = (K) => {
               </ul>
             </div>
             <div className="ob-pair-col ob-pair-col--with">
-              <div className="ob-pair-label">With Synos — System of Record</div>
+              <div className="ob-pair-label">With Synos · System of Record</div>
               <h3>Project-scoped collections. Agents write, apps + agents read.</h3>
               <div className="ob-pair-diagram diagram-svg" dangerouslySetInnerHTML={{ __html: SOR_SVG }} />
             </div>
@@ -2163,7 +2163,7 @@ export const deck = (K) => {
           <SlideHeader
             eyebrow="Safe to Build"
             eyebrowTone="indigo"
-            title="Apps ship through a sandbox — a scanner gates every build."
+            title="Apps ship through a sandbox, and a scanner gates every build."
             subtitle="Code is scanned for unsafe access and secrets, then deployed to a sandboxed URL behind the egress proxy."
           />
           <div className="ob-pair">
@@ -2178,7 +2178,7 @@ export const deck = (K) => {
               </ul>
             </div>
             <div className="ob-pair-col ob-pair-col--with">
-              <div className="ob-pair-label">With Synos — gated build pipeline</div>
+              <div className="ob-pair-label">With Synos · gated build pipeline</div>
               <h3>Build → scan → compile → sandbox URL → audit row.</h3>
               <div className="ob-pair-diagram diagram-svg" dangerouslySetInnerHTML={{ __html: BUILD_SVG }} />
             </div>
@@ -2197,7 +2197,7 @@ export const deck = (K) => {
             eyebrow="Enterprise Readiness"
             eyebrowTone="indigo"
             title="Enterprise readiness and trust."
-            subtitle="Data residency, predictable cost per decision, and reversible failure handling — built in, not bolted on."
+            subtitle="Data residency, predictable cost per decision, and reversible failure handling, built in rather than bolted on."
           />
           <UseCaseGrid>
             <UseCaseCard
@@ -2245,7 +2245,7 @@ export const deck = (K) => {
                   <ul className="ob-tpl-list">
                     <li>Review queue before anything is promoted</li>
                     <li>Contradiction detector flags conflicting rules</li>
-                    <li>History preserved — nothing silently overwritten</li>
+                    <li>History preserved, nothing silently overwritten</li>
                     <li>Per-project snapshot &amp; restore</li>
                   </ul>
                 </>
@@ -2278,7 +2278,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="violet"
               title="The brain is the moat"
-              body="Operational knowledge that defines your edge can't be rented. It compounds inside your tenant — or not at all."
+              body="Operational knowledge that defines your edge can't be rented. It compounds inside your tenant, or not at all."
             />
             <UseCaseCard
               tone="indigo"
@@ -2293,7 +2293,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="violet"
               title="Self-learning compounds"
-              body="Every run and correction accumulates in your tenant. Year-2 leverage builds; it doesn't reset with the next model."
+              body="Every run and correction accumulates in your tenant. Year two starts ahead of year one; it doesn't reset with the next model."
             />
             <UseCaseCard
               tone="amber"
@@ -2303,7 +2303,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="indigo"
               title="The post-SaaS substrate"
-              body="SaaS sold seats for the common 80%. The agent era ships your custom 20% — if you own the substrate it learns on."
+              body="SaaS sold seats for the common 80%. The agent era ships your custom 20%, if you own the substrate it learns on."
             />
           </UseCaseGrid>
           <Caption italic className="dk-gap-sm">
@@ -2340,7 +2340,7 @@ export const deck = (K) => {
             eyebrow="Appendix · where this goes"
             eyebrowTone="emerald"
             title="Today you install the layer. Then it compounds into something bigger."
-            subtitle="The layer you deploy now sits between your people, agents and systems — it becomes your data moat and, in time, an operation that largely runs itself."
+            subtitle="The layer you deploy now sits between your people, agents and systems, and it becomes your data moat and, in time, an operation that largely runs itself."
           />
           <PhaseRow>
             <PhaseCard
@@ -2354,7 +2354,7 @@ export const deck = (K) => {
               position="bridge"
               when="Compounds"
               title="Your data moat"
-              body="Every correction and trace becomes your data and training fuel — the compounding layer no generic vendor can hand you."
+              body="Every correction and trace becomes your data and training fuel: the compounding layer no generic vendor can hand you."
             />
             <PhaseCard
               badge="H3"
@@ -2365,7 +2365,7 @@ export const deck = (K) => {
             />
           </PhaseRow>
           <Caption className="dk-gap">
-            Build horizontal, deploy vertical — each team (Sales, Marketing, Ops, FinOps) is its own
+            Build horizontal, deploy vertical. Each team (Sales, Marketing, Ops, FinOps) is its own
             curve on the same layer.
           </Caption>
         </SlideFrame>
@@ -2385,9 +2385,9 @@ export const deck = (K) => {
             subtitle="Models are commodities. The brain that learns how your company works is not."
           />
           <Callout tone="violet">
-            Your moat is the <strong>feedback loop</strong> between your people, agents and systems —
+            Your moat is the <strong>feedback loop</strong> between your people, agents and systems,
             captured in your own cloud, accumulating with every run, tied to how <strong>you</strong>{' '}
-            operate. Not a dataset a competitor can buy — a loop embedded in your workflow.
+            operate. Not a dataset a competitor can buy. A loop embedded in your workflow.
           </Callout>
           <UseCaseGrid columns={4} className="dk-gap">
             <UseCaseCard
@@ -2398,7 +2398,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="amber"
               title="Private evals on your outcomes"
-              body="Measured against your business results, not public benchmarks — ground truth only you own."
+              body="Measured against your business results, not public benchmarks. Ground truth only you own."
             />
             <UseCaseCard
               tone="emerald"
@@ -2408,7 +2408,7 @@ export const deck = (K) => {
             <UseCaseCard
               tone="violet"
               title="You become the model-maker"
-              body="Only you have this data — so your domain models can beat generic ones over time."
+              body="Only you have this data, so your domain models can beat generic ones over time."
             />
           </UseCaseGrid>
         </SlideFrame>
