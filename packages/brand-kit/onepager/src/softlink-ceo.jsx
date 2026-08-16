@@ -82,7 +82,7 @@ export const onePager = (K) => {
               December CargoWise put an agentic AI workflow engine into every customer&rsquo;s pack
               and removed seat fees entirely, and a generation of AI-native platforms is being built
               with no legacy to carry. <b>AI features are becoming table stakes.</b> What separates
-              an AI-native ERP is the layer underneath — <b>a brain for each client that gets more
+              an AI-native ERP is the layer underneath: <b>a brain for each client that gets more
               accurate every week it is used</b>, and experts and customers who can build what they
               need without going through engineering.
             </>
@@ -108,7 +108,7 @@ export const onePager = (K) => {
               <div className="op-flow op-flow--new">
                 <b>A brain per client</b> that understands how that forwarder actually operates.
                 Agents read from it and act. Your experts correct them in plain English.{' '}
-                <b>The brain keeps the correction — permanently, for everyone.</b>
+                <b>The brain keeps the correction, permanently, for everyone.</b>
               </div>
             </div>
           </Columns>
@@ -134,7 +134,7 @@ export const onePager = (K) => {
               body={
                 <>
                   Your customers describe the workflow, report or dashboard they need in plain
-                  English and get it — <b>on their own data, inside Logi-Sys, without a
+                  English and get it, <b>on their own data, inside Logi-Sys, without a
                   developer</b>. Custom requirements stop becoming custom projects. It is a tier,
                   not a feature, and it upsells into <b>5,000 businesses already on the
                   platform</b>.
@@ -186,7 +186,7 @@ export const onePager = (K) => {
                 <>
                   A long-lived product carries knowledge that lives in a few people rather than
                   anywhere readable. <b>Captured once, it becomes something a new joiner can ask</b>{' '}
-                  — so the platform gets easier to change rather than harder, without anything being
+                  so the platform gets easier to change rather than harder, without anything being
                   rewritten.
                 </>
               }
@@ -197,7 +197,7 @@ export const onePager = (K) => {
         <Callout scale="print" tone="violet" label="What it takes from you">
           Read access to the systems you already run, and <b>one person part time</b> as the point
           of contact. Nothing to migrate, nothing to clean up, nobody to hire, and not one existing
-          system replaced. <b>It runs inside your own environment — no client data moves
+          system replaced. <b>It runs inside your own environment, and no client data moves
           anywhere.</b>
         </Callout>
 
@@ -215,7 +215,7 @@ export const onePager = (K) => {
             takes `.op-asset-h` and not the layer callout's inline heading. */}
         <Callout scale="print" tone="indigo" label="The part nobody else can buy">
           <b className="op-asset-h">
-            You are sitting on the largest record of how Indian trade actually moves — and today
+            You are sitting on the largest record of how Indian trade actually moves, and today
             none of it compounds.
           </b>
           A model trained on the internet knows what a bill of lading is. It does not know how{' '}
@@ -253,7 +253,7 @@ export const onePager = (K) => {
               body={
                 <>
                   A user asks why a charge appeared on an invoice. The agent answers correctly from
-                  the ERP — <b>and misses that this client has a standing waiver</b> that was never
+                  the ERP, <b>and misses that this client has a standing waiver</b> that was never
                   written down anywhere.
                 </>
               }
@@ -276,8 +276,8 @@ export const onePager = (K) => {
               title="It becomes knowledge"
               body={
                 <>
-                  That exception enters <b>that client&rsquo;s brain</b>. Every answer after it —
-                  every user, every channel, including the customer&rsquo;s own portal — already
+                  That exception enters <b>that client&rsquo;s brain</b>. Every answer after it,
+                  every user, every channel, including the customer&rsquo;s own portal, already
                   knows.
                 </>
               }
@@ -309,7 +309,7 @@ export const onePager = (K) => {
             <OutcomeCard
               tone="violet"
               title="A brain for your product team"
-              body="What was decided, why, and what has already been tried — so a PRD starts from institutional memory rather than from whoever remembers."
+              body="What was decided, why, and what has already been tried, so a PRD starts from institutional memory rather than from whoever remembers."
             />
             <OutcomeCard
               tone="violet"
@@ -319,7 +319,7 @@ export const onePager = (K) => {
             <OutcomeCard
               tone="violet"
               title="Agents your customers build"
-              body="A forwarder describes the report or automation they want in their own words, and gets it — inside Logi-Sys, on their own data. Custom work without custom work."
+              body="A forwarder describes the report or automation they want in their own words, and gets it, inside Logi-Sys, on their own data. Custom work without custom work."
             />
           </div>
         </div>
@@ -370,7 +370,7 @@ export const onePager = (K) => {
               Tell us something a customer asked your team last month that took three people and two
               systems to answer. We will come back with how the brain would have answered it, and
               what it would have learned by doing so. <b>Everything the system is taught stays
-              yours</b> — AI of your own, built on how Softlink and your customers actually work,
+              yours</b>. AI of your own, built on how Softlink and your customers actually work,
               and it never leaves your environment.
             </>
           }

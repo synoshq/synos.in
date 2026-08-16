@@ -56,7 +56,7 @@ export const ctoOnePager = (K, c) => {
   return {
     title: c.title,
     pages: [
-      <OnePagerPage key="p1" gap="snug">
+      <OnePagerPage key="p1" gap="tight" className="op-dense">
         <OnePagerHeader
           rule="solid"
           brand={<>Syn<span className="sk-a">OS</span></>}
@@ -135,7 +135,7 @@ export const ctoOnePager = (K, c) => {
         {foot}
       </OnePagerPage>,
 
-      <OnePagerPage key="p2" gap="snug">
+      <OnePagerPage key="p2" gap="tight" className="op-dense">
         <OnePagerHeader
           rule="solid"
           brand={<>Syn<span className="sk-a">OS</span></>}

@@ -483,3 +483,98 @@
   font-weight: 700;
   color: var(--sk-ink-2);
 }
+
+/*
+ * The CTO pages run at the dense register too, and this was found late and by measurement.
+ *
+ * Both CTO ports were built before the 1123px page-height check existed, and shipped 170 to 225px
+ * over A4 per page while their hand-written originals fit at 1123/1128. The kit's print scale is
+ * simply larger than the source's, and the CTO brief is the densest thing in the one-pager corpus:
+ * two full pages of outcome cards, layer callouts, four steps, three objections, a brain grid, a
+ * question list, six agent cards and two money boxes.
+ *
+ * Same trade as the dense deck one-pagers: the type holds and the spacing gives.
+ */
+.op-dense .sk-outcome {
+  padding: 6px 9px;
+}
+.op-dense .sk-outcome-title {
+  margin-bottom: 2px;
+}
+.op-dense .sk-callout {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.op-dense .sk-step--print {
+  padding: 8px 10px;
+}
+.op-dense .sk-step-grid {
+  gap: 2mm;
+}
+.op-dense .op-two,
+.op-dense .op-three {
+  gap: 2mm;
+}
+.op-dense .sk-ph-sub {
+  margin-top: 4px;
+}
+.op-dense .op-ask {
+  padding: 0.4mm 0 0.4mm 2.4mm;
+}
+
+/* Second pass. Padding alone recovered about 170px of the 250 needed; the rest comes from leading,
+   which is the other lever that does not touch type size. 1.45 -> 1.34 on the two blocks that carry
+   most of the page's lines. Still well clear of the point where a printed line starts to crowd. */
+.op-dense .sk-outcome-body,
+.op-dense .sk-callout {
+  line-height: 1.34;
+}
+.op-dense .op-lay-h {
+  margin-bottom: 0.2mm;
+}
+.op-dense .sk-sh-sub {
+  margin-top: 1px;
+}
+.op-dense .op-row {
+  padding: 0.6mm 0;
+}
+.op-dense .sk-cta {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+/* Third and last pass, and the only one that touches type. 8.6 -> 8.1px on the card body and the
+   callout, which is where the hand-written CTO pages already sit (`.oc .od` is 8.3px there, and its
+   objection cards are smaller still), so this is parity with the source rather than shrinking past
+   it. Everything above the body holds: the headline, the section headings and the card titles do
+   not move, which is the same contract the deck's compact register keeps. */
+.op-dense .sk-outcome-body,
+.op-dense .sk-callout {
+  font-size: 8.1px;
+}
+/* The last few pixels, on page one only. Both CTO pages carry their longest block there (four
+   outcome cards over three objection cards), and the objection card is the one place a slightly
+   tighter measure costs nothing, because each is a single quoted question and its answer. */
+.op-dense .op-three .sk-outcome {
+  padding: 5px 8px;
+}
+
+/* The last five pixels, on retail-multistore-cto page one. It carries the same blocks as its
+   sibling plus a longer stakes paragraph, so it lands 5px over where the other lands exactly. The
+   four-step walkthrough is the block with the most air left in it. */
+.op-dense .sk-step-grid {
+  gap: 1.6mm;
+}
+.op-dense .sk-step-text {
+  line-height: 1.36;
+}
+
+/* The joint line under the two layer callouts. `Caption` has no print scale, so on a one-pager it
+   renders at the deck's size and lands about twice the height of the body around it. On the CTO
+   page it sits between two callouts and a section heading and read as a pull quote, which it is
+   not: it is a connecting sentence. */
+.op-dense .sk-caption {
+  font-size: 8.4px;
+  line-height: 1.4;
+  margin-top: 1.4mm;
+}

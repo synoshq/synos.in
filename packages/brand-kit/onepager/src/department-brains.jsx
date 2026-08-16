@@ -63,7 +63,7 @@ export const onePager = (K) => {
   const BUILD = [
     ['01', 'Connect', 'Point it at the systems that team already uses. Nothing is copied out or moved.'],
     ['02', 'It reads everything', 'Spreadsheets and databases alongside documents, tickets and threads.'],
-    ['03', 'It maps how you work', 'Your customers, your products, your terms — including where the same thing has five names.'],
+    ['03', 'It maps how you work', 'Your customers, your products, your terms, including where the same thing has five names.'],
     ['04', 'Your experts correct it', 'The people who know the rules fix what’s wrong, in plain English. It remembers.'],
     ['05', 'It stays current', 'New data, new decisions and new corrections keep folding in, so it doesn’t go stale.'],
   ]
@@ -71,7 +71,7 @@ export const onePager = (K) => {
   const DIFF = [
     ['It goes and looks', 'It reads your live systems directly, so answers reflect today, not the day someone last exported a file.'],
     ['It knows the joins', 'The same customer under four different IDs across four systems is one customer here. Search can’t do that.'],
-    ['It learns from corrections', 'Fix it once and it stays fixed — for everyone, including whoever joins next year.'],
+    ['It learns from corrections', 'Fix it once and it stays fixed, for everyone, including whoever joins next year.'],
     ['It captures the unwritten', 'The exceptions and judgment calls that were never in a document get captured from the people who hold them.'],
   ]
 
@@ -90,7 +90,7 @@ export const onePager = (K) => {
             <>
               A Product Brain. A Sales Brain. A Marketing Brain. Each one connects to the systems
               that team already runs on, learns how that team actually works, and then answers their
-              questions and does their repetitive work. Built in weeks, not quarters — and your data
+              questions and does their repetitive work. Built in weeks rather than quarters, and your data
               never leaves your own servers.
             </>
           }
@@ -99,8 +99,8 @@ export const onePager = (K) => {
         <Callout scale="print" tone="red">
           <b>Your people are already using AI. It just doesn&rsquo;t know anything about your
           company.</b> So every question starts from zero, every answer has to be checked, and the
-          one person who knows the real rules keeps getting interrupted. The usual fix — gather the
-          documents into one place and search them — goes stale the week after you build it, and it
+          one person who knows the real rules keeps getting interrupted. The usual fix, gathering the
+          documents into one place and searching them, goes stale the week after you build it, and it
           was never the hard part. The hard part is everything that was never written down.
         </Callout>
 
@@ -165,20 +165,20 @@ export const onePager = (K) => {
               <div className="op-tile-n">Hand over the repetitive work</div>
               <div className="op-tile-d">
                 The weekly report, the reconciliation, the chasing. It{' '}
-                <b>proposes first and acts once trusted</b> — and runs without anyone present.
+                <b>proposes first and acts once trusted</b>, and runs without anyone present.
               </div>
             </div>
             <div className="op-tile">
               <div className="op-tile-n">Build their own tools</div>
               <div className="op-tile-d">
-                Someone describes the dashboard or the checklist they need and it gets built —{' '}
+                Someone describes the dashboard or the checklist they need and it gets built,{' '}
                 <b>no ticket, no waiting on engineering</b>.
               </div>
             </div>
           </div>
         </div>
 
-        <Callout scale="print" tone="indigo" label="Why this is different from putting your documents in one place · the part that usually fails quietly">
+        <Callout scale="print" tone="indigo" label="Why this is different from putting your documents in one place · the part that usually fails without anyone noticing">
           <div className="op-four">
             {DIFF.map(([n, d]) => (
               <div className="op-brain-f" key={n}>
@@ -202,7 +202,7 @@ export const onePager = (K) => {
           title={<>Pick one team. One brain. <span className="sk-a">Four to six weeks.</span></>}
           body={
             <>
-              We agree what success looks like before we start — usually that the team uses it daily
+              We agree what success looks like before we start, usually that the team uses it daily
               without anyone from engineering in the loop. You keep the brain and everything built on
               it, whether or not you continue.
             </>

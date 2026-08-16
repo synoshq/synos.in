@@ -8,7 +8,7 @@ import { ctoOnePager } from './_cto-template.jsx'
 
 export const onePager = (K) =>
   ctoOnePager(K, {
-    title: 'SynOS for Distributed Financial Services Networks — technical brief',
+    title: 'SynOS for Distributed Financial Services Networks · technical brief',
     tag: 'For distributed financial services networks',
     lede: (
       <>
@@ -107,7 +107,7 @@ export const onePager = (K) =>
     ownLine: (
       <>
         <b>And it stays yours.</b> The same environment captures traces, corrections and evals as your
-        team works — the training ground for fine-tuned models you own, on your own infrastructure.
+        team works, the training ground for fine-tuned models you own, on your own infrastructure.
       </>
     ),
     ctaTitle: <>Pick one number you want moved. <span className="sk-a">Six weeks.</span></>,
