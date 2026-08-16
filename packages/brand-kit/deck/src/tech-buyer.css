@@ -519,3 +519,10 @@
   max-height: 100%;
   min-height: 320px;
 }
+
+/* The payoff row on the outcome slide. BigTypeSlide centres its children, which is right for the
+   headline and wrong for three cards of running prose: a centred paragraph in a wide box reads as
+   thin no matter how much is in it. */
+.tb-payoff .sk-usecase {
+  text-align: left;
+}

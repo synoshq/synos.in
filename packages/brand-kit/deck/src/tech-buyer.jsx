@@ -65,6 +65,7 @@ const ORDER = [
   'hp-who-authors',
   'hp-agents-act',
   'hp-earning-autonomy',
+  'hp-evals',
   'hp-the-gate',
   'hp-learning',
   'hp-where-it-leads',
@@ -82,6 +83,7 @@ const ORDER = [
   'memory-types',
   'retrieval-deep',
   'oss-question',
+  'oss-operate-or-build',
   'oss-comparison',
   'compounding-flywheel',
   'operational-data',
@@ -1177,7 +1179,68 @@ export const deck = (K) => {
       ),
     },
 
-    /* ── 19 · Hard part 4 · the gate ──────────────────────────────────────
+    /* ── 19 · The eval loop ───────────────────────────────────────────────
+     * NEW 2026-08-16, at Anoop's ask. The deck mentioned evals eleven times in passing — an "eval
+     * harness" in a bullet, "eval sets your team owns" in a list — and no slide owned the loop.
+     * That is a gap in the argument rather than a gap in the deck: the previous slide promotes an
+     * agent from run-it-yourself to autonomous, and a technical buyer's immediate question is what
+     * decides a promotion. Without an answer the ladder is a claim about trust with no mechanism
+     * under it.
+     *
+     * Placed here for that reason, directly after the ladder and before the gate, rather than next
+     * to the learning loop at slide 21. The learning loop is about what accumulates; this is about
+     * what gets checked, and the ladder is what it is checking.
+     *
+     * THE STATUS LINE IS NOT DECORATION. The one-pagers already say in public that eval is IN BUILD
+     * while trace and label are live, and this deck goes to the buyer who will ask. Claiming a
+     * finished auto-eval loop here would contradict an artifact already in the market and would be
+     * the easiest thing on the slide to catch. */
+    {
+      id: 'hp-evals',
+      node: (
+        <SlideFrame stage={false} density="compact">
+          <SlideHeader
+            eyebrow="Hard Part 4 · What Decides A Promotion"
+            eyebrowTone="indigo"
+            title="An agent moves up when it can prove it got better."
+            subtitle="Promotion is not a judgement call someone makes on a good week. It is a score against cases your own team wrote, replayed on every change, and a regression sends the agent back down the ladder."
+          />
+          <StepGrid columns={4}>
+            <StepCard
+              num="01"
+              title="Your team writes the cases"
+              body="Ten or twenty real ones with the answer you would have given. Not a public benchmark, and not ours: the exceptions that make your business yours are exactly what a general eval cannot contain."
+            />
+            <StepCard
+              num="02"
+              title="Every change gets replayed"
+              body="A new skill, an edited rule, a swapped model. All of it runs against the whole set before anything reaches production, so you see the effect of a change rather than discovering it."
+            />
+            <StepCard
+              num="03"
+              title="The score gates the promotion"
+              body="Assist to reviewed to autonomous, each rung behind a threshold your team sets. A drop blocks the promotion and flags which cases moved."
+            />
+            <StepCard
+              num="04"
+              title="Corrections become new cases"
+              body="When someone fixes an answer in the flow of work, that becomes a case the agent is measured on from then on. The set grows out of the work rather than out of a spec exercise."
+            />
+          </StepGrid>
+          <Callout tone="amber" className="dk-gap-sm">
+            <strong>Where this actually is.</strong> Tracing and correction capture run in production
+            today; every run and every fix is already recorded against the case that produced it. The
+            replay harness and threshold gating are in build, and scoring against measured business
+            outcomes rather than a written answer is the piece after that.{' '}
+            <strong>The order is deliberate:</strong> capture is the part you cannot backfill, and an
+            eval set built on six months of real corrections is worth more than one written in a
+            week before there was anything to correct.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 20 · Hard part 4 · the gate ──────────────────────────────────────
      * The autonomy ladder: four rungs, each taller than the last, which is the source drawing a
      * staircase with inline `min-height`. That rising geometry IS the point — it is the one place
      * in the deck where the layout carries meaning rather than decorating it — so it is kept, as
@@ -1728,11 +1791,30 @@ export const deck = (K) => {
           line2={<>on a <span className="sk-gradient-text">brain that compounds</span>.</>}
         >
           {/* Three across, so UseCaseGrid rather than Columns — `Columns` is a two-up and wrapped
-              these 2 + 1, which reads as one payoff being less important than the other two. */}
-          <UseCaseGrid className="dk-gap">
-            <UseCaseCard tone="indigo" title="Higher sales" body="Faster follow-up, better-armed reps, cleaner pipeline." />
-            <UseCaseCard tone="amber" title="More leads" body="More campaigns & content, steered by live performance." />
-            <UseCaseCard tone="emerald" title="Leaner ops" body="Repetitive work automated; knowledge that never leaves." />
+              these 2 + 1, which reads as one payoff being less important than the other two.
+
+              Anoop asked whether this slide earns its place. It does: it is the last thing before
+              the demo, and a statement of the outcome is the right thing to hand the room there.
+              What it did NOT earn was three pills reading "Higher sales / More leads / Leaner ops",
+              which are the vaguest lines in the deck and could sit under any vendor's logo. Each
+              now names the specific change this layer makes to that team, in the deck's own terms.
+              Left-aligned, because centred text in a wide box is what made them read as thin. */}
+          <UseCaseGrid className="dk-gap tb-payoff">
+            <UseCaseCard
+              tone="indigo"
+              title="Sales"
+              body="Every rep works from what the team already learned about this account, not from whatever they can find in the CRM."
+            />
+            <UseCaseCard
+              tone="amber"
+              title="Marketing"
+              body="Campaigns built and steered by the people who own the number, without an analyst in the loop for every question."
+            />
+            <UseCaseCard
+              tone="emerald"
+              title="Ops"
+              body="The repetitive work runs without anyone present, and the judgement calls stay in the business when people leave."
+            />
           </UseCaseGrid>
         </BigTypeSlide>
       ),
@@ -1982,7 +2064,7 @@ export const deck = (K) => {
             eyebrow="Compared to the open-source stack"
             eyebrowTone="violet"
             title="“Why not just use the open-source graph memory?”"
-            subtitle="Three unrelated categories get named in that one question, and the honest answer differs per category. Star counts: GitHub API, 2026-08-15 — they rot fast, so they are dated."
+            subtitle="A graph engine is one component of one layer. The question compares it to an environment, and it names three unrelated categories while doing so. The honest answer differs per category. Star counts: GitHub API, 2026-08-15, and they rot fast."
           />
           <Matrix
             variant="rules"
@@ -2055,7 +2137,113 @@ export const deck = (K) => {
       ),
     },
 
-    /* ── 36 · The honest comparison ───────────────────────────────────────
+    /* ── 36 · Operate, or build? ──────────────────────────────────────────
+     * RESTORED 2026-08-16. This slide exists in the hand-written deck and was missing from the
+     * port, which is how the port came to be 42 sections against that deck's 43. It was added to
+     * the source after the content for this file was extracted, so it was never dropped during the
+     * port; it was simply never in it, and "42 of 42, complete" was reported without checking the
+     * source count again.
+     *
+     * It is also the slide Anoop asked for when he said the open-source pair does not capture that
+     * a graph layer solves one piece. A capability matrix hides that: every row gets a tick and the
+     * reader concludes the systems are comparable. This one asks a different question per stage —
+     * does the system do this, or does your team — which is the only framing under which "component"
+     * and "environment" stop looking like the same category.
+     *
+     * The source's closing callout is written to an internal reader ("we should not build more
+     * connectors to catch anyone"). The judgement is kept and the audience is fixed: what a buyer
+     * needs from that paragraph is which half is automated for them and what it costs, both said
+     * plainly, including the part that is worse. */
+    {
+      id: 'oss-operate-or-build',
+      node: (
+        <SlideFrame stage={false} density="compact" className="tb-overfull">
+          <SlideHeader
+            eyebrow="Compared to the open-source stack"
+            eyebrowTone="violet"
+            title="Operate, or build?"
+            subtitle="Two systems can both say “knowledge graph from your data” and mean wildly different amounts of your engineering. Split the work into the five stages any memory system has to cover, and ask per stage: does the system do it, or does your team?"
+          />
+          <Matrix
+            variant="rules"
+            labelWidth="150px"
+            columns={[
+              { label: 'Graphiti' },
+              { label: 'Semantica' },
+              { label: 'cognee' },
+              { label: 'Synos' },
+            ]}
+            rows={[
+              {
+                label: 'Acquisition',
+                sub: 'who fetches the data?',
+                cells: [
+                  { text: <><strong>Nothing.</strong> You hand it episodes. Zero connectors.</> },
+                  { text: '23 ingestor classes; creds as constructor args; a folder watcher for scheduling. A library, not a platform.' },
+                  { text: <>Datasets plus a <code>sync</code> module. Ingestion is first-class; the connector estate is thin.</> },
+                  { text: <><strong>57 connector types</strong>, 5 credential surfaces, watermarks, freshness sweeps, schedulers.</>, tone: 'emerald' },
+                ],
+              },
+              {
+                label: 'Extraction',
+                sub: 'automatic, or declare a schema?',
+                cells: [
+                  { text: <>Automatic, but <strong>prescribed</strong>: you hand-write Pydantic entity and edge classes.</> },
+                  { text: <><strong>Infers</strong> an ontology from what it found. The only genuinely LLM-free path in the field.</> },
+                  { text: <>Reconciles against an OWL/RDF vocabulary you supply.</> },
+                  { text: <><strong>Prescribed at domain grain</strong>: YAML domain templates per brain type, no Python.</> },
+                ],
+              },
+              {
+                label: 'Maintenance',
+                sub: 'dedup, merge, invalidation',
+                cells: [
+                  { text: 'Fully automatic and central to the design.' },
+                  { text: 'Modules exist; the engineer invokes them.' },
+                  { text: 'Automatic inside the pipeline.' },
+                  { text: <>Automatic dedup; promotion to the brain is <strong>human-gated</strong>, deliberately.</> },
+                ],
+              },
+              {
+                label: 'Retrieval',
+                sub: 'auto-routed, or hand-picked?',
+                cells: [
+                  { text: 'You choose one of 16 recipes.' },
+                  { text: 'You compose it yourself.' },
+                  { text: <><strong>Auto-routed</strong> across 20 retriever classes.</> },
+                  { text: <><strong>Auto-routed</strong>: intent classifier plus query analyser, then RRF over vector, keyword and graph.</>, tone: 'emerald' },
+                ],
+              },
+              {
+                label: 'Improvement',
+                sub: 'better without a human?',
+                cells: [
+                  { text: 'No.' },
+                  { text: 'No.' },
+                  { text: <><strong>Yes.</strong> <code>memify</code> folds feedback, frequency and agent traces back in as weights.</>, tone: 'amber' },
+                  { text: <>Reflection and learning extraction, but writes are <strong>human-gated by design</strong>. The trade we made.</> },
+                ],
+              },
+            ]}
+          />
+          <Callout tone="violet" className="dk-gap-sm">
+            <strong>Two operating systems here, and they automate opposite halves.</strong> We
+            automate <strong>acquisition</strong>: credentials, connectors, scheduling, freshness,
+            isolation. Getting data in safely, per tenant, on a schedule is solved here and nowhere
+            else in this table. cognee automates <strong>cognition</strong>: zero-infra defaults,
+            auto-routed retrieval, a self-improvement loop. Graphiti is a component by choice;
+            Semantica is a toolkit that reads as a platform.{' '}
+            <strong>Where that leaves you:</strong> a graph engine is one row of this table, and the
+            other four are the ones that decide whether your team ships or maintains. The honest
+            mark against us is cost to first working graph. cognee is <code>pip install</code>; we
+            are twelve or more compose services. That tax is real, and it buys the tenancy and
+            governance none of them have.
+          </Callout>
+        </SlideFrame>
+      ),
+    },
+
+    /* ── 37 · The honest comparison ───────────────────────────────────────
      * Ours / theirs, and the right column is the point of the slide: six places named competitors
      * are genuinely ahead. Every claim carries its matrix reference, which is what makes the slide
      * checkable rather than assertive — those refs are carried verbatim as mono captions rather
