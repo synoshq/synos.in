@@ -1,0 +1,334 @@
+/*
+ * synos.in shared stylesheet.
+ *
+ * Tokens are the brand kit's, ported verbatim from
+ * packages/brand-kit/src/styles/tokens.css so a diagram built once works on the site and in a deck.
+ * Decision recorded 2026-08-21: the site adopts the kit rather than keeping its own palette.
+ *
+ * Two values changed on purpose against the old site palette:
+ *   body face   DM Sans          ->  Inter                (kit decision A, 2026-08-13)
+ *   gradient    indigo -> teal   ->  indigo -> violet-ink (kit decision B, 2026-08-13)
+ *
+ * The gradient is an accessibility fix that also looks better. White on the old ramp measured
+ * 4.47:1 at the light end and 3.45:1 at the 80% opacity the brain block used, a WCAG AA failure on
+ * the most important object in the deck. Ending on --sk-violet-ink takes white to 10.95:1, and
+ * raises perceptual travel 2.5x because it finally moves lightness, which is the channel the eye
+ * reads a gradient by. Teal survives as an accent token and no longer appears in the gradient.
+ *
+ * The light end (#6366f1) is still the binding constraint at 4.47:1, so every white-on-gradient
+ * surface paints at full opacity via --sk-on-brand, never at 0.8 or 0.88, and body copy never sits
+ * on the light end.
+ *
+ * No page may write a literal colour. If one is needed it is promoted here first.
+ */
+
+:root {
+  /* ── Surfaces ─────────────────────────────────────────────────────────── */
+  --sk-bg: #f1f5f9;
+  --sk-surface: #ffffff;
+  --sk-surface-2: #f8fafc;
+  --sk-border: #e2e8f0;
+  --sk-border-2: #cbd5e1;
+
+  /* ── Text ─────────────────────────────────────────────────────────────── */
+  --sk-ink: #0f172a;
+  --sk-ink-2: #334155;
+  --sk-ink-3: #475569;
+  /*
+   * --sk-muted and --sk-dim are SURFACE-ONLY. Measured 2026-08-21 by tools/contrast-gate.mjs:
+   *   --sk-muted on --sk-surface  4.76  passes
+   *   --sk-muted on --sk-bg       4.34  FAILS AA for text
+   *   --sk-dim   on --sk-bg       2.34  FAILS
+   * The brand kit never hit this because a deck paints text on white cards; a web page paints it
+   * straight onto the page background. On --sk-bg, secondary text uses --sk-ink-3 (6.92).
+   */
+  --sk-muted: #64748b;
+  --sk-dim: #94a3b8;
+
+  /* ── Brand hues ───────────────────────────────────────────────────────── */
+  --sk-indigo: #4338ca;
+  --sk-indigo-2: #6366f1;
+  --sk-indigo-3: #818cf8;
+  --sk-indigo-bg: #eef2ff;
+  --sk-indigo-br: #c7d2fe;
+  --sk-indigo-ink: #312e81;
+  --sk-indigo-tint: #e0e7ff;
+
+  --sk-violet: #7c3aed;
+  --sk-violet-bg: #f5f3ff;
+  --sk-violet-br: #ddd6fe;
+  --sk-violet-ink: #4c1d95;
+
+  --sk-emerald: #047857;
+  --sk-emerald-bg: #ecfdf5;
+  --sk-emerald-br: #6ee7b7;
+  --sk-emerald-ink: #065f46;
+
+  --sk-amber: #92400e;
+  --sk-amber-2: #f59e0b;
+  --sk-amber-bg: #fffbeb;
+  --sk-amber-br: #fcd34d;
+  --sk-amber-br-2: #fde68a;
+  --sk-amber-ink: #78350f;
+
+  --sk-red: #b91c1c;
+  --sk-red-2: #ef4444;
+  --sk-red-bg: #fef2f2;
+  --sk-red-br: #fecaca;
+  --sk-red-ink: #991b1b;
+
+  --sk-teal: #0d9488;
+  --sk-teal-2: #14b8a6;
+  --sk-teal-bg: #f0fdfa;
+  --sk-teal-br: #99f6e4;
+
+  /*
+   * --sk-indigo-2 is a FILL, never a text colour. Measured 2026-08-21: 4.08 on --sk-bg and 4.47 on
+   * --sk-surface, so it fails AA for body text on both. The live site used it for every eyebrow and
+   * every inline link, which is where this was found. Brand-coloured text uses --sk-indigo (7.21 on
+   * bg, 7.90 on surface). The gradient and the icon fills keep --sk-indigo-2.
+   */
+  --sk-brand-text: var(--sk-indigo);
+
+  --sk-grad: linear-gradient(135deg, var(--sk-indigo-2), var(--sk-violet-ink));
+  --sk-on-brand: #ffffff;
+  --sk-on-brand-scrim: rgba(255, 255, 255, 0.18);
+
+  /* ── Elevation ────────────────────────────────────────────────────────── */
+  --sk-shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.04);
+  --sk-shadow-brand: 0 6px 18px rgba(99, 102, 241, 0.3);
+
+  /* ── Type ─────────────────────────────────────────────────────────────────
+   * Instrument Serif has one weight, no bold, and loses its thin strokes first under low gamma,
+   * so it must not render below 24px. On the site that restricts it to h1 and .sk-display.
+   * Everything else, including h2 and every card title, reads --sk-font-body.
+   */
+  --sk-font-display: 'Instrument Serif', Georgia, serif;
+  --sk-font-body: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --sk-font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Spacing scale ────────────────────────────────────────────────────────
+   * Eight steps, ~1.41 apart above 8px, sitting on the clusters the kit measured rather than on an
+   * imposed grid.
+   */
+  --sk-space-1: 4px;
+  --sk-space-2: 6px;
+  --sk-space-3: 8px;
+  --sk-space-4: 12px;
+  --sk-space-5: 16px;
+  --sk-space-6: 22px;
+  --sk-space-7: 32px;
+  --sk-space-8: 48px;
+
+  /* ── Web only ─────────────────────────────────────────────────────────────
+   * The site needs a page rhythm a fixed-size slide does not. Not in the kit, and not needed there.
+   */
+  --sk-radius: 16px;
+  --sk-radius-sm: 12px;
+  --sk-measure: 62ch;
+  --sk-container: 1120px;
+  --sk-section-y: 112px;
+}
+
+@media (max-width: 768px) {
+  :root { --sk-section-y: 72px; }
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sk-font-body);
+  background: var(--sk-bg);
+  color: var(--sk-ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, .sk-display {
+  font-family: var(--sk-font-display);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  font-size: clamp(40px, 6vw, 68px);
+}
+
+h2 {
+  font-family: var(--sk-font-body);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  font-size: clamp(26px, 3.4vw, 38px);
+  margin-bottom: var(--sk-space-5);
+}
+
+h3 {
+  font-family: var(--sk-font-body);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--sk-space-3);
+}
+
+p { max-width: var(--sk-measure); }
+
+a:not([class]) {
+  color: var(--sk-brand-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+
+.sk-container { max-width: var(--sk-container); margin: 0 auto; padding: 0 24px; }
+.sk-section { padding: var(--sk-section-y) 0; position: relative; }
+.sk-section--alt { background: var(--sk-surface-2); }
+
+.sk-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-6); }
+.sk-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-6); }
+.sk-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sk-space-5); }
+@media (max-width: 900px) {
+  .sk-grid-2, .sk-grid-3 { grid-template-columns: 1fr; }
+  .sk-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) { .sk-grid-4 { grid-template-columns: 1fr; } }
+
+/* ── Type helpers ─────────────────────────────────────────────────────────── */
+
+.sk-eyebrow {
+  font-family: var(--sk-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sk-brand-text);
+  margin-bottom: var(--sk-space-5);
+}
+
+/* Default to the on-background colour, since that is where most page copy sits. Inside a card,
+ * .sk-card below steps them back to --sk-muted, which passes on white. */
+.sk-lead { font-size: 17px; line-height: 1.7; color: var(--sk-ink-2); max-width: var(--sk-measure); }
+.sk-sub { font-size: 15px; line-height: 1.7; color: var(--sk-ink-3); max-width: var(--sk-measure); }
+.sk-note { font-family: var(--sk-font-mono); font-size: 12px; color: var(--sk-ink-3); }
+
+/* ── Components ───────────────────────────────────────────────────────────── */
+
+.sk-card {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius);
+  padding: var(--sk-space-7) var(--sk-space-6);
+  box-shadow: var(--sk-shadow-card);
+}
+.sk-card p, .sk-card .sk-sub, .sk-card .sk-note { font-size: 14px; line-height: 1.7; color: var(--sk-muted); }
+
+.sk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sk-space-3);
+  font-family: var(--sk-font-body);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--sk-radius-sm);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 14px 28px;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+.sk-btn--primary { background: var(--sk-indigo); color: var(--sk-on-brand); }
+.sk-btn--primary:hover { background: var(--sk-indigo-ink); box-shadow: var(--sk-shadow-brand); }
+.sk-btn--secondary { background: transparent; color: var(--sk-ink); border-color: var(--sk-border-2); }
+.sk-btn--secondary:hover { border-color: var(--sk-indigo-2); color: var(--sk-brand-text); }
+
+.sk-chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sk-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--sk-ink-2);
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border-2);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+/* Status chips. Every forward-looking claim on the site carries one of these. */
+.sk-chip--live { color: var(--sk-emerald-ink); border-color: var(--sk-emerald-br); background: var(--sk-emerald-bg); }
+.sk-chip--build { color: var(--sk-amber-ink); border-color: var(--sk-amber-br); background: var(--sk-amber-bg); }
+.sk-chip--roadmap { color: var(--sk-ink-3); }
+
+/* ── Chrome, injected from public/partials ────────────────────────────────── */
+
+.sk-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px; padding: 0 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--sk-ink);
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+.sk-nav.is-scrolled { background: rgba(241, 245, 249, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.sk-nav-left { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--sk-indigo-2); min-height: 44px; }  /* icon fill, not text */
+.sk-nav-word { font-family: var(--sk-font-body); font-weight: 600; font-size: 19px; letter-spacing: -0.02em; color: var(--sk-ink); }
+.sk-nav-links { display: flex; gap: 28px; align-items: center; }
+.sk-nav-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 500; color: var(--sk-muted); text-decoration: none; transition: color 0.15s; }
+.sk-nav-links a:hover { color: var(--sk-ink); }
+.sk-nav-right { display: flex; align-items: center; gap: 12px; }
+.sk-nav-right .sk-btn { min-height: 40px; padding: 9px 18px; font-size: 14px; }
+.sk-nav-toggle { display: none; background: none; border: none; color: var(--sk-ink); cursor: pointer; padding: 6px; }
+@media (max-width: 940px) {
+  .sk-nav { background: rgba(241, 245, 249, 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .sk-nav-toggle { display: inline-flex; }
+  .sk-nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    flex-direction: column; gap: 0;
+    background: var(--sk-bg); border-bottom: 1px solid var(--sk-border);
+    padding: 8px 24px 16px; box-shadow: var(--sk-shadow-card);
+  }
+  .sk-nav-links.is-open { display: flex; }
+  .sk-nav-links a { padding: 12px 0; font-size: 15px; border-bottom: 1px solid var(--sk-border); }
+}
+
+.sk-footer { padding: var(--sk-space-8) 24px; border-top: 1px solid var(--sk-border); }
+.sk-footer-inner { max-width: var(--sk-container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: var(--sk-space-6); flex-wrap: wrap; }
+.sk-footer a { color: var(--sk-muted); text-decoration: none; font-size: 13px; transition: color 0.15s; }
+.sk-footer a:hover { color: var(--sk-ink); }
+.sk-footer-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.sk-footer-word { font-weight: 600; font-size: 15px; color: var(--sk-muted); }
+.sk-footer-copy { font-size: 12px; color: var(--sk-ink-3); margin-top: var(--sk-space-6); text-align: center; }
+@media (max-width: 768px) {
+  .sk-footer-inner { flex-direction: column; text-align: center; }
+  .sk-footer-group { justify-content: center; }
+}
+
+/* ── Motion and focus ─────────────────────────────────────────────────────── */
+
+.sk-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.sk-reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sk-reveal { transition: none; opacity: 1; transform: none; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+}
+
+a:focus-visible, button:focus-visible, .sk-btn:focus-visible {
+  outline: 2px solid var(--sk-indigo-2);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sk-skip {
+  position: absolute; top: -100px; left: 0; z-index: 1000;
+  background: var(--sk-indigo); color: var(--sk-on-brand);
+  padding: 12px 24px; font-weight: 600; font-size: 14px; border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+.sk-skip:focus { top: 0; }
