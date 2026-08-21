@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>One environment, three phases</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 05 · "One environment, three phases"
+ *
+ * The trap this figure exists to avoid: three phases drawn as three cards reads as three products,
+ * or worse as a roadmap slide. The whole claim is that it is ONE environment doing a second job, so
+ * the capture rail runs continuously underneath all three and is the only element that spans the
+ * full width. Continuity is drawn, not asserted.
+ *
+ * Status is on the face of every phase, including the two that are honest about not being built. A
+ * roadmap chip on your own diagram buys more credibility than a claim does.
+ *
+ * Form: a horizontal band read left to right. FIG 01 fans, FIG 02 compares, FIG 03 descends.
+ */
+
+body { padding: 88px 24px; }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── phases ─────────────────────────────────────────────────────────────── */
+.phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--sk-ink); }
+.ph { padding: var(--sk-space-6) var(--sk-space-6) var(--sk-space-7) 0; }
+.ph + .ph { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
+
+.ph-when { font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.ph-t { font-family: var(--sk-font-body); font-size: 19px; font-weight: 600;
+  letter-spacing: -0.015em; color: var(--sk-ink); line-height: 1.25; margin-bottom: var(--sk-space-4); }
+.ph-d { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); margin-bottom: var(--sk-space-6); }
+
+.ph-list { display: grid; gap: var(--sk-space-3); }
+.ph-item { display: grid; grid-template-columns: 1fr auto; gap: var(--sk-space-4);
+  align-items: baseline; padding-bottom: var(--sk-space-3); border-bottom: 1px solid var(--sk-border); }
+.ph-item span:first-child { font-size: 13px; line-height: 1.5; color: var(--sk-ink-2); }
+
+.st { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+.st i { width: 5px; height: 5px; border-radius: 999px; }
+.st-live  { color: var(--sk-emerald-ink); } .st-live  i { background: var(--sk-emerald); }
+.st-build { color: var(--sk-amber-ink); }   .st-build i { background: var(--sk-amber-2); }
+.st-next  { color: var(--sk-muted); }       .st-next  i { background: var(--sk-border-2); }
+
+/* ── the rail ───────────────────────────────────────────────────────────── */
+/* The only element that spans all three columns. That is the argument: one environment, doing a
+ * second job, not three products sold in sequence. */
+.rail {
+  margin-top: var(--sk-space-7);
+  border: 1px solid var(--sk-indigo-br); background: var(--sk-indigo-bg);
+  border-radius: 3px; padding: var(--sk-space-5) var(--sk-space-6);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--sk-space-6); align-items: center;
+}
+.rail-t { font-family: var(--sk-font-body); font-size: 14.5px; font-weight: 600; color: var(--sk-indigo-ink); }
+.rail-d { margin-top: var(--sk-space-2); font-size: 13px; line-height: 1.6; color: var(--sk-ink-2); }
+.rail-k { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-indigo);
+  white-space: nowrap; letter-spacing: 0.04em; }
+.rail-span { display: block; margin-top: var(--sk-space-3); height: 3px; border-radius: 2px;
+  background: var(--sk-grad); opacity: 0.9; }
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-6);
+  border-top: 1px solid var(--sk-border); display: flex; align-items: baseline;
+  justify-content: space-between; gap: var(--sk-space-7); flex-wrap: wrap;
+  font-size: 14px; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .phases { grid-template-columns: 1fr; }
+  .ph + .ph { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; }
+  .ph { padding-right: 0; }
+  .rail { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <figcaption class="fig-head">
+    <span class="fig-num">FIG. 05</span>
+    <span class="fig-title">One environment, three phases</span>
+    <p class="fig-lede">The work that unblocks your teams today is the work that makes AI of your own possible later. Same install, same rails, second job. Nothing new gets deployed between one phase and the next.</p>
+  </figcaption>
+
+  <div class="phases">
+    <div class="ph">
+      <p class="ph-when">phase one &middot; today</p>
+      <p class="ph-t">Your people get unblocked</p>
+      <p class="ph-d">Engineering wires the layer into your systems once. After that ops, finance and support build and run the agents doing critical work, from the AI tools they already use.</p>
+      <div class="ph-list">
+        <div class="ph-item"><span>Systems profiled where they sit</span><span class="st st-live"><i></i>live</span></div>
+        <div class="ph-item"><span>Governed access, sandboxes, audit</span><span class="st st-live"><i></i>live</span></div>
+        <div class="ph-item"><span>Non-engineers authoring skills</span><span class="st st-live"><i></i>live</span></div>
+      </div>
+    </div>
+
+    <div class="ph">
+      <p class="ph-when">phase two &middot; the same install</p>
+      <p class="ph-t">You train AI of your own</p>
+      <p class="ph-d">The corrections your experts make while doing that work become an eval suite, then a training set, scored against your outcomes rather than a public benchmark.</p>
+      <div class="ph-list">
+        <div class="ph-item"><span>Traces and corrections captured</span><span class="st st-live"><i></i>live</span></div>
+        <div class="ph-item"><span>Private evals on your outcomes</span><span class="st st-build"><i></i>in build</span></div>
+        <div class="ph-item"><span>Fine-tuning and distillation</span><span class="st st-next"><i></i>roadmap</span></div>
+      </div>
+    </div>
+
+    <div class="ph">
+      <p class="ph-when">phase three &middot; where it leads</p>
+      <p class="ph-t">The routine work runs itself</p>
+      <p class="ph-d">Ordinary work running through agents and the software they wrote, on models you own, with your experts at the edge of what AI can do rather than in the middle of what it cannot.</p>
+      <div class="ph-list">
+        <div class="ph-item"><span>Autonomy earned per function</span><span class="st st-build"><i></i>in build</span></div>
+        <div class="ph-item"><span>Small models carrying the routine</span><span class="st st-next"><i></i>roadmap</span></div>
+        <div class="ph-item"><span>Reinforcement from real outcomes</span><span class="st st-next"><i></i>roadmap</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div>
+      <p class="rail-t">Capture runs underneath all three, from week one</p>
+      <p class="rail-d">Every run traced, every correction reviewed, everything accumulating on your own infrastructure. It is the part that cannot be backfilled, which is why it ships first and why the later phases need no rebuild.</p>
+      <span class="rail-span"></span>
+    </div>
+    <p class="rail-k">one install<br>one set of rails<br>nothing new to deploy</p>
+  </div>
+
+  <p class="fig-foot">
+    <span>Phase one is a good business on its own. It is also the only way to earn the position the rest depends on.</span>
+    <span><b>The order is forced.</b></span>
+  </p>
+</figure>
+
+</body>
+</html>
