@@ -119,14 +119,14 @@
         <p class="eyebrow">Trust</p>
         <h1>Security</h1>
         <p class="meta">Last updated: 5 August 2026</p>
-        <p class="lede">SynOS is <strong>self-hosted by default</strong>. In our standard deployment the software runs inside the customer's own infrastructure, and customer data never reaches Synos Labs LLP. This page describes how the platform is built, what we do and do not hold, and where our responsibility begins and ends.</p>
+        <p class="lede">SynOS is <strong>self-hosted by default</strong>. In our standard deployment the software runs inside the customer's own infrastructure, and customer data never reaches SynOS Labs LLP. This page describes how the platform is built, what we do and do not hold, and where our responsibility begins and ends.</p>
 
         <div class="callout">
             <p class="callout-title">Posture at a glance</p>
-            <p><strong>Default deployment:</strong> single instance inside the customer's own cloud or datacentre. Zero egress of customer data to Synos Labs LLP.</p>
+            <p><strong>Default deployment:</strong> single instance inside the customer's own cloud or datacentre. Zero egress of customer data to SynOS Labs LLP.</p>
             <p><strong>Raw data stays put:</strong> SynOS extracts context from your systems of record; the underlying records remain in those systems.</p>
             <p><strong>Model-agnostic:</strong> you choose the model provider and supply the credentials. Customer content is not used to train models.</p>
-            <p><strong>Certifications:</strong> Synos Labs LLP does not currently hold SOC 2 or ISO 27001. We do not claim otherwise. See <a href="#compliance">Compliance status</a>.</p>
+            <p><strong>Certifications:</strong> SynOS Labs LLP does not currently hold SOC 2 or ISO 27001. We do not claim otherwise. See <a href="#compliance">Compliance status</a>.</p>
         </div>
 
         <div class="toc">
@@ -153,9 +153,9 @@
         <table>
             <thead><tr><th>Mode</th><th>Runs on</th><th>Who holds customer data</th><th>Sub&shy;processors touching customer data</th></tr></thead>
             <tbody>
-                <tr><td><strong>Self-hosted</strong><br>(default, and the mode used for our current enterprise engagements)</td><td>Customer's own cloud account, VPC, or datacentre</td><td>The customer. Synos Labs LLP has no access unless the customer explicitly grants it for support.</td><td>None</td></tr>
-                <tr><td><strong>Dedicated managed</strong></td><td>A dedicated instance operated by Synos Labs LLP on the customer's behalf</td><td>Synos Labs LLP as a processor, under the terms of the signed agreement</td><td>See <a href="/subprocessors">Subprocessors</a></td></tr>
-                <tr><td><strong>Hosted multi-tenant</strong></td><td>Synos Labs LLP-operated infrastructure at <code>app.synos.in</code>. Used for evaluation; no production enterprise workload runs here.</td><td>Synos Labs LLP as a processor, with per-tenant isolation</td><td>See <a href="/subprocessors">Subprocessors</a></td></tr>
+                <tr><td><strong>Self-hosted</strong><br>(default, and the mode used for our current enterprise engagements)</td><td>Customer's own cloud account, VPC, or datacentre</td><td>The customer. SynOS Labs LLP has no access unless the customer explicitly grants it for support.</td><td>None</td></tr>
+                <tr><td><strong>Dedicated managed</strong></td><td>A dedicated instance operated by SynOS Labs LLP on the customer's behalf</td><td>SynOS Labs LLP as a processor, under the terms of the signed agreement</td><td>See <a href="/subprocessors">Subprocessors</a></td></tr>
+                <tr><td><strong>Hosted multi-tenant</strong></td><td>SynOS Labs LLP-operated infrastructure at <code>app.synos.in</code>. Used for evaluation; no production enterprise workload runs here.</td><td>SynOS Labs LLP as a processor, with per-tenant isolation</td><td>See <a href="/subprocessors">Subprocessors</a></td></tr>
             </tbody>
         </table>
         </div>
@@ -174,7 +174,7 @@
         <ul>
             <li>SynOS is model- and harness-agnostic. The customer selects which model providers are used.</li>
             <li>In self-hosted deployments the customer supplies their own provider credentials or endpoints, including private and in-VPC endpoints where available. Model traffic goes from the customer's deployment to the customer's chosen provider.</li>
-            <li>Synos Labs LLP does not train models on customer content, and does not use customer content to improve models for other customers.</li>
+            <li>SynOS Labs LLP does not train models on customer content, and does not use customer content to improve models for other customers.</li>
             <li>Where SynOS calls a commercial model provider, it uses that provider's business or enterprise API endpoints, under which submitted content is not used for model training.</li>
         </ul>
 
@@ -192,7 +192,7 @@
         <ul>
             <li>All traffic to and between SynOS services runs over HTTPS/TLS, with automatic certificate provisioning.</li>
             <li>All credential material the platform writes is encrypted at rest.</li>
-            <li>In environments Synos Labs LLP operates, data at rest is additionally encrypted by the underlying cloud platform by default. In self-hosted deployments, storage-level encryption is configured by the customer as part of their own infrastructure.</li>
+            <li>In environments SynOS Labs LLP operates, data at rest is additionally encrypted by the underlying cloud platform by default. In self-hosted deployments, storage-level encryption is configured by the customer as part of their own infrastructure.</li>
             <li>Credentials are referenced by agents, not exposed to them: an agent invokes a tool, and the tool layer holds the credential.</li>
         </ul>
 
@@ -206,11 +206,11 @@
         </ul>
 
         <h2 id="infra">7. Infrastructure and tenancy</h2>
-        <p>Self-hosted deployments run wherever the customer chooses &mdash; their cloud account, their region, their network controls, their backup regime. Synos Labs LLP operates no infrastructure in that path.</p>
-        <p>Synos Labs LLP-operated environments (the hosted multi-tenant evaluation environment and any dedicated managed instances) run on Google Cloud Platform. Hosting region for a specific deployment is confirmed on request and can be fixed contractually.</p>
+        <p>Self-hosted deployments run wherever the customer chooses &mdash; their cloud account, their region, their network controls, their backup regime. SynOS Labs LLP operates no infrastructure in that path.</p>
+        <p>SynOS Labs LLP-operated environments (the hosted multi-tenant evaluation environment and any dedicated managed instances) run on Google Cloud Platform. Hosting region for a specific deployment is confirmed on request and can be fixed contractually.</p>
 
         <h2 id="corporate">8. Corporate security</h2>
-        <p>Synos Labs LLP is an early-stage company and describes its internal controls plainly rather than dressing them up:</p>
+        <p>SynOS Labs LLP is an early-stage company and describes its internal controls plainly rather than dressing them up:</p>
         <ul>
             <li>Company email, documents and calendars run on Google Workspace with multi-factor authentication enforced on business accounts.</li>
             <li>Company endpoints use full-disk encryption and automatic screen lock.</li>
@@ -229,12 +229,12 @@
         </ul>
 
         <h2 id="continuity">10. Business continuity</h2>
-        <p>A self-hosted deployment keeps running inside the customer's infrastructure independently of Synos Labs LLP. It has no runtime dependency on our servers, our licence server, or our continued operation.</p>
+        <p>A self-hosted deployment keeps running inside the customer's infrastructure independently of SynOS Labs LLP. It has no runtime dependency on our servers, our licence server, or our continued operation.</p>
         <p>For enterprise engagements we can additionally agree continuity arrangements &mdash; including source and artefact escrow and air-gapped continuity terms &mdash; in the signed agreement. Raise it during contracting and we will scope it with you.</p>
 
         <h2 id="compliance">11. Compliance status</h2>
         <div class="note">
-            <p><strong>Synos Labs LLP does not currently hold SOC 2 Type I or II, ISO 27001, or any equivalent certification, and does not claim to.</strong> We would rather tell you that up front than have it surface in a questionnaire.</p>
+            <p><strong>SynOS Labs LLP does not currently hold SOC 2 Type I or II, ISO 27001, or any equivalent certification, and does not claim to.</strong> We would rather tell you that up front than have it surface in a questionnaire.</p>
         </div>
         <ul>
             <li>We complete customer security questionnaires, architecture reviews and vendor-risk assessments as part of onboarding.</li>
@@ -242,7 +242,7 @@
             <li>Because the default deployment is self-hosted, most of the vendor-risk surface that certifications are designed to cover stays inside the customer's own control &mdash; their infrastructure, their network, their retention, their access reviews.</li>
             <li>Formal certification will follow customer demand. If it is a contractual requirement for you, tell us and we will scope the timeline.</li>
         </ul>
-        <p>Synos Labs LLP processes personal data in line with India's Digital Personal Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025. See our <a href="/privacy">Privacy Policy</a>.</p>
+        <p>SynOS Labs LLP processes personal data in line with India's Digital Personal Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025. See our <a href="/privacy">Privacy Policy</a>.</p>
 
         <h2 id="reporting">12. Reporting a vulnerability</h2>
         <p>Email <a href="mailto:security@synos.in">security@synos.in</a> with enough detail to reproduce the issue. We acknowledge reports within three business days and will keep you updated until it is resolved.</p>
@@ -250,7 +250,7 @@
 
         <hr>
         <h2 id="contact" style="margin-top:40px;">Contact</h2>
-        <p>Synos Labs LLP<br>Varthur, Gunjur, Bengaluru, Karnataka 560087, India</p>
+        <p>SynOS Labs LLP<br>Varthur, Gunjur, Bengaluru, Karnataka 560087, India</p>
         <p>Security: <a href="mailto:security@synos.in">security@synos.in</a><br>General: <a href="mailto:hello@synos.in">hello@synos.in</a></p>
 
         <div class="trust-nav">
@@ -284,7 +284,7 @@
                 <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
         </div>
-        <p class="footer-copy">&copy; 2026 Synos Labs LLP. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 SynOS Labs LLP. All rights reserved.</p>
     </footer>
 <script>
     const navToggle=document.getElementById('nav-toggle');

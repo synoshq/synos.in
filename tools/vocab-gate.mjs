@@ -17,9 +17,24 @@ const MIGRATED = new Set(
 const inScope = rel => MIGRATED.has('/' + rel.replace(/^public\//, ''))
 
 
-// [pattern, allowed-contexts] — a hit is a failure only when no allowed context matches
-// the window around it.
-const RULES = [
+// Two rule sets, because they have different scopes.
+//
+// ALWAYS runs on every page, migrated or not. These are names, and a name being wrong on a page
+// nobody has rewritten yet is still wrong on the live site. They are also cheap to keep right.
+//
+// SCOPED runs only on pages in migrated.json. These are style rules whose fixes would be thrown
+// away on a page scheduled for rewrite.
+//
+// [pattern, allowed-contexts] — a hit is a failure only when no allowed context matches the window.
+const ALWAYS = [
+  // migrated Jul 14, still shipping until 2026-08-21
+  [/Agent-Native Operating Layer/gi, []],
+  [/Context Brain/gi, []],
+  // canonical casing decided 2026-08-21. Bare word only: synos.in and synos-landing are fine.
+  [/(?<![\w./-])Synos(?![\w.-])/g, []],
+]
+
+const SCOPED = [
   [/self-learning/gi, [/Self-Learning Loop/i]],
   [/shared brain/gi, []],
   [/hive mind/gi, []],
@@ -27,11 +42,6 @@ const RULES = [
   [/\bagent OS\b/gi, []],
   [/operating system/gi, []],
   [/solo founder/gi, []],
-  // migrated Jul 14, never swept
-  [/Agent-Native Operating Layer/gi, []],
-  [/Context Brain/gi, []],
-  // canonical casing decided 2026-08-21
-  [/\bSynos\b/g, []],
 ]
 
 async function htmlFiles(dir) {
@@ -50,10 +60,10 @@ let checked = 0, total = 0
 for (const file of await htmlFiles(PUBLIC)) {
   const rel = relative(ROOT, file)
   total++
-  if (!inScope(rel)) continue
-  checked++
+  const scoped = inScope(rel)
+  if (scoped) checked++
   const text = await visibleTextOf(file)
-  for (const [re, allow] of RULES) {
+  for (const [re, allow] of scoped ? [...ALWAYS, ...SCOPED] : ALWAYS) {
     for (const m of text.matchAll(re)) {
       const window = text.slice(Math.max(0, m.index - 40), m.index + 60)
       if (allow.some(a => a.test(window))) continue
@@ -63,8 +73,8 @@ for (const file of await htmlFiles(PUBLIC)) {
 }
 
 if (failures.length) {
-  console.error(`vocab gate: ${failures.length} failure(s) across ${checked} of ${total} pages in scope\n`)
+  console.error(`vocab gate: ${failures.length} failure(s) · names on all ${total} pages, style rules on ${checked}\n`)
   for (const f of failures) console.error('  ' + f)
   process.exit(1)
 }
-console.log(`vocab gate: clean · ${checked} of ${total} pages in scope`)
+console.log(`vocab gate: clean · names checked on all ${total} pages, style rules on ${checked}`)
