@@ -1,7 +1,8 @@
-node_modules/
-.vercel/
-.DS_Store
-serve.py
 
+.DS_Store
+.shots/
+.vercel/
 # Headless session transcripts
 docs/plans/*-session.log
+node_modules/
+serve.py
