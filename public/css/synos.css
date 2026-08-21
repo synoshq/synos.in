@@ -316,6 +316,74 @@ a:not([class]) {
   .sk-footer-group { justify-content: center; }
 }
 
+/* ── Page furniture ───────────────────────────────────────────────────────── */
+/* These started life inside index.html. They moved here the moment a second page needed them,
+ * which is the only way sixteen hand-written pages stay in one visual register. */
+
+/* Interior pages open shorter than the homepage: the reader arrived on purpose. */
+.sk-pagehero { padding: 152px 0 var(--sk-space-8); }
+.sk-pagehero h1 { max-width: 22ch; }
+.sk-pagehero .sk-lead { margin-top: var(--sk-space-6); }
+.sk-crumb {
+  font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--sk-ink-3); margin-bottom: var(--sk-space-5);
+}
+.sk-crumb a { color: var(--sk-ink-3); text-decoration: none; }
+.sk-crumb a:hover { color: var(--sk-brand-text); }
+.sk-crumb span { color: var(--sk-ink-3); margin: 0 8px; }   /* a glyph is text, so it measures like text */
+
+.sk-sechead { margin-bottom: var(--sk-space-8); }
+.sk-sechead h2 { max-width: 22ch; }
+.sk-sechead .sk-lead { margin-top: var(--sk-space-5); }
+.sk-more { margin-top: var(--sk-space-7); font-size: 14px; font-weight: 600;
+  color: var(--sk-brand-text); text-decoration: none; display: inline-block; }
+.sk-more:hover { text-decoration: underline; }
+
+/* A ledger of named things: name, what it does, and an honest status. Used for the six
+ * capabilities, the eight memory kinds, and the guardrail inventory. */
+.sk-stack { border-top: 1px solid var(--sk-ink); }
+.sk-stack-row { display: grid; grid-template-columns: 208px minmax(0, 1fr) 108px;
+  gap: var(--sk-space-6); align-items: baseline;
+  padding: var(--sk-space-5) 0; border-bottom: 1px solid var(--sk-border); }
+.sk-stack-n { font-family: var(--sk-font-body); font-size: 15px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--sk-ink); max-width: none; }
+.sk-stack-n small { display: block; margin-top: 2px; font-family: var(--sk-font-mono);
+  font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; color: var(--sk-ink-3); }
+.sk-stack-d { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+.sk-stack-s { justify-self: end; display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap; font-family: var(--sk-font-mono); font-size: 9.5px;
+  letter-spacing: 0.1em; text-transform: uppercase; }
+.sk-stack-s i { width: 5px; height: 5px; border-radius: 999px; }
+.sk-s-live  { color: var(--sk-emerald-ink); } .sk-s-live  i { background: var(--sk-emerald); }
+.sk-s-build { color: var(--sk-amber-ink); }   .sk-s-build i { background: var(--sk-amber-2); }
+.sk-s-next  { color: var(--sk-muted); }       .sk-s-next  i { background: var(--sk-border-2); }
+@media (max-width: 820px) {
+  .sk-stack-row { grid-template-columns: minmax(0,1fr) auto; row-gap: var(--sk-space-3); }
+  .sk-stack-d { grid-column: 1 / -1; }
+}
+
+/* Two columns of ownership: who sets something once, and who works inside it every day. */
+.sk-split { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-8); }
+.sk-split-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: var(--sk-space-4); max-width: none;
+  color: var(--sk-ink-3); }
+.sk-split-h.sk-is-brand { color: var(--sk-indigo); }
+.sk-split-t { font-family: var(--sk-font-body); font-size: 19px; font-weight: 600;
+  letter-spacing: -0.015em; color: var(--sk-ink); margin-bottom: var(--sk-space-5); max-width: none; }
+.sk-split ul { list-style: none; display: grid; gap: 0; }
+.sk-split li { padding: var(--sk-space-4) 0; border-bottom: 1px solid var(--sk-border);
+  font-size: 14px; line-height: 1.6; color: var(--sk-ink-2); }
+.sk-split-f { margin-top: var(--sk-space-5); font-size: 13.5px; line-height: 1.6;
+  color: var(--sk-muted); max-width: none; }
+@media (max-width: 820px) { .sk-split { grid-template-columns: 1fr; gap: var(--sk-space-8); } }
+
+/* The closing block. Centred, two buttons, nothing else. */
+.sk-cta { text-align: center; }
+.sk-cta h2 { max-width: 20ch; margin-left: auto; margin-right: auto; }
+.sk-cta .sk-lead { margin: var(--sk-space-5) auto 0; }
+.sk-cta-row { display: flex; gap: var(--sk-space-4); justify-content: center; flex-wrap: wrap;
+  margin-top: var(--sk-space-7); }
+
 /* ── Embedded figures ─────────────────────────────────────────────────────── */
 /* Figures are authored standalone in /figures/ and embedded wherever they are needed, so one figure
  * has one source and cannot drift between the pages that use it. The frame starts at a plausible
@@ -329,7 +397,7 @@ a:not([class]) {
 }
 .sk-figframe figcaption {
   margin-top: var(--sk-space-4);
-  font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--sk-dim);
+  font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--sk-ink-3);
 }
 @media (prefers-reduced-motion: reduce) { .sk-figframe iframe { transition: none; } }
 

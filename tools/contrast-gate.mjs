@@ -18,8 +18,10 @@ const T = {
   bg: '#f1f5f9', surface: '#ffffff', surface2: '#f8fafc',
   ink: '#0f172a', ink2: '#334155', ink3: '#475569', muted: '#64748b', dim: '#94a3b8',
   indigo: '#4338ca', indigo2: '#6366f1', indigoInk: '#312e81', violetInk: '#4c1d95',
+  indigoBg: '#eef2ff',
   emeraldInk: '#065f46', emeraldBg: '#ecfdf5',
   amberInk: '#78350f', amberBg: '#fffbeb',
+  redInk: '#991b1b',
   border2: '#cbd5e1',
   white: '#ffffff',
 }
@@ -43,6 +45,18 @@ const PAIRS = [
   ['in-build chip',               T.amberInk,   T.amberBg,   4.5],
   ['footer copy ink-3 on page',   T.ink3,       T.bg,        4.5],
   ['hairline border-2 on page',   T.border2,    T.bg,        1.2],
+
+  // Added in phase 4, when the platform pages introduced these. The small mono labels are the
+  // reason --sk-dim is no longer used for text anywhere: at 9.5px it is body text by every
+  // measure that matters, and it fails on both backgrounds.
+  ['small mono ink-3 on page',    T.ink3,       T.bg,        4.5],
+  ['small mono ink-3 on alt',     T.ink3,       T.surface2,  4.5],
+  ['mono cell ink-2 on alt',      T.ink2,       T.surface2,  4.5],
+  ['core band ink on indigo-bg',  T.indigoInk,  T.indigoBg,  4.5],
+  ['core cell ink-2 on surface',  T.ink2,       T.surface,   4.5],
+  ['rung label indigo on alt',    T.indigo,     T.surface2,  4.5],
+  ['hard-part note amber on alt', T.amberInk,   T.bg,        4.5],
+  ['queue conflict red on surf',  T.redInk,     T.surface,   4.5],
 ]
 
 let failed = 0

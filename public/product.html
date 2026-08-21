@@ -1,976 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product — SynOS</title>
-    <meta name="description" content="SynOS architecture: Human-Agent Operating Layer + guardrailed tools. The Living Company Brain, graduated trust, automatic connectors. Bring your own agent framework. Self-hosted.">
-    <meta property="og:image" content="https://synos.in/img/synos-og-unblock.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Product — The Human-Agent Operating Layer — SynOS">
-    <meta name="twitter:description" content="Six pillars: self-improving Company Brain, compounding skills, agent-native storage, safe build & deploy, access control, traces. Self-hosted. Build your AI product on it.">
+<!-- @partial head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<!-- @endpartial head -->
+    <title>Product | SynOS</title>
+    <meta name="description" content="What installs when SynOS installs: a company brain profiled from your own systems, governed tools every caller passes through, a place your team builds agents and apps, and a loop that turns corrections into durable behaviour. Self-hosted, model agnostic, harness agnostic.">
+    <meta property="og:title" content="Product | SynOS">
+    <meta property="og:description" content="One layer under every AI tool your teams already use. Six capabilities, one governed door, your infrastructure.">
+    <meta property="og:url" content="https://synos.in/product">
+    <meta property="og:image" content="https://synos.in/img/og/home.png">
+    <meta name="twitter:title" content="Product | SynOS">
+    <meta name="twitter:description" content="One layer under every AI tool your teams already use. Six capabilities, one governed door, your infrastructure.">
     <link rel="canonical" href="https://synos.in/product">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
     <style>
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-        :root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--surface:#FFFFFF;--border:#E5E5E3;--border-accent:rgba(99,102,241,0.2);--text:#1A1A1A;--text-secondary:#4A4A4A;--text-muted:#71717A;--text-dim:#A1A1AA;--accent:#6366F1;--accent-hover:#5558E6;--accent-bg:rgba(99,102,241,0.06);--teal:rgba(45,212,191,1);--teal-bg:rgba(45,212,191,0.06);--teal-border:rgba(45,212,191,0.2);--shadow-md:0 4px 12px rgba(0,0,0,0.06);--shadow-lg:0 8px 30px rgba(0,0,0,0.08);--shadow-accent:0 4px 20px rgba(99,102,241,0.15);--font-display:'Instrument Serif',Georgia,serif;--font-body:'DM Sans',-apple-system,sans-serif;--font-mono:'JetBrains Mono',monospace;}
-        html{scroll-behavior:smooth;}
-        body{font-family:var(--font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-        h1,h2{font-family:var(--font-display);font-weight:400;letter-spacing:-0.02em;line-height:1.15;}
-        h1{font-size:clamp(36px,5vw,52px);margin-bottom:20px;}
-        h2{font-size:clamp(28px,3.5vw,40px);margin-bottom:16px;}
-        h3{font-family:var(--font-body);font-size:17px;font-weight:600;color:var(--text);margin-bottom:8px;}
-        .container{max-width:1120px;margin:0 auto;padding:0 24px;}
-        .section{padding:120px 0;}
-        .section--alt{background:var(--bg-alt);}
-        .section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:12px;}
-        .section-sub{font-size:16px;line-height:1.7;color:var(--text-muted);max-width:640px;margin-bottom:40px;}
+    /* ─────────────────────────────────────────────────────────────────────────
+     * Product. The hub: what is in the layer, what each piece does, and where to read more.
+     * It carries the only screenshots on the site, because a reader who has come this far has
+     * earned the right to see the thing rather than another diagram of it.
+     * ───────────────────────────────────────────────────────────────────────── */
 
-        /* Nav */
-        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:64px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-        .nav-left{display:flex;align-items:center;gap:10px;text-decoration:none;}
-        .nav-logo-text{font-family:var(--font-display);font-size:22px;color:var(--text);letter-spacing:-0.02em;}
-        .nav-links{display:flex;gap:32px;}
-        .nav-links a{font-size:14px;font-weight:500;color:var(--text-muted);text-decoration:none;transition:color 0.15s;}
-        .nav-links a:hover,.nav-links a.active{color:var(--text);}
-        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-body);font-weight:600;font-size:15px;border-radius:10px;text-decoration:none;transition:all 0.15s;border:none;cursor:pointer;}
-        .btn--primary{background:var(--accent);color:#FFF;padding:14px 28px;}
-        .btn--primary:hover{background:var(--accent-hover);box-shadow:var(--shadow-accent);transform:translateY(-1px);}
-        .nav .btn--primary{padding:10px 20px;font-size:14px;}
-        .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
-        .nav-right{display:flex;align-items:center;gap:12px;}
+    .plate { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
+    .plate > div { padding: var(--sk-space-7) var(--sk-space-6) var(--sk-space-7) 0; }
+    .plate > div + div { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
+    .plate b { display: block; font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; line-height: 1.15;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
+    .plate span { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); display: block; }
+    @media (max-width: 780px) {
+      .plate { grid-template-columns: 1fr; }
+      .plate > div { padding-right: 0; }
+      .plate > div + div { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; }
+    }
 
-        /* Hero */
-        .hero-page{padding:140px 0 48px;text-align:center;}
-        .hero-page .eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:16px;}
-        .hero-page p.hero-sub{font-size:17px;line-height:1.7;color:var(--text-secondary);max-width:680px;margin:0 auto 40px;}
+    /* ── the gallery ─────────────────────────────────────────────────────── */
+    /* Captures are shown at their own aspect ratio inside a plain frame. No browser chrome, no
+     * perspective, no floating device. The screenshot is the evidence and dressing it up reads
+     * as compensating for it. */
+    .gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-8) var(--sk-space-7); }
+    .gal-lead { grid-column: 1 / -1; }
+    .gal figure { margin: 0; }
+    .gal-frame { display: block; border: 1px solid var(--sk-border-2); border-radius: var(--sk-radius-sm);
+      overflow: hidden; background: var(--sk-surface); box-shadow: var(--sk-shadow-card); }
+    .gal-frame img { display: block; width: 100%; height: auto; }
+    .gal h3 { font-size: 16.5px; letter-spacing: -0.015em;
+      margin: var(--sk-space-5) 0 var(--sk-space-3); }
+    .gal p { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 820px) { .gal { grid-template-columns: 1fr; } }
 
-        /* ===== ARCHITECTURE STACK (v6.2) ===== */
-        .arch-stack{max-width:880px;margin:32px auto 0;display:flex;flex-direction:column;gap:0;}
-        .arch-band{padding:20px 24px;border:1px solid var(--border);}
-        .arch-band-label{font-family:var(--font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;color:var(--text-muted);}
-        .arch-band-items{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-        .arch-pill{padding:6px 14px;font-family:var(--font-mono);font-size:12px;font-weight:500;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--text-secondary);}
-        .arch-band--agents{background:var(--teal-bg);border-color:rgba(13,148,136,0.25);border-radius:14px 14px 0 0;}
-        .arch-band--agents .arch-band-label{color:#0D9488;}
-        .arch-band--agents .arch-pill{background:rgba(13,148,136,0.06);border-color:rgba(13,148,136,0.2);color:#0D9488;}
-        .arch-band--data{background:var(--bg-alt);border-radius:0 0 14px 14px;}
-        .arch-band--data .arch-pill{background:var(--surface);border-color:var(--border);color:var(--text-secondary);}
+    /* ── the three tiers ─────────────────────────────────────────────────── */
+    /* Drawn in HTML rather than as a figure, because it is an inventory with a top and a bottom
+     * and reads better as bands than as boxes joined by arrows. */
+    .tiers { border: 1px solid var(--sk-border-2); border-radius: var(--sk-radius-sm);
+      overflow: hidden; background: var(--sk-surface); box-shadow: var(--sk-shadow-card); }
+    .tier { padding: var(--sk-space-6); }
+    .tier + .tier { border-top: 1px solid var(--sk-border); }
+    .tier--core { background: var(--sk-indigo-bg); }
+    .tier-h { display: flex; justify-content: space-between; gap: var(--sk-space-5);
+      flex-wrap: wrap; margin-bottom: var(--sk-space-5);
+      font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--sk-ink-3); }
+    .tier-h p { max-width: none; }
+    .tier--core .tier-h { color: var(--sk-indigo-ink); }
+    .cells { display: flex; flex-wrap: wrap; gap: var(--sk-space-3); }
+    .cell { font-family: var(--sk-font-mono); font-size: 11.5px; color: var(--sk-ink-2);
+      background: var(--sk-surface-2); border: 1px solid var(--sk-border);
+      border-radius: 4px; padding: 7px 11px; }
+    .tier--core .cell { background: var(--sk-surface); border-color: var(--sk-indigo-br); }
+    .rail { margin-top: var(--sk-space-5); padding-top: var(--sk-space-4);
+      border-top: 1px dashed var(--sk-indigo-br); display: flex; flex-wrap: wrap;
+      gap: var(--sk-space-5); font-family: var(--sk-font-mono); font-size: 10.5px;
+      letter-spacing: 0.04em; color: var(--sk-indigo-ink); }
+    .rail p { max-width: none; }
 
-        .arch-connector{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);letter-spacing:0.06em;text-align:center;padding:10px 0;background:transparent;}
+    /* ── the five hard parts ─────────────────────────────────────────────── */
+    .hard { border-top: 1px solid var(--sk-ink); }
+    .hp { display: grid; grid-template-columns: 44px minmax(0, 1fr) 260px;
+      gap: var(--sk-space-6); align-items: baseline;
+      padding: var(--sk-space-6) 0; border-bottom: 1px solid var(--sk-border); }
+    .hp-n { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-ink-3); max-width: none; }
+    .hp-t { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink);
+      margin-bottom: var(--sk-space-3); max-width: none; }
+    .hp-d { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
+    .hp-m { margin-top: var(--sk-space-4); font-family: var(--sk-font-mono); font-size: 11px;
+      line-height: 1.6; color: var(--sk-amber-ink); max-width: none; }
+    .hp-l { font-size: 13.5px; font-weight: 600; color: var(--sk-brand-text);
+      text-decoration: none; max-width: none; }
+    .hp-l:hover { text-decoration: underline; }
+    @media (max-width: 860px) {
+      .hp { grid-template-columns: 44px minmax(0, 1fr); row-gap: var(--sk-space-4); }
+      .hp-l { grid-column: 2 / -1; }
+    }
 
-        .arch-synos{background:linear-gradient(180deg,var(--accent-bg) 0%,rgba(99,102,241,0.02) 100%);border:2px solid var(--border-accent);padding:24px;display:flex;flex-direction:column;gap:16px;}
-        .arch-synos-label{font-family:var(--font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:4px;text-align:center;}
+    /* ── connected systems ───────────────────────────────────────────────── */
+    .conn { display: flex; flex-wrap: wrap; gap: var(--sk-space-3); margin-top: var(--sk-space-6); }
 
-        .arch-anchor{background:var(--surface);border:1px solid var(--border-accent);border-radius:12px;padding:24px 22px;position:relative;}
-        .arch-anchor::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--teal));border-radius:12px 12px 0 0;}
-        .arch-anchor-tag{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
-        .arch-anchor h3{font-family:var(--font-display);font-weight:400;font-size:24px;letter-spacing:-0.02em;margin-bottom:8px;color:var(--text);}
-        .arch-anchor p{font-size:14px;line-height:1.65;color:var(--text-secondary);margin:0;}
-        .arch-anchor strong{color:var(--text);font-weight:600;}
-
-        .arch-pieces{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-        .arch-piece{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
-        .arch-piece .piece-tag{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
-        .arch-piece h4{font-family:var(--font-display);font-weight:400;font-size:16px;letter-spacing:-0.01em;color:var(--text);margin-bottom:4px;}
-        .arch-piece p{font-size:12.5px;line-height:1.55;color:var(--text-muted);margin:0;}
-
-        /* Brain context taxonomy (v7) */
-        .brain-mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-        .brain-mem-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 18px;transition:box-shadow 0.25s;}
-        .brain-mem-card:hover{box-shadow:var(--shadow-md);}
-        .brain-mem-card--source{border-left:3px solid var(--border-accent);background:var(--bg-alt);}
-        .brain-mem-tag{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
-        .brain-mem-tag--source{color:var(--text-muted);}
-        .brain-mem-card h4{font-family:var(--font-display);font-weight:400;font-size:19px;letter-spacing:-0.01em;color:var(--text);margin-bottom:6px;}
-        .brain-mem-card p{font-size:13px;line-height:1.6;color:var(--text-muted);}
-
-        /* Brain Self-Learning Loop block */
-        .brain-loop{margin-top:48px;padding:30px 28px;background:linear-gradient(180deg,var(--accent-bg) 0%,rgba(99,102,241,0.02) 100%);border:1px solid var(--border-accent);border-radius:16px;}
-        .brain-loop h3{font-family:var(--font-display);font-weight:400;font-size:24px;letter-spacing:-0.02em;color:var(--text);margin-bottom:14px;}
-        .brain-loop p{font-size:15px;line-height:1.8;color:var(--text-secondary);}
-        .brain-loop-aside{font-size:13px !important;color:var(--text-muted) !important;margin-top:12px;}
-
-        /* Retrieval (v7) */
-        .retrieval-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
-        .retrieval-col{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 24px;}
-        .retrieval-col h3{font-family:var(--font-display);font-weight:400;font-size:22px;letter-spacing:-0.02em;color:var(--text);margin-bottom:8px;}
-        .retrieval-col .r-tag{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:3px 10px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:999px;}
-        .retrieval-col p.r-intro{font-size:14px;line-height:1.7;color:var(--text-secondary);margin-bottom:18px;}
-        .retrieval-flow{display:flex;flex-direction:column;gap:8px;}
-        .retrieval-step{display:flex;gap:12px;align-items:flex-start;}
-        .retrieval-step .r-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
-        .retrieval-step .r-text{font-size:13.5px;line-height:1.55;color:var(--text-secondary);padding-top:3px;}
-        .retrieval-shared{margin-top:20px;padding:16px 18px;background:var(--bg-alt);border:1px dashed var(--border);border-radius:10px;font-size:13.5px;line-height:1.6;color:var(--text-muted);text-align:center;}
-
-        /* Grid */
-        .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-        .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
-
-        /* Cards */
-        .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px 28px;transition:box-shadow 0.3s ease,transform 0.3s ease;}
-        .card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
-        .card p{font-size:14px;line-height:1.7;color:var(--text-muted);}
-        .step-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:10px;font-size:15px;font-weight:700;color:var(--accent);margin-bottom:20px;font-family:var(--font-mono);}
-
-        /* BYOA */
-        .byoa-options{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;}
-        .byoa-opt{padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:16px;}
-        .byoa-opt h4{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
-        .byoa-opt p{font-size:14px;line-height:1.6;color:var(--text-secondary);}
-
-        /* Data flow */
-        .flow-steps{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:32px;}
-        .flow-step{text-align:center;position:relative;}
-        .flow-step::after{content:'→';position:absolute;right:-10px;top:20px;color:var(--accent);font-weight:700;font-size:18px;}
-        .flow-step:last-child::after{display:none;}
-        .flow-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--accent);color:#fff;border-radius:50%;font-size:14px;font-weight:700;font-family:var(--font-mono);margin-bottom:10px;}
-        .flow-step h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
-        .flow-step p{font-size:12px;line-height:1.5;color:var(--text-muted);}
-
-        /* Tools grid */
-        .tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px;}
-        .tool-cat{padding:24px 20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;}
-        .tool-cat h4{font-size:14px;font-weight:600;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em;}
-        .tool-cat p{font-size:13px;line-height:1.6;color:var(--text-muted);}
-
-        /* Connectors grid */
-        .connectors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
-        .conn-cat{padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
-        .conn-cat h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent);margin-bottom:8px;}
-        .conn-cat p{font-size:14px;line-height:1.7;color:var(--text-secondary);}
-
-        /* Trust table */
-        .trust-table{width:100%;border-collapse:collapse;margin-top:32px;}
-        .trust-table th,.trust-table td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--border);font-size:14px;}
-        .trust-table th{font-weight:600;color:var(--text);background:var(--bg-alt);font-size:13px;text-transform:uppercase;letter-spacing:0.04em;}
-        .trust-table td{color:var(--text-secondary);line-height:1.5;}
-        .trust-table td:first-child{font-weight:600;color:var(--accent);}
-
-        /* Triggers */
-        .trigger-list{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:32px;}
-        .trigger-item{text-align:center;padding:20px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
-        .trigger-item h4{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
-        .trigger-item p{font-size:12px;line-height:1.5;color:var(--text-muted);}
-
-        /* Security */
-        .security-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 32px;margin-top:32px;}
-        .security-item{font-size:14px;line-height:1.6;color:var(--text-secondary);padding:8px 0 8px 24px;position:relative;}
-        .security-item::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;}
-        .deploy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
-        .deploy-opt{padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:16px;text-align:center;}
-        .deploy-opt h4{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;}
-        .deploy-opt p{font-size:13px;line-height:1.6;color:var(--text-muted);}
-        .deploy-opt.recommended{border-color:var(--accent);background:var(--accent-bg);}
-
-        /* Final framing */
-        .final-framing{margin-top:56px;padding:32px 24px;text-align:center;font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);line-height:1.3;color:var(--text);letter-spacing:-0.01em;}
-        .final-framing strong{font-weight:400;color:var(--accent);}
-
-        /* CTA */
-        .cta-section{text-align:center;padding:80px 0;}
-        .cta-section h2{margin-bottom:16px;}
-        .cta-section p{font-size:17px;line-height:1.7;color:var(--text-secondary);max-width:600px;margin:0 auto 32px;}
-        .cta-secondary{margin-top:16px;font-size:14px;color:var(--text-muted);}
-        .cta-secondary a{color:var(--accent);text-decoration:none;font-weight:500;}
-
-        /* Footer */
-        .site-footer{padding:40px 24px;border-top:1px solid var(--border);}
-        .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
-        .footer-left{display:flex;align-items:center;gap:8px;}
-        .footer-logo-text{font-family:var(--font-display);font-size:18px;color:var(--text-muted);}
-        .footer-middle,.footer-links{display:flex;flex-wrap:wrap;align-items:center;gap:20px;}
-        .footer-middle a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;}
-        .footer-links a{color:var(--text-dim);text-decoration:none;font-size:13px;}
-        .footer-sep{width:1px;height:14px;background:var(--border);}
-        .footer-copy{font-size:12px;color:var(--text-dim);margin-top:16px;text-align:center;}
-
-        /* Responsive */
-        @media(max-width:900px){
-            .tools-grid,.trigger-list{grid-template-columns:repeat(2,1fr);}
-            .flow-steps{grid-template-columns:repeat(3,1fr);}
-            .flow-step::after{display:none;}
-            .connectors-grid{grid-template-columns:repeat(2,1fr);}
-            .arch-pieces{grid-template-columns:1fr;}
-            .tab-content{grid-template-columns:1fr;}
-            .brain-mem-grid{grid-template-columns:repeat(2,1fr);}
-            .retrieval-wrap{grid-template-columns:1fr;}
-        }
-        @media(max-width:768px){
-            .nav-toggle{display:inline-flex;}
-            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);box-shadow:var(--shadow-md);border-bottom:1px solid var(--border);padding:8px 24px 16px;}
-            .nav-links.open{display:flex;}
-            .nav-links a{padding:12px 0;font-size:15px;border-bottom:1px solid var(--border);}
-            .grid-3,.grid-2,.byoa-options,.deploy-grid{grid-template-columns:1fr;}
-            .tools-grid,.trigger-list,.connectors-grid{grid-template-columns:1fr;}
-            .flow-steps{grid-template-columns:repeat(2,1fr);}
-            .security-list{grid-template-columns:1fr;}
-            .footer-inner{flex-direction:column;text-align:center;}
-            .footer-links,.footer-middle{justify-content:center;flex-wrap:wrap;}
-            .section{padding:80px 0;}
-            .tab-nav{width:100%;}
-            .tab-btn{flex:1;padding:12px 16px;font-size:13px;}
-            .brain-mem-grid{grid-template-columns:1fr;}
-        }
-        @media(max-width:540px){
-            h1{font-size:30px;}
-            .container{padding:0 16px;}
-            .flow-steps{grid-template-columns:1fr;}
-            .arch-anchor h3{font-size:20px;}
-        }
-    /* Mesh gradient */
-        .mesh-bg{position:relative;overflow:hidden;}
-        .mesh-bg>*{position:relative;z-index:1;}
-        .mesh-bg::before{content:"";position:absolute;inset:-100px;background:radial-gradient(ellipse 900px 650px at 12% 35%,rgba(99,102,241,0.18),transparent 70%),radial-gradient(ellipse 750px 700px at 88% 25%,rgba(13,148,136,0.14),transparent 70%),radial-gradient(ellipse 950px 500px at 50% 85%,rgba(217,119,6,0.09),transparent 70%);animation:meshDrift 25s ease-in-out infinite alternate;pointer-events:none;z-index:0;}
-        @keyframes meshDrift{0%{transform:translate(0,0) scale(1) rotate(0deg)}100%{transform:translate(-40px,30px) scale(1.06) rotate(1deg)}}
-        /* Reveal */
-        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
-        .reveal.visible{opacity:1;transform:translateY(0);}
-        .reveal-stagger>*:nth-child(1){transition-delay:0ms;}.reveal-stagger>*:nth-child(2){transition-delay:120ms;}.reveal-stagger>*:nth-child(3){transition-delay:240ms;}.reveal-stagger>*:nth-child(4){transition-delay:360ms;}.reveal-stagger>*:nth-child(5){transition-delay:480ms;}.reveal-stagger>*:nth-child(6){transition-delay:600ms;}
-        /* Gradient text */
-        .gradient-text{background:linear-gradient(135deg,#6366F1 0%,#0D9488 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-        /* Expandable cards */
-        .expandable{cursor:pointer;border-left:3px solid rgba(99,102,241,0.20);background:rgba(99,102,241,0.02);}
-        .expandable:hover{border-left-color:var(--accent);background:rgba(99,102,241,0.04);}
-        .expandable.open{border-left-color:var(--accent);background:rgba(99,102,241,0.04);}
-        .expandable .expand-header{display:flex;align-items:flex-start;gap:16px;}
-        .expandable .expand-icon{width:24px;height:24px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:var(--accent-bg);color:var(--accent);font-size:16px;font-weight:300;transition:transform 0.3s,background 0.3s;}
-        .expandable.open .expand-icon{transform:rotate(45deg);background:var(--accent);color:#fff;}
-        .expandable .expand-body{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease 0.1s,margin 0.3s;margin-top:0;}
-        .expandable.open .expand-body{max-height:300px;opacity:1;margin-top:16px;}
-
-        /* Tabs */
-        .tab-nav{display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);width:fit-content;}
-        .tab-btn{padding:14px 28px;font-weight:600;font-size:14px;color:var(--text-muted);cursor:pointer;transition:all 0.2s;background:transparent;border:none;font-family:var(--font-body);border-right:1px solid var(--border);letter-spacing:-0.01em;}
-        .tab-btn:last-child{border-right:none;}
-        .tab-btn:hover{color:var(--text);background:var(--bg-alt);}
-        .tab-btn.active{color:#fff;background:var(--accent);}
-        .tab-panel{display:none;padding:40px 0;animation:tabFade 0.35s ease;}
-        .tab-panel.active{display:block;}
-        @keyframes tabFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-        .tab-content{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
-        .tab-text h3{font-family:var(--font-display);font-size:24px;font-weight:400;letter-spacing:-0.02em;margin-bottom:16px;}
-        .tab-text p{font-size:15px;line-height:1.75;color:var(--text-secondary);}
-        .tab-visual{padding:32px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:16px;font-family:var(--font-mono);font-size:13px;color:var(--accent);line-height:1.8;}
-
-        @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none;}.mesh-bg::before{animation:none;}}
-    /* Focus states */
-        a:focus-visible,button:focus-visible,.btn:focus-visible,.tab-btn:focus-visible,.expandable:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
-        *:focus{outline:none;}
+    /* ── onward ──────────────────────────────────────────────────────────── */
+    .onward { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-6); }
+    .on { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
+      background: var(--sk-surface); padding: var(--sk-space-7) var(--sk-space-6);
+      box-shadow: var(--sk-shadow-card); text-decoration: none; display: block;
+      transition: border-color 0.15s ease; }
+    .on:hover { border-color: var(--sk-indigo-2); }
+    .on-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
+      max-width: none; }
+    .on h3 { font-size: 18px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
+    .on p { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 900px) { .onward { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-<a href="#main-content" style="position:absolute;top:-100px;left:0;background:var(--accent);color:#fff;padding:12px 24px;z-index:1000;font-weight:600;font-size:14px;border-radius:0 0 8px 0;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
+<a href="#main-content" class="sk-skip">Skip to content</a>
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <a href="/" class="sk-nav-left" aria-label="SynOS home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="sk-nav-word">SynOS</span>
+  </a>
+  <div class="sk-nav-links" id="nav-links">
+    <a href="/product">Product</a>
+    <a href="/build-your-own-ai">Build your own AI</a>
+    <a href="/use-cases">Use cases</a>
+    <a href="/why-now">Why now</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="sk-nav-right">
+    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+<!-- @endpartial nav -->
 
-    <!-- NAV -->
-    <nav class="nav" id="nav">
-        <a href="/" class="nav-left">
-            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-                <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-                <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="nav-logo-text">SynOS</span>
+<main id="main-content">
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="sk-container sk-pagehero" data-section="hero">
+    <p class="sk-eyebrow">The Human-Agent Operating Layer</p>
+    <h1>One layer underneath every AI tool your teams already use.</h1>
+    <p class="sk-lead">Your people are already working with AI. What they lack is anything underneath it: a shared understanding of your systems, one governed way to act inside them, somewhere to put what they build, and a record of what worked. SynOS installs inside your own infrastructure and supplies all four, so a change of tool never becomes a change of platform.</p>
+  </section>
+
+  <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
+  <section class="sk-container" data-section="glance">
+    <div class="plate">
+      <div>
+        <b>Bring your own tools</b>
+        <span>Claude Code, Codex, Cursor, chat, Slack, or agents you wrote yourself. All of them reach the same brain and the same governed tools.</span>
+      </div>
+      <div>
+        <b>Engineering sets it once</b>
+        <span>Connectors, scopes, tools, roles and limits are infrastructure decisions, made once and reviewed, rather than re-argued per request.</span>
+      </div>
+      <div>
+        <b>It runs where you run</b>
+        <span>Your VPC, your Kubernetes, or air gapped. Self hosted is the default rather than the enterprise tier.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SEE IT WORKING ════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="see-it-working">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">See it working</p>
+        <h2>Every surface, running on a synthetic company.</h2>
+        <p class="sk-lead">These are captures of the real product against a company we made up, called Meridian, so that everything visible can be shown without anyone's permission. The software is real and the data is invented, which is the opposite of the usual arrangement. Open any capture at full size.</p>
+      </div>
+      <div class="gal">
+        <figure class="gal-lead">
+          <a class="gal-frame" href="/media/shot-brain.webp" target="_blank" rel="noopener"><img src="/media/shot-brain.webp" alt="The Company Brain: an entity resolved graph across accounts, people, services, documents and SOPs" width="1920" height="1080" loading="lazy"></a>
+          <h3>A living company brain</h3>
+          <p>Meridian's entity resolved graph across accounts, people, services, documents and SOPs, cross linked and re-curated from every connected source rather than loaded once and left.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-connectors.webp" target="_blank" rel="noopener"><img src="/media/shot-connectors.webp" alt="Connectors grid with per source read and write permission controls" width="1920" height="1080" loading="lazy"></a>
+          <h3>Connect systems with scopes attached</h3>
+          <p>Warehouses, SaaS and internal APIs, each granted read only or read and write before anything becomes a tool an agent can call.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-documents.webp" target="_blank" rel="noopener"><img src="/media/shot-documents.webp" alt="Documents and unstructured data added as context" width="1920" height="1080" loading="lazy"></a>
+          <h3>Documents become context</h3>
+          <p>SOPs, notes and files are read, summarised and linked into the same brain as your structured data instead of sitting in a second silo with its own search box.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/loop-chat.webp" target="_blank" rel="noopener"><img src="/media/loop-chat.webp" alt="A grounded, cited answer about an account at risk" width="1920" height="1080" loading="lazy"></a>
+          <h3>Answers cited to your systems</h3>
+          <p>Why is this account at risk, and who owns the renewal. Answered from the brain with the owner, the lost champion and the usage drop, each traceable to the row it came from.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-skills.webp" target="_blank" rel="noopener"><img src="/media/shot-skills.webp" alt="Versioned skills registry with publish and deploy actions" width="1920" height="1080" loading="lazy"></a>
+          <h3>Skills compound across the team</h3>
+          <p>A versioned registry your people publish to, fork from and deploy. The tenth teammate starts from the ninth's best work rather than from an empty prompt.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-storage.webp" target="_blank" rel="noopener"><img src="/media/shot-storage.webp" alt="Agent facing storage: system of record collections with typed rows" width="1920" height="1080" loading="lazy"></a>
+          <h3>Somewhere structured to write</h3>
+          <p>Typed, project scoped collections that agents write and apps read, audited on both. Without this, agent output lands in a spreadsheet and the next run cannot read the last one.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-workers.webp" target="_blank" rel="noopener"><img src="/media/shot-workers.webp" alt="An agent configured with a playbook, schedule and triggers" width="1920" height="1080" loading="lazy"></a>
+          <h3>Agents that run on their own</h3>
+          <p>Skill based agents doing real work. Run by hand, on a schedule, or from Slack and webhooks, supervised, with a kill switch that does not need a deploy.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-learning.webp" target="_blank" rel="noopener"><img src="/media/shot-learning.webp" alt="A review queue gating learnings proposed by agents" width="1920" height="1080" loading="lazy"></a>
+          <h3>It learns from corrections</h3>
+          <p>Agents propose learnings from real runs and a person approves or rejects before anything enters the company brain. Compounding that someone signed off on.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-apps.webp" target="_blank" rel="noopener"><img src="/media/shot-apps.webp" alt="An internal app built from a plain English brief, running on live data" width="1920" height="1080" loading="lazy"></a>
+          <h3>Describe an app, and it ships</h3>
+          <p>A plain English brief becomes an internal app on live data, here a view of deals at risk with drafted nudges and a person approving before anything sends.</p>
+        </figure>
+        <figure>
+          <a class="gal-frame" href="/media/shot-observability.webp" target="_blank" rel="noopener"><img src="/media/shot-observability.webp" alt="Run observability: trace detail with phases, cost and tool calls" width="1920" height="1080" loading="lazy"></a>
+          <h3>Every run traced and costed</h3>
+          <p>Runs from every harness in one place, opened down to phases, tool calls and spend, so who ran what and what it cost are answerable questions.</p>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ THE THREE TIERS ═══════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="architecture">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What installs</p>
+        <h2>One substrate, with your tools above it and your systems below it.</h2>
+        <p class="sk-lead">Everything above the middle band is replaceable by you, and everything below it stays where it is. What sits in the middle is the part you would otherwise have to build with a bench you have no way to hire.</p>
+      </div>
+      <div class="tiers">
+        <div class="tier">
+          <div class="tier-h">
+            <p>your tools</p>
+            <p>one interface, any model</p>
+          </div>
+          <div class="cells">
+            <span class="cell">ChatGPT</span>
+            <span class="cell">Claude Code</span>
+            <span class="cell">Codex</span>
+            <span class="cell">Cursor</span>
+            <span class="cell">Slack</span>
+            <span class="cell">WhatsApp</span>
+            <span class="cell">your own agents</span>
+            <span class="cell">apps you built here</span>
+          </div>
+        </div>
+        <div class="tier tier--core">
+          <div class="tier-h">
+            <p>the core layer</p>
+            <p>self hosted &middot; model agnostic &middot; harness agnostic</p>
+          </div>
+          <div class="cells">
+            <span class="cell">Company Brain</span>
+            <span class="cell">Skills library</span>
+            <span class="cell">Governed tools</span>
+            <span class="cell">Agent and app builder</span>
+            <span class="cell">System of record</span>
+            <span class="cell">Learning loop</span>
+          </div>
+          <div class="rail">
+            <p>roles and tenancy</p>
+            <p>audit on every call</p>
+            <p>build scan</p>
+            <p>egress proxy</p>
+            <p>rate and cost limits</p>
+            <p>kill switch</p>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-h">
+            <p>your systems</p>
+            <p>connected, and left where they are</p>
+          </div>
+          <div class="cells">
+            <span class="cell">warehouse</span>
+            <span class="cell">CRM</span>
+            <span class="cell">ticketing</span>
+            <span class="cell">ledger</span>
+            <span class="cell">object store</span>
+            <span class="cell">docs and sheets</span>
+            <span class="cell">email and chat</span>
+            <span class="cell">internal APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ THE SIX ═══════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="capabilities">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The six capabilities</p>
+        <h2>Most teams ship one of these. They only work as one system.</h2>
+        <p class="sk-lead">You may already have two. The thing that makes an agent safe enough to leave running is the wiring between them rather than any single piece, which is why they are built and governed together.</p>
+      </div>
+      <div class="sk-stack">
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Company Brain<small>context, profiled</small></p>
+          <p class="sk-stack-d">Every source into one graph that re-profiles itself and escalates what it is unsure about. Eight kinds of memory, from stable facts to decision traces.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Skills library<small>know-how, versioned</small></p>
+          <p class="sk-stack-d">How your company does a thing, written in plain English, versioned and shared. Build once, fork across teams, and see which version is running.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Agent builder<small>plain English</small></p>
+          <p class="sk-stack-d">Describe an agent, assembled from skills the team already published, running against the same brain and the same governed tools.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">App builder<small>sandboxed</small></p>
+          <p class="sk-stack-d">Internal apps and live views on real data, scanned at build and deployed to a sandboxed URL behind the egress proxy rather than to somebody's personal account.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Governed access<small>one door</small></p>
+          <p class="sk-stack-d">Identity, roles, tool allowlists, parameter contracts, egress control, limits and a kill switch, applied the same way to a person, a tool and a scheduled agent.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Learning loop<small>corrections, promoted</small></p>
+          <p class="sk-stack-d">Tracing and correction capture run today. Replay against your own cases and threshold gating are in build; scoring against measured outcomes comes after.</p>
+          <p class="sk-stack-s sk-s-build"><i></i>partly in build</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NEUTRALITY · FIG 07 ═══════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="neutral">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The test that matters</p>
+        <h2>Take one vendor away and see what survives.</h2>
+        <p class="sk-lead">Every layer in an AI stack claims to be neutral. The way to check is to remove each piece in turn and ask what your company loses. Run that test on us as well, which is the fourth column below.</p>
+      </div>
+      <figure class="sk-figframe">
+        <iframe data-fig src="/figures/take-one-away.html" title="Figure 7: take one vendor away and see what survives" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 07 &middot; the same test applied four times</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ THE FIVE HARD PARTS ═══════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="hard-parts">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Where the work actually is</p>
+        <h2>Connecting data and calling a model is the easy half.</h2>
+        <p class="sk-lead">These five are what stand between an agent that demos well and one you would let near a real customer. Each has a page, because each is a genuine piece of infrastructure rather than a feature.</p>
+      </div>
+      <div class="hard">
+        <div class="hp">
+          <p class="hp-n">01</p>
+          <div>
+            <p class="hp-t">Keeping context current</p>
+            <p class="hp-d">Schemas drift, definitions change, documents go stale. Agents carry on answering, with the old meaning, sounding exactly as sure as they did in week one.</p>
+            <p class="hp-m">common outcome: a one time setup, then decay</p>
+          </div>
+          <a class="hp-l" href="/platform/company-brain">Company Brain &rarr;</a>
+        </div>
+        <div class="hp">
+          <p class="hp-n">02</p>
+          <div>
+            <p class="hp-t">Who authors the rules</p>
+            <p class="hp-d">The knowledge that makes an agent correct sits with your ops leads and analysts. Today it can only reach production through an engineer, and that queue is where the programme dies.</p>
+            <p class="hp-m">common outcome: engineers relay it, imperfectly</p>
+          </div>
+          <a class="hp-l" href="/platform/governance">Rails and authoring &rarr;</a>
+        </div>
+        <div class="hp">
+          <p class="hp-n">03</p>
+          <div>
+            <p class="hp-t">Agents that actually act</p>
+            <p class="hp-d">Reading is safe. Writing to a CRM, a ledger or a live campaign is where the blast radius starts, and it needs one door with a log on both sides of it.</p>
+            <p class="hp-m">common outcome: keys in a chat window, no audit</p>
+          </div>
+          <a class="hp-l" href="/platform/governance">Governance &rarr;</a>
+        </div>
+        <div class="hp">
+          <p class="hp-n">04</p>
+          <div>
+            <p class="hp-t">Earning autonomy</p>
+            <p class="hp-d">Nobody turns an agent loose on day one. What is the gate, who sets the threshold, and what is the rollback when a change makes it worse.</p>
+            <p class="hp-m">common outcome: no gate, and a judgement call</p>
+          </div>
+          <a class="hp-l" href="/platform/learning-loop">The ladder &rarr;</a>
+        </div>
+        <div class="hp">
+          <p class="hp-n">05</p>
+          <div>
+            <p class="hp-t">Learning from what ran</p>
+            <p class="hp-d">Every run and every correction is signal. Stored and never read, it is a log. Reviewed and promoted, it is the reason the same agent is better next quarter.</p>
+            <p class="hp-m">common outcome: traces kept, never used</p>
+          </div>
+          <a class="hp-l" href="/platform/learning-loop">Learning loop &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONNECTED ═════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="connected">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What it connects to</p>
+        <h2>Your existing stack, connected rather than replaced.</h2>
+        <p class="sk-lead">Connectors are read scoped before anything becomes callable, and a system with no connector is reachable through its own API as a declared tool. Nothing here requires a warehouse to exist first.</p>
+      </div>
+      <div class="conn">
+        <span class="cell">BigQuery</span>
+        <span class="cell">Snowflake</span>
+        <span class="cell">Postgres</span>
+        <span class="cell">Salesforce</span>
+        <span class="cell">HubSpot</span>
+        <span class="cell">Zendesk</span>
+        <span class="cell">Jira</span>
+        <span class="cell">Notion</span>
+        <span class="cell">Google Drive</span>
+        <span class="cell">Sheets</span>
+        <span class="cell">S3</span>
+        <span class="cell">Slack</span>
+        <span class="cell">Email</span>
+        <span class="cell">WhatsApp</span>
+        <span class="cell">Ads and analytics</span>
+        <span class="cell">internal APIs</span>
+      </div>
+      <a href="/use-cases" class="sk-more">What teams build on it &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ══ ONWARD ════════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="onward">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Go deeper</p>
+        <h2>Three pieces, each with the detail your review will want.</h2>
+      </div>
+      <div class="onward">
+        <a class="on" href="/platform/company-brain">
+          <p class="on-h">Company Brain</p>
+          <h3>Profiled in place</h3>
+          <p>Eight kinds of memory, a retrieval router, and a re-profiling cycle that escalates what it cannot decide instead of guessing.</p>
         </a>
-        <div class="nav-links" id="nav-links">
-            <a href="/product" class="active">Product</a>
-            <a href="/use-cases">Use Cases</a>
-            <a href="/blog">Blog</a>
-            <a href="/about">About</a>
-        </div>
-        <div class="nav-right">
-            <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
-            <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-            </button>
-        </div>
-    </nav>
-    <main id="main-content">
+        <a class="on" href="/platform/governance">
+          <p class="on-h">Governance</p>
+          <h3>One governed door</h3>
+          <p>Seven controls that apply to agents as well as people, a gated build pipeline, and the five questions every security review opens with.</p>
+        </a>
+        <a class="on" href="/platform/learning-loop">
+          <p class="on-h">Learning loop</p>
+          <h3>Corrections that stick</h3>
+          <p>What one correction becomes, how evals decide a promotion, and the four rungs of the autonomy ladder with the gate on each.</p>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- HERO -->
-    <section class="container hero-page mesh-bg" data-section="product-hero">
-        <p class="eyebrow">Product</p>
-        <h1>The Human-Agent Operating Layer,<br>in detail.</h1>
-        <p class="hero-sub">SynOS is the substrate your agents run on — for two transformations: <strong>run your company on agents</strong>, or <strong>make your product agent-native</strong>. Bring your own framework, harness, and models; the layer gives every agent a self-improving Company Brain, compounding skills, agent-native storage, safe build &amp; deploy, access control, and traces — so you ship the outcome, not the plumbing underneath it. Self-hosted, multi-tenant.</p>
+  <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
+    <div class="sk-container">
+      <h2>See it against your own systems.</h2>
+      <p class="sk-lead">A walkthrough on a schema and a workflow you already know well, so you can tell within minutes where this fits what your team is trying to build and where it does not.</p>
+      <div class="sk-cta-row">
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-product">Request early access</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-product">Book a walkthrough</a>
+      </div>
+    </div>
+  </section>
 
-        <!-- INLINE ARCHITECTURE DIAGRAM (v6.2) -->
-        <div class="arch-stack reveal" role="group" aria-label="Human-Agent Operating Layer architecture">
+</main>
 
-            <!-- Top: Agent Layer -->
-            <div class="arch-band arch-band--agents">
-                <div class="arch-band-label">Your Agent Layer · Bring your own</div>
-                <div class="arch-band-items">
-                    <span class="arch-pill">Agent Harnesses</span>
-                    <span class="arch-pill">Custom Agents</span>
-                    <span class="arch-pill">Internal Copilots</span>
-                    <span class="arch-pill">Non-engineering Operators</span>
-                </div>
-            </div>
-
-            <div class="arch-connector">↕ &nbsp; Layered under any agent framework &nbsp; ↕</div>
-
-            <!-- Middle: SynOS Operating Layer -->
-            <div class="arch-synos">
-                <div class="arch-synos-label">SynOS · Human-Agent Operating Layer</div>
-
-                <div class="arch-anchor">
-                    <div class="arch-anchor-tag">Anchor</div>
-                    <h3>Self-improving Company Brain</h3>
-                    <p>Streaming ingestion. Smart extraction. Entity resolution. A shared context graph of skills, entities, decisions, and traces. <strong>Self-Learning Loop:</strong> every agent trace + every human correction feeds back. The brain compounds.</p>
-                </div>
-
-                <div class="arch-pieces">
-                    <div class="arch-piece">
-                        <div class="piece-tag">Skills</div>
-                        <h4>Compounding Skills</h4>
-                        <p>Built once, then shared, versioned, and forked across the team. Installable from a skill marketplace.</p>
-                    </div>
-                    <div class="arch-piece">
-                        <div class="piece-tag">Storage</div>
-                        <h4>Agent-Native Storage</h4>
-                        <p>An SoR built for how agents write. Different patterns, controls, and checks than typical DBs.</p>
-                    </div>
-                    <div class="arch-piece">
-                        <div class="piece-tag">Build &amp; Deploy</div>
-                        <h4>Safe Build &amp; Deploy</h4>
-                        <p>Scanned sandboxes for agents and apps. Shadow → approved → autonomous, within bounded scopes.</p>
-                    </div>
-                    <div class="arch-piece">
-                        <div class="piece-tag">Access</div>
-                        <h4>Access Control &amp; Audit</h4>
-                        <p>Per-skill, per-agent, per-team scopes. Revocable, auditable. Templates, not tickets.</p>
-                    </div>
-                    <div class="arch-piece">
-                        <div class="piece-tag">Traces</div>
-                        <h4>Traces &amp; Self-Learning Loop</h4>
-                        <p>Every skill run, every tool call captured. Cost, latency, success, hallucination signal — fed back into the brain.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="arch-connector">↑ context in &nbsp; · &nbsp; actions out (permissioned) ↓</div>
-
-            <!-- Bottom: SoRs + Apps -->
-            <div class="arch-band arch-band--data">
-                <div class="arch-band-label">Your Systems of Record · Apps · Data</div>
-                <div class="arch-band-items">
-                    <span class="arch-pill">CRM</span>
-                    <span class="arch-pill">Data Warehouse</span>
-                    <span class="arch-pill">Project Mgmt</span>
-                    <span class="arch-pill">Slack / Comms</span>
-                    <span class="arch-pill">Docs &amp; Wikis</span>
-                    <span class="arch-pill">Cloud Infra</span>
-                    <span class="arch-pill">Internal APIs</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===== SEE IT ON REAL DATA — proof gallery (moved from home) ===== -->
-    <style>
-        .pgal-wrap { margin-top: 40px; }
-        .pgal-full { margin: 0 0 22px; }
-        .pgal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-        .pgal-fig { margin: 0; }
-        .pgal-frame { border-radius: 14px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 18px 50px rgba(0,0,0,0.10); background: #0B0E16; aspect-ratio: 16 / 9; }
-        .pgal-frame img, .pgal-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
-        .pgal-frame.hoverplay { position: relative; cursor: pointer; }
-        .pgal-frame.hoverplay .vhint { position: absolute; left: 10px; bottom: 10px; z-index: 2; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.03em; color: #fff; background: rgba(6,8,14,0.6); border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 4px 10px; backdrop-filter: blur(6px); transition: opacity .2s; }
-        .pgal-frame.hoverplay.playing .vhint { opacity: 0; }
-        .pgal-fig h4 { margin: 16px 0 6px; font-size: 18px; }
-        .pgal-fig p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5; }
-        @media (max-width: 720px) { .pgal-grid { grid-template-columns: 1fr; } }
-    </style>
-    <section class="section section--alt" id="see-it-working" data-section="see-it-working">
-        <div class="container">
-            <div class="reveal" style="max-width:740px;">
-                <p class="section-label">See it working</p>
-                <h2>Every surface, on a real company's data.</h2>
-                <p class="section-sub">Each frame is the real product on a synthetic company (Meridian) — nothing staged but the data. The 70-second tour of all of this lives on the <a href="/">home page</a>.</p>
-            </div>
-            <div class="pgal-wrap reveal">
-                <figure class="pgal-fig pgal-full">
-                    <div class="pgal-frame"><img src="/media/shot-brain.webp" alt="The living Company Brain — Meridian's entity-resolved knowledge graph across accounts, people, services, docs and SOPs" width="1920" height="1080" loading="lazy"></div>
-                    <h4>A live company brain — not static RAG</h4>
-                    <p>Meridian's entity-resolved graph across accounts, people, services, docs and SOPs — categorized, cross-linked, and continuously curated from every connected source.</p>
-                </figure>
-                <div class="pgal-grid">
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame"><img src="/media/shot-connectors.webp" alt="Connectors grid with per-source read-only / read-and-write permission controls" width="1920" height="1080" loading="lazy"></div>
-                        <h4>Connect every system — with permission controls</h4>
-                        <p>Warehouses, SaaS and internal APIs, each with read-only / read-and-write scopes before anything is added as a tool.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame"><img src="/media/shot-documents.webp" alt="Documents and unstructured data added as context" width="1920" height="1080" loading="lazy"></div>
-                        <h4>Documents &amp; unstructured data become context</h4>
-                        <p>SOPs, notes and files are ingested, summarized and linked into the same brain — not left in a separate silo.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame"><img src="/media/loop-chat.webp" alt="Grounded, cited answer about an at-risk account" width="1920" height="1080" loading="lazy"></div>
-                        <h4>Grounded answers, cited to your systems</h4>
-                        <p>"Why is Voltaic Systems at risk, and who owns the renewal?" — answered from the brain with the owner, the champion loss, the −41% usage. Not a guess.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame"><img src="/media/shot-skills.webp" alt="Versioned skills registry with publish and deploy-as-worker" width="1920" height="1080" loading="lazy"></div>
-                        <h4>Skills compound across the team</h4>
-                        <p>A versioned registry — publish, fork, deploy-as-worker. The 10th teammate starts from the 9th's best work, not from scratch.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame"><img src="/media/shot-storage.webp" alt="Agent-Native Storage — system-of-record collections with typed rows" width="1920" height="1080" loading="lazy"></div>
-                        <h4>Agent-Native Storage</h4>
-                        <p>A system of record built for agents — typed collections your workers and apps read and write, with owners and publish state.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame hoverplay"><video class="pgal-vloop" muted loop playsinline preload="none" poster="/media/shot-workers.webp" width="1920" height="1080"><source src="/media/card-worker.mp4" type="video/mp4"></video><span class="vhint">Hover: Playbook &amp; triggers</span></div>
-                        <h4>AI workers — scheduled, supervised, triggered</h4>
-                        <p>Skill-based workers doing critical knowledge work. Run manually, on a schedule, or from Slack / webhook / chat — supervised, with a kill-switch.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame"><img src="/media/shot-learning.webp" alt="Self-learning review queue gating agent-proposed learnings" width="1920" height="1080" loading="lazy"></div>
-                        <h4>It learns from every correction</h4>
-                        <p>Agents propose learnings from real runs; a human approves or rejects before anything enters the shared brain. Governed compounding, not silent drift.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame hoverplay"><video class="pgal-vloop" muted loop playsinline preload="none" poster="/media/shot-apps.webp" width="1920" height="1080"><source src="/media/card-app.mp4" type="video/mp4"></video><span class="vhint">Hover to watch it build</span></div>
-                        <h4>Describe an app → it ships and acts</h4>
-                        <p>A plain-English brief becomes a real app on your live data — here the At-Risk Deals view with drafted nudges and human approve-to-send.</p>
-                    </figure>
-                    <figure class="pgal-fig">
-                        <div class="pgal-frame"><img src="/media/shot-observability.webp" alt="Run observability — trace detail with phases, cost and tool calls" width="1920" height="1080" loading="lazy"></div>
-                        <h4>Full observability — every run traced &amp; costed</h4>
-                        <p>Runs across every harness, drilled into phases, cost and tool calls — attributable and auditable.</p>
-                    </figure>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SIX PIECES AT A GLANCE (spine) -->
-    <style>
-        .glance-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:32px; }
-        .glance-card { display:block; border:1px solid rgba(0,0,0,0.08); border-radius:14px; padding:20px; text-decoration:none; color:inherit; transition:border-color .2s, transform .2s; }
-        .glance-card:hover { border-color:var(--indigo,#6366F1); transform:translateY(-2px); }
-        .glance-card h4 { margin:0 0 6px; font-size:17px; }
-        .glance-card p { margin:0; font-size:13.5px; color:var(--text-muted); line-height:1.5; }
-        .glance-card .glance-more { display:inline-block; margin-top:10px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; color:var(--indigo,#6366F1); }
-        @media (max-width:820px){ .glance-grid { grid-template-columns:1fr; } }
-    </style>
-    <section class="section" data-section="pieces-glance">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">The layer, in six pieces</p>
-                <h2>One brain, wrapped in five pieces that make agents safe and useful.</h2>
-                <p class="section-sub">Each is pre-built, so you don't rebuild it per agent. Skim here; dive into any one below.</p>
-            </div>
-            <div class="glance-grid reveal-stagger">
-                <a class="glance-card reveal" href="#brain"><h4>Living Company Brain</h4><p>A self-improving, entity-resolved graph over your systems — the anchor everything else hangs off.</p><span class="glance-more">Deep dive &darr;</span></a>
-                <a class="glance-card reveal" href="#skills"><h4>Compounding Skills</h4><p>Versioned, shareable skills — the 10th teammate starts from the 9th's best work.</p><span class="glance-more">Deep dive &darr;</span></a>
-                <a class="glance-card reveal" href="#storage"><h4>Agent-Native Storage</h4><p>Typed system-of-record collections built for agents to read and write.</p><span class="glance-more">Deep dive &darr;</span></a>
-                <a class="glance-card reveal" href="#sandboxes"><h4>Safe Build &amp; Deploy</h4><p>Plain-English builds, security-scanned and gated before anything ships.</p><span class="glance-more">Deep dive &darr;</span></a>
-                <a class="glance-card reveal" href="#permissions"><h4>Access Control &amp; Audit</h4><p>Per-skill, per-agent tool scopes and a full audit trail on every action.</p><span class="glance-more">Deep dive &darr;</span></a>
-                <a class="glance-card reveal" href="#traces"><h4>Traces &amp; Self-Learning</h4><p>Every run captured; corrections promote back into the brain, human-approved.</p><span class="glance-more">Deep dive &darr;</span></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHAT'S DIFFERENT (categories, no product names) -->
-    <section class="section section--alt" data-section="whats-different">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">What's Different</p>
-                <h2>Why existing solutions don't solve this.</h2>
-                <p class="section-sub">Every team we talk to has tried some combination of these categories. Here's what they found missing.</p>
-            </div>
-            <div class="grid-2 reveal-stagger">
-                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
-                    <div class="expand-header">
-                        <div><h3>Agent Harnesses</h3></div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="expand-body">
-                        <p>Powerful for individuals. But a large context window still doesn't know which of your data sources to check. No shared Company Brain. No agent-native storage. No sandboxes. No RBAC. SynOS sits under the harness and gives it the full operating layer — brain, storage, sandboxes, permissions, traces.</p>
-                    </div>
-                </div>
-                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
-                    <div class="expand-header">
-                        <div><h3>Low-Code Automation Builders</h3></div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="expand-body">
-                        <p>Workflow automation that never learns. Every run starts from zero. No company brain. No agent storage. No graduated trust. No path from rigid graph-based workflows to AI-native operations. SynOS agents understand your business and get smarter with every run.</p>
-                    </div>
-                </div>
-                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
-                    <div class="expand-header">
-                        <div><h3>Enterprise Search</h3></div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="expand-body">
-                        <p>Finds documents but doesn't understand cross-system relationships. Indexes everything forever — no freshness awareness. SynOS is an operating layer with a brain at its centre, not a search engine. It learns from outcomes, not just documents.</p>
-                    </div>
-                </div>
-                <div class="card expandable reveal" onclick="this.classList.toggle('open')">
-                    <div class="expand-header">
-                        <div><h3>Agent Context Layers</h3></div>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="expand-body">
-                        <p>A context store is one feature, not a full operating layer. No cross-system entity resolution. No sandboxes. No skill permissions. Framework lock-in — knowledge doesn't transfer. SynOS is the operating layer under any framework — brain plus storage, sandboxes, permissions, and traces. Switch harnesses and your context carries over.</p>
-                    </div>
-                </div>
-            </div>
-            <p class="reveal" style="text-align:center;margin-top:28px;font-size:15px;color:var(--text);font-weight:500;">The question to ask any tool: does your agent get smarter after the 100th task? With SynOS, it does.</p>
-        </div>
-    </section>
-
-    <!-- BYOA -->
-    <section class="section" data-section="byoa">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">Bring Your Own Agent</p>
-                <h2>SynOS is the operating layer, not the body.</h2>
-                <p class="section-sub">Engineering teams spend significant time rebuilding context, skills, storage, sandboxes, access control, and trace plumbing for every new agent. SynOS ships all six pieces, pre-built. The brain at the centre comes with compounding skills, storage, safe build &amp; deploy, access control, and traces around it. Three ways to plug in:</p>
-            </div>
-            <div class="byoa-options reveal-stagger">
-                <div class="byoa-opt reveal">
-                    <h4>Already have agents?</h4>
-                    <p>Connect them to SynOS via API. Your agents get the brain, write into Storage, execute code in scanned sandboxes, ride your permissions, and emit traces — without rebuilding the plumbing.</p>
-                </div>
-                <div class="byoa-opt reveal">
-                    <h4>Don't have agents yet?</h4>
-                    <p>Use SynOS's built-in agent harness with the full operating layer wired up: brain, storage, sandboxes, graduated trust, per-skill permissions, and audit. Describe what you need in plain English.</p>
-                </div>
-                <div class="byoa-opt reveal">
-                    <h4>Hybrid approach?</h4>
-                    <p>Use the built-in harness for some workflows and connect external agents for others. All agents share the same operating layer. One correction teaches every agent.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TWO WEDGES — company OR product (co-equal) -->
-    <style>
-        .wedge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 32px; }
-        .wedge { border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 28px; background: var(--surface, #fff); }
-        .wedge .wedge-tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--indigo, #6366F1); }
-        .wedge h3 { margin: 8px 0 10px; font-size: 22px; }
-        .wedge ul { margin: 14px 0 0; padding-left: 18px; }
-        .wedge li { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 7px; }
-        .wedge .wedge-link { display: inline-block; margin-top: 14px; font-size: 14px; }
-        .wedge-note { margin-top: 22px; padding: 22px 24px; background: var(--accent-bg); border: 1px solid var(--border-accent); border-radius: 12px; }
-        .wedge-note h4 { margin: 0 0 6px; font-size: 16px; }
-        .wedge-note p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-        .wedge-note .synthetic { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-dim); text-transform: uppercase; }
-        @media (max-width: 780px) { .wedge-grid { grid-template-columns: 1fr; } }
-    </style>
-    <section class="section section--alt" data-section="two-wedges">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Two transformations, one layer</p>
-                <h2>Bring your company — or your product — to life.</h2>
-                <p class="section-sub">The same operating layer powers two moves. Both get the self-improving Company Brain, compounding skills, agent-native storage, safe build &amp; deploy, access control, and traces — so you ship the outcome, not the plumbing.</p>
-            </div>
-            <div class="wedge-grid reveal-stagger">
-                <div class="wedge reveal">
-                    <span class="wedge-tag">Wedge 1 · Your company</span>
-                    <h3>Run your company on agents</h3>
-                    <p style="font-size:15px;color:var(--text-muted);line-height:1.6;">Point the layer at your own systems of record. Non-coding teams describe apps and workers in plain English; engineers set the rails once. The brain compounds on your data and your corrections.</p>
-                    <ul>
-                        <li>Internal apps &amp; workers on your live company brain</li>
-                        <li>Ops, RevOps, FinOps, support — one brain, every function</li>
-                        <li>Self-hosted in your VPC; raw data never leaves</li>
-                    </ul>
-                    <a class="wedge-link" href="#see-it-working">See it on real company data &rarr;</a>
-                </div>
-                <div class="wedge reveal">
-                    <span class="wedge-tag">Wedge 2 · Your product</span>
-                    <h3>Make your product agent-native</h3>
-                    <p style="font-size:15px;color:var(--text-muted);line-height:1.6;">Embed agents inside the SaaS you already ship — acting on each customer's connected data. Transform an existing product, or build a new AI product on top. Own the brain, skills, and deploy; bring your own harness and models.</p>
-                    <ul>
-                        <li>In-product copilots &amp; agents that take real actions</li>
-                        <li><strong>A separate, isolated Company Brain per customer</strong> — multi-tenant by design</li>
-                        <li>Self-hosted in your cloud, or your customer's. No lock-in</li>
-                    </ul>
-                    <a class="wedge-link" href="#product-cta">Talk through a product embed &rarr;</a>
-                </div>
-            </div>
-            <div class="wedge-note reveal">
-                <h4>Multi-tenant by design</h4>
-                <p>Each of your customers gets their own isolated brain, storage, and permissions — no data crosses tenants. Skip rebuilding context, retrieval, governance, and traces for every agent; your second agent ships in days, and every run sharpens the brain your product runs on.</p>
-            </div>
-            <div class="wedge-note reveal">
-                <p class="synthetic">Illustrative example · synthetic, not a customer</p>
-                <h4 style="margin-top:6px;">A vertical SaaS embeds an in-product agent</h4>
-                <p>Picture a clinic-management SaaS: each clinic it serves gets an isolated SynOS brain over that clinic's own records. An in-product agent drafts follow-ups and flags at-risk cases — acting only on that tenant's data, under the vendor's guardrails. The SaaS ships the AI feature; SynOS is the per-tenant brain underneath.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 6 PER-PIECE DEEP-DIVES (v7) ===== -->
-
-    <!-- 2. LIVING CONTEXT BRAIN — anchor -->
-    <section class="section" id="brain" data-section="brain">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;margin-bottom:48px;">
-                <p class="section-label">Under the hood</p>
-                <h2 style="margin-bottom:8px;">How each piece works.</h2>
-                <p class="section-sub">The six pieces in detail — the internals, for when you want them, not the overview.</p>
-            </div>
-            <div class="reveal" style="max-width:740px;">
-                <p class="section-label">The Anchor Piece</p>
-                <h2>The Living Company Brain.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);margin-bottom:0;">A continuously curated knowledge layer every agent in your company can read from. It remembers what your team knows, what your agents have done, and how decisions get made — across every system.</p>
-            </div>
-
-            <!-- Context taxonomy 4-card subgrid -->
-            <div class="reveal" style="margin-top:40px;">
-                <h3 style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:16px;font-family:var(--font-mono);">What the Brain remembers</h3>
-                <div class="brain-mem-grid">
-                    <div class="brain-mem-card">
-                        <p class="brain-mem-tag">Skill</p>
-                        <h4>Learned procedures</h4>
-                        <p>How to do a recurring task. Promoted from runs the team approved.</p>
-                    </div>
-                    <div class="brain-mem-card">
-                        <p class="brain-mem-tag">Knowledge</p>
-                        <h4>Curated facts</h4>
-                        <p>Policies, definitions, business rules. The things your team would put in a wiki — if anyone kept the wiki current.</p>
-                    </div>
-                    <div class="brain-mem-card">
-                        <p class="brain-mem-tag">Entity</p>
-                        <h4>Resolved identities</h4>
-                        <p>"Customer #4892" in Salesforce = @priya in Slack = priya@acme.com in your warehouse. One graph.</p>
-                    </div>
-                    <div class="brain-mem-card brain-mem-card--source">
-                        <p class="brain-mem-tag brain-mem-tag--source">Trace · the source</p>
-                        <h4>Raw run history</h4>
-                        <p>Every agent run + every human correction. The substrate the other three are distilled from.</p>
-                    </div>
-                </div>
-                <p style="font-size:13px;color:var(--text-muted);margin-top:14px;font-style:italic;">Trace is the source. Skill, Knowledge, and Entity are what gets promoted from it.</p>
-            </div>
-
-            <!-- Self-Learning Loop — folded in -->
-            <div class="reveal brain-loop">
-                <h3>How the Brain compounds — the Self-Learning Loop.</h3>
-                <p>Every agent run and every human correction lands in Storage as a trace. Curator agents read both kinds — the agent's work and the agent↔human interaction — and surface your company's tribal knowledge: the rules, exceptions, and judgment calls nobody bothers to write down. That tribal knowledge clears a quality gate and promotes into the Company Brain. The next agent run pulls the upgraded Brain. The loop tightens with every interaction.</p>
-                <p class="brain-loop-aside">Continuous curation jobs re-resolve stale entities and prune dead links so the graph stays current.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2b. COMPOUNDING SKILLS -->
-    <section class="section section--alt" id="skills" data-section="skills">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Skills</p>
-                <h2>How Compounding Skills spread.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">A skill is a learned procedure — built once, then it belongs to the team. Skills are shared, versioned, and forked the way code is, and installable from a skill marketplace so a working agent capability spreads instead of being rebuilt per project.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Each skill carries its tool list, parameter contract, and scope declared up front — so it rides your access control wherever it runs. Where a skill declares the external hosts it needs, that declaration travels with it; enforcement of it is not yet in the runtime path. Promote a strong run into a skill, share it, and every agent that installs it inherits the upgrade. Skills compound the same way the Brain does.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. AGENT-NATIVE STORAGE -->
-    <section class="section" id="storage" data-section="storage">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Storage</p>
-                <h2>How Agent-Native Storage works.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Today's harnesses need a shared place to track the work they do. Agent writes are multi-version, partial, contended, revisable — the patterns a typical SQL or NoSQL store wasn't built for. SynOS ships a System of Record designed for how agents actually write, revise, and reference each other's outputs.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">It holds decision traces, work product, multi-agent versioning, structured artefacts, and deterministic references the next agent run can pull. Run analytics (Traces, below) sit on top of Storage; the traces here feed the Brain's compounding loop above.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. SAFE BUILD & DEPLOY -->
-    <section class="section section--alt" id="sandboxes" data-section="sandboxes">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Build &amp; Deploy</p>
-                <h2>How Safe Build &amp; Deploy gates execution.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Engineering blocks "let an LLM touch prod" — for good reason. SynOS runs generated apps and any code an agent executes in their own scanned sandbox. Code generated in the product is scanned before it is built — unsafe imports, escape hatches, raw network calls and embedded secret literals block the build. Sandboxes have no egress path in production. Sandboxed app code carries a short-lived scoped token, checked against that app's own tool catalogue on every call.</p>
-            </div>
-            <div class="reveal" style="overflow-x:auto;margin-top:32px;">
-                <table class="trust-table">
-                    <thead><tr><th>Mode</th><th>What Happens</th><th>When to Use</th></tr></thead>
-                    <tbody>
-                        <tr><td>Supervised</td><td>Plans actions, doesn't execute. See what it would do before anything happens.</td><td>First days — validate accuracy and judgment</td></tr>
-                        <tr><td>Shadow</td><td>Reads execute. Writes are logged but don't fire. Build confidence without risk.</td><td>Building confidence — verify write behavior is correct</td></tr>
-                        <tr><td>Approved</td><td>Writes fire only on explicit human approval. Per-action review queue.</td><td>Production-grade tasks where mistakes are costly</td></tr>
-                        <tr><td>Autonomous</td><td>Full execution with per-tool permissions and audit trail. You review exceptions.</td><td>When accuracy is proven — trust earned, not assumed</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. ACCESS CONTROL & AUDIT -->
-    <section class="section" id="permissions" data-section="permissions">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Access</p>
-                <h2>How Access Control &amp; Audit scope skills.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Per-skill, per-agent, per-team scopes. Revocable. Auditable. Templates, not tickets — your AI team defines a scope once and it applies to every agent that installs the skill.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">A skill ships with its tool list, its parameter contract, and its role check declared up front. Install once. Share across the team. Permissions ride with the skill, not the user who happens to run it.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Traces & Self-Learning Loop -->
-    <section class="section section--alt" id="traces" data-section="traces">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Sibling Piece · Traces</p>
-                <h2>What Traces &amp; the Self-Learning Loop capture.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Every run, every tool call. Cost, latency, success and failure, hallucination signal, who-ran-what. Cached and budgeted — predictable cost per decision at scale.</p>
-                <p style="font-size:15px;line-height:1.8;color:var(--text-secondary);margin-top:16px;">Three consumers: your AI team reads them for analytics; the Brain reads them for the Self-Learning Loop; Permissions reads them to adjust scopes as patterns shift.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. RETRIEVAL — fast path + agent path (v7) -->
-    <section class="section" id="retrieval" data-section="retrieval">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Retrieval</p>
-                <h2>Two ways the Brain serves agents.</h2>
-                <p style="font-size:16px;line-height:1.8;color:var(--text-secondary);">Some questions have a known shape — pull the right slice and hand it over. Others need a walk through the graph. The Brain ships both.</p>
-            </div>
-            <div class="reveal retrieval-wrap" role="group" aria-label="Retrieval modes">
-                <div class="retrieval-col">
-                    <span class="r-tag">Fast path · deterministic</span>
-                    <h3>Pack assembly.</h3>
-                    <p class="r-intro">Single call. For questions with a known shape — predictable cost, predictable latency.</p>
-                    <div class="retrieval-flow">
-                        <div class="retrieval-step"><span class="r-num">1</span><div class="r-text">Scoped query · agent role + intent + project</div></div>
-                        <div class="retrieval-step"><span class="r-num">2</span><div class="r-text">Hybrid retrieval · vector + graph + keyword, fused</div></div>
-                        <div class="retrieval-step"><span class="r-num">3</span><div class="r-text">Authority &amp; freshness rank · promoted context beats raw, recent beats stale</div></div>
-                        <div class="retrieval-step"><span class="r-num">4</span><div class="r-text">Policy redact + token budget · RBAC filter, PII redaction, per-agent envelope size</div></div>
-                        <div class="retrieval-step"><span class="r-num">5</span><div class="r-text">Typed pack · handed to the agent with citation IDs</div></div>
-                    </div>
-                </div>
-                <div class="retrieval-col">
-                    <span class="r-tag">Agent path · graph traversal</span>
-                    <h3>Sub-agent walk.</h3>
-                    <p class="r-intro">For open-ended questions where the right slice isn't known up front. A retrieval sub-agent plans, calls, observes, and refines as it traverses the graph.</p>
-                    <div class="retrieval-flow">
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Plan</strong> — break the question into hops the graph can answer</div></div>
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Call</strong> — read entities, follow edges, pull facts at each hop</div></div>
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Observe</strong> — score what came back; gaps drive the next hop</div></div>
-                        <div class="retrieval-step"><span class="r-num">·</span><div class="r-text"><strong>Refine</strong> — typically 3–6 hops, then the same typed pack lands</div></div>
-                    </div>
-                </div>
-            </div>
-            <p class="reveal retrieval-shared">Both paths hand the calling agent the same context envelope — authority-ranked, freshness-aware, policy-redacted.</p>
-        </div>
-    </section>
-
-    <!-- DATA FLOW (v7 — 7 steps, exercises all six pieces) -->
-    <section class="section section--alt" data-section="data-flow">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">Lifecycle</p>
-                <h2>Connect. Profile. Link. Permission. Execute. Trace. Compound.</h2>
-                <p class="section-sub">Only context is extracted — not raw data. Your systems of record remain untouched. Each step exercises a piece of the layer.</p>
-            </div>
-            <div class="flow-steps reveal">
-                <div class="flow-step"><div class="flow-num">1</div><h4>Connect</h4><p>Plug in your data sources. No migration.</p></div>
-                <div class="flow-step"><div class="flow-num">2</div><h4>Profile</h4><p>Auto-extract schema, stats, business semantics.</p></div>
-                <div class="flow-step"><div class="flow-num">3</div><h4>Link</h4><p>Discover cross-system relationships. Resolve entities.</p></div>
-                <div class="flow-step"><div class="flow-num">4</div><h4>Permission</h4><p>Scope tools per skill, per agent, per team.</p></div>
-                <div class="flow-step"><div class="flow-num">5</div><h4>Execute</h4><p>Agent-executed code runs in scanned sandboxes. Reads and writes audited.</p></div>
-                <div class="flow-step"><div class="flow-num">6</div><h4>Trace</h4><p>Every run captured — cost, outcome, signal.</p></div>
-                <div class="flow-step"><div class="flow-num">7</div><h4>Compound</h4><p>Traces and corrections promote into the Brain. Next run pulls more.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CAPABILITIES — connect, act, trigger (merged) -->
-    <section class="section" data-section="capabilities">
-        <div class="container">
-            <div class="reveal" style="max-width:760px;">
-                <p class="section-label">Tools, connectors &amp; triggers</p>
-                <h2>Connect your systems, act on them, trigger however you need.</h2>
-                <p class="section-sub">One capability surface. Every action is permission-scoped per tool and per agent, and every action is audited.</p>
-            </div>
-
-            <div class="reveal" style="margin-top:40px;"><h3 style="margin-bottom:4px;">Connect</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">Standard methods — OAuth, API keys, connection strings. Any system with an API becomes a connector.</p></div>
-            <div class="connectors-grid reveal-stagger">
-                <div class="conn-cat reveal"><h4>Documents</h4><p>Google Docs, Notion, Confluence</p></div>
-                <div class="conn-cat reveal"><h4>Data Stores</h4><p>BigQuery, Snowflake, Redshift, PostgreSQL, MySQL, MongoDB, Google Sheets</p></div>
-                <div class="conn-cat reveal"><h4>Project Management</h4><p>Linear, Jira, Asana</p></div>
-                <div class="conn-cat reveal"><h4>Communication</h4><p>Slack, Microsoft Teams, Google Chat, Email (Gmail, Outlook)</p></div>
-                <div class="conn-cat reveal"><h4>CRM</h4><p>Salesforce, HubSpot</p></div>
-                <div class="conn-cat reveal"><h4>Cloud Infrastructure</h4><p>AWS (Cost Explorer, CloudWatch), GCP (Billing, Monitoring), Azure</p></div>
-                <div class="conn-cat reveal"><h4>Billing &amp; Finance</h4><p>Stripe, Chargebee, NetSuite</p></div>
-                <div class="conn-cat reveal"><h4>Code &amp; Deploys</h4><p>GitHub, GitLab</p></div>
-                <div class="conn-cat reveal"><h4>APIs &amp; Internal Systems</h4><p>REST API endpoints, webhooks — any system with an API becomes a connector</p></div>
-            </div>
-            <p class="reveal" style="text-align:center;margin-top:16px;font-size:14px;color:var(--text-muted);">Need a connector we don't have? New connectors ship fast based on design partner needs.</p>
-
-            <div class="reveal" style="margin-top:48px;"><h3 style="margin-bottom:4px;">Act</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">Structured, permission-controlled operations — allow reads on one system while denying writes on another.</p></div>
-            <div class="tools-grid reveal-stagger">
-                <div class="tool-cat reveal"><h4>Read</h4><p>Query your CRM, data warehouse, databases, and documents.</p></div>
-                <div class="tool-cat reveal"><h4>Write</h4><p>Update spreadsheets, create CRM records, insert database rows, send messages.</p></div>
-                <div class="tool-cat reveal"><h4>Communicate</h4><p>Send Slack messages, Google Chat, email. Route alerts to the right people.</p></div>
-                <div class="tool-cat reveal"><h4>Research</h4><p>Web search, web scraping, API calls. Bring in external context on demand.</p></div>
-            </div>
-            <div class="reveal" style="margin-top:24px;padding:24px;background:var(--accent-bg);border:1px solid var(--border-accent);border-radius:12px;">
-                <h3 style="margin-bottom:8px;">Custom Tools — extend with your own logic</h3>
-                <p style="font-size:14px;line-height:1.7;color:var(--text-secondary);">Save tested queries as reusable tools with template variables. No code deployment — define once, assign to any agent. Your saved, validated query runs deterministically. Scoped write tools restrict which objects a tool can modify.</p>
-            </div>
-
-            <div class="reveal" style="margin-top:48px;"><h3 style="margin-bottom:4px;">Trigger</h3><p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">All triggers feed the same execution engine with the same graduated-trust controls.</p></div>
-            <div class="trigger-list reveal">
-                <div class="trigger-item"><h4>Manual</h4><p>One-click from the UI</p></div>
-                <div class="trigger-item"><h4>Scheduled</h4><p>Cron-based with timezone</p></div>
-                <div class="trigger-item"><h4>Webhook</h4><p>External system triggers via POST</p></div>
-                <div class="trigger-item"><h4>Chat</h4><p>Slack, Google Chat, or built-in UI</p></div>
-                <div class="trigger-item"><h4>Voice</h4><p>Phone calls, multi-language</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ENTERPRISE (security + framing merged) -->
-    <section class="section section--alt" data-section="enterprise">
-        <div class="container">
-            <div class="reveal">
-                <p class="section-label">Enterprise &amp; self-hosted</p>
-                <h2>Enterprise-grade. Self-hosted by default.</h2>
-            </div>
-            <div class="security-list reveal">
-                <div class="security-item">Only context is extracted — raw data stays in your systems</div>
-                <div class="security-item">Per-tenant isolation — your brain never leaves your boundary</div>
-                <div class="security-item">All credential material the platform writes is encrypted at rest</div>
-                <div class="security-item">Project-level isolation for every query and operation</div>
-                <div class="security-item">Role-based access — instance roles (platform operator, instance admin, member) and per-project roles (viewer, editor, project admin), narrowable per tool</div>
-                <div class="security-item">Full audit trail — every execution, correction, promotion logged</div>
-                <div class="security-item">Every correction reversible. Every promotion auditable.</div>
-                <div class="security-item">HTTPS with automatic certificate provisioning</div>
-                <div class="security-item">Self-hosted option keeps everything inside your network</div>
-                <div class="security-item">Per-skill permissions at individual tool level</div>
-            </div>
-            <div class="deploy-grid reveal-stagger">
-                <div class="deploy-opt recommended reveal"><h4>Self-Hosted</h4><p>Single VM in your cloud. Your data stays on your infrastructure. Zero egress.</p></div>
-                <div class="deploy-opt reveal"><h4>Managed by SynOS</h4><p>Dedicated instance provisioned and managed by us. Same architecture, zero ops burden.</p></div>
-                <div class="deploy-opt reveal"><h4>SaaS</h4><p>Hosted multi-tenant for teams that prefer fully managed infrastructure.</p></div>
-            </div>
-            <p class="reveal" style="text-align:center;margin-top:20px;font-size:14px;color:var(--text-muted);">All deployment modes use identical architecture — zero code changes to switch between them.</p>
-            <div class="final-framing reveal" style="margin-top:44px;">
-                Models give agents a general-purpose brain.<br>
-                <strong>SynOS gives them your company's Human-Agent Operating Layer.</strong>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section section--alt mesh-bg" id="product-cta" data-section="product-cta">
-        <div class="container">
-            <h2>See it with your data.</h2>
-            <p>Walk through the architecture with your actual stack, your actual connectors, and your actual workflows. No slides.</p>
-            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-product">Request early access</a>
-                <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="cta-book-demo-product" style="background:var(--surface);color:var(--accent);border:1px solid var(--border-accent);">Book a 30-min demo</a>
-            </div>
-            <p class="cta-secondary">Or <a href="https://anoopjawahar.substack.com" target="_blank">read the thesis →</a> on Substack.</p>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    </main>
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/></svg>
-                <span class="footer-logo-text">SynOS</span>
-            </div>
-            <div class="footer-middle">
-                <a href="/early-access">Early Access</a>
-                <a href="/product">Product</a>
-                <a href="/use-cases">Use Cases</a>
-                <a href="/blog">Blog</a>
-                <a href="/about">About</a>
-            </div>
-            <div class="footer-links">
-            <a href="/trust">Trust</a>
-                <a href="/security">Security</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/subprocessors">Subprocessors</a>
-            <span class="footer-sep"></span>
-                <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank">LinkedIn</a>
-                <span class="footer-sep"></span>
-                <a href="https://anoopjawahar.substack.com" target="_blank">Substack</a>
-            </div>
-        </div>
-        <p class="footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Reveal + stagger
-        const reveals = document.querySelectorAll('.reveal');
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(el => obs.observe(el));
-
-        // Tabs
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.getAttribute('data-tab');
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                document.querySelector('.tab-panel[data-tab="'+tab+'"]').classList.add('active');
-            });
-        });
-
-        // GA tracking
-        const sections = document.querySelectorAll('[data-section]');
-        const tracked = new Set();
-        const sObs = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    const n = e.target.getAttribute('data-section');
-                    if (!tracked.has(n)) { tracked.add(n); if (typeof gtag === 'function') gtag('event', 'section_view', { section_name: n }); }
-                }
-            });
-        }, { threshold: 0.3 });
-        sections.forEach(el => sObs.observe(el));
-
-        // CTA click tracking
-        document.querySelectorAll('[data-cta]').forEach(el => {
-            el.addEventListener('click', () => {
-                if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_location: el.getAttribute('data-cta') || 'unknown' });
-            });
-        });
-
-        // Mobile nav toggle
-        const navToggle = document.getElementById('nav-toggle');
-        const navLinks = document.getElementById('nav-links');
-        if (navToggle) navToggle.addEventListener('click', () => {
-            const open = navLinks.classList.toggle('open');
-            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-        // Hover-to-play gallery tiles (tap toggles on touch)
-        document.querySelectorAll('.pgal-frame.hoverplay').forEach(function (frame) {
-            var v = frame.querySelector('.pgal-vloop');
-            if (!v) return;
-            var start = function () { if (v.preload === 'none') { v.preload = 'auto'; v.load(); } v.play().catch(function () {}); frame.classList.add('playing'); };
-            var stop = function () { v.pause(); frame.classList.remove('playing'); };
-            frame.addEventListener('mouseenter', start);
-            frame.addEventListener('mouseleave', stop);
-            frame.addEventListener('click', function () { if (v.paused) start(); else stop(); });
-        });
-    </script>
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <div class="sk-footer-group">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-footer-word">SynOS</span>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/product">Product</a>
+      <a href="/build-your-own-ai">Build your own AI</a>
+      <a href="/use-cases">Use cases</a>
+      <a href="/why-now">Why now</a>
+      <a href="/about">About</a>
+      <a href="/careers">Careers</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://anoopjawahar.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </div>
+  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
+</footer>
+<!-- @endpartial footer -->
 </body>
 </html>

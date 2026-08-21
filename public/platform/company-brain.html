@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @partial head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<!-- @endpartial head -->
+    <title>Company Brain | SynOS</title>
+    <meta name="description" content="SynOS profiles your systems where they already sit. What it holds is the meaning of your data rather than a copy of it: entities, access maps, curation rules and the learnings your people add. It re-profiles on a schedule and escalates what it is unsure about.">
+    <meta property="og:title" content="Company Brain | SynOS">
+    <meta property="og:description" content="Profiled in place, refreshed on a schedule, and honest about what it is unsure of. No bulk ETL and no migration.">
+    <meta property="og:url" content="https://synos.in/platform/company-brain">
+    <meta property="og:image" content="https://synos.in/img/og/home.png">
+    <meta name="twitter:title" content="Company Brain | SynOS">
+    <meta name="twitter:description" content="Profiled in place, refreshed on a schedule, honest about what it is unsure of.">
+    <link rel="canonical" href="https://synos.in/platform/company-brain">
+    <style>
+    /* ─────────────────────────────────────────────────────────────────────────
+     * Platform · Company Brain. One argument: your systems are profiled where they sit, and the
+     * profile is kept current by something that runs on a schedule and escalates what it cannot
+     * decide. Shared furniture is in /css/synos.css; only what this page needs is here.
+     * ───────────────────────────────────────────────────────────────────────── */
+
+    /* ── the three-line plate ────────────────────────────────────────────── */
+    .plate { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
+    .plate > div { padding: var(--sk-space-7) var(--sk-space-6) var(--sk-space-7) 0; }
+    .plate > div + div { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
+    .plate b { display: block; font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; line-height: 1.15;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
+    .plate span { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); display: block; }
+    @media (max-width: 780px) {
+      .plate { grid-template-columns: 1fr; }
+      .plate > div { padding-right: 0; }
+      .plate > div + div { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; }
+    }
+
+    /* ── retrieval modes ─────────────────────────────────────────────────── */
+    /* A reference table, so it reads like a manual page rather than a feature grid. */
+    .modes { border-top: 1px solid var(--sk-ink); }
+    .mode { display: grid; grid-template-columns: 190px minmax(0, 1fr) 230px;
+      gap: var(--sk-space-6); padding: var(--sk-space-5) 0;
+      border-bottom: 1px solid var(--sk-border); align-items: baseline; }
+    .mode-n { font-size: 14.5px; font-weight: 600; color: var(--sk-ink); max-width: none; }
+    .mode-n small { display: block; margin-top: 3px; font-family: var(--sk-font-mono);
+      font-size: 10.5px; font-weight: 400; letter-spacing: 0.03em; color: var(--sk-ink-3); }
+    .mode-d { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    .mode-w { font-family: var(--sk-font-mono); font-size: 11px; line-height: 1.6;
+      color: var(--sk-indigo); max-width: none; }
+    .modes-h { display: grid; grid-template-columns: 190px minmax(0, 1fr) 230px;
+      gap: var(--sk-space-6); padding-bottom: var(--sk-space-4);
+      font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--sk-ink-3); }
+    .modes-h p { max-width: none; }
+    @media (max-width: 860px) {
+      .modes-h { display: none; }
+      .mode { grid-template-columns: 1fr; gap: var(--sk-space-3); }
+    }
+
+    /* ── staying current ─────────────────────────────────────────────────── */
+    .cycle { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-7); }
+    .step { border-top: 2px solid var(--sk-indigo-2); padding-top: var(--sk-space-5); }
+    .step-n { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.12em;
+      color: var(--sk-ink-3); margin-bottom: var(--sk-space-3); max-width: none; }
+    .step h3 { font-size: 17px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
+    .step p { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 860px) { .cycle { grid-template-columns: 1fr; } }
+
+    /* ── the review queue ────────────────────────────────────────────────── */
+    /* Rendered as the thing itself rather than described. An admin screen has a shape, and the
+     * shape is the argument: the brain says what it is unsure about instead of guessing. */
+    .queue { margin-top: var(--sk-space-8); border: 1px solid var(--sk-border-2);
+      border-radius: var(--sk-radius-sm); background: var(--sk-surface); overflow: hidden;
+      box-shadow: var(--sk-shadow-card); }
+    .queue-bar { display: flex; justify-content: space-between; align-items: center;
+      gap: var(--sk-space-5); flex-wrap: wrap;
+      padding: var(--sk-space-4) var(--sk-space-6); border-bottom: 1px solid var(--sk-border);
+      background: var(--sk-surface-2);
+      font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sk-ink-3); }
+    .queue-bar p { max-width: none; }
+    .q { display: grid; grid-template-columns: 104px minmax(0, 1fr);
+      gap: var(--sk-space-6); align-items: baseline;
+      padding: var(--sk-space-4) var(--sk-space-6); border-bottom: 1px solid var(--sk-border); }
+    .q:last-child { border-bottom: none; }
+    .q-t { font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.1em;
+      max-width: none; padding: 3px 0; }
+    .t-stale { color: var(--sk-amber-ink); }
+    .t-drift { color: var(--sk-amber-ink); }
+    .t-conf  { color: var(--sk-red-ink); }
+    .t-low   { color: var(--sk-ink-3); }
+    .t-prop  { color: var(--sk-indigo); }
+    .q-b { font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-2); max-width: none; }
+    .q-b code { font-family: var(--sk-font-mono); font-size: 12px; color: var(--sk-ink);
+      background: var(--sk-surface-2); border: 1px solid var(--sk-border);
+      border-radius: 4px; padding: 1px 5px; }
+    @media (max-width: 640px) {
+      .q { grid-template-columns: 1fr; gap: var(--sk-space-2); }
+    }
+
+    /* ── boundaries ──────────────────────────────────────────────────────── */
+    .bounds { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-6); }
+    .bound { border-left: 2px solid var(--sk-border-2); padding-left: var(--sk-space-5); }
+    .bound b { display: block; font-size: 14.5px; font-weight: 600; color: var(--sk-ink);
+      margin-bottom: var(--sk-space-3); }
+    .bound span { display: block; font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); }
+    @media (max-width: 860px) { .bounds { grid-template-columns: 1fr; } }
+
+    /* ── onward ──────────────────────────────────────────────────────────── */
+    .onward { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-6); }
+    .on { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
+      background: var(--sk-surface); padding: var(--sk-space-7) var(--sk-space-6);
+      box-shadow: var(--sk-shadow-card); text-decoration: none; display: block;
+      transition: border-color 0.15s ease; }
+    .on:hover { border-color: var(--sk-indigo-2); }
+    .on-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
+      max-width: none; }
+    .on h3 { font-size: 18px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
+    .on p { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 820px) { .onward { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<a href="#main-content" class="sk-skip">Skip to content</a>
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <a href="/" class="sk-nav-left" aria-label="SynOS home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="sk-nav-word">SynOS</span>
+  </a>
+  <div class="sk-nav-links" id="nav-links">
+    <a href="/product">Product</a>
+    <a href="/build-your-own-ai">Build your own AI</a>
+    <a href="/use-cases">Use cases</a>
+    <a href="/why-now">Why now</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="sk-nav-right">
+    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+<!-- @endpartial nav -->
+
+<main id="main-content">
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="sk-container sk-pagehero" data-section="hero">
+    <p class="sk-crumb"><a href="/product">Platform</a><span>/</span>Company Brain</p>
+    <h1>Your systems get profiled where they sit, and the profile is kept honest.</h1>
+    <p class="sk-lead">An agent is only as correct as the slice of context it was handed. The Company Brain is what decides that slice: what your entities mean, where each fact actually lives, which source to trust when two disagree, and what your people have taught it since. It holds the meaning of your data, and the rows stay in the systems that own them.</p>
+  </section>
+
+  <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
+  <section class="sk-container" data-section="glance">
+    <div class="plate">
+      <div>
+        <b>Profiled, not copied</b>
+        <span>Agents read your schemas, samples, documents and APIs, and build the maps. Statistics and column roles come to us; the rows are queried live at answer time.</span>
+      </div>
+      <div>
+        <b>Refreshed on a schedule</b>
+        <span>A brain built once starts going stale the same week. Profiling re-runs, diffs itself against what it believed, and applies what it is confident about.</span>
+      </div>
+      <div>
+        <b>Unsure is a state it can be in</b>
+        <span>Anything ambiguous stops and becomes a review item with a name on it, instead of a confident answer nobody can trace.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NO MIGRATION · FIG 02 ═════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="no-migration">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What actually moves</p>
+        <h2>The rows never leave your systems.</h2>
+        <p class="sk-lead">A migration copies your tables into a vendor tenancy and the copy is what the AI reasons over, which is why the data programme has to finish before anything useful runs. Profiling inverts that. What SynOS holds is the statistics, the semantics and the bindings: which table is authoritative for revenue, what a status field means, which join reaches the customer. The answer is assembled by querying your systems at the moment the question is asked.</p>
+      </div>
+      <figure class="sk-figframe">
+        <iframe data-fig src="/figures/what-moves.html" title="Figure 2: what actually moves, under a migration and under SynOS" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 02 &middot; the same table under both approaches</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ WHAT THE BRAIN HOLDS ══════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="memory-kinds">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What it holds</p>
+        <h2>Eight kinds of memory, because an agent needs more than documents.</h2>
+        <p class="sk-lead">Most context tools give you one shape: chunks of text with embeddings. That covers a policy document and none of the rest. Each kind below maps to a concrete store, so the brain stays queryable, auditable and safe to roll back, and adding a ninth is configuration rather than a migration.</p>
+      </div>
+      <div class="sk-stack">
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Semantic<small>knowledge graph</small></p>
+          <p class="sk-stack-d">Stable facts about the entities your business runs on: customer, product, cohort, region, and how they connect.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Episodic<small>operational store</small></p>
+          <p class="sk-stack-d">Time stamped events. Orders, messages, sessions, tickets, each with the moment it happened attached.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Procedural<small>skill library</small></p>
+          <p class="sk-stack-d">How the work is actually done here. The workflows and playbooks your agents follow, authored in plain English and versioned.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Policy<small>policy graph</small></p>
+          <p class="sk-stack-d">The constraints that are never negotiable. Frequency caps, channel and consent rules, do not disturb windows, approval thresholds.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Preferences<small>knowledge graph</small></p>
+          <p class="sk-stack-d">Per entity modifiers learned from behaviour rather than declared. Which channel a given account responds to, and when.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Decision traces<small>decision log</small></p>
+          <p class="sk-stack-d">Input state, action taken, result. Every agent call recorded against the context pack that produced it.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Reflective<small>review queue</small></p>
+          <p class="sk-stack-d">Corrections from people and from agents, compounded back. A one line fix becomes a rule the next run inherits.</p>
+          <p class="sk-stack-s sk-s-live"><i></i>live</p>
+        </div>
+        <div class="sk-stack-row">
+          <p class="sk-stack-n">Outcomes<small>outcome log</small></p>
+          <p class="sk-stack-d">Whether the action moved the baseline it was supposed to move, measured against your own numbers rather than assumed.</p>
+          <p class="sk-stack-s sk-s-build"><i></i>in build</p>
+        </div>
+      </div>
+      <p class="sk-note" style="margin-top:var(--sk-space-6)">Status is per capability and stated the same way everywhere on this site.</p>
+    </div>
+  </section>
+
+  <!-- ══ RETRIEVAL ═════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="retrieval">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Getting the right slice</p>
+        <h2>The long context window made retrieval more important, not less.</h2>
+        <p class="sk-lead">A model handed a million tokens of loosely related material answers worse and costs more than the same model handed the four things that mattered. Most answers that get blamed on the model are a retrieval problem. A router picks the mode per query, so an order ID goes somewhere different from a question about why an account churned.</p>
+      </div>
+      <div class="modes-h">
+        <p>mode</p><p>what it does</p><p>when it fires</p>
+      </div>
+      <div class="modes">
+        <div class="mode">
+          <p class="mode-n">Auto router<small>mode = auto</small></p>
+          <p class="mode-d">A selector picks the mode and the source per query. One question goes to SQL, the next to vectors, the next across the graph.</p>
+          <p class="mode-w">the default, mixed query types over mixed sources</p>
+        </div>
+        <div class="mode">
+          <p class="mode-n">Lexical<small>BM25</small></p>
+          <p class="mode-d">Sparse retrieval on exact term overlap. Fast, transparent, and it needs no GPU.</p>
+          <p class="mode-w">order IDs, account numbers, SKUs, policy codes</p>
+        </div>
+        <div class="mode">
+          <p class="mode-n">Semantic<small>dense embeddings</small></p>
+          <p class="mode-d">Ranks by meaning, so paraphrase, synonyms and a second language all still land on the right passage.</p>
+          <p class="mode-w">natural language questions, varied vocabulary</p>
+        </div>
+        <div class="mode">
+          <p class="mode-n">Hybrid with rerank<small>BM25 + vector + RRF</small></p>
+          <p class="mode-d">Runs lexical and semantic in parallel, fuses the two rankings, then a cross encoder reorders the top of the list for precision.</p>
+          <p class="mode-w">production default, prose mixed with literal identifiers</p>
+        </div>
+        <div class="mode">
+          <p class="mode-n">Agentic<small>plan, retrieve, reason</small></p>
+          <p class="mode-d">Decomposes a hard question into sub questions, runs each, merges and reranks what came back. Slower, and much better on the hard ones.</p>
+          <p class="mode-w">multi part questions, long threads, follow ups</p>
+        </div>
+        <div class="mode">
+          <p class="mode-n">Graph traversal<small>entity hops</small></p>
+          <p class="mode-d">Walks linked entities and their relationships. Traversal happens at query time, so there is no giant persisted graph to keep in sync.</p>
+          <p class="mode-w">multi hop reasoning across connected entities</p>
+        </div>
+      </div>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Whatever the mode, what comes back is a typed context pack: filtered by the caller's role, redacted by policy, ranked by authority and freshness, fitted to a token budget, and carrying citation IDs so an answer can be traced to the row it came from.</p>
+    </div>
+  </section>
+
+  <!-- ══ STAYING CURRENT ═══════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="staying-current">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The part that decays</p>
+        <h2>Schemas drift and definitions change. Agents keep answering anyway.</h2>
+        <p class="sk-lead">This is the failure mode nobody demos, because it takes a quarter to appear. A column gains three new enum values, a team renames a field, two tables both start claiming revenue, and the agent carries on sounding exactly as confident as it did in week one. So profiling runs on a schedule and holds a confidence score and a freshness stamp on every mapping.</p>
+      </div>
+      <div class="cycle">
+        <div class="step">
+          <p class="step-n">01</p>
+          <h3>Re-profile</h3>
+          <p>Agents re-read schemas, samples, documents and APIs. New tables, dropped columns, renamed fields, distributions that have shifted.</p>
+        </div>
+        <div class="step">
+          <p class="step-n">02</p>
+          <h3>Diff and score</h3>
+          <p>Compare what is there now against what the brain believed. Each mapping gets a confidence score and the date it was last confirmed.</p>
+        </div>
+        <div class="step">
+          <p class="step-n">03</p>
+          <h3>Apply or escalate</h3>
+          <p>High confidence changes apply themselves. Anything ambiguous stops and asks a person, which is the whole point of scoring it.</p>
+        </div>
+      </div>
+      <div class="queue">
+        <div class="queue-bar">
+          <p>admin review queue</p>
+          <p>is the brain still right</p>
+        </div>
+        <div class="q">
+          <p class="q-t t-stale">STALE</p>
+          <p class="q-b">7 tables not re-profiled in 30 days, and 2 of them feed a live agent.</p>
+        </div>
+        <div class="q">
+          <p class="q-t t-drift">DRIFT</p>
+          <p class="q-b"><code>orders.status</code> gained 3 enum values, so the existing mapping no longer covers them.</p>
+        </div>
+        <div class="q">
+          <p class="q-t t-conf">CONFLICT</p>
+          <p class="q-b">Two tables both claim <code>revenue</code>. Which one is authoritative?</p>
+        </div>
+        <div class="q">
+          <p class="q-t t-low">LOW CONF</p>
+          <p class="q-b">4 metric bindings sit below threshold, which means the agent is guessing on them.</p>
+        </div>
+        <div class="q">
+          <p class="q-t t-prop">PROPOSED</p>
+          <p class="q-b">Profiling found a new entity, <code>Gift Recipient</code>, spanning 3 tables. Add it to the ontology?</p>
+        </div>
+      </div>
+      <p class="sk-note" style="margin-top:var(--sk-space-5)">Illustrative queue. Your systems produce your own.</p>
+    </div>
+  </section>
+
+  <!-- ══ BOUNDARIES ════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="boundaries">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What it is and is not</p>
+        <h2>Three things people expect it to be, and what it does instead.</h2>
+      </div>
+      <div class="bounds">
+        <div class="bound">
+          <b>Not a warehouse</b>
+          <span>It holds no copy of your operational rows and it is not where you run analytics. It knows which warehouse to ask and how to ask it.</span>
+        </div>
+        <div class="bound">
+          <b>Not an index you load</b>
+          <span>There is no bulk load step to run before it works and no re-load when your data changes. Profiling reads your systems and refreshes the maps.</span>
+        </div>
+        <div class="bound">
+          <b>Not static retrieval</b>
+          <span>Its content changes from use. Corrections, promoted rules and re-profiling results all land back in it, which is what the learning loop is for.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ONWARD ════════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="onward">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The other two halves</p>
+        <h2>Context makes an agent correct. It does not make it safe or make it improve.</h2>
+      </div>
+      <div class="onward">
+        <a class="on" href="/platform/governance">
+          <p class="on-h">Governance</p>
+          <h3>One governed door</h3>
+          <p>Reading is the safe half. Every write goes through a single gate that checks role, tool, parameters and tenant, then writes an audit row whether it allowed the call or denied it.</p>
+        </a>
+        <a class="on" href="/platform/learning-loop">
+          <p class="on-h">Learning loop</p>
+          <h3>Corrections that stick</h3>
+          <p>What your experts fix in the flow of work becomes a rule every agent inherits, a case in your evals, and material a model of your own can be trained on later.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-cta" data-section="bottom-cta">
+    <div class="sk-container">
+      <h2>Bring one system and see what the profile finds.</h2>
+      <p class="sk-lead">The fastest version of this conversation is a walkthrough against a schema you already know well, because you will spot immediately where a profile is right and where it is guessing.</p>
+      <div class="sk-cta-row">
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-brain">Request early access</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-brain">Book a walkthrough</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <div class="sk-footer-group">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-footer-word">SynOS</span>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/product">Product</a>
+      <a href="/build-your-own-ai">Build your own AI</a>
+      <a href="/use-cases">Use cases</a>
+      <a href="/why-now">Why now</a>
+      <a href="/about">About</a>
+      <a href="/careers">Careers</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://anoopjawahar.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </div>
+  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
+</footer>
+<!-- @endpartial footer -->
+</body>
+</html>

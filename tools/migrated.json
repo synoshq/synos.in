@@ -1,12 +1,15 @@
 {
   "_why": "Which pages the gates actually check. A gate that passes because it is not looking is worse than no gate, so the scope is written down here rather than implied. A page joins this list when it has been converted to public/css/synos.css and the partial markers, and it may never leave.",
-  "_phase": "Phase 1 converted about.html. Phase 3 converted index.html. Figures in /figures/ are always in render-gate scope.",
+  "_phase": "Phase 1 converted about.html. Phase 3 converted index.html. Phase 4 added the three platform pages and rebuilt product.html. Figures in /figures/ are always in render-gate scope.",
   "migrated": [
     "/about.html",
-    "/index.html"
+    "/index.html",
+    "/platform/company-brain.html",
+    "/platform/governance.html",
+    "/platform/learning-loop.html",
+    "/product.html"
   ],
   "pending": [
-    "/product.html",
     "/use-cases.html",
     "/use-cases/cloud-finops-agents.html",
     "/blog.html",
