@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "SynOS - The Human-Agent Operating Layer",
   "scripts": {
-    "dev": "npx serve public",
+    "dev": "node tools/serve.mjs",
     "build": "echo 'Static site, no build needed'",
     "pages": "node tools/build-pages.mjs",
     "gate": "node tools/contrast-gate.mjs && node tools/vocab-gate.mjs && node tools/copy-gate.mjs",

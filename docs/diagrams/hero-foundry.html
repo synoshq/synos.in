@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Candidate A · the foundry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+  body { display: grid; place-items: center; min-height: 100vh; padding: 48px 24px; }
+  .stage { width: 100%; max-width: 1120px; }
+  svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  /* systems: present, connected, deliberately quiet */
+  .sys-t   { fill: var(--sk-surface-2); stroke: var(--sk-border-2); stroke-width: 1.25; }
+  .sys-l   { fill: var(--sk-border); stroke: var(--sk-border-2); stroke-width: 1.25; }
+  .sys-r   { fill: var(--sk-border-2); stroke: var(--sk-border-2); stroke-width: 1.25; }
+
+  /* the layer */
+  .lay-t   { fill: url(#layerTop); }
+  .lay-l   { fill: var(--sk-indigo-ink); }
+  .lay-r   { fill: var(--sk-violet-ink); }
+  .gl      { stroke: var(--sk-on-brand); stroke-opacity: 0.13; stroke-width: 1; }
+
+  /* what you build: pale solids, so they read as objects standing on the layer */
+  .bk-t    { fill: var(--sk-surface); stroke: var(--sk-indigo-br); stroke-width: 1; }
+  .bk-l    { fill: var(--sk-indigo-bg); stroke: var(--sk-indigo-br); stroke-width: 1; }
+  .bk-r    { fill: var(--sk-indigo-br); stroke: var(--sk-indigo-br); stroke-width: 1; }
+
+  /* the model: the one object that is not pale */
+  .md-t    { fill: url(#modelTop); }
+  .md-l    { fill: var(--sk-indigo); }
+  .md-r    { fill: var(--sk-indigo-ink); }
+
+  .fil     { stroke: var(--sk-indigo-3); stroke-width: 1.75; stroke-linecap: round;
+             stroke-dasharray: 5 9; animation: flow 2.4s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -14; } }
+  @media (prefers-reduced-motion: reduce) { .fil { animation: none; stroke-dasharray: none; stroke-opacity: 0.5; } }
+
+  .ld          { fill: none; stroke: var(--sk-border-2); stroke-width: 1.25; }
+  .ld-brand    { stroke: var(--sk-indigo-2); }
+  .ld-dot      { fill: var(--sk-border-2); }
+  .ld-dot-brand{ fill: var(--sk-indigo-2); }
+
+  .rail-t  { font-family: var(--sk-font-body); font-size: 15px; font-weight: 600; fill: var(--sk-ink); }
+  .rail-s  { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.03em; fill: var(--sk-ink-3); }
+  .sys-t, .sys-s { font-family: var(--sk-font-mono); }
+  text.sys-t { font-size: 12.5px; letter-spacing: 0.06em; fill: var(--sk-ink-3); stroke: none; }
+  .sys-s   { font-size: 11px; letter-spacing: 0.03em; fill: var(--sk-dim); }
+
+  .axis    { stroke: var(--sk-border-2); stroke-width: 1; }
+  .axis-t  { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.1em;
+             text-transform: uppercase; fill: var(--sk-dim); stroke: none; }
+</style>
+</head>
+<body>
+<div class="stage">
+<svg viewBox="120 90 1120 720" role="img"
+     aria-label="An isometric view of the SynOS layer as a surface the company builds on. Its own systems of record sit below it, untouched. On the surface, the skills, agents, apps, traces, corrections and evals its people produce accumulate from left to right, and out of them a model of the company's own rises at the far corner.">
+  <defs>
+    <linearGradient id="layerTop" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="var(--sk-indigo-2)"/>
+      <stop offset="1" stop-color="var(--sk-violet-ink)"/>
+    </linearGradient>
+    <linearGradient id="modelTop" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="var(--sk-indigo-3)"/>
+      <stop offset="1" stop-color="var(--sk-indigo-2)"/>
+    </linearGradient>
+    <filter id="lift" x="-30%" y="-40%" width="160%" height="200%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="var(--sk-ink)" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+
+  <!-- systems of record: below the layer, connected, never moved -->
+  <g filter="url(#lift)">
+    <polygon class="sys-l" points="220,610 520,760 520,776 220,626"/>
+    <polygon class="sys-r" points="520,760 820,610 820,626 520,776"/>
+    <polygon class="sys-t" points="220,610 520,460 820,610 520,760"/>
+  </g>
+  <text class="sys-t" x="520" y="620" text-anchor="middle">your systems of record</text>
+  <text class="sys-s" x="520" y="640" text-anchor="middle">profiled where they sit · queried live · nothing migrated</text>
+
+  <!-- the layer -->
+  <g filter="url(#lift)">
+    <polygon class="lay-l" points="220,430 520,580 520,620 220,470"/>
+    <polygon class="lay-r" points="520,580 820,430 820,470 520,620"/>
+    <polygon class="lay-t" points="220,430 520,280 820,430 520,580"/>
+    <g class="grid"><line class="gl" x1="257.5" y1="411.25" x2="557.5" y2="561.25"/>
+    <line class="gl" x1="257.5" y1="448.75" x2="557.5" y2="298.75"/>
+    <line class="gl" x1="295" y1="392.5" x2="595" y2="542.5"/>
+    <line class="gl" x1="295" y1="467.5" x2="595" y2="317.5"/>
+    <line class="gl" x1="332.5" y1="373.75" x2="632.5" y2="523.75"/>
+    <line class="gl" x1="332.5" y1="486.25" x2="632.5" y2="336.25"/>
+    <line class="gl" x1="370" y1="355" x2="670" y2="505"/>
+    <line class="gl" x1="370" y1="505" x2="670" y2="355"/>
+    <line class="gl" x1="407.5" y1="336.25" x2="707.5" y2="486.25"/>
+    <line class="gl" x1="407.5" y1="523.75" x2="707.5" y2="373.75"/>
+    <line class="gl" x1="445" y1="317.5" x2="745" y2="467.5"/>
+    <line class="gl" x1="445" y1="542.5" x2="745" y2="392.5"/>
+    <line class="gl" x1="482.5" y1="298.75" x2="782.5" y2="448.75"/>
+    <line class="gl" x1="482.5" y1="561.25" x2="782.5" y2="411.25"/></g>
+  </g>
+
+  <!-- what the company builds on it -->
+  <polygon class="bk-l" points="436,508 475,527.5 475,507.5 436,488"/>
+    <polygon class="bk-r" points="475,527.5 514,508 514,488 475,507.5"/>
+    <polygon class="bk-t" points="436,488 475,468.5 514,488 475,507.5"/>
+  <polygon class="bk-l" points="448,454 487,473.5 487,449.5 448,430"/>
+    <polygon class="bk-r" points="487,473.5 526,454 526,430 487,449.5"/>
+    <polygon class="bk-t" points="448,430 487,410.5 526,430 487,449.5"/>
+  <polygon class="bk-l" points="466,397 505,416.5 505,386.5 466,367"/>
+    <polygon class="bk-r" points="505,416.5 544,397 544,367 505,386.5"/>
+    <polygon class="bk-t" points="466,367 505,347.5 544,367 505,386.5"/>
+  <polygon class="md-l" points="478,343 529,368.5 529,272.5 478,247"/>
+    <polygon class="md-r" points="529,368.5 580,343 580,247 529,272.5"/>
+    <polygon class="md-t" points="478,247 529,221.5 580,247 529,272.5"/>
+  <polygon class="bk-l" points="520,502 559,521.5 559,493.5 520,474"/>
+    <polygon class="bk-r" points="559,521.5 598,502 598,474 559,493.5"/>
+    <polygon class="bk-t" points="520,474 559,454.5 598,474 559,493.5"/>
+  <polygon class="bk-l" points="550,451 589,470.5 589,432.5 550,413"/>
+    <polygon class="bk-r" points="589,470.5 628,451 628,413 589,432.5"/>
+    <polygon class="bk-t" points="550,413 589,393.5 628,413 589,432.5"/>
+  <polygon class="bk-l" points="568,394 607,413.5 607,367.5 568,348"/>
+    <polygon class="bk-r" points="607,413.5 646,394 646,348 607,367.5"/>
+    <polygon class="bk-t" points="568,348 607,328.5 646,348 607,367.5"/>
+
+  <!-- context rises out of the systems into the layer -->
+  <g class="fil">
+    <line x1="400" y1="610" x2="400" y2="470"/>
+    <line x1="520" y1="610" x2="520" y2="470"/>
+    <line x1="640" y1="610" x2="640" y2="470"/>
+  </g>
+
+  <!-- the right rail -->
+  
+    <polyline class="ld ld-brand" points="503.5,330.25 529.5,312.25 882,208"/>
+    <circle class="ld-dot ld-dot-brand" cx="503.5" cy="330.25" r="3"/>
+    <text class="rail-t" x="894" y="204">AI of your own</text>
+    <text class="rail-s" x="894" y="223">trained on how you actually operate</text>
+  
+    <polyline class="ld" points="568,394 594,376 882,330"/>
+    <circle class="ld-dot" cx="568" cy="394" r="3"/>
+    <text class="rail-t" x="894" y="326">What your people build</text>
+    <text class="rail-s" x="894" y="345">skills · agents · apps, in plain English</text>
+  
+    <polyline class="ld" points="550,451 576,433 882,452"/>
+    <circle class="ld-dot" cx="550" cy="451" r="3"/>
+    <text class="rail-t" x="894" y="448">What running it produces</text>
+    <text class="rail-s" x="894" y="467">traces · corrections · private evals</text>
+  
+    <polyline class="ld" points="550,559 576,541 882,566"/>
+    <circle class="ld-dot" cx="550" cy="559" r="3"/>
+    <text class="rail-t" x="894" y="562">The layer itself</text>
+    <text class="rail-s" x="894" y="581">self-hosted · governed · model-agnostic</text>
+
+  <!-- time -->
+  <g class="axis">
+    <line x1="514" y1="738" x2="526" y2="738"/>
+    <text class="axis-t" x="514" y="760">week one</text>
+    <text class="axis-t" x="526" y="760" text-anchor="end">and every week after</text>
+  </g>
+</svg>
+</div>
+</body>
+</html>
