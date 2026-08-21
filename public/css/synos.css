@@ -138,6 +138,14 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+/*
+ * Form controls do not inherit type from body: the user agent sets its own. Left alone, every
+ * button, input and select on the site reports Arial, which is a fourth font family nobody chose.
+ * The 2026-08-16 deck session lost time to the same class of defect, where <code> inherited the
+ * browser's monospace and shipped in four decks behind a wrong explanation. Fix it once, here.
+ */
+button, input, select, textarea { font: inherit; color: inherit; }
+
 html { scroll-behavior: smooth; }
 
 body {

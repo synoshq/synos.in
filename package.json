@@ -6,6 +6,7 @@
     "dev": "npx serve public",
     "build": "echo 'Static site, no build needed'",
     "pages": "node tools/build-pages.mjs",
-    "gate": "node tools/contrast-gate.mjs && node tools/vocab-gate.mjs && node tools/copy-gate.mjs"
+    "gate": "node tools/contrast-gate.mjs && node tools/vocab-gate.mjs && node tools/copy-gate.mjs",
+    "gate:render": "node tools/render-gate.mjs"
   }
 }
