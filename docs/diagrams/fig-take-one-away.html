@@ -44,8 +44,11 @@ body { padding: 88px 24px; }
   border-top: 1px solid var(--sk-border); font-size: 12px; line-height: 1.55; color: var(--sk-muted); }
 
 /* ── the inventory ──────────────────────────────────────────────────────── */
-.inv { display: grid; grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr); gap: var(--sk-space-8);
-  border-top: 1px solid var(--sk-ink); padding-top: var(--sk-space-6); }
+.inv { display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr); gap: var(--sk-space-8);
+  border-top: 1px solid var(--sk-ink); padding-top: var(--sk-space-6); align-items: start; }
+/* The left half is one short answer and the right half is six items. Left column content sticks to
+   the top of its own band rather than leaving a column of dead space beneath it. */
+.inv > div:first-child { position: sticky; top: var(--sk-space-7); }
 .inv-h { font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.14em;
   text-transform: uppercase; margin-bottom: var(--sk-space-5); }
 .inv-h.gone { color: var(--sk-red-ink); }
@@ -63,15 +66,20 @@ body { padding: 88px 24px; }
   font-size: 10.5px; color: var(--sk-dim); }
 
 .none {
-  padding: var(--sk-space-6); border: 1px dashed var(--sk-border-2); border-radius: 3px;
-  font-family: var(--sk-font-body); font-size: 15px; color: var(--sk-muted); text-align: center;
+  padding: var(--sk-space-7) var(--sk-space-6); border: 1px dashed var(--sk-border-2); border-radius: 3px;
+  font-family: var(--sk-font-display); font-size: 24px; line-height: 1.3;
+  color: var(--sk-ink-3); text-align: left;
 }
+.none small { display: block; margin-top: var(--sk-space-4); font-family: var(--sk-font-mono);
+  font-size: 11px; letter-spacing: 0.04em; color: var(--sk-dim); }
 
 .fig-foot { margin-top: var(--sk-space-8); padding-top: var(--sk-space-6);
   border-top: 1px solid var(--sk-border); display: flex; align-items: baseline;
   justify-content: space-between; gap: var(--sk-space-7); flex-wrap: wrap;
   font-size: 14px; color: var(--sk-ink-3); }
 .fig-foot b { color: var(--sk-ink); font-weight: 600; }
+.fig-foot > span:first-child { flex: 1 1 30ch; }
+.fig-foot > span:last-child { text-align: right; }
 
 @media (max-width: 900px) {
   .swaps { grid-template-columns: repeat(2, 1fr); }
@@ -107,7 +115,7 @@ body { padding: 88px 24px; }
     </div>
     <div class="swap">
       <p class="swap-h">remove us</p>
-      <p class="swap-l">SynOS</p>
+      <p class="swap-l"><s>SynOS</s></p>
       <p class="swap-out">The brain, the rules, the corrections and the traces are on your infrastructure, in your account.</p>
     </div>
   </div>
@@ -115,7 +123,7 @@ body { padding: 88px 24px; }
   <div class="inv">
     <div>
       <p class="inv-h gone">what leaves with the vendor</p>
-      <p class="none">Nothing of yours was ever inside them.</p>
+      <p class="none">Nothing of yours was ever inside them.<small>no brain, no rules, no corrections, no traces</small></p>
     </div>
 
     <div>
