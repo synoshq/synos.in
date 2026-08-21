@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @partial head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<!-- @endpartial head -->
+    <title>Build your own AI | SynOS</title>
+    <meta name="description" content="The environment that makes agents work inside your company is the same environment you would train AI of your own in. Agents rehearse against your real systems with their writes captured rather than committed, and the trajectory is scored against cases your team wrote.">
+    <meta property="og:title" content="Build your own AI | SynOS">
+    <meta property="og:description" content="Capture, evaluate, then train. The same install, doing a second job, on your own infrastructure.">
+    <meta property="og:url" content="https://synos.in/build-your-own-ai">
+    <meta property="og:image" content="https://synos.in/img/og/home.png">
+    <meta name="twitter:title" content="Build your own AI | SynOS">
+    <meta name="twitter:description" content="Capture, evaluate, then train. The same install doing a second job, on your own infrastructure.">
+    <link rel="canonical" href="https://synos.in/build-your-own-ai">
+    <style>
+    /* ─────────────────────────────────────────────────────────────────────────
+     * Build your own AI. The phase-two page.
+     *
+     * Ordering decision, from the internal claims audit of 2026-08-12: the evaluation environment
+     * is the asset and training is one consumer of it. That ordering is also the honest one, since
+     * it survives a customer who never fine-tunes anything, which is the likely case for most.
+     *
+     * Two hard rules on this page. It does not use the words "RL" or "gym", because that invites
+     * being measured on rollout volume nobody doing real enterprise work will ever have. And it
+     * does not say corrections become labels: what is true today is that a correction is reviewed,
+     * promoted, and reaches every agent.
+     * ───────────────────────────────────────────────────────────────────────── */
+
+    .plate { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
+    .plate > div { padding: var(--sk-space-7) var(--sk-space-6) var(--sk-space-7) 0; }
+    .plate > div + div { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
+    .plate b { display: block; font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; line-height: 1.15;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
+    .plate span { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); display: block; }
+    @media (max-width: 780px) {
+      .plate { grid-template-columns: 1fr; }
+      .plate > div { padding-right: 0; }
+      .plate > div + div { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; }
+    }
+
+    /* ── the three rehearsal modes ───────────────────────────────────────── */
+    /* The middle column is set in mono because it names the mode as the system names it. The third
+     * mode is the one worth the page, so it carries the accent rule. */
+    .modes { border-top: 1px solid var(--sk-ink); }
+    .rmode { display: grid; grid-template-columns: 210px 250px minmax(0, 1fr);
+      gap: var(--sk-space-6); align-items: baseline;
+      padding: var(--sk-space-6) 0; border-bottom: 1px solid var(--sk-border); }
+    .rmode--key { border-left: 2px solid var(--sk-indigo-2); padding-left: var(--sk-space-6);
+      margin-left: calc(var(--sk-space-6) * -1); background: var(--sk-indigo-bg); }
+    .rmode-n { font-size: 15px; font-weight: 600; color: var(--sk-ink); max-width: none; }
+    .rmode-c { font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.6;
+      color: var(--sk-indigo); max-width: none; }
+    .rmode-d { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 860px) {
+      .rmode { grid-template-columns: 1fr; gap: var(--sk-space-3); }
+      .rmode--key { margin-left: 0; padding: var(--sk-space-5) var(--sk-space-5); }
+    }
+
+    /* ── the scorers ─────────────────────────────────────────────────────── */
+    /* A weight is a number, so it is set as one: mono, right aligned, in a column of its own. */
+    .scorers { border-top: 1px solid var(--sk-ink); }
+    .sc { display: grid; grid-template-columns: 200px minmax(0, 1fr) 64px;
+      gap: var(--sk-space-6); align-items: baseline;
+      padding: var(--sk-space-5) 0; border-bottom: 1px solid var(--sk-border); }
+    .sc-n { font-size: 14.5px; font-weight: 600; color: var(--sk-ink); max-width: none; }
+    .sc-d { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    .sc-w { justify-self: end; font-family: var(--sk-font-mono); font-size: 12px;
+      color: var(--sk-ink-2); max-width: none; }
+    @media (max-width: 820px) {
+      .sc { grid-template-columns: minmax(0, 1fr) 64px; row-gap: var(--sk-space-3); }
+      .sc-d { grid-column: 1 / -1; }
+    }
+
+    /* ── questions we expect ─────────────────────────────────────────────── */
+    .qa { border-top: 1px solid var(--sk-ink); }
+    .qa-row { display: grid; grid-template-columns: 300px minmax(0, 1fr);
+      gap: var(--sk-space-6); align-items: baseline;
+      padding: var(--sk-space-6) 0; border-bottom: 1px solid var(--sk-border); }
+    .qa-q { font-family: var(--sk-font-display); font-size: 19px; line-height: 1.3;
+      color: var(--sk-ink); max-width: none; }
+    .qa-a { font-size: 14px; line-height: 1.75; color: var(--sk-ink-3); max-width: none; }
+    .qa-a + .qa-a { margin-top: var(--sk-space-4); }
+    @media (max-width: 820px) { .qa-row { grid-template-columns: 1fr; gap: var(--sk-space-4); } }
+
+    /* ── what we do not claim ────────────────────────────────────────────── */
+    .nots { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-6); }
+    .not { border-left: 2px solid var(--sk-amber-2); padding-left: var(--sk-space-5); }
+    .not b { display: block; font-size: 14.5px; font-weight: 600; color: var(--sk-ink);
+      margin-bottom: var(--sk-space-3); }
+    .not span { display: block; font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); }
+    @media (max-width: 860px) { .nots { grid-template-columns: 1fr; } }
+
+    /* ── onward ──────────────────────────────────────────────────────────── */
+    .onward { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-6); }
+    .on { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
+      background: var(--sk-surface); padding: var(--sk-space-7) var(--sk-space-6);
+      box-shadow: var(--sk-shadow-card); text-decoration: none; display: block;
+      transition: border-color 0.15s ease; }
+    .on:hover { border-color: var(--sk-indigo-2); }
+    .on-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
+      max-width: none; }
+    .on h3 { font-size: 18px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
+    .on p { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 820px) { .onward { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<a href="#main-content" class="sk-skip">Skip to content</a>
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <a href="/" class="sk-nav-left" aria-label="SynOS home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="sk-nav-word">SynOS</span>
+  </a>
+  <div class="sk-nav-links" id="nav-links">
+    <a href="/product">Product</a>
+    <a href="/build-your-own-ai">Build your own AI</a>
+    <a href="/use-cases">Use cases</a>
+    <a href="/why-now">Why now</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="sk-nav-right">
+    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+<!-- @endpartial nav -->
+
+<main id="main-content">
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="sk-container sk-pagehero" data-section="hero">
+    <p class="sk-eyebrow">Phase two, on the same install</p>
+    <h1>What it takes to make AI work here is what it takes to train AI on how you work.</h1>
+    <p class="sk-lead">Every serious attempt at AI of your own runs into the same wall, and it is never the model. It is that nobody has the material: examples of how this company actually decides, produced by the people who know, with a way to tell whether a change made things better. That material is a by-product of getting agents working in the first place, which is the only reason this is affordable. You are not funding a training programme. You are keeping what the first one produced.</p>
+  </section>
+
+  <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
+  <section class="sk-container" data-section="glance">
+    <div class="plate">
+      <div>
+        <b>Capture first</b>
+        <span>Traces and corrections run from your first week, because capture is the one part of this that cannot be backfilled later.</span>
+      </div>
+      <div>
+        <b>Then a benchmark you own</b>
+        <span>Cases mined from real runs and real corrections, scored against your outcomes rather than a public leaderboard.</span>
+      </div>
+      <div>
+        <b>Training is downstream</b>
+        <span>Fine-tuning is one thing you can do with that material. The evaluation environment is worth having even if you never train anything.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ THREE PHASES · FIG 05 ═════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="three-phases">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The order is forced</p>
+        <h2>Nothing new gets installed between one phase and the next.</h2>
+        <p class="sk-lead">The reason to care about the order is money. A company that treats phase two as a separate programme has to buy the capture, the governance and the environment twice, and the second purchase never gets approved. Doing the first phase properly is what earns the second one for free.</p>
+      </div>
+      <figure class="sk-figframe">
+        <iframe data-fig src="/figures/three-phases.html" title="Figure 5: one environment, three phases" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 05 &middot; one environment, three phases</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ TWO JOBS · FIG 06 ═════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="two-jobs">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The same five pieces</p>
+        <h2>Read each row across. The thing on the left is already installed.</h2>
+        <p class="sk-lead">Everyone else in this market authors a copy of your business and learns in the copy, even when the copy runs in your own cloud. A replica cannot hold twelve years of exceptions in one company's order to cash, because the exceptions are the part nobody wrote down. This instruments the original instead.</p>
+      </div>
+      <figure class="sk-figframe">
+        <iframe data-fig src="/figures/two-jobs.html" title="Figure 6: the same five pieces, doing a second job" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 06 &middot; today's job, and tomorrow's</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ REHEARSAL ═════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="rehearsal">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">How an attempt is run safely</p>
+        <h2>An agent rehearses against your real systems, and the write it would have made is caught.</h2>
+        <p class="sk-lead">This is the mechanism that makes the whole thing more than a slogan. An evaluation run reads from your live systems, so the state is genuinely today's state. Its writes are intercepted at the tool layer and recorded rather than committed, which means the thing being scored is the action the agent would actually have taken. Three modes, and you choose per suite.</p>
+      </div>
+      <div class="modes">
+        <div class="rmode">
+          <p class="rmode-n">Recorded replay</p>
+          <p class="rmode-c">mock_all</p>
+          <p class="rmode-d">Replays a recorded run with canned responses. Fast and free, and useful for catching an outright regression, though a candidate that leaves the recorded path is by definition no longer being tested against reality.</p>
+        </div>
+        <div class="rmode">
+          <p class="rmode-n">Real reads</p>
+          <p class="rmode-c">real_reads</p>
+          <p class="rmode-d">Real tools against real data with writes refused outright. What the agent sees is true; what it tries to do is stopped at the boundary rather than recorded.</p>
+        </div>
+        <div class="rmode rmode--key">
+          <p class="rmode-n">Real reads, captured writes</p>
+          <p class="rmode-c">live_reads_captured_writes</p>
+          <p class="rmode-d">The same real execution, except each intended write persists to the result instead of happening. The refund that would have been issued, the record that would have been updated, the resource that would have been resized, all captured with their parameters and scored. Nothing reached your systems.</p>
+        </div>
+      </div>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Write refusal during a training run is a single enforced seam rather than a convention, including a floor that refuses any write on execution paths where the capture intercept does not exist. That boundary has been tested by trying to break it, which is the only kind of test worth quoting.</p>
+    </div>
+  </section>
+
+  <!-- ══ SCORING ═══════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="scoring">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What gets scored</p>
+        <h2>The trajectory, including the write, rather than the paragraph at the end.</h2>
+        <p class="sk-lead">Evaluation tools score an output against an expected string. That works for a summariser and tells you almost nothing about an agent, which can reach a defensible answer through a sequence you would never have allowed. These are the default weights, and they are yours to change.</p>
+      </div>
+      <div class="scorers">
+        <div class="sc">
+          <p class="sc-n">Tool selection</p>
+          <p class="sc-d">Did it reach for the right tools for this task, or improvise with whatever was nearest.</p>
+          <p class="sc-w">0.25</p>
+        </div>
+        <div class="sc">
+          <p class="sc-n">Write actions</p>
+          <p class="sc-d">The captured write, compared against what should have been written. The score most people never think to build.</p>
+          <p class="sc-w">0.20</p>
+        </div>
+        <div class="sc">
+          <p class="sc-n">Parameter accuracy</p>
+          <p class="sc-d">Right tool, right arguments. An almost correct amount or the wrong account is a failure here rather than a rounding error.</p>
+          <p class="sc-w">0.20</p>
+        </div>
+        <div class="sc">
+          <p class="sc-n">Output quality</p>
+          <p class="sc-d">A model judging the answer, pinned to a continuous scale when the run is gating a promotion, because a binary judge at a decision boundary is noise.</p>
+          <p class="sc-w">0.20</p>
+        </div>
+        <div class="sc">
+          <p class="sc-n">Tool order</p>
+          <p class="sc-d">Sequence matters when one step authorises the next. Checking eligibility after issuing the credit is a different act.</p>
+          <p class="sc-w">0.15</p>
+        </div>
+      </div>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Around the scores sit two things worth naming. A regression gate re-runs a suite with and without a proposed change and blocks anything that scores worse, so a promotion is a measurement rather than an opinion. And the export that builds a training set returns only cases marked eligible, with the excluded holdout reported as a count, so contamination is prevented at the boundary rather than in a document telling people to be careful.</p>
+    </div>
+  </section>
+
+  <!-- ══ QUESTIONS ═════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="questions">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The two questions anyone with an ML background asks</p>
+        <h2>Both are fair, and the honest answers are better than confident ones.</h2>
+      </div>
+      <div class="qa">
+        <div class="qa-row">
+          <p class="qa-q">How many episodes will you actually have?</p>
+          <div>
+            <p class="qa-a">Far fewer than a lab, and we do not need lab volume, because the unit here is not a rollout. It is a decision an expert reviewed. A function in production generates hundreds of reviewed decisions a quarter, which is the right order for tuning a narrow task and for an evaluation suite that actually separates a good change from a bad one.</p>
+            <p class="qa-a">What nobody doing real enterprise work will ever have is the volume for training from scratch, because every episode is a real business action with a real cost. That is precisely why the vendors selling simulated environments simulate. The trade is that a few thousand of your examples are the genuine exceptions, and a million of theirs are invented.</p>
+          </div>
+        </div>
+        <div class="qa-row">
+          <p class="qa-q">What supplies the reward?</p>
+          <div>
+            <p class="qa-a">Today it is human. Approvals, rejections and corrections from the person who owns the process, captured while they do the work. That is a preference signal rather than a scalar reward, and it is what a small preference model learns from.</p>
+            <p class="qa-a">Tying a decision to what the business measured afterwards is the next layer, and we will say plainly that it is a causal inference problem rather than a plumbing one: delayed, confounded, and cleanly identifiable only where a business will tolerate a holdout. We would rather build the measured version slowly than publish a number that flatters us.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHAT WE DO NOT CLAIM ══════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="not-claiming">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Stated plainly</p>
+        <h2>Three things this is not, so nobody discovers them in month four.</h2>
+      </div>
+      <div class="nots">
+        <div class="not">
+          <b>Not a simulated environment</b>
+          <span>There is no synthetic twin of your business here and no generated task set. The environment is your systems, which is the strength and also the reason volume stays modest.</span>
+        </div>
+        <div class="not">
+          <b>Not a claim that corrections are labels</b>
+          <span>A correction today is reviewed, promoted, and reaches every agent as a rule. Capturing corrections as trajectory level training pairs is work we have not finished.</span>
+        </div>
+        <div class="not">
+          <b>Not a finished training stack</b>
+          <span>Capture and rehearsal are live. Evaluation suites are in build. Fine-tuning and distillation on your own infrastructure are roadmap, and they are the last thing to arrive rather than the first.</span>
+        </div>
+      </div>
+      <div class="sk-cta-row" style="justify-content:flex-start;margin-top:var(--sk-space-8)">
+        <span class="sk-chip sk-chip--live">capture and rehearsal, live</span>
+        <span class="sk-chip sk-chip--build">evaluation suites, in build</span>
+        <span class="sk-chip sk-chip--roadmap">training on your infrastructure, roadmap</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ONWARD ════════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="onward">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The install this runs on</p>
+        <h2>None of this is a second deployment.</h2>
+      </div>
+      <div class="onward">
+        <a class="on" href="/platform/learning-loop">
+          <p class="on-h">Learning loop</p>
+          <h3>Where the material comes from</h3>
+          <p>The corrections, the review step that promotes them, and the ladder an agent climbs by clearing a threshold on cases your own team wrote.</p>
+        </a>
+        <a class="on" href="/why-now">
+          <p class="on-h">Why now</p>
+          <h3>Why better models make this more necessary</h3>
+          <p>The argument that model progress raises the value of this layer rather than removing it, and what that means for what you start today.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
+    <div class="sk-container">
+      <h2>Start with the phase that pays for itself.</h2>
+      <p class="sk-lead">The useful first conversation is about the work in front of your team this quarter. What accumulates underneath it is what makes the rest possible, and it costs nothing extra to keep.</p>
+      <div class="sk-cta-row">
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-byoai">Request early access</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-byoai">Book a walkthrough</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <div class="sk-footer-group">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-footer-word">SynOS</span>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/product">Product</a>
+      <a href="/build-your-own-ai">Build your own AI</a>
+      <a href="/use-cases">Use cases</a>
+      <a href="/why-now">Why now</a>
+      <a href="/about">About</a>
+      <a href="/careers">Careers</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://anoopjawahar.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </div>
+  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
+</footer>
+<!-- @endpartial footer -->
+</body>
+</html>
