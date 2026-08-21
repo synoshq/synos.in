@@ -66,7 +66,22 @@ for (const path of (await pages(PUBLIC)).filter(p => MIGRATED.has(p))) {
             bad.push(el.tagName + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''))
           }
         }
+        // A CSS transform can defeat a gate that reads markup: text-transform:uppercase turns
+        // "SynOS" into "SYNOS" on screen while the source still says SynOS. Found in a diagram on
+        // 2026-08-21, where it had already rendered wrong once.
+        const cased = []
+        for (const el of document.body.querySelectorAll('*')) {
+          if (el.children.length) continue
+          const txt = (el.textContent || '')
+          if (!/synos/i.test(txt)) continue
+          const tt = getComputedStyle(el).textTransform
+          if (tt === 'uppercase' || tt === 'lowercase' || tt === 'capitalize') {
+            cased.push(`${el.tagName}.${(el.className || '').toString().split(' ')[0]} text-transform:${tt}`)
+          }
+        }
+
         return {
+          cased,
           families: [...families],
           overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
           scrollWidth: document.documentElement.scrollWidth,
@@ -81,6 +96,9 @@ for (const path of (await pages(PUBLIC)).filter(p => MIGRATED.has(p))) {
       }
       for (const f of result.families) {
         if (!ALLOWED_FAMILIES.includes(f)) failures.push(`${path} @${width}: unexpected font family "${f}"`)
+      }
+      for (const c of result.cased) {
+        failures.push(`${path} @${width}: brand name re-cased by CSS · ${c}`)
       }
     } catch (err) {
       failures.push(`${path} @${width}: ${err.message.split('\n')[0]}`)
