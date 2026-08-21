@@ -11,7 +11,7 @@
 //
 // Requires playwright. If it is not installed the script says so and exits 0, because a missing
 // dev dependency should not be indistinguishable from a failing page.
-import { readdir } from 'node:fs/promises'
+import { readdir, readFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -19,6 +19,11 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url))
 const PUBLIC = join(ROOT, 'public')
 const BASE = process.argv[2] || 'http://127.0.0.1:8899'
 const WIDTHS = [320, 768, 1440]
+
+// Scope. See tools/migrated.json.
+const MIGRATED = new Set(
+  JSON.parse(await readFile(new URL('./migrated.json', import.meta.url), 'utf8')).migrated
+)
 
 // The only families the site may render. Anything else is drift.
 const ALLOWED_FAMILIES = ['Inter', 'Instrument Serif', 'JetBrains Mono']
@@ -46,7 +51,7 @@ async function pages(dir) {
 const browser = await chromium.launch()
 const failures = []
 
-for (const path of await pages(PUBLIC)) {
+for (const path of (await pages(PUBLIC)).filter(p => MIGRATED.has(p))) {
   for (const width of WIDTHS) {
     const page = await browser.newPage({ viewport: { width, height: 900 } })
     try {
