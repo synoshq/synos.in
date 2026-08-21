@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hero: the layer stack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+  body { display: grid; place-items: center; min-height: 100vh; padding: 40px 24px; }
+  .stage { width: 100%; max-width: 980px; }
+  .stage svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  /* Isometric plane faces. Every fill is a token; no literal colour in this file. */
+  .pl-top    { fill: var(--sk-surface); stroke: var(--sk-border-2); stroke-width: 1.25; }
+  .pl-top-tint { fill: var(--sk-indigo-bg); stroke: var(--sk-indigo-br); stroke-width: 1.25; }
+  .pl-side   { fill: var(--sk-surface-2); stroke: var(--sk-border-2); stroke-width: 1.25; }
+  .pl-front  { fill: var(--sk-border); stroke: var(--sk-border-2); stroke-width: 1.25; }
+
+  .core-top   { fill: url(#coreGrad); }
+  .core-side  { fill: var(--sk-violet-ink); }
+  .core-front { fill: var(--sk-indigo-ink); }
+
+  .pl-label   { font-family: var(--sk-font-body); font-size: 15px; font-weight: 600; fill: var(--sk-ink); }
+  .pl-sub     { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.04em; fill: var(--sk-ink-3); }
+  .core-label { font-family: var(--sk-font-body); font-size: 19px; font-weight: 600; fill: var(--sk-on-brand); }
+  .core-sub   { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em; fill: var(--sk-on-brand); }
+  .grid-line  { stroke: var(--sk-on-brand); stroke-opacity: 0.16; stroke-width: 1; }
+  .tick       { fill: var(--sk-on-brand); fill-opacity: 0.5; }
+
+  /* The filaments. Two directions, because context comes up and actions go down. */
+  .fil        { stroke: var(--sk-indigo-2); stroke-width: 1.75; stroke-linecap: round; fill: none; }
+  .leader       { stroke: var(--sk-border-2); stroke-width: 1.25; }
+  .leader-brand { stroke: var(--sk-indigo-2); }
+  .fil-flow   { stroke-dasharray: 5 10; animation: filFlow 2.2s linear infinite; }
+  @keyframes filFlow { to { stroke-dashoffset: -15; } }
+  @media (prefers-reduced-motion: reduce) { .fil-flow { animation: none; stroke-dasharray: none; } }
+</style>
+</head>
+<body>
+<div class="stage">
+<!--
+  Isometric projection, 2:1. A plane is a rhombus of half-width W and half-height H=W/2, extruded
+  down by T. Faces are drawn back to front: top, then the two visible sides.
+
+  Geometry is written out rather than generated, because a reader changing one plane should not have
+  to reverse-engineer a loop to do it.
+-->
+<svg viewBox="205 -175 810 775" role="img"
+     aria-label="Three stacked planes seen isometrically. People and their AI tools sit on top, the company's systems of record sit at the bottom, and the SynOS operating layer sits between them, connected to both.">
+  <defs>
+    <linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--sk-indigo-2)"/>
+      <stop offset="1" stop-color="var(--sk-violet-ink)"/>
+    </linearGradient>
+    <filter id="coreLift" x="-40%" y="-40%" width="180%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="var(--sk-indigo)" flood-opacity="0.28"/>
+    </filter>
+    <filter id="plateLift" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="var(--sk-ink)" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- ============ BOTTOM PLANE · systems of record, cy 470 ============ -->
+  <g filter="url(#plateLift)">
+    <polygon class="pl-front" points="480,530 240,410 240,424 480,544"/>
+    <polygon class="pl-side"  points="480,530 720,410 720,424 480,544"/>
+    <polygon class="pl-top-tint" points="480,290 720,410 480,530 240,410"/>
+  </g>
+  <line class="leader" x1="722" y1="411" x2="748" y2="411"/>
+  <text class="pl-label" x="758" y="407">Your systems of record</text>
+  <text class="pl-sub"   x="758" y="427">warehouse · CRM · ERP · docs · tickets</text>
+
+  <!-- ============ MIDDLE PLANE · SynOS, cy 330, thicker ============ -->
+  <g filter="url(#coreLift)">
+    <polygon class="core-front" points="480,390 240,270 240,302 480,422"/>
+    <polygon class="core-side"  points="480,390 720,270 720,302 480,422"/>
+    <polygon class="core-top"   points="480,150 720,270 480,390 240,270"/>
+    <!-- A faint isometric grid, so the core plane reads as a surface work happens on rather than a slab. -->
+    <g class="grid-line">
+      <line x1="330" y1="225" x2="570" y2="345"/>
+      <line x1="380" y1="200" x2="620" y2="320"/>
+      <line x1="430" y1="175" x2="670" y2="295"/>
+      <line x1="630" y1="225" x2="390" y2="345"/>
+      <line x1="580" y1="200" x2="340" y2="320"/>
+      <line x1="530" y1="175" x2="290" y2="295"/>
+    </g>
+    <text class="core-label" x="480" y="266" text-anchor="middle">SynOS</text>
+    <text class="core-sub"   x="480" y="290" text-anchor="middle">THE HUMAN-AGENT OPERATING LAYER</text>
+  </g>
+
+  <line class="leader leader-brand" x1="722" y1="271" x2="748" y2="271"/>
+  <text class="pl-label" x="758" y="267">SynOS</text>
+  <text class="pl-sub"   x="758" y="287">self-hosted · governed · model-agnostic</text>
+
+  <!-- ============ TOP PLANE · people and their AI tools, cy 190 ============ -->
+  <g filter="url(#plateLift)">
+    <polygon class="pl-front" points="480,110 240,-10 240,4 480,124"/>
+    <polygon class="pl-side"  points="480,110 720,-10 720,4 480,124"/>
+    <polygon class="pl-top"   points="480,-130 720,-10 480,110 240,-10"/>
+  </g>
+  <line class="leader" x1="722" y1="-9" x2="748" y2="-9"/>
+  <text class="pl-label" x="758" y="-13">Your people and their AI tools</text>
+  <text class="pl-sub"   x="758" y="7">Claude Code · Codex · Cursor · chat</text>
+
+  <!-- ============ FILAMENTS ============ -->
+  <!-- Solid through the core: connected. Dashed outside it: what was blocked before. -->
+  <g class="fil fil-flow">
+    <line x1="480" y1="118" x2="480" y2="152"/>
+    <line x1="400" y1="164" x2="400" y2="190"/>
+    <line x1="560" y1="164" x2="560" y2="190"/>
+    <line x1="480" y1="422" x2="480" y2="290"/>
+    <line x1="400" y1="462" x2="400" y2="330"/>
+    <line x1="560" y1="462" x2="560" y2="330"/>
+  </g>
+</svg>
+</div>
+</body>
+</html>

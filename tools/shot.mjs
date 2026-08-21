@@ -42,7 +42,15 @@ const server = createServer(async (req, res) => {
     // Vercel cleanUrls: /about resolves to about.html
     let file = join(SERVE_DIR, p)
     if (!extname(file)) file += '.html'
-    const body = await readFile(file)
+    let body
+    try {
+      body = await readFile(file)
+    } catch {
+      // Shared assets (/css, /js, /media) always live in public/, even when --dir points at a
+      // folder of diagram prototypes elsewhere in the repo.
+      file = join(ROOT, 'public', p)
+      body = await readFile(file)
+    }
     res.writeHead(200, { 'Content-Type': MIME[extname(file)] || 'application/octet-stream' })
     res.end(body)
   } catch {

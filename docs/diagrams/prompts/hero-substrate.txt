@@ -1,0 +1,13 @@
+An abstract 3D render of a translucent horizontal substrate: three stacked planes floating in space,
+seen in a low isometric view. The middle plane is the thickest and glows faintly from within, and
+fine luminous filaments pass vertically through all three planes connecting them. The planes have
+frosted glass material with soft internal refraction and crisp beveled edges.
+
+Colour: deep indigo #6366F1 shifting to deep violet #4C1D95 through the material. Background is a
+very light cool grey #F1F5F9, clean and empty, studio lighting, soft shadows.
+
+Style: precise, restrained, architectural. Physically based rendering. The mood of high-end
+infrastructure hardware photography rather than science fiction.
+
+Absolutely no text, no letters, no numbers, no labels, no UI, no charts, no icons, no brains, no
+robots, no humanoid figures, no circuit board traces, no glowing blue holograms, no lens flare.
