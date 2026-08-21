@@ -1,9 +1,11 @@
 {
   "name": "synos-landing",
   "version": "1.0.0",
-  "description": "SynOS - AI Agent Platform for Enterprises — Coming Soon",
+  "description": "SynOS - The Human-Agent Operating Layer",
   "scripts": {
-    "dev": "npx serve .",
-    "build": "echo 'Static site — no build needed'"
+    "dev": "npx serve public",
+    "build": "echo 'Static site, no build needed'",
+    "pages": "node tools/build-pages.mjs",
+    "gate": "node tools/vocab-gate.mjs && node tools/copy-gate.mjs"
   }
 }
