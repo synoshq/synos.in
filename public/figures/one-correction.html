@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>What one correction becomes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * "What one correction becomes"
+ *
+ * The argument in one figure: a company's own AI is built out of what its people know, and the only
+ * place that knowledge ever surfaces is inside the work. So show the substance, not a metaphor for
+ * it. One correction, and the four things it becomes.
+ *
+ * The one contrast the whole figure hangs on: A PERSON SPEAKS IN THE SERIF, THE MACHINE ANSWERS IN
+ * MONO. Priya's sentence is set in Instrument Serif at display size because it is the most valuable
+ * object on the page. Everything derived from it is mono, small, and machine-voiced. That is the
+ * product argument carried by type rather than asserted in a caption.
+ *
+ * Deliberately NOT: gradients, glass, isometric slabs, floating cubes. Those read as machine-made
+ * because they are what every machine makes.
+ */
+
+body { padding: 44px 32px; background: transparent; }
+@media (max-width: 640px) { body { padding: 28px 18px; } }
+.fig { max-width: 1080px; margin: 0 auto; }
+/* The global measure is for running prose; inside a figure it makes meta lines wrap and columns
+ * disagree about their width. Reset once here rather than fought line by line. */
+.fig p:not(.said) { max-width: none; }
+
+/* ── head ───────────────────────────────────────────────────────────────── */
+.fig-head { margin-bottom: var(--sk-space-7); }
+.fig-num {
+  display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4);
+}
+.fig-title {
+  font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink);
+}
+
+/* ── the moment ─────────────────────────────────────────────────────────── */
+/* The only elevated object in the figure. Everything else is flat, so this is where the eye goes. */
+.moment {
+  background: var(--sk-surface);
+  border: 1px solid var(--sk-border);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 24px 48px -24px rgba(15,23,42,.18);
+  padding: var(--sk-space-7) clamp(24px, 4vw, 52px);
+  position: relative;
+  display: grid; grid-template-columns: minmax(0, 1fr) 254px; gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+/* The right rail carries who and when, so the left column can be nothing but the change itself. */
+.moment-side { border-left: 1px solid var(--sk-border); padding-left: clamp(20px, 3vw, 36px); align-self: stretch; }
+@media (max-width: 860px) {
+  .moment { grid-template-columns: 1fr; }
+  .moment-side { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; padding-top: var(--sk-space-6); }
+}
+/* A single brand edge. One accent, not five. */
+.moment::before {
+  content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 2px;
+  background: var(--sk-grad); border-radius: 2px;
+}
+
+.moment-meta {
+  display: grid; gap: var(--sk-space-3);
+  font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: var(--sk-space-6);
+}
+.moment-meta b { color: var(--sk-ink-3); font-weight: 500; }
+
+/* The tag both halves share. Mono, small caps, quiet: it names the speaker, not the content. */
+.tag {
+  display: block; grid-column: 2; font-family: var(--sk-font-mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--sk-dim);
+  margin-bottom: var(--sk-space-3);
+}
+/* A real diff gutter. The marker sits outside the text, the way a person reading a change expects,
+ * which is also why the sentence itself needs no decoration on top of it. */
+.row { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: var(--sk-space-4); }
+.mark { font-family: var(--sk-font-mono); font-size: 15px; line-height: 1.5; user-select: none; }
+.mark-out { color: var(--sk-red-2); }
+.mark-in  { color: var(--sk-emerald); }
+
+.was {
+  font-family: var(--sk-font-mono); font-size: 13px; line-height: 1.6;
+  color: var(--sk-muted);
+  text-decoration: line-through; text-decoration-color: var(--sk-red-br);
+  text-decoration-thickness: 1.5px;
+}
+
+/* what the person said. The largest type in the figure, in the display face. */
+.said {
+  font-family: var(--sk-font-display); font-weight: 400;
+  font-size: clamp(24px, 3.4vw, 38px); line-height: 1.24; letter-spacing: -0.015em;
+  color: var(--sk-ink); max-width: 22ch;
+}
+.said em { font-style: normal; }
+
+.by { display: flex; align-items: flex-start; gap: var(--sk-space-4); margin-top: var(--sk-space-6); }
+.by-mark {
+  width: 30px; height: 30px; flex: none; border-radius: 999px;
+  background: var(--sk-indigo-bg); border: 1px solid var(--sk-indigo-br);
+  display: grid; place-items: center;
+  font-family: var(--sk-font-body); font-size: 11px; font-weight: 600; color: var(--sk-indigo);
+}
+.by-txt { font-size: 13.5px; line-height: 1.5; color: var(--sk-ink-3); }
+.by-txt b { color: var(--sk-ink); font-weight: 600; }
+
+/* ── the fan ────────────────────────────────────────────────────────────── */
+/* One line leaving the correction and becoming four. The branching is the explanation. */
+.fan { position: relative; height: 104px; }
+.fan svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.fan path { fill: none; stroke: var(--sk-border-2); stroke-width: 1; }
+.fan .lead { stroke: var(--sk-indigo-3); }
+.fan-label {
+  position: absolute; left: 50%; top: 14px; transform: translateX(-50%);
+  background: var(--sk-bg); padding: 2px var(--sk-space-4);
+  font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--sk-ink-3); white-space: nowrap;
+}
+
+/* ── the four lives ─────────────────────────────────────────────────────── */
+.lives {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto auto auto;
+  column-gap: var(--sk-space-6);
+}
+/* Subgrid so number, title, description, artefact and status sit on the same five lines across all
+ * four columns. Without it each column sets its own rhythm and the chips land at four heights,
+ * which is the first thing a reader notices. */
+.life { grid-row: span 5; display: grid; grid-template-rows: subgrid; row-gap: 0; }
+
+.life-n {
+  font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.12em;
+  color: var(--sk-indigo-2); margin-bottom: var(--sk-space-4);
+}
+.life-t {
+  font-family: var(--sk-font-body); font-size: 17px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--sk-ink); margin-bottom: var(--sk-space-3);
+}
+.life-d {
+  font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3);
+  margin-bottom: var(--sk-space-6); align-self: start;
+}
+
+/* The artefact. Tinted rather than white, so it reads as machine output sitting on the page rather
+ * than another card competing with the moment above. */
+.art {
+  align-self: start;
+  font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.9;
+  color: var(--sk-ink-2); background: var(--sk-surface-2);
+  border: 1px solid var(--sk-border); border-radius: 3px;
+  padding: var(--sk-space-5); margin-bottom: var(--sk-space-5);
+}
+.art div { display: flex; gap: var(--sk-space-3); }
+.art .k { color: var(--sk-dim); flex: none; width: 5.2em; }
+.art .v { color: var(--sk-ink); }
+.art .ok { color: var(--sk-emerald-ink); font-weight: 500; }
+.art .no { color: var(--sk-muted); }
+
+.stat {
+  align-self: end; justify-self: start;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.dot { width: 5px; height: 5px; border-radius: 999px; display: inline-block; }
+.s-live  { color: var(--sk-emerald-ink); } .s-live  .dot { background: var(--sk-emerald); }
+.s-build { color: var(--sk-amber-ink); }   .s-build .dot { background: var(--sk-amber-2); }
+.s-next  { color: var(--sk-muted); }       .s-next  .dot { background: var(--sk-border-2); }
+
+/* ── foot ───────────────────────────────────────────────────────────────── */
+.fig-foot {
+  margin-top: var(--sk-space-8); padding-top: var(--sk-space-6);
+  border-top: 1px solid var(--sk-border);
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--sk-space-7); flex-wrap: wrap; font-size: 14px; color: var(--sk-ink-3);
+}
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+.fig-note { margin-top: var(--sk-space-5); font-family: var(--sk-font-mono); font-size: 10.5px;
+  letter-spacing: 0.04em; color: var(--sk-dim); }
+
+@media (max-width: 900px) {
+  .lives { grid-template-columns: repeat(2, 1fr); row-gap: var(--sk-space-7); }
+  .fan { height: 64px; }
+  .fan svg { display: none; }
+}
+@media (max-width: 560px) {
+  .lives { grid-template-columns: 1fr; }
+  .said { max-width: none; }
+}
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <figcaption class="fig-head">
+    <span class="fig-num">FIG. 01</span>
+    <span class="fig-title">What one correction becomes</span>
+  </figcaption>
+
+  <div class="moment">
+    <div>
+      <span class="tag">the agent drafted</span>
+      <div class="row" style="margin-bottom:var(--sk-space-7)">
+        <span class="mark mark-out">&minus;</span>
+        <p class="was">Escalate to SMS after 3 days past due.</p>
+      </div>
+
+      <span class="tag">Priya replaced it with</span>
+      <div class="row">
+        <span class="mark mark-in">+</span>
+        <p class="said"><em>Tier-1 accounts never go by SMS. Email finance first, then their account manager.</em></p>
+      </div>
+    </div>
+
+    <div class="moment-side">
+      <p class="moment-meta">
+        <span>agent <b>renewal-outreach</b></span>
+        <span>run <b>#4,182</b></span>
+        <span>tuesday <b>11:04</b></span>
+      </p>
+      <div class="by">
+        <span class="by-mark">PR</span>
+        <span class="by-txt"><b>Priya</b> has run collections for nine years. This rule was written down nowhere.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fan">
+    <svg viewBox="0 0 1080 104" preserveAspectRatio="none" aria-hidden="true">
+      <path class="lead" d="M540 0 L540 44" vector-effect="non-scaling-stroke"/>
+      <path d="M540 44 C540 78 135 70 135 104" vector-effect="non-scaling-stroke"/>
+      <path d="M540 44 C540 78 405 70 405 104" vector-effect="non-scaling-stroke"/>
+      <path d="M540 44 C540 78 675 70 675 104" vector-effect="non-scaling-stroke"/>
+      <path d="M540 44 C540 78 945 70 945 104" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <span class="fan-label">reviewed once</span>
+  </div>
+
+  <div class="lives">
+    <div class="life">
+      <p class="life-n">01</p>
+      <p class="life-t">A rule</p>
+      <p class="life-d">Every agent inherits it from the next run on. Versioned, and revertible.</p>
+      <div class="art">
+        <div><span class="k">policy</span><span class="v">tier1.channel</span></div>
+        <div><span class="k">deny</span><span class="no">sms</span></div>
+        <div><span class="k">order</span><span class="v">finance → am</span></div>
+        <div><span class="k">since</span><span class="v">run #4182</span></div>
+      </div>
+      <span class="stat s-live"><i class="dot"></i>live</span>
+    </div>
+
+    <div class="life">
+      <p class="life-n">02</p>
+      <p class="life-t">Context</p>
+      <p class="life-d">It enters the Company Brain, cited to the run and the person it came from.</p>
+      <div class="art">
+        <div><span class="k">entity</span><span class="v">Account.tier</span></div>
+        <div><span class="k">bound</span><span class="v">crm.accounts</span></div>
+        <div><span class="k">cite</span><span class="v">run #4182</span></div>
+        <div><span class="k">by</span><span class="v">priya@</span></div>
+      </div>
+      <span class="stat s-live"><i class="dot"></i>live</span>
+    </div>
+
+    <div class="life">
+      <p class="life-n">03</p>
+      <p class="life-t">An eval case</p>
+      <p class="life-d">Replayed on every change. A model that gets this wrong is not promoted.</p>
+      <div class="art">
+        <div><span class="k">case</span><span class="v">tier1-no-sms</span></div>
+        <div><span class="k">input</span><span class="v">8841, 4d late</span></div>
+        <div><span class="k">expect</span><span class="v">email finance</span></div>
+        <div><span class="k">result</span><span class="ok">pass</span></div>
+      </div>
+      <span class="stat s-build"><i class="dot"></i>in build</span>
+    </div>
+
+    <div class="life">
+      <p class="life-n">04</p>
+      <p class="life-t">A training example</p>
+      <p class="life-d">Labelled by the person who owns the process, on your own infrastructure.</p>
+      <div class="art">
+        <div><span class="k">prompt</span><span class="v">8841, 4d late</span></div>
+        <div><span class="k">chosen</span><span class="v">email finance</span></div>
+        <div><span class="k">reject</span><span class="no">sms</span></div>
+        <div><span class="k">weight</span><span class="v">1.0</span></div>
+      </div>
+      <span class="stat s-next"><i class="dot"></i>roadmap</span>
+    </div>
+  </div>
+
+  <p class="fig-foot">
+    <span>Nine years of judgement, captured in ninety seconds of somebody's ordinary Tuesday.</span>
+    <span><b>None of it left the building.</b></span>
+  </p>
+  <p class="fig-note">Illustrative. The workflow, the rule and the person are invented to show the shape of the thing, not drawn from a customer.</p>
+</figure>
+
+<script defer src="/js/figure.js"></script>
+</body>
+</html>

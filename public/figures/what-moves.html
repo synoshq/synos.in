@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>What actually moves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 02 · "What actually moves"
+ *
+ * The sharpest thing we can say to a buyer already inside a migration: everyone else needs the rows
+ * before you get agents; we need a profile of them. So show BOTH artefacts side by side and let the
+ * reader see the size difference for themselves. The argument is made by the content, not by an
+ * arrow pointing at a cloud.
+ *
+ * Form deliberately differs from FIG 01: that one is a moment fanning outward, this one is a ledger
+ * comparison in two bands. Eight diagrams in one layout would read as monotonous however good each
+ * one is on its own.
+ */
+
+body { padding: 44px 32px; background: transparent; }
+@media (max-width: 640px) { body { padding: 28px 18px; } }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-7); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65; color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── the shared source ──────────────────────────────────────────────────── */
+.source {
+  border: 1px solid var(--sk-border-2); border-radius: 3px; background: var(--sk-surface);
+  padding: var(--sk-space-5) var(--sk-space-6); margin-bottom: var(--sk-space-6);
+}
+.source-h {
+  display: flex; align-items: baseline; gap: var(--sk-space-5); flex-wrap: wrap;
+  font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: var(--sk-space-4);
+}
+.source-h b { color: var(--sk-ink); font-weight: 500; letter-spacing: 0.04em; text-transform: none; font-size: 12.5px; }
+.tbl { font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.9; color: var(--sk-ink-3);
+  overflow-x: auto; }
+/* A column-statistics table is legitimately wider than a phone. Let it scroll inside its own box;
+ * reflowing it into one column per line would destroy the thing it is showing. */
+.tbl > * { min-width: 46ch; }
+@media (max-width: 560px) {
+  /* 46ch of mono plus the source box's own padding is 361px, which is wider than a 320px phone.
+     Trim both rather than letting the figure push the page sideways. */
+  .source { padding: var(--sk-space-5) var(--sk-space-4); }
+  .tbl { font-size: 10.5px; }
+  .tbl > * { min-width: 40ch; }
+}
+.tbl .hd { color: var(--sk-dim); border-bottom: 1px solid var(--sk-border); padding-bottom: 3px; }
+.tbl .r { display: grid; grid-template-columns: 13ch 9ch minmax(0, 1fr) 14ch; gap: var(--sk-space-5); }
+.tbl .r .pii { color: var(--sk-red-ink); }
+.tbl .more { color: var(--sk-dim); padding-top: var(--sk-space-2); }
+
+/* ── the two bands ──────────────────────────────────────────────────────── */
+.band { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: var(--sk-space-6); align-items: start;
+  padding: var(--sk-space-6) 0; }
+.band + .band { border-top: 1px solid var(--sk-border); }
+
+.band-rail { padding-top: 2px; }
+.band-tag { font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: var(--sk-space-3); }
+/* Never let a transform touch the brand name. This rendered "SYNOS" once already, and a gate that
+ * reads markup cannot see a casing change made in CSS. */
+.band-tag.is-name { text-transform: none; letter-spacing: 0.08em; font-size: 11px; }
+.t-them { color: var(--sk-red-ink); }
+.t-us   { color: var(--sk-indigo); }
+.band-w { font-family: var(--sk-font-body); font-size: 15px; font-weight: 600; color: var(--sk-ink); line-height: 1.3; }
+.band-note { margin-top: var(--sk-space-3); font-size: 12.5px; line-height: 1.55; color: var(--sk-muted); }
+
+.moves { display: grid; grid-template-columns: minmax(0,1fr) 124px minmax(0,1fr); gap: var(--sk-space-5); align-items: center; }
+@media (max-width: 820px) {
+  .moves { grid-template-columns: 1fr; }
+  .arrow { transform: rotate(90deg); }
+  /* .moves collapsed here but .band did not, so the 168px label rail kept eating half a 320px
+     viewport and pushed its own content off the right edge. Both have to collapse together. */
+  .band { grid-template-columns: 1fr; gap: var(--sk-space-5); }
+}
+
+.parcel {
+  border: 1px solid var(--sk-border); border-radius: 3px; background: var(--sk-surface-2);
+  padding: var(--sk-space-5); font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.85;
+  color: var(--sk-ink-2);
+}
+.parcel.heavy { border-color: var(--sk-red-br); background: var(--sk-red-bg); }
+.parcel.light { border-color: var(--sk-indigo-br); background: var(--sk-indigo-bg); }
+.parcel .k { color: var(--sk-dim); }
+.parcel .warn { color: var(--sk-red-ink); }
+.parcel .good { color: var(--sk-indigo); }
+.parcel-h { font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+
+.arrow { display: grid; place-items: center; gap: var(--sk-space-3); }
+.arrow svg { display: block; }
+.arrow-l { font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--sk-dim); text-align: center; line-height: 1.5; }
+
+.dest { font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.85; }
+.dest .box {
+  border: 1px dashed var(--sk-red-br); border-radius: 3px; padding: var(--sk-space-5);
+  color: var(--sk-red-ink); background: var(--sk-surface);
+}
+.dest .box.ours { border: 1px solid var(--sk-indigo-br); border-style: solid; color: var(--sk-indigo); }
+.dest .sub { color: var(--sk-muted); }
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-6);
+  border-top: 1px solid var(--sk-border); display: flex; align-items: baseline;
+  justify-content: space-between; gap: var(--sk-space-7); flex-wrap: wrap;
+  font-size: 14px; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <figcaption class="fig-head">
+    <span class="fig-num">FIG. 02</span>
+    <span class="fig-title">What actually moves</span>
+    <p class="fig-lede">Every platform in the building quotes a data programme before a single agent does real work. Here is the same table under both approaches, and the thing each one needs to take away from it.</p>
+  </figcaption>
+
+  <!-- one source, shown once, so both bands are talking about the same object -->
+  <div class="source">
+    <p class="source-h"><span>the source</span><b>crm.accounts</b><span>4.1M rows</span><span>on-prem</span></p>
+    <div class="tbl">
+      <div class="r hd"><span>column</span><span>type</span><span>sample</span><span>note</span></div>
+      <div class="r"><span>account_id</span><span>varchar</span><span>ACC-8841</span><span>&nbsp;</span></div>
+      <div class="r"><span>legal_name</span><span>varchar</span><span class="pii">Meridian Foods Pvt Ltd</span><span class="pii">customer data</span></div>
+      <div class="r"><span>tier</span><span>varchar</span><span>T1</span><span>&nbsp;</span></div>
+      <div class="r"><span>owner_email</span><span>varchar</span><span class="pii">r.iyer@meridian.in</span><span class="pii">personal data</span></div>
+      <p class="more">+ 34 more columns</p>
+    </div>
+  </div>
+
+  <!-- band 1 -->
+  <div class="band">
+    <div class="band-rail">
+      <p class="band-tag t-them">the usual precondition</p>
+      <p class="band-w">Move it first</p>
+      <p class="band-note">Warehouse, lakehouse or a vendor tenancy. The agents come after.</p>
+    </div>
+    <div class="moves">
+      <div class="parcel heavy">
+        <p class="parcel-h">what has to travel</p>
+        <div><span class="k">rows</span> 4,100,000</div>
+        <div><span class="k">columns</span> 38 of 38</div>
+        <div><span class="warn">incl. every name, email and contract value</span></div>
+      </div>
+      <div class="arrow">
+        <svg width="72" height="12" viewBox="0 0 72 12" fill="none" aria-hidden="true">
+          <path d="M0 6h64M58 1l6 5-6 5" stroke="var(--sk-red-2)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="arrow-l">a programme<br>not a sprint</span>
+      </div>
+      <div class="dest">
+        <div class="box">
+          their tenancy<br>
+          <span class="sub">your operational data, on their side of the line</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- band 2 -->
+  <div class="band">
+    <div class="band-rail">
+      <p class="band-tag t-us is-name">SynOS</p>
+      <p class="band-w">Profile it where it sits</p>
+      <p class="band-note">Installed inside your own infrastructure. Rows are queried live at answer time.</p>
+    </div>
+    <div class="moves">
+      <div class="parcel light">
+        <p class="parcel-h">what has to travel</p>
+        <div><span class="k">rows</span> 0</div>
+        <div><span class="k">held</span> null rate · distinct counts · length bounds · value samples</div>
+        <div><span class="good">column roles and metric bindings, not contents</span></div>
+      </div>
+      <div class="arrow">
+        <svg width="72" height="12" viewBox="0 0 72 12" fill="none" aria-hidden="true">
+          <path d="M0 6h64M58 1l6 5-6 5" stroke="var(--sk-indigo-2)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="arrow-l">first workflow<br>in weeks</span>
+      </div>
+      <div class="dest">
+        <div class="box ours">
+          your own infrastructure<br>
+          <span class="sub">nothing migrated, nothing replaced, nothing left the building</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fig-foot">
+    <span>Data residency, cost and freshness are the same design decision, taken once.</span>
+    <span><b>The legacy estate stops being the blocker.</b></span>
+  </p>
+</figure>
+
+<script defer src="/js/figure.js"></script>
+</body>
+</html>

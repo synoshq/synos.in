@@ -82,11 +82,31 @@ for (const path of list) {
     await page.goto(BASE + path, { waitUntil: 'networkidle' })
     // Reveal animations are opacity:0 until observed. Show everything, or the shot is of a blank page.
     await page.addStyleTag({ content: '.sk-reveal,.reveal{opacity:1 !important;transform:none !important}' })
-    await page.waitForTimeout(150)
+    // Lazy iframes never load in a full-page screenshot, because nothing scrolls past them. Walk
+    // the page so they enter view, then give the figures time to measure and report back.
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.body.scrollHeight; y += 600) {
+        window.scrollTo(0, y)
+        await new Promise(r => setTimeout(r, 40))
+      }
+      window.scrollTo(0, 0)
+    })
+    await page.waitForTimeout(900)
+
+    // Chromium's fullPage capture does not paint iframe content below the original viewport, which
+    // is why a page with embedded figures screenshots as a tall column of blank boxes. Resizing the
+    // viewport to the whole page forces real layout and paint, so capture that instead.
+    const pageHeight = Math.min(
+      await page.evaluate(() => document.documentElement.scrollHeight),
+      24000,
+    )
+    await page.setViewportSize({ width, height: pageHeight })
+    await page.waitForTimeout(700)
+
     const name = path.replace(/^\//, '').replace(/\.html$/, '').replace(/\//g, '-')
     const out = join(OUT_DIR, `${name}-${width}.png`)
     await mkdir(dirname(out), { recursive: true })
-    await page.screenshot({ path: out, fullPage: true })
+    await page.screenshot({ path: out })
     written.push(relative(ROOT, out))
     await page.close()
   }

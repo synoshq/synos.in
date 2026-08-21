@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Take one vendor away</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 07 · "Take one vendor away"
+ *
+ * Neutrality is the most-claimed and least-evidenced property in this market, so do not claim it.
+ * Pose it as a test the reader can run against any vendor including us, then answer it as an
+ * inventory: what leaves with each vendor, and what is still standing afterwards.
+ *
+ * Form: a test above, an inventory below. Nothing is drawn. The left column is deliberately short
+ * and the right column deliberately long, and that asymmetry is the whole answer.
+ */
+
+body { padding: 44px 32px; background: transparent; }
+@media (max-width: 640px) { body { padding: 28px 18px; } }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-7); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── the swaps ──────────────────────────────────────────────────────────── */
+.swaps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sk-space-5);
+  margin-bottom: var(--sk-space-8); }
+.swap { border: 1px solid var(--sk-border); border-radius: 3px; background: var(--sk-surface);
+  padding: var(--sk-space-5); }
+.swap-h { font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.swap-l { font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.95; color: var(--sk-ink-2); }
+.swap-l s { color: var(--sk-dim); text-decoration-color: var(--sk-red-2); }
+.swap-out { margin-top: var(--sk-space-4); padding-top: var(--sk-space-3);
+  border-top: 1px solid var(--sk-border); font-size: 12px; line-height: 1.55; color: var(--sk-muted); }
+
+/* ── the inventory ──────────────────────────────────────────────────────── */
+.inv { display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr); gap: var(--sk-space-8);
+  border-top: 1px solid var(--sk-ink); padding-top: var(--sk-space-6); align-items: start; }
+/* The left half is one short answer and the right half is six items. Left column content sticks to
+   the top of its own band rather than leaving a column of dead space beneath it. */
+.inv > div:first-child { position: sticky; top: var(--sk-space-7); }
+.inv-h { font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: var(--sk-space-5); }
+.inv-h.gone { color: var(--sk-red-ink); }
+.inv-h.kept { color: var(--sk-indigo); }
+
+.items { display: grid; gap: 0; }
+.item { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: var(--sk-space-4);
+  align-items: baseline; padding: var(--sk-space-3) 0; border-bottom: 1px solid var(--sk-border);
+  font-size: 14px; line-height: 1.5; color: var(--sk-ink-2); }
+.item i { font-family: var(--sk-font-mono); font-size: 13px; font-style: normal; }
+.item i.x { color: var(--sk-red-2); }
+.item i.k { color: var(--sk-emerald); }
+.item span b { color: var(--sk-ink); font-weight: 600; }
+.item small { display: block; margin-top: 2px; font-family: var(--sk-font-mono);
+  font-size: 10.5px; color: var(--sk-dim); }
+
+.none {
+  padding: var(--sk-space-7) var(--sk-space-6); border: 1px dashed var(--sk-border-2); border-radius: 3px;
+  font-family: var(--sk-font-display); font-size: 24px; line-height: 1.3;
+  color: var(--sk-ink-3); text-align: left;
+}
+.none small { display: block; margin-top: var(--sk-space-4); font-family: var(--sk-font-mono);
+  font-size: 11px; letter-spacing: 0.04em; color: var(--sk-dim); }
+
+.fig-foot { margin-top: var(--sk-space-8); padding-top: var(--sk-space-6);
+  border-top: 1px solid var(--sk-border); display: flex; align-items: baseline;
+  justify-content: space-between; gap: var(--sk-space-7); flex-wrap: wrap;
+  font-size: 14px; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+.fig-foot > span:first-child { flex: 1 1 30ch; }
+.fig-foot > span:last-child { text-align: right; }
+
+@media (max-width: 900px) {
+  .swaps { grid-template-columns: repeat(2, 1fr); }
+  .inv { grid-template-columns: 1fr; gap: var(--sk-space-7); }
+}
+@media (max-width: 520px) { .swaps { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <figcaption class="fig-head">
+    <span class="fig-num">FIG. 07</span>
+    <span class="fig-title">Take one vendor away</span>
+    <p class="fig-lede">Every vendor in this market says it is neutral, so the word is worth nothing. Here is a test you can run against any of them, including us: remove one supplier and see what your company can still do on Monday.</p>
+  </figcaption>
+
+  <div class="swaps">
+    <div class="swap">
+      <p class="swap-h">remove the model</p>
+      <p class="swap-l"><s>Claude</s><br>GPT<br>Gemini<br>open weights</p>
+      <p class="swap-out">Skills, rules, evals and traces repoint. Route the routine work somewhere cheaper.</p>
+    </div>
+    <div class="swap">
+      <p class="swap-h">remove the harness</p>
+      <p class="swap-l"><s>Claude Code</s><br>Codex<br>Cursor<br>your own agents</p>
+      <p class="swap-out">Every one of them reaches the same brain and the same governed tools.</p>
+    </div>
+    <div class="swap">
+      <p class="swap-h">remove the cloud</p>
+      <p class="swap-l"><s>this VPC</s><br>another cloud<br>on-prem<br>air-gapped</p>
+      <p class="swap-out">It already runs inside your boundary. Moving it is a deployment.</p>
+    </div>
+    <div class="swap">
+      <p class="swap-h">remove us</p>
+      <p class="swap-l"><s>SynOS</s></p>
+      <p class="swap-out">The brain, the rules, the corrections and the traces are on your infrastructure, in your account.</p>
+    </div>
+  </div>
+
+  <div class="inv">
+    <div>
+      <p class="inv-h gone">what leaves with the vendor</p>
+      <p class="none">Nothing of yours was ever inside them.<small>no brain, no rules, no corrections, no traces</small></p>
+    </div>
+
+    <div>
+      <p class="inv-h kept">what is still standing on Monday</p>
+      <div class="items">
+        <p class="item"><i class="k">&check;</i><span><b>The Company Brain</b><small>entities, relations and bindings, profiled from your systems</small></span></p>
+        <p class="item"><i class="k">&check;</i><span><b>The rules your people wrote</b><small>every exception and judgement call, versioned</small></span></p>
+        <p class="item"><i class="k">&check;</i><span><b>Every correction ever made</b><small>reviewed, promoted, and reaching every agent</small></span></p>
+        <p class="item"><i class="k">&check;</i><span><b>The traces</b><small>what ran, what it touched, what happened next</small></span></p>
+        <p class="item"><i class="k">&check;</i><span><b>Your private evals</b><small>scored against your outcomes, not a public benchmark</small></span></p>
+        <p class="item"><i class="k">&check;</i><span><b>The agents and apps your teams built</b><small>and the skills they were assembled from</small></span></p>
+      </div>
+    </div>
+  </div>
+
+  <p class="fig-foot">
+    <span>Integration lock-in is dying: agents can rewrite a connector in an afternoon, and we will not pretend otherwise.</span>
+    <span><b>What cannot be rewritten is what your people taught it.</b></span>
+  </p>
+</figure>
+
+<script defer src="/js/figure.js"></script>
+</body>
+</html>

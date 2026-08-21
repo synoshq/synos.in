@@ -51,6 +51,23 @@
     sections.forEach(function (el) { sectionObserver.observe(el) })
   }
 
+  // Embedded figures report their own height. Sizing a frame by a hardcoded number is wrong at
+  // every width except the one it was measured at, and wrong again once the fonts land.
+  var frames = document.querySelectorAll('iframe[data-fig]')
+  if (frames.length) {
+    window.addEventListener('message', function (e) {
+      if (e.origin !== window.location.origin) return
+      var d = e.data
+      if (!d || d.type !== 'synos:figure-height') return
+      frames.forEach(function (f) {
+        // Compare pathname only: the src attribute is relative and f.src is absolute.
+        var path
+        try { path = new URL(f.src, window.location.href).pathname } catch (err) { return }
+        if (path === d.src) f.style.height = d.height + 'px'
+      })
+    })
+  }
+
   // GA: CTA clicks.
   document.querySelectorAll('[data-cta]').forEach(function (el) {
     el.addEventListener('click', function () {
