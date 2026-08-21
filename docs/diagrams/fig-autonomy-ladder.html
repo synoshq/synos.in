@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How an agent earns the next rung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 04 · "How an agent earns the next rung"
+ *
+ * The buyer's real question after "agents can act" is "who decided it was allowed to". Answer with
+ * the promotion criteria rather than with reassurance: four rungs, and on each one the thing that
+ * has to be true before it moves up.
+ *
+ * The figure is honest that the gate machinery is in build. A roadmap chip on the mechanism that
+ * makes the whole ladder work is a harder thing to publish than a claim, which is exactly why it
+ * belongs here.
+ *
+ * Form: a staircase. Each rung indents and the human's share of the work shrinks with it, so the
+ * shape carries the argument before any of the text is read.
+ */
+
+body { padding: 88px 24px; }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── the staircase ──────────────────────────────────────────────────────── */
+.rungs { display: grid; gap: var(--sk-space-4); }
+.rung {
+  display: grid; grid-template-columns: 54px minmax(0, 1fr) 200px;
+  gap: var(--sk-space-6); align-items: start;
+  border: 1px solid var(--sk-border); border-left: 2px solid var(--sk-border-2);
+  border-radius: 3px; background: var(--sk-surface);
+  padding: var(--sk-space-5) var(--sk-space-6);
+}
+/* Each rung starts further right and ends at the same edge, so the block narrows as trust rises.
+ * The shrinking is the point: less of the work is the human's. */
+.rung:nth-child(1) { margin-left: 0; }
+.rung:nth-child(2) { margin-left: 48px; }
+.rung:nth-child(3) { margin-left: 96px; }
+.rung:nth-child(4) { margin-left: 144px; border-left-color: var(--sk-indigo-2); background: var(--sk-indigo-bg); border-color: var(--sk-indigo-br); }
+
+.r-n { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.1em;
+  color: var(--sk-dim); padding-top: 3px; }
+.rung:nth-child(4) .r-n { color: var(--sk-indigo); }
+.r-t { font-family: var(--sk-font-body); font-size: 16px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--sk-ink); margin-bottom: var(--sk-space-2); }
+.r-d { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); }
+
+.r-gate { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-5); }
+.r-gate-h { font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: var(--sk-space-2); }
+.r-gate-b { font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.6; color: var(--sk-ink-2); }
+
+.human { display: flex; align-items: center; gap: var(--sk-space-3); margin-top: var(--sk-space-4); }
+.bar { display: flex; gap: 2px; }
+.bar i { width: 9px; height: 5px; border-radius: 1px; background: var(--sk-border-2); }
+.bar i.on { background: var(--sk-indigo-2); }
+.human span { font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--sk-muted); }
+
+.status-note {
+  margin-top: var(--sk-space-6); padding: var(--sk-space-5) var(--sk-space-6);
+  border: 1px solid var(--sk-amber-br); background: var(--sk-amber-bg); border-radius: 3px;
+  font-size: 13.5px; line-height: 1.7; color: var(--sk-ink-2);
+}
+.status-note b { color: var(--sk-amber-ink); font-weight: 600; }
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-6);
+  border-top: 1px solid var(--sk-border); display: flex; align-items: baseline;
+  justify-content: space-between; gap: var(--sk-space-7); flex-wrap: wrap;
+  font-size: 14px; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .rung { grid-template-columns: 40px minmax(0,1fr); }
+  .r-gate { grid-column: 2; border-left: none; padding-left: 0; padding-top: var(--sk-space-4);
+    border-top: 1px solid var(--sk-border); margin-top: var(--sk-space-4); }
+  .rung:nth-child(2), .rung:nth-child(3), .rung:nth-child(4) { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <figcaption class="fig-head">
+    <span class="fig-num">FIG. 04</span>
+    <span class="fig-title">How an agent earns the next rung</span>
+    <p class="fig-lede">Nobody hands a new hire the keys on day one, and nobody should hand them to an agent either. Autonomy is granted per function, against cases your own team wrote, and a regression sends it back down.</p>
+  </figcaption>
+
+  <div class="rungs">
+    <div class="rung">
+      <span class="r-n">L1</span>
+      <div>
+        <p class="r-t">Assisted</p>
+        <p class="r-d">The agent drafts. A person decides and sends. Every run is traced from here on, so the record starts before the trust does.</p>
+        <div class="human"><span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span>the person does the work</span></div>
+      </div>
+      <div class="r-gate">
+        <p class="r-gate-h">gate to enter</p>
+        <p class="r-gate-b">none &middot; this is where every function starts</p>
+      </div>
+    </div>
+
+    <div class="rung">
+      <span class="r-n">L2</span>
+      <div>
+        <p class="r-t">Reviewed</p>
+        <p class="r-d">The agent acts, and a person approves each action before it lands. Most of the work, a fraction of the time.</p>
+        <div class="human"><span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span>the person approves each</span></div>
+      </div>
+      <div class="r-gate">
+        <p class="r-gate-h">gate to enter</p>
+        <p class="r-gate-b">accuracy clears the bar your team set, on your team's cases</p>
+      </div>
+    </div>
+
+    <div class="rung">
+      <span class="r-n">L3</span>
+      <div>
+        <p class="r-t">Supervised</p>
+        <p class="r-d">It runs on a schedule. A person samples the output and handles the exceptions it flags.</p>
+        <div class="human"><span class="bar"><i class="on"></i><i class="on"></i><i></i><i></i></span><span>the person samples</span></div>
+      </div>
+      <div class="r-gate">
+        <p class="r-gate-h">gate to enter</p>
+        <p class="r-gate-b">sustained pass across runs &middot; no policy breach</p>
+      </div>
+    </div>
+
+    <div class="rung">
+      <span class="r-n">L4</span>
+      <div>
+        <p class="r-t">Autonomous</p>
+        <p class="r-d">It runs the function. People set the policy, watch the dashboard and hold the kill switch. Authority stays granted, revocable and re-checked.</p>
+        <div class="human"><span class="bar"><i class="on"></i><i></i><i></i><i></i></span><span>the person sets policy</span></div>
+      </div>
+      <div class="r-gate">
+        <p class="r-gate-h">gate to enter</p>
+        <p class="r-gate-b">evals hold at volume &middot; a regression demotes it</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="status-note"><b>Where this honestly is.</b> Tracing and correction capture run in production today, so the cases accumulate from your first week. The replay harness and threshold gating are in build. The order is deliberate: capture is the part you cannot backfill, and an eval set grown from six months of real corrections is worth more than one written in a week before there was anything to correct.</p>
+
+  <p class="fig-foot">
+    <span>One function can be autonomous while the one beside it is still assisted.</span>
+    <span><b>You never hand off what you cannot measure.</b></span>
+  </p>
+</figure>
+
+</body>
+</html>

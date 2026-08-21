@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The same five pieces, doing a second job</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 06 · "The same five pieces, doing a second job"
+ *
+ * The claim that phase two needs no new install is easy to assert and hard to believe. A ledger
+ * makes it checkable: name the five components once, then read across to what each already does and
+ * what the same thing becomes. If a reader disagrees they can disagree with a specific row.
+ *
+ * Form: a two-column ledger. Nothing is drawn, because the argument here is an equivalence and a
+ * table is the honest shape for an equivalence.
+ */
+
+body { padding: 88px 24px; }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── the ledger ─────────────────────────────────────────────────────────── */
+.ledger { border-top: 1px solid var(--sk-ink); }
+
+.lg-head, .lg-row {
+  display: grid; grid-template-columns: 210px minmax(0, 1fr) minmax(0, 1fr) 96px;
+  gap: var(--sk-space-6); align-items: baseline;
+}
+.lg-head {
+  padding: var(--sk-space-4) 0; border-bottom: 1px solid var(--sk-border-2);
+  font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim);
+}
+.lg-head .now  { color: var(--sk-ink-3); }
+.lg-head .next { color: var(--sk-indigo); }
+
+.lg-row { padding: var(--sk-space-5) 0; border-bottom: 1px solid var(--sk-border); }
+.lg-row:hover { background: var(--sk-surface-2); }
+
+.piece { font-family: var(--sk-font-body); font-size: 15px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--sk-ink); }
+.piece span { display: block; margin-top: 3px; font-family: var(--sk-font-mono);
+  font-size: 10.5px; letter-spacing: 0.06em; font-weight: 400; color: var(--sk-dim); }
+
+.cell { font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-3); }
+/* Tomorrow's column is inked darker than today's. The eye should end up on the right-hand side,
+ * because that column is the part of the argument nobody else can make. */
+.cell.next { color: var(--sk-ink-2); }
+.cell.next b { color: var(--sk-indigo-ink); font-weight: 600; }
+
+.st { justify-self: end; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+.st i { width: 5px; height: 5px; border-radius: 999px; }
+.st-live  { color: var(--sk-emerald-ink); } .st-live  i { background: var(--sk-emerald); }
+.st-build { color: var(--sk-amber-ink); }   .st-build i { background: var(--sk-amber-2); }
+.st-next  { color: var(--sk-muted); }       .st-next  i { background: var(--sk-border-2); }
+
+.sum {
+  margin-top: var(--sk-space-7); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sk-space-6);
+}
+.sum > div { border-left: 2px solid var(--sk-border-2); padding-left: var(--sk-space-5); }
+.sum > div.is-us { border-left-color: var(--sk-indigo-2); }
+.sum-h { font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: var(--sk-space-3); }
+.sum-b { font-size: 14px; line-height: 1.7; color: var(--sk-ink-2); }
+.sum-b b { color: var(--sk-ink); font-weight: 600; }
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-6);
+  border-top: 1px solid var(--sk-border); display: flex; align-items: baseline;
+  justify-content: space-between; gap: var(--sk-space-7); flex-wrap: wrap;
+  font-size: 14px; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .lg-head { display: none; }
+  .lg-row { grid-template-columns: 1fr auto; row-gap: var(--sk-space-3); padding: var(--sk-space-6) 0; }
+  .cell { grid-column: 1 / -1; }
+  .cell.next { padding-left: var(--sk-space-5); border-left: 2px solid var(--sk-indigo-br); }
+  .sum { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <figcaption class="fig-head">
+    <span class="fig-num">FIG. 06</span>
+    <span class="fig-title">The same five pieces, doing a second job</span>
+    <p class="fig-lede">What it takes to make AI work inside a company is what it takes to train a model on how that company works. Read each row across: the thing on the left is already installed, and the thing on the right is what it becomes.</p>
+  </figcaption>
+
+  <div class="ledger">
+    <div class="lg-head">
+      <span>the piece</span>
+      <span class="now">what it does for you today</span>
+      <span class="next">what the same thing becomes</span>
+      <span></span>
+    </div>
+
+    <div class="lg-row">
+      <p class="piece">Company Brain<span>profiled in place</span></p>
+      <p class="cell">Grounds every answer in how the business actually runs, cited to the source.</p>
+      <p class="cell next">The corpus a model of your own is <b>fine-tuned against</b>.</p>
+      <span class="st st-live"><i></i>live</span>
+    </div>
+
+    <div class="lg-row">
+      <p class="piece">Governed tool access<span>identity &middot; scope &middot; audit</span></p>
+      <p class="cell">Safe, audited actions inside real systems. No raw credentials, revocable.</p>
+      <p class="cell next">The real systems a model is <b>trained and tested against</b>.</p>
+      <span class="st st-live"><i></i>live</span>
+    </div>
+
+    <div class="lg-row">
+      <p class="piece">Sandboxes and deploy<span>scanned &middot; reversible</span></p>
+      <p class="cell">Somewhere a non-engineer can ship an app or an agent without a ticket.</p>
+      <p class="cell next">The environment where attempts <b>run safely, over and over</b>.</p>
+      <span class="st st-live"><i></i>live</span>
+    </div>
+
+    <div class="lg-row">
+      <p class="piece">Traces and corrections<span>captured in the work</span></p>
+      <p class="cell">What ran, what it touched, and what a person fixed afterwards.</p>
+      <p class="cell next">Labelled data and human feedback, produced by <b>your own people doing real work</b>.</p>
+      <span class="st st-live"><i></i>live</span>
+    </div>
+
+    <div class="lg-row">
+      <p class="piece">Private evals<span>your outcomes, not benchmarks</span></p>
+      <p class="cell">Whether a workflow actually worked, measured against the outcome you named.</p>
+      <p class="cell next">The benchmark only you own, and <b>the gate a candidate model has to pass</b>.</p>
+      <span class="st st-build"><i></i>in build</span>
+    </div>
+
+    <div class="lg-row">
+      <p class="piece">Fine-tune and distil<span>on your infrastructure</span></p>
+      <p class="cell">Not yet part of the transformation work.</p>
+      <p class="cell next">Small models carrying the routine work, <b>trained and served inside your tenancy</b>.</p>
+      <span class="st st-next"><i></i>roadmap</span>
+    </div>
+  </div>
+
+  <div class="sum">
+    <div>
+      <p class="sum-h">what everyone else does</p>
+      <p class="sum-b">Authors a copy of the business and learns in the copy, even when the copy runs in your cloud. <b>A replica cannot hold twelve years of exceptions in one company's order-to-cash.</b></p>
+    </div>
+    <div class="is-us">
+      <p class="sum-h">what this does</p>
+      <p class="sum-b">Instruments the original: your real systems, during real work, with rewards from real outcomes. <b>Only possible because the transformation work was already being done.</b></p>
+    </div>
+  </div>
+
+  <p class="fig-foot">
+    <span>Capture is the hard part to get, and it only happens inside real work.</span>
+    <span><b>Nothing new gets installed.</b></span>
+  </p>
+</figure>
+
+</body>
+</html>

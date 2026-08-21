@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Everyone owns one band</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 08 · "Everyone owns one band"
+ *
+ * The competitive slide, without the dishonesty competitive slides usually carry. Each of these
+ * categories is good at its own job, so the figure says so on every row. The claim is narrower and
+ * therefore defensible: the three bands in the middle are the ones nobody was built for.
+ *
+ * Form: a matrix read as bands. A mark means "owns this"; a hollow mark means "touches it". The
+ * empty middle is the argument, and it is visible before a word is read.
+ */
+
+body { padding: 88px 24px; }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-7); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── the matrix ─────────────────────────────────────────────────────────── */
+.mx { border-top: 1px solid var(--sk-ink); }
+.mx-row {
+  display: grid;
+  grid-template-columns: 220px repeat(5, minmax(0, 1fr)) 104px;
+  gap: var(--sk-space-4); align-items: center;
+  border-bottom: 1px solid var(--sk-border);
+}
+.mx-head { padding: var(--sk-space-4) 0; align-items: end; }
+.mx-head span {
+  font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--sk-dim); line-height: 1.4; text-align: center;
+}
+.mx-head span:first-child { text-align: left; }
+.mx-head span.us { color: var(--sk-indigo); }
+/* Never let a transform touch the brand name. Second time this has happened; the render gate now
+ * covers this directory for exactly that reason. */
+.mx-head span.us { text-transform: none; letter-spacing: 0.04em; font-size: 11px; }
+
+.mx-row.band { padding: var(--sk-space-5) 0; }
+.mx-row.band:hover { background: var(--sk-surface-2); }
+.band-n { font-family: var(--sk-font-body); font-size: 14.5px; font-weight: 600;
+  letter-spacing: -0.01em; color: var(--sk-ink); }
+.band-n small { display: block; margin-top: 2px; font-family: var(--sk-font-mono);
+  font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; color: var(--sk-dim); }
+
+.cell { display: grid; place-items: center; }
+/* A filled mark is "owns this". A hollow mark is "touches it". Nothing is a claim about quality. */
+.m { width: 9px; height: 9px; border-radius: 999px; }
+.m-own  { background: var(--sk-ink-3); }
+.m-part { border: 1px solid var(--sk-border-2); }
+.m-us   { background: var(--sk-indigo-2); box-shadow: 0 0 0 3px var(--sk-indigo-bg); }
+.m-none { width: 9px; height: 1px; background: var(--sk-border); }
+
+/* The three bands nobody else was built for. */
+.mx-row.is-gap { background: var(--sk-indigo-bg); }
+.mx-row.is-gap:hover { background: var(--sk-indigo-bg); }
+.gap-note { font-family: var(--sk-font-mono); font-size: 9.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--sk-indigo); text-align: right; }
+
+.legend { display: flex; gap: var(--sk-space-6); flex-wrap: wrap; margin-top: var(--sk-space-5);
+  font-family: var(--sk-font-mono); font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--sk-dim); }
+.legend span { display: inline-flex; align-items: center; gap: var(--sk-space-3); }
+
+.fair {
+  margin-top: var(--sk-space-7); padding: var(--sk-space-5) var(--sk-space-6);
+  border-left: 2px solid var(--sk-border-2); background: var(--sk-surface);
+  font-size: 14px; line-height: 1.7; color: var(--sk-ink-2);
+}
+.fair b { color: var(--sk-ink); font-weight: 600; }
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-6);
+  border-top: 1px solid var(--sk-border); display: flex; align-items: baseline;
+  justify-content: space-between; gap: var(--sk-space-7); flex-wrap: wrap;
+  font-size: 14px; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+
+@media (max-width: 940px) {
+  .mx-row { grid-template-columns: 150px repeat(5, minmax(0, 1fr)) 0; gap: var(--sk-space-3); }
+  .gap-note { display: none; }
+  .mx-head span { font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <figcaption class="fig-head">
+    <span class="fig-num">FIG. 08</span>
+    <span class="fig-title">Everyone owns one band</span>
+    <p class="fig-lede">These are different categories doing different jobs, and each is good at its own. Read down the columns: the three bands in the middle are the ones none of them was built for, and they are the ones between your systems and the AI your people already have.</p>
+  </figcaption>
+
+  <div class="mx">
+    <div class="mx-row mx-head">
+      <span>the band</span>
+      <span>data<br>platforms</span>
+      <span>enterprise<br>search</span>
+      <span>workflow<br>&amp; iPaaS</span>
+      <span>agent<br>platforms</span>
+      <span class="us">SynOS</span>
+      <span></span>
+    </div>
+
+    <div class="mx-row band">
+      <p class="band-n">People and their AI tools<small>Claude Code &middot; Cursor &middot; chat</small></p>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-own"></i></span>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="gap-note">any harness</span>
+    </div>
+
+    <div class="mx-row band is-gap">
+      <p class="band-n">Execution and isolation<small>sandboxes &middot; governed deploy</small></p>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-us"></i></span>
+      <span class="gap-note">unclaimed</span>
+    </div>
+
+    <div class="mx-row band is-gap">
+      <p class="band-n">Identity and governance<small>credentials &middot; scopes &middot; audit &middot; kill switch</small></p>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-us"></i></span>
+      <span class="gap-note">unclaimed</span>
+    </div>
+
+    <div class="mx-row band is-gap">
+      <p class="band-n">The context layer<small>context today &middot; training data tomorrow</small></p>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-part"></i></span>
+      <span class="cell"><i class="m m-us"></i></span>
+      <span class="gap-note">unclaimed</span>
+    </div>
+
+    <div class="mx-row band">
+      <p class="band-n">Systems of record<small>ERP &middot; CRM &middot; warehouse &middot; docs</small></p>
+      <span class="cell"><i class="m m-own"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="cell"><i class="m m-none"></i></span>
+      <span class="gap-note">yours, untouched</span>
+    </div>
+  </div>
+
+  <p class="legend">
+    <span><i class="m m-own"></i>owns this band</span>
+    <span><i class="m m-part"></i>touches it</span>
+    <span><i class="m m-none"></i>not its job</span>
+    <span><i class="m m-us"></i>built for it</span>
+  </p>
+
+  <p class="fair">Read fairly, this is a narrow claim. <b>Data platforms own the bottom band and ask you to move everything into it first. Search reads a copy. Workflow tools execute without knowing what anything means. Agent platforms are real, and multi-tenant, so what your company teaches them accumulates in their product.</b> Most of them are not rivals at all: harnesses, search and memory tools plug in over MCP.</p>
+
+  <p class="fig-foot">
+    <span>We deliberately do not touch your systems of record, and we do not need to own the tools your people already use.</span>
+    <span><b>The three middle bands are the product.</b></span>
+  </p>
+</figure>
+
+</body>
+</html>
