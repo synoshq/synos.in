@@ -16,7 +16,7 @@
 <script defer src="/js/synos.js"></script>
 <!-- @endpartial head -->
     <title>SynOS | The environment your company builds and trains its own AI in</title>
-    <meta name="description" content="SynOS is the Human-Agent Operating Layer. It installs inside your own infrastructure and profiles your systems where they sit. Engineering sets the rails once; the people who hold the knowledge build and run the agents doing critical work, and everything they teach it stays with you.">
+    <meta name="description" content="SynOS is the Human-Agent Operating Layer. It installs inside your own infrastructure and profiles your systems where they sit. Engineering sets the rails once; the people who hold the knowledge build and run the agents doing critical work.">
     <meta property="og:title" content="SynOS | The environment your company builds and trains its own AI in">
     <meta property="og:description" content="The Human-Agent Operating Layer. Self-hosted, model-agnostic, installed inside your own infrastructure. No migration.">
     <meta property="og:url" content="https://www.synos.in">
@@ -27,19 +27,22 @@
     <link rel="canonical" href="https://www.synos.in/">
     <style>
     /* ─────────────────────────────────────────────────────────────────────────
-     * Homepage. Tokens, chrome, buttons and figure frames live in /css/synos.css; only what is
-     * specific to this page is here.
+     * Homepage.
      *
-     * The argument, in order: models keep improving at what everyone has, so what stays yours is how
-     * your company operates. You have nowhere to build AI on that. Here is the environment, and the
-     * work it unblocks today is what pays for the training environment it becomes.
+     * Compressed 2026-08-22, from twelve sections and 1,511 words to seven and about 600.
+     * The rule applied throughout: a section earns its place only if the page's argument breaks
+     * without it, and a lead paragraph gets one sentence. Everything cut has a page of its own,
+     * and the link to that page is now doing the work the paragraph used to do.
+     *
+     * The argument, in order: models keep improving at what everyone has, so what stays yours is
+     * how your company operates. You have nowhere to build AI on that. Here is the environment.
      * ───────────────────────────────────────────────────────────────────────── */
 
     /* ── hero ────────────────────────────────────────────────────────────── */
-    .hero { padding: 168px 0 var(--sk-section-y); }
-    .hero h1 { max-width: 20ch; }
+    .hero { padding: 152px 0 var(--sk-space-8); }
+    .hero h1 { max-width: 19ch; }
     .hero-sub { margin-top: var(--sk-space-6); font-size: 17px; line-height: 1.7;
-      color: var(--sk-ink-2); max-width: 62ch; }
+      color: var(--sk-ink-2); max-width: 56ch; }
     .hero-cta { display: flex; gap: var(--sk-space-4); flex-wrap: wrap; margin-top: var(--sk-space-7); }
     .hero-trust { margin-top: var(--sk-space-6); display: flex; gap: var(--sk-space-6);
       flex-wrap: wrap; font-family: var(--sk-font-mono); font-size: 11.5px;
@@ -48,20 +51,15 @@
     .hero-trust span::before { content: ''; width: 4px; height: 4px; border-radius: 999px;
       background: var(--sk-indigo-2); }
 
-    /* Section heads, the capability ledger, the two-column split and the closing block all moved
-     * to /css/synos.css in phase 4, when the platform pages needed the same furniture. */
-
     /* ── the glance plate ────────────────────────────────────────────────── */
-    /* Nothing else on this page reads in three seconds. This does, for the reader who is skimming
-     * on a phone and will never open a figure. */
     .glance { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
       border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
-    .glance > div { padding: var(--sk-space-7) var(--sk-space-6) var(--sk-space-7) 0; }
+    .glance > div { padding: var(--sk-space-6) var(--sk-space-6) var(--sk-space-6) 0; }
     .glance > div + div { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
     .glance b { display: block; font-family: var(--sk-font-display); font-weight: 400;
-      font-size: clamp(26px, 3.2vw, 36px); letter-spacing: -0.02em; line-height: 1.1;
-      color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
-    .glance span { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); display: block; }
+      font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; line-height: 1.1;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-3); }
+    .glance span { font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-3); display: block; }
     @media (max-width: 780px) {
       .glance { grid-template-columns: 1fr; }
       .glance > div { padding-right: 0; }
@@ -71,29 +69,46 @@
     /* ── three blockers ──────────────────────────────────────────────────── */
     .blockers { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-7); }
     .blk { border-top: 2px solid var(--sk-amber-2); padding-top: var(--sk-space-5); }
-    .blk-q { font-family: var(--sk-font-display); font-size: 22px; line-height: 1.3;
-      color: var(--sk-ink); margin-bottom: var(--sk-space-5); max-width: none; }
-    .blk-b { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
-    .blk-k { margin-top: var(--sk-space-5); font-family: var(--sk-font-mono); font-size: 11px;
-      line-height: 1.6; color: var(--sk-indigo); max-width: none; }
+    .blk-q { font-family: var(--sk-font-display); font-size: 21px; line-height: 1.3;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-4); max-width: none; }
+    .blk-b { font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
     @media (max-width: 860px) { .blockers { grid-template-columns: 1fr; } }
+
+    /* ── what installs, compressed ───────────────────────────────────────── */
+    /* Was an eight-row ledger with a sentence each. The names and their status carry the meaning;
+     * the sentences were doing work /product already does better. */
+    .pieces { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+      border-top: 1px solid var(--sk-ink); }
+    .pc { display: flex; justify-content: space-between; align-items: baseline; gap: var(--sk-space-5);
+      padding: var(--sk-space-5) 0; border-bottom: 1px solid var(--sk-border); }
+    .pc:nth-child(odd) { padding-right: var(--sk-space-7); }
+    .pc:nth-child(even) { padding-left: var(--sk-space-7); border-left: 1px solid var(--sk-border); }
+    .pc-n { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--sk-ink);
+      max-width: none; }
+    .pc-n small { display: block; margin-top: 2px; font-family: var(--sk-font-mono);
+      font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; color: var(--sk-ink-3); }
+    .pc-s { white-space: nowrap; font-family: var(--sk-font-mono); font-size: 10.5px;
+      letter-spacing: 0.1em; text-transform: uppercase; display: inline-flex; align-items: center;
+      gap: 6px; max-width: none; }
+    .pc-s i { width: 5px; height: 5px; border-radius: 999px; }
+    .s-live  { color: var(--sk-emerald-ink); } .s-live  i { background: var(--sk-emerald); }
+    .s-build { color: var(--sk-amber-ink); }   .s-build i { background: var(--sk-amber-2); }
+    .s-next  { color: var(--sk-ink-3); }       .s-next  i { background: var(--sk-border-2); }
+    @media (max-width: 780px) {
+      .pieces { grid-template-columns: 1fr; }
+      .pc:nth-child(odd), .pc:nth-child(even) { padding-left: 0; padding-right: 0; border-left: none; }
+    }
 
     /* ── two doors ───────────────────────────────────────────────────────── */
     .doors { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-6); }
     .door { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
-      background: var(--sk-surface); padding: var(--sk-space-7) var(--sk-space-6);
+      background: var(--sk-surface); padding: var(--sk-space-6);
       box-shadow: var(--sk-shadow-card); }
     .door-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4); max-width: none; }
-    .door h3 { font-size: 19px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
-    .door p { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
-    .door ul { list-style: none; margin-top: var(--sk-space-5); display: grid; gap: var(--sk-space-3); }
-    .door li { font-size: 13.5px; line-height: 1.55; color: var(--sk-ink-2);
-      padding-left: var(--sk-space-5); position: relative; }
-    .door li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px;
-      border-radius: 999px; background: var(--sk-indigo-2); }
+    .door h3 { font-size: 18px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-3); }
+    .door p { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
     @media (max-width: 820px) { .doors { grid-template-columns: 1fr; } }
-
     </style>
 </head>
 <body>
@@ -124,13 +139,14 @@
   </div>
 </nav>
 <!-- @endpartial nav -->
+
 <main id="main-content">
 
-  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <!-- ══ 1 · HERO ══════════════════════════════════════════════════════════ -->
   <section class="sk-container hero" data-section="hero">
     <p class="sk-eyebrow">The Human-Agent Operating Layer</p>
     <h1>The environment your company builds and trains its own AI in.</h1>
-    <p class="hero-sub">SynOS installs inside your own infrastructure and profiles your systems where they already sit. Engineering sets the rails once. After that the ops, finance and support people who hold the knowledge build and run the agents doing critical work, and everything those agents learn stays on your side.</p>
+    <p class="hero-sub">It installs inside your own infrastructure and profiles your systems where they already sit. Engineering sets the rails once; the people who hold the knowledge build the agents.</p>
     <div class="hero-cta">
       <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-hero">Request early access</a>
       <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Book a walkthrough</a>
@@ -142,245 +158,120 @@
     </p>
   </section>
 
-  <!-- ══ THE GLANCE PLATE ══════════════════════════════════════════════════ -->
-  <!-- The only thing on this page that reads in three seconds. -->
+  <!-- ══ 2 · GLANCE ════════════════════════════════════════════════════════ -->
   <section class="sk-container" data-section="glance">
     <div class="glance">
       <div>
         <b>Nothing moves</b>
-        <span>Your systems are profiled where they sit and queried live, so no warehouse project stands between you and a working agent.</span>
+        <span>Your systems are profiled where they sit and queried live. No warehouse project first.</span>
       </div>
       <div>
         <b>Your experts build it</b>
-        <span>The people who hold the knowledge author the rules and correct the agents, in plain English, without raising a ticket.</span>
+        <span>The people who hold the knowledge author the rules, in plain English, without a ticket.</span>
       </div>
       <div>
         <b>You keep what it learns</b>
-        <span>Every correction, trace and eval accumulates on your infrastructure, and it is what a model of your own gets trained on.</span>
+        <span>Corrections, traces and evals accumulate on your infrastructure, and stay yours.</span>
       </div>
     </div>
   </section>
 
-  <!-- ══ WHY NOW ═══════════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="why-now">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">Why this is the work now</p>
-        <h2>Frontier models know what the world knows. They will never know how you operate.</h2>
-        <p class="sk-lead">Which fields mean what, which exceptions matter, who decides, what your people learned the hard way. None of that is on the internet and none of it is going to be. As models get better at everything general, the value left inside a company concentrates in the part only that company has.</p>
-        <p class="sk-lead" style="margin-top:var(--sk-space-5)">That points somewhere specific. The firms that matter in ten years are the ones whose AI learned their business and whose learning stayed theirs. Doing it properly is a serious infrastructure investment, and almost no company should be attempting it in-house.</p>
-        <a href="/why-now" class="sk-more">Read the longer argument &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ THE THREE BLOCKERS ════════════════════════════════════════════════ -->
+  <!-- ══ 3 · WHY THEY CALL ═════════════════════════════════════════════════ -->
   <section class="sk-section sk-section--alt" data-section="blockers">
     <div class="sk-container">
       <div class="sk-sechead">
         <p class="sk-eyebrow">Why they call us</p>
         <h2>Three things stop the programme, and it is the same three every time.</h2>
-        <p class="sk-lead">The AI mandate has landed and the bench to fulfil it has not. These are the words we hear back, close to verbatim.</p>
       </div>
       <div class="blockers">
         <div class="blk">
           <p class="blk-q">&ldquo;Modernise your data first.&rdquo;</p>
-          <p class="blk-b">Every platform in the building quotes a data programme before a single agent does real work, and adoption stops there for months. Many buyers are already inside one and watching it stall.</p>
-          <p class="blk-k">we land without it</p>
+          <p class="blk-b">A data programme is quoted before a single agent does real work, and adoption stops there for months.</p>
         </div>
         <div class="blk">
           <p class="blk-q">&ldquo;We were told to build it. We cannot hire for it.&rdquo;</p>
-          <p class="blk-b">Governance, identity, permission control, sandboxes and safe deployment inside their own environment. This is what the programme actually stalls on, and it is an infrastructure bench with no realistic way to staff it.</p>
-          <p class="blk-k">the hard part is infra, not the model</p>
+          <p class="blk-b">Governance, identity, sandboxes and safe deployment inside their own environment. An infrastructure bench with no way to staff it.</p>
         </div>
         <div class="blk">
           <p class="blk-q">&ldquo;It just makes it unfeasible.&rdquo;</p>
-          <p class="blk-b">Pilots that look fine at demo scale die on the economics of pushing everything through a frontier model on every single call.</p>
-          <p class="blk-k">grounded retrieval over a profiled brain</p>
+          <p class="blk-b">Pilots that look fine at demo scale die on the economics of a frontier model on every call.</p>
         </div>
       </div>
+      <a href="/why-now" class="sk-more">Why this is the work now &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ NO MIGRATION · FIG 02 ═════════════════════════════════════════════ -->
+  <!-- ══ 4 · NO MIGRATION · FIG 02 ═════════════════════════════════════════ -->
   <section class="sk-section" data-section="no-migration">
     <div class="sk-container">
       <div class="sk-sechead">
         <p class="sk-eyebrow">The precondition we do not have</p>
         <h2>Everyone else needs the data moved first.</h2>
-        <p class="sk-lead">Consultancies sell the migration as the product. Hyperscalers and data platforms need it on their side of the line. The newer AI vendors want it in their tenancy with better branding. SynOS comes to the data instead: your systems are profiled where they sit, and the rows are queried live at answer time.</p>
+        <p class="sk-lead">SynOS comes to the data instead. Your systems are profiled where they sit, and the rows are queried live at answer time.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/what-moves" title="Figure 2: what actually moves, under a migration and under SynOS" loading="lazy" scrolling="no"></iframe>
         <figcaption>Fig. 02 &middot; the same table under both approaches</figcaption>
       </figure>
-      <a href="/platform/company-brain" class="sk-more">How profiling works, and how it stays current &rarr;</a>
+      <a href="/platform/company-brain" class="sk-more">How profiling works &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ WHAT INSTALLS ═════════════════════════════════════════════════════ -->
+  <!-- ══ 5 · WHAT INSTALLS ═════════════════════════════════════════════════ -->
   <section class="sk-section sk-section--alt" data-section="the-layer">
     <div class="sk-container">
       <div class="sk-sechead">
         <p class="sk-eyebrow">What installs</p>
         <h2>One layer, wired in once, under the AI tools your teams already use.</h2>
-        <p class="sk-lead">Claude Code, Codex, Cursor, chat, or your own agents. All of them reach the same brain and the same governed tools over MCP, so a change of tool is never a change of platform.</p>
+        <p class="sk-lead">Claude Code, Codex, Cursor, chat or your own agents all reach the same brain and the same governed tools, so a change of tool is never a change of platform.</p>
       </div>
-      <div class="sk-stack">
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">Company Brain<small>profiled in place</small></p>
-          <p class="sk-stack-d">A living map of how the business operates, built by profiling your actual systems. Cited, and re-profiled on a schedule so it does not rot.</p>
-          <span class="sk-stack-s sk-s-live"><i></i>live</span>
-        </div>
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">Governed access<small>identity &middot; scope &middot; audit</small></p>
-          <p class="sk-stack-d">One door to real data and real deploys, with delegated identity, per-tool scopes, an audit row on every call, an egress proxy and a kill switch.</p>
-          <span class="sk-stack-s sk-s-live"><i></i>live</span>
-        </div>
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">Safe build and deploy<small>scanned &middot; sandboxed</small></p>
-          <p class="sk-stack-d">Apps and agents ship through a sandbox. Generated code is scanned before it is built, and runs behind an egress proxy on a short-lived scoped token.</p>
-          <span class="sk-stack-s sk-s-live"><i></i>live</span>
-        </div>
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">Agent-native storage<small>schema-enforced</small></p>
-          <p class="sk-stack-d">A governed store agents write to and apps read back, so the next run builds on the last one instead of starting from a spreadsheet.</p>
-          <span class="sk-stack-s sk-s-live"><i></i>live</span>
-        </div>
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">Skills<small>plain English &middot; versioned</small></p>
-          <p class="sk-stack-d">How your company actually does something, written down once by the person who knows, then shared, versioned and forked across teams.</p>
-          <span class="sk-stack-s sk-s-live"><i></i>live</span>
-        </div>
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">The learning loop<small>traced &middot; reviewed &middot; promoted</small></p>
-          <p class="sk-stack-d">Every run traced. Every correction reviewed and promoted so it reaches every agent, rather than dying in a chat window.</p>
-          <span class="sk-stack-s sk-s-live"><i></i>live</span>
-        </div>
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">Private evals<small>your outcomes</small></p>
-          <p class="sk-stack-d">Agents scored against cases your own team wrote and outcomes you named, rather than against a public benchmark.</p>
-          <span class="sk-stack-s sk-s-build"><i></i>in build</span>
-        </div>
-        <div class="sk-stack-row">
-          <p class="sk-stack-n">Fine-tune and distil<small>on your infrastructure</small></p>
-          <p class="sk-stack-d">Small models trained on the loop and served inside your tenancy, carrying the routine work at a fraction of frontier cost.</p>
-          <span class="sk-stack-s sk-s-next"><i></i>roadmap</span>
-        </div>
+      <div class="pieces">
+        <div class="pc"><p class="pc-n">Company Brain<small>profiled in place</small></p><p class="pc-s s-live"><i></i>live</p></div>
+        <div class="pc"><p class="pc-n">Governed access<small>identity &middot; scope &middot; audit</small></p><p class="pc-s s-live"><i></i>live</p></div>
+        <div class="pc"><p class="pc-n">Safe build and deploy<small>scanned &middot; sandboxed</small></p><p class="pc-s s-live"><i></i>live</p></div>
+        <div class="pc"><p class="pc-n">Agent-native storage<small>schema-enforced</small></p><p class="pc-s s-live"><i></i>live</p></div>
+        <div class="pc"><p class="pc-n">Skills<small>plain English &middot; versioned</small></p><p class="pc-s s-live"><i></i>live</p></div>
+        <div class="pc"><p class="pc-n">The learning loop<small>traced &middot; reviewed &middot; promoted</small></p><p class="pc-s s-live"><i></i>live</p></div>
+        <div class="pc"><p class="pc-n">Private evals<small>your outcomes</small></p><p class="pc-s s-build"><i></i>in build</p></div>
+        <div class="pc"><p class="pc-n">Fine-tune and distil<small>on your infrastructure</small></p><p class="pc-s s-next"><i></i>roadmap</p></div>
       </div>
       <a href="/product" class="sk-more">See how each piece works &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ WHO DOES WHAT ═════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="who-does-what">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">The handoff that usually kills these projects</p>
-        <h2>The rules that make an agent correct live with people who do not write code.</h2>
-        <p class="sk-lead">Today those rules only reach production through an engineer, and that queue is where AI programmes die. SynOS splits the work at the place it should have been split all along.</p>
-      </div>
-      <div class="sk-split">
-        <div>
-          <p class="sk-split-h">engineering owns &middot; set once</p>
-          <p class="sk-split-t">The rails</p>
-          <ul>
-            <li>Connectors and data scopes: what an agent may read</li>
-            <li>Governed tools and write actions: what it may do, and what needs a human</li>
-            <li>Identity, permissions, audit, sandboxes, cost attribution</li>
-            <li>The check that has to pass before anything goes live</li>
-          </ul>
-          <p class="sk-split-f">Built once and reviewed, rather than re-implemented for every request that arrives.</p>
-        </div>
-        <div>
-          <p class="sk-split-h sk-is-brand">your experts own &middot; every day</p>
-          <p class="sk-split-t">The knowledge</p>
-          <ul>
-            <li>Skills in plain English: how we actually do this</li>
-            <li>The rules, exceptions and judgement calls, captured where they surface</li>
-            <li>Corrections on agent output, each one reaching every agent afterwards</li>
-            <li>Test cases: here are ten real ones, get them right</li>
-          </ul>
-          <p class="sk-split-f">No code, no ticket, no waiting. Inside the rails there is nothing they can break.</p>
-        </div>
-      </div>
-      <a href="/platform/governance" class="sk-more">How the rails are enforced &rarr;</a>
-    </div>
-  </section>
-
-  <!-- ══ THE LEARNING LOOP · FIG 01 ════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="learning-loop">
+  <!-- ══ 6 · WHAT COMPOUNDS · FIG 01 ═══════════════════════════════════════ -->
+  <section class="sk-section" data-section="learning-loop">
     <div class="sk-container">
       <div class="sk-sechead">
         <p class="sk-eyebrow">What accumulates</p>
-        <h2>The corrections your people make are the part no model can be trained on.</h2>
-        <p class="sk-lead">Not because they are secret, but because they only exist inside your work. A correction is reviewed once and then it is permanent: a rule every agent inherits, context in the brain, a case in your evals, and an example a model of your own can learn from.</p>
+        <h2>A correction is made once, and then it is permanent.</h2>
+        <p class="sk-lead">Reviewed once, it becomes a rule every agent inherits, context in the brain, a case in your evals, and material a model of your own can learn from later.</p>
       </div>
       <figure class="sk-figframe">
-        <iframe data-fig src="/figures/one-correction" title="Figure 1: one correction, and the four things it becomes" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 01 &middot; one correction, and the four things it becomes</figcaption>
-      </figure>
-      <a href="/platform/learning-loop" class="sk-more">How review and promotion work &rarr;</a>
-    </div>
-  </section>
-
-  <!-- ══ THREE PHASES · FIG 05 ═════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="three-phases">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">Where this goes</p>
-        <h2>The same environment, doing a second job.</h2>
-        <p class="sk-lead">What it takes to make AI work inside a company is what it takes to train a model on how that company works. The capture that makes the second phase possible runs from your first week, which is why nothing new has to be installed for it.</p>
-      </div>
-      <figure class="sk-figframe">
-        <iframe data-fig src="/figures/three-phases" title="Figure 5: one environment, three phases" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 05 &middot; one install, three phases, honest status on every line</figcaption>
+        <iframe data-fig src="/figures/one-correction" title="Figure 1: what one correction becomes" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 01 &middot; one correction, four destinations</figcaption>
       </figure>
       <a href="/build-your-own-ai" class="sk-more">What training your own AI actually involves &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ THE LANDSCAPE · FIG 08 ════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="landscape">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">Where this sits</p>
-        <h2>Everyone owns one band of the stack, and each is good at its own.</h2>
-        <p class="sk-lead">Most of the things you are weighing this against are not rivals. Harnesses, search tools and model providers all plug into SynOS over MCP, and a data platform stays the best place for the data that belongs in it. The narrow claim is about the bands between your systems and the AI your people already have, which is the stretch none of those categories was built for.</p>
-        <p class="sk-lead" style="margin-top:var(--sk-space-5)">The comparison pages take the four obvious alternatives one at a time, and each opens by saying what that alternative is genuinely better at, because in several cases it is better than we would be.</p>
-        <a href="/compare" class="sk-more">How this compares, including where it loses &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ TWO DOORS ═════════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="two-doors">
+  <!-- ══ 7 · TWO DOORS ═════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="two-doors">
     <div class="sk-container">
       <div class="sk-sechead">
         <p class="sk-eyebrow">Two ways in</p>
-        <h2>Point it inward at your operations, or outward through your product.</h2>
-        <p class="sk-lead">Same platform, same rails, same install. A door is an entry point rather than a different product, and nothing forks between them.</p>
+        <h2>Same platform, same rails, same install.</h2>
       </div>
       <div class="doors">
         <div class="door">
-          <p class="door-h">inward &middot; your operations</p>
-          <h3>A Company Brain your non-engineers build on</h3>
-          <p>Internal automation is blocked on engineering. The layer goes in, and the people who hold the knowledge author the agent workflows themselves. It enters wherever it hurts most today: a cost line, a sales-ops queue, a marketing pipeline.</p>
-          <ul>
-            <li>Engineering sets the rails once and stops being the bottleneck</li>
-            <li>The brain grows function by function on rails already built</li>
-            <li>The second workflow costs a fraction of the first</li>
-          </ul>
+          <p class="door-h">Inward &middot; your operations</p>
+          <h3>Your experts build the agents</h3>
+          <p>Internal work is blocked on an engineering queue. The people who know the exceptions author it themselves, inside rails set once.</p>
         </div>
         <div class="door">
-          <p class="door-h">outward &middot; your product</p>
-          <h3>Make the SaaS you ship agent-native</h3>
-          <p>Your competitors shipped AI features and your own platform build stalled. Embed the layer beneath your product so each of your customers gets an isolated brain over their own data, without building the enterprise-readiness layer first.</p>
-          <ul>
-            <li>A separate, isolated brain per tenant. No data crosses them</li>
-            <li>Self-hosted in your cloud, or in your customer's</li>
-            <li>Your second agent ships in days rather than quarters</li>
-          </ul>
+          <p class="door-h">Outward &middot; your product</p>
+          <h3>The SaaS you ship becomes agent-native</h3>
+          <p>Agents inside your product acting on each customer's own data, with an isolated brain per tenant, in your own tenancy.</p>
         </div>
       </div>
       <a href="/use-cases" class="sk-more">What teams build on it &rarr;</a>
@@ -390,8 +281,8 @@
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
   <section class="sk-section sk-cta" data-section="bottom-cta">
     <div class="sk-container">
-      <h2>See it on your own stack.</h2>
-      <p class="sk-lead">A walkthrough on your actual systems and your actual workflows, or early access if you would rather read first. Either way there is no pitch: the useful conversation is whether this layer helps what your team is already trying to build.</p>
+      <h2>See it on your own systems.</h2>
+      <p class="sk-lead">A walkthrough on your actual workflows, or early access if you would rather read first.</p>
       <div class="sk-cta-row">
         <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Book a walkthrough</a>
@@ -400,6 +291,7 @@
   </section>
 
 </main>
+
 <!-- @partial footer -->
 <footer class="sk-footer">
   <div class="sk-footer-inner">
