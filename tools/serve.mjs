@@ -55,6 +55,23 @@ function indexPage(pages, diagrams) {
 </div></body></html>`
 }
 
+// Mirror the response headers vercel.json sets in production.
+//
+// This exists because the dev server used to send none of them, so anything header-dependent
+// worked locally and broke only once deployed. That is precisely how X-Frame-Options: DENY sat in
+// vercel.json unnoticed while every figure on the site is a same-origin iframe: locally the frames
+// loaded, in production every one of them would have been blank. Serving the real headers means
+// the render gate and every screenshot now exercise what visitors actually get.
+const VERCEL_HEADERS = await (async () => {
+  try {
+    const cfg = JSON.parse(await readFile(join(ROOT, 'vercel.json'), 'utf8'))
+    const all = (cfg.headers || []).filter(h => h.source === '/(.*)')
+    return Object.fromEntries(all.flatMap(h => h.headers.map(x => [x.key, x.value])))
+  } catch {
+    return {}
+  }
+})()
+
 const server = createServer(async (req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0])
 
@@ -77,6 +94,7 @@ const server = createServer(async (req, res) => {
     try {
       const body = await readFile(file)
       res.writeHead(200, {
+        ...VERCEL_HEADERS,
         'Content-Type': MIME[extname(file)] || 'application/octet-stream',
         'Cache-Control': 'no-store',
       }).end(body)
