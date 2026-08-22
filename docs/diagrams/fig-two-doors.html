@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Two doors, one install</title>
+<title>Two ways in, one platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/synos.css">
 <style>
 /*
- * FIG. 11 · "Two doors, one install"
+ * FIG. 11 · "Two ways in, one platform"
  *
- * Replaces two prose cards sitting side by side. Side-by-side cards say "here are two things" and
- * the entire argument of this figure is the opposite: two different buyers, two different entry
- * points, and then one identical thing underneath. Cards cannot show the "and then identical" part.
+ * Replaces two prose cards sitting side by side. Cards say "here are two things"; the argument is
+ * the opposite, that two different starting problems resolve into one identical install.
  *
- * Form: a convergence. The two columns are visibly distinct at the top, narrow through a shared
- * seam, and resolve into one band that spans both. The band is the argument.
+ * Form: a convergence. Two distinct columns meet at a seam and resolve into one band spanning both.
+ * No literal doors and no funnel: a drawn funnel is a sales diagram and this has to survive a
+ * technical reader.
  *
- * No literal doors, no arrows curving into a funnel. The convergence is done with the grid and a
- * seam rule, because a drawn funnel is a sales diagram and this is meant to survive a technical
- * reader.
+ * Rewritten 2026-08-22 after Anoop read it as written for an investor rather than a customer. The
+ * first version used the deck's own vocabulary: who signs, where the deal enters, how the account
+ * expands, "a door is a sales entry point". All of that describes our motion, not their value. The
+ * rows now say what the customer wants, what is blocking them, who does the building, and what they
+ * get first. If a row cannot be read aloud to a buyer, it does not belong in this figure.
  */
 
 body { padding: 88px 24px; }
@@ -91,62 +93,62 @@ body { padding: 88px 24px; }
 </head>
 <body>
 
-<figure class="fig" aria-label="Two entry points, inward at operations and outward through the product, converging on one identical installation">
+<figure class="fig" aria-label="Two ways to start, at your operations or through your product, both arriving at the same installation">
   <div class="fig-head">
     <span class="fig-num">FIG. 11</span>
-    <h2 class="fig-title">Two doors, one install</h2>
-    <p class="fig-lede">Two different buyers with two different problems, and then the same thing underneath. A door is where the conversation starts. Nothing forks after it.</p>
+    <h2 class="fig-title">Two ways in, one platform</h2>
+    <p class="fig-lede">Most companies arrive with one of these two problems. Whichever one you start from, what gets installed is the same, so the second one costs you a project rather than a purchase.</p>
   </div>
 
   <div class="wrap">
     <div class="doors">
       <div class="door">
-        <p class="d-tag">Door one &middot; inward</p>
+        <p class="d-tag">Start inward</p>
         <p class="d-title">At your operations</p>
         <div class="d-rows">
-          <div class="d-row"><p class="d-k">who</p><p class="d-v">The person accountable for the AI mandate, with air cover from the top</p></div>
-          <div class="d-row"><p class="d-k">enters at</p><p class="d-v">Whatever hurts most: a cost line, a sales operations queue, a support backlog</p></div>
-          <div class="d-row"><p class="d-k">who builds</p><p class="d-v">Your subject matter experts, in plain English, without a ticket</p></div>
-          <div class="d-row"><p class="d-k">expands</p><p class="d-v">The next function, on rails already paid for</p></div>
+          <div class="d-row"><p class="d-k">you want</p><p class="d-v">Agents doing the expensive work your team repeats every week</p></div>
+          <div class="d-row"><p class="d-k">blocked by</p><p class="d-v">Every change needs an engineer, and the queue is months long</p></div>
+          <div class="d-row"><p class="d-k">who builds</p><p class="d-v">Your ops, finance and support experts, in plain English</p></div>
+          <div class="d-row"><p class="d-k">first result</p><p class="d-v">One workflow running in weeks, on systems you did not have to move</p></div>
         </div>
       </div>
 
       <div class="door">
-        <p class="d-tag">Door two &middot; outward</p>
+        <p class="d-tag">Start outward</p>
         <p class="d-title">Through your product</p>
         <div class="d-rows">
-          <div class="d-row"><p class="d-k">who</p><p class="d-v">The AI or product owner carrying the roadmap</p></div>
-          <div class="d-row"><p class="d-k">enters at</p><p class="d-v">The AI feature customers are asking for, blocked on the infrastructure under it</p></div>
-          <div class="d-row"><p class="d-k">who builds</p><p class="d-v">Your product team, on an isolated brain per customer</p></div>
-          <div class="d-row"><p class="d-k">expands</p><p class="d-v">Their client base, one at a time, on one install</p></div>
+          <div class="d-row"><p class="d-k">you want</p><p class="d-v">The AI features your customers keep asking you for</p></div>
+          <div class="d-row"><p class="d-k">blocked by</p><p class="d-v">Isolation, audit and deployment questions every enterprise customer asks</p></div>
+          <div class="d-row"><p class="d-k">who builds</p><p class="d-v">Your product team, with a separate brain per customer</p></div>
+          <div class="d-row"><p class="d-k">first result</p><p class="d-v">A shipped feature, and the second one in days rather than months</p></div>
         </div>
       </div>
     </div>
 
-    <div class="seam"><p>and then, identically</p></div>
+    <div class="seam"><p>both arrive here</p></div>
 
     <div class="same">
-      <p class="same-h">the same install, either way</p>
+      <p class="same-h">what you end up owning</p>
       <div class="same-grid">
         <div class="same-i">
-          <b>The same deployment</b>
+          <b>It runs where you run</b>
           <span>Inside your own environment. Your cloud, your Kubernetes, or air-gapped with no outbound path.</span>
         </div>
         <div class="same-i">
-          <b>The same governed writes</b>
-          <span>One gate for every caller, and one audit trail for a reviewer to examine.</span>
+          <b>Your risk review has one thing to check</b>
+          <span>One gate for every caller, and one audit trail, whichever way you came in.</span>
         </div>
         <div class="same-i">
-          <b>The same record</b>
-          <span>Corrections, traces and evaluation cases accumulating in one place, on your infrastructure.</span>
+          <b>What it learns stays yours</b>
+          <span>Corrections, traces and evaluation cases accumulate on your infrastructure, not in a vendor's product.</span>
         </div>
       </div>
     </div>
   </div>
 
   <p class="fig-foot">
-    <span>Enter through one door and add the other later without buying again.</span>
-    <span><b>A door is a sales entry point. The layer is the product.</b></span>
+    <span>Start with whichever hurts more. Adding the other later needs no second install.</span>
+    <span><b>You are buying the platform, not one of the two workflows.</b></span>
   </p>
 </figure>
 
