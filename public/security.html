@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security &mdash; SynOS</title>
+    <title>Security | SynOS</title>
     <meta name="description" content="How SynOS is built and deployed: self-hosted by default, per-tenant isolation, access control and audit, model-agnostic inference, and our compliance status stated plainly.">
     <meta property="og:title" content="Security | SynOS">
     <meta property="og:description" content="How SynOS is built and deployed: self-hosted by default, per-tenant isolation, access control and audit, model-agnostic inference, and our compliance status stated plainly.">
@@ -199,12 +199,12 @@
 
         <h2 id="access">4. Access control and audit</h2>
         <ul>
-            <li><strong>Enterprise single sign-on.</strong> SynOS authenticates against your identity provider over SAML 2.0 or OIDC, with SCIM user provisioning and de-provisioning. Multi-factor authentication, conditional access and device policy are enforced by your IdP under your own policy &mdash; we do not ask you to adopt ours.</li>
-            <li>Role-based access on two axes. Instance role &mdash; platform operator, instance admin, member &mdash; determines who administers the deployment. Project role &mdash; viewer, editor, project admin &mdash; determines what a user may do inside a given project, and can be narrowed or widened per user and per tool. An instance role does not by itself grant access to a project's data.</li>
+            <li><strong>Enterprise single sign-on.</strong> SynOS authenticates against your identity provider over SAML 2.0 or OIDC, with SCIM user provisioning and de-provisioning. Multi-factor authentication, conditional access and device policy are enforced by your IdP under your own policy. We do not ask you to adopt ours.</li>
+            <li>Role-based access on two axes. Instance role (platform operator, instance admin, member) determines who administers the deployment. Project role (viewer, editor, project admin) determines what a user may do inside a given project, and can be narrowed or widened per user and per tool. An instance role does not by itself grant access to a project's data.</li>
             <li>Per-skill and per-agent permissions declared at the individual tool level, and revocable.</li>
             <li>A skill carries its tool list, parameter contract and scope, so the same permissions apply wherever it runs. Where a skill declares the external hosts it needs, that declaration is recorded with the skill; enforcement of it is not yet in the runtime path.</li>
             <li>Graduated autonomy: agents move from suggest-only to review-required to autonomous per worker, rather than being trusted wholesale.</li>
-            <li>Full audit trail &mdash; every execution, correction and promotion is logged, with cost and tool calls attributable per run.</li>
+            <li>Full audit trail. Every execution, correction and promotion is logged, with cost and tool calls attributable per run.</li>
         </ul>
 
         <h2 id="encryption">5. Encryption and credentials</h2>
@@ -225,7 +225,7 @@
         </ul>
 
         <h2 id="infra">7. Infrastructure and tenancy</h2>
-        <p>Self-hosted deployments run wherever the customer chooses &mdash; their cloud account, their region, their network controls, their backup regime. SynOS Labs LLP operates no infrastructure in that path.</p>
+        <p>Self-hosted deployments run wherever the customer chooses: their cloud account, their region, their network controls, their backup regime. SynOS Labs LLP operates no infrastructure in that path.</p>
         <p>SynOS Labs LLP-operated environments (the hosted multi-tenant evaluation environment and any dedicated managed instances) run on Google Cloud Platform. Hosting region for a specific deployment is confirmed on request and can be fixed contractually.</p>
 
         <h2 id="corporate">8. Corporate security</h2>
@@ -249,7 +249,7 @@
 
         <h2 id="continuity">10. Business continuity</h2>
         <p>A self-hosted deployment keeps running inside the customer's infrastructure independently of SynOS Labs LLP. It has no runtime dependency on our servers, our licence server, or our continued operation.</p>
-        <p>For enterprise engagements we can additionally agree continuity arrangements &mdash; including source and artefact escrow and air-gapped continuity terms &mdash; in the signed agreement. Raise it during contracting and we will scope it with you.</p>
+        <p>For enterprise engagements we can additionally agree continuity arrangements in the signed agreement, including source and artefact escrow and air-gapped continuity terms. Raise it during contracting and we will scope it with you.</p>
 
         <h2 id="compliance">11. Compliance status</h2>
         <div class="note">
@@ -258,7 +258,7 @@
         <ul>
             <li>We complete customer security questionnaires, architecture reviews and vendor-risk assessments as part of onboarding.</li>
             <li>We sign NDAs, DPAs and customer-specific security addenda.</li>
-            <li>Because the default deployment is self-hosted, most of the vendor-risk surface that certifications are designed to cover stays inside the customer's own control &mdash; their infrastructure, their network, their retention, their access reviews.</li>
+            <li>Because the default deployment is self-hosted, most of the vendor-risk surface that certifications are designed to cover stays inside the customer's own control: their infrastructure, their network, their retention, their access reviews.</li>
             <li>Formal certification will follow customer demand. If it is a contractual requirement for you, tell us and we will scope the timeline.</li>
         </ul>
         <p>SynOS Labs LLP processes personal data in line with India's Digital Personal Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025. See our <a href="/privacy">Privacy Policy</a>.</p>
