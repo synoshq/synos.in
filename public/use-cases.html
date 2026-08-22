@@ -1,172 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use Cases: Templated Brains for Every Team | SynOS</title>
-    <meta name="description" content="Templated brains your team builds and owns on the SynOS Human-Agent Operating Layer: Company Brain, Sales, Marketing, FinOps, Internal Ops, Support/CX, and custom. Pre-built, then tuned to how you operate.">
-    <meta property="og:title" content="Use Cases: Templated Brains for Every Team | SynOS">
-    <meta property="og:description" content="Templated brains your team builds and owns on the SynOS Human-Agent Operating Layer. Pre-built, then tuned to how you operate.">
-    <meta property="og:type" content="website">
+<!-- @partial head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<!-- @endpartial head -->
+    <title>Use cases | SynOS</title>
+    <meta name="description" content="Two ways in: agents your own experts build to run your operations, or agents embedded in the product you ship. Both install the same layer, act inside systems that never move, and accumulate into intelligence that belongs to you.">
+    <meta property="og:title" content="Use cases | SynOS">
+    <meta property="og:description" content="Two doors into the same layer. Your own agents, in your own systems, with no migration first.">
     <meta property="og:url" content="https://synos.in/use-cases">
     <meta property="og:image" content="https://synos.in/img/og/use-cases.png">
     <meta name="twitter:image" content="https://synos.in/img/og/use-cases.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Templated Brains for Every Team | SynOS">
-    <meta name="twitter:description" content="Company Brain flagship + Sales, Marketing, FinOps, Internal Ops, Support/CX, and custom brains your team builds and owns on SynOS.">
+    <meta name="twitter:title" content="Use cases | SynOS">
+    <meta name="twitter:description" content="Two doors into the same layer. Your own agents, in your own systems, with no migration first.">
     <link rel="canonical" href="https://synos.in/use-cases">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MXVRX5VMJR');
-    </script>
-
-    <link rel="stylesheet" href="/css/synos.css">
-    <script defer src="/js/synos.js"></script>
     <style>
-        *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --font-display: var(--sk-font-display);
-            --font-body: var(--sk-font-body);
-            --font-mono: var(--sk-font-mono);
-            --bg: var(--sk-bg);
-            --bg-alt: var(--sk-surface-2);
-            --surface: var(--sk-surface);
-            --border: var(--sk-border);
-            --border-light: var(--sk-border);
-            --border-accent: var(--sk-indigo-br);
-            --text: var(--sk-ink);
-            --text-secondary: var(--sk-ink-2);
-            --text-muted: var(--sk-ink-3);
-            --text-dim: var(--sk-ink-3);
-            --accent: var(--sk-brand-text);
-            --accent-hover: var(--sk-indigo-ink);
-            --accent-bg: var(--sk-indigo-bg);
-            --teal: #0D9488;
-            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
-            --shadow-glow: 0 8px 40px rgba(99, 102, 241, 0.12);
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; font-size: 15px; line-height: 1.6; }
+    /* ─────────────────────────────────────────────────────────────────────────
+     * Use cases, rebuilt 2026-08-22 on the two doors.
+     * Spec: synos-gtm/docs/superpowers/specs/2026-08-22-use-cases-two-doors-design.md
+     *
+     * The page it replaces was organised as five "function brains", which argued that SynOS is a
+     * catalogue of pre-built department solutions. Deck slide 13 says the opposite: a door is a
+     * sales entry point and the layer is the product. The functions survive here as examples
+     * inside door one, and "X Brain" is retired as a heading, per the competitive read that the
+     * term is now a category name rather than a claim.
+     * ───────────────────────────────────────────────────────────────────────── */
 
-        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-        .section { padding: 80px 0; }
-        .section--alt { background: var(--bg-alt); }
+    .plate { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
+    .plate > div { padding: var(--sk-space-7) var(--sk-space-6) var(--sk-space-7) 0; }
+    .plate > div + div { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
+    .plate b { display: block; font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; line-height: 1.15;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
+    .plate span { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); display: block; }
+    @media (max-width: 780px) {
+      .plate { grid-template-columns: 1fr; }
+      .plate > div { padding-right: 0; }
+      .plate > div + div { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; }
+    }
 
-        h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.03em; line-height: 1.12; color: var(--text); }
-        h1 { font-size: clamp(38px, 5.5vw, 56px); margin-bottom: 24px; }
-        h2 { font-size: clamp(28px, 3.8vw, 40px); margin-bottom: 16px; }
-        h3 { font-size: 24px; margin-bottom: 12px; }
-        h4 { font-family: var(--font-body); font-size: 14px; font-weight: 600; margin-bottom: 8px; }
-        p { font-size: 15px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 16px; }
-        strong { color: var(--text); font-weight: 600; }
+    /* ── door header ─────────────────────────────────────────────────────── */
+    /* Each door opens with who it is for and where it enters, set as a two-column ledger so the
+     * buyer can find themselves before reading any of the detail. */
+    .door-top { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-7);
+      margin-top: var(--sk-space-7); padding-top: var(--sk-space-6);
+      border-top: 1px solid var(--sk-ink); }
+    .door-f h4 { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
+      font-weight: 500; }
+    .door-f p { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 820px) { .door-top { grid-template-columns: 1fr; } }
 
-        .gradient-text { background: linear-gradient(135deg, #6366F1 0%, #0D9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .section-label { font-family: var(--font-body); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; }
+    /* ── function example sets ───────────────────────────────────────────── */
+    /* A function is an entry point, so it is set as a row in a ledger rather than as a card in a
+     * catalogue. The agents are the concrete part and carry the mono treatment. */
+    .fns { border-top: 1px solid var(--sk-ink); margin-top: var(--sk-space-7); }
+    .fn { display: grid; grid-template-columns: 210px minmax(0, 1fr);
+      gap: var(--sk-space-7); padding: var(--sk-space-6) 0;
+      border-bottom: 1px solid var(--sk-border); }
+    .fn-n { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink);
+      max-width: none; }
+    .fn-n small { display: block; margin-top: 4px; font-family: var(--sk-font-mono);
+      font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; color: var(--sk-ink-3); }
+    .fn ul { list-style: none; display: grid; gap: var(--sk-space-3); }
+    .fn li { font-size: 14px; line-height: 1.6; color: var(--sk-ink-2);
+      padding-left: var(--sk-space-5); position: relative; }
+    .fn li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 5px; height: 5px;
+      border-radius: 999px; background: var(--sk-indigo-2); }
+    .fn-g { margin-top: var(--sk-space-5); font-family: var(--sk-font-mono); font-size: 11px;
+      line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 820px) {
+      .fn { grid-template-columns: 1fr; gap: var(--sk-space-4); }
+    }
 
-        /* NAV (matches home) */
-        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 24px; height: 64px; display: flex; justify-content: space-between; align-items: center; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-        .nav-left { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo-text { font-family: var(--font-display); font-size: 22px; color: var(--text); letter-spacing: -0.02em; }
-        .nav-links { display: flex; gap: 36px; }
-        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
-        .nav-links a:hover { color: var(--text); }
-        .nav .btn--primary { padding: 10px 22px; font-size: 14px; border-radius: 10px; }
-        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    /* ── same install ────────────────────────────────────────────────────── */
+    .one { border: 1px solid var(--sk-border-2); border-radius: var(--sk-radius-sm);
+      background: var(--sk-surface); box-shadow: var(--sk-shadow-card); overflow: hidden; }
+    .one-row { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .one-row > div { padding: var(--sk-space-6); }
+    .one-row > div + div { border-left: 1px solid var(--sk-border); }
+    .one-n { font-size: 14.5px; font-weight: 600; color: var(--sk-ink);
+      margin-bottom: var(--sk-space-3); max-width: none; }
+    .one-d { font-size: 13px; line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
+    .one-base { border-top: 1px solid var(--sk-ink); background: var(--sk-indigo-bg);
+      padding: var(--sk-space-5) var(--sk-space-6);
+      font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.04em;
+      color: var(--sk-indigo-ink); }
+    .one-base p { max-width: none; }
+    @media (max-width: 820px) {
+      .one-row { grid-template-columns: 1fr; }
+      .one-row > div + div { border-left: none; border-top: 1px solid var(--sk-border); }
+    }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 14px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; padding: 12px 22px; border: none; }
-        .btn--primary { background: var(--accent); color: #fff; }
-        .btn--primary:hover { background: var(--accent-hover); box-shadow: var(--shadow-glow); }
-        .btn--secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
-        .btn--secondary:hover { border-color: var(--accent); color: var(--accent); }
+    /* ── what compounds ──────────────────────────────────────────────────── */
+    .comp { border-top: 1px solid var(--sk-ink); }
+    .cp { display: grid; grid-template-columns: 44px 250px minmax(0, 1fr);
+      gap: var(--sk-space-6); align-items: baseline;
+      padding: var(--sk-space-6) 0; border-bottom: 1px solid var(--sk-border); }
+    .cp-n { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-ink-3);
+      max-width: none; }
+    .cp-t { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink);
+      max-width: none; }
+    .cp-d { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 860px) {
+      .cp { grid-template-columns: 44px minmax(0, 1fr); row-gap: var(--sk-space-3); }
+      .cp-d { grid-column: 2 / -1; }
+    }
 
-        .page-hero { padding-top: 140px; padding-bottom: 40px; text-align: center; }
-        .page-hero .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 24px; }
-        .page-hero p.lede { font-size: 17px; line-height: 1.7; color: var(--text-secondary); max-width: 700px; margin: 0 auto 16px; }
-        .page-hero .pattern-note { font-size: 14px; color: var(--text-muted); font-style: italic; max-width: 640px; margin: 0 auto; }
+    /* ── how it lands ────────────────────────────────────────────────────── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sk-space-6); }
+    .step { border-top: 2px solid var(--sk-indigo-2); padding-top: var(--sk-space-5); }
+    .step-n { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.12em;
+      color: var(--sk-ink-3); margin-bottom: var(--sk-space-3); max-width: none; }
+    .step h3 { font-size: 16px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-3); }
+    .step p { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
 
-        .uc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px; }
-        .uc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; }
-        .uc-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--border-accent); }
-        .uc-card .uc-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px; text-transform: uppercase; }
-        .uc-card h3 { font-size: 22px; line-height: 1.2; margin-bottom: 12px; }
-        .uc-card p { font-size: 14px; line-height: 1.65; color: var(--text-muted); margin-bottom: 12px; }
-        .uc-card .uc-link { font-size: 13px; font-weight: 600; color: var(--accent); }
-
-        .uc-umbrella { display: block; margin-top: 48px; padding: 36px 32px; background: linear-gradient(180deg, var(--accent-bg) 0%, rgba(99,102,241,0.02) 100%); border: 1px solid var(--border-accent); border-radius: 18px; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; position: relative; }
-        .uc-umbrella:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--teal)); border-radius: 18px 18px 0 0; }
-        .uc-umbrella:hover { box-shadow: var(--shadow-glow); transform: translateY(-3px); }
-        .uc-umbrella .uc-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px; text-transform: uppercase; }
-        .uc-umbrella h3 { font-size: 30px; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
-        .uc-umbrella p { font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 14px; max-width: 760px; }
-        .uc-umbrella .uc-link { font-size: 14px; font-weight: 600; color: var(--accent); }
-        .uc-grid-divider { margin-top: 36px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
-
-        .pattern-section { padding: 80px 0; border-top: 1px solid var(--border); scroll-margin-top: 80px; }
-        .pattern-section:nth-of-type(odd) { background: var(--bg-alt); }
-        .pattern-section .pattern-header { margin-bottom: 32px; }
-        .pattern-section .pattern-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
-        .pattern-section h2 { margin-bottom: 16px; }
-        .pattern-section .pattern-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 24px; }
-        .pattern-block { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-        .pattern-block .block-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-        .pattern-block h4 { font-family: var(--font-display); font-size: 18px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 8px; }
-        .pattern-block p { font-size: 14px; line-height: 1.65; color: var(--text-muted); margin: 0; }
-        .pattern-block strong { color: var(--text); font-weight: 600; }
-
-        .cta-row { display: flex; gap: 16px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
-        .cta-secondary { margin-top: 16px; font-size: 14px; color: var(--text-muted); }
-        .cta-secondary a { color: var(--accent); text-decoration: none; font-weight: 500; }
-        .cta-secondary a:hover { text-decoration: underline; }
-
-        /* FOOTER (matches home) */
-        .site-footer { padding: 48px 24px; }
-        .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
-        .footer-left { display: flex; align-items: center; gap: 8px; }
-        .footer-logo-text { font-family: var(--font-display); font-size: 18px; color: var(--text-muted); }
-        .footer-middle { display: flex; align-items: center; gap: 24px; }
-        .footer-middle a { color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.15s; }
-        .footer-middle a:hover { color: var(--text); }
-        .footer-links { display: flex;flex-wrap:wrap; align-items: center; gap: 20px; }
-        .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 13px; transition: color 0.15s; }
-        .footer-links a:hover { color: var(--text-muted); }
-        .footer-sep { width: 1px; height: 14px; background: var(--border); }
-        .footer-copy { font-size: 12px; color: var(--text-dim); margin-top: 20px; text-align: center; }
-
-        @media (max-width: 900px) {
-            .uc-grid, .pattern-section .pattern-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 768px) {
-            .nav { background: rgba(250,250,248,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-            .nav-toggle { display: inline-flex; }
-            .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); box-shadow: var(--shadow-md); border-bottom: 1px solid var(--border); padding: 8px 24px 16px; }
-            .nav-links.open { display: flex; }
-            .nav-links a { padding: 12px 0; font-size: 15px; border-bottom: 1px solid var(--border-light); }
-            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
-            .footer-links, .footer-middle { justify-content: center; flex-wrap: wrap; }
-        }
-        @media (max-width: 540px) {
-            .cta-row { flex-direction: column; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; }
-            .cta-row .btn { width: 100%; }
-            .nav .btn--primary { padding: 8px 16px; font-size: 13px; }
-            .container { padding-left: 16px; padding-right: 16px; }
-        }
-
-        a:focus-visible, button:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-        *:focus { outline: none; }
+    /* ── deep dive pointer ───────────────────────────────────────────────── */
+    .dive { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
+      background: var(--sk-surface); padding: var(--sk-space-7) var(--sk-space-6);
+      box-shadow: var(--sk-shadow-card); text-decoration: none; display: block;
+      transition: border-color 0.15s ease; }
+    .dive:hover { border-color: var(--sk-indigo-2); }
+    .dive-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
+      max-width: none; }
+    .dive h3 { font-size: 19px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
+    .dive p { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: 70ch; }
     </style>
 </head>
 <body>
 <a href="#main-content" class="sk-skip">Skip to content</a>
-
 <!-- @partial nav -->
 <nav class="sk-nav" id="nav">
   <a href="/" class="sk-nav-left" aria-label="SynOS home">
@@ -196,233 +173,300 @@
 
 <main id="main-content">
 
-    <section class="container page-hero">
-        <p class="eyebrow">What teams build · Templated Brains</p>
-        <h1>A starting brain for <span class="gradient-text">every operating team.</span></h1>
-        <p class="lede">Two ways to build on SynOS: <strong>run your company on agents</strong> with a Company Brain and function brains, or <strong>make your product agent-native</strong>. Embed agents in the SaaS you ship. Each is a template your team owns, compounding on your data until it operates the way you do.</p>
-        <p class="pattern-note">SynOS ships the operating layer; your team operates the brains on top, with Claude Code, Codex, or your own harness.</p>
-    </section>
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="sk-container sk-pagehero" data-section="hero">
+    <p class="sk-eyebrow">What teams build on it</p>
+    <h1>Your own agents, running inside systems that never move.</h1>
+    <p class="sk-lead">Nothing here is a pre-built department solution you switch on. What installs is the environment, and what gets built on it is specific to how your company operates, authored by the people who hold that knowledge. There are two ways in, one aimed inward at your operations and one aimed outward through the product you sell, and both accumulate into the same asset.</p>
+  </section>
 
-    <section class="container">
-        <a href="#company-brain" class="uc-umbrella" data-cta="see-usecase-company-brain">
-            <div class="uc-tag">The flagship · Company Brain</div>
-            <h3>The Company Brain</h3>
-            <p>One living context graph across every team: the policies, definitions, resolved entities, and tribal knowledge every agent and app reads from. Each function brain below sits inside it. Start with one function; the brain compounds across the rest.</p>
-            <span class="uc-link">See the Company Brain ↓</span>
-        </a>
-        <a href="#agent-native-product" class="uc-umbrella" data-cta="see-usecase-agent-native-product" style="margin-top:16px;">
-            <div class="uc-tag">The other wedge · Your product</div>
-            <h3>Agent-Native Product</h3>
-            <p>Make the SaaS you already ship agent-native: embed in-product agents that act on each customer's data, with a separate, isolated brain per customer. Or build a new AI product on the same rails. Own the brain, skills, and deploy; bring your own harness and models.</p>
-            <span class="uc-link">See the template ↓</span>
-        </a>
-        <p class="uc-grid-divider">Function brains built inside the Company Brain</p>
-        <div class="uc-grid">
-            <a href="#sales-brain" class="uc-card" data-cta="see-usecase-sales-brain">
-                <div class="uc-tag">Revenue · Pipeline</div>
-                <h3>Sales Brain</h3>
-                <p>Lead triage &amp; follow-up, AI battlecards, pipeline hygiene &amp; deal nudges, account &amp; competitor context.</p>
-                <span class="uc-link">See the template ↓</span>
-            </a>
-            <a href="#marketing-brain" class="uc-card" data-cta="see-usecase-marketing-brain">
-                <div class="uc-tag">Growth · Demand</div>
-                <h3>Marketing Brain</h3>
-                <p>Campaign planning &amp; decisioning, content &amp; creative drafting, channel &amp; ROAS digests, audience &amp; cohort context.</p>
-                <span class="uc-link">See the template ↓</span>
-            </a>
-            <a href="/use-cases/cloud-finops-agents" class="uc-card" data-cta="see-usecase-finops-brain">
-                <div class="uc-tag">Cloud spend · FP&amp;A · Deep dive →</div>
-                <h3>FinOps Brain</h3>
-                <p>Budget &amp; spend pacing, cost-anomaly investigation, rightsizing &amp; orphan cleanup, margin &amp; unit-economics watch.</p>
-                <span class="uc-link">See the deep dive →</span>
-            </a>
-            <a href="#internal-ops-brain" class="uc-card" data-cta="see-usecase-ops-brain">
-                <div class="uc-tag">Operations · SOPs</div>
-                <h3>Internal Ops Brain</h3>
-                <p>Weekly ops digests &amp; exceptions, SOP capture &amp; playbook lookup, vendor/supply/fleet monitoring, incident handling.</p>
-                <span class="uc-link">See the template ↓</span>
-            </a>
-            <a href="#support-cx-brain" class="uc-card" data-cta="see-usecase-cx-brain">
-                <div class="uc-tag">Customer · Retention</div>
-                <h3>Support / CX Brain</h3>
-                <p>Ticket triage &amp; drafted replies, voice-of-customer themes, churn &amp; CSAT signal watch.</p>
-                <span class="uc-link">See the template ↓</span>
-            </a>
-        </div>
-    </section>
+  <!-- ══ GLANCE ════════════════════════════════════════════════════════════ -->
+  <section class="sk-container" data-section="glance">
+    <div class="plate">
+      <div>
+        <b>One install, both ways</b>
+        <span>A door is where a conversation starts, not a different product. The deployment, the governed writes and the record that accumulates are identical.</span>
+      </div>
+      <div>
+        <b>Your people build it</b>
+        <span>Engineering sets the rails once. After that the ops, finance and support people who know the exceptions author the agents themselves.</span>
+      </div>
+      <div>
+        <b>What it learns is yours</b>
+        <span>Corrections, traces and evaluation cases accumulate on your infrastructure, and they are what a model of your own would be trained on.</span>
+      </div>
+    </div>
+  </section>
 
-    <section class="pattern-section" id="company-brain">
-        <div class="container">
-            <div class="pattern-header">
-                <div class="pattern-tag">The flagship</div>
-                <h2>The Company Brain</h2>
-                <p>The flagship template, and the one every function brain sits inside. It serves three groups at once: operators who know the business but can't code; function leaders tired of waiting on a backlog; AI engineering teams who want one shared layer instead of rebuilding context infrastructure for every team's request. Your team builds it on SynOS and owns it, then operates it with Claude Code (or any harness) on the shared Company Brain.</p>
-            </div>
-            <div class="pattern-grid">
-                <div class="pattern-block">
-                    <div class="block-tag">Who benefits</div>
-                    <h4>The teams it serves</h4>
-                    <p><strong>Operators</strong> who know the business but can't code. <strong>Function leaders</strong> tired of waiting for a backlog. <strong>AI engineering teams</strong> who want one shared layer instead of rebuilding context infrastructure for every request. The brain serves all three.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Layer pieces</div>
-                    <h4>What the Brain gives them</h4>
-                    <p><strong>Living Company Brain</strong>. Resolved entities, curated knowledge, learned skills, and the Self-Learning Loop. <strong>Agent-Native Storage</strong> for the work agents do. <strong>Scanned Sandboxes</strong> for the small apps non-engineers build on top. <strong>Access Control</strong> so the same scope rules govern every agent and app. <strong>Traces</strong> so the AI team sees what's running.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Outcome shape</div>
-                    <h4>What teams typically see</h4>
-                    <p>The backlog of small-tool requests stops piling up. Non-engineers ship the custom 20% no SaaS will ever cover. Tribal knowledge stops dying in chat history: it gets captured and served back. Every new agent inherits what earlier ones learned.</p>
-                </div>
-            </div>
+  <!-- ══ DOOR ONE ══════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="inward">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Door one &middot; inward, at your operations</p>
+        <h2>The people who know the work stop waiting for engineering to build it.</h2>
+        <p class="sk-lead">Internal automation is blocked on a queue. The rules that would make an agent correct sit with your ops leads, analysts and support veterans, and today those rules only reach production through an engineer who has forty other things to do. This door puts the layer in and lets those people author the work themselves, inside rails that make it safe by construction.</p>
+      </div>
+      <div class="door-top">
+        <div class="door-f">
+          <h4>Who this is for</h4>
+          <p>The person accountable for the AI mandate rather than the engineering leader being asked to build it, usually with sponsorship from the top. The people who win on day one are the subject matter experts, because they are the ones who stop filing tickets and start building.</p>
         </div>
-    </section>
+        <div class="door-f">
+          <h4>Where it enters</h4>
+          <p>Whatever hurts most right now: a cost line running away, a sales operations queue nobody has time for, a support backlog. We do not arrive with a department picked out. The pain is the entry point and the layer is what you are actually buying.</p>
+        </div>
+      </div>
+      <div class="fns">
+        <div class="fn">
+          <p class="fn-n">Sales operations<small>revenue &middot; pipeline</small></p>
+          <div>
+            <ul>
+              <li>Pipeline hygiene, with stage transitions that have gone quiet flagged before the forecast call</li>
+              <li>Stale deal surfacing across opportunities with no recent contact</li>
+              <li>Forecast preparation weighted by what the evidence in the systems actually supports</li>
+              <li>Deal context compiled from mail, chat and documents before a call rather than after it</li>
+            </ul>
+            <p class="fn-g">grounded in: CRM, mail and chat, call notes, the deal documents nobody has read</p>
+          </div>
+        </div>
+        <div class="fn">
+          <p class="fn-n">Cloud cost<small>infrastructure &middot; finance</small></p>
+          <div>
+            <ul>
+              <li>Spend pacing against budget, per team and per service, before the month ends</li>
+              <li>Cost anomaly investigation that arrives with the cause attached rather than as an alert</li>
+              <li>Rightsizing and orphaned resource cleanup, proposed with the evidence for each</li>
+              <li>Unit economics watched against the numbers your finance team already uses</li>
+            </ul>
+            <p class="fn-g">grounded in: billing exports, tagging, the resource inventory, your own margin definitions</p>
+          </div>
+        </div>
+        <div class="fn">
+          <p class="fn-n">Internal operations<small>process &middot; SOPs</small></p>
+          <div>
+            <ul>
+              <li>Weekly digests of what moved and what became an exception</li>
+              <li>Procedure capture, so how the work is actually done gets recorded as it happens and served back</li>
+              <li>Vendor, supply and fleet monitoring against the operational tables that matter</li>
+              <li>Incident triage and routing to whoever actually owns it</li>
+            </ul>
+            <p class="fn-g">grounded in: operational systems, procedure documents, the tribal knowledge in chat history</p>
+          </div>
+        </div>
+        <div class="fn">
+          <p class="fn-n">Support<small>customer &middot; retention</small></p>
+          <div>
+            <ul>
+              <li>Ticket triage and drafted replies in your own voice and within your own policy</li>
+              <li>Theme mining across what customers are actually saying, rather than what a survey asked</li>
+              <li>Churn and satisfaction signals watched continuously instead of reviewed quarterly</li>
+            </ul>
+            <p class="fn-g">grounded in: ticketing, product usage, the exceptions your best agent knows by heart</p>
+          </div>
+        </div>
+        <div class="fn">
+          <p class="fn-n">Marketing<small>growth &middot; demand</small></p>
+          <div>
+            <ul>
+              <li>Campaign planning and channel decisions against measured return rather than a plan written in January</li>
+              <li>Audiences built and refreshed off behavioural data instead of a static list</li>
+              <li>Creative drafting inside brand and consent rules that are enforced rather than remembered</li>
+            </ul>
+            <p class="fn-g">grounded in: customer data, ad platforms, analytics, the brand rules that are never negotiable</p>
+          </div>
+        </div>
+      </div>
+      <p class="sk-sub" style="margin-top:var(--sk-space-7)">Start with one. The layer the first function pays for is the layer the second one runs on, which is why the second costs a fraction of the first and needs no second procurement.</p>
+    </div>
+  </section>
 
-    <section class="pattern-section" id="agent-native-product">
-        <div class="container">
-            <div class="pattern-header">
-                <div class="pattern-tag">The other wedge · Your product</div>
-                <h2>Agent-Native Product</h2>
-                <p>The same operating layer runs under a <strong>product</strong>, not just a company. Make the SaaS you already ship agent-native: embed in-product agents and copilots that act on each customer's own data, or build a new AI product on the same rails. Each of your customers gets a separate, isolated brain. Own the brain, skills, and deploy; bring your own harness and models.</p>
-            </div>
-            <div class="pattern-grid">
-                <div class="pattern-block">
-                    <div class="block-tag">Who benefits</div>
-                    <h4>The team</h4>
-                    <p>Product &amp; platform teams adding AI to an existing SaaS, and AI-product builders or agencies shipping something new. The people who own the roadmap ship the AI feature; SynOS is the per-tenant brain underneath: no rebuilding context, governance, and traces per agent.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Layer pieces</div>
-                    <h4>What the layer gives you</h4>
-                    <p><strong>Multi-tenant Company Brain</strong>. A separate, isolated brain, storage, and permissions for every customer; no data crosses tenants. <strong>Skill registry</strong> your team owns. <strong>Scanned sandboxes</strong> for safe execution. <strong>Self-Learning Loop</strong>. Production runs sharpen each customer's brain. Self-hosted in your cloud, or your customer's. Model- and harness-agnostic.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Outcome shape</div>
-                    <h4>What teams typically see</h4>
-                    <p>Ship the AI story your customers are asking for without rebuilding infrastructure per agent: the second agent ships in days. Every run sharpens the brain your product runs on, per customer. You own the layer; no lock-in to a single model or agent stack.</p>
-                </div>
-            </div>
+  <!-- ══ DOOR TWO ══════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="outward">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Door two &middot; outward, through your product</p>
+        <h2>Your competitors shipped AI features. Yours stalled on the infrastructure underneath.</h2>
+        <p class="sk-lead">If you sell software, the AI feature on your roadmap is not blocked on the model. It is blocked on everything a customer's security team will ask about once that feature touches their data: isolation per tenant, governed writes, audit, deployment inside their boundary. That is the enterprise-readiness layer you would otherwise spend two years building, and it is the same layer described everywhere else on this site.</p>
+      </div>
+      <div class="door-top">
+        <div class="door-f">
+          <h4>Who this is for</h4>
+          <p>The AI or product owner carrying the roadmap, with sponsorship from the top. Usually a company whose own platform build has stalled after months while the market moved, and whose customers have started asking what the AI story is.</p>
         </div>
-    </section>
+        <div class="door-f">
+          <h4>What it gives you</h4>
+          <p>Agents embedded in the product you already ship, acting on each customer's own data, with a separate and isolated brain per customer so nothing crosses a tenant boundary. Or a new AI product on the same rails. You own the layer, and you keep bringing your own models.</p>
+        </div>
+      </div>
+      <div class="fns">
+        <div class="fn">
+          <p class="fn-n">In-product agents<small>on each customer's data</small></p>
+          <div>
+            <ul>
+              <li>Agents inside your product that act on the tenant's own data and write back to their systems</li>
+              <li>A separate brain, storage and permission set per customer, with no path between them</li>
+              <li>The same governed door your own team uses, so a customer's security review has one thing to examine</li>
+            </ul>
+            <p class="fn-g">deployed in your cloud, or in your customer's, including air-gapped</p>
+          </div>
+        </div>
+        <div class="fn">
+          <p class="fn-n">What stops being your problem<small>the two-year build</small></p>
+          <div>
+            <ul>
+              <li>Rebuilding context, governance and tracing for every new agent your roadmap adds</li>
+              <li>Explaining a different isolation story to every enterprise customer who asks</li>
+              <li>Being locked to one model provider by the architecture rather than by choice</li>
+            </ul>
+            <p class="fn-g">the second agent ships in days, because the layer is already there</p>
+          </div>
+        </div>
+      </div>
+      <p class="sk-sub" style="margin-top:var(--sk-space-7)">The part worth thinking about for longer: when every product in your category has an AI feature, the feature stops being the differentiator. What is left is whose product learned their customers' work better, and that is a question about what you accumulated rather than which model you called.</p>
+    </div>
+  </section>
 
-    <section class="pattern-section" id="sales-brain">
-        <div class="container">
-            <div class="pattern-header">
-                <div class="pattern-tag">Revenue · Pipeline</div>
-                <h2>Sales Brain</h2>
-                <p>A template your sales team builds and owns on SynOS: agents that handle pipeline hygiene, deal context, and forecast prep so reps focus on selling and leadership sees signal instead of noise. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
-            </div>
-            <div class="pattern-grid">
-                <div class="pattern-block">
-                    <div class="block-tag">Example agents</div>
-                    <h4>What the team runs</h4>
-                    <p><strong>Pipeline Health Monitor</strong>. Flags stage transitions gone quiet. <strong>Stale Deal Flagger</strong>. Surfaces opportunities without recent touch. <strong>Forecast Drafter</strong>. Confidence-weighted weekly forecast. <strong>Deal Context Compiler</strong>. All the Slack + doc context on a deal, before a call.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Layer pieces</div>
-                    <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across CRM + Slack + docs + email: one resolved view of every deal, customer, contact. <strong>Skills</strong> for CRM updates, Slack nudges, doc generation: governed and observable. <strong>Self-Learning Loop</strong> learning which deal shapes convert and which stages are traps.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Outcome shape</div>
-                    <h4>What teams typically see</h4>
-                    <p>Forecast accuracy improves as the brain learns the team's deal patterns. New reps inherit what the whole team has learned: onboarding compresses. Time on pipeline hygiene drops; time on actual deals goes up.</p>
-                </div>
-            </div>
+  <!-- ══ SAME INSTALL ══════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="same-install">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Why this is one platform</p>
+        <h2>A door is where the conversation starts. Nothing forks after that.</h2>
+        <p class="sk-lead">It would be reasonable to read the two sections above as two products with one brochure. They are the same install, and the reason matters: a company that enters through operations and later wants agents in its product does not buy again, migrate, or run two things.</p>
+      </div>
+      <div class="one">
+        <div class="one-row">
+          <div>
+            <p class="one-n">The same deployment</p>
+            <p class="one-d">Inside your own environment either way. Your cloud, your Kubernetes, or air-gapped with no outbound path at all.</p>
+          </div>
+          <div>
+            <p class="one-n">The same governed writes</p>
+            <p class="one-d">One gate for every caller, whether it is your ops lead, your product's agent, or someone's own terminal. One audit trail to examine.</p>
+          </div>
+          <div>
+            <p class="one-n">The same record</p>
+            <p class="one-d">Corrections, traces and evaluation cases accumulate in one place on your infrastructure, whichever door produced them.</p>
+          </div>
         </div>
-    </section>
+        <div class="one-base">
+          <p>one install &middot; one set of rails &middot; no second procurement</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="pattern-section" id="marketing-brain">
-        <div class="container">
-            <div class="pattern-header">
-                <div class="pattern-tag">Growth · Demand</div>
-                <h2>Marketing Brain</h2>
-                <p>A template a growth team builds and owns: agents that span audience, creative, and spend across paid platforms. Non-engineers operate the agents; engineering ships the skills. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
-            </div>
-            <div class="pattern-grid">
-                <div class="pattern-block">
-                    <div class="block-tag">Example agents</div>
-                    <h4>What the team runs</h4>
-                    <p><strong>Campaign Builder</strong>. Drafts campaigns across Meta + Google from a brief. <strong>Audience Segmenter</strong>. Builds and refreshes audiences off CDP + Shopify behavior. <strong>Creative Reviewer</strong>. Checks creative against brand rules + past winners. <strong>Spend Optimizer</strong>. Reallocates within bounded daily limits.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Layer pieces</div>
-                    <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across Meta, Google, Shopify, your CDP, past creative library. <strong>Skills</strong> for ad-platform actions: governed, bounded, audited. <strong>Sandboxes</strong> for spend changes: start in shadow, graduate to autonomous within daily caps. <strong>Self-Learning Loop</strong> on what creative + audience combinations actually convert.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Outcome shape</div>
-                    <h4>What teams typically see</h4>
-                    <p>Time-to-launch on new campaigns drops. Non-engineering marketers self-serve workflows that previously needed engineering. Spend allocation tracks performance faster than manual review cycles. Creative learnings compound: losing variants stop being repeated.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ══ NO MIGRATION · FIG 02 ═════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="no-migration">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The precondition nobody mentions early</p>
+        <h2>None of this waits for your data to move.</h2>
+        <p class="sk-lead">Every workflow above runs against the systems that hold the operating truth, and those are reliably the ones that will never be migrated: the ledger, the ticketing system, the internal API with no owner. Profiling reads them where they sit and keeps the meaning rather than the rows, so the first workflow can land in weeks instead of after a programme.</p>
+      </div>
+      <figure class="sk-figframe">
+        <iframe data-fig src="/figures/what-moves.html" title="Figure 2: what actually moves, under a migration and under SynOS" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 02 &middot; the same table under both approaches</figcaption>
+      </figure>
+      <a href="/platform/company-brain" class="sk-more">How profiling works, and how it stays current &rarr;</a>
+    </div>
+  </section>
 
-    <section class="pattern-section" id="internal-ops-brain">
-        <div class="container">
-            <div class="pattern-header">
-                <div class="pattern-tag">Operations · SOPs</div>
-                <h2>Internal Ops Brain</h2>
-                <p>A template your operations team builds and owns: agents that turn recurring ops work and tribal SOPs into a living, queryable layer. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
-            </div>
-            <div class="pattern-grid">
-                <div class="pattern-block">
-                    <div class="block-tag">Example agents</div>
-                    <h4>What the team runs</h4>
-                    <p><strong>Weekly Ops Digest</strong>. Exceptions and trends from the week. <strong>SOP Capture &amp; Playbook Lookup</strong>. Captures how work is actually done, serves it back on demand. <strong>Vendor/Supply/Fleet Monitor</strong>. Watches the operational tables that matter. <strong>Incident &amp; Escalation Handler</strong>. Triages and routes incidents.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Layer pieces</div>
-                    <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across ops docs, ticketing, warehouse/ops tables, SOPs. <strong>Skills</strong> for digests, lookups, and alerts: governed. <strong>Agent-Native Storage</strong> for recurring ops records. <strong>Self-Learning Loop</strong> capturing how incidents were actually resolved.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Outcome shape</div>
-                    <h4>What teams typically see</h4>
-                    <p>SOPs stop living in people's heads. Recurring exceptions get caught earlier. New ops hires ramp on captured playbooks. The weekly digest writes itself.</p>
-                </div>
-            </div>
+  <!-- ══ WHAT COMPOUNDS ════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="compounds">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What both doors are actually building</p>
+        <h2>The workflows are what you buy. The record they leave behind is what you keep.</h2>
+        <p class="sk-lead">Every one of the examples above produces the same three things while it does its job, and none of them requires a separate programme to collect. This is the part that turns a set of useful agents into intelligence specific to your company, and it is the reason the order of the work matters.</p>
+      </div>
+      <div class="comp">
+        <div class="cp">
+          <p class="cp-n">01</p>
+          <p class="cp-t">Corrections from people who know</p>
+          <p class="cp-d">Every time an expert fixes what an agent drafted, that judgement is captured where it happened. Reviewed once, it becomes a rule every agent inherits. This is knowledge that has never existed in written form anywhere, which is exactly why no model was trained on it.</p>
         </div>
-    </section>
+        <div class="cp">
+          <p class="cp-n">02</p>
+          <p class="cp-t">Traces of what actually ran</p>
+          <p class="cp-d">The context an agent was given, the action it took, and what your systems returned. Stored and never read, that is a log. Fed back, it is the reason the same agent is better next quarter without anyone rewriting it.</p>
+        </div>
+        <div class="cp">
+          <p class="cp-n">03</p>
+          <p class="cp-t">Cases you can measure against</p>
+          <p class="cp-d">The hard ones, with the answer you would have given, growing out of real work rather than a workshop. A public benchmark cannot contain the exceptions that make your business yours, so the only useful test set is the one your own people produced.</p>
+        </div>
+      </div>
+      <p class="sk-lead" style="margin-top:var(--sk-space-8)">That material is what a model of your own gets tuned on, and it is why the same environment does a second job later without anything new being installed. Capture runs from your first week because it is the one part that cannot be bought later: six months of reviewed decisions is made of work your people have already done.</p>
+      <div class="sk-cta-row" style="justify-content:flex-start;margin-top:var(--sk-space-6)">
+        <span class="sk-chip sk-chip--live">tracing and corrections, live</span>
+        <span class="sk-chip sk-chip--build">evaluation suites, in build</span>
+        <span class="sk-chip sk-chip--roadmap">tuning on your infrastructure, roadmap</span>
+      </div>
+      <a href="/build-your-own-ai" class="sk-more">What the training environment actually does with it &rarr;</a>
+    </div>
+  </section>
 
-    <section class="pattern-section" id="support-cx-brain">
-        <div class="container">
-            <div class="pattern-header">
-                <div class="pattern-tag">Customer · Retention</div>
-                <h2>Support / CX Brain</h2>
-                <p>A template your support team builds and owns: agents that draft replies, surface customer themes, and watch retention signals. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
-            </div>
-            <div class="pattern-grid">
-                <div class="pattern-block">
-                    <div class="block-tag">Example agents</div>
-                    <h4>What the team runs</h4>
-                    <p><strong>Ticket Triage &amp; Draft Replies</strong>. Categorizes and drafts on-brand responses. <strong>Voice-of-Customer Theme Miner</strong>. Surfaces recurring pain themes. <strong>Churn &amp; CSAT Signal Watch</strong>. Flags accounts trending the wrong way.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Layer pieces</div>
-                    <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across tickets, help docs, product/CRM, past resolutions. <strong>Skills</strong> for drafting replies, tagging, and escalations: governed. <strong>Self-Learning Loop</strong> on which resolutions actually closed tickets.</p>
-                </div>
-                <div class="pattern-block">
-                    <div class="block-tag">Outcome shape</div>
-                    <h4>What teams typically see</h4>
-                    <p>Faster first-response with on-brand drafts. Recurring pain themes surface to product. Churn signals get caught earlier. Resolution knowledge compounds instead of resetting each ticket.</p>
-                </div>
-            </div>
+  <!-- ══ HOW IT LANDS ══════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="landing">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">How a first workflow lands</p>
+        <h2>Weeks, one function, and your people running it afterwards.</h2>
+        <p class="sk-lead">The engagement is designed to end with your team operating this without us. That is a claim worth testing rather than believing, so the thing to ask for is what the second engagement cost compared to the first.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <p class="step-n">01</p>
+          <h3>Install and profile</h3>
+          <p>The layer goes into your environment and profiling reads the systems the chosen workflow touches. No migration and no warehouse project first.</p>
         </div>
-    </section>
+        <div class="step">
+          <p class="step-n">02</p>
+          <h3>Engineering sets the rails</h3>
+          <p>Connectors, data scopes, the write actions that exist at all, roles and approvals. Reviewed once as infrastructure rather than per request.</p>
+        </div>
+        <div class="step">
+          <p class="step-n">03</p>
+          <h3>Your experts author</h3>
+          <p>The people who know the exceptions write the skills and the rules in plain English, and correct what comes back. Inside the rails there is nothing here they can break.</p>
+        </div>
+        <div class="step">
+          <p class="step-n">04</p>
+          <h3>It earns more autonomy</h3>
+          <p>Assisted, then reviewed, then running on a schedule, each rung behind a score on cases your team wrote. A regression sends it back down.</p>
+        </div>
+      </div>
+      <a href="/platform/learning-loop" class="sk-more">How promotion is decided &rarr;</a>
+    </div>
+  </section>
 
-    <section class="section section--alt">
-        <div class="container" style="text-align:center;">
-            <h2>Don't see your team?</h2>
-            <p style="max-width:600px;margin:0 auto 16px;">These are templates, not the ceiling. The operating layer underneath is the same. If your team is running AI workflows, or trying to, let's talk through the brain they'd build.</p>
-            <div class="cta-row">
-                <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-usecases">Request early access</a>
-                <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary" data-cta="usecases-bottom-demo">Book a 30-min demo</a>
-            </div>
-        </div>
-    </section>
+  <!-- ══ DEEP DIVE ═════════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="deep-dive">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">One worked example</p>
+        <h2>What a function looks like in full.</h2>
+      </div>
+      <a class="dive" href="/use-cases/cloud-finops-agents">
+        <p class="dive-h">Deep dive</p>
+        <h3>Cloud cost agents, end to end</h3>
+        <p>The architecture, the systems it reads, the actions it is allowed to take, and how a cost anomaly gets investigated before a human picks it up. It is here in full because it is the function we have taken furthest, and it is the bar a second function has to clear before it earns a page of its own.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
+    <div class="sk-container">
+      <h2>Bring the workflow you would fix first.</h2>
+      <p class="sk-lead">The useful version of this conversation starts from something specific and expensive that your team already argues about, rather than from a category. If it is not a fit, that is a faster answer for both of us.</p>
+      <div class="sk-cta-row">
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-usecases">Request early access</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-usecases">Book a walkthrough</a>
+      </div>
+    </div>
+  </section>
 
 </main>
 
@@ -459,22 +503,5 @@
   <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
 </footer>
 <!-- @endpartial footer -->
-
-<script>
-    // CTA click tracking
-    document.querySelectorAll('[data-cta]').forEach(el => {
-        el.addEventListener('click', () => {
-            if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_location: el.getAttribute('data-cta') || 'unknown' });
-        });
-    });
-
-    // Mobile nav toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const navLinks = document.getElementById('nav-links');
-    if (navToggle) navToggle.addEventListener('click', () => {
-        const open = navLinks.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-</script>
 </body>
 </html>
