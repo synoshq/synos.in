@@ -275,7 +275,7 @@
     const use = document.getElementById('ea-use').value.trim();
     const payload = new FormData();
     payload.append('access_key', '6cdc9753-8c20-49de-9334-276e842a5f82');
-    payload.append('subject', `SynOS Early Access — ${email}`);
+    payload.append('subject', `SynOS early access request from ${email}`);
     payload.append('email', email);
     payload.append('company_size', size);
     payload.append('use_case', use);
