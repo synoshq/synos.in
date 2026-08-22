@@ -9,17 +9,16 @@
     "/platform/learning-loop.html",
     "/product.html",
     "/build-your-own-ai.html",
-    "/why-now.html",
     "/compare.html",
     "/compare/build-vs-buy.html",
     "/compare/data-platforms.html",
     "/compare/search-and-memory.html",
     "/compare/agent-platforms.html",
-    "/careers.html",
     "/use-cases.html",
     "/use-cases/cloud-finops-agents.html",
     "/blog.html",
-    "/early-access.html"
+    "/early-access.html",
+    "/compare/wait-and-see.html"
   ],
   "pending": [],
   "style_exempt": [

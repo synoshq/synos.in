@@ -26,7 +26,20 @@
     <meta name="twitter:description" content="Which parts of this are differentiating for you, and which are the same floor everyone has to build.">
     <link rel="canonical" href="https://www.synos.in/compare/build-vs-buy">
     <style>
-    /* Compare · build vs buy. Furniture is shared, in /css/synos.css. Nothing page-specific. */
+    /* Compare · build vs buy. Furniture is shared, in /css/synos.css.
+     * The evidence band moved here from the deleted /why-now on 2026-08-22: a statistic about
+     * internal builds failing belongs next to the build-or-buy decision, not on a page arguing a
+     * thesis to a reader who has not made one. */
+    .figs { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-7); }
+    .fg { border-top: 2px solid var(--sk-ink); padding-top: var(--sk-space-5); }
+    .fg-n { font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(40px, 5vw, 58px); line-height: 1; letter-spacing: -0.03em;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-4); max-width: none; }
+    .fg-d { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    .fg-s { margin-top: var(--sk-space-4); font-family: var(--sk-font-mono); font-size: 10.5px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 860px) { .figs { grid-template-columns: 1fr; gap: var(--sk-space-7); } }
+
     </style>
 </head>
 <body>
@@ -46,7 +59,7 @@
     <a href="/product">Product</a>
     <a href="/build-your-own-ai">Build your own AI</a>
     <a href="/use-cases">Use cases</a>
-    <a href="/why-now">Why now</a>
+    <a href="/compare">Compare</a>
     <a href="/about">About</a>
   </div>
   <div class="sk-nav-right">
@@ -138,6 +151,34 @@
     </div>
   </section>
 
+
+  <section class="sk-section sk-section--alt" data-section="evidence">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What happens to builds like this</p>
+        <h2>Measured by people with no stake in the decision.</h2>
+        <p class="sk-lead">None of this is our research and none of it is about us. It is worth knowing before you scope the work, because the failure mode it describes is the one that eats the timeline.</p>
+      </div>
+      <div class="figs">
+        <div class="fg">
+          <p class="fg-n">40%</p>
+          <p class="fg-d">of agentic AI projects are expected to be cancelled by 2027, on integration cost that was never in the pilot budget.</p>
+          <p class="fg-s">Gartner &middot; 2025</p>
+        </div>
+        <div class="fg">
+          <p class="fg-n">95%</p>
+          <p class="fg-d">of enterprise generative AI pilots deliver no measurable impact, with the gap in the integration and learning layer rather than the model.</p>
+          <p class="fg-s">MIT &middot; 2025</p>
+        </div>
+        <div class="fg">
+          <p class="fg-n">2&times;</p>
+          <p class="fg-d">the success rate for platforms bought from a vendor compared with equivalent internal builds, in the same MIT study.</p>
+          <p class="fg-s">MIT &middot; 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="sk-section" data-section="honest-risk">
     <div class="sk-container">
       <div class="sk-sechead">
@@ -177,10 +218,8 @@
       <a href="/product">Product</a>
       <a href="/build-your-own-ai">Build your own AI</a>
       <a href="/use-cases">Use cases</a>
-      <a href="/why-now">Why now</a>
       <a href="/compare">Compare</a>
       <a href="/about">About</a>
-      <a href="/careers">Careers</a>
       <a href="/blog">Blog</a>
     </div>
     <div class="sk-footer-group">

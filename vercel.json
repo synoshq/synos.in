@@ -19,5 +19,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/why-now",
+      "destination": "/compare/wait-and-see",
+      "permanent": true
+    },
+    {
+      "source": "/careers",
+      "destination": "/about",
+      "permanent": true
+    }
   ]
 }
