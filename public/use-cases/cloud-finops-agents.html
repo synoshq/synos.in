@@ -178,7 +178,7 @@
         <h1>Operating Layer for<br><span class="gradient-text">Cloud FinOps Agents.</span></h1>
         <p class="lede">The agents a FinOps team would run, and the Human-Agent Operating Layer those agents need to do their job safely across AWS, GCP, and Azure.</p>
         <div class="cta-row">
-            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="finops-hero-demo">Book a 30-min demo</a>
+            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="finops-hero-demo">Book a walkthrough</a>
             <a href="/use-cases" class="btn btn--secondary">See other use-cases →</a>
         </div>
     </section>
@@ -186,11 +186,11 @@
     <section class="container section">
         <p class="section-label">The agents</p>
         <h2>Four agents a FinOps team would run.</h2>
-        <p>None of these are productized SynOS offerings. They're patterns: the kind of agents a competent FinOps team would build on top of the layer.</p>
+        <p>None of these is a product you switch on. They are patterns, and each one is the kind of agent a competent FinOps team would author on top of the layer.</p>
         <div class="agents-grid">
             <div class="agent-card">
                 <h4>Cost Watchdog</h4>
-                <p>Continuously watches spend. Flags anomalies. Routes to the right team in Slack. Knows what's normal for which workload.</p>
+                <p>Watches spend continuously, flags anomalies and routes them to the team that owns the workload, because it knows what normal looks like for that workload.</p>
             </div>
             <div class="agent-card">
                 <h4>Orphan Resource Cleaner</h4>
@@ -202,7 +202,7 @@
             </div>
             <div class="agent-card">
                 <h4>Anomaly Investigator</h4>
-                <p>Correlates a billing spike with recent deploys, dashboards, and on-call activity. Surfaces likely root cause in minutes.</p>
+                <p>Correlates a billing spike with recent deploys, dashboards and on-call activity, and arrives with the likely cause attached.</p>
             </div>
         </div>
     </section>
@@ -214,14 +214,14 @@
             <div class="why-fail">
                 <h3>Without an operating layer:</h3>
                 <ul>
-                    <li>Agents can't tell a real anomaly from a seasonal pattern they've never seen before.</li>
-                    <li>Cleanup actions don't have a safe way to run: engineering blocks "let an LLM touch prod."</li>
-                    <li>Each new agent re-discovers your tag taxonomy, your team-to-account map, your cost-allocation rules from scratch.</li>
-                    <li>When the Cost Watchdog learns something: "this customer has a quarterly batch job": that knowledge dies with the chat session.</li>
-                    <li>Your CFO has no visibility into which agents ran, what they cost, or where they got it wrong.</li>
+                    <li>An agent cannot tell a real anomaly from a seasonal pattern it has never seen before.</li>
+                    <li>Cleanup actions have no safe way to run, so engineering blocks anything that would let a model touch production.</li>
+                    <li>Every new agent rediscovers your tag taxonomy, your team to account map and your cost allocation rules from scratch.</li>
+                    <li>When the Cost Watchdog learns that a particular customer runs a quarterly batch job, that knowledge dies with the chat session.</li>
+                    <li>Your finance team has no visibility into which agents ran, what they cost, or where they got it wrong.</li>
                 </ul>
             </div>
-            <p>That's not a model problem. That's an infrastructure-for-agents problem.</p>
+            <p>None of that is a model problem. All of it is missing infrastructure underneath the agents.</p>
         </div>
     </section>
 
@@ -231,23 +231,23 @@
         <div class="layer-pieces">
             <div class="layer-piece">
                 <div class="piece-tag">Context</div>
-                <h4>Living context graph of your cloud SoRs</h4>
-                <p>AWS Cost Explorer, GCP Billing, Azure Cost Management, your tag taxonomy, your team/account map, your deploy history: entity-resolved and streaming. Agents query one graph, not 8 dashboards.</p>
+                <h4>One brain over your cloud systems</h4>
+                <p>AWS Cost Explorer, GCP Billing, Azure Cost Management, your tag taxonomy, your team to account map and your deploy history, entity resolved and kept current. Agents ask one place rather than eight dashboards.</p>
             </div>
             <div class="layer-piece">
                 <div class="piece-tag">Skills</div>
                 <h4>Governed skills for cost actions</h4>
-                <p>Stop-instance, resize, scheduled-cleanup, tag-fix: each skill registered, version-controlled, observable. Promote a skill from one engineer's laptop to the whole FinOps team.</p>
+                <p>Stop an instance, resize, schedule a cleanup, fix a tag. Each is registered, versioned and audited, so a skill on one engineer's laptop becomes something the whole FinOps team can run.</p>
             </div>
             <div class="layer-piece">
                 <div class="piece-tag">Sandboxes</div>
                 <h4>Safe execution environment</h4>
-                <p>Provisioning reviewer comments on a PR before merge. Cleanup agent runs in shadow first, then with approval, then autonomously within bounded scopes. Earned trust, not assumed.</p>
+                <p>The provisioning reviewer comments on a pull request before merge. The cleanup agent runs in shadow first, then with approval, then on its own inside bounded scopes. Autonomy is earned rather than assumed.</p>
             </div>
             <div class="layer-piece">
                 <div class="piece-tag">Learning</div>
                 <h4>Trace loop on what "normal" means</h4>
-                <p>Every false positive, every "that's a seasonal batch: ignore it" correction feeds back. The Cost Watchdog gets calibrated to your business, not to a generic cloud customer.</p>
+                <p>Every false positive and every correction that says a spike was a seasonal batch feeds back. The Cost Watchdog gets calibrated to your business rather than to a generic cloud customer.</p>
             </div>
         </div>
     </section>
@@ -257,7 +257,7 @@
             <p class="section-label">Architecture</p>
             <h2>What it looks like end-to-end.</h2>
             <img src="/img/operating-layer-architecture.png" alt="Cloud FinOps agents architecture on the SynOS operating layer" class="arch-img">
-            <p>Your cloud SoRs feed the context graph. Your FinOps team builds skills on top. Sandboxes govern action. The trace loop closes back into the context graph. Bring your own agent harness: Claude Code, Cursor, in-house: SynOS sits underneath.</p>
+            <p>Your cloud systems feed the brain. Your FinOps team authors skills on top of it. Sandboxes govern what an agent may actually do. The trace loop closes back into the brain. Bring your own harness, whether that is Claude Code, Cursor or something you wrote yourself, and SynOS sits underneath all of them.</p>
         </div>
     </section>
 
@@ -284,10 +284,10 @@
     <section class="section section--alt">
         <div class="container" style="text-align:center;">
             <h2>Building Cloud FinOps agents?</h2>
-            <p style="max-width:560px;margin:0 auto 24px;">30 minutes with the founder. Talk through your agent stack, your SoRs, your governance constraints. See if the layer fits.</p>
+            <p style="max-width:560px;margin:0 auto 24px;">Bring your agent stack, the systems your cost data actually lives in, and the governance constraints you have to work inside. Half an hour is enough to tell whether this fits.</p>
             <div class="cta-row">
                 <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-finops">Request early access</a>
-                <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary" data-cta="finops-bottom-demo">Book a 30-min demo</a>
+                <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary" data-cta="finops-bottom-demo">Book a walkthrough</a>
             </div>
         </div>
     </section>
