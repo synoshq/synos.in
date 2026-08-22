@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Two doors, one install</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 11 · "Two doors, one install"
+ *
+ * Replaces two prose cards sitting side by side. Side-by-side cards say "here are two things" and
+ * the entire argument of this figure is the opposite: two different buyers, two different entry
+ * points, and then one identical thing underneath. Cards cannot show the "and then identical" part.
+ *
+ * Form: a convergence. The two columns are visibly distinct at the top, narrow through a shared
+ * seam, and resolve into one band that spans both. The band is the argument.
+ *
+ * No literal doors, no arrows curving into a funnel. The convergence is done with the grid and a
+ * seam rule, because a drawn funnel is a sales diagram and this is meant to survive a technical
+ * reader.
+ */
+
+body { padding: 88px 24px; }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-ink-3); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+.wrap { border: 1px solid var(--sk-border-2); border-radius: var(--sk-radius-sm);
+  overflow: hidden; background: var(--sk-surface); }
+
+/* ── the two doors ──────────────────────────────────────────────────────── */
+.doors { display: grid; grid-template-columns: 1fr 1fr; }
+.door { padding: var(--sk-space-6); }
+.door + .door { border-left: 1px solid var(--sk-border); }
+
+.d-tag { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4); }
+.d-title { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink);
+  margin-bottom: var(--sk-space-4); }
+.d-rows { display: grid; gap: 0; }
+.d-row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: var(--sk-space-4);
+  padding: var(--sk-space-3) 0; border-bottom: 1px solid var(--sk-border); }
+.d-row:last-child { border-bottom: none; }
+.d-k { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.06em;
+  color: var(--sk-ink-3); }
+.d-v { font-size: 13.5px; line-height: 1.55; color: var(--sk-ink-2); }
+
+/* ── the seam ───────────────────────────────────────────────────────────── */
+/* Where the two columns stop being two. A single centred label on a rule that spans the full
+ * width: the visual moment the argument turns. */
+/* Height zero: the label sits ON the rule rather than in a band below it, so the two columns
+ * meet the shared block with nothing dead in between. */
+.seam { border-top: 1px solid var(--sk-ink); height: 0; text-align: center; }
+.seam p { display: inline-block; font-family: var(--sk-font-mono); font-size: 10.5px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--sk-ink-3);
+  background: var(--sk-surface); padding: 0 var(--sk-space-5);
+  transform: translateY(-50%); }
+
+/* ── the shared install ─────────────────────────────────────────────────── */
+.same { background: var(--sk-indigo-bg); padding: var(--sk-space-6);
+  border-top: 1px solid var(--sk-indigo-br); }
+.same-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-indigo-ink); margin-bottom: var(--sk-space-5); }
+.same-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sk-space-5); }
+.same-i b { display: block; font-size: 13.5px; font-weight: 600; color: var(--sk-ink);
+  margin-bottom: var(--sk-space-2); }
+.same-i span { display: block; font-size: 12.5px; line-height: 1.55; color: var(--sk-ink-3); }
+
+@media (max-width: 780px) {
+  .doors { grid-template-columns: 1fr; }
+  .door + .door { border-left: none; border-top: 1px solid var(--sk-border); }
+  .same-grid { grid-template-columns: 1fr; gap: var(--sk-space-4); }
+}
+
+.fig-foot { margin-top: var(--sk-space-7); display: flex; justify-content: space-between;
+  gap: var(--sk-space-6); flex-wrap: wrap;
+  font-size: 13px; line-height: 1.6; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+</style>
+<script defer src="/js/figure.js"></script>
+</head>
+<body>
+
+<figure class="fig" aria-label="Two entry points, inward at operations and outward through the product, converging on one identical installation">
+  <div class="fig-head">
+    <span class="fig-num">FIG. 11</span>
+    <h2 class="fig-title">Two doors, one install</h2>
+    <p class="fig-lede">Two different buyers with two different problems, and then the same thing underneath. A door is where the conversation starts. Nothing forks after it.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="doors">
+      <div class="door">
+        <p class="d-tag">Door one &middot; inward</p>
+        <p class="d-title">At your operations</p>
+        <div class="d-rows">
+          <div class="d-row"><p class="d-k">who</p><p class="d-v">The person accountable for the AI mandate, with air cover from the top</p></div>
+          <div class="d-row"><p class="d-k">enters at</p><p class="d-v">Whatever hurts most: a cost line, a sales operations queue, a support backlog</p></div>
+          <div class="d-row"><p class="d-k">who builds</p><p class="d-v">Your subject matter experts, in plain English, without a ticket</p></div>
+          <div class="d-row"><p class="d-k">expands</p><p class="d-v">The next function, on rails already paid for</p></div>
+        </div>
+      </div>
+
+      <div class="door">
+        <p class="d-tag">Door two &middot; outward</p>
+        <p class="d-title">Through your product</p>
+        <div class="d-rows">
+          <div class="d-row"><p class="d-k">who</p><p class="d-v">The AI or product owner carrying the roadmap</p></div>
+          <div class="d-row"><p class="d-k">enters at</p><p class="d-v">The AI feature customers are asking for, blocked on the infrastructure under it</p></div>
+          <div class="d-row"><p class="d-k">who builds</p><p class="d-v">Your product team, on an isolated brain per customer</p></div>
+          <div class="d-row"><p class="d-k">expands</p><p class="d-v">Their client base, one at a time, on one install</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seam"><p>and then, identically</p></div>
+
+    <div class="same">
+      <p class="same-h">the same install, either way</p>
+      <div class="same-grid">
+        <div class="same-i">
+          <b>The same deployment</b>
+          <span>Inside your own environment. Your cloud, your Kubernetes, or air-gapped with no outbound path.</span>
+        </div>
+        <div class="same-i">
+          <b>The same governed writes</b>
+          <span>One gate for every caller, and one audit trail for a reviewer to examine.</span>
+        </div>
+        <div class="same-i">
+          <b>The same record</b>
+          <span>Corrections, traces and evaluation cases accumulating in one place, on your infrastructure.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fig-foot">
+    <span>Enter through one door and add the other later without buying again.</span>
+    <span><b>A door is a sales entry point. The layer is the product.</b></span>
+  </p>
+</figure>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>What installs, in cross-section</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 10 · "What installs, in cross-section"
+ *
+ * Replaces a two-column ledger of eight component names. A list of components cannot show the one
+ * thing that matters about them, which is that they sit between two layers the customer already
+ * owns and does not change. A section drawing can.
+ *
+ * Form: an architectural cross-section. Read top to bottom. The outer two strata are labelled as
+ * the customer's and drawn quietly; the middle stratum is the only thing being sold and is the only
+ * one inked. Deliberately NOT an isometric stack: floating extruded slabs are the house style of
+ * every AI landing page and were killed as a direction on 2026-08-21.
+ *
+ * The guardrail strip runs the full width of the middle stratum rather than sitting as a ninth box,
+ * because it is a property of the whole layer rather than a component beside the others.
+ */
+
+body { padding: 88px 24px; }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-ink-3); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── the section ────────────────────────────────────────────────────────── */
+.sect { border: 1px solid var(--sk-border-2); border-radius: var(--sk-radius-sm);
+  overflow: hidden; background: var(--sk-surface); }
+
+.stratum { padding: var(--sk-space-6); }
+.stratum + .stratum { border-top: 1px solid var(--sk-border); }
+
+/* The two strata the customer already owns. Quiet, and labelled as theirs. */
+.owned { background: var(--sk-surface-2); }
+.s-head { display: flex; justify-content: space-between; gap: var(--sk-space-5); flex-wrap: wrap;
+  margin-bottom: var(--sk-space-5);
+  font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--sk-ink-3); }
+.s-head p { max-width: none; }
+
+.chips { display: flex; flex-wrap: wrap; gap: var(--sk-space-3); }
+.chip { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-ink-2);
+  background: var(--sk-surface); border: 1px solid var(--sk-border);
+  border-radius: 4px; padding: 6px 10px; }
+
+/* The middle stratum: the only thing being sold, and the only one inked. */
+.core { background: var(--sk-indigo-bg); border-top: 2px solid var(--sk-indigo) !important;
+  border-bottom: 2px solid var(--sk-indigo); }
+.core .s-head { color: var(--sk-indigo-ink); }
+
+.parts { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sk-space-3); }
+.part { background: var(--sk-surface); border: 1px solid var(--sk-indigo-br);
+  border-radius: 4px; padding: var(--sk-space-4); }
+.part b { display: block; font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--sk-ink); }
+.part span { display: block; margin-top: 3px; font-family: var(--sk-font-mono);
+  font-size: 10.5px; letter-spacing: 0.03em; color: var(--sk-ink-3); }
+.part em { display: inline-flex; align-items: center; gap: 5px; margin-top: var(--sk-space-3);
+  font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; font-style: normal; }
+.part em::before { content: ''; width: 5px; height: 5px; border-radius: 999px; background: currentColor; }
+.p-live  { color: var(--sk-emerald-ink); }
+.p-build { color: var(--sk-amber-ink); }
+.p-next  { color: var(--sk-ink-3); }
+
+/* Guardrails: a property of the whole stratum, so it runs its full width. */
+.rails { margin-top: var(--sk-space-5); padding-top: var(--sk-space-4);
+  border-top: 1px dashed var(--sk-indigo-br);
+  display: flex; flex-wrap: wrap; gap: var(--sk-space-5);
+  font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.04em;
+  color: var(--sk-indigo-ink); }
+.rails p { max-width: none; }
+
+@media (max-width: 900px) { .parts { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .parts { grid-template-columns: 1fr; } }
+
+.fig-foot { margin-top: var(--sk-space-7); display: flex; justify-content: space-between;
+  gap: var(--sk-space-6); flex-wrap: wrap;
+  font-size: 13px; line-height: 1.6; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+</style>
+<script defer src="/js/figure.js"></script>
+</head>
+<body>
+
+<figure class="fig" aria-label="A cross-section of the stack: the customer's AI tools on top, the SynOS layer in the middle, the customer's systems of record below">
+  <div class="fig-head">
+    <span class="fig-num">FIG. 10</span>
+    <h2 class="fig-title">What installs, in cross-section</h2>
+    <p class="fig-lede">Read it top to bottom. The top and bottom strata are already yours and do not change. Only the middle one is new, and it is the part you would otherwise have to build with a bench you cannot hire.</p>
+  </div>
+
+  <div class="sect">
+
+    <div class="stratum owned">
+      <div class="s-head">
+        <p>your tools &middot; unchanged</p>
+        <p>one interface &middot; any model</p>
+      </div>
+      <div class="chips">
+        <span class="chip">Claude Code</span>
+        <span class="chip">ChatGPT</span>
+        <span class="chip">Codex</span>
+        <span class="chip">Cursor</span>
+        <span class="chip">Slack</span>
+        <span class="chip">your own agents</span>
+        <span class="chip">apps built here</span>
+      </div>
+    </div>
+
+    <div class="stratum core">
+      <div class="s-head">
+        <p>the layer &middot; the only new thing</p>
+        <p>self-hosted &middot; model and harness agnostic</p>
+      </div>
+      <div class="parts">
+        <div class="part"><b>Company Brain</b><span>profiled in place</span><em class="p-live">live</em></div>
+        <div class="part"><b>Governed access</b><span>identity &middot; scope &middot; audit</span><em class="p-live">live</em></div>
+        <div class="part"><b>Build and deploy</b><span>scanned &middot; sandboxed</span><em class="p-live">live</em></div>
+        <div class="part"><b>Agent storage</b><span>schema-enforced</span><em class="p-live">live</em></div>
+        <div class="part"><b>Skills</b><span>plain English &middot; versioned</span><em class="p-live">live</em></div>
+        <div class="part"><b>Learning loop</b><span>traced &middot; promoted</span><em class="p-live">live</em></div>
+        <div class="part"><b>Private evals</b><span>your outcomes</span><em class="p-build">in build</em></div>
+        <div class="part"><b>Fine-tune and distil</b><span>your infrastructure</span><em class="p-next">roadmap</em></div>
+      </div>
+      <div class="rails">
+        <p>roles and tenancy</p>
+        <p>audit on every call</p>
+        <p>build scan</p>
+        <p>egress proxy</p>
+        <p>kill switch</p>
+      </div>
+    </div>
+
+    <div class="stratum owned">
+      <div class="s-head">
+        <p>your systems &middot; unchanged</p>
+        <p>connected, not replaced &middot; nothing migrates</p>
+      </div>
+      <div class="chips">
+        <span class="chip">warehouse</span>
+        <span class="chip">CRM</span>
+        <span class="chip">ticketing</span>
+        <span class="chip">ledger</span>
+        <span class="chip">object store</span>
+        <span class="chip">docs and sheets</span>
+        <span class="chip">internal APIs</span>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="fig-foot">
+    <span>Engineering wires the middle stratum in once. Everyone else works in the top one.</span>
+    <span><b>Swap anything above or below. The middle stays.</b></span>
+  </p>
+</figure>
+
+</body>
+</html>

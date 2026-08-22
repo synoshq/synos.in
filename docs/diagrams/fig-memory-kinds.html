@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eight kinds of memory, one specimen each</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 09 · "Eight kinds of memory, one specimen each"
+ *
+ * This replaces a ledger of eight rows that described each kind of memory in a sentence. A reader
+ * of that ledger has to imagine what "episodic memory" holds. Here they are shown one, so the
+ * argument is checkable rather than assertable: this is the shape of the record, this is the store
+ * it lands in, this is whether it is live.
+ *
+ * Form: a specimen grid. Every other figure in this set is a ledger, a trace, a staircase or a
+ * matrix; none of them shows the artefact itself. The mono block in each cell is the artefact.
+ *
+ * The specimens are invented and say so at the foot. They are shaped like real records because a
+ * plausible record is the whole point, but nothing here came from a customer.
+ */
+
+body { padding: 88px 24px; }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-ink-3); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 62ch !important; }
+
+/* ── the specimen grid ──────────────────────────────────────────────────── */
+/* Four columns of hairline-separated cells. No boxes: the rules do the separating, which keeps
+ * eight cells from reading as eight buttons. */
+.grid { display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--sk-ink); border-left: 1px solid var(--sk-border); }
+.cell { padding: var(--sk-space-6) var(--sk-space-5);
+  border-right: 1px solid var(--sk-border); border-bottom: 1px solid var(--sk-border); }
+
+.k-name { font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; color: var(--sk-ink); }
+.k-store { display: block; margin-top: 3px; font-family: var(--sk-font-mono); font-size: 10.5px;
+  letter-spacing: 0.04em; font-weight: 400; color: var(--sk-ink-3); }
+
+/* The specimen. Mono, on the alternate surface, because it is machine content and should not be
+ * mistaken for prose. */
+.spec { margin-top: var(--sk-space-5); padding: var(--sk-space-4);
+  background: var(--sk-surface-2); border: 1px solid var(--sk-border); border-radius: 4px;
+  font-family: var(--sk-font-mono); font-size: 11px; line-height: 1.75; color: var(--sk-ink-2);
+  overflow-wrap: anywhere; }
+.spec b { color: var(--sk-ink); font-weight: 500; }
+.spec i { color: var(--sk-ink-3); font-style: normal; }
+
+.k-what { margin-top: var(--sk-space-4); font-size: 12.5px; line-height: 1.55;
+  color: var(--sk-ink-3); }
+
+.st { margin-top: var(--sk-space-4); display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; }
+.st i { width: 5px; height: 5px; border-radius: 999px; }
+.st-live { color: var(--sk-emerald-ink); } .st-live i { background: var(--sk-emerald); }
+.st-build { color: var(--sk-amber-ink); }  .st-build i { background: var(--sk-amber-2); }
+
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .grid { grid-template-columns: 1fr; } }
+
+.fig-foot { margin-top: var(--sk-space-7); display: flex; justify-content: space-between;
+  gap: var(--sk-space-6); flex-wrap: wrap;
+  font-size: 13px; line-height: 1.6; color: var(--sk-ink-3); }
+.fig-foot b { color: var(--sk-ink); font-weight: 600; }
+.fig-note { margin-top: var(--sk-space-5); font-family: var(--sk-font-mono); font-size: 10.5px;
+  line-height: 1.6; color: var(--sk-ink-3); }
+</style>
+<script defer src="/js/figure.js"></script>
+</head>
+<body>
+
+<figure class="fig" aria-label="Eight kinds of memory the Company Brain holds, each shown with one example record and the store it lands in">
+  <div class="fig-head">
+    <span class="fig-num">FIG. 09</span>
+    <h2 class="fig-title">Eight kinds of memory, one specimen each</h2>
+    <p class="fig-lede">Most context tools hold one shape, chunks of text with embeddings, which covers a policy document and none of the rest. Each kind below maps to a concrete store. This is what one record of each actually looks like.</p>
+  </div>
+
+  <div class="grid">
+    <div class="cell">
+      <p class="k-name">Semantic<span class="k-store">knowledge graph</span></p>
+      <div class="spec"><b>Meridian Foods</b><br><i>tier</i> T1<br><i>region</i> West<br><i>owner</i> priya@</div>
+      <p class="k-what">Stable facts about the entities the business runs on.</p>
+      <p class="st st-live"><i></i>live</p>
+    </div>
+
+    <div class="cell">
+      <p class="k-name">Episodic<span class="k-store">operational store</span></p>
+      <div class="spec"><b>order #4821</b><br><i>placed</i> 19:42<br><i>channel</i> web<br><i>value</i> 84,200</div>
+      <p class="k-what">Time stamped events, with the moment attached.</p>
+      <p class="st st-live"><i></i>live</p>
+    </div>
+
+    <div class="cell">
+      <p class="k-name">Procedural<span class="k-store">skill library</span></p>
+      <div class="spec"><b>win-back</b><br><i>v</i> 4<br><i>steps</i> 6<br><i>author</i> ops.lead</div>
+      <p class="k-what">How the work is actually done here, versioned.</p>
+      <p class="st st-live"><i></i>live</p>
+    </div>
+
+    <div class="cell">
+      <p class="k-name">Policy<span class="k-store">policy graph</span></p>
+      <div class="spec"><b>tier1.channel</b><br><i>deny</i> sms<br><i>order</i> finance &rarr; am<br><i>since</i> run #4182</div>
+      <p class="k-what">The constraints that are never negotiable.</p>
+      <p class="st st-live"><i></i>live</p>
+    </div>
+
+    <div class="cell">
+      <p class="k-name">Preferences<span class="k-store">knowledge graph</span></p>
+      <div class="spec"><b>acct 8841</b><br><i>channel</i> whatsapp<br><i>window</i> evenings<br><i>learned</i> observed</div>
+      <p class="k-what">Per entity modifiers learned rather than declared.</p>
+      <p class="st st-live"><i></i>live</p>
+    </div>
+
+    <div class="cell">
+      <p class="k-name">Decision trace<span class="k-store">decision log</span></p>
+      <div class="spec"><b>run #4182</b><br><i>input</i> 8841, 4d late<br><i>action</i> email finance<br><i>pack</i> 12 citations</div>
+      <p class="k-what">Input state, action taken, and the context that informed it.</p>
+      <p class="st st-live"><i></i>live</p>
+    </div>
+
+    <div class="cell">
+      <p class="k-name">Reflective<span class="k-store">review queue</span></p>
+      <div class="spec"><b>correction</b><br><i>by</i> priya@<br><i>on</i> run #4182<br><i>became</i> tier1.channel</div>
+      <p class="k-what">A one line fix, reviewed, becoming a rule the next run inherits.</p>
+      <p class="st st-live"><i></i>live</p>
+    </div>
+
+    <div class="cell">
+      <p class="k-name">Outcome<span class="k-store">outcome log</span></p>
+      <div class="spec"><b>run #4182</b><br><i>resolved</i> 31h<br><i>baseline</i> 96h<br><i>attributed</i> pending</div>
+      <p class="k-what">Whether the action moved the baseline it was meant to move.</p>
+      <p class="st st-build"><i></i>in build</p>
+    </div>
+  </div>
+
+  <p class="fig-foot">
+    <span>Adding a ninth kind is configuration, not a migration.</span>
+    <span><b>The store is named because it has to be queryable and rollback-safe.</b></span>
+  </p>
+  <p class="fig-note">Illustrative. The records are invented and shaped like real ones; none came from a customer.</p>
+</figure>
+
+</body>
+</html>
