@@ -306,7 +306,8 @@ a:not([class]) {
 
 .sk-footer { padding: var(--sk-space-8) 24px; border-top: 1px solid var(--sk-border); }
 .sk-footer-inner { max-width: var(--sk-container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: var(--sk-space-6); flex-wrap: wrap; }
-.sk-footer a { color: var(--sk-muted); text-decoration: none; font-size: 13px; transition: color 0.15s; }
+.sk-footer a { color: var(--sk-muted); text-decoration: none; font-size: 13px; transition: color 0.15s;
+  display: inline-flex; align-items: center; min-height: 44px; }
 .sk-footer a:hover { color: var(--sk-ink); }
 .sk-footer-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .sk-footer-word { font-weight: 600; font-size: 15px; color: var(--sk-muted); }
@@ -326,17 +327,22 @@ a:not([class]) {
 .sk-pagehero .sk-lead { margin-top: var(--sk-space-6); }
 .sk-crumb {
   font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--sk-ink-3); margin-bottom: var(--sk-space-5);
+  text-transform: uppercase; color: var(--sk-ink-3); margin-bottom: var(--sk-space-3);
+  display: flex; align-items: center;
 }
-.sk-crumb a { color: var(--sk-ink-3); text-decoration: none; }
+.sk-crumb a { color: var(--sk-ink-3); text-decoration: none;
+  display: inline-flex; align-items: center; min-height: 44px; }
 .sk-crumb a:hover { color: var(--sk-brand-text); }
 .sk-crumb span { color: var(--sk-ink-3); margin: 0 8px; }   /* a glyph is text, so it measures like text */
 
 .sk-sechead { margin-bottom: var(--sk-space-8); }
 .sk-sechead h2 { max-width: 22ch; }
 .sk-sechead .sk-lead { margin-top: var(--sk-space-5); }
-.sk-more { margin-top: var(--sk-space-7); font-size: 14px; font-weight: 600;
-  color: var(--sk-brand-text); text-decoration: none; display: inline-block; }
+.sk-more { margin-top: var(--sk-space-6); font-size: 14px; font-weight: 600;
+  color: var(--sk-brand-text); text-decoration: none;
+  /* A standalone link is a pointer target, not an inline one, so WCAG 2.5.8's inline exemption
+   * does not cover it. These measured 22px tall before this. */
+  display: inline-flex; align-items: center; min-height: 44px; }
 .sk-more:hover { text-decoration: underline; }
 
 /* A ledger of named things: name, what it does, and an honest status. Used for the six
@@ -351,7 +357,7 @@ a:not([class]) {
   font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; color: var(--sk-ink-3); }
 .sk-stack-d { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
 .sk-stack-s { justify-self: end; display: inline-flex; align-items: center; gap: 6px;
-  white-space: nowrap; font-family: var(--sk-font-mono); font-size: 9.5px;
+  white-space: nowrap; font-family: var(--sk-font-mono); font-size: 10.5px;
   letter-spacing: 0.1em; text-transform: uppercase; }
 .sk-stack-s i { width: 5px; height: 5px; border-radius: 999px; }
 .sk-s-live  { color: var(--sk-emerald-ink); } .sk-s-live  i { background: var(--sk-emerald); }
