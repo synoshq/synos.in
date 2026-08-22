@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operating Layer for Cloud FinOps Agents — SynOS</title>
-    <meta name="description" content="The agents a FinOps team runs — Cost Watchdog, Orphan Resource Cleaner, Provisioning Reviewer — and the Human-Agent Operating Layer they need to act safely on cloud cost across AWS, GCP, and Azure.">
-    <meta property="og:title" content="Operating Layer for Cloud FinOps Agents — SynOS">
-    <meta property="og:description" content="The agents a FinOps team runs — and the operating layer they need to do it safely.">
+    <title>Operating Layer for Cloud FinOps Agents | SynOS</title>
+    <meta name="description" content="The agents a FinOps team runs: Cost Watchdog, Orphan Resource Cleaner, Provisioning Reviewer, and the Human-Agent Operating Layer they need to act safely on cloud cost across AWS, GCP, and Azure.">
+    <meta property="og:title" content="Operating Layer for Cloud FinOps Agents | SynOS">
+    <meta property="og:description" content="The agents a FinOps team runs, and the operating layer they need to do it safely.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://synos.in/use-cases/cloud-finops-agents">
-    <meta property="og:image" content="https://synos.in/img/synos-og-unblock.png">
+    <meta property="og:image" content="https://synos.in/img/og/use-cases.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Operating Layer for Cloud FinOps Agents — SynOS">
-    <meta name="twitter:description" content="The agents a FinOps team runs — and the operating layer they need to act safely across AWS, GCP, Azure.">
+    <meta name="twitter:title" content="Operating Layer for Cloud FinOps Agents | SynOS">
+    <meta name="twitter:description" content="The agents a FinOps team runs, and the operating layer they need to act safely across AWS, GCP, Azure.">
     <link rel="canonical" href="https://synos.in/use-cases/cloud-finops-agents">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
     <script>
@@ -28,16 +28,27 @@
       gtag('config', 'G-MXVRX5VMJR');
     </script>
 
+    <link rel="stylesheet" href="/css/synos.css">
+    <script defer src="/js/synos.js"></script>
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --font-display: 'Instrument Serif', Georgia, serif;
-            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-            --bg: #FAFAF8; --bg-alt: #F4F3F0; --surface: #FFFFFF;
-            --border: #E8E8E5; --border-light: #EBEBEA; --border-accent: rgba(99, 102, 241, 0.15);
-            --text: #1A1A1A; --text-secondary: #3D3D3D; --text-muted: #6B6B73; --text-dim: #A1A1AA;
-            --accent: #6366F1; --accent-hover: #5558E6; --accent-bg: rgba(99, 102, 241, 0.05);
+            --font-display: var(--sk-font-display);
+            --font-body: var(--sk-font-body);
+            --font-mono: var(--sk-font-mono);
+            --bg: var(--sk-bg);
+            --bg-alt: var(--sk-surface-2);
+            --surface: var(--sk-surface);
+            --border: var(--sk-border);
+            --border-light: var(--sk-border);
+            --border-accent: var(--sk-indigo-br);
+            --text: var(--sk-ink);
+            --text-secondary: var(--sk-ink-2);
+            --text-muted: var(--sk-ink-3);
+            --text-dim: var(--sk-ink-3);
+            --accent: var(--sk-brand-text);
+            --accent-hover: var(--sk-indigo-ink);
+            --accent-bg: var(--sk-indigo-bg);
             --teal: #0D9488;
             --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
             --shadow-glow: 0 8px 40px rgba(99, 102, 241, 0.12);
@@ -89,7 +100,7 @@
         .why-fail h3 { font-family: var(--font-body); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #D97706; margin-bottom: 12px; }
         .why-fail ul { list-style: none; padding: 0; }
         .why-fail li { font-size: 15px; line-height: 1.7; color: var(--text-secondary); padding-left: 24px; position: relative; margin-bottom: 10px; }
-        .why-fail li::before { content: '×'; position: absolute; left: 0; color: #D97706; font-weight: 700; font-size: 18px; }
+        .why-fail li:before { content: '×'; position: absolute; left: 0; color: #D97706; font-weight: 700; font-size: 18px; }
 
         .layer-pieces { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
         .layer-piece { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
@@ -131,37 +142,41 @@
     </style>
 </head>
 <body>
+<a href="#main-content" class="sk-skip">Skip to content</a>
 
-<nav class="nav" id="nav">
-    <a href="/" class="nav-left">
-        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-            <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-            <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="nav-logo-text">SynOS</span>
-    </a>
-    <div class="nav-links" id="nav-links">
-        <a href="/product">Product</a>
-        <a href="/use-cases">Use Cases</a>
-        <a href="/blog">Blog</a>
-        <a href="/about">About</a>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-        <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
-        <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-        </button>
-    </div>
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <a href="/" class="sk-nav-left" aria-label="SynOS home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="sk-nav-word">SynOS</span>
+  </a>
+  <div class="sk-nav-links" id="nav-links">
+    <a href="/product">Product</a>
+    <a href="/build-your-own-ai">Build your own AI</a>
+    <a href="/use-cases">Use cases</a>
+    <a href="/why-now">Why now</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="sk-nav-right">
+    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
 </nav>
+<!-- @endpartial nav -->
 
-<main>
+<main id="main-content">
 
     <section class="container page-hero">
         <p class="eyebrow">Use-case · Pattern</p>
         <h1>Operating Layer for<br><span class="gradient-text">Cloud FinOps Agents.</span></h1>
-        <p class="lede">The agents a FinOps team would run — and the Human-Agent Operating Layer those agents need to do their job safely across AWS, GCP, and Azure.</p>
+        <p class="lede">The agents a FinOps team would run, and the Human-Agent Operating Layer those agents need to do their job safely across AWS, GCP, and Azure.</p>
         <div class="cta-row">
             <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--primary" data-cta="finops-hero-demo">Book a 30-min demo</a>
             <a href="/use-cases" class="btn btn--secondary">See other use-cases →</a>
@@ -171,7 +186,7 @@
     <section class="container section">
         <p class="section-label">The agents</p>
         <h2>Four agents a FinOps team would run.</h2>
-        <p>None of these are productized SynOS offerings. They're patterns — the kind of agents a competent FinOps team would build on top of the layer.</p>
+        <p>None of these are productized SynOS offerings. They're patterns: the kind of agents a competent FinOps team would build on top of the layer.</p>
         <div class="agents-grid">
             <div class="agent-card">
                 <h4>Cost Watchdog</h4>
@@ -200,9 +215,9 @@
                 <h3>Without an operating layer:</h3>
                 <ul>
                     <li>Agents can't tell a real anomaly from a seasonal pattern they've never seen before.</li>
-                    <li>Cleanup actions don't have a safe way to run — engineering blocks "let an LLM touch prod."</li>
+                    <li>Cleanup actions don't have a safe way to run: engineering blocks "let an LLM touch prod."</li>
                     <li>Each new agent re-discovers your tag taxonomy, your team-to-account map, your cost-allocation rules from scratch.</li>
-                    <li>When the Cost Watchdog learns something — "this customer has a quarterly batch job" — that knowledge dies with the chat session.</li>
+                    <li>When the Cost Watchdog learns something: "this customer has a quarterly batch job": that knowledge dies with the chat session.</li>
                     <li>Your CFO has no visibility into which agents ran, what they cost, or where they got it wrong.</li>
                 </ul>
             </div>
@@ -217,12 +232,12 @@
             <div class="layer-piece">
                 <div class="piece-tag">Context</div>
                 <h4>Living context graph of your cloud SoRs</h4>
-                <p>AWS Cost Explorer, GCP Billing, Azure Cost Management, your tag taxonomy, your team/account map, your deploy history — entity-resolved and streaming. Agents query one graph, not 8 dashboards.</p>
+                <p>AWS Cost Explorer, GCP Billing, Azure Cost Management, your tag taxonomy, your team/account map, your deploy history: entity-resolved and streaming. Agents query one graph, not 8 dashboards.</p>
             </div>
             <div class="layer-piece">
                 <div class="piece-tag">Skills</div>
                 <h4>Governed skills for cost actions</h4>
-                <p>Stop-instance, resize, scheduled-cleanup, tag-fix — each skill registered, version-controlled, observable. Promote a skill from one engineer's laptop to the whole FinOps team.</p>
+                <p>Stop-instance, resize, scheduled-cleanup, tag-fix: each skill registered, version-controlled, observable. Promote a skill from one engineer's laptop to the whole FinOps team.</p>
             </div>
             <div class="layer-piece">
                 <div class="piece-tag">Sandboxes</div>
@@ -232,7 +247,7 @@
             <div class="layer-piece">
                 <div class="piece-tag">Learning</div>
                 <h4>Trace loop on what "normal" means</h4>
-                <p>Every false positive, every "that's a seasonal batch — ignore it" correction feeds back. The Cost Watchdog gets calibrated to your business, not to a generic cloud customer.</p>
+                <p>Every false positive, every "that's a seasonal batch: ignore it" correction feeds back. The Cost Watchdog gets calibrated to your business, not to a generic cloud customer.</p>
             </div>
         </div>
     </section>
@@ -242,26 +257,26 @@
             <p class="section-label">Architecture</p>
             <h2>What it looks like end-to-end.</h2>
             <img src="/img/operating-layer-architecture.png" alt="Cloud FinOps agents architecture on the SynOS operating layer" class="arch-img">
-            <p>Your cloud SoRs feed the context graph. Your FinOps team builds skills on top. Sandboxes govern action. The trace loop closes back into the context graph. Bring your own agent harness — Claude Code, Cursor, in-house — SynOS sits underneath.</p>
+            <p>Your cloud SoRs feed the context graph. Your FinOps team builds skills on top. Sandboxes govern action. The trace loop closes back into the context graph. Bring your own agent harness: Claude Code, Cursor, in-house: SynOS sits underneath.</p>
         </div>
     </section>
 
     <section class="container section">
-        <p class="section-label">Outcome shape</p>
-        <h2>What teams who build this typically see.</h2>
-        <p>Indicative ranges from engagements in progress. No firm savings figures presented as SynOS-delivered — these are outcome shapes for a competent FinOps team using the layer.</p>
+        <p class="section-label">What changes</p>
+        <h2>What a competent FinOps team gets out of this.</h2>
+        <p>Deliberately stated without numbers. Savings depend on how much waste is there to begin with, and any figure we published would be a claim about someone else's estate rather than about this layer.</p>
         <div class="outcomes">
             <div class="outcome">
-                <div class="outcome-num">15–25%</div>
-                <p>cloud-cost reduction in first 90 days, mostly from orphan cleanup + rightsizing the layer surfaces.</p>
+                <div class="outcome-num">Waste</div>
+                <p>Orphaned resources and obvious rightsizing candidates get surfaced continuously instead of during a quarterly cleanup nobody has time for.</p>
             </div>
             <div class="outcome">
-                <div class="outcome-num">~80%</div>
-                <p>of anomaly investigations completed by agents before a human picks them up.</p>
+                <div class="outcome-num">Triage</div>
+                <p>Cost anomalies arrive already investigated: which service, which change, which team, with the evidence attached, rather than as an alert someone has to start from.</p>
             </div>
             <div class="outcome">
-                <div class="outcome-num">1 → many</div>
-                <p>skills built by one engineer become usable safely by the whole FinOps team within a day.</p>
+                <div class="outcome-num">Reach</div>
+                <p>A skill one engineer writes becomes something the whole FinOps team can run safely, inside the same permissions and the same audit trail.</p>
             </div>
         </div>
     </section>
@@ -279,35 +294,39 @@
 
 </main>
 
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div class="footer-left">
-            <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
-                <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/>
-            </svg>
-            <span class="footer-logo-text">SynOS</span>
-        </div>
-        <div class="footer-middle">
-            <a href="/early-access">Early Access</a>
-            <a href="/product">Product</a>
-            <a href="/use-cases">Use Cases</a>
-            <a href="/blog">Blog</a>
-            <a href="/about">About</a>
-        </div>
-        <div class="footer-links">
-            <a href="/security">Security</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/subprocessors">Subprocessors</a>
-            <span class="footer-sep"></span>
-            <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank">LinkedIn</a>
-            <span class="footer-sep"></span>
-            <a href="https://anoopjawahar.substack.com" target="_blank">Substack</a>
-        </div>
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <div class="sk-footer-group">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-footer-word">SynOS</span>
     </div>
-    <p class="footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
+    <div class="sk-footer-group">
+      <a href="/product">Product</a>
+      <a href="/build-your-own-ai">Build your own AI</a>
+      <a href="/use-cases">Use cases</a>
+      <a href="/why-now">Why now</a>
+      <a href="/compare">Compare</a>
+      <a href="/about">About</a>
+      <a href="/careers">Careers</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://anoopjawahar.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </div>
+  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
 </footer>
+<!-- @endpartial footer -->
 
 <script>
     document.querySelectorAll('[data-cta]').forEach(el => {

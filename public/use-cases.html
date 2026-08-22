@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use Cases — Templated Brains for Every Team — SynOS</title>
-    <meta name="description" content="Templated brains your team builds and owns on the SynOS Human-Agent Operating Layer — Company Brain, Sales, Marketing, FinOps, Internal Ops, Support/CX, and custom. Pre-built, then tuned to how you operate.">
-    <meta property="og:title" content="Use Cases — Templated Brains for Every Team — SynOS">
+    <title>Use Cases: Templated Brains for Every Team | SynOS</title>
+    <meta name="description" content="Templated brains your team builds and owns on the SynOS Human-Agent Operating Layer: Company Brain, Sales, Marketing, FinOps, Internal Ops, Support/CX, and custom. Pre-built, then tuned to how you operate.">
+    <meta property="og:title" content="Use Cases: Templated Brains for Every Team | SynOS">
     <meta property="og:description" content="Templated brains your team builds and owns on the SynOS Human-Agent Operating Layer. Pre-built, then tuned to how you operate.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://synos.in/use-cases">
-    <meta property="og:image" content="https://synos.in/img/synos-og-unblock.png">
+    <meta property="og:image" content="https://synos.in/img/og/use-cases.png">
+    <meta name="twitter:image" content="https://synos.in/img/og/use-cases.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Templated Brains for Every Team — SynOS">
+    <meta name="twitter:title" content="Templated Brains for Every Team | SynOS">
     <meta name="twitter:description" content="Company Brain flagship + Sales, Marketing, FinOps, Internal Ops, Support/CX, and custom brains your team builds and owns on SynOS.">
     <link rel="canonical" href="https://synos.in/use-cases">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
     <script>
@@ -28,16 +29,27 @@
       gtag('config', 'G-MXVRX5VMJR');
     </script>
 
+    <link rel="stylesheet" href="/css/synos.css">
+    <script defer src="/js/synos.js"></script>
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --font-display: 'Instrument Serif', Georgia, serif;
-            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-            --bg: #FAFAF8; --bg-alt: #F4F3F0; --surface: #FFFFFF;
-            --border: #E8E8E5; --border-light: #EBEBEA; --border-accent: rgba(99, 102, 241, 0.15);
-            --text: #1A1A1A; --text-secondary: #3D3D3D; --text-muted: #6B6B73; --text-dim: #A1A1AA;
-            --accent: #6366F1; --accent-hover: #5558E6; --accent-bg: rgba(99, 102, 241, 0.05);
+            --font-display: var(--sk-font-display);
+            --font-body: var(--sk-font-body);
+            --font-mono: var(--sk-font-mono);
+            --bg: var(--sk-bg);
+            --bg-alt: var(--sk-surface-2);
+            --surface: var(--sk-surface);
+            --border: var(--sk-border);
+            --border-light: var(--sk-border);
+            --border-accent: var(--sk-indigo-br);
+            --text: var(--sk-ink);
+            --text-secondary: var(--sk-ink-2);
+            --text-muted: var(--sk-ink-3);
+            --text-dim: var(--sk-ink-3);
+            --accent: var(--sk-brand-text);
+            --accent-hover: var(--sk-indigo-ink);
+            --accent-bg: var(--sk-indigo-bg);
             --teal: #0D9488;
             --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
             --shadow-glow: 0 8px 40px rgba(99, 102, 241, 0.12);
@@ -90,7 +102,7 @@
         .uc-card .uc-link { font-size: 13px; font-weight: 600; color: var(--accent); }
 
         .uc-umbrella { display: block; margin-top: 48px; padding: 36px 32px; background: linear-gradient(180deg, var(--accent-bg) 0%, rgba(99,102,241,0.02) 100%); border: 1px solid var(--border-accent); border-radius: 18px; text-decoration: none; color: inherit; transition: box-shadow 0.3s, transform 0.3s; position: relative; }
-        .uc-umbrella::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--teal)); border-radius: 18px 18px 0 0; }
+        .uc-umbrella:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--teal)); border-radius: 18px 18px 0 0; }
         .uc-umbrella:hover { box-shadow: var(--shadow-glow); transform: translateY(-3px); }
         .uc-umbrella .uc-tag { font-family: var(--font-mono); font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px; text-transform: uppercase; }
         .uc-umbrella h3 { font-size: 30px; line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
@@ -153,51 +165,55 @@
     </style>
 </head>
 <body>
+<a href="#main-content" class="sk-skip">Skip to content</a>
 
-<nav class="nav" id="nav">
-    <a href="/" class="nav-left">
-        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-            <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-            <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="nav-logo-text">SynOS</span>
-    </a>
-    <div class="nav-links" id="nav-links">
-        <a href="/product">Product</a>
-        <a href="/use-cases">Use Cases</a>
-        <a href="/blog">Blog</a>
-        <a href="/about">About</a>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px;">
-        <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
-        <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-        </button>
-    </div>
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <a href="/" class="sk-nav-left" aria-label="SynOS home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="sk-nav-word">SynOS</span>
+  </a>
+  <div class="sk-nav-links" id="nav-links">
+    <a href="/product">Product</a>
+    <a href="/build-your-own-ai">Build your own AI</a>
+    <a href="/use-cases">Use cases</a>
+    <a href="/why-now">Why now</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="sk-nav-right">
+    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
 </nav>
+<!-- @endpartial nav -->
 
-<main>
+<main id="main-content">
 
     <section class="container page-hero">
         <p class="eyebrow">What teams build · Templated Brains</p>
         <h1>A starting brain for <span class="gradient-text">every operating team.</span></h1>
-        <p class="lede">Two ways to build on SynOS: <strong>run your company on agents</strong> with a Company Brain and function brains, or <strong>make your product agent-native</strong> — embed agents in the SaaS you ship. Each is a template your team owns, compounding on your data until it operates the way you do.</p>
-        <p class="pattern-note">SynOS ships the operating layer; your team operates the brains on top — with Claude Code, Codex, or your own harness.</p>
+        <p class="lede">Two ways to build on SynOS: <strong>run your company on agents</strong> with a Company Brain and function brains, or <strong>make your product agent-native</strong>. Embed agents in the SaaS you ship. Each is a template your team owns, compounding on your data until it operates the way you do.</p>
+        <p class="pattern-note">SynOS ships the operating layer; your team operates the brains on top, with Claude Code, Codex, or your own harness.</p>
     </section>
 
     <section class="container">
         <a href="#company-brain" class="uc-umbrella" data-cta="see-usecase-company-brain">
             <div class="uc-tag">The flagship · Company Brain</div>
             <h3>The Company Brain</h3>
-            <p>One living context graph across every team — the policies, definitions, resolved entities, and tribal knowledge every agent and app reads from. Each function brain below sits inside it. Start with one function; the brain compounds across the rest.</p>
+            <p>One living context graph across every team: the policies, definitions, resolved entities, and tribal knowledge every agent and app reads from. Each function brain below sits inside it. Start with one function; the brain compounds across the rest.</p>
             <span class="uc-link">See the Company Brain ↓</span>
         </a>
         <a href="#agent-native-product" class="uc-umbrella" data-cta="see-usecase-agent-native-product" style="margin-top:16px;">
             <div class="uc-tag">The other wedge · Your product</div>
             <h3>Agent-Native Product</h3>
-            <p>Make the SaaS you already ship agent-native — embed in-product agents that act on each customer's data, with a separate, isolated brain per customer. Or build a new AI product on the same rails. Own the brain, skills, and deploy; bring your own harness and models.</p>
+            <p>Make the SaaS you already ship agent-native: embed in-product agents that act on each customer's data, with a separate, isolated brain per customer. Or build a new AI product on the same rails. Own the brain, skills, and deploy; bring your own harness and models.</p>
             <span class="uc-link">See the template ↓</span>
         </a>
         <p class="uc-grid-divider">Function brains built inside the Company Brain</p>
@@ -240,7 +256,7 @@
             <div class="pattern-header">
                 <div class="pattern-tag">The flagship</div>
                 <h2>The Company Brain</h2>
-                <p>The flagship template — and the one every function brain sits inside. It serves three groups at once: operators who know the business but can't code; function leaders tired of waiting on a backlog; AI engineering teams who want one shared layer instead of rebuilding context infrastructure for every team's request. Your team builds it on SynOS and owns it — then operates it with Claude Code (or any harness) on the shared Company Brain.</p>
+                <p>The flagship template, and the one every function brain sits inside. It serves three groups at once: operators who know the business but can't code; function leaders tired of waiting on a backlog; AI engineering teams who want one shared layer instead of rebuilding context infrastructure for every team's request. Your team builds it on SynOS and owns it, then operates it with Claude Code (or any harness) on the shared Company Brain.</p>
             </div>
             <div class="pattern-grid">
                 <div class="pattern-block">
@@ -251,12 +267,12 @@
                 <div class="pattern-block">
                     <div class="block-tag">Layer pieces</div>
                     <h4>What the Brain gives them</h4>
-                    <p><strong>Living Company Brain</strong> — resolved entities, curated knowledge, learned skills, and the Self-Learning Loop. <strong>Agent-Native Storage</strong> for the work agents do. <strong>Scanned Sandboxes</strong> for the small apps non-engineers build on top. <strong>Access Control</strong> so the same scope rules govern every agent and app. <strong>Traces</strong> so the AI team sees what's running.</p>
+                    <p><strong>Living Company Brain</strong>. Resolved entities, curated knowledge, learned skills, and the Self-Learning Loop. <strong>Agent-Native Storage</strong> for the work agents do. <strong>Scanned Sandboxes</strong> for the small apps non-engineers build on top. <strong>Access Control</strong> so the same scope rules govern every agent and app. <strong>Traces</strong> so the AI team sees what's running.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Outcome shape</div>
                     <h4>What teams typically see</h4>
-                    <p>The backlog of small-tool requests stops piling up. Non-engineers ship the custom 20% no SaaS will ever cover. Tribal knowledge stops dying in chat history — it gets captured and served back. Every new agent inherits what earlier ones learned.</p>
+                    <p>The backlog of small-tool requests stops piling up. Non-engineers ship the custom 20% no SaaS will ever cover. Tribal knowledge stops dying in chat history: it gets captured and served back. Every new agent inherits what earlier ones learned.</p>
                 </div>
             </div>
         </div>
@@ -267,23 +283,23 @@
             <div class="pattern-header">
                 <div class="pattern-tag">The other wedge · Your product</div>
                 <h2>Agent-Native Product</h2>
-                <p>The same operating layer runs under a <strong>product</strong>, not just a company. Make the SaaS you already ship agent-native — embed in-product agents and copilots that act on each customer's own data — or build a new AI product on the same rails. Each of your customers gets a separate, isolated brain. Own the brain, skills, and deploy; bring your own harness and models.</p>
+                <p>The same operating layer runs under a <strong>product</strong>, not just a company. Make the SaaS you already ship agent-native: embed in-product agents and copilots that act on each customer's own data, or build a new AI product on the same rails. Each of your customers gets a separate, isolated brain. Own the brain, skills, and deploy; bring your own harness and models.</p>
             </div>
             <div class="pattern-grid">
                 <div class="pattern-block">
                     <div class="block-tag">Who benefits</div>
                     <h4>The team</h4>
-                    <p>Product &amp; platform teams adding AI to an existing SaaS, and AI-product builders or agencies shipping something new. The people who own the roadmap ship the AI feature; SynOS is the per-tenant brain underneath — no rebuilding context, governance, and traces per agent.</p>
+                    <p>Product &amp; platform teams adding AI to an existing SaaS, and AI-product builders or agencies shipping something new. The people who own the roadmap ship the AI feature; SynOS is the per-tenant brain underneath: no rebuilding context, governance, and traces per agent.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Layer pieces</div>
                     <h4>What the layer gives you</h4>
-                    <p><strong>Multi-tenant Company Brain</strong> — a separate, isolated brain, storage, and permissions for every customer; no data crosses tenants. <strong>Skill registry</strong> your team owns. <strong>Scanned sandboxes</strong> for safe execution. <strong>Self-Learning Loop</strong> — production runs sharpen each customer's brain. Self-hosted in your cloud, or your customer's. Model- and harness-agnostic.</p>
+                    <p><strong>Multi-tenant Company Brain</strong>. A separate, isolated brain, storage, and permissions for every customer; no data crosses tenants. <strong>Skill registry</strong> your team owns. <strong>Scanned sandboxes</strong> for safe execution. <strong>Self-Learning Loop</strong>. Production runs sharpen each customer's brain. Self-hosted in your cloud, or your customer's. Model- and harness-agnostic.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Outcome shape</div>
                     <h4>What teams typically see</h4>
-                    <p>Ship the AI story your customers are asking for without rebuilding infrastructure per agent — the second agent ships in days. Every run sharpens the brain your product runs on, per customer. You own the layer; no lock-in to a single model or agent stack.</p>
+                    <p>Ship the AI story your customers are asking for without rebuilding infrastructure per agent: the second agent ships in days. Every run sharpens the brain your product runs on, per customer. You own the layer; no lock-in to a single model or agent stack.</p>
                 </div>
             </div>
         </div>
@@ -294,23 +310,23 @@
             <div class="pattern-header">
                 <div class="pattern-tag">Revenue · Pipeline</div>
                 <h2>Sales Brain</h2>
-                <p>A template your sales team builds and owns on SynOS — agents that handle pipeline hygiene, deal context, and forecast prep so reps focus on selling and leadership sees signal instead of noise. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
+                <p>A template your sales team builds and owns on SynOS: agents that handle pipeline hygiene, deal context, and forecast prep so reps focus on selling and leadership sees signal instead of noise. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
             </div>
             <div class="pattern-grid">
                 <div class="pattern-block">
                     <div class="block-tag">Example agents</div>
                     <h4>What the team runs</h4>
-                    <p><strong>Pipeline Health Monitor</strong> — flags stage transitions gone quiet. <strong>Stale Deal Flagger</strong> — surfaces opportunities without recent touch. <strong>Forecast Drafter</strong> — confidence-weighted weekly forecast. <strong>Deal Context Compiler</strong> — all the Slack + doc context on a deal, before a call.</p>
+                    <p><strong>Pipeline Health Monitor</strong>. Flags stage transitions gone quiet. <strong>Stale Deal Flagger</strong>. Surfaces opportunities without recent touch. <strong>Forecast Drafter</strong>. Confidence-weighted weekly forecast. <strong>Deal Context Compiler</strong>. All the Slack + doc context on a deal, before a call.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Layer pieces</div>
                     <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across CRM + Slack + docs + email — one resolved view of every deal, customer, contact. <strong>Skills</strong> for CRM updates, Slack nudges, doc generation — governed and observable. <strong>Self-Learning Loop</strong> learning which deal shapes convert and which stages are traps.</p>
+                    <p><strong>Context graph</strong> across CRM + Slack + docs + email: one resolved view of every deal, customer, contact. <strong>Skills</strong> for CRM updates, Slack nudges, doc generation: governed and observable. <strong>Self-Learning Loop</strong> learning which deal shapes convert and which stages are traps.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Outcome shape</div>
                     <h4>What teams typically see</h4>
-                    <p>Forecast accuracy improves as the brain learns the team's deal patterns. New reps inherit what the whole team has learned — onboarding compresses. Time on pipeline hygiene drops; time on actual deals goes up.</p>
+                    <p>Forecast accuracy improves as the brain learns the team's deal patterns. New reps inherit what the whole team has learned: onboarding compresses. Time on pipeline hygiene drops; time on actual deals goes up.</p>
                 </div>
             </div>
         </div>
@@ -321,23 +337,23 @@
             <div class="pattern-header">
                 <div class="pattern-tag">Growth · Demand</div>
                 <h2>Marketing Brain</h2>
-                <p>A template a growth team builds and owns — agents that span audience, creative, and spend across paid platforms. Non-engineers operate the agents; engineering ships the skills. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
+                <p>A template a growth team builds and owns: agents that span audience, creative, and spend across paid platforms. Non-engineers operate the agents; engineering ships the skills. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
             </div>
             <div class="pattern-grid">
                 <div class="pattern-block">
                     <div class="block-tag">Example agents</div>
                     <h4>What the team runs</h4>
-                    <p><strong>Campaign Builder</strong> — drafts campaigns across Meta + Google from a brief. <strong>Audience Segmenter</strong> — builds and refreshes audiences off CDP + Shopify behavior. <strong>Creative Reviewer</strong> — checks creative against brand rules + past winners. <strong>Spend Optimizer</strong> — reallocates within bounded daily limits.</p>
+                    <p><strong>Campaign Builder</strong>. Drafts campaigns across Meta + Google from a brief. <strong>Audience Segmenter</strong>. Builds and refreshes audiences off CDP + Shopify behavior. <strong>Creative Reviewer</strong>. Checks creative against brand rules + past winners. <strong>Spend Optimizer</strong>. Reallocates within bounded daily limits.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Layer pieces</div>
                     <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across Meta, Google, Shopify, your CDP, past creative library. <strong>Skills</strong> for ad-platform actions — governed, bounded, audited. <strong>Sandboxes</strong> for spend changes — start in shadow, graduate to autonomous within daily caps. <strong>Self-Learning Loop</strong> on what creative + audience combinations actually convert.</p>
+                    <p><strong>Context graph</strong> across Meta, Google, Shopify, your CDP, past creative library. <strong>Skills</strong> for ad-platform actions: governed, bounded, audited. <strong>Sandboxes</strong> for spend changes: start in shadow, graduate to autonomous within daily caps. <strong>Self-Learning Loop</strong> on what creative + audience combinations actually convert.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Outcome shape</div>
                     <h4>What teams typically see</h4>
-                    <p>Time-to-launch on new campaigns drops. Non-engineering marketers self-serve workflows that previously needed engineering. Spend allocation tracks performance faster than manual review cycles. Creative learnings compound — losing variants stop being repeated.</p>
+                    <p>Time-to-launch on new campaigns drops. Non-engineering marketers self-serve workflows that previously needed engineering. Spend allocation tracks performance faster than manual review cycles. Creative learnings compound: losing variants stop being repeated.</p>
                 </div>
             </div>
         </div>
@@ -348,18 +364,18 @@
             <div class="pattern-header">
                 <div class="pattern-tag">Operations · SOPs</div>
                 <h2>Internal Ops Brain</h2>
-                <p>A template your operations team builds and owns — agents that turn recurring ops work and tribal SOPs into a living, queryable layer. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
+                <p>A template your operations team builds and owns: agents that turn recurring ops work and tribal SOPs into a living, queryable layer. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
             </div>
             <div class="pattern-grid">
                 <div class="pattern-block">
                     <div class="block-tag">Example agents</div>
                     <h4>What the team runs</h4>
-                    <p><strong>Weekly Ops Digest</strong> — exceptions and trends from the week. <strong>SOP Capture &amp; Playbook Lookup</strong> — captures how work is actually done, serves it back on demand. <strong>Vendor/Supply/Fleet Monitor</strong> — watches the operational tables that matter. <strong>Incident &amp; Escalation Handler</strong> — triages and routes incidents.</p>
+                    <p><strong>Weekly Ops Digest</strong>. Exceptions and trends from the week. <strong>SOP Capture &amp; Playbook Lookup</strong>. Captures how work is actually done, serves it back on demand. <strong>Vendor/Supply/Fleet Monitor</strong>. Watches the operational tables that matter. <strong>Incident &amp; Escalation Handler</strong>. Triages and routes incidents.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Layer pieces</div>
                     <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across ops docs, ticketing, warehouse/ops tables, SOPs. <strong>Skills</strong> for digests, lookups, and alerts — governed. <strong>Agent-Native Storage</strong> for recurring ops records. <strong>Self-Learning Loop</strong> capturing how incidents were actually resolved.</p>
+                    <p><strong>Context graph</strong> across ops docs, ticketing, warehouse/ops tables, SOPs. <strong>Skills</strong> for digests, lookups, and alerts: governed. <strong>Agent-Native Storage</strong> for recurring ops records. <strong>Self-Learning Loop</strong> capturing how incidents were actually resolved.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Outcome shape</div>
@@ -375,18 +391,18 @@
             <div class="pattern-header">
                 <div class="pattern-tag">Customer · Retention</div>
                 <h2>Support / CX Brain</h2>
-                <p>A template your support team builds and owns — agents that draft replies, surface customer themes, and watch retention signals. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
+                <p>A template your support team builds and owns: agents that draft replies, surface customer themes, and watch retention signals. Operate it with Claude Code (or any harness) on the shared Company Brain.</p>
             </div>
             <div class="pattern-grid">
                 <div class="pattern-block">
                     <div class="block-tag">Example agents</div>
                     <h4>What the team runs</h4>
-                    <p><strong>Ticket Triage &amp; Draft Replies</strong> — categorizes and drafts on-brand responses. <strong>Voice-of-Customer Theme Miner</strong> — surfaces recurring pain themes. <strong>Churn &amp; CSAT Signal Watch</strong> — flags accounts trending the wrong way.</p>
+                    <p><strong>Ticket Triage &amp; Draft Replies</strong>. Categorizes and drafts on-brand responses. <strong>Voice-of-Customer Theme Miner</strong>. Surfaces recurring pain themes. <strong>Churn &amp; CSAT Signal Watch</strong>. Flags accounts trending the wrong way.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Layer pieces</div>
                     <h4>What the layer gives them</h4>
-                    <p><strong>Context graph</strong> across tickets, help docs, product/CRM, past resolutions. <strong>Skills</strong> for drafting replies, tagging, and escalations — governed. <strong>Self-Learning Loop</strong> on which resolutions actually closed tickets.</p>
+                    <p><strong>Context graph</strong> across tickets, help docs, product/CRM, past resolutions. <strong>Skills</strong> for drafting replies, tagging, and escalations: governed. <strong>Self-Learning Loop</strong> on which resolutions actually closed tickets.</p>
                 </div>
                 <div class="pattern-block">
                     <div class="block-tag">Outcome shape</div>
@@ -400,7 +416,7 @@
     <section class="section section--alt">
         <div class="container" style="text-align:center;">
             <h2>Don't see your team?</h2>
-            <p style="max-width:600px;margin:0 auto 16px;">These are templates, not the ceiling. The operating layer underneath is the same. If your team is running AI workflows — or trying to — let's talk through the brain they'd build.</p>
+            <p style="max-width:600px;margin:0 auto 16px;">These are templates, not the ceiling. The operating layer underneath is the same. If your team is running AI workflows, or trying to, let's talk through the brain they'd build.</p>
             <div class="cta-row">
                 <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-usecases">Request early access</a>
                 <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" class="btn btn--secondary" data-cta="usecases-bottom-demo">Book a 30-min demo</a>
@@ -410,36 +426,39 @@
 
 </main>
 
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div class="footer-left">
-            <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
-                <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/>
-            </svg>
-            <span class="footer-logo-text">SynOS</span>
-        </div>
-        <div class="footer-middle">
-            <a href="/early-access">Early Access</a>
-            <a href="/product">Product</a>
-            <a href="/use-cases">Use Cases</a>
-            <a href="/blog">Blog</a>
-            <a href="/about">About</a>
-        </div>
-        <div class="footer-links">
-            <a href="/trust">Trust</a>
-                <a href="/security">Security</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/subprocessors">Subprocessors</a>
-            <span class="footer-sep"></span>
-            <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank">LinkedIn</a>
-            <span class="footer-sep"></span>
-            <a href="https://anoopjawahar.substack.com" target="_blank">Substack</a>
-        </div>
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <div class="sk-footer-group">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-footer-word">SynOS</span>
     </div>
-    <p class="footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
+    <div class="sk-footer-group">
+      <a href="/product">Product</a>
+      <a href="/build-your-own-ai">Build your own AI</a>
+      <a href="/use-cases">Use cases</a>
+      <a href="/why-now">Why now</a>
+      <a href="/compare">Compare</a>
+      <a href="/about">About</a>
+      <a href="/careers">Careers</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://anoopjawahar.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </div>
+  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
 </footer>
+<!-- @endpartial footer -->
 
 <script>
     // CTA click tracking
