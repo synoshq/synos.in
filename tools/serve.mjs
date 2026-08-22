@@ -81,6 +81,15 @@ const server = createServer(async (req, res) => {
     return
   }
 
+  // Replicate Vercel's cleanUrls redirect. Without this the dev server answers /figures/x.html
+  // with 200 while production answers 308 and lands on /figures/x. That divergence shipped a bug:
+  // the figure reported the redirected pathname, the host matched against the .html src, and every
+  // figure on the live site sat at its fallback height. Dev must redirect the same way.
+  if (p.endsWith('.html') && !p.startsWith('/_diagrams/')) {
+    res.writeHead(308, { Location: p.replace(/\.html$/, '') }).end()
+    return
+  }
+
   const roots = p.startsWith('/_diagrams/')
     ? [join(DIAGRAMS, p.replace('/_diagrams/', '')), null]
     : [join(PUBLIC, p), null]

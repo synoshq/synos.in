@@ -61,9 +61,15 @@
       if (!d || d.type !== 'synos:figure-height') return
       frames.forEach(function (f) {
         // Compare pathname only: the src attribute is relative and f.src is absolute.
+        // Strip .html from BOTH sides. Vercel's cleanUrls 308-redirects /figures/x.html to
+        // /figures/x, so the figure reports the clean path while the src attribute still carries
+        // the extension. A strict compare never matches, and that shipped: every figure on the
+        // live site sat at the 900px fallback while rendering correctly in local dev, where
+        // nothing redirects.
+        var norm = function (u) { return String(u || '').replace(/\.html$/, '') }
         var path
         try { path = new URL(f.src, window.location.href).pathname } catch (err) { return }
-        if (path === d.src) f.style.height = d.height + 'px'
+        if (norm(path) === norm(d.src)) f.style.height = d.height + 'px'
       })
     })
   }
