@@ -131,7 +131,7 @@
   <section class="sk-container sk-pagehero" data-section="hero">
     <p class="sk-crumb"><a href="/product">Platform</a><span>/</span>Governance</p>
     <h1>Agents can act in your real systems without anyone opening a hole.</h1>
-    <p class="sk-lead">Reading data is the safe half of the job. The moment an agent writes to a CRM, a ledger or a live campaign, the questions change: who was it acting as, what was it allowed to touch, who approved it, and where is the row that proves any of that. SynOS answers those the same way for a person clicking a button, an AI tool, and an agent running on a schedule at three in the morning.</p>
+    <p class="sk-lead">Reading is the safe half. The moment an agent writes to a CRM or a ledger, the questions are who it acted as, what it could touch, and where the row is that proves it.</p>
   </section>
 
   <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
@@ -158,7 +158,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">The path of one call</p>
         <h2>Follow a single write from the tool that asked for it.</h2>
-        <p class="sk-lead">The checks below run in order, and the first one that fails ends the call. What reaches your system is a request that carries an identity, a scope it was granted in advance, and parameters that matched a declared contract. What reaches your audit log is every attempt, in both directions.</p>
+        <p class="sk-lead">The checks run in order and the first failure ends the call. Every attempt reaches the audit log, in both directions.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/governed-door" title="Figure 3: one call and everything it passes through" loading="lazy" scrolling="no"></iframe>
@@ -173,32 +173,32 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">The inventory</p>
         <h2>Eight controls, and every one of them applies to agents as well as people.</h2>
-        <p class="sk-lead">Most of this exists in your stack already for human users. The gap that stops AI programmes is that none of it was built for a caller that is not a person, has no session, and can make four hundred calls in a minute.</p>
+        <p class="sk-lead">Most of this exists in your stack for human users. None of it was built for a caller with no session that can make four hundred calls a minute.</p>
       </div>
       <div class="sk-stack">
         <div class="sk-stack-row">
           <p class="sk-stack-n">Identity<small>who is calling</small></p>
-          <p class="sk-stack-d">Five credential surfaces, each granted and revoked on its own, so the same provider connected as a data source and as a tool are two separate grants. A run started by a person carries that person through to every call.</p>
+          <p class="sk-stack-d">Five credential surfaces, each granted and revoked on its own, so the same provider connected as a data source and as a tool are two separate grants.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
           <p class="sk-stack-n">Authority for unattended runs<small>mandates</small></p>
-          <p class="sk-stack-d">A scheduled run has no human in the session, so it needs a durable, expiring, revocable grant naming the subject it acts for, re-checked against that person's current role on every call. Built, and behind a flag we have not turned on.</p>
+          <p class="sk-stack-d">A scheduled run has no human in the session, so it needs a durable, expiring, revocable grant naming the subject it acts for, re-checked against that person's current role on every call.</p>
           <p class="sk-stack-s sk-s-build"><i></i>in build</p>
         </div>
         <div class="sk-stack-row">
           <p class="sk-stack-n">Role and tenant<small>RBAC</small></p>
-          <p class="sk-stack-d">Roles resolve per instance and per project across all four transports, and a denial is written to the audit log rather than dropped. Passing a person's identity through to the warehouse itself, so a query runs as them, is built and not yet switched on.</p>
+          <p class="sk-stack-d">Roles resolve per instance and per project across all four transports, and a denial is written to the audit log rather than dropped.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
           <p class="sk-stack-n">Tool allowlist<small>what it may do</small></p>
-          <p class="sk-stack-d">Engineering declares the write actions that exist at all. Anything outside that list is not a permission question, because there is no path to it.</p>
+          <p class="sk-stack-d">Engineering declares the write actions that exist at all.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
           <p class="sk-stack-n">Parameter contract<small>what it may send</small></p>
-          <p class="sk-stack-d">Each tool declares its shape and its bounds. A refund tool that tops out at a set amount cannot be talked into a larger one.</p>
+          <p class="sk-stack-d">Each tool declares its shape and its bounds.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
@@ -208,12 +208,12 @@
         </div>
         <div class="sk-stack-row">
           <p class="sk-stack-n">Cost attribution<small>what it spent</small></p>
-          <p class="sk-stack-d">Every run is costed and attributable to an agent, a project and a person, down to the tool call. Hard ceilings that stop a looping agent before the invoice arrives are in build.</p>
+          <p class="sk-stack-d">Every run is costed and attributable to an agent, a project and a person, down to the tool call.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
           <p class="sk-stack-n">Kill switch<small>stop now</small></p>
-          <p class="sk-stack-d">One agent, one skill, or everything at once, revoked immediately without a deploy. The rollback story your risk review will ask for first.</p>
+          <p class="sk-stack-d">One agent, one skill, or everything at once, revoked immediately without a deploy.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
       </div>
@@ -226,7 +226,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">Why this stays true as usage grows</p>
         <h2>The rails are set once. What gets authored on top cannot widen them.</h2>
-        <p class="sk-lead">Governance that depends on every author making good choices fails at the tenth author. Here the boundary is structural: an ops lead writing a skill in plain English is composing tools that engineering already declared, so there is nothing they can reach that was not granted in advance.</p>
+        <p class="sk-lead">Governance that depends on every author making good choices fails at the tenth author. Here the boundary is structural.</p>
       </div>
       <div class="sk-split">
         <div>
@@ -262,7 +262,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">The other blast radius</p>
         <h2>An internal app your ops team shipped is code running against your systems.</h2>
-        <p class="sk-lead">This is where the AI app builders leave you. A tool that lets a non engineer ship a working app in an afternoon has, by default, shipped it to a personal account with a secret in the client bundle and permission to call anywhere. Every build here goes through the same five stages.</p>
+        <p class="sk-lead">An app your ops team shipped is code running against your systems. Every build here goes through the same five stages.</p>
       </div>
       <div class="pipe">
         <div>
@@ -291,7 +291,7 @@
           <p class="pipe-d">Who shipped what, when, with which scopes, and what the scan found on the way through.</p>
         </div>
       </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Agents also need somewhere structured to write. Outputs land in project scoped collections with an enforced schema, audited on every read and every write, so the next run can read what the last one produced instead of it ending up in a spreadsheet nobody can find.</p>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Agents also need somewhere structured to write.</p>
     </div>
   </section>
 
@@ -306,50 +306,29 @@
       <div class="qa">
         <div class="qa-row">
           <p class="qa-q">Where does it run?</p>
-          <p class="qa-a">Inside your own environment. Your VPC, your Kubernetes, or an air gapped installation with no outbound path at all. There is no version of this where your operational data sits in our tenancy.</p>
+          <p class="qa-a">Inside your own environment.</p>
         </div>
         <div class="qa-row">
           <p class="qa-q">What leaves the building?</p>
-          <p class="qa-a">Whatever you send to the model provider you chose, and nothing else. Point it at a model in your own account, or at one running on your own hardware, and the answer becomes nothing.</p>
+          <p class="qa-a">Whatever you send to the model provider you chose, and nothing else.</p>
         </div>
         <div class="qa-row">
           <p class="qa-q">Who can an agent act as?</p>
-          <p class="qa-a">A run a person started carries that person, and its reach is bounded by roles and by the tools that were declared in advance. Escalation is not a decision anything makes at runtime. For unattended runs the durable grant that names a subject and re-checks their authority per call is built and not yet enabled, so treat a scheduled agent today as running with the scope its project was given rather than with a named person's.</p>
+          <p class="qa-a">A run a person started carries that person, and its reach is bounded by roles and by the tools that were declared in advance.</p>
         </div>
         <div class="qa-row">
           <p class="qa-q">How do we stop it?</p>
-          <p class="qa-a">A kill switch at the level of one agent, one skill, or the whole installation, effective immediately and without a deploy. Sandboxed apps are revoked the same way.</p>
+          <p class="qa-a">A kill switch at the level of one agent, one skill, or the whole installation, effective immediately and without a deploy.</p>
         </div>
         <div class="qa-row">
           <p class="qa-q">What can we prove afterwards?</p>
-          <p class="qa-a">Every call, allowed or denied, with the caller, the tool, the parameters, the result and the context pack that informed it. An answer can be traced back to the rows it was built from.</p>
+          <p class="qa-a">Every call, allowed or denied, with the caller, the tool, the parameters, the result and the context pack that informed it.</p>
         </div>
       </div>
       <a href="/trust" class="sk-more">The full trust and security detail &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ ONWARD ════════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="onward">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">The other two halves</p>
-        <h2>A safe agent that is wrong is still wrong.</h2>
-      </div>
-      <div class="onward">
-        <a class="on" href="/platform/company-brain">
-          <p class="on-h">Company Brain</p>
-          <h3>Where correctness comes from</h3>
-          <p>Your systems profiled where they sit, kept current on a schedule, and honest about the mappings it is unsure of rather than confident about all of them.</p>
-        </a>
-        <a class="on" href="/platform/learning-loop">
-          <p class="on-h">Learning loop</p>
-          <h3>How autonomy is earned</h3>
-          <p>An agent moves to less supervision by scoring against cases your own team wrote, and a regression moves it back down. Nobody makes that call on a good week.</p>
-        </a>
-      </div>
-    </div>
-  </section>
 
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
   <section class="sk-section sk-cta" data-section="bottom-cta">

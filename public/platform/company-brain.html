@@ -168,7 +168,7 @@
   <section class="sk-container sk-pagehero" data-section="hero">
     <p class="sk-crumb"><a href="/product">Platform</a><span>/</span>Company Brain</p>
     <h1>Your systems get profiled where they sit, and the profile is kept honest.</h1>
-    <p class="sk-lead">An agent is only as correct as the slice of context it was handed. The Company Brain is what decides that slice: what your entities mean, where each fact actually lives, which source to trust when two disagree, and what your people have taught it since. It holds the meaning of your data, and the rows stay in the systems that own them.</p>
+    <p class="sk-lead">An agent is only as correct as the slice of context it was handed. This is what decides that slice, and it holds the meaning of your data rather than a copy of it.</p>
   </section>
 
   <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
@@ -195,7 +195,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">What actually moves</p>
         <h2>The rows never leave your systems.</h2>
-        <p class="sk-lead">A migration copies your tables into a vendor tenancy and the copy is what the AI reasons over, which is why the data programme has to finish before anything useful runs. Profiling inverts that. What SynOS holds is the statistics, the semantics and the bindings: which table is authoritative for revenue, what a status field means, which join reaches the customer. The answer is assembled by querying your systems at the moment the question is asked.</p>
+        <p class="sk-lead">What SynOS holds is the statistics, the semantics and the bindings. The answer is assembled by querying your systems at the moment the question is asked.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/what-moves" title="Figure 2: what actually moves, under a migration and under SynOS" loading="lazy" scrolling="no"></iframe>
@@ -210,7 +210,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">What it holds</p>
         <h2>Eight kinds of memory, because an agent needs more than documents.</h2>
-        <p class="sk-lead">Most context tools give you one shape: chunks of text with embeddings. That covers a policy document and none of the rest. Each kind below maps to a concrete store, so the brain stays queryable, auditable and safe to roll back, and adding a ninth is configuration rather than a migration.</p>
+        <p class="sk-lead">Most context tools give you one shape, chunks of text with embeddings, which covers a policy document and none of the rest.</p>
       </div>
       <div class="sk-stack">
         <div class="sk-stack-row">
@@ -264,7 +264,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">Getting the right slice</p>
         <h2>The long context window made retrieval more important, not less.</h2>
-        <p class="sk-lead">A model handed a million tokens of loosely related material answers worse and costs more than the same model handed the four things that mattered. Most answers that get blamed on the model are a retrieval problem. A router picks the mode per query, so an order ID goes somewhere different from a question about why an account churned.</p>
+        <p class="sk-lead">Most answers that get blamed on the model are a retrieval problem. A router picks the mode per query.</p>
       </div>
       <div class="modes-h">
         <p>mode</p><p>what it does</p><p>when it fires</p>
@@ -272,7 +272,7 @@
       <div class="modes">
         <div class="mode">
           <p class="mode-n">Auto router<small>mode = auto</small></p>
-          <p class="mode-d">A selector picks the mode and the source per query. One question goes to SQL, the next to vectors, the next across the graph.</p>
+          <p class="mode-d">A selector picks the mode and the source per query.</p>
           <p class="mode-w">the default, mixed query types over mixed sources</p>
         </div>
         <div class="mode">
@@ -292,7 +292,7 @@
         </div>
         <div class="mode">
           <p class="mode-n">Agentic<small>plan, retrieve, reason</small></p>
-          <p class="mode-d">Decomposes a hard question into sub questions, runs each, merges and reranks what came back. Slower, and much better on the hard ones.</p>
+          <p class="mode-d">Decomposes a hard question into sub questions, runs each, merges and reranks what came back.</p>
           <p class="mode-w">multi part questions, long threads, follow ups</p>
         </div>
         <div class="mode">
@@ -301,7 +301,7 @@
           <p class="mode-w">multi hop reasoning across connected entities</p>
         </div>
       </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Whatever the mode, what comes back is a typed context pack: scoped to the caller's role and project, ranked by authority and freshness, fitted to a token budget, and carrying citation IDs so an answer can be traced to the row it came from. Withholding individual rows inside the brain itself depends on your sources being labelled first, and that enforcement is in build rather than live.</p>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Whatever the mode, what comes back is a typed context pack: scoped to the caller's role and project, ranked by authority and freshness, fitted to a token budget, and carrying citation IDs so an answer can be traced to the row it came from.</p>
     </div>
   </section>
 
@@ -311,7 +311,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">The part that decays</p>
         <h2>Schemas drift and definitions change. Agents keep answering anyway.</h2>
-        <p class="sk-lead">This is the failure mode nobody demos, because it takes a quarter to appear. A column gains three new enum values, a team renames a field, two tables both start claiming revenue, and the agent carries on sounding exactly as confident as it did in week one. So profiling runs on a schedule and holds a confidence score and a freshness stamp on every mapping.</p>
+        <p class="sk-lead">The failure nobody demos, because it takes a quarter to appear: the agent carries on sounding exactly as confident as it did in week one.</p>
       </div>
       <div class="cycle">
         <div class="step">
@@ -384,27 +384,6 @@
     </div>
   </section>
 
-  <!-- ══ ONWARD ════════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="onward">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">The other two halves</p>
-        <h2>Context makes an agent correct. It does not make it safe or make it improve.</h2>
-      </div>
-      <div class="onward">
-        <a class="on" href="/platform/governance">
-          <p class="on-h">Governance</p>
-          <h3>One governed door</h3>
-          <p>Reading is the safe half. Every write goes through a single gate that checks role, tool, parameters and tenant, then writes an audit row whether it allowed the call or denied it.</p>
-        </a>
-        <a class="on" href="/platform/learning-loop">
-          <p class="on-h">Learning loop</p>
-          <h3>Corrections that stick</h3>
-          <p>What your experts fix in the flow of work becomes a rule every agent inherits, a case in your evals, and material a model of your own can be trained on later.</p>
-        </a>
-      </div>
-    </div>
-  </section>
 
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
   <section class="sk-section sk-cta" data-section="bottom-cta">

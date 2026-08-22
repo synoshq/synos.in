@@ -135,7 +135,7 @@
   <section class="sk-container sk-pagehero" data-section="hero">
     <p class="sk-crumb"><a href="/product">Platform</a><span>/</span>Learning loop</p>
     <h1>A correction made once should never have to be made again.</h1>
-    <p class="sk-lead">In most AI deployments the person who spots the mistake fixes that one answer, and the same mistake arrives again on Thursday. The knowledge that would have prevented it stays where it started, in the head of someone who has now explained it four times. This is the part of the platform that stops that, and it is also where the record accumulates that decides how much you eventually let an agent do on its own.</p>
+    <p class="sk-lead">In most deployments the person who spots the mistake fixes that one answer, and the same mistake arrives again on Thursday. This is the part that stops that.</p>
   </section>
 
   <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
@@ -162,7 +162,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">What one correction becomes</p>
         <h2>Someone fixes an answer on a Tuesday. Four things happen to it.</h2>
-        <p class="sk-lead">A correction arrives as an ordinary act of work: a support lead edits what an agent drafted, an ops manager says that is not how the escalation runs. Reviewed once, it fans out into every place it needs to reach, and none of that costs the person who made it another minute.</p>
+        <p class="sk-lead">A correction arrives as an ordinary act of work. Reviewed once, it fans out into every place it needs to reach.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/one-correction" title="Figure 1: what one correction becomes" loading="lazy" scrolling="no"></iframe>
@@ -177,7 +177,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">The loop, in three turns</p>
         <h2>Humans correct. Agents act. Your systems return what actually happened.</h2>
-        <p class="sk-lead">Each turn produces a record no public model has ever seen, because it only exists inside your work. Stored and never read, that record is a log. Fed back, it is the reason the same agent is better in March than it was in January without anyone rewriting it.</p>
+        <p class="sk-lead">Each turn produces a record no public model has seen, because it only exists inside your work.</p>
       </div>
       <div class="turns">
         <div class="turn">
@@ -199,7 +199,7 @@
           <p class="turn-q">Did the escalation actually resolve faster.</p>
         </div>
       </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-7)">Review sits between the first turn and the second on purpose. A correction is a proposal until someone with the authority to set policy accepts it, which is what stops one strong opinion on a bad afternoon from becoming how the company operates.</p>
+      <p class="sk-sub" style="margin-top:var(--sk-space-7)">Review sits between the first turn and the second on purpose.</p>
     </div>
   </section>
 
@@ -209,28 +209,28 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">What decides a promotion</p>
         <h2>An agent moves up when it can show it got better.</h2>
-        <p class="sk-lead">Public benchmarks cannot help here. The exceptions that make your business yours are exactly the thing a general eval has never heard of, so the set has to be written by the people who know the work and grown out of the work itself.</p>
+        <p class="sk-lead">Public benchmarks cannot help. The exceptions that make your business yours are exactly what a general eval has never heard of.</p>
       </div>
       <div class="evals">
         <div class="ev">
           <p class="ev-n">01</p>
           <p class="ev-t">Your team writes the cases</p>
-          <p class="ev-d">Ten or twenty real ones, each with the answer you would have given. It takes an afternoon from the people who already know which cases are the hard ones, and it is the only part nobody can do for you.</p>
+          <p class="ev-d">Ten or twenty real ones, each with the answer you would have given.</p>
         </div>
         <div class="ev">
           <p class="ev-n">02</p>
           <p class="ev-t">Every change gets replayed</p>
-          <p class="ev-d">A new skill, an edited rule, a swapped model. All of it runs against the whole set before it reaches production, so you see the effect of a change in advance rather than discovering it in a customer thread.</p>
+          <p class="ev-d">A new skill, an edited rule, a swapped model.</p>
         </div>
         <div class="ev">
           <p class="ev-n">03</p>
           <p class="ev-t">The score gates the rung</p>
-          <p class="ev-d">Assisted, reviewed, supervised, autonomous. Each rung sits behind a threshold your team sets, and a drop blocks the promotion and names which cases moved.</p>
+          <p class="ev-d">Assisted, reviewed, supervised, autonomous.</p>
         </div>
         <div class="ev">
           <p class="ev-n">04</p>
           <p class="ev-t">Corrections become new cases</p>
-          <p class="ev-d">When someone fixes an answer in the flow of work, that becomes a case the agent is measured on from then on. The set grows out of real work instead of a spec exercise nobody has time for.</p>
+          <p class="ev-d">When someone fixes an answer in the flow of work, that becomes a case the agent is measured on from then on.</p>
         </div>
       </div>
       <div class="where">
@@ -252,13 +252,13 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">Earning autonomy</p>
         <h2>Autonomous never means unsupervised, and it is granted per function.</h2>
-        <p class="sk-lead">One function can be running on its own while another next to it is still drafting for a human to send. What moves a function up is evidence, and every rung keeps the same permissions, the same audit trail and the same kill switch as the one below it.</p>
+        <p class="sk-lead">One function can run on its own while the one next to it is still drafting. What moves a function up is evidence.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/autonomy-ladder" title="Figure 4: how an agent earns the next rung" loading="lazy" scrolling="no"></iframe>
         <figcaption>Fig. 04 &middot; four rungs, and the gate on each</figcaption>
       </figure>
-      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Better context and stronger evals are what let more functions climb. You never hand off what you cannot measure, which is the honest reason most agent pilots stay at level one forever.</p>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Better context and stronger evals are what let more functions climb.</p>
     </div>
   </section>
 
@@ -268,33 +268,12 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">Where this is going</p>
         <h2>The same record is what a model of your own would be trained on.</h2>
-        <p class="sk-lead">A decision trace holds the context an agent was given, the action it took, the correction a person made and the outcome your systems returned. That is the shape of a training example, which means the work of making agents useful this quarter is also the work of assembling something no competitor starting today can assemble. It accrues on your infrastructure, and it pays off whichever model turns out to win.</p>
+        <p class="sk-lead">A decision trace holds the context, the action, the correction and the outcome. That is the shape of a training example, and it accrues on your infrastructure.</p>
         <a href="/build-your-own-ai" class="sk-more">What the training environment looks like &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- ══ ONWARD ════════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="onward">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">The other two halves</p>
-        <h2>Learning needs something to learn about and somewhere safe to apply it.</h2>
-      </div>
-      <div class="onward">
-        <a class="on" href="/platform/company-brain">
-          <p class="on-h">Company Brain</p>
-          <h3>Where a correction lands</h3>
-          <p>Promoted rules, entities and curation decisions live in the brain, which is what every agent reads before it acts, whatever tool the person is sitting in.</p>
-        </a>
-        <a class="on" href="/platform/governance">
-          <p class="on-h">Governance</p>
-          <h3>What holds at every rung</h3>
-          <p>Identity, scoped tools, audit on every call and an immediate kill switch apply the same way at level four as they do at level one.</p>
-        </a>
-      </div>
-    </div>
-  </section>
 
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
   <section class="sk-section sk-cta" data-section="bottom-cta">

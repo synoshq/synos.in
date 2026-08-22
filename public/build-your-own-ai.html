@@ -155,7 +155,7 @@
   <section class="sk-container sk-pagehero" data-section="hero">
     <p class="sk-eyebrow">Phase two, on the same install</p>
     <h1>What it takes to make AI work here is what it takes to train AI on how you work.</h1>
-    <p class="sk-lead">Every serious attempt at AI of your own runs into the same wall, and it is never the model. It is that nobody has the material: examples of how this company actually decides, produced by the people who know, with a way to tell whether a change made things better. That material is a by-product of getting agents working in the first place, which is the only reason this is affordable. You are not funding a training programme. You are keeping what the first one produced.</p>
+    <p class="sk-lead">Every serious attempt at AI of your own runs into the same wall, and it is never the model.</p>
   </section>
 
   <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
@@ -182,7 +182,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">The order is forced</p>
         <h2>Nothing new gets installed between one phase and the next.</h2>
-        <p class="sk-lead">The reason to care about the order is money. A company that treats phase two as a separate programme has to buy the capture, the governance and the environment twice, and the second purchase never gets approved. Doing the first phase properly is what earns the second one for free.</p>
+        <p class="sk-lead">The reason to care about the order is money.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/three-phases" title="Figure 5: one environment, three phases" loading="lazy" scrolling="no"></iframe>
@@ -197,7 +197,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">The same five pieces</p>
         <h2>Read each row across. The thing on the left is already installed.</h2>
-        <p class="sk-lead">Everyone else in this market authors a copy of your business and learns in the copy, even when the copy runs in your own cloud. A replica cannot hold twelve years of exceptions in one company's order to cash, because the exceptions are the part nobody wrote down. This instruments the original instead.</p>
+        <p class="sk-lead">Everyone else in this market authors a copy of your business and learns in the copy, even when the copy runs in your own cloud.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/two-jobs" title="Figure 6: the same five pieces, doing a second job" loading="lazy" scrolling="no"></iframe>
@@ -212,26 +212,26 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">How an attempt is run safely</p>
         <h2>An agent rehearses against your real systems, and the write it would have made is caught.</h2>
-        <p class="sk-lead">This is the mechanism that makes the whole thing more than a slogan. An evaluation run reads from your live systems, so the state is genuinely today's state. Its writes are intercepted at the tool layer and recorded rather than committed, which means the thing being scored is the action the agent would actually have taken. Three modes, and you choose per suite.</p>
+        <p class="sk-lead">This is the mechanism that makes the whole thing more than a slogan.</p>
       </div>
       <div class="modes">
         <div class="rmode">
           <p class="rmode-n">Recorded replay</p>
           <p class="rmode-c">mock_all</p>
-          <p class="rmode-d">Replays a recorded run with canned responses. Fast and free, and useful for catching an outright regression, though a candidate that leaves the recorded path is by definition no longer being tested against reality.</p>
+          <p class="rmode-d">Replays a recorded run with canned responses.</p>
         </div>
         <div class="rmode">
           <p class="rmode-n">Real reads</p>
           <p class="rmode-c">real_reads</p>
-          <p class="rmode-d">Real tools against real data with writes refused outright. What the agent sees is true; what it tries to do is stopped at the boundary rather than recorded.</p>
+          <p class="rmode-d">Real tools against real data with writes refused outright.</p>
         </div>
         <div class="rmode rmode--key">
           <p class="rmode-n">Real reads, captured writes</p>
           <p class="rmode-c">live_reads_captured_writes</p>
-          <p class="rmode-d">The same real execution, except each intended write persists to the result instead of happening. The refund that would have been issued, the record that would have been updated, the resource that would have been resized, all captured with their parameters and scored. Nothing reached your systems.</p>
+          <p class="rmode-d">The same real execution, except each intended write persists to the result instead of happening.</p>
         </div>
       </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Write refusal during a training run is a single enforced seam rather than a convention, including a floor that refuses any write on execution paths where the capture intercept does not exist. That boundary has been tested by trying to break it, which is the only kind of test worth quoting.</p>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Write refusal during a training run is a single enforced seam rather than a convention, including a floor that refuses any write on execution paths where the capture intercept does not exist.</p>
     </div>
   </section>
 
@@ -241,7 +241,7 @@
       <div class="sk-sechead">
         <p class="sk-eyebrow">What gets scored</p>
         <h2>The trajectory, including the write, rather than the paragraph at the end.</h2>
-        <p class="sk-lead">Evaluation tools score an output against an expected string. That works for a summariser and tells you almost nothing about an agent, which can reach a defensible answer through a sequence you would never have allowed. These are the default weights, and they are yours to change.</p>
+        <p class="sk-lead">Evaluation tools score an output against an expected string.</p>
       </div>
       <div class="scorers">
         <div class="sc">
@@ -270,7 +270,7 @@
           <p class="sc-w">0.15</p>
         </div>
       </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Around the scores sit two things worth naming. A regression gate re-runs a suite with and without a proposed change and blocks anything that scores worse, so a promotion is a measurement rather than an opinion. And the export that builds a training set returns only cases marked eligible, with the excluded holdout reported as a count, so contamination is prevented at the boundary rather than in a document telling people to be careful.</p>
+      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Around the scores sit two things worth naming.</p>
     </div>
   </section>
 
@@ -285,15 +285,15 @@
         <div class="qa-row">
           <p class="qa-q">How many episodes will you actually have?</p>
           <div>
-            <p class="qa-a">Far fewer than a lab, and we do not need lab volume, because the unit here is not a rollout. It is a decision an expert reviewed. A function in production generates hundreds of reviewed decisions a quarter, which is the right order for tuning a narrow task and for an evaluation suite that actually separates a good change from a bad one.</p>
-            <p class="qa-a">What nobody doing real enterprise work will ever have is the volume for training from scratch, because every episode is a real business action with a real cost. That is precisely why the vendors selling simulated environments simulate. The trade is that a few thousand of your examples are the genuine exceptions, and a million of theirs are invented.</p>
+            <p class="qa-a">Far fewer than a lab, and we do not need lab volume, because the unit here is not a rollout.</p>
+            <p class="qa-a">What nobody doing real enterprise work will ever have is the volume for training from scratch, because every episode is a real business action with a real cost.</p>
           </div>
         </div>
         <div class="qa-row">
           <p class="qa-q">What supplies the reward?</p>
           <div>
-            <p class="qa-a">Today it is human. Approvals, rejections and corrections from the person who owns the process, captured while they do the work. That is a preference signal rather than a scalar reward, and it is what a small preference model learns from.</p>
-            <p class="qa-a">Tying a decision to what the business measured afterwards is the next layer, and we will say plainly that it is a causal inference problem rather than a plumbing one: delayed, confounded, and cleanly identifiable only where a business will tolerate a holdout. We would rather build the measured version slowly than publish a number that flatters us.</p>
+            <p class="qa-a">Today it is human.</p>
+            <p class="qa-a">Tying a decision to what the business measured afterwards is the next layer, and we will say plainly that it is a causal inference problem rather than a plumbing one: delayed, confounded, and cleanly identifiable only where a business will tolerate a holdout.</p>
           </div>
         </div>
       </div>
@@ -329,33 +329,12 @@
     </div>
   </section>
 
-  <!-- ══ ONWARD ════════════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="onward">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">The install this runs on</p>
-        <h2>None of this is a second deployment.</h2>
-      </div>
-      <div class="onward">
-        <a class="on" href="/platform/learning-loop">
-          <p class="on-h">Learning loop</p>
-          <h3>Where the material comes from</h3>
-          <p>The corrections, the review step that promotes them, and the ladder an agent climbs by clearing a threshold on cases your own team wrote.</p>
-        </a>
-        <a class="on" href="/why-now">
-          <p class="on-h">Why now</p>
-          <h3>Why better models make this more necessary</h3>
-          <p>The argument that model progress raises the value of this layer rather than removing it, and what that means for what you start today.</p>
-        </a>
-      </div>
-    </div>
-  </section>
 
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
   <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
     <div class="sk-container">
       <h2>Start with the phase that pays for itself.</h2>
-      <p class="sk-lead">The useful first conversation is about the work in front of your team this quarter. What accumulates underneath it is what makes the rest possible, and it costs nothing extra to keep.</p>
+      <p class="sk-lead">The useful first conversation is about the work in front of your team this quarter.</p>
       <div class="sk-cta-row">
         <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-byoai">Request early access</a>
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-byoai">Book a walkthrough</a>
