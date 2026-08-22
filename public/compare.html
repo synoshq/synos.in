@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @partial head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<!-- @endpartial head -->
+    <title>How this compares | SynOS</title>
+    <meta name="description" content="Four honest comparisons: building it yourself, data platforms, search and assistant tools, and agent platforms. Each says what the alternative is genuinely good at before it says where it leaves you.">
+    <meta property="og:title" content="How this compares | SynOS">
+    <meta property="og:description" content="Four comparisons, each stating what the alternative does well before saying where it leaves you.">
+    <meta property="og:url" content="https://synos.in/compare">
+    <meta property="og:image" content="https://synos.in/img/og/home.png">
+    <meta name="twitter:title" content="How this compares | SynOS">
+    <meta name="twitter:description" content="Four comparisons, each stating what the alternative does well before saying where it leaves you.">
+    <link rel="canonical" href="https://synos.in/compare">
+    <style>
+    /* ─────────────────────────────────────────────────────────────────────────
+     * Compare hub. Carries FIG 08, which is the map, and routes to the four arguments.
+     *
+     * Editorial decision recorded here so it is not silently reversed: these pages argue against
+     * CATEGORIES rather than named vendors. Naming competitors publicly buys search traffic and
+     * costs accuracy, because a named claim ages the moment that company ships. The specific names
+     * belong on a call, where they can be discussed generously and corrected. Reversible.
+     * ───────────────────────────────────────────────────────────────────────── */
+
+    .plate { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
+    .plate > div { padding: var(--sk-space-7) var(--sk-space-6) var(--sk-space-7) 0; }
+    .plate > div + div { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
+    .plate b { display: block; font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; line-height: 1.15;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
+    .plate span { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); display: block; }
+    @media (max-width: 780px) {
+      .plate { grid-template-columns: 1fr; }
+      .plate > div { padding-right: 0; }
+      .plate > div + div { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; }
+    }
+
+    .routes { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-6); }
+    .rt { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
+      background: var(--sk-surface); padding: var(--sk-space-7) var(--sk-space-6);
+      box-shadow: var(--sk-shadow-card); text-decoration: none; display: block;
+      transition: border-color 0.15s ease; }
+    .rt:hover { border-color: var(--sk-indigo-2); }
+    .rt-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
+      max-width: none; }
+    .rt h3 { font-size: 18px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
+    .rt p { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
+    .rt-q { margin-top: var(--sk-space-5); font-family: var(--sk-font-display); font-size: 16px;
+      line-height: 1.4; color: var(--sk-ink-2); max-width: none; }
+    @media (max-width: 820px) { .routes { grid-template-columns: 1fr; } }
+
+    /* ── the three that survive ──────────────────────────────────────────── */
+    .keeps { border-top: 1px solid var(--sk-ink); }
+    .keep { display: grid; grid-template-columns: 44px 260px minmax(0, 1fr);
+      gap: var(--sk-space-6); align-items: baseline;
+      padding: var(--sk-space-6) 0; border-bottom: 1px solid var(--sk-border); }
+    .keep-n { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-ink-3);
+      max-width: none; }
+    .keep-t { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink);
+      max-width: none; }
+    .keep-d { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 860px) {
+      .keep { grid-template-columns: 44px minmax(0, 1fr); row-gap: var(--sk-space-3); }
+      .keep-d { grid-column: 2 / -1; }
+    }
+    </style>
+</head>
+<body>
+<a href="#main-content" class="sk-skip">Skip to content</a>
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <a href="/" class="sk-nav-left" aria-label="SynOS home">
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="sk-nav-word">SynOS</span>
+  </a>
+  <div class="sk-nav-links" id="nav-links">
+    <a href="/product">Product</a>
+    <a href="/build-your-own-ai">Build your own AI</a>
+    <a href="/use-cases">Use cases</a>
+    <a href="/why-now">Why now</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="sk-nav-right">
+    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
+    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+<!-- @endpartial nav -->
+
+<main id="main-content">
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="sk-container sk-pagehero" data-section="hero">
+    <p class="sk-eyebrow">How this compares</p>
+    <h1>Four alternatives, and what each of them is actually good at.</h1>
+    <p class="sk-lead">Comparison pages are usually written to win, which is why nobody believes them. These are written to be useful to someone who has a real decision and three vendors in the room. Each one opens by saying what the alternative does well, because in most of these cases the honest answer is that it does that thing better than we would.</p>
+  </section>
+
+  <!-- ══ THE PLATE ═════════════════════════════════════════════════════════ -->
+  <section class="sk-container" data-section="glance">
+    <div class="plate">
+      <div>
+        <b>Most are not rivals</b>
+        <span>Harnesses, search tools and model providers plug into this over MCP. A layer underneath is a different purchase from a tool on top.</span>
+      </div>
+      <div>
+        <b>The test is what you keep</b>
+        <span>Remove each vendor in turn and ask what your company still has on Monday. That question sorts this market faster than a feature grid.</span>
+      </div>
+      <div>
+        <b>We will name names on a call</b>
+        <span>These pages argue about categories. A specific vendor deserves a specific answer, and one that can be corrected if we have it wrong.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ THE MAP · FIG 08 ══════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="landscape">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Where everything sits</p>
+        <h2>Everyone owns one band, and the middle ones are the reason you are still stuck.</h2>
+        <p class="sk-lead">These are different categories doing different jobs, and each is good at its own. The narrow claim is about the bands between your systems and the AI your people already have, which is the stretch none of them was built for.</p>
+      </div>
+      <figure class="sk-figframe">
+        <iframe data-fig src="/figures/landscape.html" title="Figure 8: who owns which band of the stack" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 08 &middot; who owns which band</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ THE FOUR ══════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="routes">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Pick the one you are actually weighing</p>
+        <h2>Four comparisons.</h2>
+      </div>
+      <div class="routes">
+        <a class="rt" href="/compare/build-vs-buy">
+          <p class="rt-h">Build it yourself</p>
+          <h3>Your platform team could build this</h3>
+          <p>They could, and some of it they should. The question is which parts are differentiating for you and which are the same infrastructure every company in this position needs.</p>
+          <p class="rt-q">&ldquo;We have good engineers. Why buy?&rdquo;</p>
+        </a>
+        <a class="rt" href="/compare/data-platforms">
+          <p class="rt-h">Data platforms</p>
+          <h3>The warehouse or lakehouse you already pay for</h3>
+          <p>They are right that agent quality is a context problem. Their answer to it needs the data inside their platform first, and that precondition is the reason this is still unsolved for you.</p>
+          <p class="rt-q">&ldquo;Why not use what we already have?&rdquo;</p>
+        </a>
+        <a class="rt" href="/compare/search-and-memory">
+          <p class="rt-h">Search and assistants</p>
+          <h3>Enterprise search, memory layers, company assistants</h3>
+          <p>Genuinely good at what your company wrote: documents, tickets, wikis, threads. A different problem from what your company runs, and from acting inside it.</p>
+          <p class="rt-q">&ldquo;Doesn't this already do company brain?&rdquo;</p>
+        </a>
+        <a class="rt" href="/compare/agent-platforms">
+          <p class="rt-h">Agent platforms</p>
+          <h3>Agent builders, automation platforms, AI employees</h3>
+          <p>Fast to a working agent, and often the right buy for one bounded job. What is usually missing is the floor underneath, and an answer to who owns it in year two.</p>
+          <p class="rt-q">&ldquo;They demo an agent in an afternoon.&rdquo;</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHAT SURVIVES ═════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="what-survives">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">What we think is actually different</p>
+        <h2>Three claims, after removing the ones everybody makes.</h2>
+        <p class="sk-lead">A layer that profiles your systems, lets non-engineers build, brings its own model, and installs on-premise is on several competitors' home pages today. Those were differentiators a year ago and they are qualifications now. Three things survive that filter.</p>
+      </div>
+      <div class="keeps">
+        <div class="keep">
+          <p class="keep-n">01</p>
+          <p class="keep-t">The exit, rather than the entry</p>
+          <p class="keep-d">Everyone in this market lands with engineers embedded alongside you, including the very large ones. The difference is whether the vendor's people are designed to withdraw and leave your own experts operating the layer. For a firm whose revenue is the embedded team, that is not a feature they can add. This is the claim we consider load-bearing, and the proof of it is delivery cost falling from one engagement to the next rather than a sentence on a website.</p>
+        </div>
+        <div class="keep">
+          <p class="keep-n">02</p>
+          <p class="keep-t">Infrastructure to build on, rather than a solution delivered</p>
+          <p class="keep-d">The buyer of most things in this market gets an outcome. The buyer of this gets a capability, which is slower to feel good and different in what it leaves behind. It is also why a services firm can build its client work on top of this and cannot build on a finished agent product.</p>
+        </div>
+        <div class="keep">
+          <p class="keep-n">03</p>
+          <p class="keep-t">Instrumentation, rather than simulation</p>
+          <p class="keep-d">The vendors building environments to train and test agents in almost all author a synthetic version of common software. That is a reasonable engineering choice and it produces volume. It cannot produce the twelve years of exceptions inside one company's order to cash, because nobody wrote those down. This instruments the original instead, as a by-product of real work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
+    <div class="sk-container">
+      <h2>Bring the shortlist.</h2>
+      <p class="sk-lead">If another vendor is a better fit for what you are trying to do, that is a faster answer for both of us, and we would rather reach it on the first call than the fourth.</p>
+      <div class="sk-cta-row">
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-compare">Request early access</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-compare">Book a walkthrough</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <div class="sk-footer-group">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-footer-word">SynOS</span>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/product">Product</a>
+      <a href="/build-your-own-ai">Build your own AI</a>
+      <a href="/use-cases">Use cases</a>
+      <a href="/why-now">Why now</a>
+      <a href="/compare">Compare</a>
+      <a href="/about">About</a>
+      <a href="/careers">Careers</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://anoopjawahar.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </div>
+  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
+</footer>
+<!-- @endpartial footer -->
+</body>
+</html>

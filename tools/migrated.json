@@ -1,6 +1,6 @@
 {
   "_why": "Which pages the gates actually check. A gate that passes because it is not looking is worse than no gate, so the scope is written down here rather than implied. A page joins this list when it has been converted to public/css/synos.css and the partial markers, and it may never leave.",
-  "_phase": "Phase 1 converted about.html. Phase 3 converted index.html. Phase 4 added the three platform pages and rebuilt product.html. Figures in /figures/ are always in render-gate scope. Phase 5 added build-your-own-ai.html and why-now.html.",
+  "_phase": "Phase 1 converted about.html. Phase 3 converted index.html. Phase 4 added the three platform pages and rebuilt product.html. Figures in /figures/ are always in render-gate scope. Phase 5 added build-your-own-ai.html and why-now.html. Phase 6 added the compare set and careers.html, and rebuilt about.html.",
   "migrated": [
     "/about.html",
     "/index.html",
@@ -9,7 +9,13 @@
     "/platform/learning-loop.html",
     "/product.html",
     "/build-your-own-ai.html",
-    "/why-now.html"
+    "/why-now.html",
+    "/compare.html",
+    "/compare/build-vs-buy.html",
+    "/compare/data-platforms.html",
+    "/compare/search-and-memory.html",
+    "/compare/agent-platforms.html",
+    "/careers.html"
   ],
   "pending": [
     "/use-cases.html",

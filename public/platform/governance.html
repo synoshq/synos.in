@@ -16,7 +16,7 @@
 <script defer src="/js/synos.js"></script>
 <!-- @endpartial head -->
     <title>Governance | SynOS</title>
-    <meta name="description" content="Every call an agent makes into a real system passes one gate: role, tool allowlist, parameter contract, tenant boundary, egress proxy, rate and cost limits, kill switch. Allowed or denied, it writes an audit row.">
+    <meta name="description" content="Every call an agent makes into a real system passes one gate: role, tool allowlist, parameter contract, tenant boundary, egress proxy, cost attribution, kill switch. Allowed or denied, it writes an audit row.">
     <meta property="og:title" content="Governance | SynOS">
     <meta property="og:description" content="One governed door for every caller. Identity, scope, audit, sandbox, egress, kill switch.">
     <meta property="og:url" content="https://synos.in/platform/governance">
@@ -171,18 +171,23 @@
     <div class="sk-container">
       <div class="sk-sechead">
         <p class="sk-eyebrow">The inventory</p>
-        <h2>Seven controls, and every one of them applies to agents as well as people.</h2>
+        <h2>Eight controls, and every one of them applies to agents as well as people.</h2>
         <p class="sk-lead">Most of this exists in your stack already for human users. The gap that stops AI programmes is that none of it was built for a caller that is not a person, has no session, and can make four hundred calls in a minute.</p>
       </div>
       <div class="sk-stack">
         <div class="sk-stack-row">
           <p class="sk-stack-n">Identity<small>who is calling</small></p>
-          <p class="sk-stack-d">Every agent has its own identity and acts on behalf of a named person or a named service. A call with neither does not get made.</p>
+          <p class="sk-stack-d">Five credential surfaces, each granted and revoked on its own, so the same provider connected as a data source and as a tool are two separate grants. A run started by a person carries that person through to every call.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
+          <p class="sk-stack-n">Authority for unattended runs<small>mandates</small></p>
+          <p class="sk-stack-d">A scheduled run has no human in the session, so it needs a durable, expiring, revocable grant naming the subject it acts for, re-checked against that person's current role on every call. Built, and behind a flag we have not turned on.</p>
+          <p class="sk-stack-s sk-s-build"><i></i>in build</p>
+        </div>
+        <div class="sk-stack-row">
           <p class="sk-stack-n">Role and tenant<small>RBAC</small></p>
-          <p class="sk-stack-d">Permissions resolve per role and per project. An agent cannot reach data its caller could not have reached by hand.</p>
+          <p class="sk-stack-d">Roles resolve per instance and per project across all four transports, and a denial is written to the audit log rather than dropped. Passing a person's identity through to the warehouse itself, so a query runs as them, is built and not yet switched on.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
@@ -201,8 +206,8 @@
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
-          <p class="sk-stack-n">Rate and cost limits<small>how much</small></p>
-          <p class="sk-stack-d">Per agent ceilings on call volume and on spend. A loop in a scheduled agent becomes a stopped agent rather than an invoice.</p>
+          <p class="sk-stack-n">Cost attribution<small>what it spent</small></p>
+          <p class="sk-stack-d">Every run is costed and attributable to an agent, a project and a person, down to the tool call. Hard ceilings that stop a looping agent before the invoice arrives are in build.</p>
           <p class="sk-stack-s sk-s-live"><i></i>live</p>
         </div>
         <div class="sk-stack-row">
@@ -230,7 +235,7 @@
             <li>Connectors and data scopes: what any agent may read</li>
             <li>Governed tools and write actions: what may be done, and what needs an approval</li>
             <li>Roles, tenancy, audit retention, sandbox policy</li>
-            <li>Rate and cost ceilings per agent and per project</li>
+            <li>Cost attribution per agent and per project, and the ceilings that go with it</li>
             <li>Promotion thresholds: the score an agent must hold to run with less supervision</li>
           </ul>
           <p class="sk-split-f">Reviewed once as infrastructure, rather than re-argued for every new request that comes in.</p>
@@ -308,7 +313,7 @@
         </div>
         <div class="qa-row">
           <p class="qa-q">Who can an agent act as?</p>
-          <p class="qa-a">Only as an identity that was granted in advance, with a scope no wider than the person or service it acts for. Escalation is not a runtime decision anything can make.</p>
+          <p class="qa-a">A run a person started carries that person, and its reach is bounded by roles and by the tools that were declared in advance. Escalation is not a decision anything makes at runtime. For unattended runs the durable grant that names a subject and re-checks their authority per call is built and not yet enabled, so treat a scheduled agent today as running with the scope its project was given rather than with a named person's.</p>
         </div>
         <div class="qa-row">
           <p class="qa-q">How do we stop it?</p>
@@ -374,6 +379,7 @@
       <a href="/build-your-own-ai">Build your own AI</a>
       <a href="/use-cases">Use cases</a>
       <a href="/why-now">Why now</a>
+      <a href="/compare">Compare</a>
       <a href="/about">About</a>
       <a href="/careers">Careers</a>
       <a href="/blog">Blog</a>
