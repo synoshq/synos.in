@@ -33,6 +33,55 @@ The gate does not pretend to detect these. They are caught by reading.
 8. **Vary structure between sections.** Identical skeletons down a page read as generated, even when
    every sentence is fine on its own.
 
+## Write to the customer, never to an investor
+
+This is the defect three review passes kept finding, and no gate can see it. The VC deck and this
+site argue the same thesis to two different rooms, and sentences migrate from the deck without
+anyone deciding to move them.
+
+9. **Never reuse a deck slide's title as a page heading.** The homepage eyebrow was "Why they call
+   us", which is slide 2's own title. It narrates our sales experience from our side of the table.
+10. **Never defend our own marketing.** "The mechanism that makes the whole thing more than a
+    slogan" answers a criticism the reader has not made and would not care about.
+11. **Never take a jab.** "The precondition nobody mentions early" scores a point against a
+    competitor instead of telling the reader what to do.
+12. **No internal vocabulary.** "Door" means a sales entry point to us and nothing to a buyer.
+    Same for wedge, motion, land-and-expand, ICP.
+
+The test: read the sentence aloud to a buyer. If it would embarrass you, it is written for the
+wrong room.
+
+## Claims must be checked against the capability audit
+
+Source of truth is `synos-gtm/docs/research/product-truth/2026-08-11-capability-audit.md` §7.
+Check **figures too** — they were written separately, reviewed separately, and in the third pass
+three of them contradicted the platform page they are embedded on. A figure is a claim.
+
+Live/in-build/roadmap status must agree between a figure and its host page. Where they disagreed,
+the figure was always the optimistic one.
+
+## Compression leaves stubs
+
+Cutting a paragraph to its first sentence works only when the first sentence is a whole thought.
+The 18k-to-12k pass left eleven fragments across the site ("Reading is safe." and stop) and once
+deleted the first half of a two-part argument, leaving a paragraph that began "The second answer
+is..." with no first answer anywhere. After any compression pass, read the survivors.
+
+## Two things the checkers cannot see
+
+13. **Gate scope is not coverage.** `npm run gate` checks style on 17 of 33 pages. Everything
+    outside that set drifts silently: `/use-cases/cloud-finops-agents`, `/early-access` and `/blog`
+    had never been migrated at all, and the five legal pages carried a nav and footer predating the
+    revamp. The worst defects of the second and third passes were all outside the 17.
+14. **Verify against raw source and against the live site.** Two rounds running, the live check
+    found what the local one could not: footers sit below a screenshot's fold, and the text
+    extractor strips `<script>`, which hid a dash in the subject line of the email the early-access
+    form sends. Grep raw source when the question is "where does our copy go", not "what does a
+    visitor read".
+
+Metadata drifts from pages, too. `/compare` advertised "four comparisons" beside a page saying five;
+`/about` advertised "nine captures" beside a gallery of six. Counts in a description are claims.
+
 ## Where "moat" went
 
 Banned. Say the thing instead, choosing the form that fits the section:
