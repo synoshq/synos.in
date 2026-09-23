@@ -137,7 +137,6 @@
     <a href="/product">Product</a>
     <a href="/build-your-own-ai">Build your own AI</a>
     <a href="/use-cases">Use cases</a>
-    <a href="/compare">Compare</a>
     <a href="/about">About</a>
   </div>
   <div class="sk-nav-right">
@@ -217,21 +216,17 @@
       <div class="modes">
         <div class="rmode">
           <p class="rmode-n">Recorded replay</p>
-          <p class="rmode-c">mock_all</p>
           <p class="rmode-d">Replays a recorded run with canned responses.</p>
         </div>
         <div class="rmode">
           <p class="rmode-n">Real reads</p>
-          <p class="rmode-c">real_reads</p>
           <p class="rmode-d">Real tools against real data with writes refused outright.</p>
         </div>
         <div class="rmode rmode--key">
           <p class="rmode-n">Real reads, captured writes</p>
-          <p class="rmode-c">live_reads_captured_writes</p>
           <p class="rmode-d">The same real execution, except each intended write persists to the result instead of happening.</p>
         </div>
       </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Write refusal during a training run is a single enforced seam rather than a convention, including a floor that refuses any write on execution paths where the capture intercept does not exist.</p>
     </div>
   </section>
 
@@ -247,90 +242,28 @@
         <div class="sc">
           <p class="sc-n">Tool selection</p>
           <p class="sc-d">Did it reach for the right tools for this task, or improvise with whatever was nearest.</p>
-          <p class="sc-w">0.25</p>
         </div>
         <div class="sc">
           <p class="sc-n">Write actions</p>
           <p class="sc-d">The captured write, compared against what should have been written. The score most people never think to build.</p>
-          <p class="sc-w">0.20</p>
         </div>
         <div class="sc">
           <p class="sc-n">Parameter accuracy</p>
           <p class="sc-d">Right tool, right arguments. An almost correct amount or the wrong account is a failure here rather than a rounding error.</p>
-          <p class="sc-w">0.20</p>
         </div>
         <div class="sc">
           <p class="sc-n">Output quality</p>
           <p class="sc-d">A model judging the answer, pinned to a continuous scale when the run is gating a promotion, because a binary judge at a decision boundary is noise.</p>
-          <p class="sc-w">0.20</p>
         </div>
         <div class="sc">
           <p class="sc-n">Tool order</p>
           <p class="sc-d">Sequence matters when one step authorises the next. Checking eligibility after issuing the credit is a different act.</p>
-          <p class="sc-w">0.15</p>
         </div>
       </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-6)">Around the scores sit two things worth naming.</p>
     </div>
   </section>
 
   <!-- ══ QUESTIONS ═════════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="questions">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">The two questions anyone with an ML background asks</p>
-        <h2>Both are fair, and the honest answers are better than confident ones.</h2>
-      </div>
-      <div class="qa">
-        <div class="qa-row">
-          <p class="qa-q">How many episodes will you actually have?</p>
-          <div>
-            <p class="qa-a">Far fewer than a lab, and we do not need lab volume, because the unit here is not a rollout.</p>
-            <p class="qa-a">What nobody doing real enterprise work will ever have is the volume for training from scratch, because every episode is a real business action with a real cost.</p>
-          </div>
-        </div>
-        <div class="qa-row">
-          <p class="qa-q">What supplies the reward?</p>
-          <div>
-            <p class="qa-a">Today it is human.</p>
-            <p class="qa-a">Tying a decision to what the business measured afterwards is the next layer, and we will say plainly that it is a causal inference problem rather than a plumbing one: delayed, confounded, and cleanly identifiable only where a business will tolerate a holdout.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ WHAT WE DO NOT CLAIM ══════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="not-claiming">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">Stated plainly</p>
-        <h2>Three things this is not, so nobody discovers them in month four.</h2>
-      </div>
-      <div class="nots">
-        <div class="not">
-          <b>Not a simulated environment</b>
-          <span>There is no synthetic twin of your business here and no generated task set. The environment is your systems, which is the strength and also the reason volume stays modest.</span>
-        </div>
-        <div class="not">
-          <b>Not a claim that corrections are labels</b>
-          <span>A correction today is reviewed, promoted, and reaches every agent as a rule. Capturing corrections as trajectory level training pairs is work we have not finished.</span>
-        </div>
-        <div class="not">
-          <b>Not a finished training stack</b>
-          <span>Capture and rehearsal are live. Evaluation suites are in build. Fine-tuning and distillation on your own infrastructure are roadmap, and they are the last thing to arrive rather than the first.</span>
-        </div>
-      </div>
-      <div class="sk-cta-row" style="justify-content:flex-start;margin-top:var(--sk-space-8)">
-        <span class="sk-chip sk-chip--live">capture and rehearsal, live</span>
-        <span class="sk-chip sk-chip--build">evaluation suites, in build</span>
-        <span class="sk-chip sk-chip--roadmap">training on your infrastructure, roadmap</span>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
   <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
     <div class="sk-container">
       <h2>Start with the phase that pays for itself.</h2>
@@ -358,7 +291,6 @@
       <a href="/product">Product</a>
       <a href="/build-your-own-ai">Build your own AI</a>
       <a href="/use-cases">Use cases</a>
-      <a href="/compare">Compare</a>
       <a href="/about">About</a>
       <a href="/blog">Blog</a>
     </div>
