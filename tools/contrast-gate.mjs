@@ -24,6 +24,8 @@ const T = {
   redInk: '#991b1b',
   border2: '#cbd5e1',
   white: '#ffffff',
+  indigo3: '#818cf8',
+  onDark: '#ffffff', onDark2: '#cbd5e1', onDark3: '#94a3b8',
 }
 
 // [label, fg, bg, minimum]
@@ -57,6 +59,20 @@ const PAIRS = [
   ['rung label indigo on alt',    T.indigo,     T.surface2,  4.5],
   ['hard-part note amber on alt', T.amberInk,   T.bg,        4.5],
   ['queue conflict red on surf',  T.redInk,     T.surface,   4.5],
+  // Added 2026-09-23 with the homepage rewrite. The tally and the two-jobs block introduced four
+  // pairs the list did not cover, and the first draft of the tally used --sk-dim on the page
+  // background, which measures 2.34.
+  ['tally outcome ink-3 on page',  T.ink3,       T.bg,        4.5],
+  ['tally figure indigo on page',  T.indigoInk,  T.bg,        4.5],
+  ['job body ink-3 on alt',        T.ink3,       T.surface2,  4.5],
+  ['jobs note muted on alt',       T.muted,      T.surface2,  4.5],
+  ['figure label muted on surf',   T.muted,      T.surface,   4.5],
+  // The homepage peak, the only dark ground on the site. Added 2026-09-23 with that section, so
+  // the dark palette is held to the same bar as the light one rather than eyeballed.
+  ['peak heading on ink',          T.onDark,     T.ink,       4.5],
+  ['peak lead on ink',             T.onDark2,    T.ink,       4.5],
+  ['peak caption on ink',          T.onDark3,    T.ink,       4.5],
+  ['peak eyebrow indigo-3 on ink', T.indigo3,    T.ink,       4.5],
 ]
 
 let failed = 0

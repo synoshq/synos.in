@@ -15,15 +15,15 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
 <script defer src="/js/synos.js"></script>
 <!-- @endpartial head -->
-    <title>SynOS | The environment your company builds and trains its own AI in</title>
-    <meta name="description" content="SynOS is the Human-Agent Operating Layer. It installs inside your own infrastructure and profiles your systems where they sit. Engineering sets the rails once; the people who hold the knowledge build and run the agents doing critical work.">
-    <meta property="og:title" content="SynOS | The environment your company builds and trains its own AI in">
-    <meta property="og:description" content="The Human-Agent Operating Layer. Self-hosted, model-agnostic, installed inside your own infrastructure. No migration.">
+    <title>SynOS | The environment you build your own AI in, on the systems you already run</title>
+    <meta name="description" content="SynOS installs inside your own cloud and profiles the systems you already run, so a vertical software company can build AI on its customers' work and its own experts' judgment. No migration, no data leaving the building.">
+    <meta property="og:title" content="SynOS | The environment you build your own AI in">
+    <meta property="og:description" content="Built for vertical software companies whose own product now has to become AI. Self-hosted, model agnostic, installed inside your own cloud. No migration.">
     <meta property="og:url" content="https://www.synos.in">
     <meta property="og:image" content="https://www.synos.in/img/og/home.png">
     <meta name="twitter:image" content="https://www.synos.in/img/og/home.png">
-    <meta name="twitter:title" content="SynOS | The environment your company builds and trains its own AI in">
-    <meta name="twitter:description" content="The Human-Agent Operating Layer. Self-hosted, model-agnostic, no migration.">
+    <meta name="twitter:title" content="SynOS | The environment you build your own AI in">
+    <meta name="twitter:description" content="For vertical software companies whose own product has to become AI. Self-hosted, no migration.">
     <link rel="canonical" href="https://www.synos.in/">
     <style>
     /* ─────────────────────────────────────────────────────────────────────────
@@ -99,16 +99,124 @@
       .pc:nth-child(odd), .pc:nth-child(even) { padding-left: 0; padding-right: 0; border-left: none; }
     }
 
-    /* ── two doors ───────────────────────────────────────────────────────── */
-    .doors { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-6); }
-    .door { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
-      background: var(--sk-surface); padding: var(--sk-space-6);
-      box-shadow: var(--sk-shadow-card); }
-    .door-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4); max-width: none; }
-    .door h3 { font-size: 18px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-3); }
-    .door p { font-size: 14px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
-    @media (max-width: 820px) { .doors { grid-template-columns: 1fr; } }
+    /* ── THE PEAK · section 4 ────────────────────────────────────────────── */
+    /*
+     * Added 2026-09-23. Five consecutive sections opened eyebrow / h2 / lead / figure, with four
+     * bordered figure cards stacked at one width. Each section was fine and the run of them read as
+     * generated, which is rule 8 of the copy standard at the layout level rather than the sentence
+     * level.
+     *
+     * This is the only dark and only full-bleed section on the page, and it is the argument the
+     * company rests on, so the two coincide on purpose. The figure keeps its white ground and now
+     * reads as a lit object on a dark field rather than as the fourth card in a stack.
+     *
+     * Full bleed is done by breaking out of .sk-container rather than by moving the section out of
+     * it, so the inner measure and the page gutter stay identical to every other section.
+     */
+    .peak { background: var(--sk-ink); color: var(--sk-on-dark);
+      padding-top: calc(var(--sk-section-y) * 1.25); padding-bottom: calc(var(--sk-section-y) * 1.25); }
+    /* Heading and lead side by side, 7/5, with the lead dropped to the heading's last baseline.
+     * Stacking them left half the section empty, and a peak that is half empty reads as unfinished
+     * rather than as generous. */
+    .peak-head { display: grid; grid-template-columns: 7fr 5fr; gap: var(--sk-space-8);
+      align-items: end; margin-bottom: var(--sk-space-8); }
+    @media (max-width: 900px) { .peak-head { grid-template-columns: 1fr; gap: var(--sk-space-6); } }
+    .peak-eyebrow { font-family: var(--sk-font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--sk-indigo-3);
+      margin-bottom: var(--sk-space-5); }
+    /* The largest type on the page. Scale contrast against the lead is about 3.4:1, which is what
+     * makes this read as the peak rather than as another section heading. */
+    .peak-h { font-size: clamp(32px, 4.8vw, 58px); line-height: 1.06; letter-spacing: -0.03em;
+      color: var(--sk-on-dark); max-width: 15ch; }
+    .peak-lead { font-size: 15.5px; line-height: 1.75; color: var(--sk-on-dark-2); max-width: none;
+      padding-bottom: var(--sk-space-3); }
+    .peak-fig { margin-top: var(--sk-space-8); }
+    .peak-fig iframe { border-color: transparent; border-radius: 6px; }
+    .peak-fig figcaption { color: var(--sk-on-dark-3); }
+    .peak-more { display: inline-block; margin-top: var(--sk-space-7); font-size: 14px;
+      font-weight: 600; color: var(--sk-indigo-3); text-decoration: none;
+      border-bottom: 1px solid transparent; }
+    .peak-more:hover { border-bottom-color: var(--sk-indigo-3); }
+
+    /* ── hero: the buyer line ────────────────────────────────────────────── */
+    /* Sits under the sub rather than in the eyebrow. The eyebrow names the category of reader; this
+     * line is the qualifying test, and a reader who fails it should be able to leave here. */
+    .hero-who { margin-top: var(--sk-space-5); font-size: 14.5px; line-height: 1.6;
+      color: var(--sk-ink-3); max-width: 62ch; padding-left: var(--sk-space-5);
+      border-left: 2px solid var(--sk-indigo-br); }
+
+    /* ── the three quotes now follow a figure, so they need their own lead ── */
+    .blockers-lede { margin: var(--sk-space-8) 0 var(--sk-space-6); font-size: 15px;
+      color: var(--sk-ink-3); max-width: var(--sk-measure); }
+
+    /* ── two jobs, one install ───────────────────────────────────────────── */
+    /* Deliberately not a card pair. Two columns divided by a single rule, because the argument is
+     * that these are one thing at two moments rather than two products side by side. */
+    .jobs { margin-top: var(--sk-space-8); display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--sk-space-7); border-top: 1px solid var(--sk-ink); padding-top: var(--sk-space-6); }
+    .job + .job { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-7); }
+    .job-w { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
+      max-width: none; }
+    .job-t { font-size: 16.5px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.35;
+      color: var(--sk-ink); margin-bottom: var(--sk-space-3); max-width: none; }
+    .job-b { font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
+    .jobs-note { margin-top: var(--sk-space-6); font-size: 13.5px; line-height: 1.65;
+      color: var(--sk-muted); max-width: var(--sk-measure); }
+    @media (max-width: 820px) {
+      .jobs { grid-template-columns: 1fr; gap: var(--sk-space-6); }
+      .job + .job { border-left: none; padding-left: 0; border-top: 1px solid var(--sk-border);
+        padding-top: var(--sk-space-6); }
+    }
+
+    /* ── the tally ───────────────────────────────────────────────────────── */
+    /*
+     * Was two large numbers in two columns, which repeated the two-column jobs block in the section
+     * directly above and left the reader to do the arithmetic. Drawn to scale instead: both bars
+     * sit on one baseline at true relative length, so sixteen to one is seen rather than computed.
+     *
+     * 5.8% is 2/34.7, the real ratio of two weeks to eight months. Do not round it up to make the
+     * short bar easier to see. If it becomes hard to see, that is the finding.
+     */
+    .tally { margin-top: var(--sk-space-4); }
+    .tl + .tl { margin-top: var(--sk-space-7); }
+    .tl-w { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-ink-3); margin-bottom: var(--sk-space-4);
+      max-width: none; }
+    .tl-track { height: 22px; border-left: 1px solid var(--sk-ink); display: flex; align-items: center; }
+    .tl-bar { display: block; height: 14px; background: var(--sk-border-2); border-radius: 1px;
+      min-width: 3px; }
+    .tl-n { margin-top: var(--sk-space-4); font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(26px, 3.4vw, 38px); line-height: 1; letter-spacing: -0.025em;
+      color: var(--sk-ink-3); max-width: none; }
+    .tl-n em { font-family: var(--sk-font-body); font-style: normal; font-size: 13.5px;
+      font-weight: 400; letter-spacing: 0; color: var(--sk-ink-3); margin-left: var(--sk-space-4); }
+    .tl.is-us .tl-w  { color: var(--sk-indigo); }
+    .tl.is-us .tl-bar { background: var(--sk-indigo-2); height: 18px; }
+    .tl.is-us .tl-n  { color: var(--sk-indigo-ink); font-size: clamp(32px, 4.6vw, 52px); }
+    .tl.is-us .tl-n em { color: var(--sk-ink-2); }
+    @media (max-width: 560px) { .tl-n em { display: block; margin-left: 0; margin-top: var(--sk-space-3); } }
+
+    /* ── rail split · section 5 ──────────────────────────────────────────── */
+    /* Heading beside the figure rather than above it. 5/7, never 6/6: equal halves would say the
+     * two are of equal weight, and here the figure is carrying the argument. */
+    .rail { display: grid; grid-template-columns: 5fr 7fr; gap: var(--sk-space-8); align-items: start; }
+    .rail-head { position: sticky; top: 96px; }
+    .rail-head h2 { max-width: 14ch; }
+    .rail-head .sk-sub { margin-top: var(--sk-space-5); }
+    .rail-fig { margin-top: 0; }
+    @media (max-width: 960px) {
+      .rail { grid-template-columns: 1fr; gap: var(--sk-space-6); }
+      .rail-head { position: static; }
+      .rail-head h2 { max-width: 22ch; }
+    }
+
+    /* ── grid-breaking figure · section 6 ────────────────────────────────── */
+    /* Runs wider than the measure of the text above it, so the stack of figure cards is broken once
+     * by width as well as once by ground. Capped so it never touches the viewport edge. */
+    .bleed-fig { width: min(calc(100vw - 48px), 1320px); margin-left: 50%;
+      transform: translateX(-50%); }
+    @media (max-width: 1160px) { .bleed-fig { width: auto; margin-left: 0; transform: none; } }
     </style>
 </head>
 <body>
@@ -144,9 +252,10 @@
 
   <!-- ══ 1 · HERO ══════════════════════════════════════════════════════════ -->
   <section class="sk-container hero" data-section="hero">
-    <p class="sk-eyebrow">The Human-Agent Operating Layer</p>
-    <h1>The environment your company builds and trains its own AI in.</h1>
-    <p class="hero-sub">It installs inside your own infrastructure and profiles your systems where they already sit. Engineering sets the rails once; the people who hold the knowledge build the agents.</p>
+    <p class="sk-eyebrow">For vertical software companies</p>
+    <h1>The environment you build your own AI in, on the systems you already run.</h1>
+    <p class="hero-sub">It installs inside your own cloud. The work your customers do inside your product, and the judgment of the people who have run your domain for years, become AI that belongs to you and that nobody competing with you can obtain.</p>
+    <p class="hero-who">Built for software platforms whose own product now has to become AI, on an estate that is too old and too regulated to move.</p>
     <div class="hero-cta">
       <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-hero">Request early access</a>
       <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Book a walkthrough</a>
@@ -167,11 +276,11 @@
       </div>
       <div>
         <b>Your experts build it</b>
-        <span>The people who hold the knowledge author the rules, in plain English, without a ticket.</span>
+        <span>The people who know your customers&rsquo; exceptions author the rules in plain English, without an engineering ticket.</span>
       </div>
       <div>
-        <b>You keep what it learns</b>
-        <span>Corrections, traces and evals accumulate on your infrastructure, and stay yours.</span>
+        <b>What it learns stays</b>
+        <span>Corrections, traces and evaluations accumulate on your own infrastructure, where nobody outside it can reach them.</span>
       </div>
     </div>
   </section>
@@ -180,52 +289,79 @@
   <section class="sk-section sk-section--alt" data-section="blockers">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">Where AI programmes stall</p>
-        <h2>Three things stop the programme, and it is the same three every time.</h2>
+        <p class="sk-eyebrow">The last three turnovers</p>
+        <h2>The companies that took three categories did not arrive with a better model.</h2>
+        <p class="sk-lead">Coding, legal work and customer support each went to a company founded after 2021. Every one of them built directly on the work people were already doing, using models anybody could reach, while the established platform was still moving its data somewhere new.</p>
       </div>
+      <figure class="sk-figframe">
+        <iframe data-fig src="/figures/category-clock" title="Figure 12: what decided three categories" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 12 &middot; three categories, and what decided them</figcaption>
+      </figure>
+      <p class="blockers-lede">What we hear from platforms starting that work now.</p>
       <div class="blockers">
         <div class="blk">
           <p class="blk-q">&ldquo;Modernise your data first.&rdquo;</p>
-          <p class="blk-b">A data programme is quoted before a single agent does real work, and adoption stops there for months.</p>
+          <p class="blk-b">A data programme gets quoted before one agent touches real work. On a platform that has been running for a decade or more, that programme is a rebuild of the company.</p>
         </div>
         <div class="blk">
           <p class="blk-q">&ldquo;We were told to build it. We cannot hire for it.&rdquo;</p>
-          <p class="blk-b">Governance, identity, sandboxes and safe deployment inside their own environment. An infrastructure bench with no way to staff it.</p>
+          <p class="blk-b">Governance, identity, rehearsal and safe deployment inside their own estate. An infrastructure bench with nobody on the market to staff it.</p>
         </div>
         <div class="blk">
-          <p class="blk-q">&ldquo;It just makes it unfeasible.&rdquo;</p>
-          <p class="blk-b">Pilots that look fine at demo scale die on the economics of a frontier model on every call.</p>
+          <p class="blk-q">&ldquo;It worked until we priced it.&rdquo;</p>
+          <p class="blk-b">A pilot that looks fine at demo scale dies on what a frontier model costs on every customer call.</p>
         </div>
       </div>
       <a href="/compare/wait-and-see" class="sk-more">Or wait for the models, and what that costs &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ 4 · NO MIGRATION · FIG 02 ═════════════════════════════════════════ -->
-  <section class="sk-section" data-section="no-migration">
+  <!-- ══ 4 · WHAT IS ACTUALLY YOURS · FIG 11 ═══════════════════════════════ -->
+  <!-- The centre of the page. Everything above says the clock is running; everything below is
+       mechanism. This section is the only one that says what the reader already owns, and it is
+       the reason any of the mechanism is worth installing. -->
+  <section class="sk-section peak" data-section="what-is-yours">
     <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">The precondition we do not have</p>
-        <h2>Everyone else needs the data moved first.</h2>
-        <p class="sk-lead">SynOS comes to the data instead. Your systems are profiled where they sit, and the rows are queried live at answer time.</p>
+      <p class="peak-eyebrow">What is actually yours</p>
+      <div class="peak-head">
+        <h2 class="peak-h">The inputs that decide the outcome are not for sale.</h2>
+        <p class="peak-lead">Compute and capable open models sit on a shelf now. The company competing with you rents the same accelerators and downloads the same open weights, on the same afternoon, at the same price. Neither of you can buy the other one&rsquo;s systems, and neither of you can buy the judgment of people who have run that work for a decade or more.</p>
       </div>
-      <figure class="sk-figframe">
-        <iframe data-fig src="/figures/what-moves" title="Figure 2: what actually moves, under a migration and under SynOS" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 02 &middot; the same table under both approaches</figcaption>
+      <figure class="sk-figframe peak-fig">
+        <iframe data-fig src="/figures/rent-and-own" title="Figure 11: what you can rent, and what you cannot" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 11 &middot; the shelf, and what was never on it</figcaption>
       </figure>
-      <a href="/platform/company-brain" class="sk-more">How profiling works &rarr;</a>
+      <a href="/compare" class="peak-more">How this compares with the tools you already pay for &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ══ 4 · NO MIGRATION · FIG 02 ═════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="no-migration">
+    <div class="sk-container">
+      <div class="rail">
+        <div class="rail-head">
+          <p class="sk-eyebrow">The precondition we do not have</p>
+          <h2>Everyone else needs the data moved first.</h2>
+          <p class="sk-sub">SynOS comes to the data instead. Your systems are profiled where they sit, and the rows are queried live at answer time.</p>
+          <a href="/platform/company-brain" class="sk-more">How profiling works &rarr;</a>
+        </div>
+        <figure class="sk-figframe rail-fig">
+          <iframe data-fig src="/figures/what-moves" title="Figure 2: what actually moves, under a migration and under SynOS" loading="lazy" scrolling="no"></iframe>
+          <figcaption>Fig. 02 &middot; the same table under both approaches</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
   <!-- ══ 5 · WHAT INSTALLS ═════════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="the-layer">
+  <section class="sk-section" data-section="the-layer">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">What installs</p>
+        <p class="sk-eyebrow">Under the tools you already use</p>
         <h2>One layer, wired in once, under the AI tools your teams already use.</h2>
         <p class="sk-lead">Claude Code, Codex, Cursor, chat or your own agents all reach the same brain and the same governed tools, so a change of tool is never a change of platform.</p>
       </div>
-      <figure class="sk-figframe">
+      <figure class="sk-figframe bleed-fig">
         <iframe data-fig src="/figures/cross-section" title="Figure 10: what installs, in cross-section" loading="lazy" scrolling="no"></iframe>
         <figcaption>Fig. 10 &middot; your tools above, your systems below, the layer between</figcaption>
       </figure>
@@ -234,40 +370,63 @@
   </section>
 
   <!-- ══ 6 · WHAT COMPOUNDS · FIG 01 ═══════════════════════════════════════ -->
-  <section class="sk-section" data-section="learning-loop">
+  <section class="sk-section sk-section--alt" data-section="learning-loop">
     <div class="sk-container">
       <div class="sk-sechead">
         <p class="sk-eyebrow">What accumulates</p>
         <h2>A correction is made once, and then it is permanent.</h2>
-        <p class="sk-lead">Reviewed once, it becomes a rule every agent inherits, context in the brain, a case in your evals, and material a model of your own can learn from later.</p>
+        <p class="sk-lead">Reviewed once, it becomes a rule every agent inherits, context in the brain, a case in your evaluation set, and the material a model of your own can be trained on later.</p>
       </div>
       <figure class="sk-figframe">
         <iframe data-fig src="/figures/one-correction" title="Figure 1: what one correction becomes" loading="lazy" scrolling="no"></iframe>
         <figcaption>Fig. 01 &middot; one correction, four destinations</figcaption>
       </figure>
+
+      <!-- The category words live here, seven sections down, rather than in the hero. A buyer who
+           has read this far has the context to hear them; one who has just landed does not. -->
+      <div class="jobs">
+        <div class="job">
+          <p class="job-w">Running now</p>
+          <p class="job-t">Curating your systems into context an agent can act on</p>
+          <p class="job-b">Profiling, entity resolution and cross system links, on live sources, with the rows staying where they are.</p>
+        </div>
+        <div class="job">
+          <p class="job-w">The same install, extended</p>
+          <p class="job-t">Evaluating and training models of your own inside it</p>
+          <p class="job-b">Agents built on it rehearse against your real systems with their writes intercepted, and what each one did is scored against your own outcomes rather than against a public benchmark.</p>
+        </div>
+      </div>
+      <p class="jobs-note">Nothing new gets installed between the two, and that is the only reason the second one ever gets approved. Treated as separate programmes, the capture and the governance are bought twice and the second purchase does not survive a budget review.</p>
       <a href="/build-your-own-ai" class="sk-more">What training your own AI actually involves &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ 7 · TWO DOORS ═════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="two-doors">
+  <!-- ══ 8 · ONE ENGAGEMENT, MEASURED ══════════════════════════════════════ -->
+  <!-- Replaced the two-entry-point section on 2026-09-23. That section gave an internal operations
+       buyer equal billing with the one this page is written for, and "door" was internal vocabulary
+       sitting in outward copy. The page had no proof anywhere, which mattered more than the split.
+       The customer is unnamed pending their sign-off; the durations are engagement facts, not a
+       claim about value delivered. -->
+  <section class="sk-section" data-section="proof">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">Two ways in</p>
-        <h2>Same platform, same rails, same install.</h2>
+        <p class="sk-eyebrow">One engagement, measured</p>
+        <h2>Live in two weeks, on the systems exactly as they stood.</h2>
+        <p class="sk-lead">An established software platform with hundreds of customers on it. Two earlier attempts had each opened by proposing to move the estate first, which on a codebase of that age is a rebuild of the company before any agent does useful work. We started from the systems as they were, and the first workflow was running two weeks later.</p>
       </div>
-      <div class="doors">
-        <div class="door">
-          <p class="door-h">Inward &middot; your operations</p>
-          <h3>Your experts build the agents</h3>
-          <p>Internal work is blocked on an engineering queue. The people who know the exceptions author it themselves, inside rails set once.</p>
+      <div class="tally">
+        <div class="tl">
+          <p class="tl-w">Two earlier attempts</p>
+          <div class="tl-track"><span class="tl-bar" style="width:100%"></span></div>
+          <p class="tl-n">8 months <em>no workflow in production</em></p>
         </div>
-        <div class="door">
-          <p class="door-h">Outward &middot; your product</p>
-          <h3>The SaaS you ship becomes agent-native</h3>
-          <p>Agents inside your product acting on each customer's own data, with an isolated brain per tenant, in your own tenancy.</p>
+        <div class="tl is-us">
+          <p class="tl-w">Then with us</p>
+          <div class="tl-track"><span class="tl-bar" style="width:5.8%"></span></div>
+          <p class="tl-n">2 weeks <em>running on their own systems</em></p>
         </div>
       </div>
+      <p class="jobs-note">We do not name customers on this site. We will introduce you to them on a call.</p>
       <a href="/use-cases" class="sk-more">What teams build on it &rarr;</a>
     </div>
   </section>
@@ -276,7 +435,7 @@
   <section class="sk-section sk-cta" data-section="bottom-cta">
     <div class="sk-container">
       <h2>See it on your own systems.</h2>
-      <p class="sk-lead">A walkthrough on your actual workflows, or early access if you would rather read first.</p>
+      <p class="sk-lead">A walkthrough on your actual workflows, whether that is the AI inside your product or the work your own teams do. Early access if you would rather read first.</p>
       <div class="sk-cta-row">
         <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Book a walkthrough</a>

@@ -45,6 +45,16 @@
   --sk-muted: #64748b;
   --sk-dim: #94a3b8;
 
+  /*
+   * On-dark text. Added 2026-09-23 for the homepage peak section, which is the only dark ground on
+   * the site. Measured against --sk-ink (#0f172a) by tools/contrast-gate.mjs: 17.28, 11.60 and 6.68.
+   * These exist so a page never writes a literal colour to paint on dark; --sk-surface and the grey
+   * scale read as the wrong temperature there and two of them fail AA.
+   */
+  --sk-on-dark: #ffffff;
+  --sk-on-dark-2: #cbd5e1;
+  --sk-on-dark-3: #94a3b8;
+
   /* ── Brand hues ───────────────────────────────────────────────────────── */
   --sk-indigo: #4338ca;
   --sk-indigo-2: #6366f1;

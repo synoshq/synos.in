@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>What you can rent, and what you cannot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 11 · "What you can rent, and what you cannot"
+ *
+ * The centre of the homepage argument, so it gets the boldest form on the site. Two vessels of
+ * deliberately unequal weight: a wide open shelf whose right edge is not drawn, because a shelf is
+ * a place things are taken from, and a narrow closed block with a heavy rule on every side.
+ *
+ * The asymmetry is the argument and must not be balanced away. The shelf is the larger object and
+ * the lesser one. If a future pass equalises the two columns the figure stops saying anything.
+ *
+ * Form deliberately differs from every other figure in the set: FIG 01 fans outward from a point,
+ * FIG 02 is a two-band ledger, FIG 10 is a stacked cross-section. This one is two containers side
+ * by side and nothing crosses between them, which is itself the point.
+ */
+
+body { padding: 44px 32px; background: transparent; }
+@media (max-width: 640px) { body { padding: 28px 18px; } }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-7); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 64ch !important; }
+
+/* ── the two vessels ────────────────────────────────────────────────────── */
+/* 1.42 / 1 rather than anything near equal. The shelf must read as the bigger and slighter thing. */
+.pair { display: grid; grid-template-columns: 1.42fr 1fr; gap: var(--sk-space-8); align-items: start; }
+@media (max-width: 880px) { .pair { grid-template-columns: 1fr; gap: var(--sk-space-7); } }
+
+.vtag { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: var(--sk-space-4); display: flex;
+  align-items: baseline; gap: var(--sk-space-4); }
+.vtag i { font-style: normal; font-size: 21px; letter-spacing: -0.02em; text-transform: none;
+  font-family: var(--sk-font-display); font-weight: 400; }
+
+/* THE SHELF · open, light, right edge deliberately undrawn */
+.shelf .vtag    { color: var(--sk-muted); }
+.shelf .vtag i  { color: var(--sk-ink-2); }
+.shelf-body { border-left: 1px solid var(--sk-border-2); }
+.board { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sk-space-5);
+  padding: var(--sk-space-5) var(--sk-space-6) var(--sk-space-5) var(--sk-space-5);
+  border-bottom: 2px solid var(--sk-border-2); }
+.board-n { font-size: 15.5px; font-weight: 500; letter-spacing: -0.01em; color: var(--sk-ink-2); }
+.board-n small { display: block; margin-top: 3px; font-size: 12.5px; font-weight: 400;
+  line-height: 1.5; color: var(--sk-muted); letter-spacing: 0; }
+.board-p { white-space: nowrap; font-family: var(--sk-font-mono); font-size: 10.5px;
+  letter-spacing: 0.08em; color: var(--sk-muted); }
+.shelf-foot { padding: var(--sk-space-4) var(--sk-space-5) 0; font-size: 12.5px;
+  line-height: 1.6; color: var(--sk-muted); }
+
+/* THE HELD SIDE · narrow, closed on every side, heavier rule, tinted ground */
+.held .vtag   { color: var(--sk-indigo); }
+.held .vtag i { color: var(--sk-indigo-ink); }
+.held-body { border: 1.5px solid var(--sk-indigo-br); border-radius: var(--sk-radius-sm);
+  background: var(--sk-indigo-bg); overflow: hidden; }
+.held-item { padding: var(--sk-space-5) var(--sk-space-5); }
+.held-item + .held-item { border-top: 1px solid var(--sk-indigo-br); }
+.held-n { font-size: 15px; font-weight: 600; letter-spacing: -0.012em; line-height: 1.35;
+  color: var(--sk-indigo-ink); }
+.held-n small { display: block; margin-top: var(--sk-space-3); font-size: 12.5px; font-weight: 400;
+  line-height: 1.55; color: var(--sk-ink-3); letter-spacing: 0; }
+.held-seal { padding: var(--sk-space-4) var(--sk-space-5); background: var(--sk-indigo-tint);
+  border-top: 1.5px solid var(--sk-indigo-br); font-family: var(--sk-font-mono);
+  font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sk-indigo-ink);
+  display: flex; align-items: center; gap: var(--sk-space-3); }
+.held-seal svg { flex: none; }
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-5);
+  border-top: 1px solid var(--sk-ink); font-size: 14px; line-height: 1.6; color: var(--sk-ink-2); }
+.fig-foot b { font-weight: 600; color: var(--sk-ink); }
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <div class="fig-head">
+    <span class="fig-num">FIG. 11</span>
+    <p class="fig-title">What you can rent, and what you cannot</p>
+    <p class="fig-lede">Compute got cheap and capable open models became downloadable inside the same eighteen months. Every company in your category can now reach both on identical terms, and on the same afternoon. Two inputs did not follow them onto the shelf.</p>
+  </div>
+
+  <div class="pair">
+
+    <!-- ── the shelf ──────────────────────────────────────────────────── -->
+    <div class="shelf">
+      <p class="vtag"><i>On the shelf</i> available to anyone</p>
+      <div class="shelf-body">
+        <div class="board">
+          <p class="board-n">Compute
+            <small>Eight accelerators, by the hour, from four vendors.</small>
+          </p>
+          <span class="board-p">rented</span>
+        </div>
+        <div class="board">
+          <p class="board-n">Open weight models
+            <small>Your competitor downloads the same checkpoint you do.</small>
+          </p>
+          <span class="board-p">downloaded</span>
+        </div>
+        <div class="board">
+          <p class="board-n">Frontier model access
+            <small>One key, one afternoon, published pricing.</small>
+          </p>
+          <span class="board-p">metered</span>
+        </div>
+      </div>
+      <p class="shelf-foot">Each of these gets better and cheaper every quarter without you doing anything, which is exactly why none of them separates you from the company competing with you.</p>
+    </div>
+
+    <!-- ── the held side ──────────────────────────────────────────────── -->
+    <div class="held">
+      <p class="vtag"><i>Held</i> not purchasable</p>
+      <div class="held-body">
+        <div class="held-item">
+          <p class="held-n">The systems your customers work inside
+            <small>Live, joined, and different this morning from last night. A replica built from outside is a photograph of it.</small>
+          </p>
+        </div>
+        <div class="held-item">
+          <p class="held-n">How your domain actually behaves
+            <small>Years of exceptions that were never written down anywhere, because everyone who needed them already knew.</small>
+          </p>
+        </div>
+        <div class="held-item">
+          <p class="held-n">The judgment of the people who run it
+            <small>Expressed as corrections on real work, by staff already doing that work.</small>
+          </p>
+        </div>
+        <div class="held-seal">
+          <svg width="11" height="13" viewBox="0 0 11 13" fill="none" aria-hidden="true">
+            <path d="M2 5.5V3.6A3.5 3.5 0 0 1 9 3.6v1.9" stroke="var(--sk-indigo)" stroke-width="1.3" stroke-linecap="round"/>
+            <rect x="0.65" y="5.5" width="9.7" height="6.85" rx="1.2" fill="var(--sk-surface)" stroke="var(--sk-indigo)" stroke-width="1.3"/>
+          </svg>
+          stays where it is
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="fig-foot">Every company in your category builds from the same shelf. <b>What is held is the only input that decides whose AI ends up better at the same work.</b></p>
+</figure>
+
+<script defer src="/js/figure.js"></script>
+</body>
+</html>
