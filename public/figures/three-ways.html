@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Three ways to build an environment, and what each one loses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 14 · "Three ways to build an environment, and what each one loses"
+ *
+ * The whole argument of the company in one figure, and the only one on the site that earns its
+ * place by being research rather than assertion. Every approach here is what somebody real is
+ * selling today, and each loss is measured rather than claimed.
+ *
+ * Three columns of equal weight, then one band underneath at a different weight. The three are
+ * equal because they are genuinely the three options; the band is not a fourth column because it
+ * is not another way of building a copy.
+ *
+ * Do not soften the losses. The figure is persuasive because it concedes that all three approaches
+ * work, and names the specific thing each one cannot carry.
+ */
+
+body { padding: 44px 32px; background: transparent; }
+@media (max-width: 640px) { body { padding: 28px 18px; } }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 66ch !important; }
+
+.ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 2px solid var(--sk-ink); }
+.way { padding: var(--sk-space-6) var(--sk-space-6) var(--sk-space-7) 0; }
+.way + .way { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
+.way-w { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-muted); margin-bottom: var(--sk-space-4); }
+.way-n { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3;
+  color: var(--sk-ink); margin-bottom: var(--sk-space-3); }
+.way-b { font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-3); margin-bottom: var(--sk-space-5); }
+.way-l { border-top: 1px solid var(--sk-border); padding-top: var(--sk-space-4); }
+.way-lk { display: block; font-family: var(--sk-font-mono); font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--sk-red-ink);
+  margin-bottom: var(--sk-space-3); }
+.way-lb { font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-2); }
+.way-lb b { font-weight: 600; color: var(--sk-ink); }
+@media (max-width: 860px) {
+  .ways { grid-template-columns: 1fr; }
+  .way { padding-right: 0; }
+  .way + .way { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0;
+    padding-top: var(--sk-space-6); }
+}
+
+/* Not a fourth column. A different weight, because it is not another way of making a copy. */
+.orig { margin-top: var(--sk-space-7); border: 1.5px solid var(--sk-indigo-br);
+  border-radius: var(--sk-radius-sm); background: var(--sk-indigo-bg);
+  padding: var(--sk-space-6); display: grid; grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--sk-space-6); align-items: start; }
+.orig-w { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-indigo); }
+.orig-n { margin-top: var(--sk-space-3); font-size: 17px; font-weight: 600;
+  letter-spacing: -0.015em; line-height: 1.3; color: var(--sk-indigo-ink); }
+.orig-b { font-size: 14px; line-height: 1.7; color: var(--sk-ink-2); }
+.orig-b b { font-weight: 600; color: var(--sk-ink); }
+@media (max-width: 720px) { .orig { grid-template-columns: 1fr; gap: var(--sk-space-4); } }
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-5);
+  border-top: 1px solid var(--sk-ink); font-size: 14px; line-height: 1.6; color: var(--sk-ink-2); }
+.fig-foot b { font-weight: 600; color: var(--sk-ink); }
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <div class="fig-head">
+    <span class="fig-num">FIG. 14</span>
+    <p class="fig-title">Three ways to build an environment, and what each one loses</p>
+    <p class="fig-lede">To train or even properly evaluate an agent on a business, you need somewhere it can act and be scored. There are three ways the market builds that today. All three work, and each one drops something that turns out to be the part that mattered.</p>
+  </div>
+
+  <div class="ways">
+    <div class="way">
+      <p class="way-w">approach one</p>
+      <p class="way-n">Build a replica</p>
+      <p class="way-b">Stand up a copy of the systems, to a specification written from outside, and let the agent loose in the copy.</p>
+      <div class="way-l">
+        <span class="way-lk">what it loses</span>
+        <p class="way-lb">A copy is a photograph taken on a date. <b>The exceptions were never in the schema</b>, because the people who apply them never wrote them down.</p>
+      </div>
+    </div>
+
+    <div class="way">
+      <p class="way-w">approach two</p>
+      <p class="way-n">Generate the data</p>
+      <p class="way-b">Synthesise records that look statistically like the real ones, and avoid touching anything live.</p>
+      <div class="way-l">
+        <span class="way-lk">what it loses</span>
+        <p class="way-lb">Generators hold the totals and <b>lose the joins</b>. Messy entity resolution reads as noise to a generator, and it was the signal.</p>
+      </div>
+    </div>
+
+    <div class="way">
+      <p class="way-w">approach three</p>
+      <p class="way-n">Watch production</p>
+      <p class="way-b">Run the agent alongside the real work, read what it would have done, and never let it act.</p>
+      <div class="way-l">
+        <span class="way-lk">what it loses</span>
+        <p class="way-lb">It holds only <b>until the first action</b>. Block one write and every read after it describes a world that never happened.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="orig">
+    <div>
+      <p class="orig-w">the fourth option</p>
+      <p class="orig-n">Instrument the original</p>
+    </div>
+    <p class="orig-b">Read from the systems as they are this morning, intercept the action the agent would have taken, and score that action against what should have happened. <b>Nothing is copied, because the thing worth learning from is the part a copy cannot hold.</b></p>
+  </div>
+
+  <p class="fig-foot">Every approach above asks a company to arrive with something first: a replica, a set of graders, or an agent with your code already inside it. <b>The companies with the most valuable data to train on have none of the three.</b></p>
+</figure>
+
+<script defer src="/js/figure.js"></script>
+</body>
+</html>
