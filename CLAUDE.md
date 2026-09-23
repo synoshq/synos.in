@@ -48,40 +48,50 @@ before the rewrite would be thrown away.
 Revamp spec: `synos-gtm/docs/superpowers/specs/2026-08-21-website-revamp-build-your-own-ai-design.md`
 Phase plans: `synos-gtm/docs/superpowers/plans/`
 
-## Canonical Slugs
+## Use cases page (`/use-cases`)
 
-Home X-Brain cards link to `/use-cases` anchors (kebab-case, lowercase):
+Rebuilt 2026-09-23. **The `[X] Brain` taxonomy is retired**, along with the inward/outward split and
+the `#sales-brain` / `#marketing-brain` / `#internal-ops-brain` / `#support-cx-brain` anchors, which
+were never built and which nothing links to any more. Do not reintroduce a per-function card grid.
 
-- `/use-cases` — Company Brain (flagship) → top of grid, no `#company-brain` anchor
-- `/use-cases#sales-brain` — Sales Brain
-- `/use-cases#marketing-brain` — Marketing Brain
-- `/use-cases#internal-ops-brain` — Internal Ops Brain
-- `/use-cases#support-cx-brain` — Support / CX Brain
-- `/use-cases#custom-agents` — Custom AI agents & products
-- `/use-cases/cloud-finops-agents` — FinOps Brain → only deep sub-page at launch (`public/use-cases/cloud-finops-agents.html`)
+The page is now the ICP-B page: software companies whose agents are already in production and
+already wrong. Its spine is the qualifying question from
+`synos-gtm/outreach/2026-09-21-icp-criteria-v2-and-the-500.md` — are the failures domain-knowledge
+failures or prompt failures — and the first branch **disqualifies us on purpose**. Keep that. A
+reader who discovers it themselves in month two does not come back.
 
-**PENDING:** the `#sales-brain` / `#marketing-brain` / `#internal-ops-brain` / `#support-cx-brain` / `#custom-agents` anchors are built in a FOLLOW-ON use-cases plan — the home cards already point at them, but the targets aren't in `/use-cases` yet. Wire them up there before launch.
+Structure: hero · the fork (Fig. 13) · a six-row ledger of what teams say on a first call · the
+disclosure band · CTA. Rows, never cards.
 
-## Use-Case Framing Convention
+### Claims discipline on this page
 
-`[X] Brain` is the canonical TEMPLATE-pattern naming on the home page:
+Source of truth is `synos-gtm/docs/research/product-truth/` (both files) and the capability audit
+§7 "Claims to NOT make".
 
-- **Company Brain** (flagship / umbrella — full-width anchor card; every function brain sits inside it)
-- **Sales Brain**, **Marketing Brain**, **FinOps Brain**, **Internal Ops Brain**, **Support / CX Brain**
-- **Custom AI agents & products** (AI builders & agencies — build on the same rails)
+**The discipline is not claiming a thing. It is not announcing that we lack it.** The first build
+of this page carried a live / in-build / roadmap chip on every row and a disclosure band listing
+what was unfinished. That is an internal claims register published to customers, and it reads as a
+list of reasons not to buy. Removed 2026-09-23.
 
-Frame each as **"a template your team builds on SynOS and OWNS,"** tuned over time on your data and corrections — a starting point you extend, not a ceiling. NOT a productized SKU.
+What replaced it is precision. Write the sentence so it is exactly true and no caveat is required:
 
-- Company Brain: the umbrella pattern — one living context graph across every team; function brains are instances inside it. Card links to `/use-cases`.
-- No live customer deployments named anywhere. Anonymized outcome shapes only. No firm savings figures presented as Synos-delivered.
+- Cost: "every run priced, per model and per provider, so you can see where the money actually
+  goes." True, useful, and it delivers the cost argument without a reduction claim. **Never quote a
+  reduction percentage in any form** — accounting is shipped, reduction has no benchmark.
+- A model of their own: "it accumulates on your own infrastructure in the shape a training set is
+  built from." True from week one. Says nothing about when we train.
+- Scope: carried by the subject of the sentence. "**Agents built on it** rehearse against your real
+  systems." That scopes the claim without a warning chip, and without implying we can drive a
+  LangGraph or CrewAI agent the customer already wrote, which we cannot yet.
+- **No connector count.** The two September audits disagree (59 vs 61), and a precise number that
+  turns out wrong is what fails a technical evaluation.
 
-KEEP the ban on productized SKUs. Use:
-- ✅ "Sales Brain — a template your team builds and owns on SynOS."
-- ✅ "Templated brains, tuned to how you operate."
-- ✅ "What teams can build on SynOS."
-- ❌ "Buy Sales Brain."
-- ❌ "Our Sales Brain product."
-- ❌ "Use cases" as a consumer noun (URL slug only).
+The unfinished parts belong in the technical conversation, not on the page. `/build-your-own-ai` is
+the deep page and keeps its own explicit ladder, which is correct there and wrong here.
+
+`/use-cases/cloud-finops-agents` is **orphaned** as of 2026-09-23: it is internal-facing (a FinOps
+team's own cost work), nothing links to it, and it is still served at its URL pending a decision to
+delete it or rework it as an external-facing example.
 
 ## Landing Page Architecture
 
@@ -152,11 +162,20 @@ GA4 measurement ID: `G-MXVRX5VMJR`
 
 Tracking model: `[data-cta]` clicks fire a `cta_click` event with `cta_location` = the `data-cta` value; `[data-section]` fires `section_view` with `section_name`. The early-access form also fires a bare `early_access_submit` event on submit.
 
-`data-cta` values in use:
-- Early access: `cta-early-access-hero`, `cta-early-access-nav`, `cta-early-access-bottom`, `cta-early-access-submit` (+ bare `early_access_submit` GA event)
-- Book demo: `cta-book-demo-hero`, `cta-book-demo-bottom`
-- X-Brain cards: `see-pattern-company-brain`, `see-pattern-sales-brain`, `see-pattern-marketing-brain`, `see-pattern-finops-brain`, `see-pattern-ops-brain`, `see-pattern-cx-brain`, `see-pattern-custom-agents`
-- Tertiary: `bottom-substack`
+`data-cta` values follow `cta-<action>-<place>`, e.g. `cta-early-access-hero`,
+`cta-book-demo-bottom`, `cta-early-access-nav`. The early-access form also fires a bare
+`early_access_submit`.
+
+**Do not maintain the list here.** It was hand-written, drifted, and by 2026-09-23 named seven
+`see-pattern-*` values that had not existed since the August revamp while omitting thirty real
+ones, which is worse than no list because GA was being read against it. Get the live set with:
+
+```bash
+grep -rho 'data-cta="[^"]*"' public/ | sort -u
+```
+
+Three legacy values predate the convention and are left alone rather than renamed, because
+renaming them breaks continuity in GA: `ea-book-demo`, `finops-hero-demo`, `finops-bottom-demo`.
 
 ## Design Tokens
 

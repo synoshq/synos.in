@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <!-- @partial head -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,132 +18,83 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
 <script defer src="/js/synos.js"></script>
 <!-- @endpartial head -->
-    <title>Use cases | SynOS</title>
-    <meta name="description" content="Two ways in: agents your own experts build to run your operations, or agents embedded in the product you ship. Both install the same layer, act inside systems that never move, and accumulate into intelligence that belongs to you.">
-    <meta property="og:title" content="Use cases | SynOS">
-    <meta property="og:description" content="Two doors into the same layer. Your own agents, in your own systems, with no migration first.">
+    <title>What it fixes | SynOS</title>
+    <meta name="description" content="For software companies whose agents are already in production and already wrong. The failures a better prompt does not reach, what the layer does about each one, and exactly which parts run today.">
+    <meta property="og:title" content="What it fixes | SynOS">
+    <meta property="og:description" content="Agent failures a better prompt does not reach, what the layer does about each, and which parts run today.">
     <meta property="og:url" content="https://www.synos.in/use-cases">
     <meta property="og:image" content="https://www.synos.in/img/og/use-cases.png">
     <meta name="twitter:image" content="https://www.synos.in/img/og/use-cases.png">
-    <meta name="twitter:title" content="Use cases | SynOS">
-    <meta name="twitter:description" content="Two doors into the same layer. Your own agents, in your own systems, with no migration first.">
+    <meta name="twitter:title" content="What it fixes | SynOS">
+    <meta name="twitter:description" content="Agent failures a better prompt does not reach, and which parts run today.">
     <link rel="canonical" href="https://www.synos.in/use-cases">
     <style>
     /* ─────────────────────────────────────────────────────────────────────────
-     * Use cases, rebuilt 2026-08-22 on the two doors.
-     * Spec: synos-gtm/docs/superpowers/specs/2026-08-22-use-cases-two-doors-design.md
+     * What it fixes. Rebuilt 2026-09-23.
      *
-     * The page it replaces was organised as five "function brains", which argued that SynOS is a
-     * catalogue of pre-built department solutions. Deck slide 13 says the opposite: a door is a
-     * sales entry point and the layer is the product. The functions survive here as examples
-     * inside door one, and "X Brain" is retired as a heading, per the competitive read that the
-     * term is now a category name rather than a claim.
+     * The page this replaced was about seventy percent internal operations: five function cards
+     * for sales ops, cloud cost, internal operations, support and marketing, under a heading that
+     * offered an inward and an outward way to start. That taxonomy belonged to an audience the ICP
+     * no longer includes, and the homepage had already narrowed to software companies whose own
+     * product has to become AI.
+     *
+     * The spine is the qualifying question rather than a feature list: is the agent wrong because
+     * of the prompt, or because it never had the knowledge. The first branch disqualifies us and
+     * the page says so, because a reader who finds that out on their own in month two does not
+     * come back.
+     *
+     * Every row carries a status and the statuses are not decorative. Cost reduction and model
+     * training are the two things a reader most wants and the two we cannot demonstrate, so both
+     * say so in the same type size as everything else.
      * ───────────────────────────────────────────────────────────────────────── */
 
-    .plate { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-      border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
-    .plate > div { padding: var(--sk-space-7) var(--sk-space-6) var(--sk-space-7) 0; }
-    .plate > div + div { border-left: 1px solid var(--sk-border); padding-left: var(--sk-space-6); }
-    .plate b { display: block; font-family: var(--sk-font-display); font-weight: 400;
-      font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; line-height: 1.15;
-      color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
-    .plate span { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); display: block; }
-    @media (max-width: 780px) {
-      .plate { grid-template-columns: 1fr; }
-      .plate > div { padding-right: 0; }
-      .plate > div + div { border-left: none; border-top: 1px solid var(--sk-border); padding-left: 0; }
+    .hero { padding: 140px 0 var(--sk-space-8); }
+    .hero h1 { max-width: 20ch; }
+    .hero-sub { margin-top: var(--sk-space-6); font-size: 17px; line-height: 1.7;
+      color: var(--sk-ink-2); max-width: 56ch; }
+    .hero-who { margin-top: var(--sk-space-5); font-size: 14.5px; line-height: 1.6;
+      color: var(--sk-ink-3); max-width: 62ch; padding-left: var(--sk-space-5);
+      border-left: 2px solid var(--sk-indigo-br); }
+    .hero-cta { display: flex; gap: var(--sk-space-4); flex-wrap: wrap; margin-top: var(--sk-space-7); }
+    .hero-trust { margin-top: var(--sk-space-6); display: flex; gap: var(--sk-space-6);
+      flex-wrap: wrap; font-family: var(--sk-font-mono); font-size: 11.5px;
+      letter-spacing: 0.04em; color: var(--sk-ink-3); max-width: none; }
+    .hero-trust span { display: inline-flex; align-items: center; gap: var(--sk-space-3); }
+    .hero-trust span::before { content: ''; width: 4px; height: 4px; border-radius: 999px;
+      background: var(--sk-indigo-2); }
+
+    /* ── the ledger ──────────────────────────────────────────────────────── */
+    /* Rows, not cards. Six cards would be a grid and a grid of six would be the tell. The left
+     * column is the reader's own sentence and is set in the display face so it reads as speech;
+     * the right column is the answer and is set in body type so it reads as fact. */
+    .ledger { border-top: 2px solid var(--sk-ink); }
+    .lg { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--sk-space-8);
+      padding: var(--sk-space-7) 0; border-bottom: 1px solid var(--sk-border); }
+    .lg-q { font-family: var(--sk-font-display); font-weight: 400;
+      font-size: clamp(19px, 2.1vw, 25px); line-height: 1.25; letter-spacing: -0.015em;
+      color: var(--sk-ink); max-width: none; }
+    .lg-t { font-size: 16px; font-weight: 600; letter-spacing: -0.012em; line-height: 1.4;
+      color: var(--sk-ink); max-width: none; margin-bottom: var(--sk-space-4); }
+    .lg-b { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: 58ch; }
+    .lg .st { margin-top: var(--sk-space-5); }
+    @media (max-width: 880px) {
+      .lg { grid-template-columns: minmax(0, 1fr); gap: var(--sk-space-5); }
     }
 
-    /* ── door header ─────────────────────────────────────────────────────── */
-    /* Each door opens with who it is for and where it enters, set as a two-column ledger so the
-     * buyer can find themselves before reading any of the detail. */
-    .door-top { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-7);
-      margin-top: var(--sk-space-7); padding-top: var(--sk-space-6);
-      border-top: 1px solid var(--sk-ink); }
-    .door-f h4 { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
-      font-weight: 500; }
-    .door-f p { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
-    @media (max-width: 820px) { .door-top { grid-template-columns: 1fr; } }
-
-    /* ── function example sets ───────────────────────────────────────────── */
-    /* A function is an entry point, so it is set as a row in a ledger rather than as a card in a
-     * catalogue. The agents are the concrete part and carry the mono treatment. */
-    .fns { border-top: 1px solid var(--sk-ink); margin-top: var(--sk-space-7); }
-    .fn { display: grid; grid-template-columns: 210px minmax(0, 1fr);
-      gap: var(--sk-space-7); padding: var(--sk-space-6) 0;
+    /* ── the disclosure band ─────────────────────────────────────────────── */
+    /* Deliberately plain and deliberately near the bottom, where a reader who has decided to take
+     * a call will still hit it before the button. */
+    .disc { border-top: 1px solid var(--sk-ink); margin-top: var(--sk-space-7); }
+    .dr { display: flex; justify-content: space-between; align-items: baseline;
+      gap: var(--sk-space-6); padding: var(--sk-space-5) 0;
       border-bottom: 1px solid var(--sk-border); }
-    .fn-n { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink);
-      max-width: none; }
-    .fn-n small { display: block; margin-top: 4px; font-family: var(--sk-font-mono);
-      font-size: 10.5px; font-weight: 400; letter-spacing: 0.04em; color: var(--sk-ink-3); }
-    .fn ul { list-style: none; display: grid; gap: var(--sk-space-3); }
-    .fn li { font-size: 14px; line-height: 1.6; color: var(--sk-ink-2);
-      padding-left: var(--sk-space-5); position: relative; }
-    .fn li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 5px; height: 5px;
-      border-radius: 999px; background: var(--sk-indigo-2); }
-    .fn-g { margin-top: var(--sk-space-5); font-family: var(--sk-font-mono); font-size: 11px;
-      line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
-    @media (max-width: 820px) {
-      .fn { grid-template-columns: 1fr; gap: var(--sk-space-4); }
-    }
-
-    /* ── same install ────────────────────────────────────────────────────── */
-    .one { border: 1px solid var(--sk-border-2); border-radius: var(--sk-radius-sm);
-      background: var(--sk-surface); box-shadow: var(--sk-shadow-card); overflow: hidden; }
-    .one-row { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .one-row > div { padding: var(--sk-space-6); }
-    .one-row > div + div { border-left: 1px solid var(--sk-border); }
-    .one-n { font-size: 14.5px; font-weight: 600; color: var(--sk-ink);
-      margin-bottom: var(--sk-space-3); max-width: none; }
-    .one-d { font-size: 13px; line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
-    .one-base { border-top: 1px solid var(--sk-ink); background: var(--sk-indigo-bg);
-      padding: var(--sk-space-5) var(--sk-space-6);
-      font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.04em;
-      color: var(--sk-indigo-ink); }
-    .one-base p { max-width: none; }
-    @media (max-width: 820px) {
-      .one-row { grid-template-columns: 1fr; }
-      .one-row > div + div { border-left: none; border-top: 1px solid var(--sk-border); }
-    }
-
-    /* ── what compounds ──────────────────────────────────────────────────── */
-    .comp { border-top: 1px solid var(--sk-ink); }
-    .cp { display: grid; grid-template-columns: 44px 250px minmax(0, 1fr);
-      gap: var(--sk-space-6); align-items: baseline;
-      padding: var(--sk-space-6) 0; border-bottom: 1px solid var(--sk-border); }
-    .cp-n { font-family: var(--sk-font-mono); font-size: 11px; color: var(--sk-ink-3);
-      max-width: none; }
-    .cp-t { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink);
-      max-width: none; }
-    .cp-d { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: none; }
-    @media (max-width: 860px) {
-      .cp { grid-template-columns: 44px minmax(0, 1fr); row-gap: var(--sk-space-3); }
-      .cp-d { grid-column: 2 / -1; }
-    }
-
-    /* ── how it lands ────────────────────────────────────────────────────── */
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sk-space-6); }
-    .step { border-top: 2px solid var(--sk-indigo-2); padding-top: var(--sk-space-5); }
-    .step-n { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.12em;
-      color: var(--sk-ink-3); margin-bottom: var(--sk-space-3); max-width: none; }
-    .step h3 { font-size: 16px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-3); }
-    .step p { font-size: 13.5px; line-height: 1.65; color: var(--sk-ink-3); max-width: none; }
-    @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
-
-    /* ── deep dive pointer ───────────────────────────────────────────────── */
-    .dive { border: 1px solid var(--sk-border); border-radius: var(--sk-radius-sm);
-      background: var(--sk-surface); padding: var(--sk-space-7) var(--sk-space-6);
-      box-shadow: var(--sk-shadow-card); text-decoration: none; display: block;
-      transition: border-color 0.15s ease; }
-    .dive:hover { border-color: var(--sk-indigo-2); }
-    .dive-h { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4);
-      max-width: none; }
-    .dive h3 { font-size: 19px; letter-spacing: -0.015em; margin-bottom: var(--sk-space-4); }
-    .dive p { font-size: 14px; line-height: 1.7; color: var(--sk-ink-3); max-width: 70ch; }
+    .dr p { font-size: 14.5px; line-height: 1.5; color: var(--sk-ink-2); max-width: 62ch; }
+    .dr-k { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); white-space: nowrap; }
+    @media (max-width: 680px) { .dr { flex-direction: column-reverse; align-items: flex-start;
+      gap: var(--sk-space-3); } }
     </style>
+
 </head>
 <body>
 <a href="#main-content" class="sk-skip">Skip to content</a>
@@ -173,245 +127,147 @@
 
 <main id="main-content">
 
-  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
-  <section class="sk-container sk-pagehero" data-section="hero">
-    <p class="sk-eyebrow">What teams build on it</p>
-    <h1>Your own agents, running inside systems that never move.</h1>
-    <p class="sk-lead">Nothing here is a pre-built department solution you switch on. What installs is the environment, and what gets built on it is authored by the people who hold the knowledge.</p>
-  </section>
-
-  <!-- ══ GLANCE ════════════════════════════════════════════════════════════ -->
-  <section class="sk-container" data-section="glance">
-    <div class="plate">
-      <div>
-        <b>One install, both ways</b>
-        <span>Start with whichever problem is in front of you. The deployment, the governed writes and the record that accumulates are identical, so adding the other later needs no second install.</span>
-      </div>
-      <div>
-        <b>Your people build it</b>
-        <span>Engineering sets the rails once. After that the ops, finance and support people who know the exceptions author the agents themselves.</span>
-      </div>
-      <div>
-        <b>What it learns is yours</b>
-        <span>Corrections, traces and evaluation cases accumulate on your infrastructure, and they are what a model of your own would be trained on.</span>
-      </div>
+  <!-- ══ 1 · HERO ══════════════════════════════════════════════════════════ -->
+  <section class="sk-container hero" data-section="hero">
+    <p class="sk-eyebrow">For software companies with agents already in production</p>
+    <h1>Your agents are wrong in ways a better prompt does not reach.</h1>
+    <p class="hero-sub">The failures that survive every prompt rewrite are the ones where the agent never had the information in the first place. This is the layer that gives it to them, and the environment that measures whether it worked.</p>
+    <p class="hero-who">Written for the team that already shipped agents to paying customers and has nobody who has run a training job.</p>
+    <div class="hero-cta">
+      <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-hero">Request early access</a>
+      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Book a walkthrough</a>
     </div>
+    <p class="hero-trust">
+      <span>runs in your own cloud</span>
+      <span>your agents keep their own framework</span>
+      <span>nothing leaves the building</span>
+    </p>
   </section>
 
-  <!-- ══ THE TWO DOORS · FIG 11 ═════════════════════════════════════════ -->
-  <section class="sk-section" data-section="two-doors">
-    <div class="sk-container">
-      <figure class="sk-figframe" style="margin-top:0">
-        <iframe data-fig src="/figures/two-doors" title="Figure 11: two doors, one install" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 11 &middot; two ways to start, one platform underneath</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ══ DOOR ONE ══════════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="inward">
+  <!-- ══ 2 · THE FORK · FIG 13 ═════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="the-fork">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">Start inward &middot; your operations</p>
-        <h2>The people who know the work stop waiting for engineering to build it.</h2>
-        <p class="sk-lead">The rules that would make an agent correct sit with your ops leads and analysts, and today they only reach production through an engineer. This door removes that queue.</p>
-      </div>
-      <div class="door-top">
-        <div class="door-f">
-          <h4>Who gets their week back</h4>
-          <p>The ops, finance, support and analyst teams who currently wait on engineering for every change. They stop filing tickets and start building the thing themselves, on the same day they think of it.</p>
-        </div>
-        <div class="door-f">
-          <h4>Where to start</h4>
-          <p>Whatever hurts most right now: a cost line running away, a queue nobody has time for, a support backlog. You pick the workflow. We do not arrive with a department already chosen.</p>
-        </div>
-      </div>
-      <div class="fns">
-        <div class="fn">
-          <p class="fn-n">Sales operations<small>revenue &middot; pipeline</small></p>
-          <div>
-            <ul>
-              <li>Pipeline hygiene, with stage transitions that have gone quiet flagged before the forecast call</li>
-              <li>Stale deal surfacing across opportunities with no recent contact</li>
-              <li>Forecast preparation weighted by what the evidence in the systems actually supports</li>
-              <li>Deal context compiled from mail, chat and documents before a call rather than after it</li>
-            </ul>
-            <p class="fn-g">grounded in: CRM, mail and chat, call notes, the deal documents nobody has read</p>
-          </div>
-        </div>
-        <div class="fn">
-          <p class="fn-n">Cloud cost<small>infrastructure &middot; finance</small></p>
-          <div>
-            <ul>
-              <li>Spend pacing against budget, per team and per service, before the month ends</li>
-              <li>Cost anomaly investigation that arrives with the cause attached rather than as an alert</li>
-              <li>Rightsizing and orphaned resource cleanup, proposed with the evidence for each</li>
-              <li>Unit economics watched against the numbers your finance team already uses</li>
-            </ul>
-            <p class="fn-g">grounded in: billing exports, tagging, the resource inventory, your own margin definitions</p>
-          </div>
-        </div>
-        <div class="fn">
-          <p class="fn-n">Internal operations<small>process &middot; SOPs</small></p>
-          <div>
-            <ul>
-              <li>Weekly digests of what moved and what became an exception</li>
-              <li>Procedure capture, so how the work is actually done gets recorded as it happens and served back</li>
-              <li>Vendor, supply and fleet monitoring against the operational tables that matter</li>
-              <li>Incident triage and routing to whoever actually owns it</li>
-            </ul>
-            <p class="fn-g">grounded in: operational systems, procedure documents, the tribal knowledge in chat history</p>
-          </div>
-        </div>
-        <div class="fn">
-          <p class="fn-n">Support<small>customer &middot; retention</small></p>
-          <div>
-            <ul>
-              <li>Ticket triage and drafted replies in your own voice and within your own policy</li>
-              <li>Theme mining across what customers are actually saying, rather than what a survey asked</li>
-              <li>Churn and satisfaction signals watched continuously instead of reviewed quarterly</li>
-            </ul>
-            <p class="fn-g">grounded in: ticketing, product usage, the exceptions your best agent knows by heart</p>
-          </div>
-        </div>
-        <div class="fn">
-          <p class="fn-n">Marketing<small>growth &middot; demand</small></p>
-          <div>
-            <ul>
-              <li>Campaign planning and channel decisions against measured return rather than a plan written in January</li>
-              <li>Audiences built and refreshed off behavioural data instead of a static list</li>
-              <li>Creative drafting inside brand and consent rules that are enforced rather than remembered</li>
-            </ul>
-            <p class="fn-g">grounded in: customer data, ad platforms, analytics, the brand rules that are never negotiable</p>
-          </div>
-        </div>
-      </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-7)">Start with one. The second function runs on what the first one installed, so it costs a fraction of the first and needs nothing bought again.</p>
-    </div>
-  </section>
-
-  <!-- ══ DOOR TWO ══════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="outward">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">Start outward &middot; your product</p>
-        <h2>Your competitors shipped AI features. Yours stalled on the infrastructure underneath.</h2>
-        <p class="sk-lead">If you sell software, the AI feature on your roadmap is not blocked on the model. It is blocked on the isolation, audit and deployment questions your enterprise customers ask the moment it touches their data.</p>
-      </div>
-      <div class="door-top">
-        <div class="door-f">
-          <h4>Who this is for</h4>
-          <p>Product and platform teams whose customers are asking what the AI story is, and whose own build has been stuck for months on the infrastructure underneath it rather than on the feature.</p>
-        </div>
-        <div class="door-f">
-          <h4>What it gives you</h4>
-          <p>Agents embedded in the product you already ship, acting on each customer's own data, with a separate and isolated brain per customer so nothing crosses a tenant boundary. Or a new AI product on the same rails. You own the layer, and you keep bringing your own models.</p>
-        </div>
-      </div>
-      <div class="fns">
-        <div class="fn">
-          <p class="fn-n">In-product agents<small>on each customer's data</small></p>
-          <div>
-            <ul>
-              <li>Agents inside your product that act on the tenant's own data and write back to their systems</li>
-              <li>A separate brain, storage and permission set per customer, with no path between them</li>
-              <li>The same governed door your own team uses, so a customer's security review has one thing to examine</li>
-            </ul>
-            <p class="fn-g">deployed in your cloud, or in your customer's, including air-gapped</p>
-          </div>
-        </div>
-        <div class="fn">
-          <p class="fn-n">What stops being your problem<small>the two-year build</small></p>
-          <div>
-            <ul>
-              <li>Rebuilding context, governance and tracing for every new agent your roadmap adds</li>
-              <li>Explaining a different isolation story to every enterprise customer who asks</li>
-              <li>Being locked to one model provider by the architecture rather than by choice</li>
-            </ul>
-            <p class="fn-g">the second agent ships in days, because the layer is already there</p>
-          </div>
-        </div>
-      </div>
-      <p class="sk-sub" style="margin-top:var(--sk-space-7)">The part worth thinking about for longer: when every product in your category has an AI feature, the feature stops being the differentiator.</p>
-    </div>
-  </section>
-
-
-  <!-- ══ NO MIGRATION · FIG 02 ═════════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="no-migration">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">No migration first</p>
-        <h2>None of this waits for your data to move.</h2>
-        <p class="sk-lead">Every workflow above runs against the systems that hold the operating truth, and those are reliably the ones that will never be migrated: the ledger, the ticketing system, the internal API with no owner.</p>
+        <p class="sk-eyebrow">Before anything is bought</p>
+        <h2>Half of what an agent gets wrong is not worth buying a layer for.</h2>
+        <p class="sk-lead">Sort your failed runs into two piles first. One pile is fixed by a prompt and a cheap evaluation tool. The other is fixed by giving the agent things that were never written down, and nothing on the market reaches those from your logs.</p>
       </div>
       <figure class="sk-figframe">
-        <iframe data-fig src="/figures/what-moves" title="Figure 2: what actually moves, under a migration and under SynOS" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 02 &middot; the same table under both approaches</figcaption>
+        <iframe data-fig src="/figures/why-it-is-wrong" title="Figure 13: two reasons an agent is wrong" loading="lazy" scrolling="no"></iframe>
+        <figcaption>Fig. 13 &middot; the question to answer before a first call</figcaption>
       </figure>
-      <a href="/platform/company-brain" class="sk-more">How profiling works, and how it stays current &rarr;</a>
     </div>
   </section>
 
-  <!-- ══ WHAT COMPOUNDS ════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="compounds">
+  <!-- ══ 3 · THE LEDGER ════════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="ledger">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">What you end up owning</p>
-        <h2>The workflows are what you buy. The record they leave behind is what you keep.</h2>
-        <p class="sk-lead">Every one of the examples above produces the same three things while it does its job, and none of them requires a separate programme to collect.</p>
+        <p class="sk-eyebrow">Six things teams say on a first call</p>
+        <h2>What the layer does about each one.</h2>
       </div>
-      <div class="comp">
-        <div class="cp">
-          <p class="cp-n">01</p>
-          <p class="cp-t">Corrections from people who know</p>
-          <p class="cp-d">Every time an expert fixes what an agent drafted, that judgement is captured where it happened.</p>
+
+      <div class="ledger">
+
+        <div class="lg">
+          <p class="lg-q">&ldquo;It answers confidently, and it is wrong about that particular customer.&rdquo;</p>
+          <div>
+            <p class="lg-t">Your systems, and each of your customers&rsquo; systems, curated into context an agent can act on</p>
+            <p class="lg-b">Connectors across the systems you already run, column level profiling, entity resolution across sources and the links between them, on live data with the rows staying where they are. The exceptions your best operator applies without thinking get captured as they correct real work, rather than in an interview that happens once.</p>
+
+          </div>
         </div>
-        <div class="cp">
-          <p class="cp-n">02</p>
-          <p class="cp-t">Traces of what actually ran</p>
-          <p class="cp-d">The context an agent was given, the action it took, and what your systems returned.</p>
+
+        <div class="lg">
+          <p class="lg-q">&ldquo;We left it read only, because nobody would sign off on it writing.&rdquo;</p>
+          <div>
+            <p class="lg-t">Agents built on it rehearse against your real systems, and the write each one would have made is scored</p>
+            <p class="lg-b">Reads run against live data, so the state is genuinely this morning&rsquo;s rather than a copy taken in March. The writes are intercepted and recorded instead of committed, then compared against what should have been written. That comparison carries a fifth of the score, which is the part most evaluation tools never build.</p>
+
+          </div>
         </div>
-        <div class="cp">
-          <p class="cp-n">03</p>
-          <p class="cp-t">Cases you can measure against</p>
-          <p class="cp-d">The hard ones, with the answer you would have given, growing out of real work rather than a workshop.</p>
+
+        <div class="lg">
+          <p class="lg-q">&ldquo;Fine for one step. By step nine it has gone somewhere we cannot defend.&rdquo;</p>
+          <div>
+            <p class="lg-t">The whole trajectory is scored, not the paragraph at the end</p>
+            <p class="lg-b">Which tools it reached for, in what order, and with what arguments. Order is scored separately because sequence matters when one step authorises the next: checking eligibility after issuing the credit is a different act from checking it before, and an output diff cannot tell them apart.</p>
+
+          </div>
         </div>
+
+        <div class="lg">
+          <p class="lg-q">&ldquo;It worked until we priced it.&rdquo;</p>
+          <div>
+            <p class="lg-t">Every run priced, per model and per provider, so you can see where the money actually goes</p>
+            <p class="lg-b">Token and money accounting lands on every run across three providers, broken down by step. That is what tells you which steps genuinely need the frontier model and which are being paid for out of habit, and it is the measurement a smaller model has to be argued from.</p>
+          </div>
+        </div>
+
+        <div class="lg">
+          <p class="lg-q">&ldquo;We changed one thing to fix a case and broke four others without noticing.&rdquo;</p>
+          <div>
+            <p class="lg-t">Nothing is promoted until the suite has been scored with and without it</p>
+            <p class="lg-b">A regression gate re scores the whole suite both ways and blocks anything that comes out worse. Train and holdout are separated at the API boundary and the excluded count is returned rather than hidden, so nobody trains on their own benchmark by accident.</p>
+
+          </div>
+        </div>
+
+        <div class="lg">
+          <p class="lg-q">&ldquo;Eventually we want a model of our own.&rdquo;</p>
+          <div>
+            <p class="lg-t">It accumulates on your own infrastructure in the shape a training set is built from</p>
+            <p class="lg-b">Every correction and every scored trajectory lands in your estate, split into train and holdout at the point it is written. The hard part of a model of your own has never been the training run. It is arriving at one with a clean, labelled, domain specific corpus that nobody else could assemble, and that is what this is building for you from the first week.</p>
+          </div>
+        </div>
+
       </div>
-      <p class="sk-lead" style="margin-top:var(--sk-space-8)">That material is what a model of your own gets tuned on, and it is why the same environment does a second job later without anything new being installed.</p>
-      <div class="sk-cta-row" style="justify-content:flex-start;margin-top:var(--sk-space-6)">
-        <span class="sk-chip sk-chip--live">tracing and corrections, live</span>
-        <span class="sk-chip sk-chip--build">evaluation suites, in build</span>
-        <span class="sk-chip sk-chip--roadmap">tuning on your infrastructure, roadmap</span>
-      </div>
-      <a href="/build-your-own-ai" class="sk-more">What the training environment actually does with it &rarr;</a>
+
+      <a href="/build-your-own-ai" class="sk-more">How the scoring and the training actually work &rarr;</a>
     </div>
   </section>
 
-
-  <!-- ══ DEEP DIVE ═════════════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="deep-dive">
+  <!-- ══ 4 · WHAT IT RUNS WITH ══════════════════════════════════════════ -->
+  <!-- This slot held a live / in-build / roadmap ladder until 2026-09-23. That is internal claims
+       discipline and it does not belong on a page a customer reads: not claiming something is the
+       discipline, announcing the gap is not. The rule survives in the copy above, which states
+       only what is true and scopes itself in ordinary sentences rather than in warning chips. -->
+  <section class="sk-section sk-section--alt" data-section="runs-with">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">One worked example</p>
-        <h2>What a function looks like in full.</h2>
+        <p class="sk-eyebrow">Before the architecture review</p>
+        <h2>What it runs with, and where it runs.</h2>
+        <p class="sk-lead">The questions your platform team asks in the first ten minutes, answered before the call.</p>
       </div>
-      <a class="dive" href="/use-cases/cloud-finops-agents">
-        <p class="dive-h">Deep dive</p>
-        <h3>Cloud cost agents, end to end</h3>
-        <p>The architecture, the systems it reads, the actions it is allowed to take, and how a cost anomaly gets investigated before a human picks it up. It is here in full because it is the function we have taken furthest, and it is the bar a second function has to clear before it earns a page of its own.</p>
-      </a>
+      <div class="disc">
+        <div class="dr">
+          <p>Any harness reaches the same context, the same governed tools and the same audited denials over MCP. Claude Code, Codex, Cursor, chat, or a loop your team wrote.</p>
+          <span class="dr-k">harness</span>
+        </div>
+        <div class="dr">
+          <p>Any model provider, and more than one at a time. Routing is a configuration decision rather than an architectural one, so a cheaper model on a given step is a setting.</p>
+          <span class="dr-k">models</span>
+        </div>
+        <div class="dr">
+          <p>Inside your own cloud, your own data centre, or fully air gapped with a per host egress audit. Your customers&rsquo; rows stay in your estate and are queried where they sit.</p>
+          <span class="dr-k">deployment</span>
+        </div>
+        <div class="dr">
+          <p>A separate brain, storage and permission set per customer of yours, with role based access enforced on four transports and every denial written to the audit log.</p>
+          <span class="dr-k">isolation</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
+  <section class="sk-section sk-cta" data-section="bottom-cta">
     <div class="sk-container">
-      <h2>Bring the workflow you would fix first.</h2>
-      <p class="sk-lead">The useful version of this conversation starts from something specific and expensive that your team already argues about, rather than from a category.</p>
+      <h2>Bring twenty failed runs.</h2>
+      <p class="sk-lead">The useful first call is us reading your own failures and telling you which pile they land in, including when that means you do not need this.</p>
       <div class="sk-cta-row">
-        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-usecases">Request early access</a>
-        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-usecases">Book a walkthrough</a>
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Book a walkthrough</a>
       </div>
     </div>
   </section>

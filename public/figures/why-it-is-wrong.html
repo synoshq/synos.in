@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Two reasons an agent is wrong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 13 · "Two reasons an agent is wrong"
+ *
+ * The qualifying question, drawn. One branch disqualifies us on purpose: if the agent is wrong
+ * because the prompt is bad, a cheap evaluation tool fixes it and there is nothing here worth
+ * buying. Saying so is the point of the figure, so the upper branch must not be drawn as a straw
+ * man. It gets the same weight of rule and the same size of type; only the accent separates them.
+ *
+ * The split is drawn with quarter arcs in one inline SVG rather than with diagonals, and the
+ * branch labels sit clear of the stroke rather than on it.
+ *
+ * Form differs from the other figures in the set: FIG 01 fans from a point, FIG 02 compares two
+ * bands, FIG 11 sets two vessels side by side, FIG 12 puts marks on one axis. This one branches.
+ */
+
+body { padding: 44px 32px; background: transparent; }
+@media (max-width: 640px) { body { padding: 28px 18px; } }
+.fig { max-width: 1080px; margin: 0 auto; }
+.fig p { max-width: none; }
+
+.fig-head { margin-bottom: var(--sk-space-8); }
+.fig-num { display: block; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.18em; color: var(--sk-dim); margin-bottom: var(--sk-space-4); }
+.fig-title { font-family: var(--sk-font-body); font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--sk-ink); }
+.fig-lede { margin-top: var(--sk-space-4); font-size: 15px; line-height: 1.65;
+  color: var(--sk-ink-3); max-width: 64ch !important; }
+
+/* ── the split ──────────────────────────────────────────────────────────── */
+.split { display: grid; grid-template-columns: 150px 74px minmax(0, 1fr); align-items: center; }
+.stem { grid-column: 1; }
+.stem-w { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-muted); margin-bottom: var(--sk-space-3); }
+.stem-t { font-size: 15.5px; font-weight: 600; letter-spacing: -0.012em; line-height: 1.3;
+  color: var(--sk-ink); }
+/* The connector was a fixed-height SVG, so its arcs met the branch rules wherever 220px happened
+ * to land rather than at the branches' own centres. Drawn in CSS instead: the cell stretches to the
+ * row, and the two turns are anchored at 25% and 75% of it, which is where the centre of each
+ * branch sits. Quarter arcs come from the corner radius, so there is still no diagonal anywhere. */
+.join { grid-column: 2; align-self: stretch; position: relative; min-height: 120px; }
+.join i { position: absolute; left: 0; width: 14px; height: 1.5px; top: 50%;
+  margin-top: -0.75px; background: var(--sk-border-2); }
+.join::before, .join::after { content: ''; position: absolute; left: 13px; right: 0; }
+.join::before { top: 25%; bottom: 50%; border-left: 1.5px solid var(--sk-border-2);
+  border-top: 1.5px solid var(--sk-border-2); border-top-left-radius: 14px; }
+.join::after  { top: 50%; bottom: 25%; border-left: 1.5px solid var(--sk-indigo-2);
+  border-bottom: 1.5px solid var(--sk-indigo-2); border-bottom-left-radius: 14px; }
+.branches { grid-column: 3; display: grid; gap: var(--sk-space-6); }
+
+.br { border-left: 3px solid var(--sk-border-2); padding: var(--sk-space-5) 0 var(--sk-space-5) var(--sk-space-6); }
+.br-w { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-muted); margin-bottom: var(--sk-space-3); }
+.br-t { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3;
+  color: var(--sk-ink); margin-bottom: var(--sk-space-4); }
+.br-eg { font-family: var(--sk-font-mono); font-size: 11.5px; line-height: 1.85;
+  color: var(--sk-ink-3); }
+.br-eg span { display: block; }
+.br-v { margin-top: var(--sk-space-5); padding-top: var(--sk-space-4);
+  border-top: 1px solid var(--sk-border); font-size: 13.5px; line-height: 1.6; color: var(--sk-ink-2); }
+.br-v b { font-weight: 600; color: var(--sk-ink); }
+
+/* the branch we are not for keeps full weight; only the accent tells them apart */
+.br.is-ours { border-left-color: var(--sk-indigo-2); }
+.br.is-ours .br-w { color: var(--sk-indigo); }
+
+@media (max-width: 780px) {
+  .split { grid-template-columns: 1fr; }
+  .stem { margin-bottom: var(--sk-space-5); }
+  .join { display: none; }
+}
+
+.fig-foot { margin-top: var(--sk-space-7); padding-top: var(--sk-space-5);
+  border-top: 1px solid var(--sk-ink); font-size: 14px; line-height: 1.6; color: var(--sk-ink-2); }
+.fig-foot b { font-weight: 600; color: var(--sk-ink); }
+</style>
+</head>
+<body>
+
+<figure class="fig">
+  <div class="fig-head">
+    <span class="fig-num">FIG. 13</span>
+    <p class="fig-title">Two reasons an agent is wrong</p>
+    <p class="fig-lede">Worth separating before anybody spends money, because the two have different fixes and only one of them needs a layer underneath. The question is answerable in an afternoon by reading twenty failed runs.</p>
+  </div>
+
+  <div class="split">
+    <div class="stem">
+      <p class="stem-w">the failed run</p>
+      <p class="stem-t">An agent got it wrong in front of a customer</p>
+    </div>
+
+    <div class="join" aria-hidden="true"><i></i></div>
+
+    <div class="branches">
+      <div class="br">
+        <p class="br-w">the prompt</p>
+        <p class="br-t">It had what it needed and used it badly</p>
+        <p class="br-eg">
+          <span>ignored the format it was told to use</span>
+          <span>rambled, or answered a question nobody asked</span>
+          <span>called the right tool with a sloppy argument</span>
+        </p>
+        <p class="br-v">An evaluation tool at two hundred dollars a month finds this, and a prompt change fixes it. <b>You do not need us for this one, and we would rather say so now.</b></p>
+      </div>
+
+      <div class="br is-ours">
+        <p class="br-w">the knowledge</p>
+        <p class="br-t">It never had what it needed</p>
+        <p class="br-eg">
+          <span>did not know this account is billed on the old terms</span>
+          <span>did not know that field means something else in their tenancy</span>
+          <span>did not know the exception your best operator applies without thinking</span>
+        </p>
+        <p class="br-v">No prompt reaches this, and neither does tuning on logs, <b>because the thing it needed was never written down and never appeared in a log.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <p class="fig-foot">Read twenty of your own failed runs and sort them into the two branches. <b>If most land on the upper one, buy the cheap tool.</b></p>
+</figure>
+
+<script defer src="/js/figure.js"></script>
+</body>
+</html>
