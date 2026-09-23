@@ -89,9 +89,15 @@ What replaced it is precision. Write the sentence so it is exactly true and no c
 The unfinished parts belong in the technical conversation, not on the page. `/build-your-own-ai` is
 the deep page and keeps its own explicit ladder, which is correct there and wrong here.
 
-`/use-cases/cloud-finops-agents` is **orphaned** as of 2026-09-23: it is internal-facing (a FinOps
-team's own cost work), nothing links to it, and it is still served at its URL pending a decision to
-delete it or rework it as an external-facing example.
+`/use-cases` has no sub-pages. `/use-cases/cloud-finops-agents` and the `two-doors` figure were
+deleted on 2026-09-23: both were internal-operations artefacts, the FinOps page addressed a team
+running its own cloud cost rather than a software company shipping AI in its product, and the
+figure drew the inward and outward split that no longer exists. Recoverable from history if an
+external-facing version is ever wanted.
+
+The internal-operations motion survives on the site in exactly one place, by request: one clause in
+the homepage closing line, so an operations reader can recognise themselves without the page being
+written for them. Do not grow it back into a section.
 
 ## Landing Page Architecture
 
