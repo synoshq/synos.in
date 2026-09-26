@@ -9,7 +9,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/synos.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
@@ -27,83 +27,117 @@
     <link rel="canonical" href="https://www.synos.in/">
     <style>
     /* ─────────────────────────────────────────────────────────────────────────
-     * Homepage, rebuilt 2026-09-23 to five sections.
+     * Homepage, redesigned 2026-09-26 on the canvas "Synos website redesign", board Home.
      *
-     * The previous nine argued a vertical-software transformation story and led into a training
-     * layer, which read as two companies. The page now opens on the problem this company actually
-     * works on: an agent has nowhere to act and be scored, and every environment on the market is
-     * a reconstruction of a business rather than the business.
-     *
-     * Order: the problem, the thing you own that makes it solvable, what comes out, how to talk.
-     * Two figures and nothing else. A pre-seed company with a product tour is compensating.
+     * Same five sections and the same copy as the 2026-09-23 rebuild. What changed is what carries
+     * the structure: hairlines and one table instead of cards, one type family instead of three,
+     * no eyebrows, no figure captions, no dark band, and the empty half of the hero now holds the
+     * one drawn object on the page, an intercepted write, which is the thing the product does.
      * ───────────────────────────────────────────────────────────────────────── */
 
-    .hero { padding: 152px 0 var(--sk-space-8); }
-    .hero h1 { max-width: 18ch; }
-    .hero-sub { margin-top: var(--sk-space-6); font-size: 17px; line-height: 1.7;
-      color: var(--sk-ink-2); max-width: 56ch; }
-    .hero-who { margin-top: var(--sk-space-5); font-size: 14.5px; line-height: 1.6;
-      color: var(--sk-ink-3); max-width: 62ch; padding-left: var(--sk-space-5);
-      border-left: 2px solid var(--sk-indigo-br); }
-    .hero-cta { display: flex; gap: var(--sk-space-4); flex-wrap: wrap; margin-top: var(--sk-space-7); }
-    .hero-trust { margin-top: var(--sk-space-6); display: flex; gap: var(--sk-space-6);
-      flex-wrap: wrap; font-family: var(--sk-font-mono); font-size: 11.5px;
-      letter-spacing: 0.04em; color: var(--sk-ink-3); max-width: none; }
-    .hero-trust span { display: inline-flex; align-items: center; gap: var(--sk-space-3); }
-    .hero-trust span::before { content: ''; width: 4px; height: 4px; border-radius: 999px;
-      background: var(--sk-indigo-2); }
+    /* ── hero ────────────────────────────────────────────────────────────── */
+    .hero { padding: 112px 24px var(--sk-section-y); display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: start; }
+    .hero-copy { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: var(--sk-space-6); }
+    .hero h1 { max-width: 640px; }
+    .hero-sub { font-size: 19px; line-height: 1.55; color: var(--sk-ink-3); max-width: 560px; }
+    .hero-who { font-size: 15px; line-height: 1.5; color: var(--sk-ink-3); max-width: 520px; }
+    .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: var(--sk-space-3); }
+    .hero-trust { list-style: none; display: flex; gap: 28px; flex-wrap: wrap;
+      margin-top: var(--sk-space-4); font-size: 14px; color: var(--sk-ink-3); }
 
-    /* ── the peak · the only dark ground on the site ─────────────────────── */
-    .peak { background: var(--sk-ink); color: var(--sk-on-dark);
-      padding-top: calc(var(--sk-section-y) * 1.25); padding-bottom: calc(var(--sk-section-y) * 1.25); }
-    .peak-eyebrow { font-family: var(--sk-font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em; color: var(--sk-indigo-3);
-      margin-bottom: var(--sk-space-5); }
-    .peak-head { display: grid; grid-template-columns: 7fr 5fr; gap: var(--sk-space-8);
-      align-items: end; margin-bottom: var(--sk-space-8); }
-    @media (max-width: 900px) { .peak-head { grid-template-columns: 1fr; gap: var(--sk-space-6); } }
-    .peak-h { font-size: clamp(32px, 4.8vw, 58px); line-height: 1.06; letter-spacing: -0.03em;
-      color: var(--sk-on-dark); max-width: 15ch; }
-    .peak-lead { font-size: 15.5px; line-height: 1.75; color: var(--sk-on-dark-2); max-width: none;
-      padding-bottom: var(--sk-space-3); }
-    .peak-fig { margin-top: var(--sk-space-8); }
-    .peak-fig iframe { border-color: transparent; border-radius: 6px; }
-    .peak-fig figcaption { color: var(--sk-on-dark-3); }
+    /* The intercepted write. A record, not an illustration: what the agent would have done,
+     * what it should have done, and who said so. Mono only on the two values read from a system. */
+    .record { grid-column: 8 / span 5; margin-top: var(--sk-space-3);
+      border: 1px solid var(--sk-border); border-radius: var(--sk-radius); background: var(--sk-surface); }
+    .record-head { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--sk-border); font-size: 14px; font-weight: 500; }
+    .record dl { margin: 0; padding: 8px 20px; display: grid; grid-template-columns: 124px minmax(0, 1fr);
+      column-gap: 16px; font-size: 13.5px; line-height: 1.5; }
+    .record dt, .record dd { padding: 10px 0; border-bottom: 1px solid var(--sk-surface-2); }
+    .record dt { color: var(--sk-ink-3); }
+    .record dt:last-of-type, .record dd:last-of-type { border-bottom: none; }
+    .record dd.mono { font-family: var(--sk-font-mono); font-size: 13px; }
+    .record-foot { padding: 12px 20px; border-top: 1px solid var(--sk-border); font-size: 12.5px; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 900px) {
+      .hero { display: flex; flex-direction: column; padding-top: 56px; }
+      .hero-trust { flex-direction: column; gap: 6px; }
+      .record { margin-top: var(--sk-space-6); width: 100%; }
+      .record dl { grid-template-columns: 1fr; padding: 6px 16px; }
+      .record dt { padding-bottom: 0; border-bottom: none; }
+    }
+    @media (max-width: 560px) {
+      .hero-cta { flex-direction: column; }
+      .hero-cta .sk-btn { width: 100%; }
+    }
 
-    /* ── outcomes ────────────────────────────────────────────────────────── */
-    /* Three rows on one rule rather than three cards. The order is the argument, and cards of equal
-     * size say the three are interchangeable. */
-    .outs { border-top: 2px solid var(--sk-ink); }
-    .out { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-      gap: var(--sk-space-8); padding: var(--sk-space-6) 0;
-      border-bottom: 1px solid var(--sk-border); }
-    .out-n { font-family: var(--sk-font-display); font-weight: 400;
-      font-size: clamp(20px, 2.2vw, 26px); line-height: 1.25; letter-spacing: -0.015em;
-      color: var(--sk-ink); max-width: none; }
-    .out-b { font-size: 14.5px; line-height: 1.7; color: var(--sk-ink-3); max-width: 58ch; }
-    @media (max-width: 880px) { .out { grid-template-columns: 1fr; gap: var(--sk-space-4); } }
+    /* ── the comparison: one table, so the eye moves along a row ─────────── */
+    .ways { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+    .ways th { text-align: left; font-weight: 500; padding: 0 24px 14px 0; border-bottom: 1px solid var(--sk-ink); vertical-align: bottom; }
+    .ways th:first-child { width: 160px; }
+    .ways th:last-child { padding-right: 0; border-bottom: 2px solid var(--sk-indigo); color: var(--sk-indigo); }
+    .ways td { padding: 20px 24px 20px 0; border-bottom: 1px solid var(--sk-border); vertical-align: top; }
+    .ways td:first-child { color: var(--sk-ink-3); }
+    .ways td:last-child { padding-right: 0; }
+    .ways tr:last-child td { border-bottom: none; }
+    .ways .loses td:not(:first-child):not(:last-child) { color: var(--sk-ink-3); }
+    /* On a phone the table becomes a list: each approach is a block with its cost under it. */
+    .ways-list { display: none; }
+    @media (max-width: 900px) {
+      .ways { display: none; }
+      .ways-list { display: flex; flex-direction: column; border-top: 1px solid var(--sk-ink); }
+      .way { padding: 20px 0; border-bottom: 1px solid var(--sk-border); display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.5; }
+      .way:last-child { border-bottom: 2px solid var(--sk-indigo); }
+      .way:last-child .way-n { color: var(--sk-indigo); }
+      .way-n { font-weight: 500; }
+      .way-l { color: var(--sk-ink-3); }
+      .way-l b { font-weight: 400; color: var(--sk-ink); }
+    }
+
+    /* ── the shelf: two ledgers ──────────────────────────────────────────── */
+    .shelf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 80px; row-gap: var(--sk-space-7); }
+    .shelf-row { display: grid; grid-template-columns: minmax(0, 1fr) 100px; }
+    .shelf-row > span:last-child { text-align: right; }
+    .shelf p.sk-note { margin-top: var(--sk-space-5); max-width: none; }
+    .shelf p.sk-note.sk-is-ink { color: var(--sk-ink); }
+    @media (max-width: 900px) { .shelf { grid-template-columns: 1fr; } }
+
+    /* ── outcomes: numbered, because they arrive in order ────────────────── */
+    .outs { list-style: none; border-top: 1px solid var(--sk-ink); margin-top: var(--sk-space-8); }
+    .out { display: grid; grid-template-columns: 64px minmax(0, 5fr) minmax(0, 6fr); column-gap: 24px;
+      padding: 28px 0; border-bottom: 1px solid var(--sk-border); }
+    .out-i { font-size: 15px; color: var(--sk-ink-3); }
+    .out h3 { font-size: 22px; line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; }
+    .out p { font-size: 16px; line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
+    @media (max-width: 900px) {
+      .out { grid-template-columns: 32px minmax(0, 1fr); row-gap: 8px; }
+      .out p { grid-column: 2; }
+    }
     </style>
 </head>
 <body>
 <a href="#main-content" class="sk-skip">Skip to content</a>
 <!-- @partial nav -->
 <nav class="sk-nav" id="nav">
-  <a href="/" class="sk-nav-left" aria-label="SynOS home">
-    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span class="sk-nav-word">SynOS</span>
-  </a>
-  <div class="sk-nav-links" id="nav-links">
-  </div>
-  <div class="sk-nav-right">
-    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
-    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-    </button>
+  <div class="sk-nav-inner">
+    <a href="/" class="sk-nav-left" aria-label="SynOS home">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-nav-word">SynOS</span>
+    </a>
+    <div class="sk-nav-links" id="nav-links">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+    </div>
+    <div class="sk-nav-right">
+      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-nav">Talk to us</a>
+      <a href="/early-access" class="sk-btn sk-btn--ink" data-cta="cta-early-access-nav">Request early access</a>
+      <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 <!-- @endpartial nav -->
@@ -112,83 +146,143 @@
 
   <!-- ══ 1 · HERO ══════════════════════════════════════════════════════════ -->
   <section class="sk-container hero" data-section="hero">
-    <p class="sk-eyebrow">Training environments, built out of the business</p>
-    <h1>Almost nobody trains an agent on a real business. They train it on a copy.</h1>
-    <p class="hero-sub">The copy is where the value leaks. A decade of exceptions, the joins that only exist in your data, the judgment your best people never wrote down. None of it survives being reproduced from outside.</p>
-    <p class="hero-who">For software companies whose agents are in production, and whose worst failures never appear in a log.</p>
-    <div class="hero-cta">
-      <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-hero">Request early access</a>
-      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Talk to us</a>
+    <div class="hero-copy">
+      <h1>Almost nobody trains an agent on a real business. They train it on a copy.</h1>
+      <p class="hero-sub">The copy is where the value leaks. A decade of exceptions, the joins that only exist in your data, the judgment your best people never wrote down. None of it survives being reproduced from outside.</p>
+      <p class="hero-who">For software companies whose agents are in production, and whose worst failures never appear in a log.</p>
+      <div class="hero-cta">
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-hero">Request early access</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Talk to us</a>
+      </div>
+      <ul class="hero-trust">
+        <li>Runs in your own cloud</li>
+        <li>Nothing is copied out</li>
+        <li>Any model, any agent framework</li>
+      </ul>
     </div>
-    <p class="hero-trust">
-      <span>runs in your own cloud</span>
-      <span>nothing is copied out</span>
-      <span>any model, any agent framework</span>
-    </p>
+
+    <aside class="record" aria-label="An intercepted write, as the product records it">
+      <div class="record-head">
+        <span>Intercepted write</span>
+        <span class="sk-chip">Recorded, not committed</span>
+      </div>
+      <dl>
+        <dt>Agent</dt><dd class="mono">refunds-agent v14</dd>
+        <dt>Target</dt><dd class="mono">billing.refunds, production</dd>
+        <dt>Would have done</dt><dd>Refund £1,240 to account 88121 in full</dd>
+        <dt>Should have done</dt><dd>Hold for manual approval. Account is 41 days old.</dd>
+        <dt>Why</dt><dd>Exception 7, written by finance on 12 Mar. Never in the schema.</dd>
+        <dt>Score</dt><dd>Wrong action. Correct amount. Corrected by R. Mehta.</dd>
+      </dl>
+      <p class="record-foot">An example record. Every scored run looks like this, against your systems as they are.</p>
+    </aside>
   </section>
 
-  <!-- ══ 2 · THE PROBLEM · FIG 14 ══════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="the-problem">
+  <!-- ══ 2 · THE PROBLEM ═══════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="the-problem">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">Why this is hard</p>
         <h2>An agent needs somewhere it can act and be scored. Your business is not that place yet.</h2>
         <p class="sk-lead">There are three ways the market builds one, and every one of them is a reconstruction. The reconstruction is accurate about the things that were written down, which are not the things your agent gets wrong.</p>
       </div>
-      <figure class="sk-figframe">
-        <iframe data-fig src="/figures/three-ways" title="Figure 14: three ways to build an environment, and what each one loses" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 14 &middot; three reconstructions, and what each one drops</figcaption>
-      </figure>
+
+      <table class="ways">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Build a replica</th>
+            <th>Generate the data</th>
+            <th>Watch production</th>
+            <th>Instrument the original</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>What it does</td>
+            <td>Stand up a copy of the systems, to a specification written from outside, and let the agent loose in the copy.</td>
+            <td>Synthesise records that look statistically like the real ones, and avoid touching anything live.</td>
+            <td>Run the agent alongside the real work, read what it would have done, and never let it act.</td>
+            <td>Read from the systems as they are this morning, intercept the action the agent would have taken, and score that action against what should have happened.</td>
+          </tr>
+          <tr class="loses">
+            <td>What it loses</td>
+            <td>A copy is a photograph taken on a date. The exceptions were never in the schema, because the people who apply them never wrote them down.</td>
+            <td>Generators hold the totals and lose the joins. Messy entity resolution reads as noise to a generator, and it was the signal.</td>
+            <td>It holds only until the first action. Block one write and every read after it describes a world that never happened.</td>
+            <td>Nothing. Nothing is copied, because the thing worth learning from is the part a copy cannot hold.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ways-list" aria-hidden="true">
+        <div class="way"><p class="way-n">Build a replica</p><p>Stand up a copy of the systems, to a specification written from outside, and let the agent loose in the copy.</p><p class="way-l"><b>Loses:</b> a copy is a photograph taken on a date. The exceptions were never in the schema, because the people who apply them never wrote them down.</p></div>
+        <div class="way"><p class="way-n">Generate the data</p><p>Synthesise records that look statistically like the real ones, and avoid touching anything live.</p><p class="way-l"><b>Loses:</b> generators hold the totals and lose the joins. Messy entity resolution reads as noise to a generator, and it was the signal.</p></div>
+        <div class="way"><p class="way-n">Watch production</p><p>Run the agent alongside the real work, read what it would have done, and never let it act.</p><p class="way-l"><b>Loses:</b> it holds only until the first action. Block one write and every read after it describes a world that never happened.</p></div>
+        <div class="way"><p class="way-n">Instrument the original</p><p>Read from the systems as they are this morning, intercept the action the agent would have taken, and score that action against what should have happened.</p><p class="way-l"><b>Loses:</b> nothing. Nothing is copied, because the thing worth learning from is the part a copy cannot hold.</p></div>
+      </div>
     </div>
   </section>
 
-  <!-- ══ 3 · THE PEAK · FIG 11 ═════════════════════════════════════════════ -->
-  <section class="sk-section peak" data-section="what-is-yours">
+  <!-- ══ 3 · WHAT IS YOURS ═════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="what-is-yours">
     <div class="sk-container">
-      <p class="peak-eyebrow">What is actually yours</p>
-      <div class="peak-head">
-        <h2 class="peak-h">The inputs that decide the outcome are not for sale.</h2>
-        <p class="peak-lead">Compute and capable open models sit on a shelf now. The company competing with you rents the same accelerators and downloads the same weights, on the same afternoon, at the same price. What neither of you can buy is the other one&rsquo;s systems, or the judgment of people who have run that work for a decade.</p>
+      <div class="sk-sechead">
+        <h2>The inputs that decide the outcome are not for sale.</h2>
+        <p class="sk-lead">Compute and capable open models sit on a shelf now. The company competing with you rents the same accelerators and downloads the same weights, on the same afternoon, at the same price. What neither of you can buy is the other one&rsquo;s systems, or the judgment of people who have run that work for a decade.</p>
       </div>
-      <figure class="sk-figframe peak-fig">
-        <iframe data-fig src="/figures/rent-and-own" title="Figure 11: what you can rent, and what you cannot" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 11 &middot; the shelf, and what was never on it</figcaption>
-      </figure>
+
+      <div class="shelf">
+        <div>
+          <h3 class="sk-ledger-h">On the shelf</h3>
+          <div class="sk-ledger-row shelf-row"><div><strong>Accelerators</strong><br><span>Any cloud, any afternoon, published pricing.</span></div><span>rented</span></div>
+          <div class="sk-ledger-row shelf-row"><div><strong>Open weights</strong><br><span>Downloadable by every company in your category, on identical terms.</span></div><span>downloaded</span></div>
+          <div class="sk-ledger-row shelf-row"><div><strong>Frontier model access</strong><br><span>One key, one afternoon.</span></div><span>metered</span></div>
+          <p class="sk-note">Each of these gets better and cheaper every quarter without you doing anything, which is exactly why none of them separates you from the company competing with you.</p>
+        </div>
+        <div>
+          <h3 class="sk-ledger-h sk-is-brand">Never on the shelf</h3>
+          <div class="sk-ledger-row"><strong>Your systems as they are</strong><br><span>A decade of exceptions, applied by people who never wrote them down because everyone who needed them already knew.</span></div>
+          <div class="sk-ledger-row"><strong>The judgment of the people who run it</strong><br><span>Expressed as corrections on real work, by staff already doing that work.</span></div>
+          <p class="sk-note sk-is-ink">Every company in your category builds from the same shelf. What is held is the only input that decides whose AI ends up better at the same work.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ══ 4 · OUTCOMES ══════════════════════════════════════════════════════ -->
   <section class="sk-section" data-section="outcomes">
     <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">What you get out of it</p>
-        <h2>Three things, and they arrive in that order.</h2>
-      </div>
-      <div class="outs">
-        <div class="out">
-          <p class="out-n">Accuracy where prompting stopped working</p>
-          <p class="out-b">The failures that survive every prompt rewrite are the ones where the agent never had the information. Your systems and your experts&rsquo; corrections are where that information is.</p>
-        </div>
-        <div class="out">
-          <p class="out-n">Agents you can let act</p>
-          <p class="out-b">An agent rehearses against your systems as they are, its write intercepted and recorded rather than committed, and the action it would have taken is scored against what should have happened.</p>
-        </div>
-        <div class="out">
-          <p class="out-n">A corpus nobody else can assemble</p>
-          <p class="out-b">Every correction and every scored run accumulates inside your estate, in the shape a training set is built from. The hard part of a model of your own was never the training run.</p>
-        </div>
-      </div>
+      <h2>Three things, and they arrive in that order.</h2>
+      <ol class="outs">
+        <li class="out">
+          <span class="out-i">1</span>
+          <h3>Accuracy where prompting stopped working</h3>
+          <p>The failures that survive every prompt rewrite are the ones where the agent never had the information. Your systems and your experts&rsquo; corrections are where that information is.</p>
+        </li>
+        <li class="out">
+          <span class="out-i">2</span>
+          <h3>Agents you can let act</h3>
+          <p>An agent rehearses against your systems as they are, its write intercepted and recorded rather than committed, and the action it would have taken is scored against what should have happened.</p>
+        </li>
+        <li class="out">
+          <span class="out-i">3</span>
+          <h3>A corpus nobody else can assemble</h3>
+          <p>Every correction and every scored run accumulates inside your estate, in the shape a training set is built from. The hard part of a model of your own was never the training run.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
-    <div class="sk-container">
-      <h2>Bring us twenty failed runs.</h2>
-      <p class="sk-lead">The useful first conversation is us reading your own failures and telling you which of them this reaches.</p>
+  <section class="sk-section" data-section="bottom-cta">
+    <div class="sk-container sk-cta">
+      <div>
+        <h2>Bring us twenty failed runs.</h2>
+        <p class="sk-lead">The useful first conversation is us reading your own failures and telling you which of them this reaches.</p>
+      </div>
       <div class="sk-cta-row">
-        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Talk to us</a>
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
       </div>
     </div>
   </section>
@@ -198,15 +292,7 @@
 <!-- @partial footer -->
 <footer class="sk-footer">
   <div class="sk-footer-inner">
-    <div class="sk-footer-group">
-      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-      <span class="sk-footer-word">SynOS</span>
-    </div>
-    <div class="sk-footer-group">
-    </div>
+    <p class="sk-footer-copy">&copy; 2026 SynOS</p>
     <div class="sk-footer-group">
       <a href="/trust">Trust</a>
       <a href="/security">Security</a>
@@ -216,7 +302,6 @@
       <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
-  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
 </footer>
 <!-- @endpartial footer -->
 </body>
