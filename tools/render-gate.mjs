@@ -27,7 +27,7 @@ const MIGRATED = new Set(
 )
 
 // The only families the site may render. Anything else is drift.
-const ALLOWED_FAMILIES = ['Inter', 'Instrument Serif', 'JetBrains Mono']
+const ALLOWED_FAMILIES = ['Instrument Sans', 'JetBrains Mono']   // 2026-09-26 redesign: one family plus mono
 
 let chromium
 try {
