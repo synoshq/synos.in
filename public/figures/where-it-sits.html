@@ -42,9 +42,10 @@ body { padding: 40px 28px; background: transparent; }
 
 .core { background: var(--sk-ink); color: var(--sk-on-dark); padding: 26px 28px 28px; }
 .core .band-label { color: var(--sk-indigo-3); }
-.core-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px;
+.core-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px;
   background: rgba(255,255,255,0.14); border-radius: var(--sk-radius-sm); overflow: hidden; }
-@media (max-width: 760px) { .core-grid { grid-template-columns: 1fr; } .edge { margin: 0; } }
+@media (max-width: 980px) { .core-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .core-grid { grid-template-columns: 1fr; } .edge { margin: 0; } }
 .cell { background: var(--sk-ink); padding: 18px 20px 20px; }
 .cell h3 { font-family: var(--sk-font-body); font-size: 15px; font-weight: 600;
   color: var(--sk-on-dark); margin: 0 0 6px; letter-spacing: -0.01em; }
@@ -78,11 +79,15 @@ body { padding: 40px 28px; background: transparent; }
     <div class="core-grid">
       <div class="cell">
         <h3>Context</h3>
-        <p>One resolved view of your systems, served to whichever agent asks.</p>
+        <p>What your systems hold, and how the work is done.</p>
       </div>
       <div class="cell">
-        <h3>Access and evaluation</h3>
-        <p>Every tool call through one decision point, recorded and scored.</p>
+        <h3>Tool inventory</h3>
+        <p>Every read and write an agent can take, scoped and recorded.</p>
+      </div>
+      <div class="cell">
+        <h3>Runs and scoring</h3>
+        <p>Writes intercepted and scored rather than committed.</p>
       </div>
       <div class="cell">
         <h3>Training data</h3>
