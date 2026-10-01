@@ -301,6 +301,15 @@ a:not([class]) {
 .sk-nav-right { display: flex; align-items: center; gap: 12px; }
 .sk-nav-right .sk-btn { min-height: 40px; padding: 9px 18px; font-size: 14px; }
 .sk-nav-toggle { display: none; background: none; border: none; color: var(--sk-ink); cursor: pointer; padding: 6px; }
+/* The bar carries a wordmark and one action. Surveyed infrastructure sites never put trust or
+   security in the nav, and there is nothing else here to navigate to yet, so there is no menu
+   and no hamburger opening an empty panel. The action must never wrap: at 320px it wrapped to
+   two lines and sat on top of the wordmark. */
+.sk-nav-right .sk-btn { white-space: nowrap; }
+@media (max-width: 420px) {
+  .sk-nav-right .sk-btn { padding: 8px 13px; font-size: 13px; }
+  .sk-nav-word { font-size: 17px; }
+}
 @media (max-width: 940px) {
   .sk-nav { background: rgba(241, 245, 249, 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
   .sk-nav-toggle { display: inline-flex; }
@@ -322,6 +331,12 @@ a:not([class]) {
 .sk-footer-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .sk-footer-word { font-weight: 600; font-size: 15px; color: var(--sk-muted); }
 .sk-footer-copy { font-size: 12px; color: var(--sk-ink-3); margin-top: var(--sk-space-6); text-align: center; }
+/* Team row. Names and profiles only: there is no about page and a three person
+   company does not need one. The label is a mono caption so the row reads as a
+   list rather than as more navigation. */
+.sk-footer-team { gap: 16px; }
+.sk-footer-label { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--sk-ink-3); }
 @media (max-width: 768px) {
   .sk-footer-inner { flex-direction: column; text-align: center; }
   .sk-footer-group { justify-content: center; }

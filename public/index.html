@@ -15,64 +15,65 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
 <script defer src="/js/synos.js"></script>
 <!-- @endpartial head -->
-    <title>SynOS | Training environments built out of the business</title>
-    <meta name="description" content="Almost nobody trains an agent on a real business. They train it on a copy, and the copy is where the value leaks. SynOS builds the training environment out of the systems themselves, inside your own cloud.">
-    <meta property="og:title" content="SynOS | Training environments built out of the business">
-    <meta property="og:description" content="Almost nobody trains an agent on a real business. They train it on a copy.">
+    <title>SynOS | The platform for AI built on your own systems</title>
+    <meta name="description" content="SynOS connects the systems you already run, gives your agents governed access to them, and keeps every run and correction in the shape a training set is built from. It installs in your own cloud.">
+    <meta property="og:title" content="SynOS | The platform for AI built on your own systems">
+    <meta property="og:description" content="SynOS connects the systems you already run, gives your agents governed access to them, and keeps every run and correction in the shape a training set is built from. It installs in your own cloud.">
     <meta property="og:url" content="https://www.synos.in">
     <meta property="og:image" content="https://www.synos.in/img/og/home.png">
     <meta name="twitter:image" content="https://www.synos.in/img/og/home.png">
-    <meta property="twitter:title" content="SynOS | Training environments built out of the business">
-    <meta property="twitter:description" content="Almost nobody trains an agent on a real business. They train it on a copy.">
+    <meta property="twitter:title" content="SynOS | The platform for AI built on your own systems">
+    <meta property="twitter:description" content="SynOS connects the systems you already run, gives your agents governed access to them, and keeps every run and correction in the shape a training set is built from. It installs in your own cloud.">
     <link rel="canonical" href="https://www.synos.in/">
     <style>
     /* ─────────────────────────────────────────────────────────────────────────
-     * Homepage, rebuilt 2026-09-23 to five sections.
+     * Homepage, rebuilt 2026-09-30.
      *
-     * The previous nine argued a vertical-software transformation story and led into a training
-     * layer, which read as two companies. The page now opens on the problem this company actually
-     * works on: an agent has nowhere to act and be scored, and every environment on the market is
-     * a reconstruction of a business rather than the business.
+     * The previous version opened on an essay sentence and spoke only to a company already
+     * training its own models. Rebuilt against a survey of eighteen infrastructure homepages
+     * (Modal, Prime Intellect, E2B, Braintrust, Daytona, Temporal and others). What that survey
+     * settled, and what this page therefore follows:
      *
-     * Order: the problem, the thing you own that makes it solvable, what comes out, how to talk.
-     * Two figures and nothing else. A pre-seed company with a product tour is compensating.
+     *   · the hero is a bare noun phrase naming the category, and the subhead names components
+     *   · a block stops at two sentences
+     *   · a claim is quantified with a baseline, or it is rewritten as a mechanism
+     *   · "you" throughout; "we" only where we are claiming authorship of something specific
+     *   · a block CTA names its own action, never "learn more"
+     *   · trust and security live in the footer, never in the nav. Zero of eighteen put them there
+     *
+     * Order: who it is for, where you are, what you get, what it is, where it sits, how it
+     * starts, where it runs. One figure. A pre-seed company with a product tour is compensating.
      * ───────────────────────────────────────────────────────────────────────── */
 
     .hero { padding: 152px 0 var(--sk-space-8); }
-    .hero h1 { max-width: 18ch; }
-    .hero-sub { margin-top: var(--sk-space-6); font-size: 17px; line-height: 1.7;
-      color: var(--sk-ink-2); max-width: 56ch; }
-    .hero-who { margin-top: var(--sk-space-5); font-size: 14.5px; line-height: 1.6;
-      color: var(--sk-ink-3); max-width: 62ch; padding-left: var(--sk-space-5);
-      border-left: 2px solid var(--sk-indigo-br); }
-    .hero-cta { display: flex; gap: var(--sk-space-4); flex-wrap: wrap; margin-top: var(--sk-space-7); }
-    .hero-trust { margin-top: var(--sk-space-6); display: flex; gap: var(--sk-space-6);
+    .hero h1 { max-width: 17ch; }
+    .hero-sub { margin-top: var(--sk-space-6); font-size: 17.5px; line-height: 1.7;
+      color: var(--sk-ink-2); max-width: 58ch; }
+    .hero-cta { display: flex; gap: var(--sk-space-4); flex-wrap: wrap;
+      margin-top: var(--sk-space-7); }
+    .hero-trust { margin-top: var(--sk-space-7); display: flex; gap: var(--sk-space-6);
       flex-wrap: wrap; font-family: var(--sk-font-mono); font-size: 11.5px;
       letter-spacing: 0.04em; color: var(--sk-ink-3); max-width: none; }
     .hero-trust span { display: inline-flex; align-items: center; gap: var(--sk-space-3); }
     .hero-trust span::before { content: ''; width: 4px; height: 4px; border-radius: 999px;
       background: var(--sk-indigo-2); }
 
-    /* ── the peak · the only dark ground on the site ─────────────────────── */
-    .peak { background: var(--sk-ink); color: var(--sk-on-dark);
-      padding-top: calc(var(--sk-section-y) * 1.25); padding-bottom: calc(var(--sk-section-y) * 1.25); }
-    .peak-eyebrow { font-family: var(--sk-font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em; color: var(--sk-indigo-3);
-      margin-bottom: var(--sk-space-5); }
-    .peak-head { display: grid; grid-template-columns: 7fr 5fr; gap: var(--sk-space-8);
-      align-items: end; margin-bottom: var(--sk-space-8); }
-    @media (max-width: 900px) { .peak-head { grid-template-columns: 1fr; gap: var(--sk-space-6); } }
-    .peak-h { font-size: clamp(32px, 4.8vw, 58px); line-height: 1.06; letter-spacing: -0.03em;
-      color: var(--sk-on-dark); max-width: 15ch; }
-    .peak-lead { font-size: 15.5px; line-height: 1.75; color: var(--sk-on-dark-2); max-width: none;
-      padding-bottom: var(--sk-space-3); }
-    .peak-fig { margin-top: var(--sk-space-8); }
-    .peak-fig iframe { border-color: transparent; border-radius: 6px; }
-    .peak-fig figcaption { color: var(--sk-on-dark-3); }
+    /* ── three situations ─────────────────────────────────────────────────── */
+    /* Columns rather than cards. A card implies something to click, and there is nothing
+     * behind these: the depth belongs in the conversation, not in three pages to maintain. */
+    .states { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--sk-space-7); border-top: 2px solid var(--sk-ink); padding-top: var(--sk-space-6); }
+    @media (max-width: 900px) { .states { grid-template-columns: 1fr; gap: var(--sk-space-6); } }
+    .state-n { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.14em;
+      color: var(--sk-indigo); }
+    .state-h { margin-top: var(--sk-space-4); font-size: 19px; line-height: 1.3;
+      font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink); max-width: none; }
+    .state-b { margin-top: var(--sk-space-4); font-size: 14.5px; line-height: 1.7;
+      color: var(--sk-ink-3); max-width: none; }
 
-    /* ── outcomes ────────────────────────────────────────────────────────── */
-    /* Three rows on one rule rather than three cards. The order is the argument, and cards of equal
-     * size say the three are interchangeable. */
+    /* ── outcomes ─────────────────────────────────────────────────────────── */
+    /* Rows on one rule. Four cards of equal size would say the four are interchangeable, and
+     * the order is the argument. */
     .outs { border-top: 2px solid var(--sk-ink); }
     .out { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
       gap: var(--sk-space-8); padding: var(--sk-space-6) 0;
@@ -82,6 +83,48 @@
       color: var(--sk-ink); max-width: none; }
     .out-b { font-size: 14.5px; line-height: 1.7; color: var(--sk-ink-3); max-width: 58ch; }
     @media (max-width: 880px) { .out { grid-template-columns: 1fr; gap: var(--sk-space-4); } }
+
+    /* ── the platform ─────────────────────────────────────────────────────── */
+    .pieces { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--sk-space-5); }
+    @media (max-width: 860px) { .pieces { grid-template-columns: 1fr; } }
+    .piece { background: var(--sk-surface); border: 1px solid var(--sk-border);
+      border-radius: var(--sk-radius); padding: var(--sk-space-6); }
+    .piece h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.015em;
+      color: var(--sk-ink); margin: 0; }
+    .piece p { margin-top: var(--sk-space-4); font-size: 14.5px; line-height: 1.7;
+      color: var(--sk-ink-3); max-width: none; }
+    .piece-k { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sk-indigo); margin-bottom: var(--sk-space-4); }
+
+    /* ── the dark band, the only one on the site ──────────────────────────── */
+    .peak { background: var(--sk-ink); color: var(--sk-on-dark);
+      padding-top: calc(var(--sk-section-y) * 1.15);
+      padding-bottom: calc(var(--sk-section-y) * 1.15); }
+    .peak-eyebrow { font-family: var(--sk-font-mono); font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--sk-indigo-3);
+      margin-bottom: var(--sk-space-5); }
+    .peak-head { display: grid; grid-template-columns: 7fr 5fr; gap: var(--sk-space-8);
+      align-items: end; margin-bottom: var(--sk-space-7); }
+    @media (max-width: 900px) { .peak-head { grid-template-columns: 1fr; gap: var(--sk-space-6); } }
+    .peak-h { font-size: clamp(30px, 4.2vw, 48px); line-height: 1.08; letter-spacing: -0.03em;
+      color: var(--sk-on-dark); max-width: 16ch; }
+    .peak-lead { font-size: 15.5px; line-height: 1.75; color: var(--sk-on-dark-2);
+      max-width: none; padding-bottom: var(--sk-space-3); }
+    .peak-fig iframe { border-color: transparent; border-radius: 6px; }
+    .peak-fig figcaption { color: var(--sk-on-dark-3); }
+
+    /* ── ledger rows, used by the engagement and deployment sections ──────── */
+    .led { border-top: 1px solid var(--sk-border); }
+    .led-row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+      gap: var(--sk-space-7); padding: var(--sk-space-5) 0;
+      border-bottom: 1px solid var(--sk-border); }
+    @media (max-width: 860px) { .led-row { grid-template-columns: 1fr; gap: var(--sk-space-3); } }
+    .led-k { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sk-indigo); padding-top: 3px; }
+    .led-v { font-size: 15px; line-height: 1.7; color: var(--sk-ink-2); max-width: 62ch; }
+    .led-ask { margin-top: var(--sk-space-6); font-size: 18px; line-height: 1.5;
+      font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink); max-width: 46ch; }
     </style>
 </head>
 <body>
@@ -97,13 +140,8 @@
     </svg>
     <span class="sk-nav-word">SynOS</span>
   </a>
-  <div class="sk-nav-links" id="nav-links">
-  </div>
   <div class="sk-nav-right">
     <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
-    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="sk-nav-toggle">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-    </button>
   </div>
 </nav>
 <!-- @endpartial nav -->
@@ -112,13 +150,11 @@
 
   <!-- ══ 1 · HERO ══════════════════════════════════════════════════════════ -->
   <section class="sk-container hero" data-section="hero">
-    <p class="sk-eyebrow">Training environments, built out of the business</p>
-    <h1>Almost nobody trains an agent on a real business. They train it on a copy.</h1>
-    <p class="hero-sub">The copy is where the value leaks. A decade of exceptions, the joins that only exist in your data, the judgment your best people never wrote down. None of it survives being reproduced from outside.</p>
-    <p class="hero-who">For software companies whose agents are in production, and whose worst failures never appear in a log.</p>
+    <h1>The platform for AI built on your own systems.</h1>
+    <p class="hero-sub">SynOS connects the systems you already run, gives your agents governed access to them, and keeps every run and correction in the shape a training set is built from. It installs in your own cloud.</p>
     <div class="hero-cta">
       <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-hero">Request early access</a>
-      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Talk to us</a>
+      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Book a call</a>
     </div>
     <p class="hero-trust">
       <span>runs in your own cloud</span>
@@ -127,68 +163,167 @@
     </p>
   </section>
 
-  <!-- ══ 2 · THE PROBLEM · FIG 14 ══════════════════════════════════════════ -->
-  <section class="sk-section sk-section--alt" data-section="the-problem">
+  <!-- ══ 2 · WHERE YOU ARE ═════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="where-you-are">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">Why this is hard</p>
-        <h2>An agent needs somewhere it can act and be scored. Your business is not that place yet.</h2>
-        <p class="sk-lead">There are three ways the market builds one, and every one of them is a reconstruction. The reconstruction is accurate about the things that were written down, which are not the things your agent gets wrong.</p>
+        <p class="sk-eyebrow">Where you are</p>
+        <h2>Three situations, and what changes first in each.</h2>
       </div>
-      <figure class="sk-figframe">
-        <iframe data-fig src="/figures/three-ways" title="Figure 14: three ways to build an environment, and what each one loses" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 14 &middot; three reconstructions, and what each one drops</figcaption>
-      </figure>
+      <div class="states">
+        <div>
+          <p class="state-n">01</p>
+          <p class="state-h">Nothing in production yet</p>
+          <p class="state-b">The board is asking, and nothing has reached a customer. Start with one workflow on the systems as they stand, with no data programme in front of it.</p>
+        </div>
+        <div>
+          <p class="state-n">02</p>
+          <p class="state-h">Shipped, and adoption is low</p>
+          <p class="state-b">Six to twelve months of building, and the impact your customers were promised has not arrived. What the agent can read is usually the reason, and so is the absence of a route for corrections to come back.</p>
+        </div>
+        <div>
+          <p class="state-n">03</p>
+          <p class="state-h">Working, at frontier prices</p>
+          <p class="state-b">Every call runs on a frontier model, and prompting has stopped lifting accuracy. Both have become budget questions, and the answer is a smaller model trained on your own work.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ══ 3 · THE PEAK · FIG 11 ═════════════════════════════════════════════ -->
-  <section class="sk-section peak" data-section="what-is-yours">
-    <div class="sk-container">
-      <p class="peak-eyebrow">What is actually yours</p>
-      <div class="peak-head">
-        <h2 class="peak-h">The inputs that decide the outcome are not for sale.</h2>
-        <p class="peak-lead">Compute and capable open models sit on a shelf now. The company competing with you rents the same accelerators and downloads the same weights, on the same afternoon, at the same price. What neither of you can buy is the other one&rsquo;s systems, or the judgment of people who have run that work for a decade.</p>
-      </div>
-      <figure class="sk-figframe peak-fig">
-        <iframe data-fig src="/figures/rent-and-own" title="Figure 11: what you can rent, and what you cannot" loading="lazy" scrolling="no"></iframe>
-        <figcaption>Fig. 11 &middot; the shelf, and what was never on it</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ══ 4 · OUTCOMES ══════════════════════════════════════════════════════ -->
+  <!-- ══ 3 · OUTCOMES ══════════════════════════════════════════════════════ -->
   <section class="sk-section" data-section="outcomes">
     <div class="sk-container">
       <div class="sk-sechead">
-        <p class="sk-eyebrow">What you get out of it</p>
-        <h2>Three things, and they arrive in that order.</h2>
+        <p class="sk-eyebrow">Outcomes</p>
+        <h2>What a team gets out of it.</h2>
       </div>
       <div class="outs">
         <div class="out">
           <p class="out-n">Accuracy where prompting stopped working</p>
-          <p class="out-b">The failures that survive every prompt rewrite are the ones where the agent never had the information. Your systems and your experts&rsquo; corrections are where that information is.</p>
+          <p class="out-b">The failures that survive every prompt rewrite are the ones where the agent never had the information. It is in your systems, and in the judgment of the people who do the work.</p>
         </div>
         <div class="out">
-          <p class="out-n">Agents you can let act</p>
-          <p class="out-b">An agent rehearses against your systems as they are, its write intercepted and recorded rather than committed, and the action it would have taken is scored against what should have happened.</p>
+          <p class="out-n">Agents you can let take actions</p>
+          <p class="out-b">An agent rehearses against your systems as they are. The write it would have made is intercepted and recorded rather than committed, then scored against what should have happened.</p>
         </div>
         <div class="out">
-          <p class="out-n">A corpus nobody else can assemble</p>
-          <p class="out-b">Every correction and every scored run accumulates inside your estate, in the shape a training set is built from. The hard part of a model of your own was never the training run.</p>
+          <p class="out-n">Cost per run, itemised</p>
+          <p class="out-b">Every run is priced per model and per provider, so you can see where the money goes before you change anything about how it is spent.</p>
+        </div>
+        <div class="out">
+          <p class="out-n">A model of your own, eventually</p>
+          <p class="out-b">Corrections accumulate inside your estate in the shape a training set is built from, and no other company trains on them. The hard part of a model of your own was never the training run.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ══ 4 · THE PLATFORM ══════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="platform">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">The platform</p>
+        <h2>Four pieces, and they install together.</h2>
+        <p class="sk-lead">Each one is useful on the day it is switched on. The order below is the order they tend to be turned on in.</p>
+      </div>
+      <div class="pieces">
+        <div class="piece">
+          <p class="piece-k">01 &middot; Context</p>
+          <h3>One resolved view of your systems</h3>
+          <p>Connects warehouses, databases, applications and documents, profiles what is in them, and resolves the same customer across all of them. An agent reads that view instead of a prompt describing your schema.</p>
+        </div>
+        <div class="piece">
+          <p class="piece-k">02 &middot; Access</p>
+          <h3>One decision point for every tool call</h3>
+          <p>Every call an agent makes is scoped to who is asking and recorded when it is made. It works with the agent framework your team already uses, and with the models you already pay for.</p>
+        </div>
+        <div class="piece">
+          <p class="piece-k">03 &middot; Evaluation</p>
+          <h3>Test cases your team writes</h3>
+          <p>Replayed against your own systems rather than against a fixture, scored, and gated so a release that scores worse than the last one does not ship.</p>
+        </div>
+        <div class="piece">
+          <p class="piece-k">04 &middot; Training data</p>
+          <h3>Runs and corrections, curated</h3>
+          <p>Traces, tool calls and the corrections your experts make in the tools they already use become a curated dataset, exported in the format your trainer reads. We build the environment and the dataset. Your trainer does the training.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 5 · WHERE IT SITS · FIG 1 ═════════════════════════════════════════ -->
+  <section class="sk-section peak" data-section="where-it-sits">
+    <div class="sk-container">
+      <p class="peak-eyebrow">Where it sits</p>
+      <div class="peak-head">
+        <h2 class="peak-h">Under whatever you already run.</h2>
+        <p class="peak-lead">SynOS installs between the agents your team builds and the systems those agents need to read and act on. Nothing is migrated, there is no second copy of your data, and the agent framework and the models stay your choice.</p>
+      </div>
+      <figure class="sk-figframe peak-fig">
+        <iframe data-fig src="/figures/where-it-sits" title="Where SynOS sits between your agents and your systems" loading="lazy" scrolling="no"></iframe>
+        <figcaption>the layer, and what sits on either side of it</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ 6 · HOW IT STARTS ═════════════════════════════════════════════════ -->
+  <section class="sk-section" data-section="how-it-starts">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">First engagement</p>
+        <h2>One workflow, two weeks.</h2>
+      </div>
+      <div class="led">
+        <div class="led-row">
+          <p class="led-k">Before we start</p>
+          <p class="led-v">You write the test. We agree in writing what a pass looks like, before anything is connected.</p>
+        </div>
+        <div class="led-row">
+          <p class="led-k">What gets connected</p>
+          <p class="led-v">One workflow and the systems behind it, read only to begin with, inside your own account.</p>
+        </div>
+        <div class="led-row">
+          <p class="led-k">What you keep</p>
+          <p class="led-v">The environment, the traces and the agents, whether or not you carry on afterwards.</p>
+        </div>
+      </div>
+      <p class="led-ask">Pick the workflow you tried once and parked.</p>
+    </div>
+  </section>
+
+  <!-- ══ 7 · DEPLOYMENT ════════════════════════════════════════════════════ -->
+  <section class="sk-section sk-section--alt" data-section="deployment">
+    <div class="sk-container">
+      <div class="sk-sechead">
+        <p class="sk-eyebrow">Deployment</p>
+        <h2>It runs where your data is.</h2>
+      </div>
+      <div class="led">
+        <div class="led-row">
+          <p class="led-k">Your infrastructure</p>
+          <p class="led-v">Self-hosted by default, in your own cloud account or on your own hardware. The air-gapped configuration has end to end tests.</p>
+        </div>
+        <div class="led-row">
+          <p class="led-k">Your data</p>
+          <p class="led-v">No data leaves your boundary, and the install does not depend on us being reachable.</p>
+        </div>
+        <div class="led-row">
+          <p class="led-k">Your models</p>
+          <p class="led-v">Open weight models on your own infrastructure, or a hosted provider, chosen per workload rather than for the whole platform.</p>
+        </div>
+      </div>
+      <p class="sk-more" style="margin-top: var(--sk-space-6)"><a href="/trust">Read the trust centre</a></p>
+    </div>
+  </section>
+
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-cta sk-section--alt" data-section="bottom-cta">
+  <section class="sk-section sk-cta" data-section="bottom-cta">
     <div class="sk-container">
       <h2>Bring us twenty failed runs.</h2>
       <p class="sk-lead">The useful first conversation is us reading your own failures and telling you which of them this reaches.</p>
       <div class="sk-cta-row">
         <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
-        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Talk to us</a>
+        <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Book a call</a>
       </div>
     </div>
   </section>
@@ -205,7 +340,11 @@
       </svg>
       <span class="sk-footer-word">SynOS</span>
     </div>
-    <div class="sk-footer-group">
+    <div class="sk-footer-group sk-footer-team">
+      <span class="sk-footer-label">Team</span>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
+      <a href="https://www.linkedin.com/in/anuraagdubey/" target="_blank" rel="noopener">Anurag Dubey</a>
+      <a href="https://www.linkedin.com/in/siddharth-katyal/" target="_blank" rel="noopener">Siddharth Katyal</a>
     </div>
     <div class="sk-footer-group">
       <a href="/trust">Trust</a>
@@ -213,7 +352,6 @@
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/subprocessors">Subprocessors</a>
-      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
   <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Where SynOS sits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<style>
+/*
+ * FIG. 1 · "Where SynOS sits"
+ *
+ * The only figure on the site. Research on eighteen infrastructure homepages found that the
+ * architecture drawing has mostly been displaced by a fragment of the real interface, and that
+ * only two of eighteen lead with one. It earns its place here because "where does this sit" is
+ * the first question an engineering reader has about a layer, and because the answer is the
+ * positioning: above the systems, under whatever agent they already run.
+ *
+ * Three bands, unequal. The middle is wider and taller than the two it sits between, which is
+ * what makes it a layer rather than a stack of three equal boxes.
+ */
+body { padding: 40px 28px; background: transparent; }
+@media (max-width: 640px) { body { padding: 24px 16px; } }
+.fig { max-width: 980px; margin: 0 auto; }
+
+.band { border-radius: var(--sk-radius); }
+.band-label { font-family: var(--sk-font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sk-dim); margin-bottom: 14px; }
+.edge { background: var(--sk-surface); border: 1px solid var(--sk-border);
+  padding: 20px 24px; margin: 0 38px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--sk-font-mono); font-size: 11.5px; color: var(--sk-ink-2);
+  background: var(--sk-bg); border: 1px solid var(--sk-border);
+  border-radius: var(--sk-radius-sm); padding: 6px 11px; }
+
+.seam { display: flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 12px 0; }
+.seam-rule { flex: 1; height: 1px; background: var(--sk-border-2); max-width: 180px; }
+.seam-text { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.06em;
+  color: var(--sk-muted); }
+
+.core { background: var(--sk-ink); color: var(--sk-on-dark); padding: 26px 28px 28px; }
+.core .band-label { color: var(--sk-indigo-3); }
+.core-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px;
+  background: rgba(255,255,255,0.14); border-radius: var(--sk-radius-sm); overflow: hidden; }
+@media (max-width: 760px) { .core-grid { grid-template-columns: 1fr; } .edge { margin: 0; } }
+.cell { background: var(--sk-ink); padding: 18px 20px 20px; }
+.cell h3 { font-family: var(--sk-font-body); font-size: 15px; font-weight: 600;
+  color: var(--sk-on-dark); margin: 0 0 6px; letter-spacing: -0.01em; }
+.cell p { font-size: 12.5px; line-height: 1.6; color: var(--sk-on-dark-2); margin: 0;
+  max-width: none; }
+.core-foot { margin-top: 18px; font-family: var(--sk-font-mono); font-size: 11px;
+  letter-spacing: 0.05em; color: var(--sk-on-dark-3); }
+</style>
+</head>
+<body>
+<div class="fig">
+
+  <div class="band edge">
+    <p class="band-label">Your agents and your models</p>
+    <div class="chips">
+      <span class="chip">any agent framework</span>
+      <span class="chip">any coding agent</span>
+      <span class="chip">hosted models</span>
+      <span class="chip">open weight models</span>
+    </div>
+  </div>
+
+  <div class="seam">
+    <span class="seam-rule"></span>
+    <span class="seam-text">no code change</span>
+    <span class="seam-rule"></span>
+  </div>
+
+  <div class="band core">
+    <p class="band-label">SynOS &middot; in your own cloud</p>
+    <div class="core-grid">
+      <div class="cell">
+        <h3>Context</h3>
+        <p>One resolved view of your systems, served to whichever agent asks.</p>
+      </div>
+      <div class="cell">
+        <h3>Access and evaluation</h3>
+        <p>Every tool call through one decision point, recorded and scored.</p>
+      </div>
+      <div class="cell">
+        <h3>Training data</h3>
+        <p>Runs and corrections, curated and exported to your trainer.</p>
+      </div>
+    </div>
+    <p class="core-foot">nothing is copied out</p>
+  </div>
+
+  <div class="seam">
+    <span class="seam-rule"></span>
+    <span class="seam-text">read in place</span>
+    <span class="seam-rule"></span>
+  </div>
+
+  <div class="band edge">
+    <p class="band-label">Your systems, where they already are</p>
+    <div class="chips">
+      <span class="chip">warehouses</span>
+      <span class="chip">databases</span>
+      <span class="chip">applications</span>
+      <span class="chip">object stores</span>
+      <span class="chip">documents</span>
+      <span class="chip">internal APIs</span>
+    </div>
+  </div>
+
+</div>
+<script defer src="/js/figure.js"></script>
+</body>
+</html>

@@ -99,32 +99,79 @@ The internal-operations motion survives on the site in exactly one place, by req
 the homepage closing line, so an operations reader can recognise themselves without the page being
 written for them. Do not grow it back into a section.
 
-## Landing Page Architecture
+## Landing page
 
-> **Superseded by the 2026-08-21 revamp.** The thirteen-section homepage is specified in
-> `synos-gtm/docs/superpowers/specs/2026-08-21-website-revamp-build-your-own-ai-design.md`. What
-> follows describes the homepage as it stands until phase 3 replaces it, and is kept so the current
-> file is readable rather than as a target.
+Rebuilt 2026-09-30. The page before it opened on an essay sentence ("Almost nobody trains an agent
+on a real business. They train it on a copy.") and addressed only a company already training its
+own models, which is one of four buyer stages.
 
+Built against a survey of eighteen infrastructure homepages: Modal, Prime Intellect, E2B,
+Braintrust, Daytona, Temporal, Fireworks, Baseten, Together, Anyscale, HUD, W&B, LangChain,
+Thinking Machines, Tinker, Mercor, Surge and Scale. What that survey settled, and what this page
+therefore follows:
 
-Section order (each `<section>` carries a `data-section` name, shown in parens):
+- **The hero is a bare noun phrase naming the category.** Nine of twenty heroes take this shape
+  (`The + category noun + for + who`), and the subhead carries the mechanism. Zero of twenty put a
+  number in the headline.
+- **A content block stops at two sentences.** The longest sustained prose in the whole sample is a
+  research lab's manifesto page, which has no product on it.
+- **A claim is quantified with a baseline, or rewritten as a mechanism.** Modal does not say
+  "reliable", it says "Bad hardware is drained and replaced before it touches your workload."
+- **"You" throughout. "We" only where we are claiming authorship of something specific.** Never
+  "we help you" or "we enable you to".
+- **A block CTA names its own action.** Braintrust uses "Log your first trace", not "Learn more".
+- **Trust and security never appear in the nav.** Zero of eighteen, despite ten of eighteen
+  carrying a security section on the page. They live in the footer.
 
-1. **Hero** (`hero`) — eyebrow "The Human-Agent Operating Layer", H1 "The infrastructure to unblock your agentic transformation.", pillar subhead (Company Brain / skills / agent-native storage / deploy / access control), focus strip, clients line ("For companies, products, and agencies going AI-native."), trust line ("Self-hosted. Your data stays yours. Model + harness agnostic."). PRIMARY CTA = "Request early access" (`/early-access`); secondary = "Book a 30-min demo".
-2. **Six walls — problem** (`walls`) — section-label "Why a layer"; H2 "Six walls between a clever demo and real company value."; inlines the D3 six-walls diagram; bridge line "Six walls. One layer that answers all six. ↓".
-3. **Six pillars — answer** (`pillars`) — section-label "The operating layer"; H2 "Each wall, closed by one piece of the layer."; inlines the D1 architecture diagram; 6 pillar cards, each tagged with the wall it closes (`Closes wall 0N`). **Company Brain is the anchor/centre** (full-width brain card).
-4. **Focus on impact / vs-alternatives** (`focus`) — section-label "Focus on impact, not plumbing"; H2 "Build the 20% that's you. We ship the infra."; folds in "Buy it / Own it" cards + the works-with-your-stack claims (BYOA · Models · Connectors · Deploy) + logos as a sub-row.
-5. **X-Brain templates** (`what-teams-build`) — section `id="what-teams-build"`; Company Brain flagship anchor card + 6 brain cards (Sales / Marketing / FinOps / Internal Ops / Support-CX / Custom AI agents & products).
-6. **Bottom CTA** (`bottom-cta`) — early-access primary, demo secondary, Substack as the tertiary line below.
+Section order, each carrying a `data-section` name for GA:
 
-Notes:
-- **"Five walls" → "Six walls"** (problem framing is now six walls, six pillars).
-- **Trust-ladder is NOT a home section.**
-- The old **"What's inside the operating layer" / "Works with your stack" / "Roadblocks"** sections are replaced by the structure above (walls → pillars → focus).
+1. `hero` — H1 "The platform for AI built on your own systems.", subhead naming the three
+   mechanisms, two CTAs, and a three item trust strip.
+2. `where-you-are` — the three buyer situations as columns, drawn from the customer deck family
+   (`synos-gtm/presentations/_client_content.py`). **No links out**: there is nothing behind them
+   and a dead "learn more" is worse than nothing. Depth belongs in the deck taken to the call.
+3. `outcomes` — four rows on one rule. Rows rather than cards, because four equal cards would say
+   the four are interchangeable and the order is the argument.
+4. `platform` — the four pieces, as cards.
+5. `where-it-sits` — the only dark band on the site, carrying the only figure.
+6. `how-it-starts` — the two week first engagement, as a ledger.
+7. `deployment` — self-hosting, data handling, model choice, then the trust centre link. Second to
+   last, which is where every surveyed site puts its security block.
+8. `bottom-cta`.
+
+### The nav
+
+A wordmark and one action. The hamburger and the empty links panel were removed on 2026-09-30:
+there were no links in it, and at 320px the CTA wrapped to two lines and sat on top of the
+wordmark. If nav links ever return, restore the toggle from history along with them.
+
+### Claims discipline on this page
+
+Source of truth is `synos-gtm/docs/research/product-truth/` and the capability audit §7 "Claims to
+NOT make". Carried forward from the previous build, and still binding:
+
+- **Never quote a cost reduction percentage in any form.** Accounting is shipped, reduction has no
+  benchmark. The page says "Every run is priced per model and per provider".
+- **No approval claim.** The approval gate was removed from the product. The outcomes row says the
+  write is "intercepted and recorded rather than committed, then scored", which is true.
+- **No connector count.** Two September audits disagree, and a precise number that turns out wrong
+  is what fails a technical evaluation.
+- A model of their own: "accumulate inside your estate in the shape a training set is built from"
+  is true from week one and says nothing about when we train.
+
+### Figures
+
+One, `/figures/where-it-sits`. The two previous figures (`three-ways`, `rent-and-own`) were deleted
+on 2026-09-30: both argued the stage four essay the page no longer makes. Only two of eighteen
+surveyed sites lead with an architecture diagram, so this one has to earn its place, and it does
+because "where does this sit" is the first question an engineering reader asks about a layer.
+
+Every figure must load `/js/figure.js`, which posts its height to the host page. Without it the
+iframe sits at the 900px CSS fallback and leaves dead space under the drawing.
 
 ## Landing Section Anchors
 
-- `#what-teams-build` — the X-Brain templates section (`<section id="what-teams-build" data-section="what-teams-build">`).
-- All other sections are addressed via `data-section` only (no `id`), used for GA `section_view` tracking.
+None. Every section is addressed by `data-section` only, used for GA `section_view` tracking.
 
 ## Vocabulary Guardrails
 
