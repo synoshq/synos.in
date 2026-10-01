@@ -18,7 +18,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
     <link rel="stylesheet" href="/css/synos.css">
@@ -43,14 +43,14 @@
         }
         html{scroll-behavior:smooth;}
         body{font-family:var(--sk-font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
-        h1,h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.02em;line-height:1.15;}
+        h1,h2{font-family:var(--sk-font-body);font-weight:500;letter-spacing:-0.02em;line-height:1.15;}
         h1{font-size:clamp(34px,5vw,52px);margin-bottom:12px;}
         h2{font-size:clamp(22px,2.6vw,29px);margin:56px 0 16px;scroll-margin-top:90px;}
-        h3{font-family:sans-serif;font-size:17px;font-weight:600;margin:28px 0 10px;letter-spacing:-0.01em;}
+        h3{font-family:var(--sk-font-body);font-size:17px;font-weight:600;margin:28px 0 10px;letter-spacing:-0.01em;}
         .container{max-width:780px;margin:0 auto;padding:0 24px;}
         .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:64px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
         .nav-left{display:flex;align-items:center;gap:10px;text-decoration:none;}
-        .nav-logo-text{font-family:'Instrument Serif',serif;font-size:22px;color:var(--text);letter-spacing:-0.02em;}
+        .nav-logo-text{font-family:var(--sk-font-body);font-size:22px;color:var(--text);letter-spacing:-0.02em;}
         .nav-links{display:flex;gap:32px;}
         .nav-links a{font-size:14px;font-weight:500;color:var(--text-muted);text-decoration:none;transition:color 0.15s;}
         .nav-links a:hover,.nav-links a.active{color:var(--text);}
@@ -96,7 +96,7 @@
         .site-footer{padding:40px 24px;border-top:1px solid var(--border);}
         .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
         .footer-left{display:flex;align-items:center;gap:8px;}
-        .footer-logo-text{font-family:'Instrument Serif',serif;font-size:18px;color:var(--text-muted);}
+        .footer-logo-text{font-family:var(--sk-font-body);font-size:18px;color:var(--text-muted);}
         .footer-middle,.footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
         .footer-middle a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;}
         .footer-links a{color:var(--text-dim);text-decoration:none;font-size:13px;}
@@ -118,25 +118,23 @@
 </head>
 <body>
 <a href="#main-content" style="position:absolute;top:-100px;left:0;background:var(--accent);color:#fff;padding:12px 24px;z-index:1000;font-weight:600;font-size:14px;border-radius:0 0 8px 0;transition:top 0.2s;" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
-    <nav class="nav" id="nav">
-        <a href="/" class="nav-left">
-            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-                <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#6366F1" stroke-width="2.2" stroke-linecap="round"/>
-                <polyline points="14 15.5 16 14 14 12.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="18 19.5 16 18 18 16.5" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="nav-logo-text">SynOS</span>
-        </a>
-        <div class="nav-links" id="nav-links">
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;">
-            <a href="/early-access" class="btn btn--primary" data-cta="cta-early-access-nav">Early access</a>
-            <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="nav-toggle">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-            </button>
-        </div>
-    </nav>
+    <!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <div class="sk-nav-inner">
+    <a href="/" class="sk-nav-left" aria-label="SynOS home">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-nav-word">SynOS</span>
+    </a>
+    <div class="sk-nav-right">
+      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-nav">Talk to us</a>
+      <a href="/early-access" class="sk-btn sk-btn--ink" data-cta="cta-early-access-nav">Request early access</a>
+    </div>
+  </div>
+</nav>
+<!-- @endpartial nav -->
     
     <main>
     <div class="container">
@@ -165,27 +163,26 @@
     </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/></svg>
-                <span class="footer-logo-text">SynOS</span>
-            </div>
-            <div class="footer-middle">
-                <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
-                <a href="https://www.linkedin.com/in/anuraagdubey/" target="_blank" rel="noopener">Anurag Dubey</a>
-                <a href="https://www.linkedin.com/in/siddharth-katyal/" target="_blank" rel="noopener">Siddharth Katyal</a>
-            </div>
-            <div class="footer-links">
-                <a href="/trust">Trust</a>
-                <a href="/security">Security</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/terms">Terms</a>
-                <a href="/subprocessors">Subprocessors</a>
-            </div>
-        </div>
-        <p class="footer-copy">&copy; 2026 SynOS Labs LLP. All rights reserved.</p>
-    </footer>
+    <!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <p class="sk-footer-copy">&copy; 2026 SynOS</p>
+    <div class="sk-footer-group sk-footer-team">
+      <span class="sk-footer-label">Team</span>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
+      <a href="https://www.linkedin.com/in/anuraagdubey/" target="_blank" rel="noopener">Anurag Dubey</a>
+      <a href="https://www.linkedin.com/in/siddharth-katyal/" target="_blank" rel="noopener">Siddharth Katyal</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+    </div>
+  </div>
+</footer>
+<!-- @endpartial footer -->
 <script>
     const navToggle=document.getElementById('nav-toggle');
     const navLinks=document.getElementById('nav-links');

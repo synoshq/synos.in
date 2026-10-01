@@ -9,7 +9,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/synos.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
@@ -101,8 +101,9 @@
     .peak { background: var(--sk-ink); color: var(--sk-on-dark);
       padding-top: calc(var(--sk-section-y) * 1.15);
       padding-bottom: calc(var(--sk-section-y) * 1.15); }
-    .peak-eyebrow { font-family: var(--sk-font-mono); font-size: 11px; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.12em; color: var(--sk-indigo-3);
+    /* Matches .sk-eyebrow, which the 2026-09-26 redesign set in sentence case on one type
+       family. Only the colour changes, because this is the one dark band. */
+    .peak-eyebrow { font-size: 14px; line-height: 1.5; color: var(--sk-on-dark-3);
       margin-bottom: var(--sk-space-5); }
     .peak-head { display: grid; grid-template-columns: 7fr 5fr; gap: var(--sk-space-8);
       align-items: end; margin-bottom: var(--sk-space-7); }
@@ -131,17 +132,18 @@
 <a href="#main-content" class="sk-skip">Skip to content</a>
 <!-- @partial nav -->
 <nav class="sk-nav" id="nav">
-  <a href="/" class="sk-nav-left" aria-label="SynOS home">
-    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      <polyline points="14 15.5 16 14 14 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <polyline points="18 19.5 16 18 18 16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span class="sk-nav-word">SynOS</span>
-  </a>
-  <div class="sk-nav-right">
-    <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-nav">Request early access</a>
+  <div class="sk-nav-inner">
+    <a href="/" class="sk-nav-left" aria-label="SynOS home">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-nav-word">SynOS</span>
+    </a>
+    <div class="sk-nav-right">
+      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-nav">Talk to us</a>
+      <a href="/early-access" class="sk-btn sk-btn--ink" data-cta="cta-early-access-nav">Request early access</a>
+    </div>
   </div>
 </nav>
 <!-- @endpartial nav -->
@@ -317,13 +319,15 @@
   </section>
 
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
-  <section class="sk-section sk-cta" data-section="bottom-cta">
-    <div class="sk-container">
-      <h2>Bring us twenty failed runs.</h2>
-      <p class="sk-lead">The useful first conversation is us reading your own failures and telling you which of them this reaches.</p>
+  <section class="sk-section" data-section="bottom-cta">
+    <div class="sk-container sk-cta">
+      <div>
+        <h2>Bring us twenty failed runs.</h2>
+        <p class="sk-lead">The useful first conversation is us reading your own failures and telling you which of them this reaches.</p>
+      </div>
       <div class="sk-cta-row">
-        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Book a call</a>
+        <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-bottom">Request early access</a>
       </div>
     </div>
   </section>
@@ -333,13 +337,7 @@
 <!-- @partial footer -->
 <footer class="sk-footer">
   <div class="sk-footer-inner">
-    <div class="sk-footer-group">
-      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-      <span class="sk-footer-word">SynOS</span>
-    </div>
+    <p class="sk-footer-copy">&copy; 2026 SynOS</p>
     <div class="sk-footer-group sk-footer-team">
       <span class="sk-footer-label">Team</span>
       <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
@@ -354,7 +352,6 @@
       <a href="/subprocessors">Subprocessors</a>
     </div>
   </div>
-  <p class="sk-footer-copy">&copy; 2026 SynOS. All rights reserved.</p>
 </footer>
 <!-- @endpartial footer -->
 </body>

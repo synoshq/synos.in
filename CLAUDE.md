@@ -10,7 +10,16 @@
 - Static HTML/CSS/JS. No build step: Vercel serves `public/` exactly as committed.
 - Shared tokens and components live in `public/css/synos.css`. Page-specific CSS stays inline in
   that page's `<style>` block. **No page may write a literal colour** — promote it to a token first.
-- Shared behaviour lives in `public/js/synos.js` (nav, scroll reveal, GA). Pages do not repeat it.
+- **Design rules since the 2026-09-26 redesign** (canvas "Synos website redesign", board Tokens):
+  one type family, Instrument Sans at 400 and 500, with JetBrains Mono only for a value read from
+  a system; five colours (paper, ink, ink-2, line, brand indigo) plus one tint behind a status
+  chip; no cards, no shadows, no gradient, no dark band, no load motion. Hairlines carry structure:
+  an ink rule opens a table or list, a hairline separates rows, the brand rule marks the one
+  column that is SynOS, once per page. No eyebrows above headings, no mono all-caps labels, no
+  `Fig. N ·` captions. `tools/render-gate.mjs` allows exactly Instrument Sans and JetBrains Mono.
+  The brand kit's palette (`packages/brand-kit`) is unchanged; the site diverges from it on purpose.
+- Shared behaviour lives in `public/js/synos.js` (nav, GA). Pages do not repeat it. Scroll reveal
+  is retired; `.sk-reveal` is a no-op kept so old markup still renders.
 - Nav, footer and the common `<head>` live in `public/partials/` and are injected between markers by
   `npm run pages`, which rewrites the committed HTML in place. Edit a partial, run `npm run pages`,
   commit the result.
