@@ -8,9 +8,9 @@
 //   KV_REST_API_URL, KV_REST_API_TOKEN  set by the Upstash Redis integration
 //                                       (UPSTASH_REDIS_REST_URL/_TOKEN also work)
 //   RESEND_API_KEY  required to send email
-//   MAIL_FROM       e.g. "Agent Maturity Index <index@synos.in>" (domain verified in Resend)
+//   MAIL_FROM       e.g. "Agent Maturity Index <index@getsynos.ai>" (domain verified in Resend)
 //   NOTIFY_EMAIL    where every form submission goes (default anuraag@synos.in)
-//   SITE_ORIGIN     origin used in invitation links (default https://synos.in)
+//   SITE_ORIGIN     origin used in invitation links (default https://www.getsynos.ai)
 //   CRON_SECRET     Vercel sends it to /api/ami/flush; requests without it are refused
 //
 // Redis keys, under each site's prefix:
@@ -111,7 +111,7 @@ export async function POST(req) {
         if (m.to === notifyTo) mailed = sent;
       },
       notifyTo,
-      siteUrl: `${env('SITE_ORIGIN', 'https://synos.in')}/${site}`,
+      siteUrl: `${env('SITE_ORIGIN', 'https://www.getsynos.ai')}/${site}`,
     });
     const result = await core[route](body);
     if (submission) {

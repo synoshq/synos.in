@@ -44,6 +44,6 @@ The State of Enterprise Agent Adoption report is planned for Q1 2027, built on a
 
 ## Links
 
-- [Home and registration](https://www.getsynos.ai/agent-maturity-index/)
+- [Home and registration](https://www.getsynos.ai/agent-maturity-index)
 - [Privacy](https://www.getsynos.ai/agent-maturity-index/privacy)
-- Contact: index@synos.ai
+- Contact: index@getsynos.ai

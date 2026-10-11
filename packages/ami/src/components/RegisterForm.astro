@@ -69,7 +69,7 @@ const sizes = ['Under 1,000', '1,000 to 5,000', '5,000 to 20,000', '20,000 to 10
       <p class="consent">We use your details only for the Index, and never add you to a sales or marketing list. <a href={`${BASE}/privacy`}>Privacy</a></p>
     </div>
     <p class="status" role="status" aria-live="polite"></p>
-    <noscript><p class="status is-err">This form needs JavaScript. Email index@synos.ai to apply.</p></noscript>
+    <noscript><p class="status is-err">This form needs JavaScript. Email index@getsynos.ai to apply.</p></noscript>
   </form>
 
   <div class="done" hidden tabindex="-1">
@@ -181,7 +181,7 @@ const sizes = ['Under 1,000', '1,000 to 5,000', '5,000 to 20,000', '20,000 to 10
       done.focus();
       track('form_submit', { intent, agents: data.agents_in_production, size: data.company_size });
     } catch (x) {
-      status.textContent = `${(x as Error).message} You can also email index@synos.ai.`;
+      status.textContent = `${(x as Error).message} You can also email index@getsynos.ai.`;
       status.classList.add('is-err');
       buttons.forEach((b) => (b.disabled = false));
       if (submitter) { submitter.textContent = label; submitter.focus(); }
