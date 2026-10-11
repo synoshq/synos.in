@@ -78,7 +78,7 @@ const page = (eyebrow, title) => `<!DOCTYPE html><html><head><meta charset="utf-
     <h1>${title}</h1>
   </div>
   <div class="foot">
-    <span>synos.in</span>
+    <span>getsynos.ai</span>
     <span>self-hosted &middot; model agnostic</span>
   </div>
 </body></html>`

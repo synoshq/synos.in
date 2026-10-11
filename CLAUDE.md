@@ -4,7 +4,7 @@
 - Vercel auto-deploys from `main` branch
 - Vercel serves only from `public/` (configured in `vercel.json` → `outputDirectory: "public"`)
 - Root-level HTML files are NOT served. Single source of truth is `public/`.
-- Live at: https://www.synos.in
+- Live at: https://www.getsynos.ai (synos.in redirects here)
 
 ## Structure
 - Static HTML/CSS/JS. No build step: Vercel serves `public/` exactly as committed.
