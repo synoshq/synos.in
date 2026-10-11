@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /partials/
+
+Sitemap: https://www.getsynos.ai/sitemap.xml
+Sitemap: https://www.getsynos.ai/agent-maturity-index/sitemap-index.xml

@@ -5,9 +5,9 @@ export const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 export const SITE = {
   name: 'Agent Maturity Index',
   publisher: 'SynOS',
-  publisherUrl: 'https://synos.ai',
-  contactEmail: 'index@synos.ai',
-  // All forms post to the site's own API (api/ami.js in the synos.in repo), which
+  publisherUrl: 'https://www.getsynos.ai',
+  contactEmail: 'index@getsynos.ai',
+  // All forms post to the site's own API (api/ami/[route].mjs in the synos.in repo), which
   // emails every submission to NOTIFY_EMAIL (anuraag@synos.in by default).
   api: `${BASE}/api`,
   // Set by `PUBLIC_PREVIEW=1 npm run build` for a shareable review copy:
@@ -22,5 +22,5 @@ export const SITE = {
   // Example: 'https://plausible.io/js/script.js' (Plausible needs no consent,
   // so you could also load it unconditionally).
   analyticsSrc: '',
-  analyticsDomain: 'synos.in',
+  analyticsDomain: 'getsynos.ai',
 };
