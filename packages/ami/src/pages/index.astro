@@ -40,6 +40,9 @@ const jsonLd = [
     '@context': 'https://schema.org', '@type': 'ResearchProject', '@id': `${url}#index`, name: SITE.name, alternateName: 'AMI',
     description: 'An evidence-based AI agent maturity model and peer benchmark of enterprise AI agent adoption across seven dimensions and five levels, built with a Founding Cohort of 30 enterprises.',
     url, sponsor: { '@id': `${SITE.publisherUrl}#org` },
+    license: SITE.license.url,
+    copyrightHolder: { '@type': 'Organization', name: SITE.legalEntity },
+    copyrightYear: 2026,
     keywords: 'AI agent maturity model, agentic AI maturity, enterprise AI agent benchmark, AI agent governance, Chief AI Officer',
   },
   { '@context': 'https://schema.org', '@type': 'DefinedTermSet', name: 'Agent Maturity Index levels', hasDefinedTerm: levels.map((l) => ({ '@type': 'DefinedTerm', name: `Level ${l.n}: ${l.name}`, description: l.line })) },
@@ -123,6 +126,7 @@ const jsonLd = [
           <div class="ss-result">
             <button type="button" id="get-score" class="btn btn-primary">Get your score</button>
             <p class="ss-err" role="alert" hidden>Score all seven dimensions to get your score.</p>
+            <p class="ss-note">Scores are indicative, based on your own answers, and are not professional advice.</p>
           </div>
         </div>
       </div>
@@ -245,6 +249,7 @@ const jsonLd = [
   .ss-opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 3px; }
   .ss-result { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; padding: 28px 0 0; border-top: 1px solid var(--line); }
   .ss-err { margin: 0; color: var(--err); font-weight: 500; }
+  .ss-note { margin: 0; flex-basis: 100%; font-size: 13px; color: var(--slate); }
   .ss-row.ss-missing .ss-opt > span { border-color: var(--err); }
   .ss-row.ss-missing .ss-name::after { content: " (choose a level)"; color: var(--err); font-size: 15px; font-weight: 500; letter-spacing: 0; }
   .invited { display: flex; align-items: center; gap: 14px; margin: 22px 0 0; padding: 14px 20px 14px 14px; max-width: 40em; border-radius: 16px; background: color-mix(in srgb, var(--accent) 10%, var(--paper)); border: 1.5px solid var(--accent); font-size: 1.15rem; line-height: 1.4; color: var(--ink); }
