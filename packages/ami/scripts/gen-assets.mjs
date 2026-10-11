@@ -46,7 +46,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" vi
   </text>
   <text x="72" y="470" font-family="${font}" font-size="24" fill="${SLATE}">7 dimensions. 5 levels. A Founding Cohort</text>
   <text x="72" y="504" font-family="${font}" font-size="24" fill="${SLATE}">of 30 enterprise AI leaders.</text>
-  <text x="72" y="574" font-family="${font}" font-size="20" font-weight="600" fill="${ACCENT}">synos.in/agent-maturity-index-1</text>
+  <text x="72" y="574" font-family="${font}" font-size="20" font-weight="600" fill="${ACCENT}">synos.in/agent-maturity-index</text>
   <line x1="${mx + colW * 5}" x2="${mx + colW * 5}" y1="0" y2="0"/>
   ${heads}${grid}${line}
 </svg>`;

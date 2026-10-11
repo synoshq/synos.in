@@ -1,6 +1,6 @@
 // Agent Maturity Index API: POST /<slug>/api/{register,score,invite}
 // vercel.json rewrites each microsite's /<slug>/api/:route here with ?site=<slug>.
-// Sites: agent-maturity-index-1 (packages/ami-1). Each site keeps its own teams
+// Sites: agent-maturity-index (packages/ami). Each site keeps its own teams
 // and invitation links, under its own key prefix.
 // Storage: Upstash Redis over its REST API. Email: Resend (https://resend.com).
 // Environment variables (Vercel > Project > Settings > Environment Variables):
@@ -10,12 +10,13 @@
 //   MAIL_FROM       e.g. "Agent Maturity Index <index@synos.in>" (domain verified in Resend)
 //   NOTIFY_EMAIL    where every form submission goes (default anuraag@synos.in)
 //   SITE_ORIGIN     origin used in invitation links (default https://synos.in)
-import { makeCore, Fail } from '../../packages/ami-1/src/lib/ami-core.js';
+import { makeCore, Fail } from '../../packages/ami/src/lib/ami-core.js';
 
 const env = (k, d = '') => process.env[k] || d;
 const ROUTES = ['register', 'score', 'invite'];
-// Slug -> Redis key prefix.
-const SITES = { 'agent-maturity-index-1': 'ami-1' };
+// Slug -> Redis key prefix. The site launched at /agent-maturity-index-1, so it
+// keeps that prefix and the teams and invitations stored under it.
+const SITES = { 'agent-maturity-index': 'ami-1' };
 
 async function redis(...commands) {
   const url = env('KV_REST_API_URL', env('UPSTASH_REDIS_REST_URL'));

@@ -1,10 +1,10 @@
 {
-  "name": "agent-maturity-index-1",
+  "name": "agent-maturity-index",
   "version": "1.0.0",
-  "description": "Agent Maturity Index microsite, served at synos.in/agent-maturity-index-1",
+  "description": "Agent Maturity Index microsite, served at synos.in/agent-maturity-index",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && rm -f ../../public/agent-maturity-index-1/404.html",
+    "build": "astro build && rm -f ../../public/agent-maturity-index/404.html",
     "preview": "astro preview"
   },
   "keywords": [],
