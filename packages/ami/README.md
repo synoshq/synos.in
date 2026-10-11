@@ -19,12 +19,12 @@ The pages are static Astro files. The forms, team scores and emails run in one s
 
 The shared logic is in `src/lib/ami-core.js`. Both the API (`api/ami/[route].mjs`) and the preview build use it.
 
-## Deploy (Vercel, at synos.in/agent-maturity-index-1)
+## Deploy (Vercel, at synos.in/agent-maturity-index)
 
 The site lives in the synos.in repo and is served by the same Vercel project.
 
-- `npm run build` (in `packages/ami-1`) writes the static pages to `public/agent-maturity-index-1/`. Commit the result: Vercel serves `public/` as committed, with no build step.
-- The API is `api/ami/[route].mjs` at the repo root. `vercel.json` rewrites `/agent-maturity-index-1/api/:route` to it with `?site=agent-maturity-index-1` (each site keeps its own teams under its own Redis key prefix) and sets the `/agent-maturity-index-1` security headers.
+- `npm run build` (in `packages/ami`) writes the static pages to `public/agent-maturity-index/`. Commit the result: Vercel serves `public/` as committed, with no build step.
+- The API is `api/ami/[route].mjs` at the repo root. `vercel.json` rewrites `/agent-maturity-index/api/:route` to it with `?site=agent-maturity-index` (each site keeps its own teams under its own Redis key prefix) and sets the `/agent-maturity-index` security headers.
 - Team scores and the rate limit are stored in Upstash Redis. Add it from the Vercel Marketplace (Storage > Upstash Redis) and connect it to the project, which sets `KV_REST_API_URL` and `KV_REST_API_TOKEN`.
 - Set these in Vercel > Settings > Environment Variables:
    - `RESEND_API_KEY`: from resend.com, after you verify the sending domain (synos.in).
@@ -36,10 +36,10 @@ The site lives in the synos.in repo and is served by the same Vercel project.
 
 ```bash
 npm install
-npm run dev        # site only, at http://localhost:4321/agent-maturity-index-1 (forms need the API: use `vercel dev` from the repo root)
+npm run dev        # site only, at http://localhost:4321/agent-maturity-index (forms need the API: use `vercel dev` from the repo root)
 npm run build      # production build to ../../public/agent-maturity-index
 PUBLIC_PREVIEW=1 npm run build   # review copy: everything runs in the browser and no email is sent
-python3 scripts/make-hosted.py ../../public/agent-maturity-index-1 hosted   # self-contained copy for hosting as a shared page
+python3 scripts/make-hosted.py ../../public/agent-maturity-index hosted   # self-contained copy for hosting as a shared page
 ```
 
 ## Settings (`src/config.ts`)

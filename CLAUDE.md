@@ -30,11 +30,11 @@
   - `public/product.html`, `public/about.html`
   - `public/early-access.html` — primary CTA waitlist (Web3Forms email capture)
 - Use-case sub-pages live in `public/use-cases/<slug>.html`
-- `public/agent-maturity-index-1/` is the Agent Maturity Index microsite (synos.in/agent-maturity-index-1).
-  It is **build output**: edit `packages/ami-1` (Astro), run `npm run build` there, commit both. Its
-  API is `api/ami/[route].mjs` (Upstash Redis + Resend). It keeps its own design, with a light/dark
-  toggle, and is outside the gates' scope. `/agent-maturity-index` (an earlier version, removed
-  2026-10-11) redirects to it. See `packages/ami-1/README.md`.
+- `public/agent-maturity-index/` is the Agent Maturity Index microsite (synos.in/agent-maturity-index).
+  It is **build output**: edit `packages/ami` (Astro), run `npm run build` there, commit both. Its
+  API is `api/ami/[route].mjs` (Upstash Redis + Resend); its Redis keys use the prefix `ami-1`, from
+  when it launched at `/agent-maturity-index-1`, which now redirects here. It keeps its own design,
+  with a light/dark toggle, and is outside the gates' scope. See `packages/ami/README.md`.
 - Images in `public/img/` and `public/`.
 
 ## Tooling and gates
