@@ -142,8 +142,8 @@ therefore follows:
 - **Trust and security never appear in the nav.** Zero of eighteen, despite ten of eighteen
   carrying a security section on the page. They live in the footer.
 
-Above the nav sits `.ami-bar`, a one-line Agent Maturity Index bar pointing at the Founding
-Cohort form (`/agent-maturity-index#join`). It exists only while cohort seats are open: **delete the
+Above the nav sits `.ami-bar`, a one-line Agent Maturity Index bar about the Founding Cohort,
+linking to the top of the Index page (`/agent-maturity-index`, no anchor, by request). It exists only while cohort seats are open: **delete the
 `.ami-bar` block and its CSS from `public/index.html` when the 30 seats fill.** It is page markup,
 not a partial, so it shows on the homepage only.
 
@@ -155,7 +155,7 @@ Section order, each carrying a `data-section` name for GA:
    (`synos-gtm/presentations/_client_content.py`). **No links out**: there is nothing behind them
    and a dead "learn more" is worse than nothing. Depth belongs in the deck taken to the call.
    One exception, added 2026-10-11: a single line under the columns links to the Agent Maturity
-   Index score (`/agent-maturity-index#score`), because the three situations are a rough maturity
+   Index page (`/agent-maturity-index`, its top, by request), because the three situations are a rough maturity
    scale and the Index measures it properly. Keep it to that one line; the columns stay link-free.
 3. `outcomes` — four rows on one rule. Rows rather than cards, because four equal cards would say
    the four are interchangeable and the order is the argument.
