@@ -70,7 +70,9 @@ export async function POST(req) {
 
     const core = makeCore({
       store: storeFor(prefix),
-      mail: sendMail,
+      // Email is best-effort: a Resend failure (unverified sender, outage) is
+      // logged and the submission is still saved and acknowledged.
+      mail: (m) => sendMail(m).catch((e) => console.error('[mail failed]', m.to, m.subject, e.message)),
       notifyTo: env('NOTIFY_EMAIL', 'anuraag@synos.in'),
       siteUrl: `${env('SITE_ORIGIN', 'https://synos.in')}/${site}`,
     });
