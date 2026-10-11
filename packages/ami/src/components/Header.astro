@@ -1,41 +1,53 @@
 ---
-import { BASE } from '../config';
+import { BASE, SITE } from '../config';
 interface Props { cta?: boolean }
 const { cta = true } = Astro.props;
 ---
-<header class="top">
+<header class="top" data-top>
   <div class="wrap top-in">
-    <a class="mark" href={BASE} aria-label="Agent Maturity Index home">
-      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="14" width="4" height="7" rx="1" fill="currentColor" opacity=".35"/><rect x="9" y="8" width="4" height="13" rx="1" fill="currentColor" opacity=".65"/><rect x="17" y="1" width="4" height="20" rx="1" fill="currentColor"/></svg>
-      <span>Agent Maturity Index</span>
-    </a>
+    <div class="brand">
+      <a class="synos" href={SITE.publisherUrl} aria-label="SynOS home">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span>SynOS</span>
+      </a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a class="mark" href={BASE}>Agent Maturity Index</a>
+    </div>
     <nav class="top-nav" aria-label="Main">
       <button class="theme" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch to dark mode">
         <svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
         <svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
       </button>
-      {cta && <a class="top-cta" href={`${BASE}#join`} data-intent="cohort" data-cta="topnav">Apply</a>}
+      {cta && <a class="top-cta" href={`${BASE}#join`} data-intent="cohort" data-cta="topnav" tabindex="-1" aria-hidden="true">Apply</a>}
     </nav>
   </div>
 </header>
 
 <style>
-  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); }
-  .top-in { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-  .mark { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 650; font-size: 16px; letter-spacing: -.01em; }
-  .mark svg { color: var(--accent); }
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); border-bottom: 1px solid transparent; transition: border-color .2s, background-color .2s; }
+  .top.is-stuck { border-bottom-color: var(--line); }
+  .top-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .synos { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 650; font-size: 17px; letter-spacing: -.01em; }
+  .synos svg { color: var(--accent); flex: none; }
+  .sep { color: var(--line); font-size: 20px; font-weight: 300; }
+  .mark { display: inline-flex; align-items: center; min-height: 44px; color: var(--slate); text-decoration: none; font-weight: 500; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mark:hover { color: var(--ink); }
   .top-nav { display: flex; align-items: center; gap: 4px; }
   .top-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; font-size: 15px; font-weight: 500; color: var(--slate); text-decoration: none; }
   .top-nav a:hover { color: var(--ink); }
-  .top-nav .top-cta { font-weight: 600; color: var(--accent-ink); padding-right: 0; }
+  .top-nav .top-cta { font-weight: 600; color: var(--on-accent); background: var(--accent); border-radius: 999px; min-height: 36px; padding: 0 16px; margin-left: 6px; opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .2s, transform .2s, visibility .2s, background-color .15s; }
+  .top-nav .top-cta:hover { color: var(--on-accent); background: var(--accent-ink); }
+  .top.is-stuck .top-cta { opacity: 1; visibility: visible; transform: none; }
+  .top:not(.is-stuck) .top-cta { position: absolute; pointer-events: none; }
   .theme { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--slate); cursor: pointer; }
   .theme:hover { color: var(--ink); }
   .theme:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .theme .i-sun { display: none; }
   .theme[aria-pressed="true"] .i-sun { display: block; }
   .theme[aria-pressed="true"] .i-moon { display: none; }
-  @media (max-width: 400px) { .top-nav a:not(.top-cta) { padding: 0 8px; font-size: 14px; } }
-  @media (max-width: 359px) { .top-nav a:not(.top-cta) { display: none; } }
+  @media (max-width: 480px) { .mark { font-size: 14px; } .brand { gap: 7px; } }
+  @media (max-width: 420px) { .top.is-stuck .sep, .top.is-stuck .mark { display: none; } }
 </style>
 
 <script>
@@ -59,4 +71,17 @@ const { cta = true } = Astro.props;
   });
   media.addEventListener('change', sync);
   sync();
+
+  // Sticky state. The header sits plain at the top while the hero's Apply
+  // button is on screen; once that button scrolls out of view the header gains
+  // a hairline and its own Apply button. Pages without a hero CTA start stuck.
+  const top = document.querySelector<HTMLElement>('[data-top]');
+  const cta = top?.querySelector<HTMLAnchorElement>('.top-cta');
+  const hero = document.querySelector<HTMLElement>('[data-cta="hero"]');
+  const setStuck = (on: boolean) => {
+    top?.classList.toggle('is-stuck', on);
+    if (cta) { cta.tabIndex = on ? 0 : -1; on ? cta.removeAttribute('aria-hidden') : cta.setAttribute('aria-hidden', 'true'); }
+  };
+  if (!hero || !('IntersectionObserver' in window)) setStuck(true);
+  else new IntersectionObserver(([e]) => setStuck(!e.isIntersecting && e.boundingClientRect.top < 60), { rootMargin: '-60px 0px 0px 0px' }).observe(hero);
 </script>
