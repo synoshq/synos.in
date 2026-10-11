@@ -24,13 +24,13 @@ The shared logic is in `src/lib/ami-core.js`. Both the API (`api/ami/[route].mjs
 The site lives in the synos.in repo and is served by the same Vercel project.
 
 - `npm run build` (in `packages/ami`) writes the static pages to `public/agent-maturity-index/`. Commit the result: Vercel serves `public/` as committed, with no build step.
-- The API is `api/ami/[route].mjs` at the repo root. `vercel.json` rewrites `/agent-maturity-index/api/:route` to it and sets the `/agent-maturity-index` security headers.
+- The API is `api/ami/[route].mjs` at the repo root, shared with the other AMI microsite. `vercel.json` rewrites `/agent-maturity-index/api/:route` to it with `?site=agent-maturity-index` (each site keeps its own teams under its own Redis key prefix) and sets the `/agent-maturity-index` security headers.
 - Team scores and the rate limit are stored in Upstash Redis. Add it from the Vercel Marketplace (Storage > Upstash Redis) and connect it to the project, which sets `KV_REST_API_URL` and `KV_REST_API_TOKEN`.
 - Set these in Vercel > Settings > Environment Variables:
    - `RESEND_API_KEY`: from resend.com, after you verify the sending domain (synos.in).
    - `MAIL_FROM`: for example `Agent Maturity Index <index@synos.in>`.
    - `NOTIFY_EMAIL`: `anuraag@synos.in` (the default).
-   - `SITE_URL`: `https://synos.in/agent-maturity-index` (the default). Invitation links use it.
+   - `SITE_ORIGIN`: `https://synos.in` (the default). Invitation links use it plus this site's path.
 
 ## Commands
 

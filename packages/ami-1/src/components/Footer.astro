@@ -1,0 +1,23 @@
+---
+import { SITE, BASE } from '../config';
+---
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p>© 2026 <a href={SITE.publisherUrl}>SynOS</a>. The Agent Maturity Index is a SynOS research program.</p>
+    <nav aria-label="Footer">
+      <a href={`${BASE}/privacy`}>Privacy</a>
+      <a href={`mailto:${SITE.contactEmail}`}>Contact</a>
+      <button type="button" class="linklike" data-cookie-settings>Cookie settings</button>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .foot { padding: 20px 0 32px; border-top: 1px solid var(--line); font-size: 14px; color: var(--slate); }
+  .foot-in { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between; align-items: center; }
+  .foot p { margin: 0; padding: 12px 0; }
+  .foot a, .linklike { color: var(--slate); }
+  .foot nav { display: flex; gap: 0 20px; flex-wrap: wrap; }
+  .foot nav a, .linklike { display: inline-flex; align-items: center; min-height: 44px; }
+  .linklike { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+</style>

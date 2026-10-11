@@ -20,7 +20,7 @@
       ]
     },
     {
-      "source": "/agent-maturity-index(/.*)?",
+      "source": "/agent-maturity-index(-1)?(/.*)?",
       "headers": [
         {
           "key": "Content-Security-Policy",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "source": "/agent-maturity-index/_astro/(.*)",
+      "source": "/agent-maturity-index(-1)?/_astro/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -64,8 +64,16 @@
       "destination": "/agent-maturity-index/index.html"
     },
     {
+      "source": "/agent-maturity-index-1",
+      "destination": "/agent-maturity-index-1/index.html"
+    },
+    {
       "source": "/agent-maturity-index/api/:route(register|score|invite)",
-      "destination": "/api/ami/:route"
+      "destination": "/api/ami/:route?site=agent-maturity-index"
+    },
+    {
+      "source": "/agent-maturity-index-1/api/:route(register|score|invite)",
+      "destination": "/api/ami/:route?site=agent-maturity-index-1"
     }
   ]
 }

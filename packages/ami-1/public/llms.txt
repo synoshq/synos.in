@@ -1,0 +1,49 @@
+# Agent Maturity Index
+
+> The Agent Maturity Index (AMI) is an AI agent maturity model and peer benchmark that measures how enterprises build, govern and scale AI agents. It scores an organization from level 1 (Experimenting) to level 5 (Agent-Native) on seven dimensions. It is a research program run by SynOS and is being built with a Founding Cohort of 30 enterprises.
+
+## The five levels
+
+1. Experimenting: teams try agents; nothing runs in production.
+2. Piloting: a few agents serve real users, in limited scope.
+3. Operationalizing: agents run in production on shared tooling, with clear owners.
+4. Scaling: a platform lets many teams ship agents safely.
+5. Agent-Native: agents are core to how the business runs and improves.
+
+Scoring is based on evidence of what runs in production today, not plans. When an answer falls between two levels, the lower level is scored.
+
+## Scores
+
+- Agent Maturity Score: the average of a person's levels across all seven dimensions, from 1.0 to 5.0. Anyone can score their business on the home page.
+- Team alignment score: once three or more people from the same business have scored it, a 0 to 100 measure of how much they agree. 100 means everyone gave every dimension the same level.
+
+## The seven dimensions
+
+- Knowledge & Context: can agents reach the company knowledge they need, with the same permissions a person would have?
+- Quality & Evaluation: can you prove an agent works before release, and that it still works a month later?
+- Governance & Control: can you list every agent, what it is allowed to do, and stop it in seconds?
+- Continuous Improvement: is an agent better six months after launch, and do its gains carry to other agents?
+- Sovereignty & Residency: do you control where your models run and where your data goes?
+- Value & Portfolio: can you show the board what each agent costs and what it returns?
+- People & Operating Model: who owns an agent once it is live, and is that working?
+
+All seven dimensions carry equal weight.
+
+## Founding Cohort
+
+- Who: Chief AI Officers, Heads of AI and equivalent leaders at large enterprises.
+- Commitment: one 45-minute research interview. Free.
+- Timeline: interviews November to December 2026; private benchmarks January 2027.
+- Benefits: a private benchmark against the anonymized cohort, early access to the report, optional founding-member credit.
+- Not for: vendors, consultants or investors.
+- Confidentiality: answers are anonymized and reported only in aggregate; no attribution without written permission; interviews run by the SynOS core team; no demos, presentations or sales follow-up unless requested.
+
+## Report
+
+The State of Enterprise Agent Adoption report is planned for Q1 2027, built on aggregate cohort data.
+
+## Links
+
+- [Home and registration](https://synos.in/agent-maturity-index-1/)
+- [Privacy](https://synos.in/agent-maturity-index-1/privacy)
+- Contact: index@synos.ai

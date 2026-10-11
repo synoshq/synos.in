@@ -1,0 +1,208 @@
+// Agent Maturity Index: shared business logic.
+// Runs on the server (netlify/functions/ami.mjs) and, in preview builds,
+// in the browser with a local store, so both behave the same way.
+// No Node- or browser-only APIs here.
+
+export const DIMS = [
+  ['knowledge', 'Knowledge & Context'],
+  ['evaluation', 'Quality & Evaluation'],
+  ['governance', 'Governance & Control'],
+  ['improvement', 'Continuous Improvement'],
+  ['sovereignty', 'Sovereignty & Residency'],
+  ['value', 'Value & Portfolio'],
+  ['people', 'People & Operating Model'],
+];
+export const LEVELS = ['Experimenting', 'Piloting', 'Operationalizing', 'Scaling', 'Agent-Native'];
+export const TEAM_SIZE_FOR_ALIGNMENT = 3;
+const MAX_MEMBERS = 25;
+const MAX_INVITES = 15;
+const EMAIL = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
+
+/** Agent Maturity Score: the average of all seven dimensions, one decimal. */
+export function maturity(scores) {
+  const v = DIMS.map(([k]) => scores[k]);
+  const avg = v.reduce((a, b) => a + b, 0) / v.length;
+  const score = Math.round(avg * 10) / 10;
+  return { score, level: LEVELS[Math.min(4, Math.max(0, Math.floor(score) - 1))] };
+}
+
+/**
+ * Team alignment: 100 when everyone gives every dimension the same level,
+ * 0 when every dimension spans the full 1-to-5 range.
+ * Per dimension spread = highest minus lowest level (0 to 4).
+ */
+export function alignment(members) {
+  const dims = DIMS.map(([k, name]) => {
+    const vals = members.map((m) => m.scores[k]);
+    const spread = Math.max(...vals) - Math.min(...vals);
+    const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+    return { key: k, name, spread, avg: Math.round(avg * 10) / 10 };
+  });
+  const meanSpread = dims.reduce((a, d) => a + d.spread, 0) / dims.length;
+  const score = Math.round(100 * (1 - meanSpread / 4));
+  const teamAvg = Math.round((members.reduce((a, m) => a + maturity(m.scores).score, 0) / members.length) * 10) / 10;
+  const biggestGap = dims.slice().sort((a, b) => b.spread - a.spread)[0];
+  return { score, teamAvg, teamLevel: maturity(Object.fromEntries(dims.map((d) => [d.key, d.avg]))).level, dims, biggestGap: biggestGap.spread > 0 ? biggestGap : null };
+}
+
+export function encodeLink(obj) {
+  const bytes = new TextEncoder().encode(JSON.stringify(obj));
+  let s = '';
+  bytes.forEach((b) => (s += String.fromCharCode(b)));
+  return 'score.' + btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+export function decodeLink(hash) {
+  const m = /^#?score\.([A-Za-z0-9_-]+)$/.exec(hash || '');
+  if (!m) return null;
+  try {
+    const b = atob(m[1].replace(/-/g, '+').replace(/_/g, '/'));
+    const o = JSON.parse(new TextDecoder().decode(Uint8Array.from(b, (c) => c.charCodeAt(0))));
+    return o && typeof o.t === 'string' ? o : null;
+  } catch { return null; }
+}
+
+export class Fail extends Error { constructor(status, msg) { super(msg); this.status = status; } }
+
+const clean = (v, max = 120) => (typeof v === 'string' ? v.replace(/[\u0000-\u001f<>]/g, ' ').trim().slice(0, max) : '');
+const id = (n = 10) => {
+  const a = new Uint8Array(n); crypto.getRandomValues(a);
+  return Array.from(a, (b) => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join('');
+};
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const first = (name) => clean(name).split(/\s+/)[0] || '';
+
+function validScores(s) {
+  if (!s || typeof s !== 'object') throw new Fail(400, 'Score all seven dimensions.');
+  const out = {};
+  for (const [k] of DIMS) {
+    const v = Number(s[k]);
+    if (!Number.isInteger(v) || v < 1 || v > 5) throw new Fail(400, 'Score all seven dimensions.');
+    out[k] = v;
+  }
+  return out;
+}
+
+function emailHtml(lines, cta) {
+  return `<div style="font:16px/1.6 -apple-system,Segoe UI,Arial,sans-serif;color:#0f1b2d;max-width:520px">${lines.map((l) => `<p style="margin:0 0 14px">${l}</p>`).join('')}${cta ? `<p style="margin:24px 0"><a href="${esc(cta.url)}" style="display:inline-block;background:#2747e8;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px">${esc(cta.label)}</a></p>` : ''}<p style="margin:28px 0 0;font-size:13px;color:#525e70">Agent Maturity Index, a SynOS research program. Answers are reported only in aggregate.</p></div>`;
+}
+
+/**
+ * store: { get(key) -> object|null, set(key, object) }
+ * mail:  ({ to, subject, text, html, replyTo }) -> Promise
+ */
+export function makeCore({ store, mail, notifyTo, siteUrl }) {
+  const now = () => new Date().toISOString();
+  const teamKey = (t) => `team/${t}`;
+
+  async function notify(label, fields) {
+    if (!notifyTo) return;
+    const rows = Object.entries(fields).filter(([, v]) => v !== '' && v != null);
+    const text = rows.map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`).join('\n');
+    const html = `<table style="font:14px/1.5 -apple-system,Arial,sans-serif;border-collapse:collapse">${rows.map(([k, v]) => `<tr><td style="padding:4px 16px 4px 0;color:#525e70;vertical-align:top">${esc(k)}</td><td style="padding:4px 0">${esc(typeof v === 'object' ? JSON.stringify(v) : v)}</td></tr>`).join('')}</table>`;
+    const who = fields.name || fields['your name'] || 'anonymous visitor';
+    await mail({ to: notifyTo, subject: `[AMI] ${label}: ${who}${fields.company || fields.business ? ` (${fields.company || fields.business})` : ''}`, text, html, replyTo: EMAIL.test(fields.email || '') ? fields.email : undefined });
+  }
+
+  /** Registration, report waitlist and invitation acceptance forms. */
+  async function register(body) {
+    const type = { cohort: 'Founding Cohort application', report: 'Report waitlist', invite_accept: 'Invitation accepted' }[body.type || body.intent];
+    if (!type) throw new Fail(400, 'Unknown form.');
+    if (!clean(body.name) || !EMAIL.test(clean(body.email, 200))) throw new Fail(400, 'Name and a valid email are required.');
+    const fields = {};
+    for (const [k, v] of Object.entries(body)) {
+      if (k === 'website') continue;
+      fields[k] = Array.isArray(v) ? v.map((x) => (typeof x === 'object' ? Object.values(x).map((y) => clean(String(y), 200)).join(' / ') : clean(String(x), 200))).join('; ') : clean(String(v ?? ''), 500);
+    }
+    await notify(type, fields);
+    return { ok: true };
+  }
+
+  /** Save one person's seven scores. Creates a team for a first-time scorer. */
+  async function score(body) {
+    const scores = validScores(body.scores);
+    let team = body.team ? await store.get(teamKey(clean(body.team, 20))) : null;
+    if (!team) team = { id: id(), business: '', created: now(), members: [], invites: [], alignedNotified: false };
+    let member = team.members.find((m) => m.id === body.member);
+    const invite = team.invites.find((i) => i.id === body.invite);
+    if (!member) {
+      if (team.members.length >= MAX_MEMBERS) throw new Fail(429, 'This team is full.');
+      member = { id: id(), name: invite?.name || clean(body.name, 80), email: invite?.email || '', invitedBy: invite?.by || '', at: now(), scores };
+      team.members.push(member);
+      if (invite) invite.accepted = now();
+    } else {
+      member.scores = scores; member.at = now();
+    }
+    await store.set(teamKey(team.id), team);
+
+    const you = maturity(scores);
+    const count = team.members.length;
+    const result = { team: team.id, member: member.id, business: team.business, you, count, needed: Math.max(0, TEAM_SIZE_FOR_ALIGNMENT - count) };
+    if (count >= TEAM_SIZE_FOR_ALIGNMENT) result.alignment = alignment(team.members);
+
+    await notify('Self-score', { name: member.name, email: member.email, business: team.business, team: team.id, score: `${you.score} (${you.level})`, ...scores, 'team members scored': count, 'alignment score': result.alignment?.score ?? '' });
+
+    if (result.alignment && !team.alignedNotified) {
+      team.alignedNotified = true;
+      await store.set(teamKey(team.id), team);
+      const a = result.alignment;
+      const url = siteUrl ? `${siteUrl}#${encodeLink({ t: team.id, b: team.business })}` : '';
+      for (const m of team.members.filter((x) => EMAIL.test(x.email))) {
+        await mail({
+          to: m.email,
+          subject: `Your team alignment score for ${team.business || 'your business'} is ready`,
+          text: `Hi ${first(m.name)},\n\n${count} people from ${team.business || 'your business'} have scored your AI agent program.\n\nTeam alignment score: ${a.score}/100\nTeam Agent Maturity Score: ${a.teamAvg} (${a.teamLevel})${a.biggestGap ? `\nBiggest disagreement: ${a.biggestGap.name}` : ''}\n\nAgent Maturity Index`,
+          html: emailHtml([`Hi ${esc(first(m.name))},`, `${count} people from ${esc(team.business || 'your business')} have scored your AI agent program.`, `<strong style="font-size:22px">Team alignment score: ${a.score}/100</strong><br>Team Agent Maturity Score: ${a.teamAvg} (${esc(a.teamLevel)})${a.biggestGap ? `<br>Biggest disagreement: ${esc(a.biggestGap.name)}` : ''}`]),
+        }).catch(() => {});
+      }
+    }
+    return result;
+  }
+
+  /** Invite colleagues to score the same business. */
+  async function invite(body) {
+    const team = await store.get(teamKey(clean(body.team, 20)));
+    if (!team) throw new Fail(404, 'Score your business first.');
+    const me = team.members.find((m) => m.id === body.member);
+    if (!me) throw new Fail(403, 'Score your business first.');
+    const name = clean(body.name, 80);
+    const business = clean(body.business, 120) || team.business;
+    const email = clean(body.email, 200);
+    if (!name) throw new Fail(400, 'Enter your name.');
+    if (!business) throw new Fail(400, 'Enter your business name.');
+    if (!EMAIL.test(email)) throw new Fail(400, 'Enter your work email.');
+    const list = (Array.isArray(body.colleagues) ? body.colleagues : [])
+      .map((c) => ({ name: clean(c?.name, 80), email: clean(c?.email, 200).toLowerCase() }))
+      .filter((c) => c.name || c.email);
+    if (!list.length) throw new Fail(400, 'Add at least one colleague.');
+    if (list.length > 5) throw new Fail(400, 'Invite up to five colleagues at a time.');
+    for (const c of list) {
+      if (!c.name) throw new Fail(400, 'Add a name for each colleague.');
+      if (!EMAIL.test(c.email)) throw new Fail(400, `Enter a valid email for ${c.name}.`);
+      if (c.email === email.toLowerCase()) throw new Fail(400, 'Invite colleagues, not yourself.');
+    }
+    if (team.invites.length + list.length > MAX_INVITES) throw new Fail(429, 'This team has reached its invitation limit.');
+
+    me.name = name; me.email = email;
+    if (!team.business) team.business = business;
+    const sent = [];
+    for (const c of list) {
+      const inv = { id: id(), name: c.name, email: c.email, by: name, at: now() };
+      team.invites.push(inv);
+      const hash = encodeLink({ t: team.id, k: inv.id, i: first(name), r: first(c.name), b: team.business });
+      const url = `${siteUrl || ''}#${hash}`;
+      sent.push({ name: c.name, hash, url });
+      await mail({
+        to: c.email,
+        replyTo: email,
+        subject: `${first(name)} invited you to score ${team.business}'s AI agent maturity`,
+        text: `Hi ${first(c.name)},\n\n${name} has scored ${team.business} on the Agent Maturity Index and wants your view.\n\nIt takes two minutes: seven questions, one score each. When three of you have scored, everyone gets your team alignment score.\n\nScore ${team.business}: ${url}\n\nAgent Maturity Index`,
+        html: emailHtml([`Hi ${esc(first(c.name))},`, `<strong>${esc(name)}</strong> has scored <strong>${esc(team.business)}</strong> on the Agent Maturity Index and wants your view.`, 'It takes two minutes: seven questions, one score each. When three of you have scored, everyone gets your team alignment score.'], { url, label: `Score ${team.business}` }),
+      });
+    }
+    await store.set(teamKey(team.id), team);
+    await notify('Colleague invitations', { 'your name': name, email, business: team.business, team: team.id, invited: list.map((c) => `${c.name} <${c.email}>`).join(', ') });
+    return { sent: sent.length, business: team.business, links: sent };
+  }
+
+  return { register, score, invite };
+}

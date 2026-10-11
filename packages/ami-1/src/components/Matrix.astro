@@ -1,0 +1,79 @@
+---
+interface Props { dims: { short: string }[]; profile: number[]; median?: number[] }
+const { dims, profile, median } = Astro.props;
+const levels = [1, 2, 3, 4, 5];
+const rows = dims.length;
+const pts = (p: number[]) => p.map((lvl, i) => `${lvl - 0.5},${i + 0.5}`).join(' ');
+const summary = dims.map((d, i) => `${d.short} level ${profile[i]}${median ? ` (cohort median ${median[i]})` : ''}`).join(', ');
+---
+<figure class="matrix">
+  <div class="mx" role="img" aria-label={`Example benchmark for a fictional company: ${summary}.`}>
+    <div class="mx-head" aria-hidden="true">
+      <span class="mx-axis">Level</span>
+      {levels.map((l) => <span class="mx-lvl">{l}</span>)}
+    </div>
+    <div class="mx-body" aria-hidden="true">
+      <svg class="mx-line" viewBox={`0 0 5 ${rows}`} preserveAspectRatio="none">
+        {median && <polyline class="mx-median" points={pts(median)} />}
+        <polyline class="mx-you" points={pts(profile)} />
+      </svg>
+      {dims.map((d, i) => (
+        <div class="mx-row">
+          <span class="mx-name">{d.short}</span>
+          {levels.map((l) => (
+            <span class={`mx-cell${l <= profile[i] ? ` on l${l}` : ''}${l === profile[i] ? ' at' : ''}`}><i></i></span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+  <figcaption>
+    <span class="key"><span class="sw sw-you" aria-hidden="true"></span>Your enterprise</span>
+    {median && <span class="key"><span class="sw sw-med" aria-hidden="true"></span>Cohort median</span>}
+    <span class="cap">An example of the private benchmark each cohort member receives. Fictional data.</span>
+  </figcaption>
+</figure>
+
+<style>
+  .matrix { margin: 0; }
+  .mx { --label: 150px; font-size: 15px; }
+  .mx-head, .mx-row { display: grid; grid-template-columns: var(--label) repeat(5, minmax(0, 1fr)); align-items: center; }
+  .mx-head { padding-bottom: 10px; color: var(--slate); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .mx-axis { font-weight: 500; }
+  .mx-lvl { text-align: center; font-weight: 600; }
+  .mx-body { position: relative; }
+  .mx-row { height: 46px; border-top: 1px solid var(--line); }
+  .mx-row:last-child { border-bottom: 1px solid var(--line); }
+  .mx-name { color: var(--ink); font-weight: 500; padding-right: 10px; line-height: 1.25; }
+  .mx-cell { display: grid; place-items: center; position: relative; z-index: 1; }
+  .mx-cell i { width: 10px; height: 10px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--field); opacity: .8; }
+  .mx-cell.on i { width: 12px; height: 12px; box-shadow: none; opacity: 1; }
+  .mx-cell.l1 i { background: var(--l1); }
+  .mx-cell.l2 i { background: var(--l2); }
+  .mx-cell.l3 i { background: var(--l3); }
+  .mx-cell.l4 i { background: var(--l4); }
+  .mx-cell.l5 i { background: var(--l5); }
+  .mx-cell.at i { width: 18px; height: 18px; background: var(--accent); box-shadow: 0 0 0 5px var(--paper), 0 0 0 6.5px var(--accent); }
+  .mx-line {
+    position: absolute; top: 0; bottom: 0; right: 0;
+    left: var(--label); width: calc(100% - var(--label)); height: 100%;
+    overflow: visible; z-index: 0;
+    clip-path: inset(0 0 100% 0); animation: draw 6s .25s cubic-bezier(.65, 0, .35, 1) forwards;
+  }
+  .mx-line polyline { fill: none; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; }
+  .mx-you { stroke: var(--accent); stroke-width: 2; }
+  .mx-median { stroke: var(--slate); stroke-width: 1.5; stroke-dasharray: 4 5; opacity: .8; }
+  @keyframes draw { to { clip-path: inset(0 0 0 0); } }
+  @media (prefers-reduced-motion: reduce) { .mx-line { clip-path: none; animation: none; } }
+
+  figcaption { margin-top: 14px; font-size: 14px; color: var(--slate); display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: center; }
+  .key { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 500; }
+  .sw { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--accent); }
+  .sw-med { border-top: 1.5px dashed var(--slate); }
+  .cap { flex-basis: 100%; }
+  @media (max-width: 420px) {
+    .mx { font-size: 14px; --label: 112px; }
+    .mx-row { height: 40px; }
+    .mx-cell.at i { width: 16px; height: 16px; box-shadow: 0 0 0 4px var(--paper), 0 0 0 5.5px var(--accent); }
+  }
+</style>
