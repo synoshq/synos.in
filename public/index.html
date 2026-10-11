@@ -124,10 +124,34 @@
     .led-k { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--sk-indigo); padding-top: 3px; }
     .led-v { font-size: 15px; line-height: 1.7; color: var(--sk-ink-2); max-width: 62ch; }
+
+    /* Agent Maturity Index entry points: the bar above the nav while Founding Cohort seats are
+     * open (remove it when they fill), and one line under the three situations, which are a
+     * rough maturity scale the Index measures properly. */
+    .ami-bar { border-bottom: 1px solid var(--sk-border); background: var(--sk-bg); }
+    .ami-bar a { display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+      gap: var(--sk-space-2) var(--sk-space-4); min-height: 44px; padding: var(--sk-space-3) 24px;
+      font-size: 14px; line-height: 1.45; color: var(--sk-ink-2); text-decoration: none; text-align: center; }
+    .ami-chip { font-size: 12px; font-weight: 500; color: var(--sk-brand-text);
+      background: var(--sk-indigo-bg); border-radius: var(--sk-radius-sm); padding: 2px 8px; }
+    .ami-go { color: var(--sk-brand-text); font-weight: 500; text-decoration: underline;
+      text-underline-offset: 3px; }
+    .ami-bar a:hover .ami-go { text-decoration-thickness: 2px; }
+    @media (max-width: 720px) { .ami-long, .ami-chip { display: none; } .ami-bar a { padding: var(--sk-space-3) 16px; font-size: 13px; column-gap: var(--sk-space-3); } }
+    .states-more { margin-top: var(--sk-space-8); padding-top: var(--sk-space-6);
+      border-top: 1px solid var(--sk-border); font-size: 15px; line-height: 1.6; color: var(--sk-ink-3); max-width: none; }
+    .states-more a { color: var(--sk-brand-text); font-weight: 500; text-underline-offset: 3px; }
     </style>
 </head>
 <body>
 <a href="#main-content" class="sk-skip">Skip to content</a>
+<div class="ami-bar">
+  <a href="/agent-maturity-index#join" data-cta="cta-ami-cohort-bar">
+    <span class="ami-chip">Now open</span>
+    <span>Agent Maturity Index: 30 Founding Cohort seats<span class="ami-long"> for enterprise AI leaders</span>.</span>
+    <span class="ami-go">See if you qualify</span>
+  </a>
+</div>
 <!-- @partial nav -->
 <nav class="sk-nav" id="nav">
   <div class="sk-nav-inner">
@@ -187,6 +211,7 @@
           <p class="state-b">Every call runs on a frontier model, and prompting has stopped lifting accuracy. Both have become budget questions, and the answer is a smaller model trained on your own work.</p>
         </div>
       </div>
+      <p class="states-more">Not sure which one describes you? <a href="/agent-maturity-index#score" data-cta="cta-ami-score-where-you-are">Score your agent program in two minutes</a></p>
     </div>
   </section>
 

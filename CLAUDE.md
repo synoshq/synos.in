@@ -142,6 +142,11 @@ therefore follows:
 - **Trust and security never appear in the nav.** Zero of eighteen, despite ten of eighteen
   carrying a security section on the page. They live in the footer.
 
+Above the nav sits `.ami-bar`, a one-line Agent Maturity Index bar pointing at the Founding
+Cohort form (`/agent-maturity-index#join`). It exists only while cohort seats are open: **delete the
+`.ami-bar` block and its CSS from `public/index.html` when the 30 seats fill.** It is page markup,
+not a partial, so it shows on the homepage only.
+
 Section order, each carrying a `data-section` name for GA:
 
 1. `hero` — H1 "The platform for AI built on your own systems.", subhead naming the three
@@ -149,6 +154,9 @@ Section order, each carrying a `data-section` name for GA:
 2. `where-you-are` — the three buyer situations as columns, drawn from the customer deck family
    (`synos-gtm/presentations/_client_content.py`). **No links out**: there is nothing behind them
    and a dead "learn more" is worse than nothing. Depth belongs in the deck taken to the call.
+   One exception, added 2026-10-11: a single line under the columns links to the Agent Maturity
+   Index score (`/agent-maturity-index#score`), because the three situations are a rough maturity
+   scale and the Index measures it properly. Keep it to that one line; the columns stay link-free.
 3. `outcomes` — four rows on one rule. Rows rather than cards, because four equal cards would say
    the four are interchangeable and the order is the argument.
 4. `platform` — the four pieces, as cards.
