@@ -25,8 +25,13 @@ const ogImage = new URL(`${BASE}/og.png`, Astro.site).href;
     {!noindex && <link rel="canonical" href={canonical} />}
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
     <meta name="author" content={SITE.publisher} />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1424" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      // Apply a theme chosen with the header toggle before first paint.
+      try { const t = localStorage.getItem('ami-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
+    </script>
     <meta name="format-detection" content="telephone=no" />
 
     <link rel="icon" href={`${BASE}/favicon.svg`} type="image/svg+xml" />
