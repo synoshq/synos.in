@@ -18,6 +18,13 @@
   column that is SynOS, once per page. No eyebrows above headings, no mono all-caps labels, no
   `Fig. N ·` captions. `tools/render-gate.mjs` allows exactly Instrument Sans and JetBrains Mono.
   The brand kit's palette (`packages/brand-kit`) is unchanged; the site diverges from it on purpose.
+- **Homepage exception (2026-10-11).** `public/index.html` was rebuilt in the Agent Maturity Index
+  style (Option B "Loop", chosen in the 2026-10-11 visual review): Inter, the AMI palette and
+  light/dark tokens, pill buttons, cards, a dark deployment band and eyebrows. It carries its own
+  stylesheet and does not load `synos.css` or the nav/footer/head partials; its head keeps GA,
+  `synos.js`, the Open Graph tags and the `data-cta` / `data-section` names. Header buttons appear
+  only in a sticky bar once the hero CTAs scroll out of view. `tools/render-gate.mjs` allows Inter on
+  this page alone (`PAGE_FAMILIES`). The design rules above still govern every other page.
 - Shared behaviour lives in `public/js/synos.js` (nav, GA). Pages do not repeat it. Scroll reveal
   is retired; `.sk-reveal` is a no-op kept so old markup still renders.
 - Nav, footer and the common `<head>` live in `public/partials/` and are injected between markers by

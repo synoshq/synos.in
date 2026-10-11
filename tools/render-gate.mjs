@@ -29,6 +29,11 @@ const MIGRATED = new Set(
 // The only families the site may render. Anything else is drift.
 const ALLOWED_FAMILIES = ['Instrument Sans', 'JetBrains Mono']   // 2026-09-26 redesign: one family plus mono
 
+// Pages that deliberately follow another system. The homepage was rebuilt on 2026-10-11 in the
+// Agent Maturity Index style (packages/ami), which is set in Inter. Only the extra family is listed;
+// overflow and brand-casing checks still apply to it in full.
+const PAGE_FAMILIES = { '/index.html': ['Inter'] }
+
 let chromium
 try {
   ({ chromium } = await import('playwright'))
@@ -113,7 +118,7 @@ for (const { url: path } of targets) {
       }
       for (const f of result.families) {
         if (fixedCanvas) break
-        if (!ALLOWED_FAMILIES.includes(f)) failures.push(`${path} @${width}: unexpected font family "${f}"`)
+        if (!ALLOWED_FAMILIES.includes(f) && !(PAGE_FAMILIES[path] || []).includes(f)) failures.push(`${path} @${width}: unexpected font family "${f}"`)
       }
       for (const c of result.cased) {
         failures.push(`${path} @${width}: brand name re-cased by CSS · ${c}`)
