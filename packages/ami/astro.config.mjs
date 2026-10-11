@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Served at https://synos.in/ami from the synos.in repo. `npm run build` writes
-// straight into ../../public/ami, which Vercel serves as committed.
+// Served at https://synos.in/agent-maturity-index from the synos.in repo. `npm run build` writes
+// straight into ../../public/agent-maturity-index, which Vercel serves as committed.
 export default defineConfig({
   site: 'https://synos.in',
-  base: '/ami',
-  outDir: '../../public/ami',
+  base: '/agent-maturity-index',
+  outDir: '../../public/agent-maturity-index',
   trailingSlash: 'never',
   compressHTML: true,
   build: { inlineStylesheets: 'always', format: 'file' },

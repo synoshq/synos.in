@@ -1,5 +1,5 @@
 // Site-wide settings. Edit these before deploying.
-// Path prefix the site is served under, without a trailing slash ('/ami').
+// Path prefix the site is served under, without a trailing slash ('/agent-maturity-index').
 export const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 export const SITE = {

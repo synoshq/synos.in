@@ -1,5 +1,5 @@
-// Agent Maturity Index API: POST /ami/api/{register,score,invite}
-// (vercel.json rewrites /ami/api/:route here). Source of the microsite is packages/ami.
+// Agent Maturity Index API: POST /agent-maturity-index/api/{register,score,invite}
+// (vercel.json rewrites /agent-maturity-index/api/:route here). Source of the microsite is packages/ami.
 // Storage: Upstash Redis over its REST API. Email: Resend (https://resend.com).
 // Environment variables (Vercel > Project > Settings > Environment Variables):
 //   KV_REST_API_URL, KV_REST_API_TOKEN  set by the Upstash Redis integration
@@ -7,7 +7,7 @@
 //   RESEND_API_KEY  required to send email
 //   MAIL_FROM       e.g. "Agent Maturity Index <index@synos.in>" (domain verified in Resend)
 //   NOTIFY_EMAIL    where every form submission goes (default anuraag@synos.in)
-//   SITE_URL        public URL used in invitation links (default https://synos.in/ami)
+//   SITE_URL        public URL used in invitation links (default https://synos.in/agent-maturity-index)
 import { makeCore, Fail } from '../../packages/ami/src/lib/ami-core.js';
 
 const env = (k, d = '') => process.env[k] || d;
@@ -65,7 +65,7 @@ export async function POST(req) {
       store,
       mail: sendMail,
       notifyTo: env('NOTIFY_EMAIL', 'anuraag@synos.in'),
-      siteUrl: env('SITE_URL', 'https://synos.in/ami'),
+      siteUrl: env('SITE_URL', 'https://synos.in/agent-maturity-index'),
     });
     return json(200, await core[route](body));
   } catch (e) {

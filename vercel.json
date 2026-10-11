@@ -20,7 +20,7 @@
       ]
     },
     {
-      "source": "/ami(/.*)?",
+      "source": "/agent-maturity-index(/.*)?",
       "headers": [
         {
           "key": "Content-Security-Policy",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "source": "/ami/_astro/(.*)",
+      "source": "/agent-maturity-index/_astro/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -60,11 +60,11 @@
   ],
   "rewrites": [
     {
-      "source": "/ami",
-      "destination": "/ami/index.html"
+      "source": "/agent-maturity-index",
+      "destination": "/agent-maturity-index/index.html"
     },
     {
-      "source": "/ami/api/:route(register|score|invite)",
+      "source": "/agent-maturity-index/api/:route(register|score|invite)",
       "destination": "/api/ami/:route"
     }
   ]

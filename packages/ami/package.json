@@ -4,7 +4,7 @@
   "description": "Agent Maturity Index microsite, served at synos.in/ami",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && rm -f ../../public/ami/404.html",
+    "build": "astro build && rm -f ../../public/agent-maturity-index/404.html",
     "preview": "astro preview"
   },
   "keywords": [],
