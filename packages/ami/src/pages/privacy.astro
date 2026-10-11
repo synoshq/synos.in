@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config';
+---
+<Base
+  title="Privacy | Agent Maturity Index"
+  description="How the Agent Maturity Index collects, uses and protects the details you share when you apply for the Founding Cohort or join the report waitlist."
+  path="/privacy"
+>
+  <Header />
+  <main id="main" class="wrap legal">
+    <h1>Privacy</h1>
+    <p class="muted">Last updated October 8, 2026</p>
+
+    <h2>What we collect</h2>
+    <p>When you apply or join the waitlist we collect your name, work email, company and job title. You also tell us company size, industry, how many AI agents they run in production and, optionally, a LinkedIn profile and a self-assessment. We record which campaign or site brought you here. Founding Cohort interviews collect your answers about your agent program.</p>
+
+    <h2>Self-scores and team invitations</h2>
+    <p>When you score your business, we store your seven scores. If you invite colleagues, we store your name, work email and business name, plus their names and work emails, and we email each of them one invitation on your behalf. We combine the scores from one business to calculate its team alignment score, which only people from that business see.</p>
+
+    <h2>How we use it</h2>
+    <p>Only to run the Agent Maturity Index: to confirm fit, schedule interviews, score the benchmark and send you the report. We never add you to a sales or marketing list. If you tick the box asking to talk with SynOS, we pass your details to our team for that conversation only.</p>
+    <p>We do not sell your details, and we share them only with the service providers that run this form and our email.</p>
+
+    <h2>Interview answers</h2>
+    <p>Answers are anonymized and reported only in aggregate. We never name you or your company without written permission. Recordings and transcripts, if you allow them, are deleted after scoring.</p>
+
+    <h2>How long we keep it</h2>
+    <p>We delete application details 12 months after the report is published, or sooner if you ask.</p>
+
+    <h2>Cookies</h2>
+    <p>The site works without cookies. If you allow analytics, we load an analytics script to count visits. You can change your choice at any time with “Cookie settings” in the footer.</p>
+
+    <h2>Your rights</h2>
+    <p>You can ask us to show, correct or delete your data at any time. Email <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.</p>
+
+    <h2>Who we are</h2>
+    <p>The Agent Maturity Index is a research program run by <a href={SITE.publisherUrl}>SynOS</a>.</p>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .legal { max-width: 720px; padding-top: 48px; padding-bottom: 80px; }
+  .legal h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -.035em; margin: 0 0 8px; }
+  .legal h2 { font-size: 1.25rem; margin: 36px 0 8px; letter-spacing: -.01em; }
+</style>

@@ -30,6 +30,10 @@
   - `public/product.html`, `public/about.html`
   - `public/early-access.html` — primary CTA waitlist (Web3Forms email capture)
 - Use-case sub-pages live in `public/use-cases/<slug>.html`
+- `public/ami/` is the Agent Maturity Index microsite (synos.in/ami). It is **build output**: edit
+  `packages/ami` (Astro), run `npm run build` there, commit both. Its API is `api/ami/[route].mjs`
+  (Upstash Redis + Resend). It keeps its own design and is outside the gates' scope. See
+  `packages/ami/README.md`.
 - Images in `public/img/` and `public/`.
 
 ## Tooling and gates
