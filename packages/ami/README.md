@@ -16,6 +16,8 @@ The pages are static Astro files. The forms, team scores and emails run in one s
 - **Second scorer:** the overlay asks for 1 more colleague.
 - **Third scorer:** the overlay shows the alignment score, and every team member who left an email gets it by email.
 - **Notifications:** every form submission is emailed to `NOTIFY_EMAIL` (anuraag@synos.in). That covers cohort applications, report sign-ups, invitation acceptances, self-scores and colleague invitations.
+- **Saved submissions:** every cohort application, report sign-up and invitation acceptance is saved in Redis (`ami-1:submission/<id>`, listed by time in `ami-1:submissions`) before its email is sent, with `mailed` showing whether the email went out.
+- **Email queue:** an email that can't be sent (Resend down, sender domain not verified) is queued in Redis (`ami-1:outbox`). A Vercel Cron job calls `/api/ami/flush` every 15 minutes and sends what it can. It needs `CRON_SECRET` set in Production.
 
 The shared logic is in `src/lib/ami-core.js`. Both the API (`api/ami/[route].mjs`) and the preview build use it.
 

@@ -77,5 +77,11 @@
       "source": "/agent-maturity-index/api/:route(register|score|invite)",
       "destination": "/api/ami/:route?site=agent-maturity-index"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/ami/flush",
+      "schedule": "*/15 * * * *"
+    }
   ]
 }
