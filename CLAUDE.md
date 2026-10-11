@@ -34,7 +34,9 @@
   It is **build output**: edit `packages/ami` (Astro), run `npm run build` there, commit both. Its
   API is `api/ami/[route].mjs` (Upstash Redis + Resend); its Redis keys use the prefix `ami-1`, from
   when it launched at `/agent-maturity-index-1`, which now redirects here. It keeps its own design,
-  with a light/dark toggle, and is outside the gates' scope. See `packages/ami/README.md`.
+  with a light/dark toggle, and is outside the gates' scope. Form submissions are saved in Redis and
+  failed email is queued and retried by a 15-minute Vercel Cron (`/api/ami/flush`). See
+  `packages/ami/README.md`.
 - Images in `public/img/` and `public/`.
 
 ## Tooling and gates
