@@ -10,14 +10,18 @@ const { cta = true } = Astro.props;
         <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
         <span>SynOS</span>
       </a>
-      <span class="sep" aria-hidden="true">/</span>
-      <a class="mark" href={BASE}>Agent Maturity Index</a>
     </div>
     <nav class="top-nav" aria-label="Main">
-      <button class="theme" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch to dark mode">
-        <svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        <svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
-      </button>
+      <div class="theme" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-set="light" aria-pressed="true" title="Light mode">
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
+          <span class="sr-only">Light</span>
+        </button>
+        <button type="button" data-theme-set="dark" aria-pressed="false" title="Dark mode">
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span class="sr-only">Dark</span>
+        </button>
+      </div>
       {cta && <a class="top-cta" href={`${BASE}#join`} data-intent="cohort" data-cta="topnav" tabindex="-1" aria-hidden="true">Apply</a>}
     </nav>
   </div>
@@ -30,9 +34,6 @@ const { cta = true } = Astro.props;
   .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
   .synos { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 650; font-size: 17px; letter-spacing: -.01em; }
   .synos svg { color: var(--accent); flex: none; }
-  .sep { color: var(--line); font-size: 20px; font-weight: 300; }
-  .mark { display: inline-flex; align-items: center; min-height: 44px; color: var(--slate); text-decoration: none; font-weight: 500; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .mark:hover { color: var(--ink); }
   .top-nav { display: flex; align-items: center; gap: 4px; }
   .top-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; font-size: 15px; font-weight: 500; color: var(--slate); text-decoration: none; }
   .top-nav a:hover { color: var(--ink); }
@@ -40,35 +41,27 @@ const { cta = true } = Astro.props;
   .top-nav .top-cta:hover { color: var(--on-accent); background: var(--accent-ink); }
   .top.is-stuck .top-cta { opacity: 1; visibility: visible; transform: none; }
   .top:not(.is-stuck) .top-cta { position: absolute; pointer-events: none; }
-  .theme { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--slate); cursor: pointer; }
-  .theme:hover { color: var(--ink); }
-  .theme:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .theme .i-sun { display: none; }
-  .theme[aria-pressed="true"] .i-sun { display: block; }
-  .theme[aria-pressed="true"] .i-moon { display: none; }
-  @media (max-width: 480px) { .mark { font-size: 14px; } .brand { gap: 7px; } }
-  @media (max-width: 420px) { .top.is-stuck .sep, .top.is-stuck .mark { display: none; } }
+  .theme { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--line); border-radius: 999px; }
+  .theme button { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 30px; padding: 0; border: 0; border-radius: 999px; background: none; color: var(--slate); cursor: pointer; transition: background-color .15s, color .15s; }
+  .theme button:hover { color: var(--ink); }
+  .theme button[aria-pressed="true"] { background: var(--mist); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+  .theme button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
 
 <script>
   // Light/dark toggle. Starts from the device setting; a click pins the other
   // theme on <html data-theme> and remembers it for the next visit.
-  const btn = document.querySelector<HTMLButtonElement>('.top .theme');
+  const btns = [...document.querySelectorAll<HTMLButtonElement>('.top [data-theme-set]')];
   const root = document.documentElement;
   const media = matchMedia('(prefers-color-scheme: dark)');
-  const isDark = () => (root.dataset.theme || (media.matches ? 'dark' : 'light')) === 'dark';
-  const sync = () => {
-    if (!btn) return;
-    const dark = isDark();
-    btn.setAttribute('aria-pressed', String(dark));
-    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
-  };
-  btn?.addEventListener('click', () => {
-    const next = isDark() ? 'light' : 'dark';
+  const current = () => root.dataset.theme || (media.matches ? 'dark' : 'light');
+  const sync = () => { const t = current(); btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.themeSet === t))); };
+  btns.forEach((b) => b.addEventListener('click', () => {
+    const next = b.dataset.themeSet!;
     root.dataset.theme = next;
     try { localStorage.setItem('ami-theme', next); } catch {}
     sync();
-  });
+  }));
   media.addEventListener('change', sync);
   sync();
 
