@@ -1,0 +1,259 @@
+---
+import { SITE, BASE } from '../config';
+const roles = ['CISO or security lead', 'CTO or CIO', 'Head of data', 'Business unit leader', 'Other'];
+const colleagues = [1, 2, 3];
+---
+<div class="inv" id="accept">
+  <form class="inv-form" novalidate>
+    <fieldset class="grp">
+      <legend><span class="step" aria-hidden="true">1</span>About you</legend>
+      <div class="fields">
+        <div class="f">
+          <label for="i-name">Full name</label>
+          <input id="i-name" name="name" type="text" autocomplete="name" required data-msg="Enter your full name." />
+        </div>
+        <div class="f">
+          <label for="i-email">Work email</label>
+          <input id="i-email" name="email" type="email" autocomplete="email" inputmode="email" required data-msg="Enter your work email." />
+        </div>
+        <div class="f">
+          <label for="i-company">Company</label>
+          <input id="i-company" name="company" type="text" autocomplete="organization" required data-msg="Enter your company." />
+        </div>
+        <div class="f">
+          <label for="i-title">Job title</label>
+          <input id="i-title" name="title" type="text" autocomplete="organization-title" required data-msg="Enter your job title." />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step" aria-hidden="true">2</span>Your interview</legend>
+      <p class="hint">45 minutes over video, with our core team. We send a calendar invite within one business day.</p>
+      <div class="fields">
+        <div class="f">
+          <label for="i-week">Which week works</label>
+          <select id="i-week" name="interview_week" required data-msg="Choose a week.">
+            <option value="">Choose one</option>
+            <option>This week</option>
+            <option>Next week</option>
+            <option>Either</option>
+          </select>
+        </div>
+        <div class="f">
+          <label for="i-time">Best time of day</label>
+          <select id="i-time" name="interview_time" required data-msg="Choose a time of day.">
+            <option value="">Choose one</option>
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Either</option>
+          </select>
+        </div>
+        <div class="f f-wide">
+          <label for="i-assistant">Assistant’s email <span class="opt">(optional, if they manage your calendar)</span></label>
+          <input id="i-assistant" name="assistant_email" type="email" inputmode="email" autocomplete="off" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step" aria-hidden="true">3</span>Your leadership team <span class="opt">(optional)</span></legend>
+      <p class="hint">For your leadership alignment report, we send each colleague a 10-minute survey on the same seven dimensions. You can also add them later.</p>
+      <div class="team">
+        {colleagues.map((n) => (
+          <div class="mate">
+            <div class="f">
+              <label for={`c${n}-name`}>Colleague {n} name</label>
+              <input id={`c${n}-name`} name={`colleague_${n}_name`} type="text" autocomplete="off" />
+            </div>
+            <div class="f">
+              <label for={`c${n}-email`}>Work email</label>
+              <input id={`c${n}-email`} name={`colleague_${n}_email`} type="email" inputmode="email" autocomplete="off" class="mate-email" />
+            </div>
+            <div class="f">
+              <label for={`c${n}-role`}>Role</label>
+              <select id={`c${n}-role`} name={`colleague_${n}_role`}>
+                <option value="">Choose one</option>
+                {roles.map((r) => <option>{r}</option>)}
+              </select>
+            </div>
+          </div>
+        ))}
+      </div>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true">
+      <label for="i-website">Leave this empty</label>
+      <input id="i-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <input type="hidden" name="invite_code" value="" />
+
+    <div class="submit-row">
+      <button class="btn btn-primary" type="submit">Accept the invitation</button>
+      <p class="consent">Answers are reported only in aggregate. We never use your name or your company’s name without your written permission. <a href={`${BASE}/privacy`}>Privacy</a></p>
+    </div>
+    <p class="status" role="status" aria-live="polite"></p>
+    <noscript><p class="status is-err">This form needs JavaScript. Reply to your invitation email to accept.</p></noscript>
+  </form>
+
+  <div class="done" hidden tabindex="-1">
+    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20.5l5.5 5.5L28.5 15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h2 class="done-h">Your seat is reserved.</h2>
+    <p class="done-p">We will send a calendar invite for your interview within one business day.</p>
+    <p class="done-team" hidden></p>
+  </div>
+</div>
+
+<script>
+  import { SITE } from '../config';
+  import { api } from '../lib/api';
+  const root = document.getElementById('accept') as HTMLElement;
+  const form = root.querySelector('form') as HTMLFormElement;
+  const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+  const status = form.querySelector('.status') as HTMLElement;
+  const done = root.querySelector('.done') as HTMLElement;
+
+  // Invitation code from ?code=… (live site) or #… (shared preview links).
+  const code = new URLSearchParams(location.search).get('code') || location.hash.replace(/^#/, '');
+  (form.elements.namedItem('invite_code') as HTMLInputElement).value = /^[\w.~-]{1,64}$/.test(code) && code !== 'accept' ? code : '';
+
+  const track = (event: string, props: Record<string, unknown> = {}) => {
+    const w = window as unknown as { dataLayer?: unknown[] };
+    if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event, ...props });
+  };
+  let started = false;
+  form.addEventListener('focusin', () => { if (!started) { started = true; track('invite_start'); } });
+
+  const FREE = /@(?:gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|icloud|me|mac|aol|proton(?:mail)?|pm|gmx|yandex|mail|zoho|hey|qq|163|126|web|fastmail|tutanota|tuta|zohomail|comcast|att|verizon)\.[a-z]{2,3}(?:\.[a-z]{2})?$/i;
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function err(el: HTMLInputElement | HTMLSelectElement, msg: string) {
+    el.setAttribute('aria-invalid', 'true');
+    let m = el.parentElement!.querySelector('.err') as HTMLElement | null;
+    if (!m) { m = document.createElement('p'); m.className = 'err'; m.id = el.id + '-err'; el.parentElement!.appendChild(m); }
+    m.textContent = msg;
+    el.setAttribute('aria-describedby', m.id);
+  }
+  function clear() {
+    form.querySelectorAll('[aria-invalid]').forEach((el) => { el.removeAttribute('aria-invalid'); el.removeAttribute('aria-describedby'); });
+    form.querySelectorAll('.err').forEach((m) => m.remove());
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clear();
+    status.textContent = '';
+    status.classList.remove('is-err');
+    let first: HTMLElement | null = null;
+    const flag = (el: HTMLInputElement | HTMLSelectElement, msg: string) => { err(el, msg); first = first || el; };
+
+    form.querySelectorAll<HTMLInputElement | HTMLSelectElement>('[required]').forEach((f) => {
+      const v = f.value.trim();
+      if (!v) flag(f, f.dataset.msg || 'Fill in this field.');
+      else if (f.type === 'email' && !EMAIL.test(v)) flag(f, 'Enter an email address like name@company.com.');
+      else if (f.id === 'i-email' && FREE.test(v)) flag(f, 'Use your work email so we can confirm your company.');
+    });
+    const asst = form.querySelector('#i-assistant') as HTMLInputElement;
+    if (asst.value.trim() && !EMAIL.test(asst.value.trim())) flag(asst, 'Enter a valid email, or leave this empty.');
+
+    const team: { name: string; email: string; role: string }[] = [];
+    root.querySelectorAll<HTMLElement>('.mate').forEach((row) => {
+      const [n, em, r] = Array.from(row.querySelectorAll<HTMLInputElement | HTMLSelectElement>('input, select'));
+      const any = n.value.trim() || em.value.trim() || r.value;
+      if (!any) return;
+      if (!EMAIL.test(em.value.trim())) flag(em, 'Add a work email for this colleague, or clear the row.');
+      else team.push({ name: n.value.trim(), email: em.value.trim(), role: r.value });
+    });
+    if (first) { (first as HTMLElement).focus(); return; }
+
+    const fd = new FormData(form);
+    if (fd.get('website')) return;
+    const data: Record<string, unknown> = {
+      type: 'invite_accept',
+      invite_code: fd.get('invite_code'),
+      name: fd.get('name'), email: fd.get('email'), company: fd.get('company'), title: fd.get('title'),
+      interview_week: fd.get('interview_week'), interview_time: fd.get('interview_time'),
+      assistant_email: fd.get('assistant_email') || '',
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      leadership_team: team,
+      page: location.origin + location.pathname,
+      submitted_at: new Date().toISOString(),
+    };
+
+    const finish = (note = '') => {
+      const t = done.querySelector('.done-team') as HTMLElement;
+      if (team.length) { t.hidden = false; t.textContent = `We will send the 10-minute survey to ${team.length === 1 ? 'your colleague' : `your ${team.length} colleagues`} after your interview.`; }
+      if (note) (done.querySelector('.done-p') as HTMLElement).textContent += ` ${note}`;
+      form.hidden = true;
+      done.hidden = false;
+      done.focus();
+      root.scrollIntoView({ block: 'start' });
+      track('invite_accept', { team: team.length });
+    };
+
+    btn.disabled = true;
+    const label = btn.textContent;
+    btn.textContent = 'Sending…';
+    try {
+      await api('register', data);
+      finish(SITE.preview ? '(Preview copy: nothing was sent.)' : '');
+    } catch (x) {
+      status.textContent = `${(x as Error).message} You can also reply to your invitation email.`;
+      status.classList.add('is-err');
+      btn.disabled = false;
+      btn.textContent = label;
+      btn.focus();
+    }
+  });
+</script>
+
+<style>
+  .inv { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: clamp(22px, 4vw, 44px); scroll-margin-top: 80px; }
+  .grp { border: 0; margin: 0; padding: 0 0 32px; }
+  .grp + .grp { padding-top: 32px; border-top: 1px solid var(--line); }
+  legend { float: left; width: 100%; display: flex; align-items: center; gap: 12px; padding: 0; margin-bottom: 18px; font-family: var(--font-display); font-size: 1.3rem; font-weight: 650; letter-spacing: -.015em; color: var(--ink); }
+  .step { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .opt { font-weight: 400; color: var(--slate); font-size: .85em; letter-spacing: 0; }
+  .grp > legend + * { clear: both; }
+  .hint { margin: 0 0 20px; color: var(--slate); max-width: 40em; font-size: 15px; }
+
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+  .f { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+  .f-wide { grid-column: 1 / -1; }
+  .f label { font-size: 14px; font-weight: 600; }
+  .f input, .f select {
+    min-height: 50px; padding: 0 14px; border-radius: 12px;
+    border: 1.5px solid var(--field); background: var(--paper); color: var(--ink);
+    font: 400 17px/1.2 var(--font); width: 100%;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .f select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--slate) 50%), linear-gradient(135deg, var(--slate) 50%, transparent 50%); background-position: calc(100% - 20px) 22px, calc(100% - 15px) 22px; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
+  .f input:hover, .f select:hover { border-color: var(--slate); }
+  .f input:focus, .f select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent); }
+  .f [aria-invalid="true"] { border-color: var(--err); }
+  .f :global(.err) { margin: 0; font-size: 14px; color: var(--err); }
+
+  .team { display: grid; gap: 14px; }
+  .mate { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 14px 16px; padding: 16px; border-radius: 14px; background: var(--mist); }
+  .mate .f input, .mate .f select { background-color: var(--paper); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .submit-row { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .consent { margin: 0; font-size: 14px; color: var(--slate); max-width: 40em; }
+  .status { margin: 16px 0 0; font-size: 15px; }
+  .status:empty { display: none; }
+  .status.is-err { color: var(--err); }
+  .btn[disabled] { opacity: .6; cursor: progress; }
+
+  .done { outline: none; color: var(--ink); }
+  .done svg { color: var(--ok); margin-bottom: 16px; }
+  .done h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.025em; }
+  .done p { margin: 10px 0 0; color: var(--slate); max-width: 36em; }
+  .done .done-more { margin-top: 20px; }
+  .done .done-more a { font-weight: 600; }
+
+  @media (max-width: 720px) {
+    .fields, .mate { grid-template-columns: 1fr; }
+    .submit-row .btn { width: 100%; }
+  }
+</style>

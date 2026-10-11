@@ -1,0 +1,307 @@
+---
+// Score overlay: shows the Agent Maturity Score, invites colleagues, and
+// shows the team alignment score once three people from a business score it.
+---
+<dialog id="score-dlg" class="sd" aria-labelledby="sd-h">
+  <button type="button" class="sd-close" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <div class="sd-you">
+    <h2 id="sd-h">Your Agent Maturity Score</h2>
+    <p class="sd-num"><span class="sd-score">0.0</span><span class="sd-of">/ 5</span></p>
+    <p class="sd-level"></p>
+    <ol class="sd-bars" aria-label="Your level on each dimension"></ol>
+  </div>
+  <div class="sd-team" aria-live="polite"></div>
+</dialog>
+
+<script>
+  import { SITE } from '../config';
+  import { api, previewOutbox } from '../lib/api';
+  import { DIMS, maturity, decodeLink, TEAM_SIZE_FOR_ALIGNMENT } from '../lib/ami-core.js';
+
+  type Align = { score: number; teamAvg: number; teamLevel: string; biggestGap: { name: string; spread: number } | null; dims: { key: string; name: string; spread: number; avg: number }[] };
+  type ScoreRes = { team: string; member: string; business: string; you: { score: number; level: string }; count: number; needed: number; alignment?: Align };
+  type Invite = { t: string; k?: string; i?: string; r?: string; b?: string };
+
+  const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+  const track = (event: string, props: Record<string, unknown> = {}) => {
+    const w = window as unknown as { dataLayer?: unknown[] };
+    if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event, ...props });
+  };
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const dlg = document.getElementById('score-dlg') as HTMLDialogElement;
+  const team = dlg.querySelector('.sd-team') as HTMLElement;
+  const ss = document.querySelector('.selfscore') as HTMLElement;
+  const getBtn = document.getElementById('get-score') as HTMLButtonElement;
+  const ssErr = document.querySelector('.ss-err') as HTMLElement;
+  const banner = document.querySelector('.invited') as HTMLElement;
+
+  let invite: Invite | null = null;
+  let session: { team?: string; member?: string; business?: string; name?: string; email?: string } = {};
+  let last: ScoreRes | null = null;
+
+  // ---------- Invited visitor ----------
+  function applyInvite(scroll: boolean) {
+    invite = decodeLink(location.hash);
+    if (!invite) { banner.hidden = true; return; }
+    session = { team: invite.t, business: invite.b, name: invite.r };
+    const txt = banner.querySelector('.inv-txt') as HTMLElement;
+    const av = banner.querySelector('.inv-av') as HTMLElement;
+    av.textContent = (invite.i || '?').charAt(0).toUpperCase();
+    txt.innerHTML = `${invite.r ? `<strong>${esc(invite.r)}</strong>, ` : ''}${esc(invite.i || 'A colleague')} invited you to score <strong>${esc(invite.b || 'your business')}</strong>.`;
+    banner.hidden = false;
+    if (scroll) {
+      requestAnimationFrame(() => document.getElementById('score')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }));
+    }
+    track('invite_open');
+  }
+  applyInvite(true);
+  addEventListener('hashchange', () => {
+    if (!decodeLink(location.hash)) return;
+    ss.querySelectorAll<HTMLInputElement>('input:checked').forEach((i) => (i.checked = false));
+    last = null;
+    applyInvite(true);
+  });
+
+  // ---------- Scoring ----------
+  ss.addEventListener('change', (e) => {
+    (e.target as HTMLElement).closest('.ss-row')?.classList.remove('ss-missing');
+    if (!ss.querySelector('.ss-missing')) ssErr.hidden = true;
+  });
+
+  getBtn.addEventListener('click', async () => {
+    const scores: Record<string, number> = {};
+    let firstMissing: HTMLInputElement | null = null;
+    ss.querySelectorAll<HTMLFieldSetElement>('.ss-row').forEach((row) => {
+      const c = row.querySelector<HTMLInputElement>('input:checked');
+      if (c) scores[c.name] = Number(c.value);
+      else { row.classList.add('ss-missing'); firstMissing = firstMissing || row.querySelector('input'); }
+    });
+    if (firstMissing) {
+      ssErr.hidden = false;
+      (firstMissing as HTMLInputElement).focus();
+      return;
+    }
+    ssErr.hidden = true;
+    const you = maturity(scores);
+    renderYou(you, scores);
+    team.innerHTML = `<p class="sd-wait">Saving your score…</p>`;
+    if (!dlg.open) dlg.showModal();
+    track('selfscore_complete', { score: you.score });
+
+    try {
+      const res = await api<ScoreRes>('score', { team: session.team, member: session.member, invite: invite?.k, name: session.name, scores });
+      session.team = res.team; session.member = res.member; session.business = res.business || session.business;
+      last = res;
+      renderTeam(res);
+    } catch (x) {
+      team.innerHTML = `<p class="sd-error">${esc((x as Error).message)}</p><button type="button" class="btn btn-ghost sd-retry">Try again</button>`;
+      team.querySelector('.sd-retry')?.addEventListener('click', () => getBtn.click());
+    }
+  });
+
+  function renderYou(you: { score: number; level: string }, scores: Record<string, number>) {
+    (dlg.querySelector('.sd-score') as HTMLElement).textContent = you.score.toFixed(1);
+    (dlg.querySelector('.sd-level') as HTMLElement).textContent = you.level;
+    (dlg.querySelector('.sd-bars') as HTMLElement).innerHTML = DIMS.map(([k, name]) =>
+      `<li><span class="b-name">${esc(name)}</span><span class="b-track" aria-hidden="true"><span class="b-fill" style="width:${scores[k] * 20}%"></span></span><span class="b-val">${scores[k]}</span></li>`).join('');
+  }
+
+  // ---------- Team states ----------
+  function renderTeam(res: ScoreRes) {
+    const biz = esc(res.business || 'your business');
+    if (res.alignment) {
+      const a = res.alignment;
+      team.innerHTML = `
+        <div class="al">
+          <h3>Team alignment score</h3>
+          <p class="al-num">${a.score}<span>/ 100</span></p>
+          <p class="al-sub">${res.count} people from ${biz} have scored. ${a.score >= 80 ? 'Your leadership largely sees the program the same way.' : a.score >= 60 ? 'Your leadership agrees on some areas and differs on others.' : 'Your leadership sees the program very differently.'}</p>
+          <dl class="al-stats">
+            <div><dt>Team Agent Maturity Score</dt><dd>${a.teamAvg.toFixed(1)} <span>${esc(a.teamLevel)}</span></dd></div>
+            <div><dt>Biggest disagreement</dt><dd>${a.biggestGap ? `${esc(a.biggestGap.name)} <span>${a.biggestGap.spread} level${a.biggestGap.spread > 1 ? 's' : ''} apart</span>` : 'None'}</dd></div>
+          </dl>
+        </div>`;
+      track('alignment_view', { score: a.score, count: res.count });
+      return;
+    }
+    const isSecond = res.count >= 2;
+    const head = isSecond
+      ? `<h3>You’re ${res.count} of ${TEAM_SIZE_FOR_ALIGNMENT}.</h3><p>${biz} has ${res.count} scores in. Invite <strong>${res.needed} more colleague${res.needed > 1 ? 's' : ''}</strong> to unlock your team alignment score.</p>`
+      : `<h3>Get your team alignment score</h3><p>Invite two colleagues to score ${biz} on the same seven dimensions. When three of you have scored, everyone sees where your leadership agrees, and where it doesn’t.</p>`;
+    team.innerHTML = `<div class="tm-head">${head}</div>${inviteForm(Math.max(1, res.needed))}`;
+    bindInviteForm();
+  }
+
+  function inviteForm(rows: number) {
+    const known = !!session.business;
+    const row = (n: number) => `
+      <div class="mate">
+        <div class="f"><label for="m${n}-name">Colleague’s name</label><input id="m${n}-name" class="m-name" type="text" autocomplete="off"></div>
+        <div class="f"><label for="m${n}-email">Their work email</label><input id="m${n}-email" class="m-email" type="email" inputmode="email" autocomplete="off"></div>
+      </div>`;
+    return `
+      <form class="tm-form" novalidate>
+        <div class="tm-me">
+          <div class="f"><label for="tm-name">Your name</label><input id="tm-name" name="name" type="text" autocomplete="name" value="${esc(session.name || '')}"></div>
+          <div class="f"><label for="tm-email">Your work email</label><input id="tm-email" name="email" type="email" inputmode="email" autocomplete="email" value="${esc(session.email || '')}"></div>
+          <div class="f tm-biz"><label for="tm-biz">Business name</label><input id="tm-biz" name="business" type="text" autocomplete="organization" value="${esc(session.business || '')}" ${known ? 'readonly' : ''}></div>
+        </div>
+        <div class="mates">${Array.from({ length: rows }, (_, i) => row(i + 1)).join('')}</div>
+        <button type="button" class="linkbtn add-mate">Add another colleague</button>
+        <div class="tm-submit">
+          <button type="submit" class="btn btn-primary">Send invitations</button>
+          <p class="tm-note">We email each colleague a link to score ${esc(session.business || 'your business')}. We email you when your team alignment score is ready.</p>
+        </div>
+        <p class="tm-status" role="status"></p>
+      </form>`;
+  }
+
+  function bindInviteForm() {
+    const form = team.querySelector('.tm-form') as HTMLFormElement;
+    const mates = form.querySelector('.mates') as HTMLElement;
+    const status = form.querySelector('.tm-status') as HTMLElement;
+    form.querySelector('.add-mate')!.addEventListener('click', (e) => {
+      const n = mates.children.length + 1;
+      if (n > 5) return;
+      mates.insertAdjacentHTML('beforeend', `<div class="mate"><div class="f"><label for="m${n}-name">Colleague’s name</label><input id="m${n}-name" class="m-name" type="text" autocomplete="off"></div><div class="f"><label for="m${n}-email">Their work email</label><input id="m${n}-email" class="m-email" type="email" inputmode="email" autocomplete="off"></div></div>`);
+      (mates.lastElementChild!.querySelector('input') as HTMLInputElement).focus();
+      if (n === 5) (e.currentTarget as HTMLElement).hidden = true;
+    });
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+      status.textContent = ''; status.classList.remove('is-err');
+      const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const name = form.querySelector('#tm-name') as HTMLInputElement;
+      const email = form.querySelector('#tm-email') as HTMLInputElement;
+      const biz = form.querySelector('#tm-biz') as HTMLInputElement;
+      const bad: [HTMLInputElement, string][] = [];
+      if (!name.value.trim()) bad.push([name, 'Enter your name.']);
+      if (!EMAIL.test(email.value.trim())) bad.push([email, 'Enter your work email.']);
+      if (!biz.value.trim()) bad.push([biz, 'Enter your business name.']);
+      const colleagues: { name: string; email: string }[] = [];
+      mates.querySelectorAll('.mate').forEach((m) => {
+        const n = m.querySelector('.m-name') as HTMLInputElement;
+        const em = m.querySelector('.m-email') as HTMLInputElement;
+        if (!n.value.trim() && !em.value.trim()) return;
+        if (!n.value.trim()) bad.push([n, 'Add your colleague’s name.']);
+        else if (!EMAIL.test(em.value.trim())) bad.push([em, `Enter a work email for ${n.value.trim()}.`]);
+        else colleagues.push({ name: n.value.trim(), email: em.value.trim() });
+      });
+      if (!bad.length && !colleagues.length) bad.push([mates.querySelector('.m-name') as HTMLInputElement, 'Add at least one colleague.']);
+      if (bad.length) {
+        bad.forEach(([el]) => el.setAttribute('aria-invalid', 'true'));
+        status.textContent = bad[0][1]; status.classList.add('is-err');
+        bad[0][0].focus();
+        return;
+      }
+      const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try {
+        const res = await api<{ sent: number; business: string; links: { name: string; hash: string }[] }>('invite', {
+          team: session.team, member: session.member, name: name.value.trim(), email: email.value.trim(), business: biz.value.trim(), colleagues,
+        });
+        session.name = name.value.trim(); session.email = email.value.trim(); session.business = res.business;
+        track('invite_sent', { count: res.sent });
+        const names = colleagues.map((c) => esc(c.name.split(/\s+/)[0]));
+        const list = names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0];
+        team.innerHTML = `
+          <div class="tm-done">
+            <svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20.5l5.5 5.5L28.5 15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Invitations sent to ${list}.</h3>
+            <p>We will email you when your team alignment score for ${esc(res.business)} is ready.</p>
+            ${SITE.preview ? `<div class="pv"><p><strong>Preview copy:</strong> no emails were sent. Open an invitation to see what your colleague sees.</p>${res.links.map((l) => `<button type="button" class="btn btn-ghost pv-open" data-hash="${esc(l.hash)}">Open ${esc(l.name.split(/\s+/)[0])}’s invitation</button>`).join('')}</div>` : ''}
+          </div>`;
+        team.querySelectorAll<HTMLButtonElement>('.pv-open').forEach((b) => b.addEventListener('click', () => {
+          dlg.close();
+          location.hash = b.dataset.hash || '';
+        }));
+        void previewOutbox;
+      } catch (x) {
+        status.textContent = (x as Error).message; status.classList.add('is-err');
+        btn.disabled = false; btn.textContent = 'Send invitations';
+      }
+    });
+  }
+
+  dlg.querySelector('.sd-close')!.addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => getBtn.focus({ preventScroll: true }));
+  void last;
+</script>
+
+<style>
+  .sd {
+    width: min(600px, calc(100vw - 24px)); max-height: min(92vh, 920px);
+    padding: 0; border: 0; border-radius: 22px;
+    background: var(--paper); color: var(--ink);
+    box-shadow: 0 30px 80px -20px rgba(15, 27, 45, .45);
+    overflow: auto; overscroll-behavior: contain;
+  }
+  .sd::backdrop { background: rgba(15, 27, 45, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .sd[open] { animation: sd-in .28s cubic-bezier(.2, .8, .2, 1); }
+  @keyframes sd-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+  .sd-close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; color: var(--slate); cursor: pointer; display: grid; place-items: center; }
+  .sd-close:hover { background: var(--mist); color: var(--ink); }
+
+  .sd-you { padding: 32px clamp(22px, 5vw, 40px) 28px; background: var(--mist); }
+  .sd-you h2 { font-size: 1.05rem; font-weight: 600; color: var(--slate); letter-spacing: 0; }
+  .sd-num { margin: 6px 0 0; font-family: var(--font-display); font-weight: 700; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .sd-score { font-size: clamp(4rem, 14vw, 5.5rem); color: var(--accent-ink); }
+  .sd-of { font-size: 1.6rem; color: var(--slate); margin-left: 8px; letter-spacing: -.01em; }
+  .sd-level { margin: 8px 0 20px; font-size: 1.25rem; font-weight: 650; }
+  .sd-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .sd-bars :global(li) { display: grid; grid-template-columns: minmax(0, 13.5em) 1fr 1.2em; gap: 12px; align-items: center; font-size: 14px; }
+  .sd-bars :global(.b-name) { color: var(--slate); line-height: 1.3; }
+  .sd-bars :global(.b-track) { height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 12%, transparent); overflow: hidden; }
+  .sd-bars :global(.b-fill) { display: block; height: 100%; border-radius: 999px; background: var(--accent); }
+  .sd-bars :global(.b-val) { text-align: right; font-weight: 650; font-variant-numeric: tabular-nums; }
+
+  .sd-team { padding: 28px clamp(22px, 5vw, 40px) 32px; }
+  .sd-team :global(h3) { font-size: 1.35rem; letter-spacing: -.02em; }
+  .sd-team :global(.tm-head p), .sd-team :global(.al-sub), .sd-team :global(.tm-done p) { margin: 8px 0 0; color: var(--slate); }
+  .sd-team :global(.tm-head p strong) { color: var(--ink); }
+  .sd-team :global(.sd-wait) { margin: 0; color: var(--slate); }
+  .sd-team :global(.sd-error) { color: var(--err); margin: 0 0 14px; }
+
+  .sd-team :global(.tm-form) { margin-top: 22px; display: grid; gap: 16px; }
+  .sd-team :global(.tm-me) { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .sd-team :global(.tm-biz) { grid-column: 1 / -1; }
+  .sd-team :global(.mates) { display: grid; gap: 10px; }
+  .sd-team :global(.mate) { display: grid; grid-template-columns: 1fr 1.25fr; gap: 12px 14px; padding: 14px; border-radius: 14px; background: var(--mist); }
+  .sd-team :global(.f) { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .sd-team :global(.f label) { font-size: 13px; font-weight: 600; }
+  .sd-team :global(.f input) { min-height: 46px; padding: 0 12px; border-radius: 10px; border: 1.5px solid var(--field); background: var(--paper); color: var(--ink); font: 400 16px/1.2 var(--font); width: 100%; }
+  .sd-team :global(.f input[readonly]) { background: var(--mist); color: var(--slate); }
+  .sd-team :global(.f input:focus) { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent); }
+  .sd-team :global(.f input[aria-invalid="true"]) { border-color: var(--err); }
+  .sd-team :global(.linkbtn) { justify-self: start; min-height: 40px; padding: 0; border: 0; background: none; color: var(--accent-ink); font: 600 15px/1 var(--font); cursor: pointer; }
+  .sd-team :global(.linkbtn:hover) { text-decoration: underline; }
+  .sd-team :global(.tm-submit) { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .sd-team :global(.tm-note) { margin: 0; font-size: 13px; color: var(--slate); }
+  .sd-team :global(.tm-status) { margin: 0; font-size: 14px; }
+  .sd-team :global(.tm-status:empty) { display: none; }
+  .sd-team :global(.tm-status.is-err) { color: var(--err); }
+
+  .sd-team :global(.al-num) { margin: 6px 0 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(3rem, 11vw, 4.25rem); letter-spacing: -.04em; line-height: 1; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+  .sd-team :global(.al-num span) { font-size: 1.4rem; color: var(--slate); margin-left: 6px; letter-spacing: 0; }
+  .sd-team :global(.al-stats) { margin: 22px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .sd-team :global(.al-stats div) { padding: 14px 16px; border-radius: 14px; background: var(--mist); }
+  .sd-team :global(.al-stats dt) { font-size: 13px; color: var(--slate); }
+  .sd-team :global(.al-stats dd) { margin: 4px 0 0; font-weight: 650; font-size: 1.05rem; }
+  .sd-team :global(.al-stats dd span) { display: block; font-weight: 400; font-size: 14px; color: var(--slate); }
+
+  .sd-team :global(.tm-done svg) { color: var(--ok); margin-bottom: 12px; }
+  .sd-team :global(.pv) { margin-top: 20px; padding: 16px; border-radius: 14px; border: 1.5px dashed var(--field); display: flex; flex-wrap: wrap; gap: 10px; }
+  .sd-team :global(.pv p) { margin: 0 0 4px; flex-basis: 100%; font-size: 14px; }
+
+  @media (max-width: 560px) {
+    .sd { width: 100vw; max-width: 100vw; max-height: 94vh; margin: auto 0 0; border-radius: 22px 22px 0 0; }
+    .sd-team :global(.tm-me), .sd-team :global(.mate), .sd-team :global(.al-stats) { grid-template-columns: 1fr; }
+    .sd-bars :global(li) { grid-template-columns: minmax(0, 9.5em) 1fr 1.2em; font-size: 13px; }
+    .sd-team :global(.tm-submit .btn) { width: 100%; }
+  }
+</style>

@@ -1,0 +1,312 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Matrix from '../components/Matrix.astro';
+import RegisterForm from '../components/RegisterForm.astro';
+import ScoreOverlay from '../components/ScoreOverlay.astro';
+import { SITE, BASE } from '../config';
+import { levels, dims } from '../data';
+
+const title = 'Agent Maturity Index: an AI agent maturity model and peer benchmark';
+const description =
+  'An evidence-based AI agent maturity model: 7 dimensions, 5 levels, built with a Founding Cohort of 30 enterprises. Apply for a seat or get the 2027 report.';
+
+const profile = [3, 2, 2, 1, 3, 2, 3];
+const median = [2, 2, 3, 2, 1, 2, 2];
+
+const faqs = [
+  { q: 'What is the Agent Maturity Index?', a: 'The Agent Maturity Index is an AI agent maturity model and peer benchmark. It scores how an enterprise builds, governs and scales AI agents from level 1 (Experimenting) to level 5 (Agent-Native) on seven dimensions: knowledge and context, quality and evaluation, governance and control, continuous improvement, sovereignty and residency, value and portfolio, and people and operating model.' },
+  { q: 'How is it different from other AI maturity models?', a: 'Most AI maturity models describe stages that you rate yourself against. The Agent Maturity Index scores what runs in production, from a structured 45-minute interview, and shows where you sit against a cohort of peer enterprises. It also treats sovereignty and data residency as a dimension of its own.' },
+  { q: 'Who should join the Founding Cohort?', a: 'The person accountable for AI across a large enterprise: a Chief AI Officer, Head of AI or equivalent. The cohort is limited to 30 enterprises. It is not for vendors, consultants or investors. Anyone can join the waitlist for the public report.' },
+  { q: 'What does it cost, and how long does it take?', a: 'It is free. Founding Cohort members give one 45-minute interview in November or December 2026. In return they get a private benchmark and the report before it is published.' },
+  { q: 'How is maturity scored?', a: 'On evidence, not plans. Each dimension is scored on what runs in production today, all seven dimensions carry equal weight, and when an answer falls between two levels the lower one counts. Your Agent Maturity Score is the average of your levels across all seven dimensions, from 1.0 to 5.0.' },
+  { q: 'What is the team alignment score?', a: 'When three or more people from the same business score it, the team alignment score shows how much they agree. It runs from 0 to 100: 100 means everyone gave every dimension the same level, and lower scores mean the leadership team sees the agent program differently. Invite colleagues after you get your own score.' },
+  { q: 'When will the report be published?', a: 'The State of Enterprise Agent Adoption report is planned for the first quarter of 2027. It uses aggregate cohort data only, so no participant can be identified. Join the waitlist and we will email it to you on the day it is published.' },
+  { q: 'Who runs the Agent Maturity Index?', a: 'SynOS, a company that helps enterprises build their own domain AI models on their own infrastructure. Because SynOS has a commercial interest, interviews are run by the SynOS core team, not sales staff. There are no demos or presentations, and participants are never contacted about SynOS products unless they ask.' },
+];
+
+const url = new URL(BASE, Astro.site).href;
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE.publisherUrl}#org`, name: SITE.publisher, url: SITE.publisherUrl, email: SITE.contactEmail, logo: new URL(`${BASE}/icon-512.png`, Astro.site).href },
+  { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${url}#website`, url, name: SITE.name, publisher: { '@id': `${SITE.publisherUrl}#org` }, inLanguage: 'en-US' },
+  {
+    '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${url}#webpage`, url, name: title, description,
+    isPartOf: { '@id': `${url}#website` }, about: { '@id': `${url}#index` },
+    primaryImageOfPage: { '@type': 'ImageObject', url: new URL(`${BASE}/og.png`, Astro.site).href, width: 1200, height: 630 },
+    datePublished: '2026-10-08', dateModified: '2026-10-08', inLanguage: 'en-US',
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'ResearchProject', '@id': `${url}#index`, name: SITE.name, alternateName: 'AMI',
+    description: 'An evidence-based AI agent maturity model and peer benchmark of enterprise AI agent adoption across seven dimensions and five levels, built with a Founding Cohort of 30 enterprises.',
+    url, sponsor: { '@id': `${SITE.publisherUrl}#org` },
+    keywords: 'AI agent maturity model, agentic AI maturity, enterprise AI agent benchmark, AI agent governance, Chief AI Officer',
+  },
+  { '@context': 'https://schema.org', '@type': 'DefinedTermSet', name: 'Agent Maturity Index levels', hasDefinedTerm: levels.map((l) => ({ '@type': 'DefinedTerm', name: `Level ${l.n}: ${l.name}`, description: l.line })) },
+  { '@context': 'https://schema.org', '@type': 'DefinedTermSet', name: 'Agent Maturity Index dimensions', hasDefinedTerm: dims.map((d) => ({ '@type': 'DefinedTerm', name: d.name, description: d.q })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <Header />
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1>Know where your AI agents really stand.</h1>
+          <p class="lead">Your board will ask how your agent program compares. The Agent Maturity Index answers on evidence, against a cohort of 30 peer enterprises.</p>
+          <div class="ctas">
+            <a class="btn btn-primary" href="#join" data-intent="cohort" data-cta="hero">Apply for the Founding Cohort</a>
+            <p class="fine">Free. One 45-minute interview. Scored on evidence, not roadmaps.</p>
+            <p class="alt">Not interested in benchmarking? <a href="#join" data-cta="hero-report">Get the report</a></p>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <Matrix dims={dims} profile={profile} median={median} />
+        </div>
+      </div>
+    </section>
+
+    <section class="why" aria-labelledby="why-h">
+      <div class="wrap why-grid">
+        <h2 id="why-h">Maturity models exist. Peer benchmarks don’t.</h2>
+        <div class="why-copy">
+          <p>Most AI maturity models describe stages you rate yourself against. The Index scores what runs in production, from a structured interview, and shows where you sit against peer enterprises.</p>
+          <p class="muted">That is an answer you can take to your board, and a baseline to measure progress against.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="levels" aria-labelledby="levels-h">
+      <div class="wrap">
+        <h2 id="levels-h">Five levels of AI agent maturity.</h2>
+        <p class="sub muted">We score what runs today, not what is on the roadmap. Between two levels, the lower one counts.</p>
+        <ol class="ladder">
+          {levels.map((l) => (
+            <li class={`rung r${l.n}`}>
+              <span class="rung-bar" aria-hidden="true"></span>
+              <span class="rung-n">Level {l.n}</span>
+              <h3>{l.name}</h3>
+              <p>{l.line}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="dims" id="score" aria-labelledby="dims-h">
+      <div class="wrap">
+        <div class="dims-head">
+          <h2 id="dims-h">Seven dimensions. Score yourself now.</h2>
+          <p class="invited" hidden><span class="inv-av" aria-hidden="true"></span><span class="inv-txt"></span></p>
+          <p class="sub muted">Pick the level that matches what runs today: 1 is Experimenting, 5 is Agent-Native.</p>
+        </div>
+        <div class="selfscore" role="group" aria-label="Self-assessment">
+          {dims.map((d) => (
+            <fieldset class="ss-row">
+              <legend class="sr-only">{d.name}</legend>
+              <div class="ss-text" aria-hidden="true">
+                <span class="ss-name">{d.name}</span>
+                <span class="ss-q">{d.q}</span>
+              </div>
+              <div class="ss-pick">
+                {levels.map((l) => (
+                  <label class="ss-opt" title={l.name}>
+                    <input type="radio" name={d.id} value={l.n} />
+                    <span><span aria-hidden="true">{l.n}</span><span class="sr-only">Level {l.n}, {l.name}</span></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          ))}
+          <div class="ss-result">
+            <button type="button" id="get-score" class="btn btn-primary">Get your score</button>
+            <p class="ss-err" role="alert" hidden>Score all seven dimensions to get your score.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="join" id="join" aria-labelledby="join-h">
+      <div class="wrap join-grid">
+        <div class="offer">
+          <h2 id="join-h">Take one of 30 seats.</h2>
+          <p class="offer-who">For Chief AI Officers and Heads of AI at large enterprises. Not for vendors, consultants or investors.</p>
+          <dl class="offer-terms">
+            <div><dt>You give</dt><dd>One 45-minute interview, November to December 2026.</dd></div>
+            <div>
+              <dt>You get</dt>
+              <dd>
+                <ul>
+                  <li>Your private benchmark on all seven dimensions, January 2027</li>
+                  <li>The full report before it is published</li>
+                  <li>Named as a founding member of the Index, if you choose</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+          <p class="offer-close muted">*Subject to availability of seats in the Founding Cohort.</p>
+        </div>
+        <RegisterForm />
+      </div>
+    </section>
+
+    <section class="trust" aria-labelledby="trust-h">
+      <div class="wrap trust-grid">
+        <h2 id="trust-h">Research first. No demos, no presentations.</h2>
+        <ul class="promises">
+          <li>Answers are reported only in aggregate. No participant can be identified.</li>
+          <li>We never name you or your company without written permission.</li>
+          <li>Interviews are run by the core team. No sales reps, no product talk.</li>
+          <li>You are never added to a sales or marketing list.</li>
+          <li>Recordings and transcripts, if you allow them, are deleted after scoring.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-h">
+      <div class="wrap faq-grid">
+        <h2 id="faq-h">Questions</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details>
+              <summary><h3>{f.q}</h3></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="last" aria-labelledby="last-h">
+      <div class="wrap last-in">
+        <h2 id="last-h">Thirty AI leaders will set the baseline. Be one of them.</h2>
+        <a class="btn btn-primary" href="#join" data-intent="cohort" data-cta="final">Apply for the Founding Cohort</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <ScoreOverlay />
+</Base>
+
+
+
+<style>
+  section { padding: clamp(72px, 10vw, 128px) 0; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); line-height: 1.08; font-weight: 700; letter-spacing: -.03em; max-width: 17em; }
+  h3 { font-size: 1.25rem; line-height: 1.3; font-weight: 650; letter-spacing: -.012em; }
+  .sub { margin: 16px 0 0; font-size: 17px; max-width: 36em; }
+
+  /* Hero */
+  .hero { padding-top: clamp(32px, 7vw, 88px); padding-bottom: clamp(64px, 9vw, 120px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: clamp(40px, 6vw, 88px); align-items: center; }
+  h1 { font-size: clamp(2.5rem, 5.4vw, 4.4rem); line-height: 1.02; font-weight: 700; letter-spacing: -.04em; }
+  .lead { font-size: clamp(1.15rem, 1.6vw, 1.3rem); line-height: 1.5; color: var(--slate); margin: 26px 0 34px; max-width: 28em; }
+  .ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+  .fine { margin: 0; font-size: 14px; color: var(--slate); }
+  .alt { margin: 6px 0 0; font-size: 14px; color: var(--slate); }
+  .alt a { font-weight: 600; display: inline-block; padding: 12px 0; margin: -12px 0; }
+
+  /* Why */
+  .why { background: var(--mist); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+  .why-copy { max-width: 32em; }
+  .why-copy p { font-size: 1.2rem; line-height: 1.55; margin-bottom: .8em; }
+  .why-copy p:last-child { margin: 0; font-size: 17px; }
+
+  /* Levels */
+  .ladder { list-style: none; padding: 0; margin: 56px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: end; }
+  .rung { display: flex; flex-direction: column; }
+  .rung-bar { display: block; border-radius: 10px; margin-bottom: 18px; }
+  .r1 .rung-bar { height: 28px; background: var(--l1); }
+  .r2 .rung-bar { height: 56px; background: var(--l2); }
+  .r3 .rung-bar { height: 84px; background: var(--l3); }
+  .r4 .rung-bar { height: 112px; background: var(--l4); }
+  .r5 .rung-bar { height: 140px; background: var(--l5); }
+  .rung-n { font-size: 14px; color: var(--slate); font-variant-numeric: tabular-nums; }
+  .rung h3 { margin: 2px 0 6px; }
+  .rung p { margin: 0; font-size: 14px; color: var(--slate); line-height: 1.5; min-height: 4.5em; }
+
+  /* Dimensions + self-score */
+  .dims { padding-top: 0; }
+  .selfscore { margin-top: 44px; }
+  .ss-row { border: 0; margin: 0; padding: 20px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 40px; align-items: center; }
+  .ss-text { display: flex; flex-direction: column; gap: 4px; }
+  .ss-name { font-weight: 650; font-size: 1.25rem; letter-spacing: -.012em; }
+  .ss-q { color: var(--slate); max-width: 36em; }
+  .ss-pick { display: flex; gap: 6px; }
+  .ss-opt { position: relative; }
+  .ss-opt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .ss-opt > span { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--field); font-weight: 600; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--slate); transition: background-color .15s, border-color .15s, color .15s; }
+  .ss-opt:hover > span { border-color: var(--ink); color: var(--ink); }
+  .ss-opt input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .ss-opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .ss-result { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; padding: 28px 0 0; border-top: 1px solid var(--line); }
+  .ss-err { margin: 0; color: var(--err); font-weight: 500; }
+  .ss-row.ss-missing .ss-opt > span { border-color: var(--err); }
+  .ss-row.ss-missing .ss-name::after { content: " (choose a level)"; color: var(--err); font-size: 15px; font-weight: 500; letter-spacing: 0; }
+  .invited { display: flex; align-items: center; gap: 14px; margin: 22px 0 0; padding: 14px 20px 14px 14px; max-width: 40em; border-radius: 16px; background: color-mix(in srgb, var(--accent) 10%, var(--paper)); border: 1.5px solid var(--accent); font-size: 1.15rem; line-height: 1.4; color: var(--ink); }
+  .invited[hidden] { display: none; }
+  .invited strong { color: var(--accent-ink); font-weight: 700; }
+  .inv-av { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 18px; }
+
+  /* Join */
+  .join { background: var(--mist); }
+  .join-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .offer { position: sticky; top: 92px; }
+  .offer-who { margin: 18px 0 28px; font-size: 1.15rem; line-height: 1.5; }
+  .offer-terms { margin: 0; display: grid; gap: 22px; }
+  .offer-terms dt { font-weight: 650; margin-bottom: 4px; }
+  .offer-terms dd { margin: 0; color: var(--slate); }
+  .offer-terms ul { margin: 0; padding-left: 1.1em; }
+  .offer-terms li { margin: 6px 0; }
+  .offer-terms li::marker { color: var(--accent); }
+  .offer-close { margin: 28px 0 0; font-size: 14px; }
+
+  /* Trust */
+  .trust { background: #0f1b2d; color: #eef2f8; }
+  .trust h2 { color: #ffffff; }
+  .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+  .promises { list-style: none; margin: 0; padding: 0; }
+  .promises li { padding: 18px 0 18px 36px; border-top: 1px solid rgba(238, 242, 248, .16); position: relative; font-size: 17px; }
+  .promises li:last-child { border-bottom: 1px solid rgba(238, 242, 248, .16); }
+  .promises li::before { content: ""; position: absolute; left: 2px; top: 24px; width: 14px; height: 8px; border-left: 2px solid #8399f3; border-bottom: 2px solid #8399f3; transform: rotate(-45deg); }
+  @media (prefers-color-scheme: dark) { .trust { background: #050a14; } }
+
+  /* FAQ */
+  .faq-grid { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+  .faq-list details { border-top: 1px solid var(--line); }
+  .faq-list details:last-child { border-bottom: 1px solid var(--line); }
+  .faq-list summary { list-style: none; cursor: pointer; padding: 20px 40px 20px 0; position: relative; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary h3 { display: inline; font-size: 1.1rem; }
+  .faq-list summary::after { content: ""; position: absolute; right: 6px; top: 50%; width: 10px; height: 10px; border-right: 2px solid var(--slate); border-bottom: 2px solid var(--slate); transform: translateY(-70%) rotate(45deg); transition: transform .2s; }
+  .faq-list details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+  .faq-list details p { margin: 0 0 22px; color: var(--slate); max-width: 38em; }
+
+  /* Last */
+  .last { padding-top: 0; }
+  .last-in { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+
+  @media (max-width: 960px) {
+    .hero-grid, .why-grid, .trust-grid, .faq-grid, .join-grid { grid-template-columns: 1fr; }
+    .offer { position: static; }
+    .ladder { grid-template-columns: 1fr; gap: 0; align-items: stretch; }
+    .rung { display: grid; grid-template-columns: 56px 1fr; grid-template-rows: auto auto auto; column-gap: 18px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .rung-bar { grid-row: 1 / 4; align-self: center; margin: 0; width: 56px; border-radius: 6px; }
+    .r1 .rung-bar { height: 8px; } .r2 .rung-bar { height: 16px; } .r3 .rung-bar { height: 24px; } .r4 .rung-bar { height: 32px; } .r5 .rung-bar { height: 40px; }
+    .rung p { min-height: 0; }
+  }
+  @media (max-width: 720px) {
+    .hero { padding-top: 24px; }
+    h1 { font-size: 2.4rem; }
+    .lead { margin: 18px 0 24px; font-size: 1.1rem; }
+    .ctas .btn-primary { width: 100%; }
+    .hero-grid { gap: 40px; }
+    .ss-row { grid-template-columns: 1fr; }
+    .ss-pick { justify-content: space-between; max-width: 300px; }
+    .ss-result .btn { width: 100%; }
+  }
+</style>
