@@ -53,4 +53,27 @@
     if (v === 'accepted') load();
   });
 })();
-</script> </body> </html>
+</script> <script>
+      // Land on the section named in the URL (#score, #join) once the page has
+      // finished laying out. Browsers jump to the anchor before the web font and
+      // layout settle, and Safari does not correct for the shift, so a link from
+      // the SynOS homepage could stop short of the section. Skipped if the
+      // visitor has already started scrolling. Invitation links (#score.<token>)
+      // are handled by the score overlay, not here.
+      (function () {
+        var id = decodeURIComponent(location.hash.slice(1));
+        if (!/^[a-z][a-z0-9-]*$/i.test(id) || !document.getElementById(id)) return;
+        var moved = false;
+        ['wheel', 'touchstart', 'keydown'].forEach(function (n) {
+          addEventListener(n, function () { moved = true; }, { once: true, passive: true });
+        });
+        function go() {
+          var el = document.getElementById(id);
+          if (!el || moved) return;
+          try { el.scrollIntoView({ block: 'start', behavior: 'instant' }); } catch (e) { el.scrollIntoView(true); }
+        }
+        go();
+        if (document.readyState === 'complete') setTimeout(go, 50); else addEventListener('load', function () { setTimeout(go, 50); });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+      })();
+    </script></body> </html>
