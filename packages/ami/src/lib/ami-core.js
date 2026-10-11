@@ -63,6 +63,18 @@ export function decodeLink(hash) {
 
 export class Fail extends Error { constructor(status, msg) { super(msg); this.status = status; } }
 
+// Personal email domains the cohort application refuses. Kept identical to the list in
+// components/RegisterForm.astro, so a direct API request meets the same rule as the page.
+export const FREE_EMAIL = /@(?:gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|icloud|me|mac|aol|proton(?:mail)?|pm|gmx|yandex|mail|zoho|hey|qq|163|126|web|fastmail|tutanota|tuta|zohomail|comcast|att|verizon)\.[a-z]{2,3}(?:\.[a-z]{2})?$/i;
+// Fields the cohort application requires, with the message the page shows for each.
+const COHORT_REQUIRED = [
+  ['company', 'Enter your company.'],
+  ['title', 'Enter your job title.'],
+  ['company_size', 'Choose your company size.'],
+  ['industry', 'Choose your industry.'],
+  ['agents_in_production', 'Choose how many agents you run.'],
+];
+
 const clean = (v, max = 120) => (typeof v === 'string' ? v.replace(/[\u0000-\u001f<>]/g, ' ').trim().slice(0, max) : '');
 const id = (n = 10) => {
   const a = new Uint8Array(n); crypto.getRandomValues(a);
@@ -108,6 +120,10 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
     const type = { cohort: 'Founding Cohort application', report: 'Report waitlist', invite_accept: 'Invitation accepted' }[body.type || body.intent];
     if (!type) throw new Fail(400, 'Unknown form.');
     if (!clean(body.name) || !EMAIL.test(clean(body.email, 200))) throw new Fail(400, 'Name and a valid email are required.');
+    if ((body.type || body.intent) === 'cohort') {
+      if (FREE_EMAIL.test(clean(body.email, 200))) throw new Fail(400, 'Use your work email so we can confirm your company.');
+      for (const [k, msg] of COHORT_REQUIRED) if (!clean(body[k])) throw new Fail(400, msg);
+    }
     const fields = {};
     for (const [k, v] of Object.entries(body)) {
       if (k === 'website') continue;

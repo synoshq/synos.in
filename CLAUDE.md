@@ -240,6 +240,9 @@ replaces it and reports its own coverage.
   (`public/early-access.html`), access key `6cdc9753-8c20-49de-9334-276e842a5f82`.
 - Secondary CTA = Google Calendar booking link (demoted): `https://calendar.app.google/5TydwUfWCfrxn5tj7`
 - Tertiary = Substack subscribe: `https://anoopjawahar.substack.com`
+- The early-access page shows its success panel only when Web3Forms returns `success: true`; a rejected or
+  failed request keeps the form and says so. The button locks while sending, and a hidden `botcheck`
+  checkbox (sent only when ticked) lets Web3Forms drop bot submissions. Tested 2026-10-11.
 - Web3Forms access key is a public-by-design identifier and lives inline in
 `public/early-access.html`. Abuse is rate-limited server-side by Web3Forms.
 
@@ -247,11 +250,11 @@ replaces it and reports its own coverage.
 
 GA4 measurement ID: `G-MXVRX5VMJR`
 
-Tracking model: `[data-cta]` clicks fire a `cta_click` event with `cta_location` = the `data-cta` value; `[data-section]` fires `section_view` with `section_name`. The early-access form also fires a bare `early_access_submit` event on submit.
+Tracking model: `[data-cta]` clicks fire a `cta_click` event with `cta_location` = the `data-cta` value; `[data-section]` fires `section_view` with `section_name`. The early-access form fires a bare `early_access_submit` only once Web3Forms confirms the submission (since 2026-10-11; before that it fired on every attempt, including failed ones), and `early_access_error` when it is rejected or the request fails.
 
 `data-cta` values follow `cta-<action>-<place>`, e.g. `cta-early-access-hero`,
 `cta-book-demo-bottom`, `cta-early-access-nav`. The early-access form also fires a bare
-`early_access_submit`.
+`early_access_submit` on a confirmed signup and `early_access_error` on a failed one.
 
 **Do not maintain the list here.** It was hand-written, drifted, and by 2026-09-23 named seven
 `see-pattern-*` values that had not existed since the August revamp while omitting thirty real

@@ -38,7 +38,7 @@
     .ea-field input, .ea-field select {
       width: 100%; min-height: 44px; padding: 0 12px;
       border: 1px solid var(--sk-border-2); border-radius: var(--sk-radius-sm);
-      background: var(--sk-surface); font-size: 15px; color: var(--sk-ink);
+      background: var(--sk-surface); font-size: 16px; color: var(--sk-ink); /* 16px: below this iOS Safari zooms on focus */
     }
     .ea-field input::placeholder { color: var(--sk-dim); }
     .ea-field input:focus-visible, .ea-field select:focus-visible { outline: 2px solid var(--sk-indigo); outline-offset: 1px; border-color: var(--sk-indigo); }
@@ -46,6 +46,10 @@
     .ea-note { font-size: 13px; line-height: 1.5; color: var(--sk-ink-3); }
     .ea-done { display: flex; flex-direction: column; gap: var(--sk-space-4); align-items: flex-start; }
     .ea-done h2 { font-size: 24px; }
+    .ea-status { font-size: 15px; line-height: 1.5; color: var(--sk-ink); margin: 0; }
+    .ea-status:empty { display: none; }
+    .ea-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    .sk-btn[disabled] { opacity: .6; cursor: progress; }
     .hidden { display: none !important; }
     @media (max-width: 560px) { .ea-actions { flex-direction: column; } .ea-actions .sk-btn { width: 100%; } }
     </style>
@@ -95,10 +99,15 @@
         <label for="ea-use">What your agents do today, if you like</label>
         <input type="text" id="ea-use" name="use_case" placeholder="Refunds, support triage, invoice matching">
       </div>
+      <div class="ea-trap" aria-hidden="true">
+        <label for="ea-botcheck">Leave this unchecked</label>
+        <input type="checkbox" id="ea-botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+      </div>
       <div class="ea-actions">
         <button type="submit" class="sk-btn sk-btn--primary" data-cta="cta-early-access-submit">Request access</button>
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="ea-book-demo">Book a walkthrough instead</a>
       </div>
+      <p class="ea-status" id="ea-status" role="alert" aria-live="assertive"></p>
       <p class="ea-note">We use this only to reach out about access. No newsletter unless you subscribe on Substack separately.</p>
     </form>
 
@@ -133,25 +142,51 @@
 <!-- @endpartial footer -->
 
 <script>
-  document.getElementById('ea-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('ea-email').value.trim();
-    const size = document.getElementById('ea-size').value;
-    const use = document.getElementById('ea-use').value.trim();
-    const payload = new FormData();
-    payload.append('access_key', '6cdc9753-8c20-49de-9334-276e842a5f82');
-    payload.append('subject', `SynOS early access request from ${email}`);
-    payload.append('email', email);
-    payload.append('company_size', size);
-    payload.append('use_case', use);
-    if (typeof gtag === 'function') gtag('event', 'early_access_submit');
-    fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload })
-      .then(r => r.json()).catch(() => null)
-      .finally(() => {
-        document.getElementById('ea-form').classList.add('hidden');
-        document.getElementById('ea-success').classList.remove('hidden');
-      });
-  });
+  // The success panel shows only when Web3Forms confirms the submission. A rejected or failed request
+  // keeps the form, says so, and offers the booking link, so nobody leaves believing they signed up
+  // when they did not. The button is locked while sending so a double click sends one request.
+  (function () {
+    const form = document.getElementById('ea-form');
+    const button = form.querySelector('button[type=submit]');
+    const status = document.getElementById('ea-status');
+    const label = button.textContent;
+    let sending = false;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (sending) return;
+      status.textContent = '';
+      const email = document.getElementById('ea-email').value.trim();
+      const size = document.getElementById('ea-size').value;
+      const use = document.getElementById('ea-use').value.trim();
+      const payload = new FormData();
+      payload.append('access_key', '6cdc9753-8c20-49de-9334-276e842a5f82');
+      payload.append('subject', `SynOS early access request from ${email}`);
+      payload.append('email', email);
+      payload.append('company_size', size);
+      payload.append('use_case', use);
+      if (document.getElementById('ea-botcheck').checked) payload.append('botcheck', 'on');
+      sending = true;
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (data) { return r.ok && data.success === true; }); })
+        .catch(function () { return false; })
+        .then(function (ok) {
+          sending = false;
+          if (ok) {
+            if (typeof gtag === 'function') gtag('event', 'early_access_submit');
+            form.classList.add('hidden');
+            document.getElementById('ea-success').classList.remove('hidden');
+            return;
+          }
+          if (typeof gtag === 'function') gtag('event', 'early_access_error');
+          button.disabled = false;
+          button.textContent = label;
+          status.textContent = 'Your request did not go through. Try again in a moment, or book a walkthrough instead.';
+          button.focus();
+        });
+    });
+  })();
 </script>
 </body>
 </html>
