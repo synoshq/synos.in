@@ -115,7 +115,7 @@
     .peak-fig iframe { border-color: transparent; border-radius: 6px; }
     .peak-fig figcaption { color: var(--sk-on-dark-3); }
 
-    /* ── ledger rows, used by the engagement and deployment sections ──────── */
+    /* ── ledger rows, used by the deployment section ──────────────────────── */
     .led { border-top: 1px solid var(--sk-border); }
     .led-row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
       gap: var(--sk-space-7); padding: var(--sk-space-5) 0;
@@ -124,8 +124,6 @@
     .led-k { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--sk-indigo); padding-top: 3px; }
     .led-v { font-size: 15px; line-height: 1.7; color: var(--sk-ink-2); max-width: 62ch; }
-    .led-ask { margin-top: var(--sk-space-6); font-size: 18px; line-height: 1.5;
-      font-weight: 600; letter-spacing: -0.015em; color: var(--sk-ink); max-width: 46ch; }
     </style>
 </head>
 <body>
@@ -264,32 +262,7 @@
     </div>
   </section>
 
-  <!-- ══ 6 · HOW IT STARTS ═════════════════════════════════════════════════ -->
-  <section class="sk-section" data-section="how-it-starts">
-    <div class="sk-container">
-      <div class="sk-sechead">
-        <p class="sk-eyebrow">First engagement</p>
-        <h2>One workflow, two weeks.</h2>
-      </div>
-      <div class="led">
-        <div class="led-row">
-          <p class="led-k">Before we start</p>
-          <p class="led-v">You write the test. We agree in writing what a pass looks like, before anything is connected.</p>
-        </div>
-        <div class="led-row">
-          <p class="led-k">What gets connected</p>
-          <p class="led-v">One workflow and the systems behind it, read only to begin with, inside your own account.</p>
-        </div>
-        <div class="led-row">
-          <p class="led-k">What you keep</p>
-          <p class="led-v">The environment, the traces and the agents, whether or not you carry on afterwards.</p>
-        </div>
-      </div>
-      <p class="led-ask">Pick the workflow you tried once and parked.</p>
-    </div>
-  </section>
-
-  <!-- ══ 7 · DEPLOYMENT ════════════════════════════════════════════════════ -->
+  <!-- ══ 6 · DEPLOYMENT ════════════════════════════════════════════════════ -->
   <section class="sk-section sk-section--alt" data-section="deployment">
     <div class="sk-container">
       <div class="sk-sechead">
@@ -309,6 +282,10 @@
           <p class="led-k">Your models</p>
           <p class="led-v">Open weight models on your own infrastructure, or a hosted provider, chosen per workload rather than for the whole platform.</p>
         </div>
+        <div class="led-row">
+          <p class="led-k">What you keep</p>
+          <p class="led-v">Connections start read only. The environment, the traces and the agents stay with you whether or not you carry on afterwards.</p>
+        </div>
       </div>
       <p class="sk-more" style="margin-top: var(--sk-space-6)"><a href="/trust">Read the trust centre</a></p>
     </div>
@@ -318,8 +295,8 @@
   <section class="sk-section" data-section="bottom-cta">
     <div class="sk-container sk-cta">
       <div>
-        <h2>Bring us twenty failed runs.</h2>
-        <p class="sk-lead">The useful first conversation is us reading your own failures and telling you which of them this reaches.</p>
+        <h2>Bring one workflow.</h2>
+        <p class="sk-lead">Whichever one you would fix first. We will read it with you and say what this reaches, and what it does not.</p>
       </div>
       <div class="sk-cta-row">
         <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-bottom">Book a call</a>
