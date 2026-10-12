@@ -27,7 +27,9 @@
   const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
   const track = (event: string, props: Record<string, unknown> = {}) => {
     const w = window as unknown as { dataLayer?: unknown[] };
-    if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event, ...props });
+    const g = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
+    if (typeof g === 'function') g('event', event, props);
+    else if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event, ...props });
   };
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 

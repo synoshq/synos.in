@@ -2,7 +2,7 @@
 import { SITE, BASE } from '../config';
 ---
 <section id="cookie" class="cookie" aria-label="Cookie preferences" hidden
-  data-analytics-src={SITE.analyticsSrc} data-analytics-domain={SITE.analyticsDomain}>
+  data-analytics-src={SITE.analyticsSrc} data-analytics-domain={SITE.analyticsDomain} data-ga-id={SITE.gaId}>
   <p>Optional analytics help us see what’s useful. Nothing loads unless you allow it. <a href={`${BASE}/privacy`}>Privacy</a></p>
   <div class="cookie-actions">
     <button type="button" class="cookie-btn" data-choice="declined">Decline</button>
@@ -18,11 +18,25 @@ import { SITE, BASE } from '../config';
   function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
   function load() {
+    loadGa();
     var src = box.getAttribute('data-analytics-src');
     if (!src || document.getElementById('ami-analytics')) return;
     var s = document.createElement('script');
     s.id = 'ami-analytics'; s.defer = true; s.src = src;
     s.setAttribute('data-domain', box.getAttribute('data-analytics-domain') || '');
+    document.head.appendChild(s);
+  }
+  // Google Analytics 4, only after consent. gtag() is defined before the script arrives so events
+  // recorded in the meantime queue in dataLayer and are sent once it loads.
+  function loadGa() {
+    var id = box.getAttribute('data-ga-id');
+    if (!id || document.getElementById('ami-ga')) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', id);
+    var s = document.createElement('script');
+    s.id = 'ami-ga'; s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
     document.head.appendChild(s);
   }
   function show(focus) {

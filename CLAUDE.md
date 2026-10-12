@@ -248,7 +248,13 @@ replaces it and reports its own coverage.
 
 ## Analytics
 
-GA4 measurement ID: `G-MXVRX5VMJR`
+GA4 measurement ID: `G-MXVRX5VMJR`, on every page.
+
+The Agent Maturity Index loads the same ID (`SITE.gaId` in `packages/ami/src/config.ts`), but only
+after the visitor clicks Allow in its cookie notice, as that notice and its privacy page promise. Its
+CSP in `vercel.json` allows Google's hosts for that. Its form events (`form_start`, `form_submit`,
+`form_error`, `selfscore_complete`, `invite_sent`) go to GA through `gtag('event')` once consent is
+given. `/figures/*` are iframe fragments and carry no tag.
 
 Tracking model: `[data-cta]` clicks fire a `cta_click` event with `cta_location` = the `data-cta` value; `[data-section]` fires `section_view` with `section_name`. The early-access form fires a bare `early_access_submit` only once Web3Forms confirms the submission (since 2026-10-11; before that it fired on every attempt, including failed ones), and `early_access_error` when it is rejected or the request fails.
 

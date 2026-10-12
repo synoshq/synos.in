@@ -119,7 +119,9 @@ const colleagues = [1, 2, 3];
 
   const track = (event: string, props: Record<string, unknown> = {}) => {
     const w = window as unknown as { dataLayer?: unknown[] };
-    if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event, ...props });
+    const g = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
+    if (typeof g === 'function') g('event', event, props);
+    else if (Array.isArray(w.dataLayer)) w.dataLayer.push({ event, ...props });
   };
   let started = false;
   form.addEventListener('focusin', () => { if (!started) { started = true; track('invite_start'); } });

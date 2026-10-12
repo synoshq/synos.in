@@ -30,4 +30,7 @@ export const SITE = {
   // so you could also load it unconditionally).
   analyticsSrc: '',
   analyticsDomain: 'getsynos.ai',
+  // Google Analytics 4 (gtag.js), loaded only after a visitor allows analytics in the cookie notice.
+  // Empty to switch it off. The CSP for /agent-maturity-index in vercel.json allows Google's hosts.
+  gaId: 'G-MXVRX5VMJR',
 };
