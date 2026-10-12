@@ -144,7 +144,7 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
     }
     const fields = {};
     for (const [k, v] of Object.entries(body)) {
-      if (k === 'website') continue;
+      if (k === 'website' || k === 'type' || k === 'intent') continue; // honeypot; the form type is already in the subject
       fields[k] = Array.isArray(v) ? v.map((x) => (typeof x === 'object' ? Object.values(x).map((y) => clean(String(y), 200)).join(' / ') : clean(String(x), 200))).join('; ') : clean(String(v ?? ''), 500);
     }
     await notify(type, fields);
