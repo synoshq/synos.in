@@ -155,7 +155,7 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
     const result = { team: team.id, member: member.id, business: team.business, you, count, needed: Math.max(0, TEAM_SIZE_FOR_ALIGNMENT - count) };
     if (count >= TEAM_SIZE_FOR_ALIGNMENT) result.alignment = alignment(team.members);
 
-    await notify('Self-score', { name: member.name, email: member.email, business: team.business, team: team.id, score: `${you.score} (${you.level})`, ...scores, 'team members scored': count, 'alignment score': result.alignment?.score ?? '' });
+    await notify('Self-score', { name: member.name, email: member.email, business: team.business, score: `${you.score} (${you.level})`, ...scores, 'team members scored': count, 'alignment score': result.alignment?.score ?? '' });
 
     if (result.alignment && !team.alignedNotified) {
       team.alignedNotified = true;
@@ -216,7 +216,7 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
       });
     }
     await store.set(teamKey(team.id), team);
-    await notify('Colleague invitations', { 'your name': name, email, business: team.business, team: team.id, invited: list.map((c) => `${c.name} <${c.email}>`).join(', ') });
+    await notify('Colleague invitations', { 'your name': name, email, business: team.business, invited: list.map((c) => `${c.name} <${c.email}>`).join(', ') });
     return { sent: sent.length, business: team.business, links: sent };
   }
 
