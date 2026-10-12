@@ -94,9 +94,15 @@ function validScores(s) {
   return out;
 }
 
+const SIGN_OFF = 'Regards,\nAMI Team';
+
 function emailHtml(lines, cta) {
-  return `<div style="font:16px/1.6 -apple-system,Segoe UI,Arial,sans-serif;color:#0f1b2d;max-width:520px">${lines.map((l) => `<p style="margin:0 0 14px">${l}</p>`).join('')}${cta ? `<p style="margin:24px 0"><a href="${esc(cta.url)}" style="display:inline-block;background:#2747e8;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px">${esc(cta.label)}</a></p>` : ''}<p style="margin:28px 0 0;font-size:13px;color:#525e70">Agent Maturity Index, a SynOS research program. Answers are reported only in aggregate.</p></div>`;
+  return `<div style="font:16px/1.6 -apple-system,Segoe UI,Arial,sans-serif;color:#0f1b2d;max-width:520px">${lines.map((l) => `<p style="margin:0 0 14px">${l}</p>`).join('')}${cta ? `<p style="margin:24px 0"><a href="${esc(cta.url)}" style="display:inline-block;background:#2747e8;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px">${esc(cta.label)}</a></p>` : ''}<p style="margin:24px 0 0">${SIGN_OFF.replace('\n', '<br>')}</p><p style="margin:28px 0 0;font-size:13px;color:#525e70">Agent Maturity Index, a SynOS research program. Answers are reported only in aggregate.</p></div>`;
 }
+
+// Field keys as Title Case labels: "agents_in_production" -> "Agents in Production".
+const SMALL = new Set(['a', 'an', 'and', 'as', 'at', 'by', 'for', 'in', 'of', 'on', 'or', 'the', 'to']);
+const titleCase = (k) => k.replace(/[_-]+/g, ' ').trim().split(/\s+/).map((w, i) => (i && SMALL.has(w.toLowerCase()) ? w.toLowerCase() : w[0].toUpperCase() + w.slice(1))).join(' ');
 
 /**
  * store: { get(key) -> object|null, set(key, object) }
@@ -106,13 +112,25 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
   const now = () => new Date().toISOString();
   const teamKey = (t) => `team/${t}`;
 
+  // One line saying what happened, by notification label. `who` already includes "from <company>".
+  const SUMMARY = {
+    'Founding Cohort application': (who) => `${who} applied to the Founding Cohort.`,
+    'Report waitlist': (who) => `${who} joined the waitlist for the Agent Maturity Index report.`,
+    'Invitation accepted': (who) => `${who} accepted an invitation to score their business.`,
+    'Self-score': (who) => `${who} completed the Agent Maturity Index self-score.`,
+    'Colleague invitations': (who) => `${who} invited colleagues to score their business.`,
+  };
+
   async function notify(label, fields) {
     if (!notifyTo) return;
-    const rows = Object.entries(fields).filter(([, v]) => v !== '' && v != null);
-    const text = rows.map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`).join('\n');
-    const html = `<table style="font:14px/1.5 -apple-system,Arial,sans-serif;border-collapse:collapse">${rows.map(([k, v]) => `<tr><td style="padding:4px 16px 4px 0;color:#525e70;vertical-align:top">${esc(k)}</td><td style="padding:4px 0">${esc(typeof v === 'object' ? JSON.stringify(v) : v)}</td></tr>`).join('')}</table>`;
-    const who = fields.name || fields['your name'] || 'anonymous visitor';
-    await mail({ to: notifyTo, subject: `[AMI] ${label}: ${who}${fields.company || fields.business ? ` (${fields.company || fields.business})` : ''}`, text, html, replyTo: EMAIL.test(fields.email || '') ? fields.email : undefined });
+    const rows = Object.entries(fields).filter(([, v]) => v !== '' && v != null).map(([k, v]) => [`${titleCase(k)}:`, typeof v === 'object' ? JSON.stringify(v) : String(v)]);
+    const name = fields.name || 'An anonymous visitor';
+    const company = fields.company || fields.business;
+    const summary = (SUMMARY[label] || ((who) => `New ${label.toLowerCase()} from ${who}.`))(`${name}${company ? ` from ${company}` : ''}`);
+    const text = `Hello,\n\n${summary}\n\n${rows.map(([k, v]) => `${k} ${v}`).join('\n')}\n\n${SIGN_OFF}`;
+    const cell = 'padding:6px 12px;border:1px solid #c9ced8;vertical-align:top';
+    const html = `<div style="font:14px/1.5 -apple-system,Segoe UI,Arial,sans-serif;color:#0f1b2d"><p style="margin:0 0 12px">Hello,</p><p style="margin:0 0 16px">${esc(summary)}</p><table style="border-collapse:collapse;border:1px solid #c9ced8">${rows.map(([k, v]) => `<tr><td style="${cell};color:#525e70;font-weight:600;white-space:nowrap">${esc(k)}</td><td style="${cell}">${esc(v)}</td></tr>`).join('')}</table><p style="margin:20px 0 0">Regards,<br>AMI Team</p></div>`;
+    await mail({ to: notifyTo, subject: `[AMI] ${label}: ${fields.name || 'anonymous visitor'}${company ? ` (${company})` : ''}`, text, html, replyTo: EMAIL.test(fields.email || '') ? fields.email : undefined });
   }
 
   /** Registration, report waitlist and invitation acceptance forms. */
@@ -126,7 +144,7 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
     }
     const fields = {};
     for (const [k, v] of Object.entries(body)) {
-      if (k === 'website') continue;
+      if (k === 'website' || k === 'type' || k === 'intent') continue; // honeypot; the form type is already in the subject
       fields[k] = Array.isArray(v) ? v.map((x) => (typeof x === 'object' ? Object.values(x).map((y) => clean(String(y), 200)).join(' / ') : clean(String(x), 200))).join('; ') : clean(String(v ?? ''), 500);
     }
     await notify(type, fields);
@@ -155,7 +173,7 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
     const result = { team: team.id, member: member.id, business: team.business, you, count, needed: Math.max(0, TEAM_SIZE_FOR_ALIGNMENT - count) };
     if (count >= TEAM_SIZE_FOR_ALIGNMENT) result.alignment = alignment(team.members);
 
-    await notify('Self-score', { name: member.name, email: member.email, business: team.business, team: team.id, score: `${you.score} (${you.level})`, ...scores, 'team members scored': count, 'alignment score': result.alignment?.score ?? '' });
+    await notify('Self-score', { name: member.name, email: member.email, business: team.business, score: `${you.score} (${you.level})`, ...Object.fromEntries(DIMS.map(([k, n]) => [n, scores[k]])),'team members scored': count, 'alignment score': result.alignment?.score ?? '' });
 
     if (result.alignment && !team.alignedNotified) {
       team.alignedNotified = true;
@@ -166,7 +184,7 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
         await mail({
           to: m.email,
           subject: `Your team alignment score for ${team.business || 'your business'} is ready`,
-          text: `Hi ${first(m.name)},\n\n${count} people from ${team.business || 'your business'} have scored your AI agent program.\n\nTeam alignment score: ${a.score}/100\nTeam Agent Maturity Score: ${a.teamAvg} (${a.teamLevel})${a.biggestGap ? `\nBiggest disagreement: ${a.biggestGap.name}` : ''}\n\nAgent Maturity Index`,
+          text: `Hi ${first(m.name)},\n\n${count} people from ${team.business || 'your business'} have scored your AI agent program.\n\nTeam alignment score: ${a.score}/100\nTeam Agent Maturity Score: ${a.teamAvg} (${a.teamLevel})${a.biggestGap ? `\nBiggest disagreement: ${a.biggestGap.name}` : ''}\n\n${SIGN_OFF}`,
           html: emailHtml([`Hi ${esc(first(m.name))},`, `${count} people from ${esc(team.business || 'your business')} have scored your AI agent program.`, `<strong style="font-size:22px">Team alignment score: ${a.score}/100</strong><br>Team Agent Maturity Score: ${a.teamAvg} (${esc(a.teamLevel)})${a.biggestGap ? `<br>Biggest disagreement: ${esc(a.biggestGap.name)}` : ''}`]),
         }).catch(() => {});
       }
@@ -211,12 +229,12 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
         to: c.email,
         replyTo: email,
         subject: `${first(name)} invited you to score ${team.business}'s AI agent maturity`,
-        text: `Hi ${first(c.name)},\n\n${name} has scored ${team.business} on the Agent Maturity Index and wants your view.\n\nIt takes two minutes: seven questions, one score each. When three of you have scored, everyone gets your team alignment score.\n\nScore ${team.business}: ${url}\n\nAgent Maturity Index`,
+        text: `Hi ${first(c.name)},\n\n${name} has scored ${team.business} on the Agent Maturity Index and wants your view.\n\nIt takes two minutes: seven questions, one score each. When three of you have scored, everyone gets your team alignment score.\n\nScore ${team.business}: ${url}\n\n${SIGN_OFF}`,
         html: emailHtml([`Hi ${esc(first(c.name))},`, `<strong>${esc(name)}</strong> has scored <strong>${esc(team.business)}</strong> on the Agent Maturity Index and wants your view.`, 'It takes two minutes: seven questions, one score each. When three of you have scored, everyone gets your team alignment score.'], { url, label: `Score ${team.business}` }),
       });
     }
     await store.set(teamKey(team.id), team);
-    await notify('Colleague invitations', { 'your name': name, email, business: team.business, team: team.id, invited: list.map((c) => `${c.name} <${c.email}>`).join(', ') });
+    await notify('Colleague invitations', { name, email, business: team.business, invited: list.map((c) => `${c.name} <${c.email}>`).join(', ') });
     return { sent: sent.length, business: team.business, links: sent };
   }
 
