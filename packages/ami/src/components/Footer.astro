@@ -4,7 +4,7 @@ import { SITE, BASE } from '../config';
 <footer class="foot">
   <div class="wrap foot-in">
     <div class="legal">
-      <p>© 2026 {SITE.legalEntity}. Agent Maturity Index™ is a <a href={SITE.publisherUrl}>SynOS</a> research program.</p>
+      <p>© 2026 {SITE.legalEntity}{SITE.legalEntity.endsWith('.') ? '' : '.'} Agent Maturity Index™ is a <a href={SITE.publisherUrl}>SynOS</a> research program.</p>
       <p class="fine">The framework (levels, dimensions and questions) is licensed under <a href={SITE.license.url} rel="license noopener" target="_blank">{SITE.license.name}</a>. Cite as: SynOS, <cite>Agent Maturity Index</cite>, 2026, getsynos.ai/agent-maturity-index. Benchmark data and reports are © {SITE.legalEntity}, all rights reserved; quote with attribution. Private benchmarks are confidential to the participant.</p>
     </div>
     <nav aria-label="Footer">

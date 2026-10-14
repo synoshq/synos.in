@@ -15,7 +15,7 @@ The pages are static Astro files. The forms, team scores and emails run in one s
 - **Invitations:** colleagues get an email with a personal link (`/#score.<token>`). The link opens the home page, scrolls to the score section and shows "Tony, Emma invited you to score Acme".
 - **Second scorer:** the overlay asks for 1 more colleague.
 - **Third scorer:** the overlay shows the alignment score, and every team member who left an email gets it by email.
-- **Notifications:** every form submission is emailed to `NOTIFY_EMAIL` (anuraag@synos.in). That covers cohort applications, report sign-ups, invitation acceptances, self-scores and colleague invitations.
+- **Notifications:** every form submission is emailed to `NOTIFY_EMAIL` (anuraag@getsynos.ai). That covers cohort applications, report sign-ups, invitation acceptances, self-scores and colleague invitations.
 - **Saved submissions:** every cohort application, report sign-up and invitation acceptance is saved in Redis (`ami-1:submission/<id>`, listed by time in `ami-1:submissions`) before its email is sent, with `mailed` showing whether the email went out.
 - **Email queue:** an email that can't be sent (Resend down, sender domain not verified) is queued in Redis (`ami-1:outbox`). A Vercel Cron job calls `/api/ami/flush` every 15 minutes and sends what it can. It needs `CRON_SECRET` set in Production.
 
@@ -30,8 +30,8 @@ The site lives in the synos.in repo and is served by the same Vercel project.
 - Team scores and the rate limit are stored in Upstash Redis. Add it from the Vercel Marketplace (Storage > Upstash Redis) and connect it to the project, which sets `KV_REST_API_URL` and `KV_REST_API_TOKEN`.
 - Set these in Vercel > Settings > Environment Variables:
    - `RESEND_API_KEY`: from resend.com, after you verify the sending domain.
-   - `MAIL_FROM`: for example `Agent Maturity Index <index@synos.in>`.
-   - `NOTIFY_EMAIL`: `anuraag@synos.in` (the default).
+   - `MAIL_FROM`: for example `Agent Maturity Index <index@getsynos.ai>`.
+   - `NOTIFY_EMAIL`: `anuraag@getsynos.ai` (the default).
    - `SITE_ORIGIN`: `https://www.getsynos.ai` (the default). Invitation links use it plus this site's path.
 
 ## Commands

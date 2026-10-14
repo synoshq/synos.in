@@ -9,7 +9,7 @@
 //                                       (UPSTASH_REDIS_REST_URL/_TOKEN also work)
 //   RESEND_API_KEY  required to send email
 //   MAIL_FROM       e.g. "Agent Maturity Index <index@getsynos.ai>" (domain verified in Resend)
-//   NOTIFY_EMAIL    where every form submission goes (default anuraag@synos.in)
+//   NOTIFY_EMAIL    where every form submission goes (default anuraag@getsynos.ai)
 //   SITE_ORIGIN     origin used in invitation links (default https://www.getsynos.ai)
 //   CRON_SECRET     Vercel sends it to /api/ami/flush; requests without it are refused
 //
@@ -51,7 +51,7 @@ async function sendMail({ to, subject, text, html, replyTo }) {
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: env('MAIL_FROM', 'Agent Maturity Index <onboarding@resend.dev>'), to: [to], subject, text, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
+    body: JSON.stringify({ from: env('MAIL_FROM', 'Agent Maturity Index <index@getsynos.ai>'), to: [to], subject, text, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
 }
@@ -101,7 +101,7 @@ export async function POST(req) {
     // A register submission is saved before anything else, so it survives a
     // failed email. Its notification links back to it by id.
     const submission = route === 'register' ? newId() : undefined;
-    const notifyTo = env('NOTIFY_EMAIL', 'anuraag@synos.in');
+    const notifyTo = env('NOTIFY_EMAIL', 'anuraag@getsynos.ai');
     let mailed = null;
     const core = makeCore({
       store: storeFor(prefix),

@@ -19,7 +19,7 @@ function previewCore() {
       set: async (k: string, v: unknown) => { const o = read(); o[k] = v; write(o); },
     },
     mail: async (m: Sent) => { previewOutbox.push(m); },
-    notifyTo: 'anuraag@synos.in',
+    notifyTo: 'anuraag@getsynos.ai',
     siteUrl: '',
   });
   return mock;

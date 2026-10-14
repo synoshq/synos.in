@@ -44,7 +44,7 @@ The State of Enterprise Agent Adoption report is planned for Q1 2027, built on a
 
 ## Licence
 
-The Agent Maturity Index framework (levels, dimensions and questions) is licensed under CC BY-NC-ND 4.0 (https://creativecommons.org/licenses/by-nc-nd/4.0/). Cite as: SynOS, Agent Maturity Index, 2026, getsynos.ai/agent-maturity-index. Benchmark data and reports are © 2026 SynOS Labs LLP, all rights reserved; quote with attribution.
+The Agent Maturity Index framework (levels, dimensions and questions) is licensed under CC BY-NC-ND 4.0 (https://creativecommons.org/licenses/by-nc-nd/4.0/). Cite as: SynOS, Agent Maturity Index, 2026, getsynos.ai/agent-maturity-index. Benchmark data and reports are © 2026 SynOS Labs, Inc., all rights reserved; quote with attribution.
 
 ## Links
 
