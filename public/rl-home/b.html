@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @partial head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<!-- @endpartial head -->
+    <title>Your own AI, post-trained in your cloud | SynOS</title>
+    <meta name="description" content="SynOS installs in your cloud, records what your agents would do on live data, and turns your experts' corrections into an open-weight model you own.">
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="Your own AI, post-trained in your cloud | SynOS">
+    <meta property="og:description" content="SynOS installs in your cloud, records what your agents would do on live data, and turns your experts' corrections into an open-weight model you own.">
+    <meta property="og:url" content="https://www.getsynos.ai/rl-home/b">
+    <meta property="og:image" content="https://www.getsynos.ai/img/og/home.png">
+    <meta name="twitter:image" content="https://www.getsynos.ai/img/og/home.png">
+    <meta property="twitter:title" content="Your own AI, post-trained in your cloud | SynOS">
+    <meta property="twitter:description" content="SynOS installs in your cloud, records what your agents would do on live data, and turns your experts' corrections into an open-weight model you own.">
+    <style>
+    /* rl-home approach B, "The Ledger". Site-wide 2026-09-26 system: one family, five colours,
+     * hairlines for structure. The one brand rule on this page marks the SynOS layer in the
+     * schematic. Everything else is ink and line. */
+    .lg { --lg-y: 136px; --lg-gap: 24px; }
+    @media (max-width: 768px) { .lg { --lg-y: 72px; } }
+
+    .lg-sec { padding: var(--lg-y) 0; border-top: 1px solid var(--sk-border); }
+    .lg-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--lg-gap); }
+    .lg h2 { font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -0.028em; line-height: 1.08; max-width: 18ch; }
+    .lg-lead { font-size: 18px; line-height: 1.55; color: var(--sk-ink-3); max-width: 46ch; }
+    .lg-head { margin-bottom: 64px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--lg-gap); row-gap: 20px; align-items: end; }
+    .lg-head h2 { grid-column: 1 / span 7; }
+    .lg-head .lg-lead { grid-column: 8 / span 5; }
+    @media (max-width: 900px) {
+      .lg-head { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 40px; }
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────── */
+    .lg-hero { padding: 120px 0 var(--lg-y); }
+    .lg-hero h1 { font-size: clamp(40px, 6.6vw, 92px); letter-spacing: -0.038em; line-height: 0.98; max-width: 14ch; }
+    .lg-hero-body { margin-top: 72px; row-gap: 56px; align-items: start; }
+    .lg-hero-copy { grid-column: 1 / span 5; }
+    .lg-hero-sub { font-size: 19px; line-height: 1.55; color: var(--sk-ink-2); max-width: 44ch; }
+    .lg-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .lg-partners { margin-top: 32px; font-size: 14px; line-height: 1.55; color: var(--sk-ink-3); max-width: 44ch; }
+    .lg-own { grid-column: 7 / span 6; }
+    .lg-own-h { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; color: var(--sk-ink-3); padding-bottom: 12px; border-bottom: 1px solid var(--sk-ink); }
+    .lg-own ol { list-style: none; }
+    .lg-own li { display: grid; grid-template-columns: 28px minmax(0, 1fr) minmax(0, 1fr); column-gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--sk-border); align-items: baseline; }
+    .lg-own li svg { color: var(--sk-ink); align-self: center; }
+    .lg-own-stage { font-size: 17px; font-weight: 500; line-height: 1.3; }
+    .lg-own-stage span { display: block; margin-top: 4px; font-size: 14px; font-weight: 400; color: var(--sk-ink-3); }
+    .lg-own-keep { font-size: 15px; line-height: 1.45; color: var(--sk-ink-2); }
+    .lg-own li:last-child .lg-own-keep { color: var(--sk-ink); font-weight: 500; }
+    @media (max-width: 900px) {
+      .lg-hero { padding-top: 72px; }
+      .lg-hero-body { margin-top: 40px; }
+      .lg-hero-copy, .lg-own { grid-column: 1 / -1; }
+    }
+    @media (max-width: 520px) {
+      .lg-own li { grid-template-columns: 22px minmax(0, 1fr); row-gap: 8px; }
+      .lg-own-keep { grid-column: 2; }
+      .lg-own-h span:last-child { display: none; }
+      .lg-actions .sk-btn { width: 100%; }
+    }
+
+    /* ── Why now: numbered ledger, heading held on the left ──────────────── */
+    .lg-now-head { grid-column: 1 / span 4; align-self: start; position: sticky; top: 120px; }
+    .lg-now-head .lg-lead { margin-top: 20px; font-size: 17px; }
+    .lg-now-list { grid-column: 6 / span 7; list-style: none; border-top: 1px solid var(--sk-ink); }
+    .lg-now-list li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: var(--lg-gap); padding: 36px 0; border-bottom: 1px solid var(--sk-border); align-items: baseline; }
+    .lg-num { font-size: clamp(44px, 5.2vw, 76px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; font-variant-numeric: tabular-nums; }
+    .lg-now-list p { font-size: 17px; line-height: 1.5; color: var(--sk-ink); }
+    .lg-src { display: block; margin-top: 12px; font-size: 13px; line-height: 1.45; color: var(--sk-ink-3); }
+    .lg-src a { color: var(--sk-ink-3); text-decoration: underline; text-decoration-color: var(--sk-border-2); text-underline-offset: 3px; }
+    .lg-src a:hover { color: var(--sk-ink); text-decoration-color: var(--sk-ink); }
+    @media (max-width: 900px) {
+      .lg-now-head { grid-column: 1 / -1; position: static; margin-bottom: 40px; }
+      .lg-now-list { grid-column: 1 / -1; }
+    }
+    @media (max-width: 560px) {
+      .lg-now-list li { grid-template-columns: 1fr; row-gap: 14px; padding: 28px 0; }
+    }
+
+    /* ── Upstream: two-column ledger ──────────────────────────────────────── */
+    .lg-up { width: 100%; border-collapse: collapse; border-top: 1px solid var(--sk-ink); }
+    .lg-up thead th { text-align: left; font-size: 14px; font-weight: 400; color: var(--sk-ink-3); padding: 14px 0; border-bottom: 1px solid var(--sk-ink); }
+    .lg-up tbody th, .lg-up tbody td { text-align: left; vertical-align: top; padding: 28px 0; border-bottom: 1px solid var(--sk-border); }
+    .lg-up tbody th { width: 50%; padding-right: 48px; font-weight: 400; font-size: 17px; line-height: 1.5; }
+    .lg-up tbody th strong { display: block; font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .lg-up tbody td { font-size: 17px; line-height: 1.5; color: var(--sk-ink-2); }
+    .lg-up thead th:first-child { padding-right: 48px; }
+    @media (max-width: 640px) {
+      .lg-up, .lg-up tbody, .lg-up tr, .lg-up th, .lg-up td { display: block; width: 100%; }
+      .lg-up thead { display: none; }
+      .lg-up tbody tr { padding: 24px 0; border-bottom: 1px solid var(--sk-border); }
+      .lg-up tbody th, .lg-up tbody td { padding: 0; border: 0; }
+      .lg-up tbody th { padding-right: 0; width: 100%; }
+      .lg-up tbody td { margin-top: 14px; padding-left: 14px; border-left: 1px solid var(--sk-border-2); font-size: 16px; }
+    }
+
+    /* ── Solution: three columns on one ink rule ─────────────────────────── */
+    .lg-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; border-top: 1px solid var(--sk-ink); }
+    .lg-three > div { padding-top: 32px; }
+    .lg-three h3 { font-size: clamp(24px, 2.4vw, 32px); font-weight: 500; letter-spacing: -0.022em; line-height: 1.1; }
+    .lg-def { margin-top: 14px; font-size: 18px; line-height: 1.45; color: var(--sk-ink); }
+    .lg-three p:last-child { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--sk-border); font-size: 16px; line-height: 1.6; color: var(--sk-ink-3); }
+    @media (max-width: 900px) {
+      .lg-three { grid-template-columns: 1fr; border-top: 0; }
+      .lg-three > div { border-top: 1px solid var(--sk-ink); padding: 28px 0 48px; }
+      .lg-three > div:last-child { padding-bottom: 0; }
+    }
+
+    /* ── Schematic ────────────────────────────────────────────────────────── */
+    .lg-fig { margin: 0; }
+    .lg-fig svg { display: block; width: 100%; height: auto; color: var(--sk-ink); font-family: var(--sk-font-body); }
+    .lg-fig .f-box { fill: var(--sk-bg); stroke: var(--sk-ink); stroke-width: 1; }
+    .lg-fig .f-in { fill: var(--sk-bg); stroke: var(--sk-border-2); stroke-width: 1; }
+    .lg-fig .f-own { fill: var(--sk-bg); stroke: var(--sk-ink); stroke-width: 2; }
+    .lg-fig .f-bound { fill: none; stroke: var(--sk-ink-3); stroke-width: 1; stroke-dasharray: 5 5; }
+    .lg-fig .f-line { fill: none; stroke: var(--sk-ink); stroke-width: 1.25; }
+    .lg-fig .f-loop { fill: none; stroke: var(--sk-ink-3); stroke-width: 1.25; }
+    .lg-fig .f-step { fill: none; stroke: var(--sk-border); stroke-width: 1; }
+    .lg-fig .f-brand { stroke: var(--sk-indigo); stroke-width: 3; }
+    .lg-fig .t-title { font-size: 16px; font-weight: 500; fill: var(--sk-ink); }
+    .lg-fig .t-body { font-size: 13px; fill: var(--sk-ink-3); }
+    .lg-fig .t-step { font-size: 13px; fill: var(--sk-ink); }
+    .lg-fig .t-brand { font-size: 14px; font-weight: 500; fill: var(--sk-indigo); }
+    .lg-fig .t-bound { font-size: 13px; fill: var(--sk-ink-3); }
+    .lg-fig .t-loop { font-size: 13px; fill: var(--sk-ink-3); }
+    .lg-fig .lg-fig-v { display: none; }
+    .lg-fig figcaption { margin-top: 24px; font-size: 15px; line-height: 1.55; color: var(--sk-ink-3); max-width: 70ch; }
+    @media (max-width: 820px) {
+      .lg-fig .lg-fig-h { display: none; }
+      .lg-fig .lg-fig-v { display: block; max-width: 440px; margin: 0 auto; }
+      .lg-fig .t-title { font-size: 15px; }
+      .lg-fig .t-body, .lg-fig .t-step, .lg-fig .t-loop, .lg-fig .t-bound { font-size: 12.5px; }
+    }
+
+    /* ── Benefits: comparison table that restacks on a phone ──────────────── */
+    .lg-ben { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .lg-ben thead th { text-align: left; vertical-align: bottom; font-size: 18px; font-weight: 500; letter-spacing: -0.01em; padding: 0 24px 16px 0; border-bottom: 1px solid var(--sk-ink); }
+    .lg-ben thead th:first-child { font-size: 14px; font-weight: 400; color: var(--sk-ink-3); width: 22%; }
+    .lg-ben tbody th, .lg-ben tbody td { text-align: left; vertical-align: top; padding: 24px 24px 24px 0; border-bottom: 1px solid var(--sk-border); font-size: 16px; line-height: 1.55; }
+    .lg-ben tbody th { font-weight: 500; color: var(--sk-ink); }
+    .lg-ben tbody td { color: var(--sk-ink-2); }
+    @media (max-width: 640px) {
+      .lg-ben, .lg-ben tbody, .lg-ben tr, .lg-ben th, .lg-ben td { display: block; width: 100%; }
+      .lg-ben thead { display: none; }
+      .lg-ben tbody tr { border-top: 1px solid var(--sk-ink); padding-bottom: 40px; }
+      .lg-ben tbody tr:last-child { padding-bottom: 0; }
+      .lg-ben tbody th { padding: 16px 0; font-size: 18px; border-bottom: 1px solid var(--sk-border); }
+      .lg-ben tbody td { padding: 14px 0; }
+      .lg-ben tbody td::before { content: attr(data-label); display: block; font-size: 14px; font-weight: 500; color: var(--sk-ink); margin-bottom: 4px; }
+    }
+
+    /* ── Become AI native: two halves on a hairline split ────────────────── */
+    .lg-split { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--sk-ink); border-bottom: 1px solid var(--sk-border); }
+    .lg-split > div { padding: 48px 48px 56px 0; }
+    .lg-split > div + div { padding: 48px 0 56px 48px; border-left: 1px solid var(--sk-border); }
+    .lg-split h3 { font-size: clamp(22px, 2.2vw, 30px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; max-width: 20ch; }
+    .lg-split p { margin-top: 16px; font-size: 17px; line-height: 1.55; color: var(--sk-ink-3); max-width: 42ch; }
+    .lg-act { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 20px; font-size: 16px; font-weight: 500; color: var(--sk-brand-text); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+    .lg-act:hover { color: var(--sk-indigo-ink); }
+    @media (max-width: 760px) {
+      .lg-split { grid-template-columns: 1fr; }
+      .lg-split > div, .lg-split > div + div { padding: 32px 0 40px; border-left: 0; }
+      .lg-split > div + div { border-top: 1px solid var(--sk-border); }
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────────────────────── */
+    .lg-faq-head { grid-column: 1 / span 4; }
+    .lg-faq-list { grid-column: 6 / span 7; border-top: 1px solid var(--sk-ink); }
+    .lg-faq-list details { border-bottom: 1px solid var(--sk-border); }
+    .lg-faq-list summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 24px; align-items: baseline; padding: 24px 0; font-size: 18px; font-weight: 500; line-height: 1.4; letter-spacing: -0.005em; }
+    .lg-faq-list summary::-webkit-details-marker { display: none; }
+    .lg-faq-list summary::after { content: "+"; flex: none; font-size: 22px; font-weight: 400; line-height: 1; color: var(--sk-ink-3); }
+    .lg-faq-list details[open] summary::after { content: "\2212"; }
+    .lg-faq-list summary:hover { color: var(--sk-ink-2); }
+    .lg-faq-list summary:focus-visible { outline: 2px solid var(--sk-indigo); outline-offset: 2px; }
+    .lg-faq-list details p { padding: 0 48px 28px 0; font-size: 16px; line-height: 1.65; color: var(--sk-ink-3); }
+    @media (max-width: 900px) {
+      .lg-faq-head, .lg-faq-list { grid-column: 1 / -1; }
+      .lg-faq-head { margin-bottom: 40px; }
+      .lg-faq-list details p { padding-right: 0; }
+    }
+
+    /* ── Bottom CTA ──────────────────────────────────────────────────────── */
+    .lg-bottom h2 { font-size: clamp(40px, 5.6vw, 76px); letter-spacing: -0.035em; line-height: 1; max-width: none; }
+    .lg-bottom .sk-cta { align-items: end; }
+    .lg-bottom .sk-cta-row { flex-direction: column; align-items: flex-end; gap: 16px; }
+    .lg-quiz { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--sk-ink-3); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--sk-border-2); }
+    .lg-quiz:hover { color: var(--sk-ink); text-decoration-color: var(--sk-ink); }
+    @media (max-width: 900px) {
+      .lg-bottom .sk-cta-row { align-items: flex-start; }
+    }
+    @media (max-width: 520px) {
+      .lg-bottom .sk-cta-row .sk-btn { width: 100%; }
+    }
+    </style>
+</head>
+<body>
+<a href="#main-content" class="sk-skip">Skip to content</a>
+
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <div class="sk-nav-inner">
+    <a href="/" class="sk-nav-left" aria-label="SynOS home">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-nav-word">SynOS</span>
+    </a>
+    <div class="sk-nav-right">
+      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-nav">Talk to us</a>
+      <a href="/early-access" class="sk-btn sk-btn--ink" data-cta="cta-early-access-nav">Request early access</a>
+    </div>
+  </div>
+</nav>
+<!-- @endpartial nav -->
+
+<main id="main-content" class="lg">
+
+  <!-- Hero -->
+  <section class="lg-hero" data-section="hero">
+    <div class="sk-container">
+      <h1>Your own AI, post&#8209;trained on what only your company knows.</h1>
+      <div class="lg-grid lg-hero-body">
+        <div class="lg-hero-copy">
+          <p class="lg-hero-sub">SynOS installs in your cloud, runs your agents on live data with every write recorded rather than executed, and saves each expert correction as eval and training data. It improves the agents with prompt optimisation first, then post-trains an open-weight model whose weights stay with you.</p>
+          <div class="lg-actions">
+            <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-hero">Request early access</a>
+            <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-hero">Bring one use case</a>
+          </div>
+          <p class="lg-partners">Built with three design partners: a marketing automation platform, a distributed database company and a large publicly listed automotive manufacturer.</p>
+        </div>
+
+        <div class="lg-own" aria-label="What you own at each stage">
+          <div class="lg-own-h"><span>Where your AI comes from</span><span>What you own</span></div>
+          <ol>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.25"/></svg>
+              <div class="lg-own-stage">Rented model<span>A frontier API, called as is</span></div>
+              <div class="lg-own-keep">A prompt</div>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M7 1a6 6 0 0 1 0 12z" fill="currentColor"/></svg>
+              <div class="lg-own-stage">Prompted agent<span>A rented model with your tools and context</span></div>
+              <div class="lg-own-keep">Prompts, tools and the context you assembled</div>
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="currentColor" stroke="currentColor" stroke-width="1.25"/></svg>
+              <div class="lg-own-stage">Your own post&#8209;trained model<span>Open weights trained on your experts' corrections</span></div>
+              <div class="lg-own-keep">The weights, the evals and the training data</div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why now -->
+  <section class="lg-sec" data-section="why-now">
+    <div class="sk-container lg-grid">
+      <div class="lg-now-head">
+        <h2>Training a model of your own is now practical.</h2>
+        <p class="lg-lead">Open-weight models have closed most of the gap with closed ones, and post-training them costs less every year. Five findings, each with its source.</p>
+      </div>
+      <ol class="lg-now-list">
+        <li>
+          <span class="lg-num">3%</span>
+          <div>
+            <p>The top open-weight model sits within about 3% of the top closed model on Arena: GLM-5 at 1,454 against 1,503, in March 2026.</p>
+            <span class="lg-src"><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">Stanford HAI, AI Index 2026, ch. 2</a></span>
+          </div>
+        </li>
+        <li>
+          <span class="lg-num">83.6%</span>
+          <div>
+            <p>A 4B open model post-trained with RL on a law firm's task scored 83.6% against GPT-5's 79.6%. It also cut answers invented for unanswerable questions from 49% to 21%.</p>
+            <span class="lg-src"><a href="https://labs.scale.com/blog/scaling-enterprise-agent-performance-with-reinforcement-learning-via-verifiable-feedback-loops" target="_blank" rel="noopener">Scale AI Labs, Nov 2025</a></span>
+          </div>
+        </li>
+        <li>
+          <span class="lg-num">Rank 1</span>
+          <div>
+            <p>LoRA matched full fine-tuning for RL even at rank 1, at roughly two-thirds the compute per pass.</p>
+            <span class="lg-src"><a href="https://thinkingmachines.ai/blog/lora" target="_blank" rel="noopener">Thinking Machines, "LoRA Without Regret", Sep 2025</a></span>
+          </div>
+        </li>
+        <li>
+          <span class="lg-num">50x</span>
+          <div>
+            <p>Open-model inference prices fell by roughly 6x to 50x over three years, depending on the model.</p>
+            <span class="lg-src"><a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI, 2026</a></span>
+          </div>
+        </li>
+        <li>
+          <span class="lg-num">95%</span>
+          <div>
+            <p>About 95% of enterprise generative AI pilots stalled before scaled adoption. The study traced it to a learning gap between tools and workflows rather than to model quality.</p>
+            <span class="lg-src"><a href="https://www.computing.co.uk/news/2025/ai/mit-report-95pc-corporate-generative-ai-pilots-fail" target="_blank" rel="noopener">MIT NANDA, The GenAI Divide, Aug 2025</a></span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Upstream -->
+  <section class="lg-sec" data-section="upstream">
+    <div class="sk-container">
+      <div class="lg-head">
+        <h2>The hard work happens before the first training run.</h2>
+        <p class="lg-lead">GPUs and training recipes are easy to rent. Six things upstream of them are where most attempts stall.</p>
+      </div>
+      <table class="lg-up">
+        <thead>
+          <tr><th scope="col">The challenge</th><th scope="col">What it costs a team today</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><strong>The environment</strong>Agents need somewhere to act on real systems without consequences.</th>
+            <td>Teams build copies and sandboxes, which drift from the business. What an agent learns there stops holding once it meets production.</td>
+          </tr>
+          <tr>
+            <th scope="row"><strong>The data</strong>Historical records are scattered across systems, inconsistent and unlabelled. What experts know lives in their heads.</th>
+            <td>Engineers spend the opening stretch of every project reconciling records by hand, and the expert knowledge never reaches a dataset.</td>
+          </tr>
+          <tr>
+            <th scope="row"><strong>The reward</strong>Someone has to decide what correct means, per task, and keep it current.</th>
+            <td>Without a scored definition of correct, nobody can say whether a new model is better than the one it replaces.</td>
+          </tr>
+          <tr>
+            <th scope="row"><strong>The team</strong>Research engineers who build environments and run post-training are scarce and costly.</th>
+            <td>Most companies cannot hire them, so the project waits on a hire that may never close.</td>
+          </tr>
+          <tr>
+            <th scope="row"><strong>The loop</strong>Corrections made in production rarely flow back into the model.</th>
+            <td>Experts fix the same mistake again and again, and the model never sees the fix.</td>
+          </tr>
+          <tr>
+            <th scope="row"><strong>Sovereignty</strong>Training data cannot leave the company's boundary.</th>
+            <td>Any service that trains outside your cloud is ruled out at security review, along with the work already done to prepare for it.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section class="lg-sec" data-section="solution">
+    <div class="sk-container">
+      <div class="lg-head">
+        <h2>SynOS is three parts, installed in your cloud.</h2>
+        <p class="lg-lead">Each one does a piece of the upstream work, so a small team of domain experts and engineers can run its own post-training lab.</p>
+      </div>
+      <div class="lg-three">
+        <div>
+          <h3>The Brain</h3>
+          <p class="lg-def">The context every agent and every training run reads from.</p>
+          <p>It connects the systems and historical data you already have and resolves the same entity across every source. It also holds the procedures your experts follow, written where an agent can read them.</p>
+        </div>
+        <div>
+          <h3>The Agent Runtime</h3>
+          <p class="lg-def">Where agents work on live data with nothing at stake.</p>
+          <p>Every write is intercepted and recorded rather than executed, then scored. Experts correct agents in the tools they already use, and every run is priced per model and per provider.</p>
+        </div>
+        <div>
+          <h3>The Training Plane</h3>
+          <p class="lg-def">Where runs and corrections become a model you own.</p>
+          <p>It turns them into evals and training data, improves agents with prompt optimisation (GEPA), then post-trains an open-weight model with SFT and RL with verifiable rewards. Platform agents build the environments and clean the data, and a release that scores worse than the last one does not ship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schematic -->
+  <section class="lg-sec" data-section="schematic">
+    <div class="sk-container">
+      <div class="lg-head">
+        <h2>How a correction becomes a model.</h2>
+        <p class="lg-lead">Everything inside the dashed line runs in your own cloud account. The trained model goes back to the agents that produced its data.</p>
+      </div>
+      <figure class="lg-fig">
+        <!-- Wide drawing: left to right -->
+        <svg class="lg-fig-h" viewBox="0 0 1160 520" role="img" aria-labelledby="fh-t fh-d">
+          <title id="fh-t">SynOS schematic</title>
+          <desc id="fh-d">Your systems and historical data feed The Brain, which feeds The Agent Runtime, where writes are recorded rather than executed and experts correct the agents. The Training Plane turns that into a model through GEPA, SFT, RL with verifiable rewards and an eval gate. The result is your open-weight model, which goes back to the agents. Everything sits inside your cloud.</desc>
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+          </defs>
+          <rect class="f-bound" x="6" y="20" width="1148" height="494" rx="6"/>
+          <text class="t-bound" x="28" y="50">Your cloud</text>
+
+          <!-- the one brand rule: the SynOS layer -->
+          <line class="f-brand" x1="220" y1="112" x2="930" y2="112"/>
+          <text class="t-brand" x="220" y="98">SynOS</text>
+
+          <!-- inputs -->
+          <rect class="f-in" x="30" y="140" width="150" height="104" rx="4"/>
+          <text class="t-title" x="46" y="172">Your systems</text>
+          <text class="t-body" x="46" y="196">The tools your</text>
+          <text class="t-body" x="46" y="214">teams use today</text>
+          <rect class="f-in" x="30" y="268" width="150" height="104" rx="4"/>
+          <text class="t-title" x="46" y="300">Historical data</text>
+          <text class="t-body" x="46" y="324">Years of records,</text>
+          <text class="t-body" x="46" y="342">as they are</text>
+          <path class="f-line" d="M180 192H200V256H218" marker-end="url(#ah)"/>
+          <path class="f-line" d="M180 320H200V256" />
+
+          <!-- The Brain -->
+          <rect class="f-box" x="220" y="140" width="210" height="232" rx="4"/>
+          <text class="t-title" x="238" y="172">The Brain</text>
+          <text class="t-body" x="238" y="204">Connects your systems</text>
+          <text class="t-body" x="238" y="226">Resolves the same entity</text>
+          <text class="t-body" x="238" y="244">across sources</text>
+          <text class="t-body" x="238" y="266">Holds the procedures</text>
+          <text class="t-body" x="238" y="284">experts follow</text>
+          <path class="f-line" d="M430 256H468" marker-end="url(#ah)"/>
+
+          <!-- The Agent Runtime -->
+          <rect class="f-box" x="470" y="140" width="210" height="232" rx="4"/>
+          <text class="t-title" x="488" y="172">The Agent Runtime</text>
+          <text class="t-body" x="488" y="204">Agents work on live data</text>
+          <text class="t-body" x="488" y="226">Writes recorded rather</text>
+          <text class="t-body" x="488" y="244">than executed, then scored</text>
+          <text class="t-body" x="488" y="266">Expert corrections captured</text>
+          <text class="t-body" x="488" y="284">in the tools they use</text>
+          <path class="f-line" d="M680 256H718" marker-end="url(#ah)"/>
+
+          <!-- The Training Plane -->
+          <rect class="f-box" x="720" y="140" width="210" height="232" rx="4"/>
+          <text class="t-title" x="738" y="172">The Training Plane</text>
+          <line class="f-step" x1="738" y1="188" x2="912" y2="188"/>
+          <text class="t-step" x="738" y="212">GEPA prompt optimisation</text>
+          <line class="f-step" x1="738" y1="228" x2="912" y2="228"/>
+          <text class="t-step" x="738" y="252">SFT</text>
+          <line class="f-step" x1="738" y1="268" x2="912" y2="268"/>
+          <text class="t-step" x="738" y="292">RL with verifiable rewards</text>
+          <line class="f-step" x1="738" y1="308" x2="912" y2="308"/>
+          <text class="t-step" x="738" y="332">Eval gate</text>
+          <text class="t-body" x="738" y="352">Worse than last: no release</text>
+          <path class="f-line" d="M930 256H966" marker-end="url(#ah)"/>
+
+          <!-- your model -->
+          <rect class="f-own" x="968" y="176" width="172" height="160" rx="4"/>
+          <text class="t-title" x="984" y="210">Your open-weight</text>
+          <text class="t-title" x="984" y="232">model</text>
+          <text class="t-body" x="984" y="266">Weights stay in</text>
+          <text class="t-body" x="984" y="284">your cloud</text>
+
+          <!-- loop back to the agents -->
+          <path class="f-loop" d="M1054 336V460H575V374" marker-end="url(#ah)"/>
+          <text class="t-loop" x="812" y="486" text-anchor="middle">Each release goes back to the agents, and the next run starts from it</text>
+        </svg>
+
+        <!-- Narrow drawing: top to bottom -->
+        <svg class="lg-fig-v" viewBox="0 0 320 760" role="img" aria-labelledby="fv-t fv-d">
+          <title id="fv-t">SynOS schematic</title>
+          <desc id="fv-d">Your systems and historical data feed The Brain, then The Agent Runtime, then The Training Plane, which produces your open-weight model. The model goes back to the agents. Everything sits inside your cloud.</desc>
+          <defs>
+            <marker id="av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+          </defs>
+          <rect class="f-bound" x="2" y="2" width="316" height="754" rx="6"/>
+          <text class="t-bound" x="16" y="26">Your cloud</text>
+
+          <rect class="f-in" x="16" y="40" width="120" height="58" rx="4"/>
+          <text class="t-body" x="28" y="64">Your systems</text>
+          <text class="t-body" x="28" y="82">as they are</text>
+          <rect class="f-in" x="148" y="40" width="120" height="58" rx="4"/>
+          <text class="t-body" x="160" y="64">Historical data</text>
+          <text class="t-body" x="160" y="82">as it is</text>
+          <path class="f-line" d="M76 98V112H142V134" marker-end="url(#av)"/>
+          <path class="f-line" d="M208 98V112H142"/>
+
+          <!-- the one brand rule, vertical in this drawing -->
+          <text class="t-brand" x="14" y="130">SynOS</text>
+          <line class="f-brand" x1="20" y1="146" x2="20" y2="566"/>
+
+          <rect class="f-box" x="36" y="136" width="232" height="112" rx="4"/>
+          <text class="t-title" x="50" y="162">The Brain</text>
+          <text class="t-body" x="50" y="186">Connects your systems</text>
+          <text class="t-body" x="50" y="206">Resolves the same entity</text>
+          <text class="t-body" x="50" y="226">Holds expert procedures</text>
+          <path class="f-line" d="M152 248V270" marker-end="url(#av)"/>
+
+          <rect class="f-box" x="36" y="272" width="232" height="112" rx="4"/>
+          <text class="t-title" x="50" y="298">The Agent Runtime</text>
+          <text class="t-body" x="50" y="322">Agents work on live data</text>
+          <text class="t-body" x="50" y="342">Writes recorded, then scored</text>
+          <text class="t-body" x="50" y="362">Expert corrections captured</text>
+          <path class="f-line" d="M152 384V406" marker-end="url(#av)"/>
+
+          <rect class="f-box" x="36" y="408" width="232" height="158" rx="4"/>
+          <text class="t-title" x="50" y="434">The Training Plane</text>
+          <line class="f-step" x1="50" y1="446" x2="254" y2="446"/>
+          <text class="t-step" x="50" y="466">GEPA prompt optimisation</text>
+          <line class="f-step" x1="50" y1="478" x2="254" y2="478"/>
+          <text class="t-step" x="50" y="498">SFT</text>
+          <line class="f-step" x1="50" y1="510" x2="254" y2="510"/>
+          <text class="t-step" x="50" y="530">RL with verifiable rewards</text>
+          <line class="f-step" x1="50" y1="542" x2="254" y2="542"/>
+          <text class="t-step" x="50" y="560">Eval gate</text>
+          <path class="f-line" d="M152 566V600" marker-end="url(#av)"/>
+
+          <rect class="f-own" x="36" y="602" width="232" height="72" rx="4"/>
+          <text class="t-title" x="50" y="630">Your open-weight model</text>
+          <text class="t-body" x="50" y="654">Weights stay in your cloud</text>
+
+          <path class="f-loop" d="M268 638H292V328H270" marker-end="url(#av)"/>
+
+          <text class="t-loop" x="16" y="712">Each release goes back to the agents.</text>
+          <text class="t-body" x="16" y="732">A worse one than the last does not ship.</text>
+        </svg>
+        <figcaption>Writes from the Agent Runtime are intercepted and recorded rather than executed, so agents practise on live data without changing it. The eval gate compares each release with the one before it.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="lg-sec" data-section="benefits">
+    <div class="sk-container">
+      <div class="lg-head">
+        <h2>What each part gives the people who run it.</h2>
+        <p class="lg-lead">Read across for one group of people, or down for one part of the platform.</p>
+      </div>
+      <table class="lg-ben">
+        <thead>
+          <tr>
+            <th scope="col">For</th>
+            <th scope="col">The Brain</th>
+            <th scope="col">The Agent Runtime</th>
+            <th scope="col">The Training Plane</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Your agents</th>
+            <td data-label="The Brain">One resolved view of each entity across your systems, plus the procedures to follow.</td>
+            <td data-label="The Agent Runtime">Live data to practise on, with every write recorded and scored.</td>
+            <td data-label="The Training Plane">A model trained on your work, which replaces the rented one when it scores higher.</td>
+          </tr>
+          <tr>
+            <th scope="row">Your experts</th>
+            <td data-label="The Brain">A procedure written down once is read by every agent.</td>
+            <td data-label="The Agent Runtime">Corrections happen in the tools they already use.</td>
+            <td data-label="The Training Plane">Each correction becomes eval and training data, so a fix is taught once.</td>
+          </tr>
+          <tr>
+            <th scope="row">Your engineers</th>
+            <td data-label="The Brain">One context layer for every agent, in place of a pipeline per project.</td>
+            <td data-label="The Agent Runtime">Every run priced per model and per provider, so spend is visible before it grows.</td>
+            <td data-label="The Training Plane">Platform agents build the environments and clean the data.</td>
+          </tr>
+          <tr>
+            <th scope="row">Your company</th>
+            <td data-label="The Brain">Context assembled inside your own cloud account.</td>
+            <td data-label="The Agent Runtime">A record of every run, kept on your own infrastructure.</td>
+            <td data-label="The Training Plane">The weights, the evals and the training set, all yours.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Become AI native -->
+  <section class="lg-sec" data-section="become-ai-native">
+    <div class="sk-container">
+      <div class="lg-head">
+        <h2>Start from where your company stands.</h2>
+      </div>
+      <div class="lg-split">
+        <div>
+          <h3>I am a vertical SaaS provider</h3>
+          <p>Turn your domain data and the judgement of your specialists into a model that ships inside your product.</p>
+          <a href="/vertical-saas" class="lg-act" data-cta="cta-vertical-saas-callout">See SynOS for Vertical SaaS <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div>
+          <h3>I am a large enterprise with an AI transformation mandate</h3>
+          <p>Begin with one workflow your experts already own, and build a model the company keeps when the programme ends.</p>
+          <a href="/ai-transformation" class="lg-act" data-cta="cta-ai-transformation-callout">See SynOS for AI Transformation <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="lg-sec" data-section="faq">
+    <div class="sk-container lg-grid">
+      <div class="lg-faq-head">
+        <h2>Questions a technical buyer asks first.</h2>
+      </div>
+      <div class="lg-faq-list">
+        <details>
+          <summary>Do we need an ML or research team?</summary>
+          <p>No. Platform agents build the training environments and clean the data, which is the work that usually needs research engineers. Your engineers connect the systems and your domain experts correct the agents.</p>
+        </details>
+        <details>
+          <summary>Where do our data and the model live?</summary>
+          <p>In your own cloud account. SynOS installs there, training runs there, and the weights it produces are stored there, so training data stays inside your boundary.</p>
+        </details>
+        <details>
+          <summary>Which models does it use?</summary>
+          <p>Post-training works on open-weight models. Agents can run on a hosted model while yours is trained, and every run is priced per model and per provider so you can compare the two on the same work.</p>
+        </details>
+        <details>
+          <summary>What are GEPA, SFT and RL with verifiable rewards, in plain words?</summary>
+          <p>GEPA reads where an agent went wrong, proposes better instructions and keeps the versions that score higher, without touching the model. SFT trains the model on worked examples of the right answer, and RL with verifiable rewards lets it attempt a task many times and rewards the attempts a check can confirm are correct.</p>
+        </details>
+        <details>
+          <summary>What happens to the model and data if we stop?</summary>
+          <p>They stay where they already are, in your cloud. The weights are open weights in your account, so you can keep serving the model, and the evals, training data and recorded runs remain yours.</p>
+        </details>
+        <details>
+          <summary>How much expert time does it take?</summary>
+          <p>Experts review and correct agent work in the tools they already use, as part of the job they do today. The corrections carry the most weight early on, and there are fewer of them to make as the model improves.</p>
+        </details>
+        <details>
+          <summary>What does a first use case look like?</summary>
+          <p>One workflow, the experts who own it and the systems it touches. Agents run on live data with their writes recorded, experts correct them, and those corrections become the first evals and the first training set.</p>
+        </details>
+        <details>
+          <summary>How is this different from a hosted fine-tuning API?</summary>
+          <p>A fine-tuning API expects a finished dataset and trains on its provider's infrastructure. SynOS builds that dataset from your systems and your experts' corrections, trains inside your cloud and gates each release on your own evals.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="lg-sec lg-bottom" data-section="bottom-cta">
+    <div class="sk-container">
+      <div class="sk-cta">
+        <div>
+          <h2>Bring one use case.</h2>
+          <p class="sk-lead">Pick a workflow your experts already correct by hand. We will map how it would run in your cloud, from the systems it reads to the first evals.</p>
+        </div>
+        <div class="sk-cta-row">
+          <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--primary" data-cta="cta-book-demo-bottom">Book a working session</a>
+          <a href="/agent-maturity-index" class="lg-quiz" data-cta="cta-ami-quiz-bottom">Not sure where to start? Take the AMI quiz</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <p class="sk-footer-copy">&copy; 2026 SynOS Labs, Inc.</p>
+    <div class="sk-footer-group sk-footer-team">
+      <span class="sk-footer-label">Team</span>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
+      <a href="https://www.linkedin.com/in/anuraagdubey/" target="_blank" rel="noopener">Anurag Dubey</a>
+      <a href="https://www.linkedin.com/in/siddharth-katyal/" target="_blank" rel="noopener">Siddharth Katyal</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/agent-maturity-index">Agent Maturity Index</a>
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+    </div>
+  </div>
+</footer>
+<!-- @endpartial footer -->
+</body>
+</html>
