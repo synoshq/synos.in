@@ -39,6 +39,7 @@ const CARDS = {
   'trust':            ['Trust centre', 'Everything a security reviewer needs, limits included.'],
   'early-access':     ['Early access', 'A walkthrough on your systems, not a pitch.'],
   'blog':             ['Writing', 'Notes on building the layer enterprises are missing.'],
+  'blog-domain-trained-open-weight-models': ['Research', '36 domain-trained open-weight models, compared.'],
 }
 
 // Tokens are pasted rather than imported: this file renders standalone, and the card must not

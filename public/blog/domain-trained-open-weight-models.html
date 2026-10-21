@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @partial head -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/synos.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<!-- @endpartial head -->
+    <title>36 Domain-Trained Open-Weight Models Compared (2026) | SynOS</title>
+    <meta name="description" content="Base model, training stages, data and benchmark gains for 36 open-weight models trained for law, finance, medicine, science, code, telecom and translation.">
+    <meta name="author" content="Anurag Dubey">
+    <meta property="og:title" content="36 domain-trained open-weight models compared">
+    <meta property="og:description" content="Which base models teams start from, which training stages they use, how much data they need and what they gain. Every figure sourced.">
+    <meta property="og:url" content="https://www.getsynos.ai/blog/domain-trained-open-weight-models">
+    <meta property="og:image" content="https://www.getsynos.ai/img/og/blog.png">
+    <meta property="article:published_time" content="2026-10-21">
+    <meta name="twitter:image" content="https://www.getsynos.ai/img/og/blog.png">
+    <meta property="twitter:title" content="36 domain-trained open-weight models compared">
+    <meta property="twitter:description" content="Which base models teams start from, which training stages they use, how much data they need and what they gain. Every figure sourced.">
+    <link rel="canonical" href="https://www.getsynos.ai/blog/domain-trained-open-weight-models">
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "What 36 domain-trained open-weight models show about training your own",
+    "description": "Base model, training stages, data and benchmark gains for 36 open-weight models trained for law, finance, medicine, science, code, telecom and translation.",
+    "datePublished": "2026-10-21",
+    "dateModified": "2026-10-21",
+    "author": {
+      "@type": "Person",
+      "name": "Anurag Dubey",
+      "url": "https://www.linkedin.com/in/anuraagdubey/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "SynOS",
+      "url": "https://www.getsynos.ai/"
+    },
+    "image": "https://www.getsynos.ai/img/og/blog.png",
+    "mainEntityOfPage": "https://www.getsynos.ai/blog/domain-trained-open-weight-models",
+    "keywords": "domain-specific LLM, open-weight models, fine-tuning, continued pretraining, reinforcement learning, Qwen3.5-9B, domain adaptation"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.getsynos.ai/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.getsynos.ai/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Domain-trained open-weight models",
+        "item": "https://www.getsynos.ai/blog/domain-trained-open-weight-models"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a domain-trained open-weight model?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is a language model whose weights are published for anyone to download, and which started from a general-purpose base model before being trained further on one field or task. Fin-R1, for example, is Qwen2.5-7B-Instruct trained on about 60,000 worked finance examples and then with reinforcement learning."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between continued pretraining and fine-tuning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Continued pretraining keeps the model predicting the next word on domain text, which is how it takes in facts, and usually runs to billions of tokens. Supervised fine-tuning trains it on example questions and answers, which teaches it how to respond, and often needs only thousands to hundreds of thousands of examples. Most of the models in this comparison used fine-tuning; eight also used continued pretraining."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which base model is used most for domain training?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Qwen. 17 of the 36 models in this comparison start from a Qwen model, including every 9B release of 2026, which all use Qwen3.5-9B. Llama, Mistral and Gemma account for most of the rest."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much data do you need to train a domain-specific model?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on what the model has to learn. A new behaviour, such as working as a coding agent, has been trained from about 5,000 examples. A company knowledge base took Deel about 1.2 billion tokens of rewritten training text, built from 69 million tokens of source pages. Learning a whole field, as SaulLM did for law, ran to more than 500 billion tokens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do small domain-trained models beat frontier models?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On their own task, often. Lawma-8B scores 80.3% on 260 legal classification tasks against 62.9% for GPT-4, and Fin-R1 at 7B beats DeepSeek-R1 on FinQA. Outside their task they usually trail, and every result here is reported by the model's own publisher."
+        }
+      }
+    ]
+  }
+]
+    </script>
+    <style>
+    /* Blog post, 2026-10-21. Prose column at the shared measure; the comparison table is the one
+     * element allowed to run wider, inside its own scroller. Ledger register: an ink rule opens the
+     * table, hairlines separate rows, no cards. */
+    .bp { max-width: var(--sk-container); margin: 0 auto; padding: 72px 24px var(--sk-section-y); }
+    .bp-col { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--sk-space-5); }
+    .bp-crumb { font-size: 14px; color: var(--sk-ink-3); }
+    .bp-crumb a { color: var(--sk-ink-3); }
+    .bp h1 { font-size: clamp(34px, 4.2vw, 52px); line-height: 1.08; text-wrap: balance; max-width: 20ch; }
+    .bp-meta { font-size: 14px; color: var(--sk-ink-3); }
+    .bp-lead { font-size: 19px; line-height: 1.6; color: var(--sk-ink-2); }
+    .bp h2 { font-size: clamp(24px, 2.4vw, 30px); margin-top: var(--sk-space-8); text-wrap: balance; }
+    .bp h3 { font-size: 17px; margin-top: var(--sk-space-4); }
+    .bp p, .bp li { font-size: 17px; line-height: 1.7; color: var(--sk-ink-2); }
+    .bp ul, .bp ol { padding-left: 22px; display: flex; flex-direction: column; gap: var(--sk-space-3); }
+    .bp li strong, .bp p strong { color: var(--sk-ink); font-weight: 500; }
+    .bp-col--head { margin-bottom: var(--sk-space-5); }
+    .bp-findings { border-top: 1px solid var(--sk-ink); padding-top: var(--sk-space-5); }
+    .bp-wide { margin: var(--sk-space-7) 0 var(--sk-space-4); }
+    .bp-scroll { overflow-x: auto; border-top: 1px solid var(--sk-ink); }
+    .bp-table { border-collapse: collapse; width: 100%; min-width: 1180px; font-size: 14px; line-height: 1.45; font-variant-numeric: tabular-nums; }
+    .bp-table caption { text-align: left; font-size: 14px; color: var(--sk-ink-3); padding-bottom: var(--sk-space-4); caption-side: bottom; padding-top: var(--sk-space-4); }
+    .bp-table th, .bp-table td { text-align: left; vertical-align: top; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--sk-border); }
+    .bp-table thead th { font-weight: 500; font-size: 13px; color: var(--sk-ink-3); border-bottom: 1px solid var(--sk-ink); white-space: nowrap; }
+    .bp-table tbody th[colspan] { font-size: 15px; font-weight: 500; color: var(--sk-ink); padding-top: 28px; border-bottom: 1px solid var(--sk-ink); }
+    .bp-table td a { font-weight: 500; }
+    .bp-pub { display: block; color: var(--sk-ink-3); font-size: 13px; }
+    .bp-nowrap { white-space: nowrap; }
+    .bp-gain { white-space: nowrap; font-weight: 500; color: var(--sk-ink); }
+    .bp-none { color: var(--sk-ink-3); }
+    .bp-faq { border-top: 1px solid var(--sk-ink); }
+    .bp-faq div { padding: var(--sk-space-5) 0; border-bottom: 1px solid var(--sk-border); display: flex; flex-direction: column; gap: var(--sk-space-3); }
+    .bp-faq h3 { margin: 0; font-size: 17px; }
+    .bp-sources { border-top: 1px solid var(--sk-border); padding-top: var(--sk-space-5); }
+    .bp-sources summary { cursor: pointer; font-size: 16px; font-weight: 500; color: var(--sk-ink); min-height: 44px; display: flex; align-items: center; }
+    .bp-sources ul { list-style: none; padding: 0; margin-top: var(--sk-space-4); gap: var(--sk-space-4); }
+    .bp-sources li { font-size: 14px; line-height: 1.55; }
+    .bp-sources li span { color: var(--sk-ink-3); }
+    .bp-end { margin-top: var(--sk-space-8); padding-top: var(--sk-section-y); border-top: 1px solid var(--sk-border); }
+    @media (max-width: 720px) {
+      .bp { padding-top: 48px; }
+      .bp-lead { font-size: 17px; }
+      .bp p, .bp li { font-size: 16px; }
+    }
+    </style>
+</head>
+<body>
+<a href="#main-content" class="sk-skip">Skip to content</a>
+
+<!-- @partial nav -->
+<nav class="sk-nav" id="nav">
+  <div class="sk-nav-inner">
+    <a href="/" class="sk-nav-left" aria-label="SynOS home">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="sk-nav-word">SynOS</span>
+    </a>
+    <div class="sk-nav-right">
+      <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-nav">Talk to us</a>
+      <a href="/early-access" class="sk-btn sk-btn--ink" data-cta="cta-early-access-nav">Request early access</a>
+    </div>
+  </div>
+</nav>
+<!-- @endpartial nav -->
+
+<main id="main-content">
+  <article class="bp" data-section="blog-post">
+    <div class="bp-col">
+      <p class="bp-crumb"><a href="/blog">Blog</a></p>
+      <h1>What 36 domain-trained open-weight models show about training your own</h1>
+      <p class="bp-meta">Anurag Dubey · 21 October 2026 · 12 minute read</p>
+      <p class="bp-lead">In October 2026 Deel published how it trained Pangaea K1, a 9B open-weight model, on its internal knowledge base of employment rules across more than 150 countries. On Deel's own evaluation the trained model scored 70, up from 19 for the base it started from, and answered in a median 7.7 seconds. Eight frontier models given search over the same knowledge base scored between 52 and 75 and took 13 to 28 seconds.</p>
+      <p>Deel is one team among many doing this. We collected 35 other open-weight models that started from an existing base model and were trained further for one domain or task, and recorded the same facts for each: what it was built on, which training stages it went through, how much data it saw, and what it gained over its starting point. Every figure comes from a model card, paper or launch post, checked on 21 October 2026, and every source is listed at the end.</p>
+
+      <h2>Key findings</h2>
+      <ul class="bp-findings">
+        <li><strong>Qwen is the default base model.</strong> 17 of the 36 models start from a Qwen model, including all four 9B releases of 2026.</li>
+        <li><strong>Supervised fine-tuning is the common stage.</strong> 22 models report it. Nine add reinforcement learning and eight run continued pretraining on domain text. Only Bilibili's Index-Translate-9B reports all three.</li>
+        <li><strong>Training data ranges from thousands of examples to trillions of tokens.</strong> DeepSWE used about 4,500 problems. Intern-S1 used about 5 trillion tokens.</li>
+        <li><strong>Narrow tasks gain the most.</strong> Lawma-8B went from 42.6% to 80.3% on 260 legal classification tasks. Broad domains such as medicine and finance typically gained 6 to 14 points.</li>
+        <li><strong>Half the field shows no before and after.</strong> 18 models report a score for their own base model, and 12 disclose a token count.</li>
+      </ul>
+    </div>
+
+    <div class="bp-wide" data-section="blog-table">
+      <div class="bp-col bp-col--head">
+        <h2 id="table">The 36 models</h2>
+        <p>Grouped by domain, newest first. Training stages: CPT is continued pretraining on domain text, SFT is supervised fine-tuning on example answers, RL is reinforcement learning. "Gain over base" is the headline improvement, in benchmark points, over the model it was trained from.</p>
+      </div>
+      <div class="bp-scroll">
+        <table class="bp-table">
+          <caption>Figures as reported by each publisher, checked 21 October 2026. "c." marks a date taken from a repository creation date, the model name or a third-party site. Pangaea K1 weights are not public and it is listed for reference.</caption>
+          <thead><tr>
+            <th scope="col">Model</th><th scope="col">Task</th><th scope="col">Released</th><th scope="col">Base model</th><th scope="col">Size</th><th scope="col">Stages</th><th scope="col">Domain training data</th><th scope="col">Gain over base</th><th scope="col">Headline result</th>
+          </tr></thead>
+          <tbody>
+            <tr><th scope="colgroup" colspan="9">Law and finance</th></tr>
+            <tr><td><a href="https://huggingface.co/inclusionAI/Ling-3.0-flash-Fin" target="_blank" rel="noopener">Ling-3.0-flash-Fin</a><span class="bp-pub">Ant Group (inclusionAI) · Finance</span></td><td>Financial research: grounded search, multi-document reasoning, valuation, reports</td><td class="bp-nowrap">c. Sep 2026</td><td>Ling-3.0-flash</td><td class="bp-nowrap">124B (5.1B active)</td><td class="bp-nowrap">CPT</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>Card shows results only as a chart; third-party figure: Finance Agent v2 54.9% at $0.04/task</td></tr>
+            <tr><td><a href="https://huggingface.co/OVHaiLLM/Qwen-Open-Finance-R-8B" target="_blank" rel="noopener">Qwen-Open-Finance-R-8B</a><span class="bp-pub">OVHcloud / DragonLLM · Finance</span></td><td>Financial analysis, compliance, investment research, financial translation (EN/FR/DE)</td><td class="bp-nowrap">Nov 2025</td><td>Qwen3-8B</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">SFT</td><td>~2.03M samples; tokens not disclosed</td><td><span class="bp-gain">+10 acronyms</span></td><td>Only published 8B result: financial acronyms accuracy EN 0.49 vs 0.39 base, FR 0.28 vs 0.17</td></tr>
+            <tr><td><a href="https://huggingface.co/DianJin/DianJin-R1-32B" target="_blank" rel="noopener">DianJin-R1-32B</a><span class="bp-pub">Alibaba Cloud (Qwen-DianJin) · Finance</span></td><td>Financial reasoning and compliance checking (Chinese)</td><td class="bp-nowrap">Apr 2025</td><td>Qwen2.5-32B-Instruct</td><td class="bp-nowrap">32B (also 7B)</td><td class="bp-nowrap">SFT + RL</td><td>Not disclosed</td><td><span class="bp-gain">+14.1 avg</span></td><td>5-benchmark avg 82.1 vs 68.0 base (DeepSeek-R1 79.0); compliance (CCC) 96.0 vs 56.5</td></tr>
+            <tr><td><a href="https://huggingface.co/SUFE-AIFLM-Lab/Fin-R1" target="_blank" rel="noopener">Fin-R1</a><span class="bp-pub">SUFE AIFLM Lab · Finance</span></td><td>Financial reasoning, calculation, compliance, risk, ESG</td><td class="bp-nowrap">Mar 2025</td><td>Qwen2.5-7B-Instruct</td><td class="bp-nowrap">7B</td><td class="bp-nowrap">SFT + RL</td><td>~60K chain-of-thought samples, then RL</td><td><span class="bp-gain">+9.6 avg</span></td><td>5-benchmark avg 75.2 vs 65.6 base (DeepSeek-R1 78.2); FinQA 76.0 vs 60.0</td></tr>
+            <tr><td><a href="https://huggingface.co/TheFinAI/Fino1-8B" target="_blank" rel="noopener">Fino1-8B</a><span class="bp-pub">TheFinAI · Finance</span></td><td>Financial math reasoning (FinQA)</td><td class="bp-nowrap">Feb 2025</td><td>Llama-3.1-8B-Instruct</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">SFT + RL</td><td>~5.5K reasoning paths (unit unclear)</td><td><span class="bp-gain">+9.6 avg</span></td><td>4-benchmark avg 50.8 vs 41.2 base (GPT-4o 61.0); XBRL-Math 82.2 vs 62.2</td></tr>
+            <tr><td><a href="https://huggingface.co/Equall/SaulLM-141B-Instruct" target="_blank" rel="noopener">SaulLM-141B-Instruct</a><span class="bp-pub">Equall · Legal</span></td><td>Legal text understanding and instruction following</td><td class="bp-nowrap">Jul 2024</td><td>Mixtral (8x22B)</td><td class="bp-nowrap">141B (also 54B)</td><td class="bp-nowrap">CPT + SFT</td><td>500 to 540B legal tokens (paper inconsistent); ~1M instructions</td><td><span class="bp-gain">+8 LegalBench?</span></td><td>LegalBench-Instruct 75.3 vs ~67.4 Mixtral-141B, GPT-4 73.4 (read from a figure; pairing uncertain)</td></tr>
+            <tr><td><a href="https://huggingface.co/Writer/Palmyra-Fin-70B-32K" target="_blank" rel="noopener">Palmyra-Fin-70B-32K</a><span class="bp-pub">Writer · Finance</span></td><td>Long-context financial analysis</td><td class="bp-nowrap">Jul 2024</td><td>Palmyra-X-003</td><td class="bp-nowrap">70B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>CFA Level III sample test 73% (pass ~60%, GPT-4 33% per Writer). No base score</td></tr>
+            <tr><td><a href="https://huggingface.co/ricdomolm/lawma-8b" target="_blank" rel="noopener">Lawma-8B</a><span class="bp-pub">Dominguez-Olmedo et al. · Legal</span></td><td>260 US legal classification tasks</td><td class="bp-nowrap">Jul 2024</td><td>Llama-3-8B-Instruct</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">SFT</td><td>500K+ examples, ~2B tokens</td><td><span class="bp-gain">+37.7</span></td><td>260 legal tasks mean accuracy 80.3% vs 42.6% base (GPT-4 62.9%)</td></tr>
+          </tbody>
+          <tbody>
+            <tr><th scope="colgroup" colspan="9">Medicine and science</th></tr>
+            <tr><td><a href="https://huggingface.co/EPFLiGHT/Apertus-70B-MeditronFO" target="_blank" rel="noopener">Apertus-70B-MeditronFO</a><span class="bp-pub">EPFL LiGHT · Medical</span></td><td>Clinical question answering (MedQA, MedMCQA, HealthBench)</td><td class="bp-nowrap">May 2026</td><td>Apertus-70B-Instruct-2509</td><td class="bp-nowrap">70B</td><td class="bp-nowrap">SFT</td><td>~601K examples (~150M tokens)</td><td><span class="bp-gain">+6.5 avg</span></td><td>5-benchmark medical avg 51.4 vs 44.9 base; MedQA 68.6 vs 60.6; HealthBench Hard 40.1 vs 32.3</td></tr>
+            <tr><td><a href="https://huggingface.co/baichuan-inc/Baichuan-M3-235B" target="_blank" rel="noopener">Baichuan-M3-235B</a><span class="bp-pub">Baichuan · Medical</span></td><td>Clinical consultation, diagnosis support, reducing hallucination</td><td class="bp-nowrap">Feb 2026</td><td>Qwen3-235B-A22B</td><td class="bp-nowrap">235B</td><td class="bp-nowrap">SFT + RL</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>HealthBench-Hard 44.4; claims to beat GPT-5.2 and top SCAN-bench, no comparison numbers</td></tr>
+            <tr><td><a href="https://huggingface.co/google/medgemma-1.5-4b-it" target="_blank" rel="noopener">MedGemma 1.5 4B</a><span class="bp-pub">Google · Medical</span></td><td>CT/MRI, histopathology, chest X-ray comparison, lab reports, EHR QA</td><td class="bp-nowrap">Jan 2026</td><td>Gemma 3</td><td class="bp-nowrap">4B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-gain">+18.4 MedQA</span></td><td>MedQA 69.1 vs 50.7 base Gemma 3 4B; EHRQA 89.6 vs 70.9; MRI accuracy 64.7 vs 51.1. Some tasks fell vs MedGemma 1</td></tr>
+            <tr><td><a href="https://huggingface.co/internlm/Intern-S1-FP8" target="_blank" rel="noopener">Intern-S1</a><span class="bp-pub">Shanghai AI Lab · Science</span></td><td>Chemical structures, protein sequences, synthesis planning</td><td class="bp-nowrap">Aug 2025</td><td>Qwen3-235B MoE + InternViT</td><td class="bp-nowrap">241B</td><td class="bp-nowrap">CPT</td><td>~5T tokens, of which 2.5T+ scientific</td><td><span class="bp-gain">+7.6 ChemBench</span></td><td>ChemBench 83.4 vs 75.8 base Qwen3-235B; MatBench 75.0 vs 52.1; SmolInstruct 51.0 vs 28.7. Trails Grok-4 on GPQA</td></tr>
+            <tr><td><a href="https://huggingface.co/baichuan-inc/Baichuan-M2-32B" target="_blank" rel="noopener">Baichuan-M2-32B</a><span class="bp-pub">Baichuan · Medical</span></td><td>Medical reasoning and clinical decision support</td><td class="bp-nowrap">Aug 2025</td><td>Qwen2.5-32B</td><td class="bp-nowrap">32B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>HealthBench 60.1 (gpt-oss-120b 57.6); HealthBench-Hard 34.7. No base score</td></tr>
+            <tr><td><a href="https://arxiv.org/abs/2506.17238" target="_blank" rel="noopener">ether0</a><span class="bp-pub">FutureHouse · Chemistry</span></td><td>Molecular design and chemistry reasoning across 375 tasks</td><td class="bp-nowrap">Jun 2025</td><td>Mistral-Small-24B</td><td class="bp-nowrap">24B</td><td class="bp-nowrap">SFT + RL</td><td>640,730 chemistry problems (plus SFT)</td><td><span class="bp-none">No base score</span></td><td>Reaction prediction 70% on own held-out set (retrained Molecular Transformer &lt;30%); multiple-choice 50.1% vs o1 52.2%</td></tr>
+            <tr><td><a href="https://huggingface.co/google/medgemma-27b-text-it" target="_blank" rel="noopener">MedGemma 27B</a><span class="bp-pub">Google · Medical</span></td><td>Medical text QA and reasoning</td><td class="bp-nowrap">May 2025</td><td>Gemma 3 27B</td><td class="bp-nowrap">27B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-gain">+12.8 MedQA</span></td><td>MedQA 87.7 vs 74.9 base Gemma 3 27B; MedMCQA 74.2 vs 62.6; MedXpertQA 26.7 vs 15.7</td></tr>
+            <tr><td><a href="https://huggingface.co/Intelligent-Internet/II-Medical-8B" target="_blank" rel="noopener">II-Medical-8B</a><span class="bp-pub">Intelligent Internet · Medical</span></td><td>Medical reasoning and QA</td><td class="bp-nowrap">May 2025</td><td>Qwen3-8B</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">SFT + RL</td><td>555K+ samples</td><td><span class="bp-none">No base score</span></td><td>10-benchmark medical avg 70.5 (HuatuoGPT-o1-72B 71.1); MedQA 87.8. No base score</td></tr>
+          </tbody>
+          <tbody>
+            <tr><th scope="colgroup" colspan="9">Code, maths and security</th></tr>
+            <tr><td><a href="https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B" target="_blank" rel="noopener">MiMo-V2.6-Distill-Qwen-9B</a><span class="bp-pub">Xiaomi · Coding / Agents</span></td><td>Coding, agent tasks and cybersecurity; base for agentic RL research</td><td class="bp-nowrap">c. Sep 2026</td><td>Qwen3.5-9B</td><td class="bp-nowrap">9B</td><td class="bp-nowrap">SFT</td><td>27.2B tokens trained (from a 77.4B-token mix)</td><td><span class="bp-gain">+12.6 SWE-Pro</span></td><td>SWE-Bench Pro 44.6 vs 32.0 base; Terminal-Bench 2.1 37.1 vs 27.0; SWE-Bench Verified 61.1 vs 60.0</td></tr>
+            <tr><td><a href="https://huggingface.co/Tesslate/OmniCoder-9B" target="_blank" rel="noopener">OmniCoder-9B</a><span class="bp-pub">Tesslate · Coding / Agents</span></td><td>Agentic coding: software engineering, tool use, terminal tasks</td><td class="bp-nowrap">c. Mar 2026</td><td>Qwen3.5-9B</td><td class="bp-nowrap">9B</td><td class="bp-nowrap">SFT</td><td>425K+ agent trajectories (LoRA); tokens not disclosed</td><td><span class="bp-gain">+9.0 T-Bench</span></td><td>Terminal-Bench 2.0 23.6 vs 14.6 base; GPQA Diamond 83.8 vs 81.7 base</td></tr>
+            <tr><td><a href="https://arxiv.org/html/2603.00729v1" target="_blank" rel="noopener">Qwen3-Coder-Next</a><span class="bp-pub">Alibaba Qwen · Coding / Agents</span></td><td>Software-engineering coding agent</td><td class="bp-nowrap">Feb 2026</td><td>Qwen3-Next base</td><td class="bp-nowrap">80B (3B active)</td><td class="bp-nowrap">CPT</td><td>&quot;trillions&quot; of tokens incl. ~600B repo-level; ~800K agent tasks</td><td><span class="bp-none">No base score</span></td><td>SWE-Bench Verified 71.3 (Claude Opus 4.5: 79.0); SWE-Bench Pro 42.7; Terminal-Bench 2.0 36.2. No base score</td></tr>
+            <tr><td><a href="https://huggingface.co/fdtn-ai/Foundation-Sec-8B-Reasoning" target="_blank" rel="noopener">Foundation-Sec-8B-Reasoning</a><span class="bp-pub">Cisco Foundation AI · Cybersecurity</span></td><td>Security reasoning and instruction following</td><td class="bp-nowrap">Jan 2026</td><td>Foundation-Sec-8B (Llama-3.1-8B)</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">CPT (in parent model) + SFT</td><td>Not disclosed</td><td><span class="bp-gain">+22.2 CTI-RCM</span></td><td>CTI-RCM 75.3 vs 53.1 Llama-3.1-8B (GPT-5-Nano 67.2); CTI-MCQA 69.1 vs 60.7; HarmBench 93.0% vs 62.8%</td></tr>
+            <tr><td><a href="https://huggingface.co/nvidia/OpenReasoning-Nemotron-32B" target="_blank" rel="noopener">OpenReasoning-Nemotron-32B</a><span class="bp-pub">NVIDIA · Math / Code / Science</span></td><td>Competition math, code and science reasoning</td><td class="bp-nowrap">Jul 2025</td><td>Qwen2.5-32B</td><td class="bp-nowrap">32B</td><td class="bp-nowrap">SFT</td><td>~5M DeepSeek-R1 responses</td><td><span class="bp-none">No base score</span></td><td>AIME25 84.0; LiveCodeBench v6 70.2; GPQA 73.1. No base or comparison scores</td></tr>
+            <tr><td><a href="https://huggingface.co/mistralai/Devstral-Small-2507" target="_blank" rel="noopener">Devstral-Small-2507</a><span class="bp-pub">Mistral AI · Coding / Agents</span></td><td>Agentic software engineering across codebases</td><td class="bp-nowrap">c. Jul 2025</td><td>Mistral-Small-3.1-24B-Base</td><td class="bp-nowrap">24B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>SWE-Bench Verified 53.6% (Devstral 1.0: 46.8%, DeepSWE: 42.2%). No base score</td></tr>
+            <tr><td><a href="https://huggingface.co/agentica-org/DeepSWE-Preview" target="_blank" rel="noopener">DeepSWE-Preview</a><span class="bp-pub">Agentica / Together AI · Coding / Agents</span></td><td>Software-engineering agent (59% SWE-Bench Verified)</td><td class="bp-nowrap">c. Jul 2025</td><td>Qwen3-32B</td><td class="bp-nowrap">32B</td><td class="bp-nowrap">RL</td><td>~4.5K problems, 200 steps</td><td><span class="bp-none">No base score</span></td><td>SWE-Bench Verified 42.2% pass@1, 59% best-of-16. Validation rose 23→42% during RL</td></tr>
+            <tr><td><a href="https://huggingface.co/mistralai/Devstral-Small-2505" target="_blank" rel="noopener">Devstral-Small-2505</a><span class="bp-pub">Mistral AI · Coding / Agents</span></td><td>Agentic software engineering</td><td class="bp-nowrap">c. May 2025</td><td>Mistral-Small-3.1-24B-Base</td><td class="bp-nowrap">24B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>SWE-Bench Verified 46.8% (Claude 3.5 Haiku 40.6%, GPT-4.1-mini 23.6%). No base score</td></tr>
+            <tr><td><a href="https://arxiv.org/html/2504.21039v1" target="_blank" rel="noopener">Foundation-Sec-8B</a><span class="bp-pub">Cisco Foundation AI · Cybersecurity</span></td><td>General security knowledge (base model)</td><td class="bp-nowrap">Apr 2025</td><td>Llama-3.1-8B</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">CPT</td><td>~5.1B tokens</td><td><span class="bp-gain">+9.0 CTI-RCM</span></td><td>CTIBench-RCM 72.0 vs 63.0 base (Llama-3.1-70B 70.9); SecBench 72.3 vs 73.5 (slightly lower); MMLU dipped</td></tr>
+            <tr><td><a href="https://huggingface.co/SWE-bench/SWE-agent-LM-32B" target="_blank" rel="noopener">SWE-agent-LM-32B</a><span class="bp-pub">Princeton &amp; Stanford (SWE-smith) · Coding / Agents</span></td><td>Software-engineering agent for SWE-agent</td><td class="bp-nowrap">Apr 2025</td><td>Qwen2.5-Coder-32B-Instruct</td><td class="bp-nowrap">32B</td><td class="bp-nowrap">SFT</td><td>5K trajectories</td><td><span class="bp-none">No base score</span></td><td>SWE-Bench Verified 40.2% pass@1</td></tr>
+            <tr><td><a href="https://huggingface.co/nvidia/OpenMath-Nemotron-32B" target="_blank" rel="noopener">OpenMath-Nemotron-32B</a><span class="bp-pub">NVIDIA · Math</span></td><td>Math reasoning (AIMO-2 winning solution)</td><td class="bp-nowrap">Apr 2025</td><td>Qwen2.5-32B</td><td class="bp-nowrap">32B</td><td class="bp-nowrap">SFT</td><td>OpenMathReasoning dataset (5.68M rows)</td><td><span class="bp-none">No base score</span></td><td>AIME24 78.4 (DeepSeek-R1 79.1); HMMT-24-25 59.7 (DeepSeek-R1 53.0), with code execution</td></tr>
+          </tbody>
+          <tbody>
+            <tr><th scope="colgroup" colspan="9">Business, telecom and language</th></tr>
+            <tr><td><a href="https://www.deel.com/blog/introducing-pangaea-deels-llm/" target="_blank" rel="noopener">Pangaea K1</a><span class="bp-pub">Deel · HR / Employment</span></td><td>Answering employment, payroll and compliance questions across 150+ countries from memory</td><td class="bp-nowrap">Oct 2026</td><td>9B open-weight model, not named</td><td class="bp-nowrap">9B</td><td class="bp-nowrap">CPT + SFT + RL (started)</td><td>~1.2B-token corpus, 2 passes; teacher-distilled SFT</td><td><span class="bp-gain">+51 (Deel eval)</span></td><td>Deel fact-level eval 70 vs 19 base; search-equipped frontier models 52 to 75; 7.7 s vs 14.8 to 28.4 s median</td></tr>
+            <tr><td><a href="https://huggingface.co/Cloudflare/clef-flash" target="_blank" rel="noopener">Clef-Flash</a><span class="bp-pub">Cloudflare · Agent decisions</span></td><td>Routing tickets, blocking requests, escalation and human handoff decisions over text, JSON, images or video</td><td class="bp-nowrap">Oct 2026</td><td>Qwen3.5-9B</td><td class="bp-nowrap">9B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>BANKING77 macro-F1 90.9 (Clef 27B: 94.2); customer-service workflow exact actions 77.0; 38.8 ms median latency. No base score</td></tr>
+            <tr><td><a href="https://huggingface.co/IndexTeam/Index-Translate-9B" target="_blank" rel="noopener">Index-Translate-9B</a><span class="bp-pub">Bilibili · Translation</span></td><td>Translation across 150 languages with terminology, style and format control</td><td class="bp-nowrap">Sep 2026</td><td>Qwen3.5</td><td class="bp-nowrap">9B</td><td class="bp-nowrap">CPT + SFT + RL</td><td>167.77B tokens (mid-training); SFT/RL size not disclosed</td><td><span class="bp-gain">+4.7 COMET</span></td><td>FLORES COMET-22 0.879 vs 0.832 base (TranslateGemma-12B 0.873); WMT24++ 0.860 vs 0.807; instruction-following 0.821 vs 0.061 base</td></tr>
+            <tr><td><a href="https://huggingface.co/farbodtavakkoli/OTel-2.0-LLM-31B-IT" target="_blank" rel="noopener">OTel-2.0-LLM-31B-IT</a><span class="bp-pub">Open Telco (AT&amp;T, GSMA, MLCommons) · Telecom</span></td><td>Telecom knowledge and instruction following</td><td class="bp-nowrap">Jul 2026</td><td>Gemma 4 31B-IT</td><td class="bp-nowrap">31B</td><td class="bp-nowrap">SFT</td><td>~440B training tokens (from a 15B-token raw telecom corpus)</td><td><span class="bp-none">No base score</span></td><td>Unnamed 1,700-question telecom eval 91.9% micro. No base or comparison scores</td></tr>
+            <tr><td><a href="https://huggingface.co/marketeam/Qwen-Marketing" target="_blank" rel="noopener">Qwen-Marketing</a><span class="bp-pub">Marketeam · Marketing</span></td><td>Marketing copy, campaign ideas, brand-voice text</td><td class="bp-nowrap">c. Jun 2025</td><td>Qwen3-8B</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">SFT</td><td>10B+ tokens of marketing data</td><td><span class="bp-none">No base score</span></td><td>No results published; claims to beat GPT-4o on marketing prompts without numbers</td></tr>
+            <tr><td><a href="https://huggingface.co/sarvamai/sarvam-translate" target="_blank" rel="noopener">Sarvam-Translate</a><span class="bp-pub">Sarvam AI · Translation (Indic)</span></td><td>Document translation between English and 22 Indian languages</td><td class="bp-nowrap">c. Jun 2025</td><td>Gemma 3 4B-IT</td><td class="bp-nowrap">4B</td><td class="bp-nowrap">Not disclosed</td><td>Not disclosed</td><td><span class="bp-none">No base score</span></td><td>No numeric results; LLM-judged &gt;4.9/5 on 15 languages; preferred over larger models in a 100-document human eval</td></tr>
+            <tr><td><a href="https://huggingface.co/sarvamai/sarvam-m" target="_blank" rel="noopener">Sarvam-M</a><span class="bp-pub">Sarvam AI · Indic languages</span></td><td>Multilingual chat and reasoning in Indian languages</td><td class="bp-nowrap">c. May 2025</td><td>Mistral-Small-3.1-24B-Base</td><td class="bp-nowrap">24B</td><td class="bp-nowrap">SFT + RL</td><td>Not disclosed</td><td><span class="bp-gain">+16 MILU-IN</span></td><td>MILU-IN 0.75 vs 0.59 base (Gemma 3 27B 0.65); romanized Indic GSM-8K 0.82 vs 0.44; MMLU-IN 0.79 vs 0.64</td></tr>
+            <tr><td><a href="https://huggingface.co/AliMaatouk/LLama-3-8B-Tele" target="_blank" rel="noopener">LLama-3-8B-Tele</a><span class="bp-pub">Ali Maatouk et al. · Telecom</span></td><td>Telecom standards and technical knowledge</td><td class="bp-nowrap">Sep 2024</td><td>Llama-3-8B</td><td class="bp-nowrap">8B</td><td class="bp-nowrap">CPT</td><td>~2.5B tokens</td><td><span class="bp-gain">+5.0 Tele-Eval</span></td><td>Tele-Eval 29.6 vs 24.6 base; MMLU 61.6 vs 62.1 (general knowledge kept)</td></tr>
+            <tr><td><a href="https://huggingface.co/NingLab/eCeLLM-M" target="_blank" rel="noopener">eCeLLM-M</a><span class="bp-pub">NingLab (Ohio State) · E-commerce</span></td><td>Instruction following on e-commerce tasks</td><td class="bp-nowrap">Feb 2024</td><td>Mistral-7B-Instruct-v0.2</td><td class="bp-nowrap">7B</td><td class="bp-nowrap">SFT</td><td>ECInstruct, 264K rows</td><td><span class="bp-none">No base score</span></td><td>Family-level: +10.7% in-domain, +9.3% out-of-domain over best baseline incl. GPT-4 Turbo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bp-col">
+      <h2>Qwen is the default starting point</h2>
+      <p>Seventeen of the 36 models start from Qwen. In the 9B class the pattern is complete: Cloudflare's Clef-Flash, Bilibili's Index-Translate-9B, Xiaomi's MiMo-V2.6 distill and Tesslate's OmniCoder-9B all build on Qwen3.5-9B, which Alibaba publishes under Apache 2.0 in sizes from 0.8B to 122B. Deel has not named the base for Pangaea K1, though it is the same size.</p>
+      <p>Llama 3 and 3.1 account for five models, nearly all from 2024 and early 2025. Mistral and Mixtral account for six, four of them on Mistral Small 24B. Google's Gemma line carries four: both MedGemma releases, Sarvam-Translate and the Open Telco model, which is built on Gemma 4 31B.</p>
+      <p>If you are choosing a base today, the practical reason for Qwen's lead is the size ladder. One architecture at every scale lets a team prototype on 9B and move up without changing tokenizer, chat format or tooling.</p>
+
+      <h2>Which training stages teams use</h2>
+      <p>Three stages appear in the table, and they do different jobs. <strong>Continued pretraining</strong> keeps the model predicting the next word, on domain text instead of the open web; it is how a model takes in facts. <strong>Supervised fine-tuning</strong> trains it on example answers, which teaches it how to respond. <strong>Reinforcement learning</strong> rewards answers that pass a check, so it shows up where an answer can be verified: a calculation, a compliance verdict, a test suite.</p>
+      <p>Eleven models use fine-tuning alone. Seven follow it with reinforcement learning, and that pairing is now the standard recipe for reasoning in a domain: Fin-R1, DianJin-R1 and Fino1 in finance, II-Medical and Baichuan-M3 in medicine, ether0 in chemistry, Sarvam-M for Indian languages. DeepSWE skipped fine-tuning and used reinforcement learning alone.</p>
+      <p>Continued pretraining appears where the model has to hold a large body of knowledge: SaulLM on legal text, Intern-S1 on science, Foundation-Sec-8B on security, LLama-3-8B-Tele on telecom standards. Deel's write-up gives the reason in one line, citing a 2024 Google study: fine-tuning on facts the model does not already know makes it learn them slowly and hallucinate more. Facts go in during pretraining, and fine-tuning teaches the model what a good answer looks like.</p>
+
+      <h2>How much data it takes</h2>
+      <p>The amount depends on whether the model is learning a behaviour or a body of facts.</p>
+      <ul>
+        <li><strong>A behaviour, in thousands of examples.</strong> SWE-agent-LM-32B reached 40.2% on SWE-Bench Verified from 5,000 agent trajectories. DeepSWE reached 42.2% from about 4,500 problems over 200 reinforcement learning steps.</li>
+        <li><strong>A domain's reasoning, in tens of thousands.</strong> Fin-R1 used about 60,000 worked examples and lifted FinQA from 60.0 to 76.0, ahead of DeepSeek-R1 at 71.0.</li>
+        <li><strong>A company's knowledge, in billions of tokens.</strong> Deel turned a 69 million token knowledge base into a 1.2 billion token training corpus by restating each fact about a dozen ways, then trained for two passes. Foundation-Sec-8B used 5.1 billion tokens and LLama-3-8B-Tele 2.5 billion.</li>
+        <li><strong>A whole field, in hundreds of billions or more.</strong> SaulLM trained on more than 500 billion legal tokens. Intern-S1 used about 5 trillion, over half of them scientific.</li>
+      </ul>
+      <p>Deel's corpus is the useful reference point for a company. Its source material was small, and the multiplication came from rewriting: research it cites shows a model can memorise a text and still answer 0% of questions about it unless it has seen the facts restated in varied forms.</p>
+
+      <h2>What the gains look like</h2>
+      <p>The largest gains come where the task is narrow and the base model was weak at it. Lawma-8B nearly doubled its base on legal classification and beat GPT-4 (62.9%). Cisco's Foundation-Sec-8B-Reasoning gained 22.2 points on threat-intelligence root-cause mapping over Llama-3.1-8B. Sarvam-M gained 16 points on an Indian-language knowledge benchmark and nearly doubled its base on maths word problems written in romanized Indian languages.</p>
+      <p>Broad domains move less. EPFL's Apertus-70B-MeditronFO gained 6.5 points averaged over five medical benchmarks, and Fin-R1 gained 9.6 averaged over five finance benchmarks. DianJin-R1-32B is the outlier in finance: 14.1 points on average, and 96.0 on a compliance checking benchmark where its base scored 56.5 and DeepSeek-R1 scored 67.5.</p>
+      <p>Several small models match or beat far larger general ones on their own task. Fin-R1 at 7B beats DeepSeek-R1 on FinQA, though DeepSeek-R1 still leads on the five-benchmark average (78.2 against 75.2). Pangaea K1 answered from memory within five points of the best search-equipped model and in about half the time.</p>
+
+      <h2>What training costs in general ability</h2>
+      <p>Training hard on one domain can wear away what the model knew before. The table shows it in small amounts. Foundation-Sec-8B dropped from 61.7 to 59.3 on MMLU and slightly on one security benchmark. LLama-3-8B-Tele slipped from 62.1 to 61.6 on MMLU. MedGemma 1.5 improved on most medical tasks but fell below MedGemma 1 on some, including PubMedQA.</p>
+      <p>The usual guard is replay: mixing general text back into training. Deel kept about 7.5% of its corpus as general text, citing research that even 1% measurably reduces forgetting, and added everyday tasks to its fine-tuning set for the same reason.</p>
+
+      <h2>How to read these numbers</h2>
+      <ul>
+        <li><strong>Every result is self-reported.</strong> None of the benchmark figures in the table has been independently reproduced.</li>
+        <li><strong>Each model picks its own benchmarks.</strong> A 9-point gain on FinQA and a 9-point gain on Terminal-Bench say nothing about each other. Compare within a domain.</li>
+        <li><strong>Agent benchmarks depend on the harness.</strong> SWE-Bench scores in the table come from OpenHands, SWE-agent and R2E-Gym setups, so they are close to like for like at best.</li>
+        <li><strong>Some sources contradict themselves.</strong> Baichuan-M3's card claims 28 points over M2 on HealthBench-Hard where the two cards show about 10. SaulLM's paper gives its legal corpus as 500, 520 and 540 billion tokens in different places. Fino1's text and table give different base scores.</li>
+        <li><strong>Disclosure is thin.</strong> Eight models do not describe their training method at all, among them Google's MedGemma, Mistral's Devstral and Cloudflare's Clef-Flash.</li>
+      </ul>
+
+      <h2>Where the gaps are</h2>
+      <p>We found no open-weight model trained for HR or customer support with published results, and only one for marketing. Marketeam's Qwen-Marketing was trained on more than 10 billion tokens of marketing data from Qwen3-8B, and its card says no formal benchmark exists yet. Cloudflare's Clef-Flash comes closest on support: it routes and escalates tickets, scores 90.9 macro-F1 on BANKING77, and does not compare itself with its base.</p>
+      <p>The reason is visible in the table. Law, medicine, finance and code all have large public corpora and public benchmarks. A company's own operations have neither: the knowledge sits in its tickets, policies and systems, and the only test that matters is whether the model gets that company's cases right. Deel solved both halves itself, with tens of thousands of internal pages and a 601-question evaluation built from what its teams ask every day.</p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="bp-faq">
+        <div><h3>What is a domain-trained open-weight model?</h3><p>It is a language model whose weights are published for anyone to download, and which started from a general-purpose base model before being trained further on one field or task. Fin-R1, for example, is Qwen2.5-7B-Instruct trained on about 60,000 worked finance examples and then with reinforcement learning.</p></div>
+        <div><h3>What is the difference between continued pretraining and fine-tuning?</h3><p>Continued pretraining keeps the model predicting the next word on domain text, which is how it takes in facts, and usually runs to billions of tokens. Supervised fine-tuning trains it on example questions and answers, which teaches it how to respond, and often needs only thousands to hundreds of thousands of examples. Most of the models in this comparison used fine-tuning; eight also used continued pretraining.</p></div>
+        <div><h3>Which base model is used most for domain training?</h3><p>Qwen. 17 of the 36 models in this comparison start from a Qwen model, including every 9B release of 2026, which all use Qwen3.5-9B. Llama, Mistral and Gemma account for most of the rest.</p></div>
+        <div><h3>How much data do you need to train a domain-specific model?</h3><p>It depends on what the model has to learn. A new behaviour, such as working as a coding agent, has been trained from about 5,000 examples. A company knowledge base took Deel about 1.2 billion tokens of rewritten training text, built from 69 million tokens of source pages. Learning a whole field, as SaulLM did for law, ran to more than 500 billion tokens.</p></div>
+        <div><h3>Do small domain-trained models beat frontier models?</h3><p>On their own task, often. Lawma-8B scores 80.3% on 260 legal classification tasks against 62.9% for GPT-4, and Fin-R1 at 7B beats DeepSeek-R1 on FinQA. Outside their task they usually trail, and every result here is reported by the model&#x27;s own publisher.</p></div>
+      </div>
+
+      <details class="bp-sources" id="sources">
+        <summary>All sources (36 models)</summary>
+        <ul>
+          <li><strong>Apertus-70B-MeditronFO</strong>: <a href="https://huggingface.co/EPFLiGHT/Apertus-70B-MeditronFO" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages, results)</span>; <a href="https://arxiv.org/abs/2605.16215" target="_blank" rel="noopener">Paper</a> <span>(date)</span></li>
+          <li><strong>Baichuan-M2-32B</strong>: <a href="https://huggingface.co/baichuan-inc/Baichuan-M2-32B" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>Baichuan-M3-235B</strong>: <a href="https://huggingface.co/baichuan-inc/Baichuan-M3-235B" target="_blank" rel="noopener">Model card</a> <span>(params, base, results)</span>; <a href="https://arxiv.org/abs/2602.06570" target="_blank" rel="noopener">Paper</a> <span>(date, stages)</span></li>
+          <li><strong>Clef-Flash</strong>: <a href="https://huggingface.co/Cloudflare/clef-flash" target="_blank" rel="noopener">Model card</a> <span>(params, base, stages, results)</span>; <a href="https://letsdatascience.com/news/cloudflare-releases-open-weight-clef-decision-models-c52886d6" target="_blank" rel="noopener">Let&#x27;s Data Science news</a> <span>(date)</span></li>
+          <li><strong>DeepSWE-Preview</strong>: <a href="https://huggingface.co/agentica-org/DeepSWE-Preview" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>Devstral-Small-2505</strong>: <a href="https://huggingface.co/mistralai/Devstral-Small-2505" target="_blank" rel="noopener">Model card</a> <span>(params, base, results; date inferred from name)</span></li>
+          <li><strong>Devstral-Small-2507</strong>: <a href="https://huggingface.co/mistralai/Devstral-Small-2507" target="_blank" rel="noopener">Model card</a> <span>(params, base, results; date inferred from name)</span></li>
+          <li><strong>DianJin-R1-32B</strong>: <a href="https://huggingface.co/DianJin/DianJin-R1-32B" target="_blank" rel="noopener">Model card</a> <span>(params, base)</span>; <a href="https://arxiv.org/html/2504.15716" target="_blank" rel="noopener">Paper (Table 3)</a> <span>(date, data, stages, results)</span></li>
+          <li><strong>eCeLLM-M</strong>: <a href="https://huggingface.co/NingLab/eCeLLM-M" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages)</span>; <a href="https://arxiv.org/abs/2402.08831" target="_blank" rel="noopener">Paper</a> <span>(date, results)</span></li>
+          <li><strong>ether0</strong>: <a href="https://arxiv.org/abs/2506.17238" target="_blank" rel="noopener">Paper</a> <span>(all fields)</span></li>
+          <li><strong>Fin-R1</strong>: <a href="https://huggingface.co/SUFE-AIFLM-Lab/Fin-R1" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>Fino1-8B</strong>: <a href="https://huggingface.co/TheFinAI/Fino1-8B" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages)</span>; <a href="https://arxiv.org/html/2502.08127v2" target="_blank" rel="noopener">Paper (Table 3)</a> <span>(date, results)</span></li>
+          <li><strong>Foundation-Sec-8B</strong>: <a href="https://arxiv.org/html/2504.21039v1" target="_blank" rel="noopener">Tech report</a> <span>(all fields)</span></li>
+          <li><strong>Foundation-Sec-8B-Reasoning</strong>: <a href="https://huggingface.co/fdtn-ai/Foundation-Sec-8B-Reasoning" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>II-Medical-8B</strong>: <a href="https://featherless.ai/models/Intelligent-Internet/II-Medical-8B/readme" target="_blank" rel="noopener">Card mirror (Featherless)</a> <span>(date, params, base, data, stages)</span>; <a href="https://huggingface.co/Intelligent-Internet/II-Medical-8B" target="_blank" rel="noopener">Model card</a> <span>(results)</span></li>
+          <li><strong>Index-Translate-9B</strong>: <a href="https://huggingface.co/IndexTeam/Index-Translate-9B" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages, results)</span>; <a href="https://discuss.pytorch.kr/t/bilibili-150-index-translate-5/12070" target="_blank" rel="noopener">PyTorch KR summary</a> <span>(date)</span></li>
+          <li><strong>Intern-S1</strong>: <a href="https://huggingface.co/internlm/Intern-S1-FP8" target="_blank" rel="noopener">Model card</a> <span>(params, base, results)</span>; <a href="https://arxiv.org/abs/2508.15763" target="_blank" rel="noopener">Paper</a> <span>(date, data, stages)</span></li>
+          <li><strong>Lawma-8B</strong>: <a href="https://huggingface.co/ricdomolm/lawma-8b" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>Ling-3.0-flash-Fin</strong>: <a href="https://huggingface.co/inclusionAI/Ling-3.0-flash-Fin" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages)</span>; <a href="https://sec-api.io/resources/best-open-source-models-for-financial-analysis" target="_blank" rel="noopener">sec-api.io</a> <span>(date, results)</span></li>
+          <li><strong>LLama-3-8B-Tele</strong>: <a href="https://huggingface.co/AliMaatouk/LLama-3-8B-Tele" target="_blank" rel="noopener">Model card</a> <span>(params, base)</span>; <a href="https://arxiv.org/html/2409.05314" target="_blank" rel="noopener">Paper (Table III)</a> <span>(date, data, stages, results)</span></li>
+          <li><strong>MedGemma 1.5 4B</strong>: <a href="https://huggingface.co/google/medgemma-1.5-4b-it" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>MedGemma 27B</strong>: <a href="https://huggingface.co/google/medgemma-27b-text-it" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>MiMo-V2.6-Distill-Qwen-9B</strong>: <a href="https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages, results)</span>; gradually.ai (no link) <span>(date)</span></li>
+          <li><strong>OmniCoder-9B</strong>: <a href="https://huggingface.co/Tesslate/OmniCoder-9B" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>OpenMath-Nemotron-32B</strong>: <a href="https://huggingface.co/nvidia/OpenMath-Nemotron-32B" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>OpenReasoning-Nemotron-32B</strong>: <a href="https://huggingface.co/nvidia/OpenReasoning-Nemotron-32B" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>OTel-2.0-LLM-31B-IT</strong>: <a href="https://huggingface.co/farbodtavakkoli/OTel-2.0-LLM-31B-IT" target="_blank" rel="noopener">Model card</a> <span>(date, params, base, stages, results)</span>; <a href="https://arxiv.org/abs/2608.15436" target="_blank" rel="noopener">Paper</a> <span>(data)</span></li>
+          <li><strong>Palmyra-Fin-70B-32K</strong>: <a href="https://huggingface.co/Writer/Palmyra-Fin-70B-32K" target="_blank" rel="noopener">Model card</a> <span>(params, base, data)</span>; <a href="https://www.businesswire.com/news/home/20240731051024/en" target="_blank" rel="noopener">Press release</a> <span>(date)</span>; <a href="https://writer.com/palmyra-fin" target="_blank" rel="noopener">Writer product page</a> <span>(results)</span></li>
+          <li><strong>Pangaea K1</strong>: <a href="https://www.deel.com/blog/introducing-pangaea-deels-llm/" target="_blank" rel="noopener">Deel blog</a> <span>(all fields)</span></li>
+          <li><strong>Qwen-Marketing</strong>: <a href="https://huggingface.co/marketeam/Qwen-Marketing" target="_blank" rel="noopener">Model card</a> <span>(all fields)</span></li>
+          <li><strong>Qwen-Open-Finance-R-8B</strong>: <a href="https://huggingface.co/OVHaiLLM/Qwen-Open-Finance-R-8B" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages)</span>; <a href="https://arxiv.org/abs/2511.08621" target="_blank" rel="noopener">Paper (Table 4)</a> <span>(date, results)</span></li>
+          <li><strong>Qwen3-Coder-Next</strong>: <a href="https://arxiv.org/html/2603.00729v1" target="_blank" rel="noopener">Tech report</a> <span>(all fields)</span></li>
+          <li><strong>Sarvam-M</strong>: <a href="https://huggingface.co/sarvamai/sarvam-m" target="_blank" rel="noopener">Model card</a> <span>(date, params, base, stages)</span>; <a href="https://www.sarvam.ai/blogs/sarvam-m" target="_blank" rel="noopener">Sarvam blog</a> <span>(results)</span></li>
+          <li><strong>Sarvam-Translate</strong>: <a href="https://huggingface.co/sarvamai/sarvam-translate" target="_blank" rel="noopener">Model card</a> <span>(date, params, base)</span>; <a href="https://www.sarvam.ai/blogs/sarvam-translate" target="_blank" rel="noopener">Sarvam blog</a> <span>(results)</span></li>
+          <li><strong>SaulLM-141B-Instruct</strong>: <a href="https://huggingface.co/Equall/SaulLM-141B-Instruct" target="_blank" rel="noopener">Model card</a> <span>(params)</span>; <a href="https://arxiv.org/abs/2407.19584" target="_blank" rel="noopener">Paper</a> <span>(date, data, base, stages, results)</span></li>
+          <li><strong>SWE-agent-LM-32B</strong>: <a href="https://huggingface.co/SWE-bench/SWE-agent-LM-32B" target="_blank" rel="noopener">Model card</a> <span>(params, base, data, stages)</span>; <a href="https://arxiv.org/abs/2504.21798" target="_blank" rel="noopener">SWE-smith paper</a> <span>(date, results)</span></li>
+          <li><strong>Background</strong>: <a href="https://arxiv.org/abs/2405.05904" target="_blank" rel="noopener">Gekhman et al., Does Fine-Tuning LLMs on New Knowledge Encourage Hallucinations? (2024)</a></li>
+          <li><strong>Background</strong>: <a href="https://arxiv.org/abs/2309.14316" target="_blank" rel="noopener">Allen-Zhu and Li, Physics of Language Models, Part 3.1 (2023)</a></li>
+          <li><strong>Background</strong>: <a href="https://www.contextstudios.ai/guides/best-open-weight-llms-2026" target="_blank" rel="noopener">Qwen3.5 size ladder and licence: Context Studios self-hosting guide</a></li>
+        </ul>
+      </details>
+    </div>
+
+    <section class="bp-end" data-section="bottom-cta">
+      <div class="sk-cta">
+        <div>
+          <h2>Your systems already hold the knowledge.</h2>
+          <p class="sk-lead">Every model above began with domain data someone collected and cleaned. SynOS is the platform for AI built on your own systems, and what your agents do there accumulates on your own infrastructure in the shape a training set is built from.</p>
+        </div>
+        <div class="sk-cta-row">
+          <a href="/early-access" class="sk-btn sk-btn--primary" data-cta="cta-early-access-blog">Request early access</a>
+          <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--secondary" data-cta="cta-book-demo-blog">Talk to us</a>
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
+
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <p class="sk-footer-copy">&copy; 2026 SynOS Labs, Inc.</p>
+    <div class="sk-footer-group sk-footer-team">
+      <span class="sk-footer-label">Team</span>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
+      <a href="https://www.linkedin.com/in/anuraagdubey/" target="_blank" rel="noopener">Anurag Dubey</a>
+      <a href="https://www.linkedin.com/in/siddharth-katyal/" target="_blank" rel="noopener">Siddharth Katyal</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/agent-maturity-index">Agent Maturity Index</a>
+      <a href="/blog">Blog</a>
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+    </div>
+  </div>
+</footer>
+<!-- @endpartial footer -->
+</body>
+</html>
