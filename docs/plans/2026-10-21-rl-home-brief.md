@@ -61,6 +61,9 @@ expertise to train their own models.
 
 ## Why-now facts (use these, with the source named on the page)
 
+2026-10-21 revision: the pages carry only the first, second and fifth facts (the ~3% gap, the 4B model
+against GPT-5, the 95% of stalled pilots). Sources are named as plain text, without links.
+
 | Fact | Source |
 |---|---|
 | The top open-weight model sits within about 3% of the top closed model on Arena (GLM-5 1,454 vs 1,503, March 2026). | Stanford HAI, AI Index 2026, ch. 2 |

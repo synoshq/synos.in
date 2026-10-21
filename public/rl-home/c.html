@@ -125,7 +125,7 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 }
 
 /* ---------- why now ---------- */
-.facts{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:2px solid var(--fg)}
+.facts{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--fg)}
 .fact{padding:26px 22px 4px 0;display:flex;flex-direction:column;gap:12px}
 .fact + .fact{padding-left:22px;border-left:1px solid var(--line)}
 .fact .num{font-weight:750;letter-spacing:-.05em;font-size:clamp(2.4rem,3.6vw,3.4rem);line-height:.95;white-space:nowrap}
@@ -333,13 +333,11 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <!-- ============ WHY NOW ============ -->
 <section data-section="why-now" class="band sec"><div class="wrap">
 <h2>Owning your model is now within reach of a small team.</h2>
-<p class="intro">Open-weight models now sit close to the closed frontier, post-training them costs less, and a small model trained on one task has beaten a frontier model at it.</p>
+<p class="intro">Open-weight models now sit close to the closed frontier, and a small model trained on one task has beaten a frontier model at it. Generic pilots, meanwhile, mostly stall.</p>
 <ol class="facts">
-<li class="fact"><div class="num">~3%</div><p><strong>The gap at the top of Arena.</strong> The best open-weight model scored 1,454 against 1,503 for the best closed model in March 2026.</p><div class="src">Source: <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">Stanford HAI, AI Index 2026, ch. 2</a></div></li>
-<li class="fact"><div class="num">83.6% <small>vs 79.6%</small></div><p><strong>A 4B open model against GPT-5,</strong> after RL post-training on a law firm's task. Invented answers to unanswerable questions fell from 49% to 21%.</p><div class="src">Source: <a href="https://labs.scale.com/blog/scaling-enterprise-agent-performance-with-reinforcement-learning-via-verifiable-feedback-loops" target="_blank" rel="noopener">Scale AI Labs, Nov 2025</a></div></li>
-<li class="fact"><div class="num">~2/3</div><p><strong>LoRA matched full fine-tuning for RL</strong> even at rank 1, at roughly two-thirds the compute per pass.</p><div class="src">Source: <a href="https://thinkingmachines.ai/blog/lora" target="_blank" rel="noopener">Thinking Machines, "LoRA Without Regret", Sep 2025</a></div></li>
-<li class="fact"><div class="num">6 to 50x</div><p><strong>The fall in open-model inference prices</strong> over three years.</p><div class="src">Source: <a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI (via OSI), 2026</a></div></li>
-<li class="fact stall"><div class="num">95%</div><p><strong>Of enterprise generative AI pilots stalled</strong> before scaled adoption. The cause was a learning gap between tools and workflows, rather than model quality.</p><div class="src">Source: <a href="https://www.computing.co.uk/news/2025/ai/mit-report-95pc-corporate-generative-ai-pilots-fail" target="_blank" rel="noopener">MIT NANDA, The GenAI Divide, Aug 2025</a></div></li>
+<li class="fact"><div class="num">~3%</div><p><strong>The gap at the top of Arena.</strong> The best open-weight model scored 1,454 against 1,503 for the best closed model in March 2026.</p><div class="src">Source: Stanford HAI, AI Index 2026, ch. 2</div></li>
+<li class="fact"><div class="num">83.6% <small>vs 79.6%</small></div><p><strong>A 4B open model against GPT-5,</strong> after RL post-training on a law firm's task. Invented answers to unanswerable questions fell from 49% to 21%.</p><div class="src">Source: Scale AI Labs, Nov 2025</div></li>
+<li class="fact stall"><div class="num">95%</div><p><strong>Of enterprise generative AI pilots stalled</strong> before scaled adoption. The cause was a learning gap between tools and workflows, rather than model quality.</p><div class="src">Source: MIT NANDA, The GenAI Divide, Aug 2025</div></li>
 </ol>
 </div></section>
 
