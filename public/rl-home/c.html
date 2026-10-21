@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14' stroke='%236366F1' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<script defer src="/js/synos.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>SynOS | Become AI native. Own your AI.</title>
+<meta name="description" content="SynOS installs in your own cloud, on the systems and historical data you already have. Your experts' corrections post-train an open-weight model that you own.">
+<meta property="og:title" content="SynOS | Become AI native. Own your AI.">
+<meta property="og:description" content="SynOS installs in your own cloud, on the systems and historical data you already have. Your experts' corrections post-train an open-weight model that you own.">
+<meta property="og:url" content="https://www.getsynos.ai/rl-home/c">
+<meta property="og:image" content="https://www.getsynos.ai/img/og/home.png">
+<meta name="twitter:image" content="https://www.getsynos.ai/img/og/home.png">
+<meta property="twitter:title" content="SynOS | Become AI native. Own your AI.">
+<meta property="twitter:description" content="SynOS installs in your own cloud, on the systems and historical data you already have. Your experts' corrections post-train an open-weight model that you own.">
+<style>
+/* rl-home approach C, "The Ladder" (2026-10-21). Review page, noindex, no canonical.
+   Tokens start from the homepage's AMI block (public/index.html). The hero uses the homepage's
+   dark-band tokens, scoped. No literal colour appears outside :root or a scoped token block. */
+:root{
+  --paper:#ffffff;--mist:#f4f6f9;--ink:#0f1b2d;--slate:#525e70;--field:#8792a3;--l3:#8399f3;--on-accent:#ffffff;--a-ink:#1f3bd0;--err:#b42318;
+  --bg:var(--paper);--panel:var(--paper);--panel2:var(--mist);--fg:var(--ink);--dim:var(--slate);--line:#e2e6ec;--line-strong:#c9d0db;
+  --accent:#2747e8;--accent-ink:var(--on-accent);--accent-soft:color-mix(in srgb,var(--accent) 10%,var(--paper));--ok:#17803d;
+  --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;--r:14px;
+  --ent-bg:#0f1b2d;--ent-fg:#ffffff;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--paper:#0b1424;--mist:#111d31;--line:#22304a;--line-strong:#33456a;--field:#64708a;--ink:#eef2f8;--slate:#a3aec0;--accent:#6f86ff;--a-ink:#9eafff;--on-accent:#0b1424;--l3:#3f5bc4;--ok:#47cd89;--err:#f97066;--ent-bg:#111d31;--ent-fg:#eef2f8;color-scheme:dark}
+}
+:root[data-theme="dark"]{--ent-bg:#111d31;--ent-fg:#eef2f8;--paper:#0b1424;--mist:#111d31;--line:#22304a;--line-strong:#33456a;--field:#64708a;--ink:#eef2f8;--slate:#a3aec0;--accent:#6f86ff;--a-ink:#9eafff;--on-accent:#0b1424;--l3:#3f5bc4;--ok:#47cd89;--err:#f97066;color-scheme:dark}
+
+/* the dark band, scoped to the hero (homepage .s-dep tokens) */
+.s-hero{
+  --bg:#0f1b2d;--panel:#16243a;--panel2:#1b2b45;--fg:#eef2f8;--dim:#b4bfd0;--line:#2b3c5a;--line-strong:#3d5178;
+  --accent:#8399f3;--a-ink:#a9b8ff;--accent-ink:#0f1b2d;--accent-soft:rgba(131,153,243,.16);--accent-glow:rgba(131,153,243,.28);--paper:#0f1b2d;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .s-hero{--bg:#050a14;--panel:#0d1729;--panel2:#111d31;--paper:#050a14}}
+:root[data-theme="dark"] .s-hero{--bg:#050a14;--panel:#0d1729;--panel2:#111d31;--paper:#050a14}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--font);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{text-underline-offset:3px;color:var(--a-ink)}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+.band{padding-inline:16px;background:var(--bg);color:var(--fg)}
+.wrap{max-width:1180px;margin:0 auto}
+.sec{padding-block:clamp(72px,9vw,120px)}
+.s-mist{--bg:var(--mist);--panel:var(--paper)}
+
+h2{font-weight:700;letter-spacing:-.035em;font-size:clamp(2rem,4.2vw,3.4rem);line-height:1.04;margin:0;max-width:16em}
+h3{font-size:1.25rem;line-height:1.25;font-weight:650;letter-spacing:-.015em;margin:0}
+.intro{font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.55;color:var(--dim);max-width:36em;margin:18px 0 0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;text-decoration:none;font:600 16px/1 var(--font);border:1.5px solid transparent;transition:background-color .15s,border-color .15s,color .15s}
+.btn.solid{background:var(--accent);color:var(--accent-ink)}
+.btn.solid:hover{background:var(--a-ink)}
+.btn.ghost{border-color:var(--line-strong);color:var(--fg)}
+.btn.ghost:hover{border-color:var(--fg)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+
+/* logo + nav */
+.logo{display:inline-flex;gap:10px;align-items:center;min-height:44px;font-weight:650;font-size:18px;letter-spacing:-.01em;color:var(--fg);text-decoration:none}
+.logo svg{flex:none;color:var(--fg)}
+nav.top{display:flex;align-items:center;justify-content:space-between;padding-block:18px}
+.stickynav{position:fixed;left:0;right:0;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);padding-inline:16px;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid var(--line);transform:translateY(-105%);transition:transform .22s ease;visibility:hidden}
+.stickynav.on{transform:translateY(0);visibility:visible}
+.stickynav-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.stickynav .navlinks{display:flex;flex-wrap:nowrap;gap:8px}
+.stickynav .btn{min-height:44px;padding:0 18px;font-size:15px}
+@media (max-width:520px){
+  .stickynav .logo span{display:none}
+  .stickynav .btn{padding:0 14px;font-size:14px}
+}
+
+/* ---------- hero ---------- */
+.s-hero{padding-bottom:clamp(64px,8vw,112px)}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:center;padding-top:clamp(32px,5vw,72px)}
+.hero h1{font-weight:750;letter-spacing:-.05em;font-size:clamp(2.7rem,6.4vw,5.6rem);line-height:.96;margin:0;max-width:10.5em}
+.hero .lede{font-size:clamp(1.1rem,1.55vw,1.3rem);line-height:1.55;color:var(--dim);max-width:33em;margin:26px 0 0}
+.partners{margin:36px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.55;color:var(--dim);max-width:36em}
+.partners b{color:var(--fg);font-weight:600}
+
+/* the ladder */
+.ladder{margin:0;position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:18px}
+.ladder-title{grid-column:1 / -1;font-size:13.5px;color:var(--dim);margin:0 0 14px}
+.rungs{grid-column:1;grid-row:2;list-style:none;margin:0;padding:0 18px;position:relative;display:flex;flex-direction:column-reverse}
+.rungs::before,.rungs::after{content:"";position:absolute;top:-14px;bottom:-14px;width:3px;border-radius:3px;background:var(--line-strong)}
+.rungs::before{left:0}.rungs::after{right:0}
+.rung{position:relative;padding:16px 4px 14px;display:flex;flex-direction:column;gap:2px}
+.rung::after{content:"";position:absolute;left:-18px;right:-18px;bottom:0;height:3px;border-radius:3px;background:var(--line-strong)}
+.rung b{font-size:clamp(15px,1.35vw,17px);font-weight:600;letter-spacing:-.01em;line-height:1.3}
+.rung span{font-size:13.5px;color:var(--dim);line-height:1.4}
+.rung.top{padding-block:22px 20px}
+.rung.top::after{background:var(--accent);height:5px;bottom:-1px;box-shadow:0 0 0 6px var(--accent-soft),0 0 28px var(--accent-glow)}
+.rung.top b{color:var(--a-ink);font-size:clamp(19px,1.9vw,24px);font-weight:700;letter-spacing:-.02em}
+.rung.top span{color:var(--fg)}
+.bracket{grid-column:2;grid-row:2;align-self:start;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--a-ink)}
+.bracket i{display:block;width:10px;align-self:stretch;border:2px solid var(--accent);border-left:0;border-radius:0 8px 8px 0}
+@media (prefers-reduced-motion:no-preference){
+  .rung{animation:rung-in .5s ease both}
+  .rung:nth-child(1){animation-delay:.1s}.rung:nth-child(2){animation-delay:.22s}.rung:nth-child(3){animation-delay:.34s}.rung:nth-child(4){animation-delay:.46s}
+  .rung.top{animation-delay:.6s}
+  .rung.top::after{animation:rung-lit .9s ease .7s both}
+  @keyframes rung-in{from{opacity:.25}}
+  @keyframes rung-lit{from{background:var(--line-strong);box-shadow:none}}
+}
+
+/* ---------- why now ---------- */
+.facts{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:2px solid var(--fg)}
+.fact{padding:26px 22px 4px 0;display:flex;flex-direction:column;gap:12px}
+.fact + .fact{padding-left:22px;border-left:1px solid var(--line)}
+.fact .num{font-weight:750;letter-spacing:-.05em;font-size:clamp(2.4rem,3.6vw,3.4rem);line-height:.95;white-space:nowrap}
+.fact .num small{display:block;margin-top:6px;font-size:.42em;letter-spacing:-.01em;font-weight:600;color:var(--dim)}
+.fact p{margin:0;font-size:15px;line-height:1.5;color:var(--dim)}
+.fact p strong{color:var(--fg);font-weight:600}
+.src{margin-top:auto;padding-top:6px;font-size:12.5px;line-height:1.45;color:var(--dim)}
+.src a{color:var(--a-ink);font-weight:500;display:inline-block;padding-block:6px;margin-block:-6px}
+.fact.stall .num{color:var(--a-ink)}
+
+/* ---------- upstream ---------- */
+.stalls{margin:56px 0 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 56px}
+.stall-list{list-style:none;margin:0;padding:0 0 0 26px;position:relative;grid-column:1 / -1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px}
+.stall-item{position:relative;padding:22px 0 24px 22px;border-top:1px solid var(--line)}
+.stall-item::before{content:"";position:absolute;left:-26px;top:-1px;bottom:0;width:3px;background:var(--line-strong);border-radius:3px}
+.stall-item::after{content:"";position:absolute;left:-26px;top:30px;width:34px;border-top:3px dashed var(--line-strong)}
+.stall-item h3{font-size:1.15rem}
+.stall-item p{margin:8px 0 0;font-size:15.5px;color:var(--dim);max-width:30em}
+.stall-item .fix{display:block;margin-top:12px;font-size:13.5px;font-weight:600;color:var(--a-ink)}
+
+/* ---------- solution ---------- */
+.parts{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;counter-reset:part}
+.part{border-top:3px solid var(--fg);padding-top:24px;display:flex;flex-direction:column;gap:12px}
+.part .role{font-size:14px;font-weight:600;color:var(--a-ink)}
+.part h3{font-size:clamp(1.6rem,2.4vw,2.1rem);letter-spacing:-.03em;font-weight:700;line-height:1.08}
+.part p{margin:0;font-size:16px;color:var(--dim)}
+.part:last-child{border-top-color:var(--accent)}
+
+/* ---------- schematic ---------- */
+.s-schem{padding-bottom:40px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:36px 0 0}
+.tabs[hidden]{display:none}
+.tab{min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line-strong);background:var(--panel);font-size:15px;font-weight:600;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
+.tab:hover{border-color:var(--fg)}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tabs-hint{font-size:14px;color:var(--dim);margin:12px 0 0}
+
+.cloud{margin:24px 0 0;border:2px dashed var(--l3);border-radius:22px;padding:44px clamp(16px,2.4vw,32px) 28px;position:relative;background:var(--panel)}
+.cloud-lbl{position:absolute;top:-13px;left:24px;background:var(--panel);padding:0 10px;font-size:13.5px;font-weight:650;color:var(--a-ink)}
+.flow{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1.1fr) 28px minmax(0,1.35fr) 28px minmax(0,1fr);align-items:stretch}
+.arr{display:grid;place-items:center;color:var(--accent);font-size:20px;font-weight:600}
+.node{border:1.5px solid var(--line-strong);border-radius:14px;padding:16px 14px;background:var(--panel);display:flex;flex-direction:column;gap:8px;transition:border-color .2s,background-color .2s,opacity .2s}
+.node h3{font-size:16px;letter-spacing:-.01em}
+.node p{margin:0;font-size:13.5px;line-height:1.45;color:var(--dim)}
+.node .sys{display:flex;flex-wrap:wrap;gap:5px}
+.node .sys span{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);border-radius:6px;padding:2px 6px;color:var(--dim);background:var(--panel2)}
+.node.comp{cursor:pointer}
+.node.model{border-color:var(--accent);background:var(--accent-soft)}
+.node.model h3{color:var(--a-ink)}
+.steps{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.steps li{font-size:13px;line-height:1.35;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--panel2)}
+.steps li.gate{border-color:var(--accent);color:var(--a-ink);font-weight:600;background:var(--panel)}
+.steps li.rec{border-style:dashed}
+.returnrow{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1.1fr) 28px minmax(0,1.35fr) 28px minmax(0,1fr)}
+.ret{height:34px;border-bottom:2px solid var(--accent);position:relative}
+.ret.a{grid-column:5;margin-left:50%;border-left:2px solid var(--accent);border-radius:0 0 0 14px}
+.ret.a::before{content:"";position:absolute;left:-8px;top:-4px;border:7px solid transparent;border-bottom:10px solid var(--accent);border-top:0}
+.ret.b{grid-column:6 / 9}
+.ret.c{grid-column:9;margin-right:50%;border-right:2px solid var(--accent);border-radius:0 0 14px 0}
+.return-lbl{grid-column:5 / 10;text-align:center;font-size:13.5px;font-weight:600;color:var(--a-ink);margin-top:10px}
+.return-m{display:none}
+.cloud-foot{margin:22px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--dim)}
+/* JS highlight: dim the other two components */
+.cloud[data-active] .node.comp{opacity:.62}
+.cloud[data-active="brain"] .node[data-node="brain"],
+.cloud[data-active="runtime"] .node[data-node="runtime"],
+.cloud[data-active="training"] .node[data-node="training"]{opacity:1;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+
+/* ---------- benefits ---------- */
+.s-ben{padding-top:40px}
+.s-ben h2{font-size:clamp(1.6rem,2.8vw,2.3rem)}
+.panels{margin:28px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.panel{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:26px}
+.panel h3{font-size:1.35rem;letter-spacing:-.02em}
+.panel .sum{margin:8px 0 0;color:var(--dim);font-size:15.5px}
+.panel ul{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column}
+.panel li{padding:12px 0 12px 26px;border-top:1px solid var(--line);font-size:15.5px;line-height:1.5;position:relative}
+.panel li::before{content:"";position:absolute;left:2px;top:20px;width:12px;height:3px;border-radius:2px;background:var(--accent)}
+/* with JS, one panel at a time, laid out wide */
+.js .panels{grid-template-columns:1fr}
+.js .panel{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:12px 48px;padding:clamp(24px,3vw,40px);border-color:var(--accent)}
+.js .panel ul{margin:0;grid-column:2;grid-row:1 / span 2}
+.js .panel[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){.js .panel:not([hidden]){animation:fade .25s ease both}@keyframes fade{from{opacity:0;transform:translateY(4px)}}}
+
+/* ---------- become AI native ---------- */
+.callouts{margin:48px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.callout{border-radius:22px;padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;gap:16px;min-height:340px;text-decoration:none}
+.callout.saas{--c-bg:var(--accent);--c-fg:var(--accent-ink);background:var(--c-bg);color:var(--c-fg)}
+.callout.ent{--c-bg:var(--ent-bg);--c-fg:var(--ent-fg);border:1px solid var(--line);background:var(--c-bg);color:var(--c-fg)}
+.callout .who{font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:750;letter-spacing:-.04em;line-height:1.02;margin:0}
+.callout p{margin:0;font-size:17px;line-height:1.5;max-width:28em;opacity:.92}
+.callout .go{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;min-height:48px;padding:11px 22px;line-height:1.3;border-radius:999px;border:1.5px solid currentColor;color:inherit;font-weight:600;text-decoration:none}
+.callout .go:hover{background:var(--c-fg);color:var(--c-bg)}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:48px;align-items:start}
+.faqs{border-top:2px solid var(--fg)}
+.faqs details{border-bottom:1px solid var(--line)}
+.faqs summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:44px;padding:20px 0;font-size:1.1rem;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.faqs summary::-webkit-details-marker{display:none}
+.faqs summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line-strong);display:grid;place-items:center;font-size:20px;font-weight:500;color:var(--a-ink);transition:transform .2s}
+.faqs details[open] summary::after{transform:rotate(45deg)}
+.faqs .ans{padding:0 48px 24px 0;color:var(--dim);font-size:16px}
+.faqs .ans p{margin:0 0 10px}
+.faqs .ans p:last-child{margin:0}
+
+/* ---------- bottom CTA ---------- */
+.s-cta{--bg:var(--accent);--fg:var(--accent-ink);text-align:left}
+.cta-in{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 48px}
+.s-cta h2{font-size:clamp(2.8rem,7.4vw,6.2rem);letter-spacing:-.05em;line-height:.95;max-width:none}
+.s-cta p{margin:18px 0 0;font-size:clamp(1.05rem,1.5vw,1.25rem);max-width:32em;opacity:.92}
+.cta-acts{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.btn.inv{background:var(--accent-ink);color:var(--accent)}
+.btn.inv:hover{background:var(--paper);color:var(--ink)}
+.quiz{color:var(--accent-ink);font-weight:600;font-size:16px;display:inline-flex;align-items:center;min-height:44px}
+
+/* footer (homepage pattern) */
+footer{border-top:1px solid var(--line);padding-block:8px 24px}
+.foot{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:center;column-gap:32px;font-size:14px;color:var(--dim)}
+.foot > div:first-child{grid-column:1;grid-row:1;padding-block:12px;white-space:nowrap}
+.foot .links{grid-column:2;grid-row:1;justify-self:end;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0 20px}
+.foot .team{grid-column:1 / -1;grid-row:2;display:flex;flex-wrap:wrap;align-items:center;gap:0 20px;border-top:1px solid var(--line);padding-top:8px}
+.foot .tag{font-size:13px;font-weight:600;color:var(--dim);margin-right:4px}
+.foot a{color:var(--dim);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.foot a:hover{color:var(--fg)}
+.avatar{width:26px;height:26px;border-radius:50%;background:var(--mist);color:var(--dim);font-size:10.5px;font-weight:600;margin-right:8px;display:inline-grid;place-items:center}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .facts{grid-template-columns:1fr;border-top:2px solid var(--fg)}
+  .fact,.fact + .fact{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:6px 32px;padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .fact .num{grid-row:1 / span 2}
+  .fact .src{margin-top:0;padding-top:0}
+  .flow,.returnrow{grid-template-columns:1fr}
+  .flow{gap:0}
+  .arr{height:30px}
+  .arr span{transform:rotate(90deg)}
+  .returnrow{display:none}
+  .return-m{display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px 14px;border:2px solid var(--accent);border-radius:14px;font-size:14px;font-weight:600;color:var(--a-ink)}
+  .steps{flex-direction:row;flex-wrap:wrap}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .ladder{max-width:560px}
+  .parts{grid-template-columns:1fr;gap:36px}
+  .panels{grid-template-columns:1fr}
+  .js .panel{grid-template-columns:1fr}
+  .js .panel ul{grid-column:1;grid-row:auto;margin-top:8px}
+  .callouts{grid-template-columns:1fr}
+  .callout{min-height:0}
+  .faq-grid{grid-template-columns:1fr;gap:28px}
+  .stall-list{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .fact,.fact + .fact{grid-template-columns:1fr}
+  .fact .num{grid-row:auto}
+  .rung{padding:12px 2px 11px}
+  .rung.top{padding-block:16px 15px}
+  .rung:not(.top) span{display:none}
+  .bracket{font-size:12px;gap:6px}
+  .ladder{column-gap:10px}
+  .faqs .ans{padding-right:0}
+  .foot{grid-template-columns:1fr}
+  .foot .links{grid-column:1;grid-row:2;justify-self:start;justify-content:flex-start}
+  .foot .team{grid-column:1;grid-row:3;margin-top:8px}
+}
+@media (max-width:760px) and (min-width:621px){
+  .foot{grid-template-columns:1fr}
+  .foot .links{grid-column:1;grid-row:2;justify-self:start;justify-content:flex-start}
+  .foot .team{grid-column:1;grid-row:3;margin-top:8px}
+}
+@media (prefers-reduced-motion:reduce){.stickynav,.node,.tab,.faqs summary::after{transition:none}}
+</style>
+</head>
+<body>
+<div class="stickynav" id="stickynav" inert><div class="stickynav-in"><a aria-label="SynOS home" class="logo" href="/"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span>SynOS</span></a><div class="navlinks"><a data-cta="cta-book-demo-nav" class="btn ghost" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Book a demo</a><a data-cta="cta-early-access-nav" class="btn solid" href="/early-access">Request early access</a></div></div></div>
+
+<!-- ============ HERO ============ -->
+<section data-section="hero" class="band s-hero"><div class="wrap">
+<nav aria-label="Main" class="top">
+<a aria-label="SynOS home" class="logo" href="/"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span>SynOS</span></a>
+</nav>
+<div class="hero">
+<div class="hero-copy">
+<h1>The top rung of AI nativity is a model you own.</h1>
+<p class="lede">SynOS installs in your own cloud, on the systems and historical data you already have. Your experts correct your agents in the tools they already use, and those corrections post-train an open-weight model that is yours.</p>
+<div class="ctas"><a data-cta="cta-early-access-hero" class="btn solid" href="/early-access">Request early access</a><a data-cta="cta-book-demo-hero" class="btn ghost" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Bring one use case</a></div>
+<p class="partners"><b>Design partners</b> include a marketing automation platform, a distributed database company and a large publicly listed automotive manufacturer.</p>
+</div>
+<figure class="ladder" aria-labelledby="ladder-title">
+<figcaption class="ladder-title" id="ladder-title">How companies use AI, from the bottom rung up</figcaption>
+<ol class="rungs">
+<li class="rung"><b>Use AI tools</b><span>assistants and copilots for individual work</span></li>
+<li class="rung"><b>Build agents on a frontier API</b><span>a rented model behind your workflows</span></li>
+<li class="rung"><b>Ground agents in your own systems</b><span>agents read your records directly</span></li>
+<li class="rung"><b>Improve agents from expert corrections</b><span>every fix becomes an eval case</span></li>
+<li class="rung top"><b>Own the model</b><span>post-trained on your data, weights in your cloud</span></li>
+</ol>
+<div class="bracket" id="bracket" aria-hidden="true"><i></i>SynOS</div>
+</figure>
+</div>
+</div></section>
+
+<!-- ============ WHY NOW ============ -->
+<section data-section="why-now" class="band sec"><div class="wrap">
+<h2>Owning your model is now within reach of a small team.</h2>
+<p class="intro">Open-weight models now sit close to the closed frontier, post-training them costs less, and a small model trained on one task has beaten a frontier model at it.</p>
+<ol class="facts">
+<li class="fact"><div class="num">~3%</div><p><strong>The gap at the top of Arena.</strong> The best open-weight model scored 1,454 against 1,503 for the best closed model in March 2026.</p><div class="src">Source: <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">Stanford HAI, AI Index 2026, ch. 2</a></div></li>
+<li class="fact"><div class="num">83.6% <small>vs 79.6%</small></div><p><strong>A 4B open model against GPT-5,</strong> after RL post-training on a law firm's task. Invented answers to unanswerable questions fell from 49% to 21%.</p><div class="src">Source: <a href="https://labs.scale.com/blog/scaling-enterprise-agent-performance-with-reinforcement-learning-via-verifiable-feedback-loops" target="_blank" rel="noopener">Scale AI Labs, Nov 2025</a></div></li>
+<li class="fact"><div class="num">Rank 1</div><p><strong>LoRA matched full fine-tuning for RL</strong> even at rank 1, at roughly two-thirds the compute per pass.</p><div class="src">Source: <a href="https://thinkingmachines.ai/blog/lora" target="_blank" rel="noopener">Thinking Machines, "LoRA Without Regret", Sep 2025</a></div></li>
+<li class="fact"><div class="num">6x to 50x</div><p><strong>The fall in open-model inference prices</strong> over three years.</p><div class="src">Source: <a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI, 2026</a></div></li>
+<li class="fact stall"><div class="num">95%</div><p><strong>Of enterprise generative AI pilots stalled</strong> before scaled adoption. The cause was a learning gap between tools and workflows, rather than model quality.</p><div class="src">Source: <a href="https://www.computing.co.uk/news/2025/ai/mit-report-95pc-corporate-generative-ai-pilots-fail" target="_blank" rel="noopener">MIT NANDA, The GenAI Divide, Aug 2025</a></div></li>
+</ol>
+</div></section>
+
+<!-- ============ UPSTREAM ============ -->
+<section data-section="upstream" class="band sec s-mist"><div class="wrap">
+<h2>The rungs most companies stall on.</h2>
+<p class="intro">A training run is the step people picture. Six pieces of work come before it, and a missing one is enough to keep a team on the lower rungs.</p>
+<div class="stalls">
+<ul class="stall-list">
+<li class="stall-item"><h3>The training environment</h3><p>Agents need somewhere to act on real systems without consequences. Copies and sandboxes drift away from the business they were copied from.</p><span class="fix">Handled in The Agent Runtime</span></li>
+<li class="stall-item"><h3>The data</h3><p>Historical records are scattered across systems, inconsistent and unlabelled. What your experts know lives in their heads, outside any dataset.</p><span class="fix">Handled in The Brain</span></li>
+<li class="stall-item"><h3>The reward</h3><p>Someone has to decide what "correct" means for each task, and keep that definition current as the work changes.</p><span class="fix">Handled in The Training Plane</span></li>
+<li class="stall-item"><h3>The team</h3><p>Research engineers who build environments and run post-training are scarce and costly to hire.</p><span class="fix">Handled by platform agents in The Training Plane</span></li>
+<li class="stall-item"><h3>The loop</h3><p>Corrections made in production rarely flow back into the model that made the mistake.</p><span class="fix">Handled across The Agent Runtime and The Training Plane</span></li>
+<li class="stall-item"><h3>Sovereignty</h3><p>Training data cannot leave the company's boundary, which rules out sending it to someone else's training service.</p><span class="fix">Handled by installing in your own cloud</span></li>
+</ul>
+</div>
+</div></section>
+
+<!-- ============ SOLUTION ============ -->
+<section data-section="solution" class="band sec"><div class="wrap">
+<h2>SynOS is three parts, installed together in your cloud.</h2>
+<p class="intro">Each part feeds the next. The Brain gives agents context, The Agent Runtime turns their work into scored runs and corrections, and The Training Plane turns those into a better model.</p>
+<ol class="parts">
+<li class="part"><span class="role">Context</span><h3>The Brain</h3><p>Connects the systems and historical data you already have, resolves the same entity across sources, and holds the procedures your experts follow. Every agent and every training run reads from it.</p></li>
+<li class="part"><span class="role">Runs and corrections</span><h3>The Agent Runtime</h3><p>Agents run against live data, with their writes intercepted and recorded rather than executed, then scored. Expert corrections are captured in the tools experts already use, and every run is priced per model and per provider.</p></li>
+<li class="part"><span class="role">Your model</span><h3>The Training Plane</h3><p>Turns runs and corrections into evals and training data, improves agents with prompt optimisation (GEPA), then post-trains an open-weight model with SFT and RL with verifiable rewards. A release that scores worse than the last one does not ship, and the weights are yours.</p></li>
+</ol>
+</div></section>
+
+<!-- ============ SCHEMATIC ============ -->
+<section data-section="schematic" class="band sec s-mist s-schem"><div class="wrap">
+<h2>How a correction becomes your model.</h2>
+<p class="intro">Everything below runs inside your own cloud account. Your open-weight model goes back to the agents that produced its training data, and the next run starts from there.</p>
+<div class="tabs" role="tablist" aria-label="SynOS components" id="tabs" hidden>
+<button class="tab" role="tab" id="tab-brain" aria-controls="ben-brain" aria-selected="true" data-key="brain">The Brain</button>
+<button class="tab" role="tab" id="tab-runtime" aria-controls="ben-runtime" aria-selected="false" tabindex="-1" data-key="runtime">The Agent Runtime</button>
+<button class="tab" role="tab" id="tab-training" aria-controls="ben-training" aria-selected="false" tabindex="-1" data-key="training">The Training Plane</button>
+</div>
+<p class="tabs-hint" id="tabs-hint" hidden>Select a part to highlight it and see what it gives you below.</p>
+<figure class="cloud" id="cloud" aria-label="SynOS schematic. Inside your cloud: your systems and historical data feed The Brain. The Brain gives context to The Agent Runtime, where agent writes are recorded and scored and experts correct them. The Training Plane turns that into a model through GEPA, SFT, RL with verifiable rewards and an eval gate. Your open-weight model then serves the agents in The Agent Runtime.">
+<div class="cloud-lbl">Your cloud</div>
+<div class="flow">
+<div class="node src"><h3>Your systems and historical data</h3><div class="sys"><span>warehouse</span><span>crm</span><span>billing</span><span>tickets</span><span>docs</span></div><p>Read in place, where they already run.</p></div>
+<div class="arr" aria-hidden="true"><span>→</span></div>
+<div class="node comp" data-node="brain"><h3>The Brain</h3><p>Connects sources, resolves the same entity across them, and holds expert procedures.</p></div>
+<div class="arr" aria-hidden="true"><span>→</span></div>
+<div class="node comp" data-node="runtime"><h3>The Agent Runtime</h3><ul class="steps"><li>Agents run on live data</li><li class="rec">Writes recorded, not executed</li><li>Each run scored</li><li>Experts correct</li></ul></div>
+<div class="arr" aria-hidden="true"><span>→</span></div>
+<div class="node comp" data-node="training"><h3>The Training Plane</h3><ul class="steps"><li>GEPA · prompt optimisation</li><li>SFT</li><li>RL with verifiable rewards</li><li class="gate">Eval gate · worse does not ship</li></ul></div>
+<div class="arr" aria-hidden="true"><span>→</span></div>
+<div class="node model"><h3>Your open-weight model</h3><p>Post-trained on your data. The weights stay in your cloud.</p></div>
+</div>
+<div class="returnrow" aria-hidden="true"><div class="ret a"></div><div class="ret b"></div><div class="ret c"></div><div class="return-lbl">Your model serves the agents in the next run</div></div>
+<div class="return-m" aria-hidden="true"><span>↺</span> Your model goes back to The Agent Runtime, and the next run starts</div>
+</figure>
+</div></section>
+
+<!-- ============ BENEFITS ============ -->
+<section data-section="benefits" class="band sec s-mist s-ben"><div class="wrap">
+<h2>What each part gives you.</h2>
+<div class="panels">
+<article class="panel" id="ben-brain" aria-labelledby="ben-brain-h">
+<div><h3 id="ben-brain-h">The Brain</h3><p class="sum">One context for every agent and every training run.</p></div>
+<ul>
+<li>Agents read your warehouses, databases, applications and documents where they are, with no second copy of your data.</li>
+<li>The same customer, account or asset resolves to one entity across every source that holds it.</li>
+<li>The procedures your experts follow sit next to the data, so a training run reads the same context a live agent does.</li>
+</ul>
+</article>
+<article class="panel" id="ben-runtime" aria-labelledby="ben-runtime-h">
+<div><h3 id="ben-runtime-h">The Agent Runtime</h3><p class="sum">Agents work on live data without changing it.</p></div>
+<ul>
+<li>Writes are intercepted and recorded rather than executed, then scored, so agents rehearse against the business as it is today.</li>
+<li>Experts correct agent work in the tools they already use, and each correction is saved as eval and training data.</li>
+<li>Every run is priced per model and per provider, so you can see where the money goes.</li>
+</ul>
+</article>
+<article class="panel" id="ben-training" aria-labelledby="ben-training-h">
+<div><h3 id="ben-training-h">The Training Plane</h3><p class="sum">A model of your own, released only when it scores better.</p></div>
+<ul>
+<li>Runs and corrections become evals and training data without a separate labelling project.</li>
+<li>Prompt optimisation with GEPA comes first, then post-training of an open-weight model with SFT and RL with verifiable rewards.</li>
+<li>Platform agents build the environments and clean the data, which is the work a research team would otherwise do.</li>
+<li>A release that scores worse than the last one does not ship. The weights are yours.</li>
+</ul>
+</article>
+</div>
+</div></section>
+
+<!-- ============ BECOME AI NATIVE ============ -->
+<section data-section="become-ai-native" class="band sec"><div class="wrap">
+<h2>Start the climb from where you are.</h2>
+<div class="callouts">
+<div class="callout saas">
+<p class="who">I am a vertical SaaS provider</p>
+<p>Ship agents in your product that improve from expert corrections, on a model trained for your domain that you own.</p>
+<a class="go" data-cta="cta-vertical-saas-callout" href="/vertical-saas">See SynOS for Vertical SaaS</a>
+</div>
+<div class="callout ent">
+<p class="who">I am a large enterprise with an AI transformation mandate</p>
+<p>Turn the mandate into models your company owns, built by a small team of your own experts and engineers inside your cloud.</p>
+<a class="go" data-cta="cta-ai-transformation-callout" href="/ai-transformation">See SynOS for AI Transformation</a>
+</div>
+</div>
+</div></section>
+
+<!-- ============ FAQ ============ -->
+<section data-section="faq" class="band sec s-mist"><div class="wrap faq-grid">
+<div><h2>Questions technical teams ask first.</h2><p class="intro">Anything not covered here, bring to the call with your use case.</p></div>
+<div class="faqs">
+<details><summary>Do we need an ML or research team?</summary><div class="ans"><p>No. SynOS is built for a small team of domain experts and engineers. Platform agents build the training environments and clean the data, which is the work a research team would otherwise do.</p></div></details>
+<details><summary>Where do our data and the model live?</summary><div class="ans"><p>In your own cloud account. SynOS installs there and reads your systems in place, and the runs, the training data and the model weights stay inside that boundary.</p></div></details>
+<details><summary>Which models does it use?</summary><div class="ans"><p>The model you own is an open-weight model that The Training Plane post-trains. While the training data builds up, your agents can also call a hosted model, chosen per workload, and every run is priced per model and per provider.</p></div></details>
+<details><summary>What are GEPA, SFT and RL with verifiable rewards, in plain words?</summary><div class="ans"><p>GEPA is prompt optimisation: it rewrites an agent's instructions using what went wrong in scored runs, and keeps the versions that score better. SFT, supervised fine-tuning, trains the model on worked examples, including your experts' corrections.</p><p>RL with verifiable rewards lets the model attempt a task many times and reinforces the attempts that pass a check you can verify, such as a matching record or a passing eval.</p></div></details>
+<details><summary>What happens to the model and the data if we stop?</summary><div class="ans"><p>They stay with you. The weights, the evals, the training data and the run history live in your cloud account, and you can keep serving the model you trained.</p></div></details>
+<details><summary>How much expert time does it take?</summary><div class="ans"><p>Experts review and correct agent work in the tools they already use, as part of the work they already do, so there is no separate labelling project. How much time depends on the use case and how often its work changes, and it is scoped with you before anything starts.</p></div></details>
+<details><summary>What does a first use case look like?</summary><div class="ans"><p>One workflow your experts already do and can judge, on systems SynOS can read. Agents run it against live data with their writes recorded and scored, your experts correct them, and the first evals and training data come from those corrections.</p></div></details>
+<details><summary>How is this different from a hosted fine-tuning API?</summary><div class="ans"><p>A hosted fine-tuning API trains on a dataset you have already built, and the model usually runs on the provider's infrastructure. SynOS builds that dataset from your systems and your experts' corrections, gates each release on your evals, and runs in your own cloud, where the weights stay.</p></div></details>
+</div>
+</div></section>
+
+<!-- ============ BOTTOM CTA ============ -->
+<section data-section="bottom-cta" class="band sec s-cta"><div class="wrap cta-in">
+<div>
+<h2>Bring one use case.</h2>
+<p>Pick one workflow your experts can judge. We will map it onto your systems with you and show what its first training data would be.</p>
+</div>
+<div class="cta-acts">
+<a data-cta="cta-book-demo-bottom" class="btn inv" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Book a working session</a>
+<a data-cta="cta-ami-quiz-bottom" class="quiz" href="/agent-maturity-index">Not sure where to start? Take the AMI quiz</a>
+</div>
+</div></section>
+
+<footer class="band"><div class="wrap foot">
+<div>© 2026 SynOS Labs, Inc.</div>
+<div class="team"><span class="tag">Team</span>
+<a href="https://www.linkedin.com/in/anoopjawahar/"><span class="avatar">AJ</span>Anoop Jawahar</a>
+<a href="https://www.linkedin.com/in/anuraagdubey/"><span class="avatar">AD</span>Anurag Dubey</a>
+<a href="https://www.linkedin.com/in/siddharth-katyal/"><span class="avatar">SK</span>Siddharth Katyal</a>
+</div>
+<div class="links"><a href="/agent-maturity-index">Agent Maturity Index</a><a href="/trust">Trust</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/subprocessors">Subprocessors</a></div>
+</div></footer>
+
+<script>
+(function(){
+  // Sticky bar: appears once the hero CTAs have scrolled out of view (homepage behaviour).
+  var bar = document.getElementById('stickynav');
+  var heroCtas = document.querySelector('.hero .ctas');
+  if (bar && heroCtas) {
+    var set = function(on){ bar.classList.toggle('on', on); if (on) bar.removeAttribute('inert'); else bar.setAttribute('inert', ''); };
+    set(false);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries){
+        var e = entries[0];
+        set(!e.isIntersecting && e.boundingClientRect.top < 0);
+      }, { threshold: 0 }).observe(heroCtas);
+    } else {
+      window.addEventListener('scroll', function(){ set(heroCtas.getBoundingClientRect().bottom < 0); }, { passive: true });
+    }
+  }
+
+  // Ladder bracket: span the three rungs SynOS covers.
+  var bracket = document.getElementById('bracket');
+  var rungs = document.querySelectorAll('.rung');
+  function placeBracket(){
+    if (!bracket || rungs.length < 5) return;
+    var list = rungs[0].parentNode.getBoundingClientRect();
+    var top = rungs[4].getBoundingClientRect().top - list.top;
+    var bottom = rungs[2].getBoundingClientRect().bottom - list.top;
+    bracket.style.marginTop = top + 'px';
+    bracket.style.height = (bottom - top) + 'px';
+  }
+  placeBracket();
+  window.addEventListener('resize', placeBracket);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeBracket);
+
+  // Schematic tabs. Without JS the tablist stays hidden and all three benefit panels show.
+  var tablist = document.getElementById('tabs');
+  var cloud = document.getElementById('cloud');
+  if (!tablist || !cloud) return;
+  var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function(t){ return document.getElementById(t.getAttribute('aria-controls')); });
+  document.documentElement.classList.add('js');
+  tablist.hidden = false;
+  document.getElementById('tabs-hint').hidden = false;
+  panels.forEach(function(p, i){ p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tabs[i].id); p.tabIndex = 0; });
+  function select(i, focus){
+    tabs.forEach(function(t, j){
+      var on = i === j;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[j].hidden = !on;
+    });
+    cloud.setAttribute('data-active', tabs[i].getAttribute('data-key'));
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(i, false); });
+    t.addEventListener('keydown', function(e){
+      var n = tabs.length, k = e.key, to = null;
+      if (k === 'ArrowRight' || k === 'ArrowDown') to = (i + 1) % n;
+      else if (k === 'ArrowLeft' || k === 'ArrowUp') to = (i - 1 + n) % n;
+      else if (k === 'Home') to = 0;
+      else if (k === 'End') to = n - 1;
+      if (to !== null) { e.preventDefault(); select(to, true); }
+    });
+  });
+  // Clicking a component in the drawing selects it too (pointer convenience; the tabs are the accessible control).
+  cloud.querySelectorAll('.node.comp').forEach(function(node){
+    node.addEventListener('click', function(){
+      var idx = tabs.findIndex(function(t){ return t.getAttribute('data-key') === node.getAttribute('data-node'); });
+      if (idx > -1) select(idx, false);
+    });
+  });
+  select(0, false);
+})();
+</script>
+</body>
+</html>
