@@ -311,6 +311,15 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .ver span.now{opacity:1;background:var(--on-accent);color:var(--accent);border-color:var(--on-accent)}
   .stickynav{transition:none}
 }
+
+/* platform diagram (supplied artwork, 2026-10-21) */
+.pf-fig{margin:40px 0 0}
+.pf-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);-webkit-overflow-scrolling:touch}
+.pf-scroll img{display:block;width:100%;height:auto;max-width:none}
+.pf-cap{display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;margin-top:10px;font-size:13.5px;color:var(--dim)}
+.pf-hint{display:none}
+.pf-open{color:var(--a-ink);display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:760px){.pf-scroll img{width:900px}.pf-hint{display:inline-flex;align-items:center;min-height:44px}}
 </style>
 </head>
 <body>
@@ -445,36 +454,8 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <section data-section="schematic" class="band sec s-dark"><div class="wrap">
 <div class="eyebrow">How it fits together</div>
 <h2>From the data you have to a model you own, inside your cloud.</h2>
-<p class="sec-intro">Read it from the bottom up. Each layer reads from the one below, and the model at the top serves the agents on the next run.</p>
-<figure class="cloud" style="margin-inline:0;margin-bottom:0">
-<figcaption class="cloud-lbl"><span>Your cloud account</span><span>your data and weights stay inside</span></figcaption>
-<div class="stack">
-<div class="lay model"><div class="tl"><b>Your open-weight model</b><span>weights stored in your account · serves your agents</span></div></div>
-<div class="flow" aria-hidden="true"><b>↑</b> ships only if it scores better than the last release</div>
-<div class="lay syn"><div class="tl"><b>The Training Plane</b><span>platform agents build environments and clean data</span></div>
-<div class="steps">
-<div class="step">GEPA<small>prompt optimisation</small></div><span class="sep" aria-hidden="true">→</span>
-<div class="step">SFT<small>supervised fine-tuning</small></div><span class="sep" aria-hidden="true">→</span>
-<div class="step">RL<small>with verifiable rewards</small></div><span class="sep" aria-hidden="true">→</span>
-<div class="step gate">Eval gate<small>worse than last: held</small></div>
-</div></div>
-<div class="flow" aria-hidden="true"><b>↑</b> runs, scores and expert corrections</div>
-<div class="lay syn"><div class="tl"><b>The Agent Runtime</b><span>agents on live data</span></div>
-<div class="slots"><div class="slot">Agents act on live data</div><div class="slot warn">Writes intercepted</div><div class="slot">Recorded and scored</div><div class="slot hi">Expert corrections</div></div></div>
-<div class="flow" aria-hidden="true"><b>↑</b> context for every run</div>
-<div class="lay syn"><div class="tl"><b>The Brain</b><span>the context everything reads</span></div>
-<div class="slots"><div class="slot">Connected sources</div><div class="slot">Entity resolution</div><div class="slot">Historical records</div><div class="slot">Expert procedures</div></div></div>
-<div class="flow" aria-hidden="true"><b>↑</b> read in place</div>
-<div class="lay sys"><div class="tl"><b>Your systems and historical data</b><span>unchanged</span></div>
-<div class="slots"><div class="slot">Warehouses</div><div class="slot">Databases</div><div class="slot">Applications</div><div class="slot">Documents</div></div></div>
-<div class="rail" aria-hidden="true">serves the agents on the next run</div>
-</div>
-</figure>
-<div class="sch-notes">
-<div class="sn"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.8" stroke-dasharray="3 3"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg><span>Data, traces, corrections and weights stay in your account.</span></div>
-<div class="sn"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Each release is scored on your evals before it serves a single run.</span></div>
-<div class="sn"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24"><path d="M7 7h10M7 12h10M7 17h6" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="17" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg><span>Hosted models stay available per workload while your own model is trained.</span></div>
-</div>
+<p class="sec-intro">Your systems and data become context that every agent reads. Agents, apps and MCP servers run on it within your governance, and every run feeds the models you train, which go back into the model layer.</p>
+<figure class="pf-fig"><div class="pf-scroll" tabindex="0" role="region" aria-label="SynOS platform diagram, scrolls sideways on small screens"><img src="/img/synos-platform.svg" width="1920" height="1080" loading="lazy" alt="SynOS platform diagram. Your systems and data are extracted, cleaned and defined into context data, which feeds the context layer and its guardrails. Through the model layer, evals and governance, MCP servers, agents and apps run on that context. Agent runs become training data that human experts curate, an RL environment trains open-weight models, and the improved models go back into the model layer."></div><figcaption class="pf-cap"><span class="pf-hint">Scroll sideways to see the whole diagram.</span><a class="pf-open" href="/img/synos-platform.svg" target="_blank" rel="noopener">Open the diagram full size</a></figcaption></figure>
 </div></section>
 
 <!-- ============ BENEFITS ============ -->

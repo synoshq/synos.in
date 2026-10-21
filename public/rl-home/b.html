@@ -205,7 +205,16 @@
     @media (max-width: 520px) {
       .lg-bottom .sk-cta-row .sk-btn { width: 100%; }
     }
-    </style>
+    
+/* platform diagram (supplied artwork, 2026-10-21) */
+.pf-fig{margin:40px 0 0}
+.pf-scroll{overflow-x:auto;border:1px solid var(--sk-border);border-radius:4px;-webkit-overflow-scrolling:touch}
+.pf-scroll img{display:block;width:100%;height:auto;max-width:none}
+.pf-cap{display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;margin-top:10px;font-size:13.5px;color:var(--sk-ink-3)}
+.pf-hint{display:none}
+.pf-open{color:var(--sk-ink);display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:760px){.pf-scroll img{width:900px}.pf-hint{display:inline-flex;align-items:center;min-height:44px}}
+</style>
 </head>
 <body>
 <a href="#main-content" class="sk-skip">Skip to content</a>
@@ -374,141 +383,9 @@
     <div class="sk-container">
       <div class="lg-head">
         <h2>How a correction becomes a model.</h2>
-        <p class="lg-lead">Everything inside the dashed line runs in your own cloud account. The trained model goes back to the agents that produced its data.</p>
+        <p class="lg-lead">Your systems and data become context that every agent reads. Agents, apps and MCP servers run on it within your governance, and every run feeds the models you train, which go back into the model layer.</p>
       </div>
-      <figure class="lg-fig">
-        <!-- Wide drawing: left to right -->
-        <svg class="lg-fig-h" viewBox="0 0 1160 520" role="img" aria-labelledby="fh-t fh-d">
-          <title id="fh-t">SynOS schematic</title>
-          <desc id="fh-d">Your systems and historical data feed The Brain, which feeds The Agent Runtime, where writes are recorded rather than executed and experts correct the agents. The Training Plane turns that into a model through GEPA, SFT, RL with verifiable rewards and an eval gate. The result is your open-weight model, which goes back to the agents. Everything sits inside your cloud.</desc>
-          <defs>
-            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
-          </defs>
-          <rect class="f-bound" x="6" y="20" width="1148" height="494" rx="6"/>
-          <text class="t-bound" x="28" y="50">Your cloud</text>
-
-          <!-- the one brand rule: the SynOS layer -->
-          <line class="f-brand" x1="220" y1="112" x2="930" y2="112"/>
-          <text class="t-brand" x="220" y="98">SynOS</text>
-
-          <!-- inputs -->
-          <rect class="f-in" x="30" y="140" width="150" height="104" rx="4"/>
-          <text class="t-title" x="46" y="172">Your systems</text>
-          <text class="t-body" x="46" y="196">The tools your</text>
-          <text class="t-body" x="46" y="214">teams use today</text>
-          <rect class="f-in" x="30" y="268" width="150" height="104" rx="4"/>
-          <text class="t-title" x="46" y="300">Historical data</text>
-          <text class="t-body" x="46" y="324">Years of records,</text>
-          <text class="t-body" x="46" y="342">as they are</text>
-          <path class="f-line" d="M180 192H200V256H218" marker-end="url(#ah)"/>
-          <path class="f-line" d="M180 320H200V256" />
-
-          <!-- The Brain -->
-          <rect class="f-box" x="220" y="140" width="210" height="232" rx="4"/>
-          <text class="t-title" x="238" y="172">The Brain</text>
-          <text class="t-body" x="238" y="204">Connects your systems</text>
-          <text class="t-body" x="238" y="226">Resolves the same entity</text>
-          <text class="t-body" x="238" y="244">across sources</text>
-          <text class="t-body" x="238" y="266">Holds the procedures</text>
-          <text class="t-body" x="238" y="284">experts follow</text>
-          <path class="f-line" d="M430 256H468" marker-end="url(#ah)"/>
-
-          <!-- The Agent Runtime -->
-          <rect class="f-box" x="470" y="140" width="210" height="232" rx="4"/>
-          <text class="t-title" x="488" y="172">The Agent Runtime</text>
-          <text class="t-body" x="488" y="204">Agents work on live data</text>
-          <text class="t-body" x="488" y="226">Writes recorded rather</text>
-          <text class="t-body" x="488" y="244">than executed, then scored</text>
-          <text class="t-body" x="488" y="266">Expert corrections captured</text>
-          <text class="t-body" x="488" y="284">in the tools they use</text>
-          <path class="f-line" d="M680 256H718" marker-end="url(#ah)"/>
-
-          <!-- The Training Plane -->
-          <rect class="f-box" x="720" y="140" width="210" height="232" rx="4"/>
-          <text class="t-title" x="738" y="172">The Training Plane</text>
-          <line class="f-step" x1="738" y1="188" x2="912" y2="188"/>
-          <text class="t-step" x="738" y="212">GEPA prompt optimisation</text>
-          <line class="f-step" x1="738" y1="228" x2="912" y2="228"/>
-          <text class="t-step" x="738" y="252">SFT</text>
-          <line class="f-step" x1="738" y1="268" x2="912" y2="268"/>
-          <text class="t-step" x="738" y="292">RL with verifiable rewards</text>
-          <line class="f-step" x1="738" y1="308" x2="912" y2="308"/>
-          <text class="t-step" x="738" y="332">Eval gate</text>
-          <text class="t-body" x="738" y="352">Worse than last: no release</text>
-          <path class="f-line" d="M930 256H966" marker-end="url(#ah)"/>
-
-          <!-- your model -->
-          <rect class="f-own" x="968" y="176" width="172" height="160" rx="4"/>
-          <text class="t-title" x="984" y="210">Your open-weight</text>
-          <text class="t-title" x="984" y="232">model</text>
-          <text class="t-body" x="984" y="266">Weights stay in</text>
-          <text class="t-body" x="984" y="284">your cloud</text>
-
-          <!-- loop back to the agents -->
-          <path class="f-loop" d="M1054 336V460H575V374" marker-end="url(#ah)"/>
-          <text class="t-loop" x="812" y="486" text-anchor="middle">Each release goes back to the agents, and the next run starts from it</text>
-        </svg>
-
-        <!-- Narrow drawing: top to bottom -->
-        <svg class="lg-fig-v" viewBox="0 0 320 760" role="img" aria-labelledby="fv-t fv-d">
-          <title id="fv-t">SynOS schematic</title>
-          <desc id="fv-d">Your systems and historical data feed The Brain, then The Agent Runtime, then The Training Plane, which produces your open-weight model. The model goes back to the agents. Everything sits inside your cloud.</desc>
-          <defs>
-            <marker id="av" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
-          </defs>
-          <rect class="f-bound" x="2" y="2" width="316" height="754" rx="6"/>
-          <text class="t-bound" x="16" y="26">Your cloud</text>
-
-          <rect class="f-in" x="16" y="40" width="120" height="58" rx="4"/>
-          <text class="t-body" x="28" y="64">Your systems</text>
-          <text class="t-body" x="28" y="82">as they are</text>
-          <rect class="f-in" x="148" y="40" width="120" height="58" rx="4"/>
-          <text class="t-body" x="160" y="64">Historical data</text>
-          <text class="t-body" x="160" y="82">as it is</text>
-          <path class="f-line" d="M76 98V112H142V134" marker-end="url(#av)"/>
-          <path class="f-line" d="M208 98V112H142"/>
-
-          <!-- the one brand rule, vertical in this drawing -->
-          <text class="t-brand" x="14" y="130">SynOS</text>
-          <line class="f-brand" x1="20" y1="146" x2="20" y2="566"/>
-
-          <rect class="f-box" x="36" y="136" width="232" height="112" rx="4"/>
-          <text class="t-title" x="50" y="162">The Brain</text>
-          <text class="t-body" x="50" y="186">Connects your systems</text>
-          <text class="t-body" x="50" y="206">Resolves the same entity</text>
-          <text class="t-body" x="50" y="226">Holds expert procedures</text>
-          <path class="f-line" d="M152 248V270" marker-end="url(#av)"/>
-
-          <rect class="f-box" x="36" y="272" width="232" height="112" rx="4"/>
-          <text class="t-title" x="50" y="298">The Agent Runtime</text>
-          <text class="t-body" x="50" y="322">Agents work on live data</text>
-          <text class="t-body" x="50" y="342">Writes recorded, then scored</text>
-          <text class="t-body" x="50" y="362">Expert corrections captured</text>
-          <path class="f-line" d="M152 384V406" marker-end="url(#av)"/>
-
-          <rect class="f-box" x="36" y="408" width="232" height="158" rx="4"/>
-          <text class="t-title" x="50" y="434">The Training Plane</text>
-          <line class="f-step" x1="50" y1="446" x2="254" y2="446"/>
-          <text class="t-step" x="50" y="466">GEPA prompt optimisation</text>
-          <line class="f-step" x1="50" y1="478" x2="254" y2="478"/>
-          <text class="t-step" x="50" y="498">SFT</text>
-          <line class="f-step" x1="50" y1="510" x2="254" y2="510"/>
-          <text class="t-step" x="50" y="530">RL with verifiable rewards</text>
-          <line class="f-step" x1="50" y1="542" x2="254" y2="542"/>
-          <text class="t-step" x="50" y="560">Eval gate</text>
-          <path class="f-line" d="M152 566V600" marker-end="url(#av)"/>
-
-          <rect class="f-own" x="36" y="602" width="232" height="72" rx="4"/>
-          <text class="t-title" x="50" y="630">Your open-weight model</text>
-          <text class="t-body" x="50" y="654">Weights stay in your cloud</text>
-
-          <path class="f-loop" d="M268 638H292V328H270" marker-end="url(#av)"/>
-
-          <text class="t-loop" x="16" y="712">Each release goes back to the agents.</text>
-          <text class="t-body" x="16" y="732">A worse one than the last does not ship.</text>
-        </svg>
-        <figcaption>Writes from the Agent Runtime are intercepted and recorded rather than executed, so agents practise on live data without changing it. The eval gate compares each release with the one before it.</figcaption>
-      </figure>
+      <figure class="pf-fig"><div class="pf-scroll" tabindex="0" role="region" aria-label="SynOS platform diagram, scrolls sideways on small screens"><img src="/img/synos-platform.svg" width="1920" height="1080" loading="lazy" alt="SynOS platform diagram. Your systems and data are extracted, cleaned and defined into context data, which feeds the context layer and its guardrails. Through the model layer, evals and governance, MCP servers, agents and apps run on that context. Agent runs become training data that human experts curate, an RL environment trains open-weight models, and the improved models go back into the model layer."></div><figcaption class="pf-cap"><span class="pf-hint">Scroll sideways to see the whole diagram.</span><a class="pf-open" href="/img/synos-platform.svg" target="_blank" rel="noopener">Open the diagram full size</a></figcaption></figure>
     </div>
   </section>
 
