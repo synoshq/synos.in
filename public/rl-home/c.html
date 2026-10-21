@@ -133,7 +133,7 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .fact p{margin:0;font-size:15px;line-height:1.5;color:var(--dim)}
 .fact p strong{color:var(--fg);font-weight:600}
 .src{margin-top:auto;padding-top:6px;font-size:12.5px;line-height:1.45;color:var(--dim)}
-.src a{color:var(--a-ink);font-weight:500;display:inline-block;padding-block:6px;margin-block:-6px}
+.src a{color:var(--a-ink);font-weight:500;display:inline-block;padding-block:13px;margin-block:-13px}
 .fact.stall .num{color:var(--a-ink)}
 
 /* ---------- upstream ---------- */
@@ -337,8 +337,8 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <ol class="facts">
 <li class="fact"><div class="num">~3%</div><p><strong>The gap at the top of Arena.</strong> The best open-weight model scored 1,454 against 1,503 for the best closed model in March 2026.</p><div class="src">Source: <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">Stanford HAI, AI Index 2026, ch. 2</a></div></li>
 <li class="fact"><div class="num">83.6% <small>vs 79.6%</small></div><p><strong>A 4B open model against GPT-5,</strong> after RL post-training on a law firm's task. Invented answers to unanswerable questions fell from 49% to 21%.</p><div class="src">Source: <a href="https://labs.scale.com/blog/scaling-enterprise-agent-performance-with-reinforcement-learning-via-verifiable-feedback-loops" target="_blank" rel="noopener">Scale AI Labs, Nov 2025</a></div></li>
-<li class="fact"><div class="num">Rank 1</div><p><strong>LoRA matched full fine-tuning for RL</strong> even at rank 1, at roughly two-thirds the compute per pass.</p><div class="src">Source: <a href="https://thinkingmachines.ai/blog/lora" target="_blank" rel="noopener">Thinking Machines, "LoRA Without Regret", Sep 2025</a></div></li>
-<li class="fact"><div class="num">6x to 50x</div><p><strong>The fall in open-model inference prices</strong> over three years.</p><div class="src">Source: <a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI, 2026</a></div></li>
+<li class="fact"><div class="num">~2/3</div><p><strong>LoRA matched full fine-tuning for RL</strong> even at rank 1, at roughly two-thirds the compute per pass.</p><div class="src">Source: <a href="https://thinkingmachines.ai/blog/lora" target="_blank" rel="noopener">Thinking Machines, "LoRA Without Regret", Sep 2025</a></div></li>
+<li class="fact"><div class="num">6 to 50x</div><p><strong>The fall in open-model inference prices</strong> over three years.</p><div class="src">Source: <a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI (via OSI), 2026</a></div></li>
 <li class="fact stall"><div class="num">95%</div><p><strong>Of enterprise generative AI pilots stalled</strong> before scaled adoption. The cause was a learning gap between tools and workflows, rather than model quality.</p><div class="src">Source: <a href="https://www.computing.co.uk/news/2025/ai/mit-report-95pc-corporate-generative-ai-pilots-fail" target="_blank" rel="noopener">MIT NANDA, The GenAI Divide, Aug 2025</a></div></li>
 </ol>
 </div></section>
@@ -405,7 +405,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <article class="panel" id="ben-brain" aria-labelledby="ben-brain-h">
 <div><h3 id="ben-brain-h">The Brain</h3><p class="sum">One context for every agent and every training run.</p></div>
 <ul>
-<li>Agents read your warehouses, databases, applications and documents where they are, with no second copy of your data.</li>
+<li>Agents read your warehouses, databases, applications and documents where they are, with nothing migrated first.</li>
 <li>The same customer, account or asset resolves to one entity across every source that holds it.</li>
 <li>The procedures your experts follow sit next to the data, so a training run reads the same context a live agent does.</li>
 </ul>
@@ -454,7 +454,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <details><summary>Do we need an ML or research team?</summary><div class="ans"><p>No. SynOS is built for a small team of domain experts and engineers. Platform agents build the training environments and clean the data, which is the work a research team would otherwise do.</p></div></details>
 <details><summary>Where do our data and the model live?</summary><div class="ans"><p>In your own cloud account. SynOS installs there and reads your systems in place, and the runs, the training data and the model weights stay inside that boundary.</p></div></details>
 <details><summary>Which models does it use?</summary><div class="ans"><p>The model you own is an open-weight model that The Training Plane post-trains. While the training data builds up, your agents can also call a hosted model, chosen per workload, and every run is priced per model and per provider.</p></div></details>
-<details><summary>What are GEPA, SFT and RL with verifiable rewards, in plain words?</summary><div class="ans"><p>GEPA is prompt optimisation: it rewrites an agent's instructions using what went wrong in scored runs, and keeps the versions that score better. SFT, supervised fine-tuning, trains the model on worked examples, including your experts' corrections.</p><p>RL with verifiable rewards lets the model attempt a task many times and reinforces the attempts that pass a check you can verify, such as a matching record or a passing eval.</p></div></details>
+<details><summary>What are GEPA, SFT and RL with verifiable rewards, in plain words?</summary><div class="ans"><p>GEPA is prompt optimisation: it rewrites an agent's instructions using the scored runs and your experts' corrections, and does it before any weights change. SFT, supervised fine-tuning, trains the model on worked examples, including your experts' corrections.</p><p>RL with verifiable rewards lets the model attempt a task many times and reinforces the attempts that pass a check you can verify, such as a matching record or a passing eval.</p></div></details>
 <details><summary>What happens to the model and the data if we stop?</summary><div class="ans"><p>They stay with you. The weights, the evals, the training data and the run history live in your cloud account, and you can keep serving the model you trained.</p></div></details>
 <details><summary>How much expert time does it take?</summary><div class="ans"><p>Experts review and correct agent work in the tools they already use, as part of the work they already do, so there is no separate labelling project. How much time depends on the use case and how often its work changes, and it is scoped with you before anything starts.</p></div></details>
 <details><summary>What does a first use case look like?</summary><div class="ans"><p>One workflow your experts already do and can judge, on systems SynOS can read. Agents run it against live data with their writes recorded and scored, your experts correct them, and the first evals and training data come from those corrections.</p></div></details>
@@ -469,7 +469,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <p>Pick one workflow your experts can judge. We will map it onto your systems with you and show what its first training data would be.</p>
 </div>
 <div class="cta-acts">
-<a data-cta="cta-book-demo-bottom" class="btn inv" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Book a working session</a>
+<a data-cta="cta-book-demo-bottom" class="btn inv" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Bring one use case</a>
 <a data-cta="cta-ami-quiz-bottom" class="quiz" href="/agent-maturity-index">Not sure where to start? Take the AMI quiz</a>
 </div>
 </div></section>

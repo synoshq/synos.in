@@ -85,6 +85,7 @@ p{line-height:1.6}
 .partners b{color:var(--fg);font-weight:600}
 
 .loop{position:relative;width:min(500px,100%);aspect-ratio:1/1;margin:0 auto}
+@media (min-width:701px){.loop{width:min(500px,88%)}}
 .loop .ring{position:absolute;inset:13%;border:1.5px solid var(--line);border-radius:50%}
 .loop .ring.d{border:1.5px dashed var(--l3);animation:spin 60s linear infinite}
 .loop .orbit{position:absolute;inset:13%;animation:spin 9s linear infinite}
@@ -112,7 +113,7 @@ p{line-height:1.6}
 .stat p{margin:14px 0 0;font-size:15.5px;color:var(--dim);flex:1}
 .stat p b{color:var(--fg);font-weight:600}
 .src{margin-top:18px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--dim);line-height:1.45}
-.src a{color:var(--a-ink);font-weight:600;display:inline-block;padding-block:4px}
+.src a{color:var(--a-ink);font-weight:600;display:inline-block;padding-block:13px;margin-block:-13px}
 .stat.gap .num{color:var(--fg)}
 
 /* ---------- upstream ---------- */
@@ -180,9 +181,9 @@ p{line-height:1.6}
 .lay .tl span{font-size:12px;color:var(--dim)}
 .lay.syn{border-color:var(--accent)}
 .lay.syn .tl b{color:var(--fg)}
-.lay.model{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.lay.model{background:var(--accent);border-color:var(--accent);color:var(--band-bg)}
 .lay.model .tl{margin:0}
-.lay.model .tl span{color:var(--on-accent);opacity:.9}
+.lay.model .tl span{color:var(--band-bg);opacity:.9}
 .lay.sys{background:transparent;border-style:dashed}
 .slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .slot{border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:13.5px;line-height:1.35;background:var(--panel2);min-height:42px;display:flex;align-items:center}
@@ -336,7 +337,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <div class="lnode" style="left:86%;top:39%"><b>Agent acts</b><span>write recorded, not executed</span></div>
 <div class="lnode hot" style="left:72%;top:85%"><b>Expert corrects</b><span>in tools they use</span></div>
 <div class="lnode" style="left:28%;top:85%"><b>Evals and training data</b><span>from every correction</span></div>
-<div class="lnode" style="left:14%;top:39%"><b>Post-train</b><span>GEPA, SFT, RL</span></div>
+<div class="lnode" style="left:14%;top:39%"><b>Improve</b><span>prompts, then weights</span></div>
 </div>
 </div>
 </div>
@@ -346,7 +347,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <section data-section="why-now" class="band sec s-mist"><div class="wrap">
 <div class="eyebrow">Why now</div>
 <h2>Open-weight models are good enough to train, and training costs less than it did.</h2>
-<p class="sec-intro">Five findings from the last year, each from a named source.</p>
+<p class="sec-intro">Five findings, each from a named source.</p>
 <div class="stats">
 <article class="stat w">
 <div class="num">~3%</div>
@@ -359,14 +360,14 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <div class="src">Source: <a href="https://labs.scale.com/blog/scaling-enterprise-agent-performance-with-reinforcement-learning-via-verifiable-feedback-loops" target="_blank" rel="noopener">Scale AI Labs, Nov 2025</a></div>
 </article>
 <article class="stat">
-<div class="num">Rank 1</div>
+<div class="num">~2/3</div>
 <p><b>LoRA matched full fine-tuning for RL, even at rank 1,</b> at roughly two-thirds of the compute per pass.</p>
 <div class="src">Source: <a href="https://thinkingmachines.ai/blog/lora" target="_blank" rel="noopener">Thinking Machines, "LoRA Without Regret", Sep 2025</a></div>
 </article>
 <article class="stat">
 <div class="num">6x<small>to 50x</small></div>
 <p><b>The fall in open-model inference prices</b> over three years.</p>
-<div class="src">Source: <a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI, 2026</a></div>
+<div class="src">Source: <a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI (via OSI), 2026</a></div>
 </article>
 <article class="stat gap last">
 <div class="num">95%</div>
@@ -455,7 +456,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <h2>From the data you have to a model you own, inside your cloud.</h2>
 <p class="sec-intro">Read it from the bottom up. Each layer reads from the one below, and the model at the top serves the agents on the next run.</p>
 <figure class="cloud" style="margin-inline:0;margin-bottom:0">
-<figcaption class="cloud-lbl"><span>Your cloud account</span><span>nothing crosses this line</span></figcaption>
+<figcaption class="cloud-lbl"><span>Your cloud account</span><span>your data and weights stay inside</span></figcaption>
 <div class="stack">
 <div class="lay model"><div class="tl"><b>Your open-weight model</b><span>weights stored in your account · serves your agents</span></div></div>
 <div class="flow" aria-hidden="true"><b>↑</b> ships only if it scores better than the last release</div>
@@ -472,7 +473,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <div class="flow" aria-hidden="true"><b>↑</b> context for every run</div>
 <div class="lay syn"><div class="tl"><b>The Brain</b><span>the context everything reads</span></div>
 <div class="slots"><div class="slot">Connected sources</div><div class="slot">Entity resolution</div><div class="slot">Historical records</div><div class="slot">Expert procedures</div></div></div>
-<div class="flow" aria-hidden="true"><b>↑</b> read in place, no second copy</div>
+<div class="flow" aria-hidden="true"><b>↑</b> read in place</div>
 <div class="lay sys"><div class="tl"><b>Your systems and historical data</b><span>unchanged</span></div>
 <div class="slots"><div class="slot">Warehouses</div><div class="slot">Databases</div><div class="slot">Applications</div><div class="slot">Documents</div></div></div>
 <div class="rail" aria-hidden="true">serves the agents on the next run</div>
@@ -493,7 +494,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <div class="brow">
 <div class="who"><h3>The Brain</h3><span>context</span></div>
 <ul class="bl">
-<li><b>Start on the data you have</b><span>Sources are connected in place. Nothing is migrated and there is no second copy.</span></li>
+<li><b>Start on the data you have</b><span>Sources are connected in place. Nothing is migrated first.</span></li>
 <li><b>One record per entity</b><span>The same customer, account or asset is resolved across systems, so agents and training runs read the same facts.</span></li>
 <li><b>Procedures an agent can read</b><span>How your experts do the work is held next to the data it applies to.</span></li>
 </ul>
@@ -510,7 +511,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <div class="who"><h3>The Training Plane</h3><span>post-training</span></div>
 <ul class="bl">
 <li><b>No research team required</b><span>Platform agents build the environments and clean the data. A small team of domain experts and engineers runs the rest.</span></li>
-<li><b>No regressions shipped</b><span>A release that scores worse than the last one on your evals does not ship.</span></li>
+<li><b>Releases gated on your evals</b><span>A release that scores worse than the last one on your evals does not ship.</span></li>
 <li><b>Weights you own</b><span>The post-trained open-weight model is stored in your account and belongs to you.</span></li>
 </ul>
 </div>
@@ -560,7 +561,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <summary>What do GEPA, SFT and RL with verifiable rewards mean?</summary>
 <div class="ans"><p>They are three ways of improving an agent, applied in this order.</p>
 <dl>
-<dt>GEPA</dt><dd>Prompt optimisation. It rewrites an agent's prompts using what went wrong in scored runs, and leaves the model weights unchanged.</dd>
+<dt>GEPA</dt><dd>Prompt optimisation. It rewrites an agent's instructions using its scored runs and your experts' corrections, before any model weights change.</dd>
 <dt>SFT</dt><dd>Supervised fine-tuning. The model is trained on examples of correct work, including your experts' corrections.</dd>
 <dt>RL with verifiable rewards</dt><dd>The model attempts a task many times and is reinforced on the attempts that pass a check you can verify, such as a matching record or a valid query.</dd>
 </dl></div>
@@ -571,7 +572,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 </details>
 <details>
 <summary>How much expert time does it take?</summary>
-<div class="ans"><p>Experts review and correct agent runs in the tools they already use, so the work looks like their normal review of output. How much time that takes depends on the use case and on how often the agent is wrong, and it falls as fewer runs need a correction.</p></div>
+<div class="ans"><p>Experts review and correct agent runs in the tools they already use, so the work looks like their normal review of output. How much time that takes depends on the use case and on how often the agent is wrong.</p></div>
 </details>
 <details>
 <summary>What does a first use case look like?</summary>
@@ -588,7 +589,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <section data-section="bottom-cta" class="band cta s-mist"><div class="wrap">
 <h2>Bring one use case.</h2>
 <p>Pick the workflow your experts correct most often. We will look at it with you and work out what a first training run would need.</p>
-<div class="ctas"><a data-cta="cta-book-demo-bottom" class="btn solid" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Book a session</a></div>
+<div class="ctas"><a data-cta="cta-book-demo-bottom" class="btn solid" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Bring one use case</a></div>
 <p class="quiz"><a data-cta="cta-ami-quiz-bottom" href="/agent-maturity-index">Not sure where to start? Take the AMI quiz <span aria-hidden="true">→</span></a></p>
 </div></section>
 

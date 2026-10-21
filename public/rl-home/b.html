@@ -80,7 +80,7 @@
     .lg-num { font-size: clamp(44px, 5.2vw, 76px); font-weight: 400; letter-spacing: -0.045em; line-height: 0.95; font-variant-numeric: tabular-nums; }
     .lg-now-list p { font-size: 17px; line-height: 1.5; color: var(--sk-ink); }
     .lg-src { display: block; margin-top: 12px; font-size: 13px; line-height: 1.45; color: var(--sk-ink-3); }
-    .lg-src a { color: var(--sk-ink-3); text-decoration: underline; text-decoration-color: var(--sk-border-2); text-underline-offset: 3px; }
+    .lg-src a { display: inline-block; padding-block: 14px; margin-block: -14px; color: var(--sk-ink-3); text-decoration: underline; text-decoration-color: var(--sk-border-2); text-underline-offset: 3px; }
     .lg-src a:hover { color: var(--sk-ink); text-decoration-color: var(--sk-ink); }
     @media (max-width: 900px) {
       .lg-now-head { grid-column: 1 / -1; position: static; margin-bottom: 40px; }
@@ -273,7 +273,7 @@
     <div class="sk-container lg-grid">
       <div class="lg-now-head">
         <h2>Training a model of your own is now practical.</h2>
-        <p class="lg-lead">Open-weight models have closed most of the gap with closed ones, and post-training them costs less every year. Five findings, each with its source.</p>
+        <p class="lg-lead">Open-weight models have closed most of the gap with closed ones, and post-training them has become cheaper. Five findings, each with its source.</p>
       </div>
       <ol class="lg-now-list">
         <li>
@@ -291,17 +291,17 @@
           </div>
         </li>
         <li>
-          <span class="lg-num">Rank 1</span>
+          <span class="lg-num">~2/3</span>
           <div>
             <p>LoRA matched full fine-tuning for RL even at rank 1, at roughly two-thirds the compute per pass.</p>
             <span class="lg-src"><a href="https://thinkingmachines.ai/blog/lora" target="_blank" rel="noopener">Thinking Machines, "LoRA Without Regret", Sep 2025</a></span>
           </div>
         </li>
         <li>
-          <span class="lg-num">50x</span>
+          <span class="lg-num">6x to 50x</span>
           <div>
-            <p>Open-model inference prices fell by roughly 6x to 50x over three years, depending on the model.</p>
-            <span class="lg-src"><a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI, 2026</a></span>
+            <p>Open-model inference prices fell by roughly 6x to 50x over three years.</p>
+            <span class="lg-src"><a href="https://opensource.org/blog/the-ai-era-arcs-toward-openness" target="_blank" rel="noopener">Mozilla, State of Open Source AI (via OSI), 2026</a></span>
           </div>
         </li>
         <li>
@@ -333,7 +333,7 @@
           </tr>
           <tr>
             <th scope="row"><strong>The data</strong>Historical records are scattered across systems, inconsistent and unlabelled. What experts know lives in their heads.</th>
-            <td>Engineers spend the opening stretch of every project reconciling records by hand, and the expert knowledge never reaches a dataset.</td>
+            <td>Engineers spend the opening stretch of a project reconciling records by hand, and the expert knowledge never reaches a dataset.</td>
           </tr>
           <tr>
             <th scope="row"><strong>The reward</strong>Someone has to decide what correct means, per task, and keep it current.</th>
@@ -349,7 +349,7 @@
           </tr>
           <tr>
             <th scope="row"><strong>Sovereignty</strong>Training data cannot leave the company's boundary.</th>
-            <td>Any service that trains outside your cloud is ruled out at security review, along with the work already done to prepare for it.</td>
+            <td>A service that trains outside your cloud can be ruled out at security review, along with the work already done to prepare for it.</td>
           </tr>
         </tbody>
       </table>
@@ -547,7 +547,7 @@
             <th scope="row">Your agents</th>
             <td data-label="The Brain">One resolved view of each entity across your systems, plus the procedures to follow.</td>
             <td data-label="The Agent Runtime">Live data to practise on, with every write recorded and scored.</td>
-            <td data-label="The Training Plane">A model trained on your work, which replaces the rented one when it scores higher.</td>
+            <td data-label="The Training Plane">A model trained on your work, released only when it scores better than the last one.</td>
           </tr>
           <tr>
             <th scope="row">Your experts</th>
@@ -614,7 +614,7 @@
         </details>
         <details>
           <summary>What are GEPA, SFT and RL with verifiable rewards, in plain words?</summary>
-          <p>GEPA reads where an agent went wrong, proposes better instructions and keeps the versions that score higher, without touching the model. SFT trains the model on worked examples of the right answer, and RL with verifiable rewards lets it attempt a task many times and rewards the attempts a check can confirm are correct.</p>
+          <p>GEPA is prompt optimisation: it rewrites an agent's instructions from its scored runs and your experts' corrections, before any weights change. SFT trains the model on worked examples of the right answer, and RL with verifiable rewards lets it attempt a task many times and rewards the attempts a check can confirm are correct.</p>
         </details>
         <details>
           <summary>What happens to the model and data if we stop?</summary>
@@ -645,7 +645,7 @@
           <p class="sk-lead">Pick a workflow your experts already correct by hand. We will map how it would run in your cloud, from the systems it reads to the first evals.</p>
         </div>
         <div class="sk-cta-row">
-          <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--primary" data-cta="cta-book-demo-bottom">Book a working session</a>
+          <a href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener" class="sk-btn sk-btn--primary" data-cta="cta-book-demo-bottom">Bring one use case</a>
           <a href="/agent-maturity-index" class="lg-quiz" data-cta="cta-ami-quiz-bottom">Not sure where to start? Take the AMI quiz</a>
         </div>
       </div>
