@@ -127,3 +127,10 @@ The hero chart is scroll-driven too: a glowing ball travels the line from "curat
 model" (v3) as the reader scrolls, lighting each agent step and version it passes; reversible. In why now, on
 desktop, the cost row slides up over the gap row and holds, leaving the ~3% and a faded line of its text in view
 (sticky rows with a spacer); on phones the rows stay in normal flow.
+
+Revision: in why now (desktop, when it fits the screen) the heading pins and the cost row fully covers the gap
+row beneath it; on shorter screens and phones the rows stay in normal flow. The road line runs from the "Your agents
+today" icon to the "Your own AI" light on desktop as on phones. "It runs inside your org." became "SynOS runs
+inside your org." The platform diagram shows its dark version in both themes. "Three parts." became "What you
+get." with "SynOS is installed in your cloud, above your existing systems and below your Agents." FAQ 2 now
+reads "A small team of domain experts and engineers runs it with support from SynOS."
