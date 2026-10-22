@@ -118,12 +118,6 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .price .num>span[aria-hidden]{display:inline-flex;align-items:center;gap:.06em}
 .drop{height:.72em;width:auto;color:var(--ok);margin-right:.04em;transform:translateY(.02em)}
-.cost{margin-top:20px;display:grid;gap:6px;max-width:17em}
-.cost .cr{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--dim);font-variant-numeric:tabular-nums}
-.cost .cr b{font-weight:600;color:var(--ink)}
-.cost .cb{height:8px;border-radius:999px;background:var(--line);position:relative;overflow:hidden;margin-bottom:8px}
-.cost .cb i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--dim)}
-.cost .cb.low i{background:var(--ok)}
 .nums .src{margin-top:14px;font-size:13.5px;color:var(--dim)}
 
 /* ---------- odds ---------- */
@@ -292,6 +286,38 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .stickynav,.tile,.more i,.faq summary::after{transition:none}
   .tile:hover{transform:none}
 }
+
+/* cost slider (2026-10-22): three published post-training results against a frontier model */
+.pc{margin:clamp(56px,8vw,88px) auto 0;max-width:980px;text-align:left;border-radius:28px;background:var(--mist);padding:clamp(24px,4vw,48px)}
+.pc-head h3{font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.03em;line-height:1.1;font-weight:700;margin:0}
+.pc-head p{margin:10px 0 0;color:var(--dim);font-size:16px;max-width:40em}
+.pc-ctl{margin-top:28px}
+.pc-ctl input[type=range]{width:100%;accent-color:var(--ok);height:44px;margin:0;cursor:pointer}
+.pc-stops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:6px}
+.pc-stop{font:inherit;text-align:left;background:transparent;border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-height:44px;cursor:pointer;color:var(--ink);display:flex;flex-direction:column;gap:2px}
+.pc-stop b{font-weight:600;font-size:15px}
+.pc-stop span{font-size:13px;color:var(--dim)}
+.pc-stop[aria-pressed="true"]{border-color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.pc-body{margin-top:32px;display:grid;gap:18px}
+.pc-big{display:flex;align-items:baseline;gap:.25em;font-weight:700;letter-spacing:-.05em;line-height:1;font-size:clamp(3.4rem,9vw,6.5rem);font-variant-numeric:tabular-nums}
+.pc-x{color:var(--dim)}
+.pc-arrow{font-size:.5em;color:var(--dim);letter-spacing:0}
+.pc-one{color:var(--ok)}
+.pc-cap{margin:0;font-size:18px;max-width:34em}
+.pc-coins{display:grid;gap:14px;margin-top:6px}
+.pc-row{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr);gap:16px;align-items:center}
+.pc-lbl{font-size:14px;color:var(--dim)}
+.pc-coin-set{display:flex;flex-wrap:wrap;gap:6px}
+.pc-coin-set i{width:18px;height:18px;border-radius:50%;background:var(--dim);opacity:.55;display:block;transition:transform .25s ease}
+.pc-coin-set.pt i{background:var(--ok);opacity:1}
+.pc-facts{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--dim);padding-top:14px;border-top:1px solid var(--line)}
+.pc-facts span:first-child,.pc-facts #pc-speed{color:var(--ink);font-weight:600}
+@media (max-width:640px){
+  .pc-stops{grid-template-columns:1fr}
+  .pc-row{grid-template-columns:1fr;gap:8px}
+  .pc-coin-set i{width:14px;height:14px}
+}
+@media (prefers-reduced-motion:reduce){.pc-coin-set i{transition:none}}
 </style>
 </head>
 <body>
@@ -348,11 +374,28 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <!-- ============ WHY NOW ============ -->
 <section data-section="why-now" class="band sec"><div class="wrap c">
 <h2 class="big">Why now.</h2>
-<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. Post-trained on one task, one has beaten it at a fifth of the cost.</p>
+<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. Post-trained for one task, open models now match or beat it for a fraction of the cost.</p>
 <div class="nums">
 <div><div class="num">~3%</div><p>The gap between the top open-weight and top closed model on Arena.</p><div class="src">Stanford HAI, AI Index 2026</div></div>
-<div class="price"><div class="num"><span class="sr">80% lower cost</span><span aria-hidden="true"><svg class="drop" viewBox="0 0 48 64" aria-hidden="true"><path d="M24 6v44M10 37l14 15 14-15" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>80%</span></div><p>Lower cost than a frontier model on the same task, and 28% more accurate, after post-training an open-weight model.</p><div class="cost" role="img" aria-label="Cost per four attempts: frontier model $7.08, post-trained open-weight model $1.20."><div class="cr"><span>Frontier model</span><b>$7.08</b></div><div class="cb"><i style="width:100%"></i></div><div class="cr"><span>Post-trained open-weight</span><b>$1.20</b></div><div class="cb low"><i style="width:16.9%"></i></div></div><div class="src">R1, Oct 2026</div></div>
+<div class="price"><div class="num"><span class="sr" id="pc-sr">97% lower cost</span><span aria-hidden="true"><svg class="drop" viewBox="0 0 48 64" aria-hidden="true"><path d="M24 6v44M10 37l14 15 14-15" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="pc-num">97%</span></span></div><p id="pc-line">Lower inference cost than the frontier model in production, at matching accuracy, after post-training an open-weight model.</p><div class="src" id="pc-src">Scale AI, Oct 2026</div></div>
 <div><div class="num">95%</div><p>Enterprise generative AI pilots that stalled before scaled adoption.</p><div class="src">MIT NANDA, The GenAI Divide, Aug 2025</div></div>
+</div>
+<div class="pc" id="pc">
+<div class="pc-head"><h3>What post-training does to the bill.</h3><p>Slide through three published results: one open-weight model, post-trained for one task, against the frontier model it replaced.</p></div>
+<div class="pc-ctl">
+<label class="sr" for="pc-range">Choose a published result</label>
+<input type="range" id="pc-range" min="0" max="2" step="1" value="2" aria-valuetext="Vendor credit review, 97% lower cost">
+<div class="pc-stops"><button type="button" class="pc-stop" data-i="0" aria-pressed="false"><b>Hospital claim appeals</b><span>R1 · 5.9x lower cost</span></button><button type="button" class="pc-stop" data-i="1" aria-pressed="false"><b>M&A due diligence</b><span>Scale AI · 18x lower cost</span></button><button type="button" class="pc-stop" data-i="2" aria-pressed="true"><b>Vendor credit review</b><span>Scale AI · 40x lower cost</span></button></div>
+</div>
+<div class="pc-body">
+<div class="pc-big"><span class="pc-x" id="pc-x">$40</span><span class="pc-arrow" aria-hidden="true">→</span><span class="pc-one">$1</span></div>
+<p class="pc-cap" id="pc-cap">For every $40 a frontier model spends on this task, the post-trained model spends $1.</p>
+<div class="pc-coins" role="img" id="pc-coins-wrap" aria-label="Frontier model cost shown as 40 coins, post-trained model as one coin.">
+<div class="pc-row"><span class="pc-lbl">Frontier model</span><div class="pc-coin-set fr" id="pc-coins"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="pc-row"><span class="pc-lbl">Post-trained open-weight</span><div class="pc-coin-set pt"><i></i></div></div>
+</div>
+<div class="pc-facts"><span id="pc-acc">Matched accuracy</span><span id="pc-speed">5x faster</span><span id="pc-src2">Scale AI, Oct 2026</span></div>
+</div>
 </div>
 </div></section>
 
@@ -560,6 +603,28 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   } else {
     window.addEventListener('scroll', function(){ set(heroCtas.getBoundingClientRect().bottom < 0); }, { passive: true });
   }
+})();
+</script>
+<script>
+(function(){
+  var C=[{"k": "r1", "task": "Hospital claim appeals", "src": "R1, Oct 2026", "mult": 5.9, "pct": "80%", "line": "Lower cost than a frontier model on the same task, and 28% more accurate, after post-training an open-weight model.", "acc": "28% more accurate", "speed": "", "fr": "$7.08", "pt": "$1.20", "per": "per case, four attempts"}, {"k": "ey", "task": "M&A due diligence", "src": "Scale AI, Oct 2026", "mult": 18, "pct": "94%", "line": "Lower inference cost than the frontier model in production, at matching accuracy, after post-training an open-weight model.", "acc": "Matched accuracy", "speed": "More than twice as fast", "fr": "1", "pt": "1/18", "per": "relative inference cost"}, {"k": "sky", "task": "Vendor credit review", "src": "Scale AI, Oct 2026", "mult": 40, "pct": "97%", "line": "Lower inference cost than the frontier model in production, at matching accuracy, after post-training an open-weight model.", "acc": "Matched accuracy", "speed": "5x faster", "fr": "1", "pt": "1/40", "per": "relative inference cost"}];
+  var r=document.getElementById('pc-range'); if(!r) return;
+  var stops=[].slice.call(document.querySelectorAll('.pc-stop'));
+  function $(id){return document.getElementById(id)}
+  function fmt(m){return '$'+(m%1?m.toFixed(2):String(m))}
+  function show(i){
+    var c=C[i]; r.value=i; r.setAttribute('aria-valuetext',c.task+', '+c.pct+' lower cost');
+    $('pc-num').textContent=c.pct; $('pc-sr').textContent=c.pct+' lower cost';
+    $('pc-line').textContent=c.line; $('pc-src').textContent=c.src; $('pc-src2').textContent=c.src;
+    $('pc-x').textContent=fmt(c.mult);
+    $('pc-cap').textContent='For every '+fmt(c.mult)+' a frontier model spends on this task, the post-trained model spends $1.';
+    var n=Math.round(c.mult), box=$('pc-coins'); box.innerHTML=''; for(var k=0;k<n;k++){box.appendChild(document.createElement('i'))}
+    $('pc-coins-wrap').setAttribute('aria-label','Frontier model cost shown as '+n+' coins, post-trained model as one coin.');
+    $('pc-acc').textContent=c.acc; var sp=$('pc-speed'); sp.textContent=c.speed; sp.hidden=!c.speed;
+    stops.forEach(function(b){b.setAttribute('aria-pressed', String(+b.getAttribute('data-i')===i))});
+  }
+  r.addEventListener('input',function(){show(+r.value)});
+  stops.forEach(function(b){b.addEventListener('click',function(){show(+b.getAttribute('data-i'))})});
 })();
 </script>
 </body>

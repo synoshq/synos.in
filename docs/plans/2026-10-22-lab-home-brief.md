@@ -57,5 +57,18 @@ Costs are projected serving costs. On a single attempt GPT-6 Sol led, 35.2% to 3
 (removed by request 2026-10-22); the source line names R1, Oct 2026.
 
 Presented as 80% lower cost with a falling arrow and two bars to scale ($7.08 against $1.20), rather than
-a multiple: multiples read poorly for savings. 80% understates the measured 83%. The 40x figure in NVIDIA's
-Nemotron 3.5 Super VL post (Scale AI for Skydance) is a projection with no stated baseline and is not used.
+a multiple: multiples read poorly for savings. 80% understates the measured 83%. Superseded below.
+
+## Cost slider (2026-10-22)
+
+Why-now carries a slider across three published results, each an open-weight model (Nemotron 3.5 Super
+family) post-trained for one task against the frontier model it replaced. Default is the 40x case.
+
+| Task | Source | Cost | Accuracy | Speed |
+|---|---|---|---|---|
+| Hospital claim appeals | R1, Oct 15 2026 | 5.9x lower ($1.20 vs $7.08), shown as 80% | 28% more accurate (pass@4) | |
+| M&A due diligence (EY) | Scale AI blog, "Scale Partners With NVIDIA", Oct 15 2026 | about 1/18, 94% | matched | more than 2x faster |
+| Vendor credit review (Skydance) | same | about 40x lower, 97% | matched | 5x faster |
+
+Scale's figures are measured on production tickets and held-out data rooms. The baseline frontier model is unnamed in
+both. Scale's third case (an insurer's copilot, 1/4 cost) is left out: its baseline is not described as a frontier model.
