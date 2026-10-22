@@ -87,3 +87,10 @@ Update: the gap chart now plots both monthly series (top closed and top open Are
 March 2026) read off the published Figure 2.1.2 supplied by the founders, with the gap shaded. Model names are
 removed by request. Values are approximate readings (about 2 Arena points); end points are the stated 1,503 and
 1,454. Caption: "Stanford HAI, AI Index 2026" only; no legend, lines labelled directly.
+
+Revision (2026-10-22, later): no credits under the two anchor numbers. The cost anchor is a static
+"$$$" with the falling arrow and the line "AI Native businesses are reporting lower AI costs and higher
+performance with post-trained open-weight models." The slider is titled "What domain-trained open weight
+models are doing to the bill.", auto-rotates every 3 s (pauses on hover or focus, stops once a reader picks a
+slide, off under reduced motion), and its tabs show only the task and the multiple. The source stays in the
+panel's bottom line.
