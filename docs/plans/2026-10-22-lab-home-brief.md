@@ -107,7 +107,8 @@ takes the same height as the cost panel.
 The odds section is no longer a twelve-phrase table. Headline "Building your own AI takes a lab.", line "Six
 things usually stand in the way." A road runs from "Your agents today" to "Your post-training lab" with six red walls,
 two or three words each: Messy data, No AI researchers, Learnings don't compound, Blind agent runs, Open RL loop,
-Data leaves the org. When it comes into view it plays once: a beat, then a SynOS token travels the road, each wall
-drops and its name is struck as the token passes, the road turns green and the lab label lights. Closing line: "One
+Data leaves the org. The run is tied to scroll (revised later on 2026-10-22): as the road moves from the lower part of the screen
+to the upper third, a SynOS token travels it and each wall drops and its name is struck as the token passes; scrolling
+back raises them, so it replays on every pass. At the end the road turns green and the lab label lights. Closing line: "One
 platform clears all six, inside your org." No button. Reduced motion shows the end state. Vertical on phones. The
 per-blocker fixes are carried by the platform-agents section that follows.

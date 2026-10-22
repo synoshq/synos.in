@@ -337,54 +337,43 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 /* ---------- odds: the road (2026-10-22) ----------
    At rest: six walls stand on a grey road. In view: one beat, then the SynOS token travels the road, each wall drops as
    it passes, the road turns green and ends on the lab. Plays once; reduced motion shows the end state. */
-.road{--dur:2.8s;--lead:.7s;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:0 18px;margin-top:clamp(56px,8vw,96px);text-align:center}
+.road{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:0 18px;margin-top:clamp(56px,8vw,96px);text-align:center}
 .rd-end{font-size:15px;font-weight:600;color:var(--dim);padding-bottom:18px;white-space:nowrap}
-.rd-end.goal{color:var(--ink);transition:color .6s calc(var(--lead) + var(--dur))}
+.rd-end.goal{color:var(--ink);transition:color .4s ease}
 .rd-mid{position:relative;padding-bottom:18px}
 .rd-track{position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:var(--line)}
 .rd-track i{position:absolute;inset:0;border-radius:2px;background:var(--ok);transform-origin:left;transform:scaleX(0)}
-.rd-token{position:absolute;left:0;top:50%;transform:translate(-50%,-50%);font:700 13px/1 var(--font);letter-spacing:.01em;color:var(--on-accent);background:var(--ok);border-radius:999px;padding:7px 12px;opacity:0;white-space:nowrap}
+.rd-token{position:absolute;top:50%;transform:translate(-50%,-50%);font:700 13px/1 var(--font);letter-spacing:.01em;color:var(--on-accent);background:var(--ok);border-radius:999px;padding:7px 12px;opacity:0;white-space:nowrap}
 .rd-walls{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:end}
 .w{display:flex;flex-direction:column;align-items:center;gap:14px;padding-inline:4px}
 .w .blk{display:block;width:18px;height:clamp(72px,11vw,120px);border-radius:5px;background:var(--warn);transform-origin:bottom}
 .w .nm{font-size:clamp(13px,1.35vw,16px);font-weight:600;line-height:1.25;height:2.5em;display:flex;align-items:flex-start;justify-content:center;color:var(--ink)}
 .rd-close{margin:clamp(36px,5vw,56px) auto 0;font-size:clamp(1.15rem,2vw,1.5rem);font-weight:600;letter-spacing:-.015em;color:var(--dim)}
-/* the run */
-.road.go .rd-token{animation:rdtok var(--dur) cubic-bezier(.45,.05,.4,1) var(--lead) forwards}
-.road.go .rd-track i{animation:rdfill var(--dur) cubic-bezier(.45,.05,.4,1) var(--lead) forwards}
-.road.go .w .blk{animation:rddrop .45s ease calc(var(--lead) + var(--dur) * (var(--i) + .5) / 6) forwards}
-.road.go .w .nm{animation:rdname .45s ease calc(var(--lead) + var(--dur) * (var(--i) + .5) / 6) forwards}
-.road.go .rd-end.goal{color:var(--ok)}
-.road.go ~ .rd-close{color:var(--ink);transition:color .6s calc(var(--lead) + var(--dur))}
-@keyframes rdtok{0%{left:0;opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
-@keyframes rdfill{to{transform:scaleX(1)}}
-@keyframes rddrop{to{transform:scaleY(.06);background:var(--ok)}}
-@keyframes rdname{to{color:var(--dim);text-decoration:line-through}}
-/* end state without motion */
-.road.done .rd-track i{transform:none}.road.done .w .blk{transform:scaleY(.06);background:var(--ok)}
-.road.done .w .nm{color:var(--dim);text-decoration:line-through}.road.done .rd-end.goal{color:var(--ok)}
-.road.done ~ .rd-close{color:var(--ink)}
+/* the run is driven by scroll: JS sets --p (0 to 1) on the road and .down on each wall it has passed */
+.road{--p:0}
+.rd-token{left:calc(var(--p) * 100%);opacity:calc(min(1, var(--p) * 40) * (1 - max(0, var(--p) - .97) * 33))}
+.rd-track i{transform:scaleX(var(--p))}
+.w .blk{transition:transform .35s ease,background-color .35s ease}
+.w .nm{transition:color .35s ease}
+.w.down .blk{transform:scaleY(.06);background:var(--ok)}
+.w.down .nm{color:var(--dim);text-decoration:line-through}
+.road.arrived .rd-end.goal{color:var(--ok)}
+.road.arrived ~ .rd-close{color:var(--ink)}
+.rd-close{transition:color .4s ease}
 @media (max-width:720px){
   .road{grid-template-columns:1fr;gap:0;text-align:left;max-width:420px;margin-inline:auto}
   .rd-end{padding:0 0 0 34px;white-space:normal}
   .rd-mid{padding:14px 0 14px 34px}
   .rd-track{left:12px;right:auto;top:-22px;bottom:-22px;width:3px;height:auto}
-  .rd-track i{transform-origin:top;transform:scaleY(0)}
-  .rd-token{left:50%;top:0}
+  .rd-track i{transform-origin:top;transform:scaleY(var(--p))}
+  .rd-token{left:50%;top:calc(var(--p) * 100%)}
   .rd-walls{grid-template-columns:1fr;gap:14px}
   .w{flex-direction:row;gap:14px;padding:0}
   .w .blk{width:clamp(64px,22vw,96px);height:16px;transform-origin:left;margin-left:-28px;flex:none}
+  .w.down .blk{transform:scaleX(.1)}
   .w .nm{height:auto;justify-content:flex-start}
-  .road.go .rd-token{animation-name:rdtokv}
-  .road.go .rd-track i{animation-name:rdfillv}
-  .road.go .w .blk,.road.done .w .blk{animation-name:rddropv}
-  .road.done .w .blk{transform:scaleX(.1)}
-  .road.done .rd-track i{transform:none}
   .rd-close{text-align:left;max-width:420px}
 }
-@keyframes rdtokv{0%{top:0;opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
-@keyframes rdfillv{to{transform:scaleY(1)}}
-@keyframes rddropv{to{transform:scaleX(.1);background:var(--ok)}}
 </style>
 </head>
 <body>
@@ -712,11 +701,27 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <script>
 (function(){
   var road=document.getElementById('road'); if(!road) return;
+  var walls=[].slice.call(road.querySelectorAll('.w'));
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ road.classList.add('done'); return }
-  if(!('IntersectionObserver' in window)){ road.classList.add('done'); return }
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ road.classList.add('go'); io.disconnect() } }) },{threshold:.55});
-  io.observe(road);
+  function set(p){
+    road.style.setProperty('--p',p.toFixed(3));
+    walls.forEach(function(w,i){ w.classList.toggle('down', p >= (i+.5)/walls.length) });
+    road.classList.toggle('arrived', p >= .999);
+  }
+  if(reduce){ set(1); return }
+  // progress runs from the road entering the lower part of the screen to it reaching the upper third;
+  // scrolling back up raises the walls again, so it replays on every pass
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var r=road.getBoundingClientRect(), vh=window.innerHeight||document.documentElement.clientHeight;
+    var mid=r.top+r.height/2, start=vh*.85, end=vh*.35;
+    var p=(start-mid)/(start-end); set(Math.max(0,Math.min(1,p)));
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update) } }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
 })();
 </script>
 </body>
