@@ -117,3 +117,7 @@ Revision: headline "What’s standing in your way.", line "AI Natives cross thes
 "Your own AI" (was "Your post-training lab"), with a small agent icon at the start and an AI icon at the end that
 lights when the road is cleared. Cleared walls become green rising steps (each taller than the last), so the
 road reads as a ladder up to your own AI; on phones the steps grow in width down the column.
+
+Revision: "Your own AI" is a single luminous point (the same light as the hero's "Your model"), grey at rest
+and glowing white-green when the road is cleared. Each wall now collapses continuously as SynOS passes; its name
+lights green while the wall falls and is struck through once it has become a step.
