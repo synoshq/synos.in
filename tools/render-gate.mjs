@@ -32,7 +32,12 @@ const ALLOWED_FAMILIES = ['Instrument Sans', 'JetBrains Mono']   // 2026-09-26 r
 // Pages that deliberately follow another system. The homepage was rebuilt on 2026-10-11 in the
 // Agent Maturity Index style (packages/ami), which is set in Inter. Only the extra family is listed;
 // overflow and brand-casing checks still apply to it in full.
-const PAGE_FAMILIES = { '/index.html': ['Inter'] }
+// The blog follows the homepage system too (2026-10-22, public/css/blog.css).
+const PAGE_FAMILIES = {
+  '/index.html': ['Inter'],
+  '/blog/index.html': ['Inter'],
+  '/blog/domain-trained-open-weight-models.html': ['Inter'],
+}
 
 let chromium
 try {

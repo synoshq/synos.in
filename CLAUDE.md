@@ -25,11 +25,19 @@
   `synos.js`, the Open Graph tags and the `data-cta` / `data-section` names. Header buttons appear
   only in a sticky bar once the hero CTAs scroll out of view. `tools/render-gate.mjs` allows Inter on
   this page alone (`PAGE_FAMILIES`). The design rules above still govern every other page.
+- **Blog exception (2026-10-22).** `public/blog/` follows the homepage system too, through
+  `public/css/blog.css`: the homepage tokens (light and dark), buttons, logo, nav bar and footer,
+  copied from `public/index.html`, plus the blog's own reading layer (720px column, 18px body, a table
+  that scrolls in its own box, HTML bar charts drawn from tokens). Blog pages do not load `synos.css`
+  or the partials. **Change the homepage tokens, nav or footer and `blog.css` together.** Blog share
+  cards come from `tools/og-blog.mjs` (homepage style, a small chart from the post's own figures),
+  not `tools/og.mjs`. `PAGE_FAMILIES` allows Inter on each blog page.
 - Shared behaviour lives in `public/js/synos.js` (nav, GA). Pages do not repeat it. Scroll reveal
   is retired; `.sk-reveal` is a no-op kept so old markup still renders.
 - The footer partial follows the homepage footer's layout (since 2026-10-22): copyright and links on one row, a
   hairline, then the team row with initials discs; it stacks below 760px. Every page except the homepage
-  gets it from the partial, including the legal pages. Change the homepage footer and the partial together.
+  and the blog gets it from the partial, including the legal pages. Change the homepage footer, the partial
+  and `public/css/blog.css` together.
 - Nav, footer and the common `<head>` live in `public/partials/` and are injected between markers by
   `npm run pages`, which rewrites the committed HTML in place. Edit a partial, run `npm run pages`,
   commit the result.

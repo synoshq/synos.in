@@ -1,0 +1,178 @@
+/*
+ * Blog stylesheet, 2026-10-22.
+ *
+ * The blog follows the homepage (rebuilt 2026-10-11 in the Agent Maturity Index style), not
+ * synos.css: Inter, the AMI palette with light and dark tokens, pill buttons, the homepage nav and
+ * footer. The tokens, buttons, logo and footer rules below are copied from public/index.html and
+ * must move with it: change one, change both.
+ *
+ * What is the blog's own is the reading layer: a 720px text column, 18px body on 1.7, a table that
+ * scrolls inside its own box, and a chart drawn from tokens so it themes with the page.
+ */
+
+/* ── Tokens (from public/index.html) ─────────────────────────────────────── */
+:root{
+  --paper:#ffffff;--mist:#f4f6f9;--ink:#0f1b2d;--slate:#525e70;--field:#8792a3;--l3:#8399f3;--on-accent:#ffffff;--a-ink:#1f3bd0;--err:#b42318;
+  --bg:var(--paper);--panel:var(--paper);--panel2:var(--mist);--fg:var(--ink);--dim:var(--slate);--line:#e2e6ec;
+  --accent:#2747e8;--accent-ink:var(--on-accent);--accent-soft:color-mix(in srgb,var(--accent) 10%,var(--paper));--ok:#17803d;
+  --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;--r:14px;
+  --col:720px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--paper:#0b1424;--mist:#111d31;--line:#22304a;--field:#64708a;--ink:#eef2f8;--slate:#a3aec0;--accent:#6f86ff;--a-ink:#9eafff;--on-accent:#0b1424;--l3:#3f5bc4;--ok:#47cd89;--err:#f97066;color-scheme:dark}
+}
+:root[data-theme="dark"]{--paper:#0b1424;--mist:#111d31;--line:#22304a;--field:#64708a;--ink:#eef2f8;--slate:#a3aec0;--accent:#6f86ff;--a-ink:#9eafff;--on-accent:#0b1424;--l3:#3f5bc4;--ok:#47cd89;--err:#f97066;color-scheme:dark}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--font);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:var(--a-ink);text-underline-offset:3px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.band{padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1180px;margin:0 auto}
+.skip{position:absolute;top:-100px;left:0;z-index:100;background:var(--accent);color:var(--accent-ink);padding:12px 20px;font-weight:600;font-size:14px;border-radius:0 0 10px 0;text-decoration:none}
+.skip:focus{top:0}
+
+/* ── Buttons and logo (from public/index.html) ───────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;text-decoration:none;font:600 16px/1 var(--font);border:1.5px solid transparent;white-space:nowrap;transition:background-color .15s,border-color .15s,color .15s}
+.btn.solid{background:var(--accent);color:var(--accent-ink)}
+.btn.solid:hover{background:var(--a-ink)}
+.btn.ghost{border:1.5px solid var(--line);color:var(--fg)}
+.btn.ghost:hover{border-color:var(--fg)}
+.logo{display:flex;gap:10px;align-items:center;font-weight:650;font-size:18px;letter-spacing:-.01em;color:var(--fg);text-decoration:none;min-height:44px}
+.logo svg{flex:none;color:var(--fg)}
+
+/* ── Nav: the homepage's sticky bar, shown from the top because a post has no hero CTAs ── */
+.bnav{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);
+  background:color-mix(in srgb,var(--paper) 88%,transparent);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid var(--line)}
+.bnav-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.bnav .navlinks{display:flex;flex-wrap:nowrap;gap:8px}
+.bnav .btn{min-height:44px;padding:0 18px;font-size:15px}
+@media (max-width:520px){
+  .bnav .logo span{display:none}
+  .bnav .btn{padding:0 14px;font-size:14px}
+}
+
+/* ── Footer (from public/index.html) ─────────────────────────────────────── */
+footer{border-top:1px solid var(--line);padding-block:8px 24px}
+.foot{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:center;column-gap:32px;row-gap:0;font-size:14px;color:var(--dim)}
+.foot a{color:var(--dim);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.foot a:hover{color:var(--fg)}
+.foot > div:first-child{grid-column:1;grid-row:1;padding-block:12px;white-space:nowrap}
+.foot .links{grid-column:2;grid-row:1;justify-self:end;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0 20px}
+.foot .team{grid-column:1 / -1;grid-row:2;display:flex;flex-wrap:wrap;align-items:center;gap:0 20px;border-top:1px solid var(--line);padding-top:8px}
+.foot .team .tag{font-size:13px;font-weight:600;color:var(--dim);margin-right:4px}
+.avatar{width:26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;background:var(--mist);color:var(--dim);font-size:10.5px;font-weight:600;margin-right:8px}
+@media (max-width:760px){
+  .foot{grid-template-columns:1fr}
+  .foot .links{grid-column:1;grid-row:2;justify-self:start;justify-content:flex-start}
+  .foot .team{grid-column:1;grid-row:3;margin-top:8px}
+}
+
+/* ── Type ─────────────────────────────────────────────────────────────────── */
+.eyebrow{font-size:14px;font-weight:600;color:var(--a-ink);text-decoration:none}
+a.eyebrow:hover{text-decoration:underline}
+.post h1,.bi h1{font-weight:700;letter-spacing:-.04em;line-height:1.03;font-size:clamp(2.3rem,5.2vw,3.7rem)}
+.post h2{font-weight:700;letter-spacing:-.03em;line-height:1.12;font-size:clamp(1.55rem,2.6vw,2.1rem)}
+.post h3{font-weight:650;letter-spacing:-.012em;line-height:1.3;font-size:1.15rem}
+.lede{font-size:clamp(1.15rem,1.6vw,1.3rem);line-height:1.55;color:var(--dim)}
+.meta{font-size:15px;color:var(--dim)}
+
+/* ── Post layout ──────────────────────────────────────────────────────────── */
+.post{padding-block:56px 0}
+.col{max-width:var(--col);margin-inline:auto;display:flex;flex-direction:column;gap:20px}
+.col > h2{margin-top:36px}
+.post p,.post li{font-size:18px;line-height:1.7}
+.post strong{font-weight:650}
+.post ul,.post ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.head{display:flex;flex-direction:column;gap:18px;margin-bottom:8px}
+
+/* Key findings: a panel, the homepage's card language. */
+.panel{background:var(--panel2);border-radius:var(--r);padding:26px 28px}
+.panel h2{font-size:1.25rem;letter-spacing:-.012em;margin:0 0 14px}
+.panel ul{gap:12px}
+.panel li{font-size:17px}
+
+/* Figure */
+.fig{margin:12px 0 0;border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 18px;background:var(--panel)}
+.fig h2{font-size:1.15rem;letter-spacing:-.012em;line-height:1.3;margin:0}
+.fig .sub{font-size:14px;color:var(--dim);margin-top:4px}
+.fig figcaption{font-size:13px;line-height:1.5;color:var(--dim);margin-top:12px}
+/* Bar chart, built in HTML so labels reflow on a phone. Scale 0 to 60 points, gridline every 10. */
+.bars{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.bars li{display:grid;grid-template-columns:210px minmax(0,1fr);column-gap:14px;align-items:center}
+.bl{font-size:13.5px;font-weight:550;line-height:1.25;color:var(--fg)}
+.bl span{display:block;font-size:12px;font-weight:400;color:var(--dim)}
+.bt{display:flex;align-items:center;gap:6px;height:24px;
+  background-image:linear-gradient(to right,var(--line) 1px,transparent 1px);background-size:calc(100% / 6) 100%;background-repeat:repeat-x;
+  border-left:1px solid var(--dim)}
+.bb{flex:none;height:16px;width:calc(var(--v) / 60 * 100%);background:var(--accent);border-radius:0 4px 4px 0}
+.bb.ref{background:transparent;border:1.5px dashed var(--accent);border-left:0}
+.bv{font-size:12.5px;font-weight:600;color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bars li:hover .bb:not(.ref){background:var(--a-ink)}
+.bars .axis .bt{background:none;border-left:0;position:relative;height:18px}
+.bars .axis span{position:absolute;transform:translateX(-50%);font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.bars .axis span:first-child{transform:none}
+@media (max-width:560px){
+  .bars li{grid-template-columns:minmax(0,1fr);row-gap:3px}
+  .bars li > .bl:empty{display:none}
+  .bars{gap:12px}
+}
+
+/* Table: wider than the column, scrolls inside its own box. */
+.wide{max-width:1180px;margin:44px auto 8px}
+.wide .col{margin-bottom:20px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+table.models{border-collapse:collapse;width:100%;min-width:1180px;font-size:14px;line-height:1.45;font-variant-numeric:tabular-nums}
+table.models caption{caption-side:bottom;text-align:left;font-size:13px;color:var(--dim);padding:14px 4px 0}
+table.models th,table.models td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+table.models thead th{font-size:12.5px;font-weight:600;color:var(--dim);white-space:nowrap;background:var(--panel)}
+table.models tbody th[colspan]{background:var(--panel2);font-size:14px;font-weight:650;color:var(--fg);padding-block:10px}
+table.models tbody tr:last-child td{border-bottom:0}
+table.models td a{font-weight:600;text-decoration:none}
+table.models td a:hover{text-decoration:underline}
+.pub{display:block;color:var(--dim);font-size:13px}
+.nowrap{white-space:nowrap}
+.gain{display:inline-block;white-space:nowrap;font-weight:600;font-size:13px;color:var(--a-ink);background:var(--accent-soft);border-radius:999px;padding:2px 9px}
+.none{color:var(--dim)}
+
+/* FAQ and sources */
+.faq{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.faq > div{padding:20px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.sources{border-top:1px solid var(--line);padding-top:16px;margin-top:20px}
+.sources summary{cursor:pointer;font-weight:650;min-height:44px;display:flex;align-items:center}
+.sources ul{list-style:none;padding:0;margin-top:12px;gap:12px}
+.sources li{font-size:14.5px;line-height:1.55}
+.sources li span{color:var(--dim)}
+
+/* Closing band: the homepage's mist section with its CTA pair. */
+.endcta{background:var(--mist);margin-top:88px;padding-block:clamp(64px,9vw,112px)}
+.endcta .in{max-width:var(--col);margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.endcta h2{font-weight:700;letter-spacing:-.04em;line-height:1.02;font-size:clamp(2rem,4.4vw,3.2rem)}
+.endcta p{font-size:18px;line-height:1.6;color:var(--dim)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+
+/* ── Blog index ───────────────────────────────────────────────────────────── */
+.bi{max-width:var(--col);margin:0 auto;padding-block:72px 96px;display:flex;flex-direction:column;gap:18px}
+.bi-list{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
+.bi-card{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:var(--r);padding:24px;background:var(--panel);text-decoration:none;color:inherit;transition:border-color .15s}
+.bi-card:hover{border-color:var(--fg)}
+.bi-card h2{font-size:1.35rem;line-height:1.25;letter-spacing:-.02em;font-weight:700;color:var(--fg)}
+.bi-card p{color:var(--dim);font-size:16px;line-height:1.6}
+.bi-card img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+.bi-date{font-size:14px;color:var(--dim)}
+
+@media (max-width:720px){
+  .post{padding-top:36px}
+  .post p,.post li{font-size:17px}
+  .panel{padding:22px 20px}
+  .fig{padding:16px 14px 14px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
