@@ -101,3 +101,13 @@ desktop (gap: number left, chart right; cost: panel left, $$$ right); on phones 
 Slide order: vendor credit review (40x), hospital claim appeals (R1), M&A due diligence (18x). Each change
 slides in (0.45 s, off under reduced motion); a tap on a tab stops the rotation. On desktop the gap chart panel
 takes the same height as the cost panel.
+
+## The road (odds section, 2026-10-22)
+
+The odds section is no longer a twelve-phrase table. Headline "Building your own AI takes a lab.", line "Six
+things usually stand in the way." A road runs from "Your agents today" to "Your post-training lab" with six red walls,
+two or three words each: Messy data, No AI researchers, Learnings don't compound, Blind agent runs, Open RL loop,
+Data leaves the org. When it comes into view it plays once: a beat, then a SynOS token travels the road, each wall
+drops and its name is struck as the token passes, the road turns green and the lab label lights. Closing line: "One
+platform clears all six, inside your org." No button. Reduced motion shows the end state. Vertical on phones. The
+per-blocker fixes are carried by the platform-agents section that follows.

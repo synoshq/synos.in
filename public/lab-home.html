@@ -121,16 +121,6 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .drop{height:.72em;width:auto;color:var(--ok);margin-right:.04em;transform:translateY(.02em)}
 .nums .src{margin-top:14px;font-size:13.5px;color:var(--dim)}
 
-/* ---------- odds ---------- */
-.odds{list-style:none;margin:0;padding:0;text-align:left}
-.odds li,.odds-head{display:grid;grid-template-columns:minmax(0,5fr) 48px minmax(0,7fr);align-items:baseline;gap:0 16px}
-.odds-head{margin-top:clamp(56px,7vw,88px);text-align:left;padding-bottom:14px;font-size:14px;font-weight:600;color:var(--dim)}
-.odds-head span:last-child{grid-column:3;color:var(--a-ink)}
-.odds li{padding-block:clamp(22px,2.8vw,32px);border-top:1px solid var(--line)}
-.odds li:last-child{border-bottom:1px solid var(--line)}
-.odd{font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--dim);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--dim) 55%,transparent);text-decoration-thickness:1px}
-.arr{color:var(--accent);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600;text-align:center;line-height:1.25}
-.fix{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.45;color:var(--ink);font-weight:500}
 
 /* ---------- platform agents ---------- */
 .org{position:relative;margin-top:clamp(64px,8vw,96px);padding:clamp(28px,4vw,48px) clamp(14px,2.6vw,32px) clamp(14px,2.6vw,32px);border:1.5px dashed var(--dim);border-radius:calc(var(--r) + 8px);text-align:left}
@@ -251,10 +241,6 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .tiles{grid-template-columns:1fr}
 }
 @media (max-width:720px){
-  .odds-head{display:none}
-  .odds{margin-top:48px}
-  .odds li{grid-template-columns:1fr;gap:10px}
-  .arr{display:none}
 }
 @media (max-width:640px){
   .stage{border-radius:20px}
@@ -347,6 +333,58 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .wn-row.flip{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr)}
 .wn-row.flip .wn-fact{order:2}
 @media (max-width:900px){.wn-row,.wn-row.flip{grid-template-columns:1fr}.wn-row.flip .wn-fact{order:0}}
+
+/* ---------- odds: the road (2026-10-22) ----------
+   At rest: six walls stand on a grey road. In view: one beat, then the SynOS token travels the road, each wall drops as
+   it passes, the road turns green and ends on the lab. Plays once; reduced motion shows the end state. */
+.road{--dur:2.8s;--lead:.7s;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:0 18px;margin-top:clamp(56px,8vw,96px);text-align:center}
+.rd-end{font-size:15px;font-weight:600;color:var(--dim);padding-bottom:18px;white-space:nowrap}
+.rd-end.goal{color:var(--ink);transition:color .6s calc(var(--lead) + var(--dur))}
+.rd-mid{position:relative;padding-bottom:18px}
+.rd-track{position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:var(--line)}
+.rd-track i{position:absolute;inset:0;border-radius:2px;background:var(--ok);transform-origin:left;transform:scaleX(0)}
+.rd-token{position:absolute;left:0;top:50%;transform:translate(-50%,-50%);font:700 13px/1 var(--font);letter-spacing:.01em;color:var(--on-accent);background:var(--ok);border-radius:999px;padding:7px 12px;opacity:0;white-space:nowrap}
+.rd-walls{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:end}
+.w{display:flex;flex-direction:column;align-items:center;gap:14px;padding-inline:4px}
+.w .blk{display:block;width:18px;height:clamp(72px,11vw,120px);border-radius:5px;background:var(--warn);transform-origin:bottom}
+.w .nm{font-size:clamp(13px,1.35vw,16px);font-weight:600;line-height:1.25;height:2.5em;display:flex;align-items:flex-start;justify-content:center;color:var(--ink)}
+.rd-close{margin:clamp(36px,5vw,56px) auto 0;font-size:clamp(1.15rem,2vw,1.5rem);font-weight:600;letter-spacing:-.015em;color:var(--dim)}
+/* the run */
+.road.go .rd-token{animation:rdtok var(--dur) cubic-bezier(.45,.05,.4,1) var(--lead) forwards}
+.road.go .rd-track i{animation:rdfill var(--dur) cubic-bezier(.45,.05,.4,1) var(--lead) forwards}
+.road.go .w .blk{animation:rddrop .45s ease calc(var(--lead) + var(--dur) * (var(--i) + .5) / 6) forwards}
+.road.go .w .nm{animation:rdname .45s ease calc(var(--lead) + var(--dur) * (var(--i) + .5) / 6) forwards}
+.road.go .rd-end.goal{color:var(--ok)}
+.road.go ~ .rd-close{color:var(--ink);transition:color .6s calc(var(--lead) + var(--dur))}
+@keyframes rdtok{0%{left:0;opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@keyframes rdfill{to{transform:scaleX(1)}}
+@keyframes rddrop{to{transform:scaleY(.06);background:var(--ok)}}
+@keyframes rdname{to{color:var(--dim);text-decoration:line-through}}
+/* end state without motion */
+.road.done .rd-track i{transform:none}.road.done .w .blk{transform:scaleY(.06);background:var(--ok)}
+.road.done .w .nm{color:var(--dim);text-decoration:line-through}.road.done .rd-end.goal{color:var(--ok)}
+.road.done ~ .rd-close{color:var(--ink)}
+@media (max-width:720px){
+  .road{grid-template-columns:1fr;gap:0;text-align:left;max-width:420px;margin-inline:auto}
+  .rd-end{padding:0 0 0 34px;white-space:normal}
+  .rd-mid{padding:14px 0 14px 34px}
+  .rd-track{left:12px;right:auto;top:-22px;bottom:-22px;width:3px;height:auto}
+  .rd-track i{transform-origin:top;transform:scaleY(0)}
+  .rd-token{left:50%;top:0}
+  .rd-walls{grid-template-columns:1fr;gap:14px}
+  .w{flex-direction:row;gap:14px;padding:0}
+  .w .blk{width:clamp(64px,22vw,96px);height:16px;transform-origin:left;margin-left:-28px;flex:none}
+  .w .nm{height:auto;justify-content:flex-start}
+  .road.go .rd-token{animation-name:rdtokv}
+  .road.go .rd-track i{animation-name:rdfillv}
+  .road.go .w .blk,.road.done .w .blk{animation-name:rddropv}
+  .road.done .w .blk{transform:scaleX(.1)}
+  .road.done .rd-track i{transform:none}
+  .rd-close{text-align:left;max-width:420px}
+}
+@keyframes rdtokv{0%{top:0;opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
+@keyframes rdfillv{to{transform:scaleY(1)}}
+@keyframes rddropv{to{transform:scaleX(.1);background:var(--ok)}}
 </style>
 </head>
 <body>
@@ -424,17 +462,17 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 
 <!-- ============ ODDS ============ -->
 <section data-section="odds" class="band sec noir"><div class="wrap c">
-<h2 class="big">One platform.<br><span class="then">Despite the odds.</span></h2>
-<p class="sub" style="margin-top:22px">Six things usually stand between a company and a lab of its own. Here is what SynOS does about each.</p>
-<div class="odds-head" aria-hidden="true"><span>The odds</span><span>SynOS</span></div>
-<ul class="odds">
-<li><span class="odd">Records scattered, inconsistent, unlabelled.</span><span class="arr" aria-hidden="true">›</span><span class="fix">Platform agents curate the data and build the context layer.</span></li>
-<li><span class="odd">AI researchers are scarce and costly.</span><span class="arr" aria-hidden="true">›</span><span class="fix">Platform agents build environments, clean data and run training. A small team of your domain experts and engineers runs the rest.</span></li>
-<li><span class="odd">Sandbox learnings never compound.</span><span class="arr" aria-hidden="true">›</span><span class="fix">One environment on live data, where every run and correction accumulates in one place.</span></li>
-<li><span class="odd">No view into agent runs.</span><span class="arr" aria-hidden="true">›</span><span class="fix">Every run traced, scored against your evals and priced per model and per provider.</span></li>
-<li><span class="odd">The RL loop never closes.</span><span class="arr" aria-hidden="true">›</span><span class="fix">Corrections become evals and training data: prompt optimisation first, then SFT and RL with verifiable rewards. A release that scores worse does not ship.</span></li>
-<li><span class="odd">Proprietary data leaves the org.</span><span class="arr" aria-hidden="true">›</span><span class="fix">SynOS runs inside your org. Data, traces and weights stay there.</span></li>
-</ul>
+<h2 class="big">Building your own AI<br><span class="then">takes a lab.</span></h2>
+<p class="sub" style="margin-top:22px">Six things usually stand in the way.</p>
+<div class="road" id="road">
+<div class="rd-end" aria-hidden="true">Your agents today</div>
+<div class="rd-mid">
+<div class="rd-track" aria-hidden="true"><i></i><b class="rd-token">SynOS</b></div>
+<ul class="rd-walls" aria-label="What stands in the way"><li class="w" style="--i:0"><span class="blk" aria-hidden="true"></span><span class="nm">Messy data</span></li><li class="w" style="--i:1"><span class="blk" aria-hidden="true"></span><span class="nm">No AI researchers</span></li><li class="w" style="--i:2"><span class="blk" aria-hidden="true"></span><span class="nm">Learnings don't compound</span></li><li class="w" style="--i:3"><span class="blk" aria-hidden="true"></span><span class="nm">Blind agent runs</span></li><li class="w" style="--i:4"><span class="blk" aria-hidden="true"></span><span class="nm">Open RL loop</span></li><li class="w" style="--i:5"><span class="blk" aria-hidden="true"></span><span class="nm">Data leaves the org</span></li></ul>
+</div>
+<div class="rd-end goal">Your post-training lab</div>
+</div>
+<p class="rd-close" id="rd-close">One platform clears all six, inside your org.</p>
 </div></section>
 
 <!-- ============ PLATFORM AGENTS ============ -->
@@ -669,6 +707,16 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   pc.addEventListener('focusin',function(){held=true});
   pc.addEventListener('focusout',function(){held=false});
   stops.forEach(function(b){b.addEventListener('click',function(){stop();show(+b.getAttribute('data-i'),true)})});
+})();
+</script>
+<script>
+(function(){
+  var road=document.getElementById('road'); if(!road) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ road.classList.add('done'); return }
+  if(!('IntersectionObserver' in window)){ road.classList.add('done'); return }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ road.classList.add('go'); io.disconnect() } }) },{threshold:.55});
+  io.observe(road);
 })();
 </script>
 </body>
