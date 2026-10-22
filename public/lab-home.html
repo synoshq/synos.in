@@ -408,7 +408,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .stack .wn-head .big{font-size:clamp(2.4rem,4.2vw,3.6rem)}
   .stack .wn-head .sub{margin-top:10px !important;font-size:clamp(1rem,1.3vw,1.15rem)}
   .stack .wn{gap:0;margin-top:0}
-  .stack .wn-spacer{height:55vh}
+  .stack .wn-spacer{height:0}
   .stack .wn-row{position:sticky;top:calc(64px + var(--hh,240px));background:var(--paper);padding-block:20px}
   .stack .wn-row.flip{margin-top:30vh;z-index:2}
   .stack .wn-row.flip::after{content:"";position:absolute;left:-40px;right:-40px;top:0;bottom:0;background:var(--paper);z-index:-1}
@@ -430,7 +430,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 </head>
 <body>
 <div id="page">
-<div class="stickynav" id="stickynav" inert><div class="stickynav-in"><a aria-label="SynOS home" class="logo" href="/"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span>SynOS</span></a><div class="navlinks"><a data-cta="cta-book-demo-nav" class="btn ghost" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Bring one use case</a><a data-cta="cta-early-access-nav" class="btn solid" href="/early-access">Request early access</a></div></div></div>
+<div class="stickynav" id="stickynav" inert><div class="stickynav-in"><a aria-label="SynOS home" class="logo" href="/"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span>SynOS</span></a><div class="navlinks"><a data-cta="cta-early-access-nav" class="btn solid" href="/early-access">Request early access</a></div></div></div>
 
 <!-- ============ HERO ============ -->
 <section data-section="hero" class="band"><div class="wrap">
@@ -440,7 +440,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <div class="hero">
 <h1 class="mega">Your own <span class="nw">post-training</span> lab.</h1>
 <p class="sub"><strong>Everyone can run one, with SynOS.</strong> One platform inside your org, SynOS agents do the work a research team would.</p>
-<div class="ctas"><a data-cta="cta-early-access-hero" class="btn solid" href="/early-access">Request early access</a><a data-cta="cta-book-demo-hero" class="more" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Bring one use case&nbsp;<i aria-hidden="true">›</i></a></div>
+<div class="ctas"><a data-cta="cta-early-access-hero" class="btn solid" href="/early-access">Request early access</a><a data-cta="cta-book-demo-hero" class="more" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Tell me more&nbsp;<i aria-hidden="true">›</i></a></div>
 
 <div class="stage noir" role="img" aria-label="Your model, drawn as one line that rises with each run: version 1, version 2, then version 3. Along the line, the platform agents curate the data, build the context, run the agents, evaluate them, optimise the prompts and train the model.">
 <div class="plot">
@@ -678,7 +678,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <section data-section="bottom-cta" class="band cta noir"><div class="wrap">
 <h2 class="mega">Bring one use case.</h2>
 <p class="sub">Pick the workflow your experts correct most often. We will work out with you what a first training run would need.</p>
-<div class="ctas"><a data-cta="cta-book-demo-bottom" class="btn solid" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Bring one use case</a><a data-cta="cta-ami-quiz-bottom" class="more" href="/agent-maturity-index">Not sure where to start? Take the AMI quiz&nbsp;<i aria-hidden="true">›</i></a></div>
+<div class="ctas"><a data-cta="cta-book-demo-bottom" class="btn solid" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Tell me more</a><a data-cta="cta-ami-quiz-bottom" class="more" href="/agent-maturity-index">Not sure where to start? Take the AMI quiz&nbsp;<i aria-hidden="true">›</i></a></div>
 </div></section>
 
 <footer class="band"><div class="wrap foot">
@@ -836,7 +836,13 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
     var hh=head.offsetHeight, rh=Math.max(rows[0].offsetHeight, rows[rows.length-1].offsetHeight);
     if(64+hh+rh <= window.innerHeight+8){ sec.style.setProperty('--hh',hh+'px') } else { sec.classList.remove('stack') }
   }
-  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(fit,120)}); fit();
+  // once the cost row has covered the gap row the pinned rows release; carry the heading up with them
+  var last=rows[rows.length-1], raf=false;
+  function follow(){ raf=false; if(!sec.classList.contains('stack')){ head.style.transform=''; return }
+    var T=64+head.offsetHeight, d=last.getBoundingClientRect().top - T;
+    head.style.transform = d<0 ? 'translateY('+d.toFixed(1)+'px)' : '' }
+  window.addEventListener('scroll',function(){ if(!raf){raf=true;requestAnimationFrame(follow)} },{passive:true});
+  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){fit();follow()},120)}); fit();
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
 })();
 </script>

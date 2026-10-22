@@ -134,3 +134,7 @@ today" icon to the "Your own AI" light on desktop as on phones. "It runs inside 
 inside your org." The platform diagram shows its dark version in both themes. "Three parts." became "What you
 get." with "SynOS is installed in your cloud, above your existing systems and below your Agents." FAQ 2 now
 reads "A small team of domain experts and engineers runs it with support from SynOS."
+
+Revision: the hero text link and the bottom-banner button read "Tell me more" (calendar link, data-cta unchanged);
+the banner heading stays "Bring one use case." The sticky top bar carries only "Request early access". In why now
+the pinned heading and rows release as soon as the cost row has fully covered the gap row (no hold).
