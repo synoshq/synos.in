@@ -45,8 +45,8 @@ button{font:inherit;color:inherit}
 .btn.solid:hover{background:var(--a-ink)}
 .btn.ghost{border:1.5px solid var(--line);color:var(--fg)}
 .btn.ghost:hover{border-color:var(--fg)}
-.logo{display:flex;gap:10px;align-items:center;font-weight:650;font-size:18px;letter-spacing:-.01em;color:var(--fg);text-decoration:none;min-height:44px}
-.logo svg{flex:none;color:var(--fg)}
+.logo{display:flex;gap:8px;align-items:center;font-weight:650;font-size:17px;letter-spacing:-.01em;color:var(--fg);text-decoration:none;min-height:44px}
+.logo svg{flex:none;color:var(--accent)}
 
 /* ── Nav: the homepage's sticky bar, shown from the top because a post has no hero CTAs ── */
 .bnav{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);

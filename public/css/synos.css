@@ -41,6 +41,7 @@
   --sk-on-dark-3: #8a8d95;
 
   /* ── Brand ────────────────────────────────────────────────────────────── */
+  --sk-mark: #2747e8;           /* the SynOS mark in the nav, as on the Agent Maturity Index */
   --sk-indigo: #4338ca;         /* the primary button, the mark, one rule per page. 8.02 on paper */
   --sk-indigo-2: #6366f1;       /* the mark's stroke in the favicon; a FILL, never text (4.47) */
   --sk-indigo-3: #818cf8;
@@ -209,7 +210,7 @@ a:not([class]) {
 }
 .sk-nav-inner { width: 100%; max-width: var(--sk-container); margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center; }
-.sk-nav-left { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--sk-indigo); min-height: 44px; }
+.sk-nav-left { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--sk-mark); min-height: 44px; }
 .sk-nav-word { font-family: var(--sk-font-body); font-weight: 600; font-size: 17px; letter-spacing: -0.01em; color: var(--sk-ink); }
 .sk-nav-links { display: flex; gap: 32px; align-items: center; }
 .sk-nav-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--sk-ink-3); text-decoration: none; transition: color 0.15s; }
