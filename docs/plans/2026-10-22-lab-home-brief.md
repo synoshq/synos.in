@@ -147,3 +147,6 @@ stay clickable; the next scroll resumes from the reader's position.
 Revision: the "Bring one use case." banner is removed. "Become AI native." moves to the end of the page, after the
 FAQ, on the dark panel the banner used (tiles lifted slightly off black). The AMI quiz link went with the banner.
 Published on main at /rl-home-3.
+
+Revision: on screens up to 900px wide the three cost results show as three stacked cards, each with its task as
+title and its multiple beneath; no scroll-driven slides there. Desktop keeps the pinned scroll-through.
