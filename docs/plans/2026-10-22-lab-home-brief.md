@@ -1,0 +1,48 @@
+# lab-home: homepage iteration 2 brief (2026-10-22)
+
+Second homepage iteration. It continues rl-home direction D ("The Keynote"), which was chosen, with
+a new positioning. Page: `/lab-home` (`public/lab-home.html`), branch `lab-home`, noindex, no
+canonical until promoted. Everything in `2026-10-21-rl-home-brief.md` about claims discipline, copy
+rules, CTAs, analytics, design partners and the three why-now facts still applies.
+
+## Positioning
+
+**Everyone can run their own post-training lab, with SynOS.**
+
+One platform takes you there despite the odds. SynOS is an agentic training platform: its own agents
+do the upstream work that normally needs a research team, and it runs inside your org.
+
+## The odds (each upstream challenge, and what the platform does about it)
+
+| The odds | What SynOS does |
+|---|---|
+| Context data preparation: records scattered, inconsistent, unlabelled | Platform agents curate the data and build the context layer |
+| AI engineers and researchers are scarce and costly | Platform agents do the environment building, data cleaning and training work; a small team of domain experts and engineers runs the rest |
+| Learnings from scattered sandboxes do not compound | One environment on live data; every run and correction accumulates in one place |
+| Agent runtime monitoring: traces and evals | Every run traced, scored against your evals and priced per model and per provider |
+| The RL loop is hard to close | Corrections become evals and training data; prompt optimisation first, then SFT and RL with verifiable rewards; a release that scores worse does not ship |
+| Proprietary data leaving the org | The platform runs inside your org; data, traces and weights stay there |
+
+## What the platform's agents do (inside your org)
+
+1. Curate the data
+2. Build the context layer
+3. Build and deploy your agents
+4. Monitor your agent runs (traces and evals)
+5. Optimise the prompts for performance
+6. Generate training datasets
+7. Work with your human experts on supervised fine-tuning
+8. Build and launch apps
+
+## Section order (data-section names)
+
+hero · why-now · odds · platform-agents · schematic · components (The Brain, The Agent Runtime,
+The Training Plane, with benefits folded in) · become-ai-native · faq · bottom-cta
+
+## Copy notes
+
+- "Lab" is the organising metaphor. Keep it concrete: a post-training lab is the environment, the
+  data, the evals and the training runs, which SynOS provides as software, run by your own people.
+- "Despite the odds" can appear once as language; do not dramatise it.
+- No claim that SynOS drives agents a customer already built on another framework. "Build and
+  deploy your agents" refers to agents built on SynOS.

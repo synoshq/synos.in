@@ -35,7 +35,7 @@ const ALLOWED_FAMILIES = ['Instrument Sans', 'JetBrains Mono']   // 2026-09-26 r
 const PAGE_FAMILIES = {
   '/index.html': ['Inter'],
   // 2026-10-21 rl-home iteration: approaches A and C follow the homepage's Inter system.
-  '/rl-home.html': ['Inter'], '/rl-home/a.html': ['Inter'], '/rl-home/c.html': ['Inter'], '/rl-home/d.html': ['Inter'],
+  '/rl-home.html': ['Inter'], '/rl-home/a.html': ['Inter'], '/rl-home/c.html': ['Inter'], '/rl-home/d.html': ['Inter'], '/lab-home.html': ['Inter'],
 }
 
 let chromium
