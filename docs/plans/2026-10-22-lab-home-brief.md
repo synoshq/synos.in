@@ -72,3 +72,13 @@ family) post-trained for one task against the frontier model it replaced. Defaul
 
 Scale's figures are measured on production tickets and held-out data rooms. The baseline frontier model is unnamed in
 both. Scale's third case (an insurer's copilot, 1/4 cost) is left out: its baseline is not described as a frontier model.
+
+## Why-now layout (2026-10-22, later)
+
+Two facts, each paired with the chart that explains it. The 95% MIT NANDA fact is removed.
+
+- **~3% gap** with a line chart of the Arena gap between the top closed and top open model, redrawn from the values
+  the AI Index 2026 chapter 2 text states for Figure 2.1.2: 15.2% (May 2023, GPT-4-0314 vs Vicuna-13B), 0.5%
+  (Aug 2024), 3.4% (Mar 2026, Claude Opus 4.6 1,503 vs GLM-5 1,454; the chapter highlights say 3.3%). Only the
+  stated points are plotted; lines join them. The original figure image could not be fetched or reused.
+- **Lower cost** tile, explained by the cost slider beside it.
