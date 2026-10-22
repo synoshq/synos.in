@@ -82,3 +82,8 @@ Two facts, each paired with the chart that explains it. The 95% MIT NANDA fact i
   (Aug 2024), 3.4% (Mar 2026, Claude Opus 4.6 1,503 vs GLM-5 1,454; the chapter highlights say 3.3%). Only the
   stated points are plotted; lines join them. The original figure image could not be fetched or reused.
 - **Lower cost** tile, explained by the cost slider beside it.
+
+Update: the gap chart now plots both monthly series (top closed and top open Arena score, May 2023 to
+March 2026) read off the published Figure 2.1.2 supplied by the founders, with the gap shaded. Model names are
+removed by request. Values are approximate readings (about 2 Arena points); end points are the stated 1,503 and
+1,454. Caption: "Stanford HAI, AI Index 2026 (data: Arena). Redrawn from the published chart."
