@@ -112,3 +112,8 @@ to the upper third, a SynOS token travels it and each wall drops and its name is
 back raises them, so it replays on every pass. At the end the road turns green and the lab label lights. Closing line: "One
 platform clears all six, inside your org." No button. Reduced motion shows the end state. Vertical on phones. The
 per-blocker fixes are carried by the platform-agents section that follows.
+
+Revision: headline "What’s standing in your way.", line "AI Natives cross these to get ahead." The road ends on
+"Your own AI" (was "Your post-training lab"), with a small agent icon at the start and an AI icon at the end that
+lights when the road is cleared. Cleared walls become green rising steps (each taller than the last), so the
+road reads as a ladder up to your own AI; on phones the steps grow in width down the column.

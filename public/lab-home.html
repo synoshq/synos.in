@@ -374,6 +374,20 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .w .nm{height:auto;justify-content:flex-start}
   .rd-close{text-align:left;max-width:420px}
 }
+
+/* road refinements: icons at both ends, and cleared walls become rising steps toward your own AI */
+.rd-end{display:flex;flex-direction:column;align-items:center;gap:10px}
+.rd-ico{width:40px;height:40px;color:var(--dim)}
+.rd-ico.ai{color:var(--dim);transition:color .4s ease}
+.rd-ico .halo{fill:var(--ok);opacity:0;transition:opacity .5s ease}
+.road.arrived .rd-ico.ai{color:var(--ok)}
+.road.arrived .rd-ico .halo{opacity:.18}
+.w.down .blk{transform:scaleY(calc((var(--i) + 1) / 6.5))}
+@media (max-width:720px){
+  .rd-end{flex-direction:row;gap:12px}
+  .rd-end .rd-ico{width:32px;height:32px;margin-left:-37px;position:relative;z-index:1;background:var(--paper);border-radius:50%}
+  .w.down .blk{transform:scaleX(calc((var(--i) + 1) / 6.5))}
+}
 </style>
 </head>
 <body>
@@ -451,15 +465,15 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 
 <!-- ============ ODDS ============ -->
 <section data-section="odds" class="band sec noir"><div class="wrap c">
-<h2 class="big">Building your own AI<br><span class="then">takes a lab.</span></h2>
-<p class="sub" style="margin-top:22px">Six things usually stand in the way.</p>
+<h2 class="big">What’s standing<br><span class="then">in your way.</span></h2>
+<p class="sub" style="margin-top:22px">AI Natives cross these to get ahead.</p>
 <div class="road" id="road">
-<div class="rd-end" aria-hidden="true">Your agents today</div>
+<div class="rd-end start"><svg class="rd-ico" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="11" width="26" height="20" rx="7" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="15.5" cy="21" r="2.2" fill="currentColor"/><circle cx="24.5" cy="21" r="2.2" fill="currentColor"/><path d="M20 11V6M17 5h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Your agents today</span></div>
 <div class="rd-mid">
 <div class="rd-track" aria-hidden="true"><i></i><b class="rd-token">SynOS</b></div>
 <ul class="rd-walls" aria-label="What stands in the way"><li class="w" style="--i:0"><span class="blk" aria-hidden="true"></span><span class="nm">Messy data</span></li><li class="w" style="--i:1"><span class="blk" aria-hidden="true"></span><span class="nm">No AI researchers</span></li><li class="w" style="--i:2"><span class="blk" aria-hidden="true"></span><span class="nm">Learnings don't compound</span></li><li class="w" style="--i:3"><span class="blk" aria-hidden="true"></span><span class="nm">Blind agent runs</span></li><li class="w" style="--i:4"><span class="blk" aria-hidden="true"></span><span class="nm">Open RL loop</span></li><li class="w" style="--i:5"><span class="blk" aria-hidden="true"></span><span class="nm">Data leaves the org</span></li></ul>
 </div>
-<div class="rd-end goal">Your post-training lab</div>
+<div class="rd-end goal"><svg class="rd-ico ai" viewBox="0 0 40 40" aria-hidden="true"><circle class="halo" cx="20" cy="20" r="17"/><circle cx="20" cy="20" r="9" fill="currentColor"/><path d="M20 3v5M20 32v5M3 20h5M32 20h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Your own AI</span></div>
 </div>
 <p class="rd-close" id="rd-close">One platform clears all six, inside your org.</p>
 </div></section>
