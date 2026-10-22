@@ -97,3 +97,7 @@ panel's bottom line.
 Revision: the slider bar is removed; the three tabs rotate every 3 s and show which result is on screen. Every
 block in the panel keeps its tallest height, so nothing moves between slides. The two why-now rows zig-zag on
 desktop (gap: number left, chart right; cost: panel left, $$$ right); on phones each number sits above its panel.
+
+Slide order: vendor credit review (40x), hospital claim appeals (R1), M&A due diligence (18x). Each change
+slides in (0.45 s, off under reduced motion); a tap on a tab stops the rotation. On desktop the gap chart panel
+takes the same height as the cost panel.
