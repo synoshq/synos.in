@@ -143,3 +143,7 @@ Revision: the cost slides follow the scroll; no auto-rotation, no slide-in anima
 row covers the gap row the section holds (a 110vh spacer) while the reader scrolls through the three results in
 thirds, then the whole section scrolls up. On phones the slide follows the panel's position as it passes. Tabs
 stay clickable; the next scroll resumes from the reader's position.
+
+Revision: the "Bring one use case." banner is removed. "Become AI native." moves to the end of the page, after the
+FAQ, on the dark panel the banner used (tiles lifted slightly off black). The AMI quiz link went with the banner.
+Published on main at /rl-home-3.
