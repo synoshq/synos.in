@@ -427,6 +427,22 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .end{padding-block:clamp(96px,13vw,168px)}
 .noir .tile{background:color-mix(in srgb,var(--n-fg) 6%,var(--n-bg));border-color:var(--n-line)}
 .noir .tile:hover{border-color:var(--n-dim)}
+
+/* phones and narrow tablets: the three results stacked as cards, no scroll-driven slides */
+.pc-list{display:none}
+@media (max-width:900px){
+  .wn-vis .pc{display:none}
+  .pc-list{display:grid;gap:14px}
+  .pl-card{border-radius:24px;background:var(--mist);padding:22px 20px;display:grid;gap:12px}
+  .pl-card h3{margin:0;font-size:1.25rem;font-weight:650;letter-spacing:-.02em}
+  .pl-sub{margin:-8px 0 0;font-size:14px;color:var(--dim)}
+  .pl-big{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25em;font-weight:700;letter-spacing:-.05em;line-height:1;font-size:clamp(2.4rem,11vw,3.4rem);font-variant-numeric:tabular-nums}
+  .pl-cap{margin:0;font-size:16px}
+  .pl-coins{display:grid;gap:8px}
+  .pl-coins .pc-coin-set i{width:12px;height:12px}
+  .pl-facts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--dim);padding-top:12px;border-top:1px solid var(--line)}
+  .pl-facts .pl-acc{color:var(--ink);font-weight:600}
+}
 </style>
 </head>
 <body>
@@ -499,7 +515,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 </div>
 <div class="pc-facts"><span id="pc-acc">Matched accuracy</span><span id="pc-speed">5x faster</span><span id="pc-src2">Scale AI, Oct 2026</span></div>
 </div>
-</div>
+</div><div class="pc-list"><article class="pl-card"><h3>Vendor credit review</h3><p class="pl-sub">40x lower cost</p><div class="pl-big"><span class="pc-x">$40</span><span class="pc-arrow" aria-hidden="true">→</span><span class="pc-one">$1</span></div><p class="pl-cap">For every $40 a frontier model spends on this task, the post-trained model spends $1.</p><div class="pl-coins" role="img" aria-label="Frontier model cost shown as 40 coins, post-trained model as one coin."><span class="pc-lbl">Frontier model</span><div class="pc-coin-set fr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="pc-lbl">Post-trained open-weight</span><div class="pc-coin-set pt"><i></i></div></div><div class="pl-facts"><span class="pl-acc">Matched accuracy</span><span class="pl-acc">5x faster</span><span>Scale AI, Oct 2026</span></div></article><article class="pl-card"><h3>Hospital claim appeals</h3><p class="pl-sub">5.9x lower cost</p><div class="pl-big"><span class="pc-x">$5.90</span><span class="pc-arrow" aria-hidden="true">→</span><span class="pc-one">$1</span></div><p class="pl-cap">For every $5.90 a frontier model spends on this task, the post-trained model spends $1.</p><div class="pl-coins" role="img" aria-label="Frontier model cost shown as 6 coins, post-trained model as one coin."><span class="pc-lbl">Frontier model</span><div class="pc-coin-set fr"><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="pc-lbl">Post-trained open-weight</span><div class="pc-coin-set pt"><i></i></div></div><div class="pl-facts"><span class="pl-acc">28% more accurate</span><span>R1, Oct 2026</span></div></article><article class="pl-card"><h3>M&A due diligence</h3><p class="pl-sub">18x lower cost</p><div class="pl-big"><span class="pc-x">$18</span><span class="pc-arrow" aria-hidden="true">→</span><span class="pc-one">$1</span></div><p class="pl-cap">For every $18 a frontier model spends on this task, the post-trained model spends $1.</p><div class="pl-coins" role="img" aria-label="Frontier model cost shown as 18 coins, post-trained model as one coin."><span class="pc-lbl">Frontier model</span><div class="pc-coin-set fr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="pc-lbl">Post-trained open-weight</span><div class="pc-coin-set pt"><i></i></div></div><div class="pl-facts"><span class="pl-acc">Matched accuracy</span><span class="pl-acc">More than twice as fast</span><span>Scale AI, Oct 2026</span></div></article></div>
 </div></div><div class="wn-spacer" aria-hidden="true"></div></div>
 </div></section>
 
@@ -738,7 +754,8 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   // result straight away; the next scroll picks up from wherever the reader is.
   var wrap=document.querySelector('[data-section="why-now"] .wrap'), spacer=document.querySelector('.wn-spacer');
   var shown=cur, rq=false;
-  function fromScroll(){ rq=false; var q;
+  var narrow=window.matchMedia('(max-width:900px)');
+  function fromScroll(){ rq=false; if(narrow.matches) return; var q;
     var vh=window.innerHeight;
     if(wrap&&wrap.classList.contains('stack')&&spacer&&spacer.offsetHeight>0){
       var S=spacer.getBoundingClientRect(), R=pc.closest('.wn-row').getBoundingClientRect();
