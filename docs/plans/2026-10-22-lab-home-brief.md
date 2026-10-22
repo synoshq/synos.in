@@ -89,8 +89,7 @@ removed by request. Values are approximate readings (about 2 Arena points); end 
 1,454. Caption: "Stanford HAI, AI Index 2026" only; no legend, lines labelled directly.
 
 Revision (2026-10-22, later): no credits under the two anchor numbers. The cost anchor is a static
-"$$$" with the falling arrow and the line "AI Native businesses are reporting lower AI costs and higher
-performance with post-trained open-weight models." The slider is titled "What domain-trained open weight
-models are doing to the bill.", auto-rotates every 3 s (pauses on hover or focus, stops once a reader picks a
+"$$$" with the falling arrow and the line "Early adopters have reported lower costs and higher performance
+with domain-trained open weight models." The slider has no title block, keeps one fixed height (the tallest slide, re-measured on resize), auto-rotates every 3 s (pauses on hover or focus, stops once a reader picks a
 slide, off under reduced motion), and its tabs show only the task and the multiple. The source stays in the
 panel's bottom line.
