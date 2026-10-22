@@ -113,6 +113,11 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px;margin-top:clamp(56px,8vw,96px);text-align:left}
 .num{font-weight:700;letter-spacing:-.055em;line-height:1;font-size:clamp(3.6rem,8.4vw,6.4rem)}
 .nums p{margin-top:16px;font-size:18px;line-height:1.45;max-width:17em}
+
+.fn-ref{font-size:.32em;font-weight:600;vertical-align:super;margin-left:2px;letter-spacing:0}
+.fn-ref a{color:var(--dim);text-decoration:none;display:inline-block;min-width:24px;padding:10px 4px;margin:-10px -4px}
+.fn{max-width:46em;margin:40px auto 0;font-size:12.5px;line-height:1.55;color:var(--dim);text-align:left}
+.fn sup{font-size:.85em;margin-right:2px}
 .nums .src{margin-top:14px;font-size:13.5px;color:var(--dim)}
 
 /* ---------- odds ---------- */
@@ -337,12 +342,13 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <!-- ============ WHY NOW ============ -->
 <section data-section="why-now" class="band sec"><div class="wrap c">
 <h2 class="big">Why now.</h2>
-<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. Trained on one task, a small one has passed it.</p>
+<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. Post-trained on one task, one has beaten it for a fraction of the cost.</p>
 <div class="nums">
 <div><div class="num">~3%</div><p>The gap between the top open-weight and top closed model on Arena.</p><div class="src">Stanford HAI, AI Index 2026</div></div>
-<div><div class="num">83.6%</div><p>A 4B open model post-trained with RL on a law firm's task. GPT-5 scored 79.6%.</p><div class="src">Scale AI Labs, Nov 2025</div></div>
+<div><div class="num">5x<sup class="fn-ref"><a href="#fn-r1" aria-label="Footnote 1">1</a></sup></div><p>Cheaper than a frontier model on the same task, and 28% more accurate, after post-training an open-weight model.</p><div class="src">R1, Oct 2026</div></div>
 <div><div class="num">95%</div><p>Enterprise generative AI pilots that stalled before scaled adoption.</p><div class="src">MIT NANDA, The GenAI Divide, Aug 2025</div></div>
 </div>
+<p class="fn" id="fn-r1"><sup>1</sup> An agent that drafts hospital appeals of denied insurance claims, on R1&#8217;s own benchmark. R1-super, post-trained by R1 on NVIDIA Nemotron 3.5 Super, passed 71.9% of 16 synthetic cases in four attempts at an estimated $1.20, against 56.3% at $7.08 for GPT-6 Sol. Costs are projected serving costs. R1, &#8220;Long-context medical reasoning to reduce denials&#8221;, Oct 15, 2026.</p>
 </div></section>
 
 <!-- ============ ODDS ============ -->
