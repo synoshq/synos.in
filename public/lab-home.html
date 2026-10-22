@@ -118,6 +118,16 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .fn-ref a{color:var(--dim);text-decoration:none;display:inline-block;min-width:24px;padding:10px 4px;margin:-10px -4px}
 .fn{max-width:46em;margin:40px auto 0;font-size:12.5px;line-height:1.55;color:var(--dim);text-align:left}
 .fn sup{font-size:.85em;margin-right:2px}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.price .num>span[aria-hidden]{display:inline-flex;align-items:center;gap:.06em}
+.drop{height:.72em;width:auto;color:var(--ok);margin-right:.04em;transform:translateY(.02em)}
+.cost{margin-top:20px;display:grid;gap:6px;max-width:17em}
+.cost .cr{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.cost .cr b{font-weight:600;color:var(--ink)}
+.cost .cb{height:8px;border-radius:999px;background:var(--line);position:relative;overflow:hidden;margin-bottom:8px}
+.cost .cb i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--dim)}
+.cost .cb.low i{background:var(--ok)}
 .nums .src{margin-top:14px;font-size:13.5px;color:var(--dim)}
 
 /* ---------- odds ---------- */
@@ -342,10 +352,10 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <!-- ============ WHY NOW ============ -->
 <section data-section="why-now" class="band sec"><div class="wrap c">
 <h2 class="big">Why now.</h2>
-<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. Post-trained on one task, one has beaten it for a fraction of the cost.</p>
+<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. Post-trained on one task, one has beaten it at a fifth of the cost.</p>
 <div class="nums">
 <div><div class="num">~3%</div><p>The gap between the top open-weight and top closed model on Arena.</p><div class="src">Stanford HAI, AI Index 2026</div></div>
-<div><div class="num">5x<sup class="fn-ref"><a href="#fn-r1" aria-label="Footnote 1">1</a></sup></div><p>Cheaper than a frontier model on the same task, and 28% more accurate, after post-training an open-weight model.</p><div class="src">R1, Oct 2026</div></div>
+<div class="price"><div class="num"><span class="sr">80% lower cost</span><span aria-hidden="true"><svg class="drop" viewBox="0 0 48 64" aria-hidden="true"><path d="M24 6v44M10 37l14 15 14-15" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>80%</span><sup class="fn-ref"><a href="#fn-r1" aria-label="Footnote 1">1</a></sup></div><p>Lower cost than a frontier model on the same task, and 28% more accurate, after post-training an open-weight model.</p><div class="cost" role="img" aria-label="Cost per four attempts: frontier model $7.08, post-trained open-weight model $1.20."><div class="cr"><span>Frontier model</span><b>$7.08</b></div><div class="cb"><i style="width:100%"></i></div><div class="cr"><span>Post-trained open-weight</span><b>$1.20</b></div><div class="cb low"><i style="width:16.9%"></i></div></div><div class="src">R1, Oct 2026</div></div>
 <div><div class="num">95%</div><p>Enterprise generative AI pilots that stalled before scaled adoption.</p><div class="src">MIT NANDA, The GenAI Divide, Aug 2025</div></div>
 </div>
 <p class="fn" id="fn-r1"><sup>1</sup> An agent that drafts hospital appeals of denied insurance claims, on R1&#8217;s own benchmark. R1-super, post-trained by R1 on NVIDIA Nemotron 3.5 Super, passed 71.9% of 16 synthetic cases in four attempts at an estimated $1.20, against 56.3% at $7.08 for GPT-6 Sol. Costs are projected serving costs. R1, &#8220;Long-context medical reasoning to reduce denials&#8221;, Oct 15, 2026.</p>
