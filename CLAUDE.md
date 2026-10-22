@@ -33,7 +33,8 @@
 - Each top-level page is its own file in `public/`:
   - `public/index.html` — landing
   - `public/use-cases.html` — grid index for example agent operating-layer use-cases
-  - `public/blog.html` — links to Substack posts
+  - `public/blog/index.html` — blog index (restored 2026-10-21); posts live in `public/blog/<slug>.html`,
+    each with its own OG card in `tools/og.mjs`
   - `public/product.html`, `public/about.html`
   - `public/early-access.html` — primary CTA waitlist (Web3Forms email capture)
 - Use-case sub-pages live in `public/use-cases/<slug>.html`
