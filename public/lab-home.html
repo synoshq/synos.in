@@ -144,8 +144,8 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .pf-scroll img{display:block;width:100%;height:auto;max-width:none}
 .pf-cap{display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;margin-top:10px;padding-inline:8px;font-size:14px;color:var(--dim)}
 .pf-hint{display:none}
-.pf-open{color:var(--a-ink);display:inline-flex;align-items:center;min-height:44px}
-@media (max-width:760px){.pf-scroll img{width:900px}.pf-hint{display:inline-flex;align-items:center;min-height:44px}}
+.pf-cap{display:none}
+@media (max-width:760px){.pf-scroll img{width:900px}.pf-cap{display:flex}.pf-hint{display:inline-flex;align-items:center;min-height:44px}}
 
 /* ---------- components ---------- */
 .three{padding-block:clamp(88px,13vw,168px) clamp(40px,6vw,72px)}
@@ -542,7 +542,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <h2 class="big">How it fits.</h2>
 <p class="sub" style="margin-top:22px">From the data you have to a model you own, all inside your org.</p>
 <div class="frame">
-<figure class="pf-fig"><div class="pf-scroll" tabindex="0" role="region" aria-label="SynOS platform diagram, scrolls sideways on small screens"><img class="pf-dark" src="/img/synos-platform-dark.svg" width="1920" height="1080" loading="lazy" alt="SynOS platform diagram. Your systems and data are extracted, cleaned and defined into context data, which feeds the context layer and its guardrails. Through the model layer, evals and governance, MCP servers, agents and apps run on that context. Agent runs become training data that human experts curate, an RL environment trains open-weight models, and the improved models go back into the model layer."></div><figcaption class="pf-cap"><span class="pf-hint">Scroll sideways to see the whole diagram.</span><a class="pf-open" href="/img/synos-platform-dark.svg" target="_blank" rel="noopener">Open the diagram full size</a></figcaption></figure>
+<figure class="pf-fig"><div class="pf-scroll" tabindex="0" role="region" aria-label="SynOS platform diagram, scrolls sideways on small screens"><img class="pf-dark" src="/img/synos-platform-dark.svg" width="1920" height="1080" loading="lazy" alt="SynOS platform diagram. Your systems and data are extracted, cleaned and defined into context data, which feeds the context layer and its guardrails. Through the model layer, evals and governance, MCP servers, agents and apps run on that context. Agent runs become training data that human experts curate, an RL environment trains open-weight models, and the improved models go back into the model layer."></div><figcaption class="pf-cap"><span class="pf-hint">Scroll sideways to see the whole diagram.</span></figcaption></figure>
 </div>
 </div></section>
 
