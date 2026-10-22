@@ -443,6 +443,14 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .pl-facts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--dim);padding-top:12px;border-top:1px solid var(--line)}
   .pl-facts .pl-acc{color:var(--ink);font-weight:600}
 }
+
+/* phones: the SynOS marker becomes a glowing dot riding the line above the walls (the pill was cut off at the
+   screen edge and hidden behind the bars) */
+@media (max-width:720px){
+  .rd-track{z-index:3}
+  .rd-token{font-size:0;line-height:0;padding:0;width:16px;height:16px;border-radius:50%;background:#fff;
+    box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 35%,transparent),0 0 18px 6px color-mix(in srgb,var(--ok) 55%,transparent)}
+}
 </style>
 </head>
 <body>
