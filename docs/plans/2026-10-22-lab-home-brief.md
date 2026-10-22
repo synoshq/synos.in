@@ -86,4 +86,4 @@ Two facts, each paired with the chart that explains it. The 95% MIT NANDA fact i
 Update: the gap chart now plots both monthly series (top closed and top open Arena score, May 2023 to
 March 2026) read off the published Figure 2.1.2 supplied by the founders, with the gap shaded. Model names are
 removed by request. Values are approximate readings (about 2 Arena points); end points are the stated 1,503 and
-1,454. Caption: "Stanford HAI, AI Index 2026 (data: Arena). Redrawn from the published chart."
+1,454. Caption: "Stanford HAI, AI Index 2026" only; no legend, lines labelled directly.
