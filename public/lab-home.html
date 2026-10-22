@@ -122,9 +122,9 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .odds-head span:last-child{grid-column:3;color:var(--a-ink)}
 .odds li{padding-block:clamp(22px,2.8vw,32px);border-top:1px solid var(--line)}
 .odds li:last-child{border-bottom:1px solid var(--line)}
-.odd{font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--dim);text-decoration:line-through;text-decoration-color:var(--warn);text-decoration-thickness:1.5px}
+.odd{font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600;letter-spacing:-.02em;line-height:1.25;color:var(--dim);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--dim) 55%,transparent);text-decoration-thickness:1px}
 .arr{color:var(--accent);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600;text-align:center;line-height:1.25}
-.fix{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.45;color:var(--ink)}
+.fix{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.45;color:var(--ink);font-weight:500}
 
 /* ---------- platform agents ---------- */
 .org{position:relative;margin-top:clamp(64px,8vw,96px);padding:clamp(28px,4vw,48px) clamp(14px,2.6vw,32px) clamp(14px,2.6vw,32px);border:1.5px dashed var(--dim);border-radius:calc(var(--r) + 8px);text-align:left}
@@ -337,7 +337,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <!-- ============ WHY NOW ============ -->
 <section data-section="why-now" class="band sec"><div class="wrap c">
 <h2 class="big">Why now.</h2>
-<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. A trained one can pass it.</p>
+<p class="sub" style="margin-top:22px">Open models are close enough to the frontier to train. Trained on one task, a small one has passed it.</p>
 <div class="nums">
 <div><div class="num">~3%</div><p>The gap between the top open-weight and top closed model on Arena.</p><div class="src">Stanford HAI, AI Index 2026</div></div>
 <div><div class="num">83.6%</div><p>A 4B open model post-trained with RL on a law firm's task. GPT-5 scored 79.6%.</p><div class="src">Scale AI Labs, Nov 2025</div></div>
