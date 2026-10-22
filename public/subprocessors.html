@@ -92,16 +92,7 @@
         .trust-nav a{font-size:13px;font-weight:600;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:7px 15px;background:var(--surface);transition:all 0.15s;}
         .trust-nav a:hover{border-color:var(--accent);color:var(--accent);}
         .trust-nav a.current{background:var(--accent);border-color:var(--accent);color:#FFF;}
-        .site-footer{padding:40px 24px;border-top:1px solid var(--border);}
-        .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
-        .footer-left{display:flex;align-items:center;gap:8px;}
-        .footer-logo-text{font-family:var(--sk-font-body);font-size:18px;color:var(--text-muted);}
-        .footer-middle,.footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-        .footer-middle a{color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:500;}
-        .footer-links a{color:var(--text-dim);text-decoration:none;font-size:13px;}
-        .footer-sep{width:1px;height:14px;background:var(--border);}
-        .footer-copy{font-size:12px;color:var(--text-dim);margin-top:16px;text-align:center;}
-        @media(max-width:768px){.nav-toggle{display:inline-flex;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);box-shadow:var(--shadow-md);border-bottom:1px solid var(--border);padding:8px 24px 16px;}.nav-links.open{display:flex;}.nav-links a{padding:12px 0;font-size:15px;border-bottom:1px solid var(--border-light);}.footer-inner{flex-direction:column;text-align:center;}.footer-links,.footer-middle{justify-content:center;}}
+        @media(max-width:768px){.nav-toggle{display:inline-flex;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);box-shadow:var(--shadow-md);border-bottom:1px solid var(--border);padding:8px 24px 16px;}.nav-links.open{display:flex;}.nav-links a{padding:12px 0;font-size:15px;border-bottom:1px solid var(--border-light);}}
         a:focus-visible,button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
         *:focus{outline:none;}
     </style>
@@ -185,28 +176,28 @@
         </div>
     </section>
     </main>
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M11 7C11 7 11 7 16 7C21 7 23 10 23 13C23 16 21 18 16 18" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/><path d="M21 25C21 25 21 25 16 25C11 25 9 22 9 19C9 16 11 14 16 14" stroke="#A1A1AA" stroke-width="2.2" stroke-linecap="round"/></svg>
-                <span class="footer-logo-text">SynOS</span>
-            </div>
-            <div class="footer-middle">
-                <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
-                <a href="https://www.linkedin.com/in/anuraagdubey/" target="_blank" rel="noopener">Anurag Dubey</a>
-                <a href="https://www.linkedin.com/in/siddharth-katyal/" target="_blank" rel="noopener">Siddharth Katyal</a>
-            </div>
-            <div class="footer-links">
-                <a href="/blog">Blog</a>
-                <a href="/trust">Trust</a>
-                <a href="/security">Security</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/terms">Terms</a>
-                <a href="/subprocessors">Subprocessors</a>
-            </div>
-        </div>
-        <p class="footer-copy">&copy; 2026 SynOS Labs, Inc. All rights reserved.</p>
-    </footer>
+<!-- @partial footer -->
+<footer class="sk-footer">
+  <div class="sk-footer-inner">
+    <p class="sk-footer-copy">&copy; 2026 SynOS Labs, Inc.</p>
+    <div class="sk-footer-group sk-footer-team">
+      <span class="sk-footer-label">Team</span>
+      <a href="https://www.linkedin.com/in/anoopjawahar/" target="_blank" rel="noopener">Anoop Jawahar</a>
+      <a href="https://www.linkedin.com/in/anuraagdubey/" target="_blank" rel="noopener">Anurag Dubey</a>
+      <a href="https://www.linkedin.com/in/siddharth-katyal/" target="_blank" rel="noopener">Siddharth Katyal</a>
+    </div>
+    <div class="sk-footer-group">
+      <a href="/agent-maturity-index">Agent Maturity Index</a>
+      <a href="/blog">Blog</a>
+      <a href="/trust">Trust</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/subprocessors">Subprocessors</a>
+    </div>
+  </div>
+</footer>
+<!-- @endpartial footer -->
 <script>
     const navToggle=document.getElementById('nav-toggle');
     const navLinks=document.getElementById('nav-links');
