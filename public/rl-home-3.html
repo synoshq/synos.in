@@ -423,6 +423,11 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 @media (max-width:720px){
   .rd-track{left:var(--tl,12px);top:var(--tt,0px);height:var(--th,100%);bottom:auto;right:auto;width:3px}
 }
+
+/* closing section: become AI native, on the dark keynote panel that the closing banner used */
+.end{padding-block:clamp(96px,13vw,168px)}
+.noir .tile{background:color-mix(in srgb,var(--n-fg) 6%,var(--n-bg));border-color:var(--n-line)}
+.noir .tile:hover{border-color:var(--n-dim)}
 </style>
 </head>
 <body>
@@ -602,22 +607,6 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 </div></div>
 </section>
 
-<!-- ============ BECOME AI NATIVE ============ -->
-<section data-section="become-ai-native" class="band sec mist"><div class="wrap c">
-<h2 class="big">Become AI native.</h2>
-<div class="tiles">
-<article class="tile">
-<h3>I am a vertical SaaS provider.</h3>
-<p>Ship agents in your product that run on a model trained on your domain, and owned by you.</p>
-<a class="more" data-cta="cta-vertical-saas-callout" href="/vertical-saas">Explore SynOS for Vertical SaaS&nbsp;<i aria-hidden="true">›</i></a>
-</article>
-<article class="tile">
-<h3>I am a large enterprise with an AI transformation mandate.</h3>
-<p>Turn the systems and expertise you already have into models you own, one use case at a time.</p>
-<a class="more" data-cta="cta-ai-transformation-callout" href="/ai-transformation">Explore SynOS for AI Transformation&nbsp;<i aria-hidden="true">›</i></a>
-</article>
-</div>
-</div></section>
 
 <!-- ============ FAQ ============ -->
 <section data-section="faq" class="band sec"><div class="narrow">
@@ -672,10 +661,20 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 </div></section>
 
 <!-- ============ BOTTOM CTA ============ -->
-<section data-section="bottom-cta" class="band cta noir"><div class="wrap">
-<h2 class="mega">Bring one use case.</h2>
-<p class="sub">Pick the workflow your experts correct most often. We will work out with you what a first training run would need.</p>
-<div class="ctas"><a data-cta="cta-book-demo-bottom" class="btn solid" href="https://calendar.app.google/5TydwUfWCfrxn5tj7" target="_blank" rel="noopener">Tell me more</a><a data-cta="cta-ami-quiz-bottom" class="more" href="/agent-maturity-index">Not sure where to start? Take the AMI quiz&nbsp;<i aria-hidden="true">›</i></a></div>
+<section data-section="become-ai-native" class="band sec noir end"><div class="wrap c">
+<h2 class="big">Become AI native.</h2>
+<div class="tiles">
+<article class="tile">
+<h3>I am a vertical SaaS provider.</h3>
+<p>Ship agents in your product that run on a model trained on your domain, and owned by you.</p>
+<a class="more" data-cta="cta-vertical-saas-callout" href="/vertical-saas">Explore SynOS for Vertical SaaS&nbsp;<i aria-hidden="true">›</i></a>
+</article>
+<article class="tile">
+<h3>I am a large enterprise with an AI transformation mandate.</h3>
+<p>Turn the systems and expertise you already have into models you own, one use case at a time.</p>
+<a class="more" data-cta="cta-ai-transformation-callout" href="/ai-transformation">Explore SynOS for AI Transformation&nbsp;<i aria-hidden="true">›</i></a>
+</article>
+</div>
 </div></section>
 
 <footer class="band"><div class="wrap foot">
