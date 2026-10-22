@@ -226,19 +226,33 @@ a:not([class]) {
   .sk-nav-right .sk-btn { min-height: 36px; padding: 0 12px; font-size: 14px; }
 }
 
-.sk-footer { padding: var(--sk-space-7) 24px; border-top: 1px solid var(--sk-border); }
-.sk-footer-inner { max-width: var(--sk-container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: var(--sk-space-6); flex-wrap: wrap; font-size: 14px; color: var(--sk-ink-3); }
+/* Footer, 2026-10-22: the homepage footer's layout carried to every page, in this file's tokens
+ * and face. Copyright left and links right on one row; a hairline, then the team row with an
+ * initials disc before each name. Below 760px the three stack. */
+.sk-footer { padding: var(--sk-space-3) 24px var(--sk-space-6); border-top: 1px solid var(--sk-border); }
+.sk-footer-inner { max-width: var(--sk-container); margin: 0 auto; display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr); align-items: center; column-gap: var(--sk-space-7);
+  font-size: 14px; color: var(--sk-ink-3); }
 .sk-footer a { color: var(--sk-ink-3); text-decoration: none; font-size: 14px; transition: color 0.15s;
   display: inline-flex; align-items: center; min-height: 44px; }
 .sk-footer a:hover { color: var(--sk-ink); }
-.sk-footer-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-.sk-footer-word { font-weight: 500; font-size: 14px; color: var(--sk-ink-3); }
-.sk-footer-copy { font-size: 14px; color: var(--sk-ink-3); max-width: none; }
+.sk-footer-copy { grid-column: 1; grid-row: 1; padding-block: var(--sk-space-4); white-space: nowrap;
+  font-size: 14px; color: var(--sk-ink-3); max-width: none; }
+.sk-footer-links { grid-column: 2; grid-row: 1; justify-self: end; display: flex; flex-wrap: wrap;
+  justify-content: flex-end; gap: 0 20px; }
 /* Team row. Names and profiles only: there is no about page and a three person company does not
-   need one. The label is a mono caption so the row reads as a list rather than as navigation. */
-.sk-footer-team { gap: 18px; }
-.sk-footer-label { font-family: var(--sk-font-mono); font-size: 11px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--sk-dim); }
+   need one. */
+.sk-footer-team { grid-column: 1 / -1; grid-row: 2; display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0 20px; border-top: 1px solid var(--sk-border); padding-top: var(--sk-space-3); }
+.sk-footer-label { font-size: 13px; font-weight: 500; color: var(--sk-ink-3); margin-right: var(--sk-space-1); }
+.sk-avatar { width: 26px; height: 26px; border-radius: 50%; display: inline-grid; place-items: center;
+  background: var(--sk-surface-2); color: var(--sk-ink-3); font-size: 10.5px; font-weight: 500;
+  margin-right: var(--sk-space-3); flex: none; }
+@media (max-width: 760px) {
+  .sk-footer-inner { grid-template-columns: minmax(0, 1fr); }
+  .sk-footer-links { grid-column: 1; grid-row: 2; justify-self: start; justify-content: flex-start; }
+  .sk-footer-team { grid-column: 1; grid-row: 3; margin-top: var(--sk-space-3); }
+}
 /* The bar carries a wordmark and two actions. Surveyed infrastructure sites never put trust or
    security in the nav, so there is nothing left to toggle and no hamburger. Neither action may
    wrap: at 320px the label broke onto two lines and sat on top of the wordmark. */
@@ -246,9 +260,6 @@ a:not([class]) {
 @media (max-width: 520px) {
   .sk-nav-right .sk-btn--secondary { display: none; }
   .sk-nav-right .sk-btn { padding: 8px 13px; font-size: 13px; }
-}
-@media (max-width: 768px) {
-  .sk-footer-inner { flex-direction: column; align-items: flex-start; gap: var(--sk-space-4); }
 }
 
 /* ── Page furniture ───────────────────────────────────────────────────────── */

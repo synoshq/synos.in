@@ -27,6 +27,9 @@
   this page alone (`PAGE_FAMILIES`). The design rules above still govern every other page.
 - Shared behaviour lives in `public/js/synos.js` (nav, GA). Pages do not repeat it. Scroll reveal
   is retired; `.sk-reveal` is a no-op kept so old markup still renders.
+- The footer partial follows the homepage footer's layout (since 2026-10-22): copyright and links on one row, a
+  hairline, then the team row with initials discs; it stacks below 760px. Every page except the homepage
+  gets it from the partial, including the legal pages. Change the homepage footer and the partial together.
 - Nav, footer and the common `<head>` live in `public/partials/` and are injected between markers by
   `npm run pages`, which rewrites the committed HTML in place. Edit a partial, run `npm run pages`,
   commit the result.
