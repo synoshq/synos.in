@@ -53,8 +53,8 @@ The 83.6% Scale AI fact is replaced by R1's result: an open-weight model post-tr
 5x cheaper than a frontier model and 28% more accurate. Source: R1, "Long-context medical reasoning to reduce
 denials", Oct 15, 2026 (r1rcm.com). Hospital appeals of denied claims; R1-super on NVIDIA Nemotron 3.5 Super;
 pass@4 on 16 synthetic cases, 71.9% at an estimated $1.20 against GPT-6 Sol at 56.3% and $7.08 (5.9x, +28% relative).
-Costs are projected serving costs. On a single attempt GPT-6 Sol led, 35.2% to 31.3%. The footnote on the page
-carries the task, the model, the case count and the cost basis.
+Costs are projected serving costs. On a single attempt GPT-6 Sol led, 35.2% to 31.3%. The page carries no footnote
+(removed by request 2026-10-22); the source line names R1, Oct 2026.
 
 Presented as 80% lower cost with a falling arrow and two bars to scale ($7.08 against $1.20), rather than
 a multiple: multiples read poorly for savings. 80% understates the measured 83%. The 40x figure in NVIDIA's
