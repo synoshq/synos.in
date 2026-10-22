@@ -121,3 +121,9 @@ road reads as a ladder up to your own AI; on phones the steps grow in width down
 Revision: "Your own AI" is a single luminous point (the same light as the hero's "Your model"), grey at rest
 and glowing white-green when the road is cleared. Each wall now collapses continuously as SynOS passes; its name
 lights green while the wall falls and is struck through once it has become a step.
+
+Revision: the road's closing line is "Clear all hurdles with SynOS." and appears only once every wall is down.
+The hero chart is scroll-driven too: a glowing ball travels the line from "curate" through v1 and v2 to "Your
+model" (v3) as the reader scrolls, lighting each agent step and version it passes; reversible. In why now, on
+desktop, the cost row slides up over the gap row and holds, leaving the ~3% and a faded line of its text in view
+(sticky rows with a spacer); on phones the rows stay in normal flow.

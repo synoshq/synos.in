@@ -99,11 +99,16 @@ nav.top{display:flex;align-items:center;justify-content:space-between;padding-bl
 .steps{display:none;list-style:none;margin:0;padding:12px 14px 14px;border-top:1px solid var(--n-line);font:500 12px/1.9 var(--mono);color:var(--n-a-ink);text-align:center}
 .steps li{display:inline-flex;white-space:nowrap}
 .steps li:not(:last-child)::after{content:"›";color:var(--n-dim);margin:0 7px}
-.curve{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.2s cubic-bezier(.6,.05,.3,1) .3s forwards}
-.pt,.am,.stage .tag,.stage .ag{opacity:0;animation:fade .6s ease forwards}
-.a1{animation-delay:.45s}.a2{animation-delay:.65s}.pt1,.t1{animation-delay:.8s}.a3{animation-delay:1.05s}.a4{animation-delay:1.25s}
-.pt2,.t2{animation-delay:1.5s}.a5{animation-delay:1.75s}.a6{animation-delay:1.95s}.pt3,.t3{animation-delay:2.2s}
-.halo{opacity:0;animation:fade 1.2s ease 2.2s forwards,breathe 5s ease-in-out 3.4s infinite}
+/* hero chart is driven by scroll: the ball travels the line from "curate" to "Your model"; what it has passed lights up */
+.curve-bg{stroke:var(--n-line)}
+.curve{transition:none}
+.ball{fill:#fff;filter:drop-shadow(0 0 10px var(--n-glow)) drop-shadow(0 0 22px var(--n-glow))}
+.am,.pt{opacity:.28;transition:opacity .3s ease}
+.stage .tag,.stage .ag{opacity:.38;transition:opacity .3s ease,color .3s ease}
+.am.on,.pt.on,.stage .tag.on,.stage .ag.on{opacity:1}
+.halo{opacity:0;transition:opacity .8s ease}
+.stage.arrived .halo{opacity:1;animation:breathe 5s ease-in-out .8s infinite}
+.stage.arrived .ball{opacity:0;transition:opacity .4s ease}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fade{to{opacity:1}}
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.55}}
@@ -269,7 +274,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 }
 @media (prefers-reduced-motion:reduce){
   .curve{animation:none;stroke-dashoffset:0}
-  .pt,.am,.stage .tag,.stage .ag,.halo{animation:none;opacity:1}
+  .halo{animation:none}
   .stickynav,.tile,.more i,.faq summary::after{transition:none}
   .tile:hover{transform:none}
 }
@@ -327,6 +332,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .gapfig figcaption{flex:none}
 .gapfig figcaption{display:grid;gap:4px;margin-top:14px;font-size:13.5px;color:var(--dim)}
 .wn-vis{min-width:0}
+.wn-spacer{display:none}
 .wn-vis .pc{margin:0;max-width:none;min-width:0}
 .gapfig .gap-n{display:none}
 @media (max-width:560px){.gapfig .gap-w{display:none}.gapfig .gap-n{display:block}}
@@ -357,7 +363,8 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .w.down .nm{color:var(--dim);text-decoration:line-through}
 .road.arrived .rd-end.goal{color:var(--ok)}
 .road.arrived ~ .rd-close{color:var(--ink)}
-.rd-close{transition:color .4s ease}
+.rd-close{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease,color .4s ease}
+.road.arrived ~ .rd-close{opacity:1;transform:none}
 @media (max-width:720px){
   .road{grid-template-columns:1fr;gap:0;text-align:left;max-width:420px;margin-inline:auto}
   .rd-end{padding:0 0 0 34px;white-space:normal}
@@ -395,6 +402,16 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .w .blk{transform:scaleX(var(--s))}
   .rd-end .rd-ai{width:32px;height:32px;margin-left:-37px;position:relative;z-index:1}
 }
+
+/* why now, desktop: the cost row slides up over the gap row and stops, leaving the ~3% and a faded line of its text in view */
+@media (min-width:901px){
+  .wn{gap:0}
+  .wn-spacer{display:block;height:55vh}
+  .wn-row{position:sticky;top:92px;background:var(--paper);padding-block:28px}
+  .wn-row.flip{top:calc(92px + 170px);margin-top:22vh}
+  .wn-row.flip::before{content:"";position:absolute;left:-40px;right:-40px;top:-110px;height:110px;background:linear-gradient(to bottom,color-mix(in srgb,var(--paper) 0%,transparent),var(--paper));pointer-events:none}
+  .wn-row.flip::after{content:"";position:absolute;left:-40px;right:-40px;top:0;bottom:0;background:var(--paper);z-index:-1}
+}
 </style>
 </head>
 <body>
@@ -420,7 +437,8 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 </defs>
 <g style="stroke:var(--n-line)" stroke-width="1"><path d="M0 125H1000M0 250H1000M0 375H1000"/></g>
 <circle class="halo" cx="810" cy="150" r="230" fill="url(#lh-glow)"/>
-<path class="curve" pathLength="1" d="M-10 440 C90 432 160 420 220 400 C330 364 400 330 500 290 C610 246 700 205 810 150 C880 116 940 98 1010 88" fill="none" stroke="url(#lh-line)" stroke-width="4" stroke-linecap="round"/>
+<path class="curve-bg" d="M-10 440 C90 432 160 420 220 400 C330 364 400 330 500 290 C610 246 700 205 810 150 C880 116 940 98 1010 88" fill="none" stroke-width="4" stroke-linecap="round"/>
+<path class="curve" d="M-10 440 C90 432 160 420 220 400 C330 364 400 330 500 290 C610 246 700 205 810 150 C880 116 940 98 1010 88" fill="none" stroke="url(#lh-line)" stroke-width="4" stroke-linecap="round"/>
 <g style="fill:var(--n-a-ink)">
 <circle class="am a1" cx="60" cy="433" r="4.5"/><circle class="am a2" cx="152" cy="418" r="4.5"/>
 <circle class="am a3" cx="319" cy="364" r="4.5"/><circle class="am a4" cx="407" cy="328" r="4.5"/>
@@ -429,16 +447,17 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <circle class="pt pt1" cx="220" cy="400" r="9" style="fill:var(--n-bg);stroke:var(--n-dim)" stroke-width="3"/>
 <circle class="pt pt2" cx="500" cy="290" r="10" style="fill:var(--n-bg);stroke:var(--n-accent)" stroke-width="3"/>
 <circle class="pt pt3" cx="810" cy="150" r="14" style="fill:var(--n-fg)"/>
+<circle class="ball" cx="60" cy="433" r="9"/>
 </svg>
-<span class="ag a1" style="left:6%;top:86.6%">curate</span>
-<span class="ag a2" style="left:15.2%;top:83.6%">context</span>
-<span class="ag a3" style="left:31.9%;top:72.8%">run</span>
-<span class="ag a4" style="left:40.7%;top:65.6%">evaluate</span>
-<span class="ag a5" style="left:60.5%;top:49.2%">optimise</span>
-<span class="ag a6" style="left:70.5%;top:40.2%">train</span>
-<span class="tag t1" style="left:22%;top:calc(80% - 18px)">v1</span>
-<span class="tag t2" style="left:50%;top:calc(58% - 20px)">v2</span>
-<span class="tag t3 now" style="left:81%;top:calc(30% - 26px)"><b>Your model</b>v3</span>
+<span class="ag a1" data-x="60" style="left:6%;top:86.6%">curate</span>
+<span class="ag a2" data-x="152" style="left:15.2%;top:83.6%">context</span>
+<span class="ag a3" data-x="319" style="left:31.9%;top:72.8%">run</span>
+<span class="ag a4" data-x="407" style="left:40.7%;top:65.6%">evaluate</span>
+<span class="ag a5" data-x="605" style="left:60.5%;top:49.2%">optimise</span>
+<span class="ag a6" data-x="705" style="left:70.5%;top:40.2%">train</span>
+<span class="tag t1" data-x="220" style="left:22%;top:calc(80% - 18px)">v1</span>
+<span class="tag t2" data-x="500" style="left:50%;top:calc(58% - 20px)">v2</span>
+<span class="tag t3 now" data-x="810" style="left:81%;top:calc(30% - 26px)"><b>Your model</b>v3</span>
 <p class="cap">Platform agents, working along the line. A better version with every run.</p>
 </div>
 <ol class="steps" aria-hidden="true"><li>curate</li><li>context</li><li>run</li><li>evaluate</li><li>optimise</li><li>train</li></ol>
@@ -467,7 +486,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <div class="pc-facts"><span id="pc-acc">Matched accuracy</span><span id="pc-speed">5x faster</span><span id="pc-src2">Scale AI, Oct 2026</span></div>
 </div>
 </div>
-</div></div></div>
+</div></div><div class="wn-spacer" aria-hidden="true"></div></div>
 </div></section>
 
 <!-- ============ ODDS ============ -->
@@ -482,7 +501,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 </div>
 <div class="rd-end goal"><span class="rd-ai" aria-hidden="true"><i></i></span><span>Your own AI</span></div>
 </div>
-<p class="rd-close" id="rd-close">One platform clears all six, inside your org.</p>
+<p class="rd-close" id="rd-close">Clear all hurdles with SynOS.</p>
 </div></section>
 
 <!-- ============ PLATFORM AGENTS ============ -->
@@ -745,6 +764,38 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',onScroll);
   update();
+})();
+</script>
+<script>
+(function(){
+  var stage=document.querySelector('[data-section="hero"] .stage'); if(!stage) return;
+  var curve=stage.querySelector('.curve'), ball=stage.querySelector('.ball'); if(!curve||!ball) return;
+  var L=curve.getTotalLength();
+  function lenAtX(x){ var lo=0,hi=L; for(var k=0;k<30;k++){ var m=(lo+hi)/2; if(curve.getPointAtLength(m).x<x) lo=m; else hi=m } return lo }
+  var Ls=lenAtX(60), Le=lenAtX(810);
+  curve.style.strokeDasharray=L; 
+  var lit=[].slice.call(stage.querySelectorAll('.am,.pt')).map(function(el){return [el, +el.getAttribute('cx')]})
+    .concat([].slice.call(stage.querySelectorAll('[data-x]')).map(function(el){return [el, +el.getAttribute('data-x')]}));
+  var steps=[].slice.call(stage.querySelectorAll('.steps li'));
+  var agentX=[60,152,319,407,605,705];
+  function set(h){
+    var l=Ls+(Le-Ls)*h, pt=curve.getPointAtLength(l);
+    curve.style.strokeDashoffset=(L-l);
+    ball.setAttribute('cx',pt.x.toFixed(1)); ball.setAttribute('cy',pt.y.toFixed(1));
+    lit.forEach(function(a){ a[0].classList.toggle('on', a[1] <= pt.x+1) });
+    steps.forEach(function(li,i){ li.style.opacity = agentX[i] <= pt.x+1 ? 1 : .4 });
+    stage.classList.toggle('arrived', h>=.995);
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ set(1); return }
+  var t=false;
+  function update(){ t=false;
+    var r=stage.getBoundingClientRect(), vh=window.innerHeight, top=r.top+window.scrollY;
+    var range=Math.max(260, top + r.height*.5 - vh*.5);
+    set(Math.max(0,Math.min(1, window.scrollY/range)));
+  }
+  window.addEventListener('scroll',function(){ if(!t){t=true;requestAnimationFrame(update)} },{passive:true});
+  window.addEventListener('resize',update); update();
 })();
 </script>
 </body>
