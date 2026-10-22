@@ -138,3 +138,8 @@ reads "A small team of domain experts and engineers runs it with support from Sy
 Revision: the hero text link and the bottom-banner button read "Tell me more" (calendar link, data-cta unchanged);
 the banner heading stays "Bring one use case." The sticky top bar carries only "Request early access". In why now
 the pinned heading and rows release as soon as the cost row has fully covered the gap row (no hold).
+
+Revision: the cost slides follow the scroll; no auto-rotation, no slide-in animation. On desktop, once the cost
+row covers the gap row the section holds (a 110vh spacer) while the reader scrolls through the three results in
+thirds, then the whole section scrolls up. On phones the slide follows the panel's position as it passes. Tabs
+stay clickable; the next scroll resumes from the reader's position.

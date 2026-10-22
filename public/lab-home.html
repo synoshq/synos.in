@@ -321,9 +321,6 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .gapfig .ec{fill:var(--dim)}.gapfig .eo{fill:var(--ok)}
 .gapfig .el{font-family:var(--font);font-weight:600}.gapfig .el.cl{fill:var(--dim)}.gapfig .el.op{fill:var(--ok)}
 .gapfig .gl{fill:var(--ink);font-family:var(--font);font-weight:650}
-.pc-body.slide{animation:pcslide .45s ease}
-@keyframes pcslide{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.pc-body.slide{animation:none}}
 .gapfig{display:flex;flex-direction:column;box-sizing:border-box}
 .gapfig svg{flex:1 1 auto;min-height:0}
 .gapfig figcaption{flex:none}
@@ -408,7 +405,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   .stack .wn-head .big{font-size:clamp(2.4rem,4.2vw,3.6rem)}
   .stack .wn-head .sub{margin-top:10px !important;font-size:clamp(1rem,1.3vw,1.15rem)}
   .stack .wn{gap:0;margin-top:0}
-  .stack .wn-spacer{height:0}
+  .stack .wn-spacer{height:110vh}
   .stack .wn-row{position:sticky;top:calc(64px + var(--hh,240px));background:var(--paper);padding-block:20px}
   .stack .wn-row.flip{margin-top:30vh;z-index:2}
   .stack .wn-row.flip::after{content:"";position:absolute;left:-40px;right:-40px;top:0;bottom:0;background:var(--paper);z-index:-1}
@@ -729,7 +726,6 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   var body=pc.querySelector('.pc-body');
   function show(i,anim){
     var c=C[i]; cur=i;
-    if(anim&&body&&!reduce){ body.classList.remove('slide'); void body.offsetWidth; body.classList.add('slide') }
     $('pc-src2').textContent=c.src;
     $('pc-x').textContent=fmt(c.mult);
     $('pc-cap').textContent='For every '+fmt(c.mult)+' a frontier model spends on this task, the post-trained model spends $1.';
@@ -740,16 +736,25 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   }
   lock(); var rz; window.addEventListener('resize',function(){clearTimeout(rz); rz=setTimeout(lock,150)});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(lock);
-  // auto-rotate every 3 s; pauses while the reader points at or focuses the panel, stops for good once they choose a slide
-  var held=false, stopped=reduce, timer=null;
-  function tick(){ if(!held&&!stopped&&!document.hidden) show((cur+1)%C.length,true) }
-  if(!stopped) timer=setInterval(tick,3000);
-  function stop(){ stopped=true; if(timer){clearInterval(timer);timer=null} }
-  pc.addEventListener('mouseenter',function(){held=true});
-  pc.addEventListener('mouseleave',function(){held=false});
-  pc.addEventListener('focusin',function(){held=true});
-  pc.addEventListener('focusout',function(){held=false});
-  stops.forEach(function(b){b.addEventListener('click',function(){stop();show(+b.getAttribute('data-i'),true)})});
+  // slides follow the scroll: while the cost row is pinned over the gap row, the reader scrolls through the
+  // three results (the spacer after it supplies that scroll), then the section moves on. A tap on a tab shows that
+  // result straight away; the next scroll picks up from wherever the reader is.
+  var wrap=document.querySelector('[data-section="why-now"] .wrap'), spacer=document.querySelector('.wn-spacer');
+  var shown=cur, rq=false;
+  function fromScroll(){ rq=false; var q;
+    var vh=window.innerHeight;
+    if(wrap&&wrap.classList.contains('stack')&&spacer&&spacer.offsetHeight>0){
+      var S=spacer.getBoundingClientRect(), R=pc.closest('.wn-row').getBoundingClientRect();
+      q=(R.bottom - S.top)/S.height;            // 0 when the row has just pinned, 1 when the hold is used up
+    } else {
+      var P=pc.getBoundingClientRect(); q=(vh*.8 - P.top)/(P.height*.9);
+    }
+    q=Math.max(0,Math.min(.999,q)); var i=Math.floor(q*C.length);
+    if(i!==shown){ shown=i; show(i) }
+  }
+  window.addEventListener('scroll',function(){ if(!rq){rq=true;requestAnimationFrame(fromScroll)} },{passive:true});
+  stops.forEach(function(b){b.addEventListener('click',function(){ show(+b.getAttribute('data-i')) })});
+  fromScroll();
 })();
 </script>
 <script>
