@@ -93,3 +93,7 @@ Revision (2026-10-22, later): no credits under the two anchor numbers. The cost 
 with domain-trained open weight models." The slider has no title block, keeps one fixed height (the tallest slide, re-measured on resize), auto-rotates every 3 s (pauses on hover or focus, stops once a reader picks a
 slide, off under reduced motion), and its tabs show only the task and the multiple. The source stays in the
 panel's bottom line.
+
+Revision: the slider bar is removed; the three tabs rotate every 3 s and show which result is on screen. Every
+block in the panel keeps its tallest height, so nothing moves between slides. The two why-now rows zig-zag on
+desktop (gap: number left, chart right; cost: panel left, $$$ right); on phones each number sits above its panel.
