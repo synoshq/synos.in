@@ -469,34 +469,18 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .end .ctas{justify-content:center}
 @media (max-width:900px){.pc-list.two{grid-template-columns:1fr}}
 
-/* the loop: a soft spotlight rests behind one step at a time, then moves to the next (left to right on desktop,
-   top to bottom when stacked); the step it rests on brightens. One cycle: 12s, 3s per step. */
+/* the loop: a soft spotlight sits behind one step at a time and moves to the next as the reader scrolls
+   (JS sets its centre in --sx/--sy from the card positions, so it follows any layout); the step it rests on
+   brightens. Reversible on scroll up. */
 .org:has(.jobs.loop){isolation:isolate}
 .spotwrap{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:0;pointer-events:none}
-.spot{position:absolute;top:50%;left:12.5%;width:min(520px,70vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 45%,transparent),color-mix(in srgb,var(--accent) 14%,transparent) 55%,transparent);
-  animation:spot-x 12s ease-in-out infinite}
+.spot{position:absolute;left:var(--sx,12.5%);top:var(--sy,50%);width:min(520px,70vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 45%,transparent),color-mix(in srgb,var(--accent) 14%,transparent) 55%,transparent)}
 .jobs.loop{position:relative;z-index:1}
 .jobs.loop li{background:color-mix(in srgb,var(--mist) 60%,transparent);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
-  outline:1.5px solid transparent;outline-offset:-1.5px;animation:step-on 12s ease-in-out infinite}
-.jobs.loop li:nth-child(2){animation-delay:-9s}
-.jobs.loop li:nth-child(3){animation-delay:-6s}
-.jobs.loop li:nth-child(4){animation-delay:-3s}
-@keyframes step-on{
-  0%,20%{background:color-mix(in srgb,var(--paper) 82%,transparent);outline-color:color-mix(in srgb,var(--accent) 40%,transparent)}
-  26%,100%{background:color-mix(in srgb,var(--mist) 60%,transparent);outline-color:transparent}}
-@keyframes spot-x{
-  0%{left:12.5%;opacity:0} 4%{opacity:1} 20%{left:12.5%}
-  25%,45%{left:37.5%} 50%,70%{left:62.5%} 75%,92%{left:87.5%;opacity:1} 97%{left:87.5%;opacity:0} 100%{left:12.5%;opacity:0}}
-@keyframes spot-y{
-  0%{top:12.5%;opacity:0} 4%{opacity:1} 20%{top:12.5%}
-  25%,45%{top:37.5%} 50%,70%{top:62.5%} 75%,92%{top:87.5%;opacity:1} 97%{top:87.5%;opacity:0} 100%{top:12.5%;opacity:0}}
-@keyframes spot-g{
-  0%{left:25%;top:25%;opacity:0} 4%{opacity:1} 20%{left:25%;top:25%}
-  25%,45%{left:75%;top:25%} 50%,70%{left:25%;top:75%} 75%,92%{left:75%;top:75%;opacity:1} 97%{left:75%;top:75%;opacity:0} 100%{left:25%;top:25%;opacity:0}}
-@media (max-width:1000px){.spot{left:25%;top:25%;animation-name:spot-g}}
-@media (max-width:560px){.spot{left:50%;top:12.5%;animation-name:spot-y}}
-@media (prefers-reduced-motion: reduce){.spot{animation:none;left:50%;top:50%}.jobs.loop li{animation:none}}
+  outline:1.5px solid transparent;outline-offset:-1.5px;transition:background-color .35s ease,outline-color .35s ease}
+.jobs.loop li.on{background:color-mix(in srgb,var(--paper) 82%,transparent);outline-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+@media (prefers-reduced-motion: reduce){.jobs.loop li{transition:none}}
 /* sticky bar: its button fades out while the closing call to action is on screen */
 .stickynav .navlinks{transition:opacity .3s ease}
 .stickynav.cta-off .navlinks{opacity:0;pointer-events:none}
@@ -818,6 +802,29 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   new IntersectionObserver(function(es){ var on=es[0].isIntersecting; bar.classList.toggle('cta-off',on);
     if(btn){ if(on){btn.setAttribute('tabindex','-1');btn.setAttribute('aria-hidden','true')} else {btn.removeAttribute('tabindex');btn.removeAttribute('aria-hidden')} } },
     {threshold:0, rootMargin:'0px 0px -25% 0px'}).observe(end);
+})();
+</script>
+<script>
+(function(){
+  var org=document.querySelector('.jobs.loop'); if(!org) return; var box=org.closest('.org'), spot=box.querySelector('.spot');
+  var cards=[].slice.call(org.children); if(!spot||cards.length<2) return;
+  var C=[], on=-1, rq=false;
+  function measure(){ var B=box.getBoundingClientRect(); C=cards.map(function(c){var R=c.getBoundingClientRect();
+    return [R.left+R.width/2-B.left, R.top+R.height/2-B.top]}); update() }
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+  function update(){ rq=false; var vh=window.innerHeight, B=box.getBoundingClientRect();
+    var range=Math.max(B.height, vh*.7), p=(vh*.8-B.top)/range; p=Math.max(0,Math.min(.9999,p));
+    var n=cards.length, f=p*n, i=Math.floor(f), t=f-i, pos=i;
+    if(i<n-1 && t>.65) pos=i+ease((t-.65)/.35);
+    var k=Math.floor(pos), r=pos-k, a=C[k], b=C[Math.min(n-1,k+1)];
+    spot.style.setProperty('--sx',(a[0]+(b[0]-a[0])*r).toFixed(1)+'px');
+    spot.style.setProperty('--sy',(a[1]+(b[1]-a[1])*r).toFixed(1)+'px');
+    var cur=Math.round(pos); if(cur!==on){ if(on>=0) cards[on].classList.remove('on'); cards[cur].classList.add('on'); on=cur }
+  }
+  window.addEventListener('scroll',function(){ if(!rq){rq=true;requestAnimationFrame(update)} },{passive:true});
+  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(measure,100)});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(measure);
+  measure();
 })();
 </script>
 </body>
