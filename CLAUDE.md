@@ -159,7 +159,7 @@ Section order, each carrying a `data-section` name for GA:
 4. `the-loop` — four steps: works on live data, an expert corrects it, the correction is kept, the
    agent improves. The other platform-agent jobs are one line beneath.
 5. `components` — "What you get.": The Brain, The Agent Runtime, The Training Plane.
-6. `why-now` — heading "Are domain-trained open-weight models really better?"; the ~3% Arena gap in the opening line (Stanford HAI, AI Index 2026), then two
+6. `why-now` — heading "Are domain-trained open-weight models any better?"; the ~3% Arena gap in the opening line (Stanford HAI, AI Index 2026), then two
    result cards: vendor credit review, 40x (Scale AI, Oct 2026) and hospital claim appeals, 5.9x and
    28% more accurate (R1, Oct 2026).
 7. `faq` — six questions a buyer asks before a call.
