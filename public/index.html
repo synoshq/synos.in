@@ -9,8 +9,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXVRX5VMJR"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXVRX5VMJR');</script>
+<!-- Google Analytics (G-MXVRX5VMJR) loads only after the visitor clicks Allow in the cookie notice; see the end of the page. -->
 <script defer src="/js/synos.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <title>SynOS | Self-improvement for your agents</title>
@@ -487,6 +486,24 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .stickynav .navlinks{transition:opacity .3s ease}
 .stickynav.cta-off .navlinks{opacity:0;pointer-events:none}
 @media (prefers-reduced-motion: reduce){.stickynav .navlinks{transition:none}}
+
+/* cookie notice: the Agent Maturity Index notice (packages/ami/src/components/CookieNotice.astro), same copy,
+   behaviour and storage key, so a choice made on either page holds on both */
+.cookie{position:fixed;z-index:60;left:max(16px,env(safe-area-inset-left));bottom:max(16px,env(safe-area-inset-bottom));
+  width:min(400px,calc(100vw - 32px));padding:14px 14px 14px 18px;border-radius:16px;display:flex;align-items:center;gap:14px;
+  background:var(--paper);color:var(--ink);border:1px solid var(--line);box-shadow:0 14px 36px -14px rgba(15,27,45,.3);font-size:14px;line-height:1.45}
+.cookie[hidden]{display:none}
+.cookie p{margin:0;flex:1}
+.cookie p a{color:var(--a-ink)}
+.cookie-actions{display:flex;gap:6px;flex:none}
+.cookie-btn{min-height:44px;padding:0 14px;border-radius:999px;cursor:pointer;font:600 14px/1 var(--font);color:var(--ink);background:transparent;border:1.5px solid var(--line)}
+.cookie-btn:hover{border-color:var(--ink)}
+.cookie-yes{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+@media (max-width:560px){.cookie{left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));width:auto;padding:10px 10px 10px 14px;gap:10px;font-size:13px}.cookie p a{white-space:nowrap}}
+.linklike{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:none}
+.linklike:hover{color:var(--ink)}
+.foot .linklike{color:var(--dim);min-height:44px;display:inline-flex;align-items:center}
+.foot .linklike:hover{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -704,7 +721,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <a href="https://www.linkedin.com/in/yadnesh-mundhada-219a871b6/"><span class="avatar">YM</span>Yadnesh Mundhada</a>
 <a href="https://www.linkedin.com/in/ajish-balakrishnan-ba72141a/"><span class="avatar">AB</span>Ajish Balakrishnan</a>
 </div>
-<div class="links"><a href="/agent-maturity-index">Agent Maturity Index</a><a href="/trust">Trust</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/subprocessors">Subprocessors</a></div>
+<div class="links"><a href="/agent-maturity-index">Agent Maturity Index</a><a href="/trust">Trust</a><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/subprocessors">Subprocessors</a><button type="button" class="linklike" data-cookie-settings>Cookie settings</button></div>
 </div></footer>
 </div>
 
@@ -836,6 +853,56 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   window.addEventListener('resize',function(){ if(!rq){rq=true;requestAnimationFrame(update)} });
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(update);
   update();
+})();
+</script>
+<section id="cookie" class="cookie" aria-label="Cookie preferences" hidden data-ga-id="G-MXVRX5VMJR">
+  <p>Optional analytics help us see what’s useful. Nothing loads unless you allow it. <a href="/privacy#cookies">Privacy</a></p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn" data-choice="declined">Decline</button>
+    <button type="button" class="cookie-btn cookie-yes" data-choice="accepted">Allow</button>
+  </div>
+</section>
+<script>
+(function () {
+  var KEY = 'ami-consent';   // shared with the Agent Maturity Index
+  var box = document.getElementById('cookie'); if (!box) return;
+  var opener = null;
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  // Google Analytics 4, only after consent. gtag() is defined before the script arrives so events
+  // recorded in the meantime queue in dataLayer and are sent once it loads.
+  function loadGa() {
+    var id = box.getAttribute('data-ga-id');
+    if (!id || document.getElementById('site-ga')) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', id);
+    var s = document.createElement('script');
+    s.id = 'site-ga'; s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+    document.head.appendChild(s);
+  }
+  function show(focus) { box.hidden = false; if (focus) box.querySelector('button').focus(); }
+  function hide() {
+    var hadFocus = box.contains(document.activeElement);
+    box.hidden = true;
+    if (opener) { opener.focus(); opener = null; } else if (hadFocus) { document.body.focus(); }
+  }
+  window.amiCookieSettings = function () { opener = document.activeElement; show(true); };
+  document.addEventListener('click', function (e) { if (e.target.closest('[data-cookie-settings]')) window.amiCookieSettings(); });
+  var c = get();
+  if (c === 'accepted') loadGa();
+  else if (!c) {
+    // Ask on the visitor's first interaction, so the first view stays clean.
+    var ev = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    var once = function () { ev.forEach(function (n) { window.removeEventListener(n, once, true); }); show(false); };
+    ev.forEach(function (n) { window.addEventListener(n, once, { capture: true, passive: true }); });
+  }
+  box.addEventListener('keydown', function (e) { if (e.key === 'Escape' && opener) hide(); });
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-choice]'); if (!b) return;
+    var v = b.getAttribute('data-choice'); set(v); hide(); if (v === 'accepted') loadGa();
+  });
 })();
 </script>
 </body>

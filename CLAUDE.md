@@ -21,7 +21,7 @@
 - **Homepage exception (2026-10-11, page rebuilt again 2026-10-23).** `public/index.html` was rebuilt in the Agent Maturity Index
   style (Option B "Loop", chosen in the 2026-10-11 visual review): Inter, the AMI palette and
   light/dark tokens, pill buttons, cards, a dark deployment band and eyebrows. It carries its own
-  stylesheet and does not load `synos.css` or the nav/footer/head partials; its head keeps GA,
+  stylesheet and does not load `synos.css` or the nav/footer/head partials; its head keeps
   `synos.js`, the Open Graph tags and the `data-cta` / `data-section` names. Header buttons appear
   only in a sticky bar once the hero CTAs scroll out of view. `tools/render-gate.mjs` allows Inter on
   this page alone (`PAGE_FAMILIES`). The design rules above still govern every other page.
@@ -225,7 +225,10 @@ replaces it and reports its own coverage.
 
 ## Analytics
 
-GA4 measurement ID: `G-MXVRX5VMJR`, on every page.
+GA4 measurement ID: `G-MXVRX5VMJR`, on every page. On the homepage (since 2026-10-23) it loads only after the
+visitor clicks Allow in a cookie notice copied from the Agent Maturity Index, sharing its `ami-consent`
+localStorage key so one choice holds on both; "Cookie settings" in the homepage footer reopens it. Every
+other page still loads GA on arrival, and `/privacy` §11 says which pages ask.
 
 The Agent Maturity Index loads the same ID (`SITE.gaId` in `packages/ami/src/config.ts`), but only
 after the visitor clicks Allow in its cookie notice, as that notice and its privacy page promise. Its
