@@ -18,7 +18,7 @@
 <script>
   import { SITE } from '../config';
   import { api, previewOutbox } from '../lib/api';
-  import { DIMS, maturity, decodeLink, TEAM_SIZE_FOR_ALIGNMENT } from '../lib/ami-core.js';
+  import { DIMS, maturity, decodeLink, TEAM_SIZE_FOR_ALIGNMENT, FREE_EMAIL, INVITE_EMAIL, INVITE_MAX_PER_SEND, INVITE_MESSAGE_MAX, LINKISH, NAME_UNSAFE, emailDomain, sameOrg } from '../lib/ami-core.js';
 
   type Align = { score: number; teamAvg: number; teamLevel: string; biggestGap: { name: string; spread: number } | null; dims: { key: string; name: string; spread: number; avg: number }[] };
   type ScoreRes = { team: string; member: string; business: string; you: { score: number; level: string }; count: number; needed: number; alignment?: Align };
@@ -133,29 +133,36 @@
     const head = isSecond
       ? `<h3>You’re ${res.count} of ${TEAM_SIZE_FOR_ALIGNMENT}.</h3><p>${biz} has ${res.count} scores in. Invite <strong>${res.needed} more colleague${res.needed > 1 ? 's' : ''}</strong> to unlock your team alignment score.</p>`
       : `<h3>Get your team alignment score</h3><p>Invite two colleagues to score ${biz} on the same seven dimensions. When three of you have scored, everyone sees where your leadership agrees, and where it doesn’t.</p>`;
-    team.innerHTML = `<div class="tm-head">${head}</div>${inviteForm(Math.max(1, res.needed))}`;
+    team.innerHTML = `<div class="tm-head">${head}</div>${inviteForm()}`;
     bindInviteForm();
   }
 
-  function inviteForm(rows: number) {
+  function inviteForm() {
     const known = !!session.business;
-    const row = (n: number) => `
-      <div class="mate">
-        <div class="f"><label for="m${n}-name">Colleague’s name</label><input id="m${n}-name" class="m-name" type="text" autocomplete="off"></div>
-        <div class="f"><label for="m${n}-email">Their work email</label><input id="m${n}-email" class="m-email" type="email" inputmode="email" autocomplete="off"></div>
-      </div>`;
     return `
       <form class="tm-form" novalidate>
+        <div class="f"><label for="tm-biz">Company name</label><input id="tm-biz" name="business" type="text" maxlength="80" autocomplete="organization" value="${esc(session.business || '')}" ${known ? 'readonly' : ''}></div>
         <div class="tm-me">
-          <div class="f"><label for="tm-name">Your name</label><input id="tm-name" name="name" type="text" autocomplete="name" value="${esc(session.name || '')}"></div>
-          <div class="f"><label for="tm-email">Your work email</label><input id="tm-email" name="email" type="email" inputmode="email" autocomplete="email" value="${esc(session.email || '')}"></div>
-          <div class="f tm-biz"><label for="tm-biz">Business name</label><input id="tm-biz" name="business" type="text" autocomplete="organization" value="${esc(session.business || '')}" ${known ? 'readonly' : ''}></div>
+          <div class="f"><label for="tm-name">Your name</label><input id="tm-name" name="name" type="text" maxlength="80" autocomplete="name" value="${esc(session.name || '')}"></div>
+          <div class="f"><label for="tm-email">Your email</label><input id="tm-email" name="email" type="email" maxlength="200" inputmode="email" autocomplete="email" value="${esc(session.email || '')}"></div>
         </div>
-        <div class="mates">${Array.from({ length: rows }, (_, i) => row(i + 1)).join('')}</div>
-        <button type="button" class="linkbtn add-mate">Add another colleague</button>
+        <div class="f">
+          <label for="tm-cc">Colleagues’ emails</label>
+          <div class="chips">
+            <ul class="chip-list" aria-label="Colleagues added"></ul>
+            <input id="tm-cc" type="text" inputmode="email" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="200" placeholder="name@company.com" aria-describedby="tm-cc-hint">
+          </div>
+          <p class="f-hint" id="tm-cc-hint">Add up to ${INVITE_MAX_PER_SEND}, at your company’s email domain. Press comma, space or Enter after each one.</p>
+        </div>
+        <div class="f">
+          <label for="tm-msg">Brief message <span class="f-opt">(optional)</span></label>
+          <textarea id="tm-msg" name="message" rows="3" maxlength="${INVITE_MESSAGE_MAX}" aria-describedby="tm-msg-hint"></textarea>
+          <p class="f-hint" id="tm-msg-hint"><span class="msg-n">0</span>/${INVITE_MESSAGE_MAX} characters, about 50 words. Plain text, no links.</p>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="tm-website">Leave this empty</label><input id="tm-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="tm-submit">
           <button type="submit" class="btn btn-primary">Send invitations</button>
-          <p class="tm-note">We email each colleague a link to score ${esc(session.business || 'your business')}. We email you when your team alignment score is ready.</p>
+          <p class="tm-note">We email each colleague a link to score your company. We email you when your team alignment score is ready.</p>
         </div>
         <p class="tm-status" role="status"></p>
       </form>`;
@@ -163,59 +170,99 @@
 
   function bindInviteForm() {
     const form = team.querySelector('.tm-form') as HTMLFormElement;
-    const mates = form.querySelector('.mates') as HTMLElement;
     const status = form.querySelector('.tm-status') as HTMLElement;
-    form.querySelector('.add-mate')!.addEventListener('click', (e) => {
-      const n = mates.children.length + 1;
-      if (n > 5) return;
-      mates.insertAdjacentHTML('beforeend', `<div class="mate"><div class="f"><label for="m${n}-name">Colleague’s name</label><input id="m${n}-name" class="m-name" type="text" autocomplete="off"></div><div class="f"><label for="m${n}-email">Their work email</label><input id="m${n}-email" class="m-email" type="email" inputmode="email" autocomplete="off"></div></div>`);
-      (mates.lastElementChild!.querySelector('input') as HTMLInputElement).focus();
-      if (n === 5) (e.currentTarget as HTMLElement).hidden = true;
+    const name = form.querySelector('#tm-name') as HTMLInputElement;
+    const email = form.querySelector('#tm-email') as HTMLInputElement;
+    const biz = form.querySelector('#tm-biz') as HTMLInputElement;
+    const box = form.querySelector('.chips') as HTMLElement;
+    const listEl = form.querySelector('.chip-list') as HTMLElement;
+    const cc = form.querySelector('#tm-cc') as HTMLInputElement;
+    const msg = form.querySelector('#tm-msg') as HTMLTextAreaElement;
+    const msgN = form.querySelector('.msg-n') as HTMLElement;
+    const chips: string[] = [];
+
+    const say = (text: string, el?: HTMLElement) => {
+      status.textContent = text; status.classList.toggle('is-err', !!text);
+      if (el) { el.setAttribute('aria-invalid', 'true'); el.focus(); }
+    };
+    const draw = () => {
+      listEl.innerHTML = chips.map((c, i) => `<li class="chip"><span>${esc(c)}</span><button type="button" data-i="${i}" aria-label="Remove ${esc(c)}">×</button></li>`).join('');
+      cc.placeholder = chips.length ? '' : 'name@company.com';
+    };
+    // Turn typed text into chips. Returns false, and leaves the text in the box, if a piece is not an email.
+    const commit = (text: string) => {
+      const parts = text.split(/[\s,;]+/).map((p) => p.trim().toLowerCase()).filter(Boolean);
+      for (let k = 0; k < parts.length; k++) {
+        const p = parts[k];
+        if (chips.includes(p)) continue;
+        if (!INVITE_EMAIL.test(p)) { cc.value = parts.slice(k).join(' '); say(`${p} is not a valid email.`, cc); return false; }
+        if (p === email.value.trim().toLowerCase()) { cc.value = parts.slice(k + 1).join(' '); say('Invite colleagues, not yourself.', cc); draw(); return false; }
+        if (chips.length >= INVITE_MAX_PER_SEND) { cc.value = ''; say(`Invite up to ${INVITE_MAX_PER_SEND} colleagues at a time.`, cc); draw(); return false; }
+        chips.push(p);
+      }
+      cc.value = '';
+      cc.removeAttribute('aria-invalid');
+      if (status.classList.contains('is-err')) say('');
+      draw();
+      return true;
+    };
+
+    box.addEventListener('click', (e) => { if (e.target === box || e.target === listEl) cc.focus(); });
+    listEl.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('button[data-i]') as HTMLButtonElement | null;
+      if (!b) return;
+      chips.splice(Number(b.dataset.i), 1); draw(); cc.focus();
     });
+    cc.addEventListener('keydown', (e) => {
+      if ((e.key === ',' || e.key === ' ' || e.key === ';' || e.key === 'Enter') && cc.value.trim()) { e.preventDefault(); commit(cc.value); }
+      else if (e.key === 'Enter') e.preventDefault();
+      else if (e.key === 'Backspace' && !cc.value && chips.length) { chips.pop(); draw(); }
+    });
+    // Phones often report the comma key as "Unidentified", and paste arrives here too.
+    cc.addEventListener('input', () => { if (/[\s,;]/.test(cc.value)) { const ends = /[\s,;]$/.test(cc.value); const done = ends ? cc.value : cc.value.replace(/[^\s,;]*$/, ''); const rest = ends ? '' : cc.value.slice(done.length); if (commit(done)) cc.value = rest; } });
+    cc.addEventListener('blur', () => { if (cc.value.trim()) commit(cc.value); });
+    msg.addEventListener('input', () => { msgN.textContent = String(msg.value.length); });
+    // Editing a flagged field clears its error.
+    form.addEventListener('input', (e) => {
+      const t = e.target as HTMLElement;
+      if (t.getAttribute('aria-invalid')) { t.removeAttribute('aria-invalid'); say(''); }
+    });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
-      status.textContent = ''; status.classList.remove('is-err');
-      const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const name = form.querySelector('#tm-name') as HTMLInputElement;
-      const email = form.querySelector('#tm-email') as HTMLInputElement;
-      const biz = form.querySelector('#tm-biz') as HTMLInputElement;
-      const bad: [HTMLInputElement, string][] = [];
-      if (!name.value.trim()) bad.push([name, 'Enter your name.']);
-      if (!EMAIL.test(email.value.trim())) bad.push([email, 'Enter your work email.']);
-      if (!biz.value.trim()) bad.push([biz, 'Enter your business name.']);
-      const colleagues: { name: string; email: string }[] = [];
-      mates.querySelectorAll('.mate').forEach((m) => {
-        const n = m.querySelector('.m-name') as HTMLInputElement;
-        const em = m.querySelector('.m-email') as HTMLInputElement;
-        if (!n.value.trim() && !em.value.trim()) return;
-        if (!n.value.trim()) bad.push([n, 'Add your colleague’s name.']);
-        else if (!EMAIL.test(em.value.trim())) bad.push([em, `Enter a work email for ${n.value.trim()}.`]);
-        else colleagues.push({ name: n.value.trim(), email: em.value.trim() });
-      });
-      if (!bad.length && !colleagues.length) bad.push([mates.querySelector('.m-name') as HTMLInputElement, 'Add at least one colleague.']);
-      if (bad.length) {
-        bad.forEach(([el]) => el.setAttribute('aria-invalid', 'true'));
-        status.textContent = bad[0][1]; status.classList.add('is-err');
-        bad[0][0].focus();
-        return;
-      }
+      say('');
+      if (cc.value.trim() && !commit(cc.value)) return;
+      const me = email.value.trim().toLowerCase();
+      const domain = emailDomain(me);
+      const m = msg.value.trim();
+      if (!biz.value.trim()) return say('Enter your company name.', biz);
+      if (NAME_UNSAFE.test(biz.value)) return say('Enter your company name without links or symbols.', biz);
+      if (!name.value.trim()) return say('Enter your name.', name);
+      if (NAME_UNSAFE.test(name.value)) return say('Enter your name without links or symbols.', name);
+      if (!INVITE_EMAIL.test(me)) return say('Enter your work email.', email);
+      if (FREE_EMAIL.test(me)) return say('Use your work email. Invitations go to colleagues at the same company.', email);
+      if (!chips.length) return say('Add at least one colleague’s email.', cc);
+      const other = chips.find((c) => !sameOrg(emailDomain(c), domain));
+      if (other) return say(`Invite colleagues with an @${domain} email. ${other} is at another domain.`, cc);
+      if (chips.includes(me)) return say('Invite colleagues, not yourself.', cc);
+      if (LINKISH.test(m)) return say('Remove links and email addresses from the message.', msg);
+      if ((form.querySelector('#tm-website') as HTMLInputElement).value) return;
+
       const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
       btn.disabled = true; btn.textContent = 'Sending…';
       try {
         const res = await api<{ sent: number; business: string; links: { name: string; hash: string }[] }>('invite', {
-          team: session.team, member: session.member, name: name.value.trim(), email: email.value.trim(), business: biz.value.trim(), colleagues,
+          team: session.team, member: session.member, name: name.value.trim(), email: me, business: biz.value.trim(), colleagues: chips.slice(), message: m,
         });
-        session.name = name.value.trim(); session.email = email.value.trim(); session.business = res.business;
+        session.name = name.value.trim(); session.email = me; session.business = res.business;
         track('invite_sent', { count: res.sent });
-        const names = colleagues.map((c) => esc(c.name.split(/\s+/)[0]));
-        const list = names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0];
         team.innerHTML = `
           <div class="tm-done">
             <svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20.5l5.5 5.5L28.5 15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Invitations sent to ${list}.</h3>
+            <h3>Invitation${res.sent > 1 ? 's' : ''} sent to ${res.sent} colleague${res.sent > 1 ? 's' : ''}.</h3>
             <p>We will email you when your team alignment score for ${esc(res.business)} is ready.</p>
-            ${SITE.preview ? `<div class="pv"><p><strong>Preview copy:</strong> no emails were sent. Open an invitation to see what your colleague sees.</p>${res.links.map((l) => `<button type="button" class="btn btn-ghost pv-open" data-hash="${esc(l.hash)}">Open ${esc(l.name.split(/\s+/)[0])}’s invitation</button>`).join('')}</div>` : ''}
+            ${SITE.preview ? `<div class="pv"><p><strong>Preview copy:</strong> no emails were sent. Open an invitation to see what your colleague sees.</p>${res.links.map((l) => `<button type="button" class="btn btn-ghost pv-open" data-hash="${esc(l.hash)}">Open ${esc(l.name)}’s invitation</button>`).join('')}</div>` : ''}
           </div>`;
         team.querySelectorAll<HTMLButtonElement>('.pv-open').forEach((b) => b.addEventListener('click', () => {
           dlg.close();
@@ -223,7 +270,7 @@
         }));
         void previewOutbox;
       } catch (x) {
-        status.textContent = (x as Error).message; status.classList.add('is-err');
+        say((x as Error).message);
         btn.disabled = false; btn.textContent = 'Send invitations';
       }
     });
@@ -272,8 +319,21 @@
   .sd-team :global(.tm-form) { margin-top: 22px; display: grid; gap: 16px; }
   .sd-team :global(.tm-me) { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
   .sd-team :global(.tm-biz) { grid-column: 1 / -1; }
-  .sd-team :global(.mates) { display: grid; gap: 10px; }
-  .sd-team :global(.mate) { display: grid; grid-template-columns: 1fr 1.25fr; gap: 12px 14px; padding: 14px; border-radius: 14px; background: var(--mist); }
+  .sd-team :global(.chips) { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 46px; padding: 6px 8px; border-radius: 10px; border: 1.5px solid var(--field); background: var(--paper); cursor: text; }
+  .sd-team :global(.chips:focus-within) { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent); }
+  .sd-team :global(.chip-list) { display: contents; list-style: none; margin: 0; padding: 0; }
+  .sd-team :global(.chip) { display: inline-flex; align-items: center; gap: 2px; max-width: 100%; padding: 0 2px 0 10px; height: 30px; border-radius: 999px; background: var(--mist); border: 1px solid var(--line); font-size: 14px; color: var(--ink); }
+  .sd-team :global(.chip span) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sd-team :global(.chip button) { width: 26px; height: 26px; border: 0; border-radius: 50%; background: none; color: var(--slate); font: 400 18px/1 var(--font); cursor: pointer; }
+  .sd-team :global(.chip button:hover) { background: var(--line); color: var(--ink); }
+  .sd-team :global(.chips input) { flex: 1 1 140px; min-width: 120px; min-height: 30px; border: 0 !important; box-shadow: none !important; padding: 0 4px !important; background: transparent !important; }
+  .sd-team :global(.chips input[aria-invalid="true"]) { color: var(--err); }
+  .sd-team :global(textarea) { min-height: 84px; padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--field); background: var(--paper); color: var(--ink); font: 400 16px/1.45 var(--font); width: 100%; resize: vertical; }
+  .sd-team :global(textarea:focus) { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent); }
+  .sd-team :global(textarea[aria-invalid="true"]) { border-color: var(--err); }
+  .sd-team :global(.f-hint) { margin: 0; font-size: 13px; color: var(--slate); }
+  .sd-team :global(.f-opt) { font-weight: 400; color: var(--slate); }
+  .sd-team :global(.hp) { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .sd-team :global(.f) { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .sd-team :global(.f label) { font-size: 13px; font-weight: 600; }
   .sd-team :global(.f input) { min-height: 46px; padding: 0 12px; border-radius: 10px; border: 1.5px solid var(--field); background: var(--paper); color: var(--ink); font: 400 16px/1.2 var(--font); width: 100%; }
@@ -302,7 +362,7 @@
 
   @media (max-width: 560px) {
     .sd { width: 100vw; max-width: 100vw; max-height: 94vh; margin: auto 0 0; border-radius: 22px 22px 0 0; }
-    .sd-team :global(.tm-me), .sd-team :global(.mate), .sd-team :global(.al-stats) { grid-template-columns: 1fr; }
+    .sd-team :global(.tm-me), .sd-team :global(.al-stats) { grid-template-columns: 1fr; }
     .sd-bars :global(li) { grid-template-columns: minmax(0, 9.5em) 1fr 1.2em; font-size: 13px; }
     .sd-team :global(.tm-submit .btn) { width: 100%; }
   }

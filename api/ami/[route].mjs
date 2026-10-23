@@ -19,6 +19,7 @@
 //   <prefix>:submissions      sorted set of submission ids by time
 //   <prefix>:mail/<id>        an email that could not be sent yet
 //   <prefix>:outbox           set of queued mail ids, retried by /api/ami/flush
+//   <prefix>:invcap:...       invitation email counters (per IP, per sender domain, per day)
 import { makeCore, Fail } from '../../packages/ami/src/lib/ami-core.js';
 
 const env = (k, d = '') => process.env[k] || d;
@@ -61,6 +62,27 @@ const newId = () => crypto.randomUUID();
 // which environment queued it, and only that environment sends it.
 const deployEnv = () => env('VERCEL_ENV', 'development');
 
+// Invitation email caps, on top of the per-request and per-team limits in ami-core.
+// A colleague invitation is the one email a visitor can make the site send to a
+// third party, so it is capped per IP, per sender domain and site-wide per day.
+const INVITE_CAPS = { ip: 15, domain: 30, day: 300 };
+function inviteGuard(prefix, ip) {
+  return async (n, sender) => {
+    const day = new Date().toISOString().slice(0, 10);
+    const domain = String(sender).split('@')[1] || 'unknown';
+    const keys = [`${prefix}:invcap:ip:${ip}:${day}`, `${prefix}:invcap:dom:${domain}:${day}`, `${prefix}:invcap:all:${day}`];
+    const [ipN, , domN, , allN] = await redis(
+      ['INCRBY', keys[0], n], ['EXPIRE', keys[0], 90000],
+      ['INCRBY', keys[1], n], ['EXPIRE', keys[1], 90000],
+      ['INCRBY', keys[2], n], ['EXPIRE', keys[2], 90000],
+    );
+    if (ipN > INVITE_CAPS.ip || domN > INVITE_CAPS.domain || allN > INVITE_CAPS.day) {
+      console.warn('[invite cap]', { ip, domain, ipN, domN, allN });
+      throw new Fail(429, 'Invitation limit reached for today. Try again tomorrow, or email index@getsynos.ai.');
+    }
+  };
+}
+
 /** Send now, or queue in Redis for /api/ami/flush. Resolves true if sent. */
 async function deliver(prefix, m, submission) {
   try { await sendMail(m); return true; } catch (e) {
@@ -85,6 +107,14 @@ export async function POST(req) {
   const prefix = SITES[site];
   if (!ROUTES.includes(route) || !prefix) return json(404, { error: 'Not found' });
 
+  // Only same-site JSON posts: a browser on another site cannot drive these forms.
+  const origin = req.headers.get('origin');
+  if (origin) {
+    let host = '';
+    try { host = new URL(origin).host; } catch {}
+    if (host !== url.host && !/(^|\.)getsynos\.ai$|\.vercel\.app$|^localhost(:\d+)?$/.test(host)) return json(403, { error: 'Forbidden' });
+  }
+  if (!/^application\/json\b/i.test(req.headers.get('content-type') || '')) return json(415, { error: 'Unsupported' });
   const raw = await req.text();
   if (raw.length > 20000) return json(413, { error: 'Too large' });
   let body;
@@ -111,6 +141,7 @@ export async function POST(req) {
         if (m.to === notifyTo) mailed = sent;
       },
       notifyTo,
+      guard: route === 'invite' ? inviteGuard(prefix, ip) : undefined,
       siteUrl: `${env('SITE_ORIGIN', 'https://www.getsynos.ai')}/${site}`,
     });
     const result = await core[route](body);
