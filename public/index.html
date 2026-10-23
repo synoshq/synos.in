@@ -468,6 +468,24 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .jobs.loop li{min-height:0}
 .end .ctas{justify-content:center}
 @media (max-width:900px){.pc-list.two{grid-template-columns:1fr}}
+
+/* the loop: a soft spotlight drifts behind the four steps (left to right on desktop, top to bottom when stacked) */
+.org:has(.jobs.loop){isolation:isolate}
+.spotwrap{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:0;pointer-events:none}
+.spot{position:absolute;top:50%;left:12.5%;width:min(520px,70vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 45%,transparent),color-mix(in srgb,var(--accent) 14%,transparent) 55%,transparent);
+  animation:spot-x 10s ease-in-out infinite alternate}
+.jobs.loop{position:relative;z-index:1}
+.jobs.loop li{background:color-mix(in srgb,var(--mist) 60%,transparent);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+@keyframes spot-x{from{left:12.5%}to{left:87.5%}}
+@keyframes spot-y{from{top:12.5%}to{top:87.5%}}
+@media (max-width:900px){.spot{animation-name:spot-x}}
+@media (max-width:720px){.spot{left:50%;top:12.5%;animation-name:spot-y}}
+@media (prefers-reduced-motion: reduce){.spot{animation:none;left:50%;top:50%}}
+/* sticky bar: its button fades out while the closing call to action is on screen */
+.stickynav .navlinks{transition:opacity .3s ease}
+.stickynav.cta-off .navlinks{opacity:0;pointer-events:none}
+@media (prefers-reduced-motion: reduce){.stickynav .navlinks{transition:none}}
 </style>
 </head>
 <body>
@@ -565,7 +583,8 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 <section data-section="the-loop" class="band sec"><div class="wrap c">
 <h2 class="big">How your agents<br><span class="then">get better.</span></h2>
 <div class="org">
-<span class="org-tag">Inside your org</span>
+<span class="org-tag">SynOS inside your org</span>
+<div class="spotwrap" aria-hidden="true"><i class="spot"></i></div>
 <ol class="jobs loop">
 <li><span class="n">01</span><h3>It works on live data.</h3><p>Your agent runs against your real systems. Every write is recorded rather than executed.</p></li>
 <li><span class="n">02</span><h3>An expert corrects it.</h3><p>In the tools your experts already use, the way they review work today.</p></li>
@@ -774,6 +793,16 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   }
   window.addEventListener('scroll',function(){ if(!t){t=true;requestAnimationFrame(update)} },{passive:true});
   window.addEventListener('resize',update); update();
+})();
+</script>
+<script>
+(function(){
+  var bar=document.getElementById('stickynav'), end=document.querySelector('[data-section="bottom-cta"]');
+  if(!bar||!end||!('IntersectionObserver' in window)) return;
+  var btn=bar.querySelector('.navlinks a');
+  new IntersectionObserver(function(es){ var on=es[0].isIntersecting; bar.classList.toggle('cta-off',on);
+    if(btn){ if(on){btn.setAttribute('tabindex','-1');btn.setAttribute('aria-hidden','true')} else {btn.removeAttribute('tabindex');btn.removeAttribute('aria-hidden')} } },
+    {threshold:0, rootMargin:'0px 0px -25% 0px'}).observe(end);
 })();
 </script>
 </body>
