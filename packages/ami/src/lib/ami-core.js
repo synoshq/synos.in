@@ -18,6 +18,20 @@ const MAX_MEMBERS = 25;
 const MAX_INVITES = 15;
 const EMAIL = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
 
+// ---------- Colleague invitations: shared rules (the page and the API use the same ones) ----------
+/** Colleagues per send, and the message limit (about 50 words). */
+export const INVITE_MAX_PER_SEND = 5;
+export const INVITE_MESSAGE_MAX = 300;
+/** A strict email shape for invitation recipients: one @, a dotted domain, no spaces or brackets. */
+export const INVITE_EMAIL = /^[a-z0-9._%+'-]{1,64}@[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,24}$/i;
+/** Anything that reads as a link or an address: a scheme, www., or a dotted domain such as acme.com. */
+export const LINKISH = /(?:[a-z][a-z0-9+.-]*:\/\/|www\.|@|\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,24}\b)/i;
+/** Names and company names: no scheme, no www., no slashes, no @. A company called Booking.com still passes. */
+export const NAME_UNSAFE = /(?:[a-z][a-z0-9+.-]*:\/\/|www\.|[\/\\@<>])/i;
+export const emailDomain = (e) => String(e).split('@')[1]?.toLowerCase() || '';
+/** Same organisation: identical domains, or one is a subdomain of the other (uk.acme.com and acme.com). */
+export const sameOrg = (a, b) => !!a && !!b && (a === b || a.endsWith('.' + b) || b.endsWith('.' + a));
+
 /** Agent Maturity Score: the average of all seven dimensions, one decimal. */
 export function maturity(scores) {
   const v = DIMS.map(([k]) => scores[k]);
@@ -96,8 +110,8 @@ function validScores(s) {
 
 const SIGN_OFF = 'Regards,\nAMI Team';
 
-function emailHtml(lines, cta) {
-  return `<div style="font:16px/1.6 -apple-system,Segoe UI,Arial,sans-serif;color:#0f1b2d;max-width:520px">${lines.map((l) => `<p style="margin:0 0 14px">${l}</p>`).join('')}${cta ? `<p style="margin:24px 0"><a href="${esc(cta.url)}" style="display:inline-block;background:#2747e8;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px">${esc(cta.label)}</a></p>` : ''}<p style="margin:24px 0 0">${SIGN_OFF.replace('\n', '<br>')}</p><p style="margin:28px 0 0;font-size:13px;color:#525e70">Agent Maturity Index, a SynOS research program. Answers are reported only in aggregate.</p></div>`;
+function emailHtml(lines, cta, footer) {
+  return `<div style="font:16px/1.6 -apple-system,Segoe UI,Arial,sans-serif;color:#0f1b2d;max-width:520px">${lines.map((l) => `<p style="margin:0 0 14px">${l}</p>`).join('')}${cta ? `<p style="margin:24px 0"><a href="${esc(cta.url)}" style="display:inline-block;background:#2747e8;color:#fff;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px">${esc(cta.label)}</a></p>` : ''}<p style="margin:24px 0 0">${SIGN_OFF.replace('\n', '<br>')}</p><p style="margin:28px 0 0;font-size:13px;color:#525e70">${footer ? `${esc(footer)}<br><br>` : ''}Agent Maturity Index, a SynOS research program. Answers are reported only in aggregate.</p></div>`;
 }
 
 // Field keys as Title Case labels: "agents_in_production" -> "Agents in Production".
@@ -108,7 +122,7 @@ const titleCase = (k) => k.replace(/[_-]+/g, ' ').trim().split(/\s+/).map((w, i)
  * store: { get(key) -> object|null, set(key, object) }
  * mail:  ({ to, subject, text, html, replyTo }) -> Promise
  */
-export function makeCore({ store, mail, notifyTo, siteUrl }) {
+export function makeCore({ store, mail, notifyTo, siteUrl, guard }) {
   const now = () => new Date().toISOString();
   const teamKey = (t) => `team/${t}`;
 
@@ -184,57 +198,89 @@ export function makeCore({ store, mail, notifyTo, siteUrl }) {
         await mail({
           to: m.email,
           subject: `Your team alignment score for ${team.business || 'your business'} is ready`,
-          text: `Hi ${first(m.name)},\n\n${count} people from ${team.business || 'your business'} have scored your AI agent program.\n\nTeam alignment score: ${a.score}/100\nTeam Agent Maturity Score: ${a.teamAvg} (${a.teamLevel})${a.biggestGap ? `\nBiggest disagreement: ${a.biggestGap.name}` : ''}\n\n${SIGN_OFF}`,
-          html: emailHtml([`Hi ${esc(first(m.name))},`, `${count} people from ${esc(team.business || 'your business')} have scored your AI agent program.`, `<strong style="font-size:22px">Team alignment score: ${a.score}/100</strong><br>Team Agent Maturity Score: ${a.teamAvg} (${esc(a.teamLevel)})${a.biggestGap ? `<br>Biggest disagreement: ${esc(a.biggestGap.name)}` : ''}`]),
+          text: `Hi${first(m.name) ? ` ${first(m.name)}` : ''},\n\n${count} people from ${team.business || 'your business'} have scored your AI agent program.\n\nTeam alignment score: ${a.score}/100\nTeam Agent Maturity Score: ${a.teamAvg} (${a.teamLevel})${a.biggestGap ? `\nBiggest disagreement: ${a.biggestGap.name}` : ''}\n\n${SIGN_OFF}`,
+          html: emailHtml([`Hi${first(m.name) ? ` ${esc(first(m.name))}` : ''},`, `${count} people from ${esc(team.business || 'your business')} have scored your AI agent program.`, `<strong style="font-size:22px">Team alignment score: ${a.score}/100</strong><br>Team Agent Maturity Score: ${a.teamAvg} (${esc(a.teamLevel)})${a.biggestGap ? `<br>Biggest disagreement: ${esc(a.biggestGap.name)}` : ''}`]),
         }).catch(() => {});
       }
     }
     return result;
   }
 
-  /** Invite colleagues to score the same business. */
+  /**
+   * Invite colleagues to score the same business.
+   * Abuse rules, all checked here so a direct API request meets them too:
+   * the sender must have scored this team, use a work email, and invite only
+   * addresses at their own company's domain; at most five per send and fifteen
+   * per team; no links or addresses in any text the recipient reads; the
+   * message is plain text and capped. `guard(n, sender)` adds the per-IP,
+   * per-domain and daily caps where a store for them exists (the live API).
+   */
   async function invite(body) {
     const team = await store.get(teamKey(clean(body.team, 20)));
     if (!team) throw new Fail(404, 'Score your business first.');
     const me = team.members.find((m) => m.id === body.member);
     if (!me) throw new Fail(403, 'Score your business first.');
     const name = clean(body.name, 80);
-    const business = clean(body.business, 120) || team.business;
-    const email = clean(body.email, 200);
+    const business = team.business || clean(body.business, 80);
+    const email = clean(body.email, 200).toLowerCase();
+    const message = clean(body.message, INVITE_MESSAGE_MAX + 1).replace(/\s+/g, ' ');
+    if (!business) throw new Fail(400, 'Enter your company name.');
+    if (NAME_UNSAFE.test(business)) throw new Fail(400, 'Enter your company name without links or symbols.');
     if (!name) throw new Fail(400, 'Enter your name.');
-    if (!business) throw new Fail(400, 'Enter your business name.');
-    if (!EMAIL.test(email)) throw new Fail(400, 'Enter your work email.');
-    const list = (Array.isArray(body.colleagues) ? body.colleagues : [])
-      .map((c) => ({ name: clean(c?.name, 80), email: clean(c?.email, 200).toLowerCase() }))
-      .filter((c) => c.name || c.email);
-    if (!list.length) throw new Fail(400, 'Add at least one colleague.');
-    if (list.length > 5) throw new Fail(400, 'Invite up to five colleagues at a time.');
-    for (const c of list) {
-      if (!c.name) throw new Fail(400, 'Add a name for each colleague.');
-      if (!EMAIL.test(c.email)) throw new Fail(400, `Enter a valid email for ${c.name}.`);
-      if (c.email === email.toLowerCase()) throw new Fail(400, 'Invite colleagues, not yourself.');
+    if (NAME_UNSAFE.test(name)) throw new Fail(400, 'Enter your name without links or symbols.');
+    if (!INVITE_EMAIL.test(email)) throw new Fail(400, 'Enter your work email.');
+    if (FREE_EMAIL.test(email)) throw new Fail(400, 'Use your work email. Invitations go to colleagues at the same company.');
+    if (message.length > INVITE_MESSAGE_MAX) throw new Fail(400, `Keep the message under ${INVITE_MESSAGE_MAX} characters.`);
+    if (LINKISH.test(message)) throw new Fail(400, 'Remove links and email addresses from the message.');
+
+    // Older pages sent { name, email } objects; this page sends plain addresses.
+    const raw = Array.isArray(body.colleagues) ? body.colleagues : [];
+    const seen = new Set([email]);
+    const list = [];
+    for (const c of raw.slice(0, 50)) {
+      const addr = clean(typeof c === 'string' ? c : c?.email, 200).toLowerCase();
+      if (!addr || seen.has(addr)) continue;
+      seen.add(addr);
+      list.push(addr);
+    }
+    if (!list.length) throw new Fail(400, 'Add at least one colleague’s email.');
+    if (list.length > INVITE_MAX_PER_SEND) throw new Fail(400, `Invite up to ${INVITE_MAX_PER_SEND} colleagues at a time.`);
+    const domain = emailDomain(email);
+    for (const addr of list) {
+      if (!INVITE_EMAIL.test(addr)) throw new Fail(400, `${addr} is not a valid email.`);
+      if (!sameOrg(emailDomain(addr), domain)) throw new Fail(400, `Invite colleagues with an @${domain} email.`);
+      if (team.invites.some((x) => x.email === addr) || team.members.some((m) => m.email === addr)) throw new Fail(400, `${addr} has already been invited.`);
     }
     if (team.invites.length + list.length > MAX_INVITES) throw new Fail(429, 'This team has reached its invitation limit.');
+    if (guard) await guard(list.length, email);
 
     me.name = name; me.email = email;
     if (!team.business) team.business = business;
     const sent = [];
-    for (const c of list) {
-      const inv = { id: id(), name: c.name, email: c.email, by: name, at: now() };
+    const inviter = first(name);
+    const said = message ? `\n\n${inviter}’s message: “${message}”` : '';
+    for (const addr of list) {
+      const inv = { id: id(), name: '', email: addr, by: name, at: now() };
       team.invites.push(inv);
-      const hash = encodeLink({ t: team.id, k: inv.id, i: first(name), r: first(c.name), b: team.business });
+      const hash = encodeLink({ t: team.id, k: inv.id, i: inviter, b: team.business });
       const url = `${siteUrl || ''}#${hash}`;
-      sent.push({ name: c.name, hash, url });
+      sent.push({ name: addr, hash, url });
+      const why = `You received this because ${name} (${email}) entered your address on the Agent Maturity Index. If you do not know them, ignore this email. Nothing else will be sent.`;
       await mail({
-        to: c.email,
+        to: addr,
         replyTo: email,
-        subject: `${first(name)} invited you to score ${team.business}'s AI agent maturity`,
-        text: `Hi ${first(c.name)},\n\n${name} has scored ${team.business} on the Agent Maturity Index and wants your view.\n\nIt takes two minutes: seven questions, one score each. When three of you have scored, everyone gets your team alignment score.\n\nScore ${team.business}: ${url}\n\n${SIGN_OFF}`,
-        html: emailHtml([`Hi ${esc(first(c.name))},`, `<strong>${esc(name)}</strong> has scored <strong>${esc(team.business)}</strong> on the Agent Maturity Index and wants your view.`, 'It takes two minutes: seven questions, one score each. When three of you have scored, everyone gets your team alignment score.'], { url, label: `Score ${team.business}` }),
+        subject: `${inviter} invited you to score ${team.business}’s AI agent maturity`,
+        text: `Hi,\n\n${name} has scored ${team.business} on the Agent Maturity Index and wants your view.${said}\n\nIt takes two minutes: seven questions, one choice each. When three of you have scored, everyone gets your team alignment score.\n\nScore ${team.business}: ${url}\n\n${SIGN_OFF}\n\n${why}`,
+        html: emailHtml([
+          'Hi,',
+          `<strong>${esc(name)}</strong> has scored <strong>${esc(team.business)}</strong> on the Agent Maturity Index and wants your view.`,
+          ...(message ? [`<span style="display:block;padding:10px 14px;border-left:3px solid #c9ced8;color:#525e70">${esc(inviter)}’s message: “${esc(message)}”</span>`] : []),
+          'It takes two minutes: seven questions, one choice each. When three of you have scored, everyone gets your team alignment score.',
+        ], { url, label: `Score ${team.business}` }, why),
       });
     }
     await store.set(teamKey(team.id), team);
-    await notify('Colleague invitations', { name, email, business: team.business, invited: list.map((c) => `${c.name} <${c.email}>`).join(', ') });
+    await notify('Colleague invitations', { name, email, business: team.business, invited: list.join(', '), message });
     return { sent: sent.length, business: team.business, links: sent };
   }
 
