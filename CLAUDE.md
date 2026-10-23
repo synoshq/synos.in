@@ -154,7 +154,15 @@ Section order, each carrying a `data-section` name for GA:
    production.", one CTA ("Bring one workflow", `/early-access`), and a scroll-driven chart of the
    model improving along the platform agents' steps.
 2. `become-ai-native` — "Which one are you?": two tiles, vertical SaaS (`/vertical-saas`) and AI
-   transformation (`/ai-transformation`). Both destinations are noindex holding pages for now.
+   transformation (`/ai-transformation`). `/ai-transformation` is still a noindex holding page.
+
+`/vertical-saas` (rebuilt 2026-10-23, indexable) is built on the homepage shell: Inter, the homepage tokens, nav, footer, cookie notice and scripts. Sections:
+`hero` · `case-study` (a marketing automation SaaS with 6K customers: five months on two large data and cloud
+platforms with no production-ready agent, then built with SynOS in under four weeks; the platforms are not
+named, by decision) · `inside-your-product` · `customer-agents` (a Brain for each customer; any harness) ·
+`agent-runtime` (logs and traces, agent identity, token budgeting, cost reporting; values illustrative) ·
+`post-training-lab` (RLVR bench marked coming soon) · `bottom-cta` ("Bring three people. Leave with a plan.",
+the 60-minute session).
 3. `odds` — "What's standing in your way.": a scroll-driven road with six walls, in the reader's words.
 4. `the-loop` — four steps: works on live data, an expert corrects it, the correction is kept, the
    agent improves. The other platform-agent jobs are one line beneath.

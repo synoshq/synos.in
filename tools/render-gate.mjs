@@ -35,6 +35,8 @@ const ALLOWED_FAMILIES = ['Instrument Sans', 'JetBrains Mono']   // 2026-09-26 r
 // The blog follows the homepage system too (2026-10-22, public/css/blog.css).
 const PAGE_FAMILIES = {
   '/index.html': ['Inter'],
+  // 2026-10-23: /vertical-saas rebuilt on the homepage system.
+  '/vertical-saas.html': ['Inter'],
   '/blog/index.html': ['Inter'],
   '/blog/domain-trained-open-weight-models.html': ['Inter'],
 }
