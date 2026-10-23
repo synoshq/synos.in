@@ -18,7 +18,7 @@
   column that is SynOS, once per page. No eyebrows above headings, no mono all-caps labels, no
   `Fig. N ·` captions. `tools/render-gate.mjs` allows exactly Instrument Sans and JetBrains Mono.
   The brand kit's palette (`packages/brand-kit`) is unchanged; the site diverges from it on purpose.
-- **Homepage exception (2026-10-11).** `public/index.html` was rebuilt in the Agent Maturity Index
+- **Homepage exception (2026-10-11, page rebuilt again 2026-10-23).** `public/index.html` was rebuilt in the Agent Maturity Index
   style (Option B "Loop", chosen in the 2026-10-11 visual review): Inter, the AMI palette and
   light/dark tokens, pill buttons, cards, a dark deployment band and eyebrows. It carries its own
   stylesheet and does not load `synos.css` or the nav/footer/head partials; its head keeps GA,
@@ -139,81 +139,46 @@ written for them. Do not grow it back into a section.
 
 ## Landing page
 
-Rebuilt 2026-09-30. The page before it opened on an essay sentence ("Almost nobody trains an agent
-on a real business. They train it on a copy.") and addressed only a company already training its
-own models, which is one of four buyer stages.
-
-Built against a survey of eighteen infrastructure homepages: Modal, Prime Intellect, E2B,
-Braintrust, Daytona, Temporal, Fireworks, Baseten, Together, Anyscale, HUD, W&B, LangChain,
-Thinking Machines, Tinker, Mercor, Surge and Scale. What that survey settled, and what this page
-therefore follows:
-
-- **The hero is a bare noun phrase naming the category.** Nine of twenty heroes take this shape
-  (`The + category noun + for + who`), and the subhead carries the mechanism. Zero of twenty put a
-  number in the headline.
-- **A content block stops at two sentences.** The longest sustained prose in the whole sample is a
-  research lab's manifesto page, which has no product on it.
-- **A claim is quantified with a baseline, or rewritten as a mechanism.** Modal does not say
-  "reliable", it says "Bad hardware is drained and replaced before it touches your workload."
-- **"You" throughout. "We" only where we are claiming authorship of something specific.** Never
-  "we help you" or "we enable you to".
-- **A block CTA names its own action.** Braintrust uses "Log your first trace", not "Learn more".
-- **Trust and security never appear in the nav.** Zero of eighteen, despite ten of eighteen
-  carrying a security section on the page. They live in the footer.
-
-Above the nav sits `.ami-bar`, a one-line Agent Maturity Index bar about the Founding Cohort,
-linking to the top of the Index page (`/agent-maturity-index`, no anchor, by request). It exists only while cohort seats are open: **delete the
-`.ami-bar` block and its CSS from `public/index.html` when the 30 seats fill.** It is page markup,
-not a partial, so it shows on the homepage only.
+Rebuilt 2026-10-23 from the homepage iterations (`/rl-home` directions A to D on branch `rl-home`,
+`/lab-home` on branch `lab-home`, published for review as `/rl-home-3` and `/rl-home-4`). The live page
+is the `/rl-home-4` version, the cut-down build after a copy review: name the reader and their tension
+in the hero, one story in why now, the reader's own words for the obstacles, one loop in place of a
+feature list, one ask. `/rl-home-3`, `/rl-home-4`, `/rl-home`, `/rl-home/*` and `/lab-home` redirect
+to `/`. The 2026-09-30 build ("The platform for AI built on your own systems") is in history.
+Briefs: `docs/plans/2026-10-21-rl-home-brief.md`, `docs/plans/2026-10-22-lab-home-brief.md` (on the
+`lab-home` branch).
 
 Section order, each carrying a `data-section` name for GA:
 
-1. `hero` — H1 "The platform for AI built on your own systems.", subhead naming the three
-   mechanisms, two CTAs, and a three item trust strip.
-2. `where-you-are` — the three buyer situations as columns, drawn from the customer deck family
-   (`synos-gtm/presentations/_client_content.py`). **No links out**: there is nothing behind them
-   and a dead "learn more" is worse than nothing. Depth belongs in the deck taken to the call.
-   One exception, added 2026-10-11: a single line under the columns links to the Agent Maturity
-   Index page (`/agent-maturity-index`, its top, by request), because the three situations are a rough maturity
-   scale and the Index measures it properly. Keep it to that one line; the columns stay link-free.
-3. `outcomes` — four rows on one rule. Rows rather than cards, because four equal cards would say
-   the four are interchangeable and the order is the argument.
-4. `platform` — the four pieces, as cards.
-5. `where-it-sits` — the only dark band on the site, carrying the only figure.
-6. `how-it-starts` — the two week first engagement, as a ledger.
-7. `deployment` — self-hosting, data handling, model choice, then the trust centre link. Second to
-   last, which is where every surveyed site puts its security block.
-8. `bottom-cta`.
+1. `hero` — H1 "Self-improvement for your agents.", subhead opening "For teams with agents in
+   production.", one CTA ("Bring one workflow", `/early-access`), and a scroll-driven chart of the
+   model improving along the platform agents' steps.
+2. `become-ai-native` — "Which one are you?": two tiles, vertical SaaS (`/vertical-saas`) and AI
+   transformation (`/ai-transformation`). Both destinations are noindex holding pages for now.
+3. `why-now` — the ~3% Arena gap in the opening line (Stanford HAI, AI Index 2026), then two
+   result cards: vendor credit review, 40x (Scale AI, Oct 2026) and hospital claim appeals, 5.9x and
+   28% more accurate (R1, Oct 2026).
+4. `odds` — "What's standing in your way.": a scroll-driven road with six walls, in the reader's words.
+5. `the-loop` — four steps: works on live data, an expert corrects it, the correction is kept, the
+   agent improves. The other platform-agent jobs are one line beneath.
+6. `components` — "What you get.": The Brain, The Agent Runtime, The Training Plane.
+7. `faq` — six questions a buyer asks before a call.
+8. `bottom-cta` — "Bring one workflow." on the dark panel, with "Or book a call".
 
-### The nav
-
-A wordmark and one action. The hamburger and the empty links panel were removed on 2026-09-30:
-there were no links in it, and at 320px the CTA wrapped to two lines and sat on top of the
-wordmark. If nav links ever return, restore the toggle from history along with them.
+The nav is a wordmark; a sticky bar with "Bring one workflow" appears once the hero CTA scrolls away.
+The page carries no figure iframe.
 
 ### Claims discipline on this page
 
 Source of truth is `synos-gtm/docs/research/product-truth/` and the capability audit §7 "Claims to
-NOT make". Carried forward from the previous build, and still binding:
+NOT make". Still binding:
 
-- **Never quote a cost reduction percentage in any form.** Accounting is shipped, reduction has no
-  benchmark. The page says "Every run is priced per model and per provider".
-- **No approval claim.** The approval gate was removed from the product. The outcomes row says the
-  write is "intercepted and recorded rather than committed, then scored", which is true.
-- **No connector count.** Two September audits disagree, and a precise number that turns out wrong
-  is what fails a technical evaluation.
-- A model of their own: "accumulate inside your estate in the shape a training set is built from"
-  is true from week one and says nothing about when we train.
-
-### Figures
-
-One, `/figures/where-it-sits`. The two previous figures (`three-ways`, `rent-and-own`) were deleted
-on 2026-09-30: both argued the stage four essay the page no longer makes. Only two of eighteen
-surveyed sites lead with an architecture diagram, so this one has to earn its place, and it does
-because "where does this sit" is the first question an engineering reader asks about a layer.
-
-Every figure must load `/js/figure.js`, which posts its height to the host page. Without it the
-iframe sits at the 900px CSS fallback and leaves dead space under the drawing.
+- **Never quote a SynOS cost reduction or accuracy percentage in any form.** The why-now figures are
+  third-party published results, each named with its source on the page.
+- **No approval claim.** Writes are "recorded rather than executed".
+- **No connector count. No customer or design-partner names.**
+- A model of their own: "a model you own" and "weights you own" describe ownership, not a training
+  date.
 
 ## Landing Section Anchors
 

@@ -37,10 +37,6 @@ const PAGE_FAMILIES = {
   '/index.html': ['Inter'],
   '/blog/index.html': ['Inter'],
   '/blog/domain-trained-open-weight-models.html': ['Inter'],
-  // 2026-10-22: homepage iteration under review at /rl-home-3 follows the homepage's Inter system.
-  '/rl-home-3.html': ['Inter'],
-  // 2026-10-23: /rl-home-4, the cut-down iteration after the copy review.
-  '/rl-home-4.html': ['Inter'],
 }
 
 let chromium

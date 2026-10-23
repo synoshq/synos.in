@@ -66,6 +66,31 @@
       "source": "/agent-maturity-index-1/:path*",
       "destination": "/agent-maturity-index/:path*",
       "permanent": false
+    },
+    {
+      "source": "/rl-home-3",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/rl-home-4",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/rl-home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/rl-home/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/lab-home",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [
