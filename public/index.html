@@ -469,19 +469,34 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .end .ctas{justify-content:center}
 @media (max-width:900px){.pc-list.two{grid-template-columns:1fr}}
 
-/* the loop: a soft spotlight drifts behind the four steps (left to right on desktop, top to bottom when stacked) */
+/* the loop: a soft spotlight rests behind one step at a time, then moves to the next (left to right on desktop,
+   top to bottom when stacked); the step it rests on brightens. One cycle: 12s, 3s per step. */
 .org:has(.jobs.loop){isolation:isolate}
 .spotwrap{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:0;pointer-events:none}
 .spot{position:absolute;top:50%;left:12.5%;width:min(520px,70vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 45%,transparent),color-mix(in srgb,var(--accent) 14%,transparent) 55%,transparent);
-  animation:spot-x 10s ease-in-out infinite alternate}
+  animation:spot-x 12s ease-in-out infinite}
 .jobs.loop{position:relative;z-index:1}
-.jobs.loop li{background:color-mix(in srgb,var(--mist) 60%,transparent);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
-@keyframes spot-x{from{left:12.5%}to{left:87.5%}}
-@keyframes spot-y{from{top:12.5%}to{top:87.5%}}
-@media (max-width:900px){.spot{animation-name:spot-x}}
-@media (max-width:720px){.spot{left:50%;top:12.5%;animation-name:spot-y}}
-@media (prefers-reduced-motion: reduce){.spot{animation:none;left:50%;top:50%}}
+.jobs.loop li{background:color-mix(in srgb,var(--mist) 60%,transparent);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+  outline:1.5px solid transparent;outline-offset:-1.5px;animation:step-on 12s ease-in-out infinite}
+.jobs.loop li:nth-child(2){animation-delay:-9s}
+.jobs.loop li:nth-child(3){animation-delay:-6s}
+.jobs.loop li:nth-child(4){animation-delay:-3s}
+@keyframes step-on{
+  0%,20%{background:color-mix(in srgb,var(--paper) 82%,transparent);outline-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+  26%,100%{background:color-mix(in srgb,var(--mist) 60%,transparent);outline-color:transparent}}
+@keyframes spot-x{
+  0%{left:12.5%;opacity:0} 4%{opacity:1} 20%{left:12.5%}
+  25%,45%{left:37.5%} 50%,70%{left:62.5%} 75%,92%{left:87.5%;opacity:1} 97%{left:87.5%;opacity:0} 100%{left:12.5%;opacity:0}}
+@keyframes spot-y{
+  0%{top:12.5%;opacity:0} 4%{opacity:1} 20%{top:12.5%}
+  25%,45%{top:37.5%} 50%,70%{top:62.5%} 75%,92%{top:87.5%;opacity:1} 97%{top:87.5%;opacity:0} 100%{top:12.5%;opacity:0}}
+@keyframes spot-g{
+  0%{left:25%;top:25%;opacity:0} 4%{opacity:1} 20%{left:25%;top:25%}
+  25%,45%{left:75%;top:25%} 50%,70%{left:25%;top:75%} 75%,92%{left:75%;top:75%;opacity:1} 97%{left:75%;top:75%;opacity:0} 100%{left:25%;top:25%;opacity:0}}
+@media (max-width:1000px){.spot{left:25%;top:25%;animation-name:spot-g}}
+@media (max-width:560px){.spot{left:50%;top:12.5%;animation-name:spot-y}}
+@media (prefers-reduced-motion: reduce){.spot{animation:none;left:50%;top:50%}.jobs.loop li{animation:none}}
 /* sticky bar: its button fades out while the closing call to action is on screen */
 .stickynav .navlinks{transition:opacity .3s ease}
 .stickynav.cta-off .navlinks{opacity:0;pointer-events:none}
