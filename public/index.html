@@ -469,13 +469,15 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .end .ctas{justify-content:center}
 @media (max-width:900px){.pc-list.two{grid-template-columns:1fr}}
 
-/* the loop: a soft spotlight sits behind one step at a time and moves to the next as the reader scrolls
-   (JS sets its centre in --sx/--sy from the card positions, so it follows any layout); the step it rests on
-   brightens. Reversible on scroll up. */
+/* the loop: a soft spotlight sits behind the top-left of one step at a time. It moves to the next step once the
+   bottom of the lit step has scrolled above the middle of the screen (steps sharing a row release left to right,
+   a little apart). JS sets --sx/--sy from the card positions, so it follows any layout. Reversible. */
 .org:has(.jobs.loop){isolation:isolate}
 .spotwrap{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:0;pointer-events:none}
-.spot{position:absolute;left:var(--sx,12.5%);top:var(--sy,50%);width:min(520px,70vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
-  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 45%,transparent),color-mix(in srgb,var(--accent) 14%,transparent) 55%,transparent)}
+.spot{position:absolute;left:var(--sx,12.5%);top:var(--sy,50%);width:min(400px,64vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 45%,transparent),color-mix(in srgb,var(--accent) 14%,transparent) 55%,transparent);
+  transition:left .6s cubic-bezier(.4,0,.2,1),top .6s cubic-bezier(.4,0,.2,1)}
+@media (prefers-reduced-motion: reduce){.spot{transition:none}}
 .jobs.loop{position:relative;z-index:1}
 .jobs.loop li{background:color-mix(in srgb,var(--mist) 60%,transparent);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
   outline:1.5px solid transparent;outline-offset:-1.5px;transition:background-color .35s ease,outline-color .35s ease}
@@ -808,23 +810,25 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 (function(){
   var org=document.querySelector('.jobs.loop'); if(!org) return; var box=org.closest('.org'), spot=box.querySelector('.spot');
   var cards=[].slice.call(org.children); if(!spot||cards.length<2) return;
-  var C=[], on=-1, rq=false;
-  function measure(){ var B=box.getBoundingClientRect(); C=cards.map(function(c){var R=c.getBoundingClientRect();
-    return [R.left+R.width/2-B.left, R.top+R.height/2-B.top]}); update() }
-  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
-  function update(){ rq=false; var vh=window.innerHeight, B=box.getBoundingClientRect();
-    var range=Math.max(B.height, vh*.7), p=(vh*.8-B.top)/range; p=Math.max(0,Math.min(.9999,p));
-    var n=cards.length, f=p*n, i=Math.floor(f), t=f-i, pos=i;
-    if(i<n-1 && t>.65) pos=i+ease((t-.65)/.35);
-    var k=Math.floor(pos), r=pos-k, a=C[k], b=C[Math.min(n-1,k+1)];
-    spot.style.setProperty('--sx',(a[0]+(b[0]-a[0])*r).toFixed(1)+'px');
-    spot.style.setProperty('--sy',(a[1]+(b[1]-a[1])*r).toFixed(1)+'px');
-    var cur=Math.round(pos); if(cur!==on){ if(on>=0) cards[on].classList.remove('on'); cards[cur].classList.add('on'); on=cur }
+  var on=-1, rq=false;
+  function update(){ rq=false; var vh=window.innerHeight, mid=vh*.5, B=box.getBoundingClientRect();
+    var R=cards.map(function(c){return c.getBoundingClientRect()}), n=cards.length, cur=n-1;
+    for(var i=0;i<n-1;i++){
+      // a step releases once its bottom edge is above the middle of the screen; steps sharing a row (one bottom
+      // edge) then release left to right, a short scroll apart
+      var j=0; for(var k=0;k<i;k++){ if(Math.abs(R[k].top-R[i].top)<4) j++ }
+      var off = -j*Math.min(vh*.06,54);
+      if(R[i].bottom > mid + off){ cur=i; break }
+    }
+    if(cur!==on){ if(on>=0) cards[on].classList.remove('on'); cards[cur].classList.add('on'); on=cur }
+    var C=R[cur];
+    spot.style.setProperty('--sx',(C.left-B.left+C.width*.16).toFixed(1)+'px');
+    spot.style.setProperty('--sy',(C.top-B.top+C.height*.18).toFixed(1)+'px');
   }
   window.addEventListener('scroll',function(){ if(!rq){rq=true;requestAnimationFrame(update)} },{passive:true});
-  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(measure,100)});
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(measure);
-  measure();
+  window.addEventListener('resize',function(){ if(!rq){rq=true;requestAnimationFrame(update)} });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(update);
+  update();
 })();
 </script>
 </body>
