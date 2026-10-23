@@ -514,6 +514,15 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 }
 .wn-q{max-width:15em;margin-inline:auto;text-wrap:balance}
 .pc-list.two .pl-facts .pl-task{color:var(--ink);font-weight:600}
+/* result cards: more air between title, benefits, figure, coins and footer; footers line up at the bottom */
+.pc-list.two .pl-card{display:flex;flex-direction:column;gap:0;padding:clamp(26px,3.4vw,44px)}
+.pc-list.two .pl-card h3{margin:0}
+.pc-list.two .pl-sub{margin:8px 0 0}
+.pc-list.two .pl-big{margin-top:clamp(24px,3vw,36px)}
+.pc-list.two .pl-coins{margin-top:clamp(22px,2.6vw,32px);gap:10px}
+.pc-list.two .pl-coins .pc-coin-set + .pc-lbl{margin-top:8px}
+.pc-list.two .pl-facts{margin-top:auto;padding-top:16px}
+.pc-list.two .pl-coins{margin-bottom:clamp(24px,3vw,36px)}
 </style>
 </head>
 <body>
