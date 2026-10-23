@@ -122,9 +122,10 @@ const titleCase = (k) => k.replace(/[_-]+/g, ' ').trim().split(/\s+/).map((w, i)
  * store: { get(key) -> object|null, set(key, object) }
  * mail:  ({ to, subject, text, html, replyTo }) -> Promise
  */
-export function makeCore({ store, mail, notifyTo, siteUrl, guard }) {
+export function makeCore({ store, mail, notifyTo, siteUrl, guard, log }) {
   const now = () => new Date().toISOString();
   const teamKey = (t) => `team/${t}`;
+  const invitedKey = (addr) => `invited/${addr}`;
 
   // One line saying what happened, by notification label. `who` already includes "from <company>".
   const SUMMARY = {
@@ -249,23 +250,38 @@ export function makeCore({ store, mail, notifyTo, siteUrl, guard }) {
     for (const addr of list) {
       if (!INVITE_EMAIL.test(addr)) throw new Fail(400, `${addr} is not a valid email.`);
       if (!sameOrg(emailDomain(addr), domain)) throw new Fail(400, `Invite colleagues with an @${domain} email.`);
-      if (team.invites.some((x) => x.email === addr) || team.members.some((m) => m.email === addr)) throw new Fail(400, `${addr} has already been invited.`);
     }
-    if (team.invites.length + list.length > MAX_INVITES) throw new Fail(429, 'This team has reached its invitation limit.');
-    if (guard) await guard(list.length, email);
+
+    // One invitation per person, ever. An address already invited (by anyone, to any
+    // team) or already scoring this team is skipped without telling the sender, so the
+    // form cannot be used to re-send or to probe who was invited. Each skip is logged.
+    const fresh = [];
+    const repeats = [];
+    for (const addr of list) {
+      const prior = await store.get(invitedKey(addr));
+      const inTeam = team.invites.some((x) => x.email === addr) || team.members.some((m) => m.email === addr);
+      if (prior || inTeam) repeats.push({ addr, prior: prior || { team: team.id } });
+      else fresh.push(addr);
+    }
+    if (repeats.length && log) {
+      for (const r of repeats) await log({ type: 'repeat_invite', at: now(), to: r.addr, team: team.id, business: team.business || business, by: name, byEmail: email, firstInvite: r.prior }).catch(() => {});
+    }
+    if (team.invites.length + fresh.length > MAX_INVITES) throw new Fail(429, 'This team has reached its invitation limit.');
+    if (guard && fresh.length) await guard(fresh.length, email);
 
     me.name = name; me.email = email;
     if (!team.business) team.business = business;
     const sent = [];
     const inviter = first(name);
     const said = message ? `\n\n${inviter}’s message: “${message}”` : '';
-    for (const addr of list) {
+    for (const addr of fresh) {
       const inv = { id: id(), name: '', email: addr, by: name, at: now() };
       team.invites.push(inv);
+      await store.set(invitedKey(addr), { team: team.id, business: team.business, by: name, byEmail: email, at: inv.at });
       const hash = encodeLink({ t: team.id, k: inv.id, i: inviter, b: team.business });
       const url = `${siteUrl || ''}#${hash}`;
       sent.push({ name: addr, hash, url });
-      const why = `You received this because ${name} (${email}) entered your address on the Agent Maturity Index. If you do not know them, ignore this email. Nothing else will be sent.`;
+      const why = `You received this because ${name} (${email}) entered your address on the Agent Maturity Index. Please ignore this email if you received it in error.`;
       await mail({
         to: addr,
         replyTo: email,
@@ -280,8 +296,9 @@ export function makeCore({ store, mail, notifyTo, siteUrl, guard }) {
       });
     }
     await store.set(teamKey(team.id), team);
-    await notify('Colleague invitations', { name, email, business: team.business, invited: list.join(', '), message });
-    return { sent: sent.length, business: team.business, links: sent };
+    await notify('Colleague invitations', { name, email, business: team.business, invited: fresh.join(', '), 'skipped, already invited': repeats.map((r) => r.addr).join(', '), message });
+    // Reports every requested address as sent, so a repeat looks the same as a first invitation.
+    return { sent: list.length, business: team.business, links: sent };
   }
 
   return { register, score, invite };

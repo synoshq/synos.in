@@ -20,6 +20,8 @@
 //   <prefix>:mail/<id>        an email that could not be sent yet
 //   <prefix>:outbox           set of queued mail ids, retried by /api/ami/flush
 //   <prefix>:invcap:...       invitation email counters (per IP, per sender domain, per day)
+//   <prefix>:invited/<email>  first invitation sent to an address; later ones are skipped
+//   <prefix>:invite-log       list of skipped repeat invitations (newest first, last 5000 kept)
 import { makeCore, Fail } from '../../packages/ami/src/lib/ami-core.js';
 
 const env = (k, d = '') => process.env[k] || d;
@@ -142,6 +144,10 @@ export async function POST(req) {
       },
       notifyTo,
       guard: route === 'invite' ? inviteGuard(prefix, ip) : undefined,
+      log: async (entry) => {
+        await redis(['LPUSH', `${prefix}:invite-log`, JSON.stringify({ ...entry, ip, env: deployEnv() })], ['LTRIM', `${prefix}:invite-log`, 0, 4999]);
+        console.warn('[invite repeat]', entry.to, 'by', entry.byEmail);
+      },
       siteUrl: `${env('SITE_ORIGIN', 'https://www.getsynos.ai')}/${site}`,
     });
     const result = await core[route](body);
