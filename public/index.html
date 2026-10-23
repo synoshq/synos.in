@@ -469,7 +469,7 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .end .ctas{justify-content:center}
 @media (max-width:900px){.pc-list.two{grid-template-columns:1fr}}
 
-/* the loop: a soft spotlight sits behind the top-left of one step at a time. It moves to the next step once the
+/* the loop: a soft spotlight sits behind the top-left of one step at a time. Desktop (one row): it moves once the container reaches mid-screen, then steps across as the middle passes through the container. Otherwise it moves to the next step once the
    bottom of the lit step has scrolled above the middle of the screen (steps sharing a row release left to right,
    a little apart). JS sets --sx/--sy from the card positions, so it follows any layout. Reversible. */
 .org:has(.jobs.loop){isolation:isolate}
@@ -813,7 +813,12 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
   var on=-1, rq=false;
   function update(){ rq=false; var vh=window.innerHeight, mid=vh*.5, B=box.getBoundingClientRect();
     var R=cards.map(function(c){return c.getBoundingClientRect()}), n=cards.length, cur=n-1;
-    for(var i=0;i<n-1;i++){
+    var oneRow=Math.abs(R[n-1].top-R[0].top)<4;
+    if(oneRow){
+      // desktop, all steps on one row: the highlight moves once the container's top reaches the middle of the
+      // screen, then steps left to right as the middle passes through the container (a third of its height each)
+      var q=(mid-B.top)/B.height; cur = q<0 ? 0 : Math.min(n-1, 1+Math.floor(q*(n-1)));
+    } else for(var i=0;i<n-1;i++){
       // a step releases once its bottom edge is above the middle of the screen; steps sharing a row (one bottom
       // edge) then release left to right, a short scroll apart
       var j=0; for(var k=0;k<i;k++){ if(Math.abs(R[k].top-R[i].top)<4) j++ }
