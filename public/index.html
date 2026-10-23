@@ -504,6 +504,16 @@ footer{border-top:1px solid var(--line);padding-block:8px 24px}
 .linklike:hover{color:var(--ink)}
 .foot .linklike{color:var(--dim);min-height:44px;display:inline-flex;align-items:center}
 .foot .linklike:hover{color:var(--ink)}
+
+/* phones: the hero gets more air between heading, lead line, body, button and chart */
+@media (max-width:560px){
+  .hero{padding-top:44px}
+  .hero .mega{letter-spacing:-.04em;line-height:1.05}
+  .hero .sub{margin-top:26px;font-size:1.06rem;line-height:1.6;max-width:22em}
+  .hero .sub strong{display:block;margin-bottom:12px;font-size:1.08rem;line-height:1.4}
+  .hero .ctas{margin-top:36px}
+  .stage{margin-top:60px}
+}
 </style>
 </head>
 <body>
