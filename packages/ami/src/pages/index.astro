@@ -104,21 +104,22 @@ const jsonLd = [
         <div class="dims-head">
           <h2 id="dims-h">Seven dimensions. Score yourself now.</h2>
           <p class="invited" hidden><span class="inv-av" aria-hidden="true"></span><span class="inv-txt"></span></p>
-          <p class="sub muted">Pick the level that matches what runs today: 1 is Experimenting, 5 is Agent-Native.</p>
+          <p class="sub muted">For each dimension, pick the statement closest to what runs in production today. If you sit between two, pick the lower one.</p>
         </div>
         <div class="selfscore" role="group" aria-label="Self-assessment">
           {dims.map((d) => (
             <fieldset class="ss-row">
-              <legend class="sr-only">{d.name}</legend>
+              <legend class="sr-only">{d.name}: {d.q}</legend>
               <div class="ss-text" aria-hidden="true">
                 <span class="ss-name">{d.name}</span>
                 <span class="ss-q">{d.q}</span>
               </div>
               <div class="ss-pick">
-                {levels.map((l) => (
-                  <label class="ss-opt" title={l.name}>
-                    <input type="radio" name={d.id} value={l.n} />
-                    <span><span aria-hidden="true">{l.n}</span><span class="sr-only">Level {l.n}, {l.name}</span></span>
+                {levels.map((l, i) => (
+                  <label class="ss-opt">
+                    <input class="sr-only" type="radio" name={d.id} value={l.n} />
+                    <span class="ss-n" aria-hidden="true">{l.n}</span>
+                    <span class="ss-desc"><span class="ss-lv">Level {l.n}, {l.name}.</span> {d.rubric[i]}</span>
                   </label>
                 ))}
               </div>
@@ -238,21 +239,25 @@ const jsonLd = [
   /* Dimensions + self-score */
   .dims { padding-top: 0; }
   .selfscore { margin-top: 44px; }
-  .ss-row { border: 0; margin: 0; padding: 20px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 40px; align-items: center; }
-  .ss-text { display: flex; flex-direction: column; gap: 4px; }
+  .ss-row { border: 0; margin: 0; padding: 28px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 16px 48px; align-items: start; }
+  .ss-text { display: flex; flex-direction: column; gap: 6px; padding-top: 6px; }
   .ss-name { font-weight: 650; font-size: 1.25rem; letter-spacing: -.012em; }
-  .ss-q { color: var(--slate); max-width: 36em; }
-  .ss-pick { display: flex; gap: 6px; }
-  .ss-opt { position: relative; }
-  .ss-opt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-  .ss-opt > span { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--field); font-weight: 600; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--slate); transition: background-color .15s, border-color .15s, color .15s; }
-  .ss-opt:hover > span { border-color: var(--ink); color: var(--ink); }
-  .ss-opt input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-  .ss-opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .ss-q { color: var(--slate); max-width: 30em; }
+  .ss-pick { display: flex; flex-direction: column; gap: 2px; }
+  .ss-opt { position: relative; display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: start; padding: 10px 12px; border: 1px solid transparent; border-radius: 12px; cursor: pointer; transition: background-color .15s, border-color .15s; }
+  .ss-opt:hover { background: var(--mist); }
+  .ss-n { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--field); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--slate); transition: background-color .15s, border-color .15s, color .15s; }
+  .ss-desc { padding-top: 4px; font-size: 15px; line-height: 1.45; color: var(--slate); }
+  .ss-lv { font-weight: 600; color: var(--ink); }
+  .ss-opt:hover .ss-n { border-color: var(--ink); color: var(--ink); }
+  .ss-opt:has(input:checked) { background: var(--mist); border-color: var(--accent); }
+  .ss-opt:has(input:checked) .ss-desc { color: var(--ink); }
+  .ss-opt input:checked + .ss-n { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .ss-opt input:focus-visible + .ss-n { outline: 3px solid var(--accent); outline-offset: 3px; }
   .ss-result { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; padding: 28px 0 0; border-top: 1px solid var(--line); }
   .ss-err { margin: 0; color: var(--err); font-weight: 500; }
   .ss-note { margin: 0; flex-basis: 100%; font-size: 13px; color: var(--slate); }
-  .ss-row.ss-missing .ss-opt > span { border-color: var(--err); }
+  .ss-row.ss-missing .ss-n { border-color: var(--err); }
   .ss-row.ss-missing .ss-name::after { content: " (choose a level)"; color: var(--err); font-size: 15px; font-weight: 500; letter-spacing: 0; }
   .invited { display: flex; align-items: center; gap: 14px; margin: 22px 0 0; padding: 14px 20px 14px 14px; max-width: 40em; border-radius: 16px; background: color-mix(in srgb, var(--accent) 10%, var(--paper)); border: 1.5px solid var(--accent); font-size: 1.15rem; line-height: 1.4; color: var(--ink); }
   .invited[hidden] { display: none; }
@@ -313,8 +318,9 @@ const jsonLd = [
     .lead { margin: 18px 0 24px; font-size: 1.1rem; }
     .ctas .btn-primary { width: 100%; }
     .hero-grid { gap: 40px; }
-    .ss-row { grid-template-columns: 1fr; }
-    .ss-pick { justify-content: space-between; max-width: 300px; }
+    .ss-row { grid-template-columns: 1fr; padding: 24px 0; }
+    .ss-text { padding-top: 0; }
+    .ss-opt { padding: 10px 8px; gap: 12px; margin: 0 -8px; }
     .ss-result .btn { width: 100%; }
   }
 </style>
